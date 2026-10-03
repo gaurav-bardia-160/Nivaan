@@ -5,6 +5,9 @@ __pycache__/
 .env
 .env.*
 !.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
 .DS_Store
 .coverage
 uploads/
@@ -13,5 +16,3 @@ backend/data/raw/*
 !backend/data/raw/.gitkeep
 backend/data/vector_index/*
 !backend/data/vector_index/.gitkeep
-backend/data/pending_review/*
-!backend/data/pending_review/.gitkeep
