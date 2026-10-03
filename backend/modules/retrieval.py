@@ -1,99 +1,62 @@
+"""Retrieval module for finding verified knowledge base entries matching user queries."""
+
 from __future__ import annotations
 
 import json
-import re
-from functools import lru_cache
-from pathlib import Path
 from typing import Any, Optional
 
-from rapidfuzz import fuzz
-
 try:
-    from backend.schemas import KnowledgeEntry
-except ImportError:  # pragma: no cover - supports running from backend/ folder
-    from schemas import KnowledgeEntry
-
-DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "knowledge_base.json"
-MATCH_THRESHOLD = 55
-STOPWORDS = {
-    "a", "an", "and", "are", "as", "at", "be", "by", "can", "could",
-    "did", "do", "does", "for", "from", "have", "how", "i", "if", "in", "into",
-    "is", "it", "its", "may", "of", "on", "or", "should", "that", "the", "their",
-    "them", "then", "there", "these", "they", "this", "those", "to", "use", "when",
-    "where", "which", "who", "why", "will", "with", "would", "you", "your"
-}
+    from backend.config import DATA_DIR
+except ImportError:
+    from config import DATA_DIR
 
 
-def _normalize(text: str) -> str:
-    text = text.lower()
-    text = re.sub(r"[^a-z0-9\s]", " ", text)
-    tokens = [token for token in text.split() if token not in STOPWORDS]
-    return " ".join(tokens)
-
-
-@lru_cache(maxsize=1)
-def _load_entries() -> list[dict[str, Any]]:
-    try:
-        with DATA_PATH.open("r", encoding="utf-8") as handle:
-            data = json.load(handle)
-    except (FileNotFoundError, json.JSONDecodeError):
+def _load_knowledge_base() -> list[dict[str, Any]]:
+    kb_path = DATA_DIR / "knowledge_base.json"
+    if not kb_path.exists():
         return []
+    with open(kb_path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-    if not isinstance(data, list):
-        return []
 
-    valid_entries: list[dict[str, Any]] = []
-    for item in data:
-        try:
-            valid_entries.append(KnowledgeEntry(**item).model_dump())
-        except Exception as exc:
-            print(f"[retrieval] Skipping invalid entry: {exc}")
-            continue
-    return valid_entries
+def _score_match(query: str, entry: dict[str, Any]) -> float:
+    query_lower = query.lower()
+    score = 0.0
+
+    if query_lower in entry.get("title", "").lower():
+        score += 0.5
+
+    keywords = entry.get("keywords", [])
+    if keywords:
+        keyword_matches = sum(1 for kw in keywords if kw.lower() in query_lower)
+        score += (keyword_matches / max(len(keywords), 1)) * 0.3
+
+    summary = entry.get("summary", "").lower()
+    if query_lower in summary:
+        score += 0.2
+
+    return min(score, 1.0)
 
 
 def find_entry(query: str) -> Optional[dict[str, Any]]:
-    """Return the best matching verified knowledge entry, or None if no good match exists."""
     if not query or not query.strip():
         return None
 
-    normalized_query = _normalize(query)
-    if not normalized_query:
+    entries = _load_knowledge_base()
+    if not entries:
         return None
 
-    best_entry: Optional[dict[str, Any]] = None
-    best_score = 0.0
+    scored = [
+        (entry, _score_match(query, entry))
+        for entry in entries
+        if entry.get("status") == "verified"
+    ]
 
-    for entry in _load_entries():
-        title = str(entry.get("title", ""))
-        summary = str(entry.get("summary", ""))
-        title_norm = _normalize(title)
-        summary_norm = _normalize(summary)
-
-        title_tokens = set(title_norm.split())
-        summary_tokens = set(summary_norm.split())
-        query_tokens = set(normalized_query.split())
-
-        overlap_title = len(query_tokens & title_tokens)
-        overlap_summary = len(query_tokens & summary_tokens)
-
-        title_score = fuzz.ratio(normalized_query, title_norm)
-        summary_score = fuzz.ratio(normalized_query, summary_norm)
-        combined_score = (title_score * 0.7) + (summary_score * 0.3)
-
-        final_score = combined_score + (overlap_title * 18) + (overlap_summary * 8)
-
-        if final_score > best_score:
-            best_score = final_score
-            best_entry = entry
-
-    if best_entry is None:
+    if not scored:
         return None
 
-    if best_score < MATCH_THRESHOLD:
-        return None
+    best_entry, best_score = max(scored, key=lambda x: x[1])
+    if best_score > 0.0:
+        return best_entry
 
-    return best_entry
-
-
-__all__ = ["find_entry", "_load_entries"]
+    return None
