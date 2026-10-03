@@ -65,6 +65,21 @@
     color: #f9fafb;
 }
 
+[data-theme="dark"] .assistant-response {
+    background-color: #111827;
+    border-color: #1f2937;
+}
+
+[data-theme="dark"] .welcome-badge {
+    background-color: #1e293b;
+    color: #93c5fd;
+}
+
+[data-theme="dark"] .message-avatar {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
 [data-theme="dark"] .user-attachment-pill {
     background-color: #111827;
     border-color: #374151;
