@@ -8,7 +8,10 @@ from typing import Any, Optional
 
 from rapidfuzz import fuzz
 
-from backend.schemas import KnowledgeEntry
+try:
+    from backend.schemas import KnowledgeEntry
+except ImportError:  # pragma: no cover - supports running from backend/ folder
+    from schemas import KnowledgeEntry
 
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "knowledge_base.json"
 MATCH_THRESHOLD = 55

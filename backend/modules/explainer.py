@@ -4,8 +4,12 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
-from backend.config import DEFAULT_DISCLAIMER
-from backend.schemas import Answer, KnowledgeEntry, Step, Warning
+try:
+    from backend.config import DEFAULT_DISCLAIMER
+    from backend.schemas import Answer, KnowledgeEntry, Step, Warning
+except ImportError:  # pragma: no cover - supports running uvicorn from backend/ folder
+    from config import DEFAULT_DISCLAIMER
+    from schemas import Answer, KnowledgeEntry, Step, Warning
 
 
 def _coerce_entry(entry: Any) -> KnowledgeEntry:

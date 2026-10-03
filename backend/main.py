@@ -1,4 +1,5 @@
-"""GovBank Assistant - FastAPI Entrypoint
+"""
+GovBank Assistant - FastAPI Entrypoint
 """
 
 from __future__ import annotations
@@ -6,10 +7,16 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.config import DEFAULT_DISCLAIMER
-from backend.modules.explainer import entry_to_answer
-from backend.modules.retrieval import find_entry
-from backend.schemas import Answer, AskRequest, Warning
+try:
+    from backend.config import DEFAULT_DISCLAIMER
+    from backend.modules.explainer import entry_to_answer
+    from backend.modules.retrieval import find_entry
+    from backend.schemas import Answer, AskRequest, Warning
+except ImportError:  # pragma: no cover - supports running uvicorn from backend/ folder
+    from config import DEFAULT_DISCLAIMER
+    from modules.explainer import entry_to_answer
+    from modules.retrieval import find_entry
+    from schemas import Answer, AskRequest, Warning
 
 app = FastAPI(
     title="GovBank Assistant API",
