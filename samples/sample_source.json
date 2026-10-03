@@ -1,0 +1,8 @@
+{
+  "source_id": "sample_source",
+  "area": "banking|tax|schemes|legal",
+  "name": "",
+  "url": "",
+  "allowed_for_crawl": false,
+  "notes": ""
+}

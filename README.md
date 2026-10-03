@@ -1,37 +1,34 @@
 # GovBank Assistant
 
-Status: folder structure and placeholders only. No runnable application yet.
+Status: aligned folder skeleton only. No runnable application yet.
 
-An intended communication assistant for understanding government, legal, and banking information. Features, sources, privacy controls, and providers are not implemented or verified.
+This project is planned as a communication assistant for government, legal, and banking tasks. It has two big parts:
 
-## Folder map
+1. **Offline knowledge building**: collect official-source material, clean it, structure it, verify it, then index it.
+2. **Online user serving**: read user input, mask sensitive data before external AI use, retrieve relevant verified material, explain it simply, translate it, and show sources.
 
-- `backend/main.py`: planned API entry point
-- `backend/config.py`: planned configuration
-- `backend/schemas.py`: shared request and answer shapes, to agree together
-- `backend/pipeline.py`: planned processing flow
-- `backend/modules/`: reading, privacy, routing, retrieval, flagging, explanation, translation and voice
-- `backend/data/knowledge_base.json`: empty guide library
-- `backend/requirements.txt`: future backend dependencies
-- `frontend/`: placeholder HTML, CSS, JavaScript, and sample answer
-- `tests/`: future component and integration checks
-- `.env.example`: placeholder configuration, no credentials
+## Current state
 
-## Build together, one part at a time
+- Folder structure exists.
+- Local Git repository exists.
+- No real backend logic is implemented.
+- No crawler, vector database, AI provider, OCR, translation, or document upload is implemented.
+- Privacy controls are only planned, not verified.
 
-1. Discuss the first supported task and what the screen should show.
-2. Agree on request and answer fields.
-3. Review one official-source guide and its evidence.
-4. Build and test the question flow.
-5. Discuss AI integration before adding it.
-6. Design and test privacy before accepting documents.
-7. Add languages and voice only when the core is ready.
+## Main folders
 
-Do not start the next component without discussing it with the user.
+- `backend/offline/`: future Phase 1 knowledge-building scripts.
+- `backend/modules/`: future Phase 2 runtime modules.
+- `backend/data/`: source lists, future chunks, verified entries, and index folders.
+- `frontend/`: future website files.
+- `samples/`: fake request, answer, source, and chunk contracts.
+- `tests/`: future tests.
+- `docs/`: architecture and build notes.
 
-## Privacy and Git
+## Build rule
 
-Never commit API keys or personal documents. Server-side masking is not on-device processing. No privacy guarantee exists merely because a placeholder file is named privacy.py.
+Do not jump into the agent loop or crawler first. First agree on contracts in `backend/schemas.py` and samples in `samples/`.
 
-This is a local Git repository only. No remote hosting or deployment is configured.
-Optional result.html and a logo can be added when the interface design is agreed.
+## Privacy wording
+
+If the backend receives a document, the backend sees the original file. So we should say **masked before external AI**, not "nobody sees it." True on-device masking can be added later as a separate design.
