@@ -1,0 +1,64 @@
+{
+  "title": "How to Apply for a New PAN Card (Form 49A)",
+  "summary": "An Indian citizen can apply for a new Permanent Account Number (PAN) online through the Protean (NSDL) or UTIITSL official portal. The process involves filling Form 49A, uploading identity/address/birth proofs, paying the application fee, and verifying via Aadhaar OTP or physical document submission.",
+  "documents_needed": [
+    "Proof of Identity (PoI): Aadhaar Card, Passport, or Voter ID",
+    "Proof of Address (PoA): Aadhaar Card, Electricity Bill, or Bank Account Statement (less than 3 months old)",
+    "Proof of Date of Birth (DoB): Aadhaar Card, Birth Certificate, or 10th Class Marksheet",
+    "Two recent passport-sized color photographs (if opting for physical mode)"
+  ],
+  "steps": [
+    {
+      "no": 1,
+      "text": "Visit the official Protean eGov (formerly NSDL) or UTIITSL PAN application portal.",
+      "tip": "Verify you are on https://www.tin-nsdl.com or https://www.utiitsl.com and not a third-party intermediary."
+    },
+    {
+      "no": 2,
+      "text": "Select Application Type as 'New PAN - Indian Citizen (Form 49A)' and choose your Category (usually 'Individual').",
+      "tip": "Keep your personal details (Full name, DoB, Email, Mobile) ready as per your Aadhaar records."
+    },
+    {
+      "no": 3,
+      "text": "Fill in the applicant details and generate the temporary Token Number.",
+      "tip": "Save the Token Number immediately to resume application if the session expires."
+    },
+    {
+      "no": 4,
+      "text": "Choose submission method: digital e-KYC & e-Sign (paperless via Aadhaar OTP) or physical forwarding of documents.",
+      "tip": "Aadhaar paperless mode is instant and does not require mailing physical documents."
+    },
+    {
+      "no": 5,
+      "text": "Provide AO (Assessing Officer) Code by selecting Indian Citizens, State, and City to view your jurisdiction.",
+      "tip": "The portal will automatically suggest the AO code once you pick your nearest Income Tax Ward/Circle."
+    },
+    {
+      "no": 6,
+      "text": "Pay the application fee online (approx. ₹107 for physical delivery in India, or ₹72 for e-PAN only).",
+      "tip": "Payment can be made using UPI, Net Banking, or Debit/Credit Card."
+    },
+    {
+      "no": 7,
+      "text": "Download the acknowledgment slip with the 15-digit acknowledgment number to track dispatch status.",
+      "tip": "e-PAN is usually issued to your registered email within 2 to 5 working days."
+    }
+  ],
+  "warnings": [
+    {
+      "text": "Ensure your name and date of birth match your Aadhaar card exactly.",
+      "reason": "Mismatched demographic details will result in rejection of the e-KYC authentication step.",
+      "source": "Income Tax Department (incometax.gov.in)"
+    },
+    {
+      "text": "Beware of unofficial websites charging inflated fees exceeding ₹107.",
+      "reason": "The standard official government processing fee for physical card dispatch is ₹107 inclusive of GST.",
+      "source": "Protean eGov Technologies / Income Tax Department"
+    }
+  ],
+  "source_url": "https://www.incometax.gov.in/iec/foportal/pan",
+  "last_verified": "2026-10-01",
+  "confidence": "high",
+  "masked_items": [],
+  "disclaimer": "GovBank Assistant provides informational guidance based on verified government portals. It does not provide legal, tax, or financial advice. Always verify current fees and requirements on the official Income Tax portal before submission."
+}

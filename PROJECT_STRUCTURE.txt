@@ -1,0 +1,51 @@
+govbank-assistant/
+├── README.md
+├── .env.example
+├── .gitignore
+├── PROJECT_STRUCTURE.txt
+├── PROJECT_AGENT_BRIEF.txt
+├── backend/
+│   ├── __init__.py
+│   ├── main.py, pipeline.py, schemas.py, config.py     (BOTH)
+│   ├── requirements.txt                                 (one only)
+│   ├── .env
+│   │
+│   ├── offline/                  # Person A: builds the knowledge
+│   │   ├── __init__.py
+│   │   ├── crawl.py
+│   │   ├── clean_chunk.py
+│   │   ├── structure.py
+│   │   ├── verify.py
+│   │   └── build_index.py
+│   │
+│   ├── modules/
+│   │   ├── __init__.py
+│   │   ├── retrieval.py          # Person A
+│   │   ├── flagger.py            # Person A
+│   │   ├── explainer.py          # Person A
+│   │   ├── ocr.py                # Person B
+│   │   ├── privacy.py            # Person B
+│   │   ├── router.py             # Person B
+│   │   ├── agent.py              # Person B
+│   │   ├── tools.py              # Person B
+│   │   └── translate_voice.py    # Person B
+│   │
+│   └── data/
+│       ├── sources.json
+│       ├── raw/
+│       ├── structured/           # each entry has status: unverified/verified
+│       ├── knowledge_base.json   # verified entries only
+│       └── vector_index/
+│
+├── frontend/                     # Person B
+│   ├── index.html
+│   ├── style.css
+│   ├── app.js
+│   ├── logo.png
+│   └── sample_answer.json
+│
+├── samples/                      # shared test inputs
+│   └── fake_documents/
+└── tests/
+    ├── test_a.py                 # Person A tests alone
+    └── test_b.py                 # Person B tests alone

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "incometax_gov_in",
+    "name": "Income Tax Department of India",
+    "category": "tax",
+    "url": "https://www.incometax.gov.in",
+    "description": "Official e-Filing portal for PAN services, ITR filing, and tax forms.",
+    "last_checked": "2026-10-01"
+  },
+  {
+    "id": "uidai_gov_in",
+    "name": "Unique Identification Authority of India (UIDAI)",
+    "category": "identity",
+    "url": "https://uidai.gov.in",
+    "description": "Official Aadhaar issuing authority, e-KYC, and address update services.",
+    "last_checked": "2026-10-01"
+  },
+  {
+    "id": "rbi_org_in",
+    "name": "Reserve Bank of India (RBI)",
+    "category": "banking",
+    "url": "https://www.rbi.org.in",
+    "description": "Central banking institution, master directions on loans, customer rights, and ombudsman scheme.",
+    "last_checked": "2026-10-01"
+  }
+]

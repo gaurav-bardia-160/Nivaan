@@ -1,0 +1,24 @@
+GovBank Assistant: Agent Brief & Architecture Guidelines
+========================================================================
+
+1. Core Mission
+Provide citizens with clear, plain-language guidance on Indian government, banking, and legal procedures.
+
+2. Non-Negotiable Core Rules
+- Answer ONLY from verified sources.
+- Always display source URL and last-verified date.
+- Never invent fees, dates, laws, deadlines, or steps.
+- Mask personal data (Aadhaar, PAN, phone, email, account numbers) before any external AI call.
+- Always attach standard informational disclaimers; never provide final legal/financial advice or state "sign this" / "ignore this".
+- If no verified data exists in the knowledge base, safely abstain and direct the user to the official government portal.
+
+3. Team Responsibilities
+- Person A (Brain/Knowledge):
+  offline/, modules/retrieval.py, modules/flagger.py, modules/explainer.py, data/ (sources, structured, knowledge_base.json, vector_index), tests/test_a.py
+- Person B (Input & Product):
+  frontend/, modules/ocr.py, modules/privacy.py, modules/router.py, modules/agent.py, modules/tools.py, modules/translate_voice.py, samples/fake_documents/, tests/test_b.py
+- Shared:
+  main.py, pipeline.py, schemas.py, config.py, requirements.txt
+
+4. Key API Contracts
+- POST /api/ask -> consumes AskRequest, returns Answer.

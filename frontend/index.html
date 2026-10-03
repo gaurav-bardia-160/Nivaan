@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GovBank Assistant - AI Chatbot for Indian government, banking, and legal procedures.">
+    <title>GovBank Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-app">
+        <!-- Minimal Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <button class="new-chat-btn" id="newChatBtn">
+                    <span class="icon">✏️</span>
+                    <span>New chat</span>
+                </button>
+            </div>
+
+            <!-- Language & Options -->
+            <div class="sidebar-options">
+                <label for="langSelect" class="option-label">Language</label>
+                <select id="langSelect" class="lang-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="gu">ગુજરાતી (Gujarati)</option>
+                </select>
+            </div>
+
+            <!-- Chat History -->
+            <div class="chat-history-section">
+                <div class="history-heading">Recent Inquiries</div>
+                <div class="history-list" id="historyList">
+                    <!-- History items injected dynamically -->
+                </div>
+            </div>
+
+            <!-- Privacy Guarantee Badge -->
+            <div class="sidebar-footer">
+                <div class="privacy-badge">
+                    <span class="lock-icon">🔒</span>
+                    <div>
+                        <strong>Privacy-by-Design</strong>
+                        <p>Aadhaar, PAN, phone & accounts masked before processing.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <!-- Header Bar -->
+            <header class="chat-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">☰</button>
+                    <div class="header-brand">
+                        <span class="brand-avatar">🏛️</span>
+                        <div>
+                            <h1 class="brand-title">GovBank Assistant</h1>
+                            <span class="brand-subtitle">Verified procedures in plain language</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <span id="backendBadge" class="connection-badge connected">● Online</span>
+                    <button id="previewSampleBtn" class="pill-btn" title="View sample PAN guide">Preview Sample</button>
+                </div>
+            </header>
+
+            <!-- Chat Messages Timeline -->
+            <div class="messages-container" id="messagesContainer">
+                <!-- Welcome View (when chat is empty) -->
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-badge">🇮🇳 IBCP AI Conclave 2026</div>
+                    <h2 class="welcome-title">How can I help with official procedures today?</h2>
+                    <p class="welcome-text">
+                        Ask about government forms, tax notices, bank rules, or upload a photo/PDF of a document to get a plain-language checklist with verified sources.
+                    </p>
+
+                    <!-- Quick Prompt Suggestions -->
+                    <div class="suggestion-grid">
+                        <button class="suggestion-card" data-prompt="How do I apply for a new PAN card online?">
+                            <span class="card-icon">🪪</span>
+                            <strong>Apply for PAN Card</strong>
+                            <p>Form 49A steps, fees & documents</p>
+                        </button>
+                        <button class="suggestion-card" data-prompt="What documents do I need to file ITR-1 tax return?">
+                            <span class="card-icon">📊</span>
+                            <strong>File ITR-1 Return</strong>
+                            <p>Income tax filing basics & proofs</p>
+                        </button>
+                        <button class="suggestion-card" data-prompt="What are the RBI rules on loan prepayment and foreclosure penalties?">
+                            <span class="card-icon">🏦</span>
+                            <strong>Loan Prepayment Rules</strong>
+                            <p>RBI rules on floating rate penalty bans</p>
+                        </button>
+                        <button class="suggestion-card" data-prompt="What should I do if I receive a cheque bounce notice under Section 138?">
+                            <span class="card-icon">⚖️</span>
+                            <strong>Cheque Bounce Notice</strong>
+                            <p>Deadlines, 15-day notice & legal steps</p>
+                        </button>
+                    </div>
+                </div>
+                <!-- Dynamic messages appended here -->
+            </div>
+
+            <!-- Bottom Floating Input Area -->
+            <div class="input-wrapper">
+                <!-- File Attachment Preview Pill -->
+                <div class="attachment-preview" id="attachmentPreview" style="display: none;">
+                    <span class="preview-icon" id="previewIcon">📎</span>
+                    <span class="preview-filename" id="previewFilename">document.pdf</span>
+                    <button class="remove-attachment-btn" id="removeAttachmentBtn" title="Remove attachment">&times;</button>
+                </div>
+
+                <!-- Input Box Bar -->
+                <div class="input-bar">
+                    <!-- Hidden File Input (supports documents and camera capture) -->
+                    <input 
+                        type="file" 
+                        id="fileInput" 
+                        accept="image/*,application/pdf,.txt,.doc,.docx" 
+                        capture="environment"
+                        style="display: none;"
+                    >
+
+                    <!-- Camera & Document Attachment Buttons -->
+                    <button class="btn-attach" id="attachBtn" title="Upload document, photo or scan notice">
+                        <span>📎</span>
+                    </button>
+                    <button class="btn-attach" id="cameraBtn" title="Take a picture of form or notice with camera">
+                        <span>📷</span>
+                    </button>
+
+                    <!-- Text Input -->
+                    <textarea 
+                        id="chatInput" 
+                        rows="1" 
+                        placeholder="Ask a question or upload a notice/form..." 
+                    ></textarea>
+
+                    <!-- Send Button -->
+                    <button class="btn-send" id="sendBtn" title="Send message">
+                        <span id="sendIcon">➤</span>
+                        <span class="send-spinner" id="sendSpinner" style="display: none;"></span>
+                    </button>
+                </div>
+                <div class="privacy-note">
+                    Personal info (Aadhaar, PAN, phone, account) is masked before AI processing. Informational guidance only.
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Main Controller Script -->
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

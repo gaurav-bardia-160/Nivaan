@@ -1,0 +1,63 @@
+[
+  {
+    "id": "pan_card_new_application",
+    "title": "How to Apply for a New PAN Card (Form 49A)",
+    "category": "identity",
+    "type": "procedure",
+    "state": "all-India",
+    "keywords": ["pan", "pan card", "form 49a", "tax id", "apply pan", "nsdl", "utiitsl"],
+    "who_can_apply": "Any individual resident or Indian citizen who does not already possess a Permanent Account Number (PAN).",
+    "documents": [
+      "Proof of Identity (Aadhaar, Voter ID, Passport, Driving License)",
+      "Proof of Address (Aadhaar, Electricity Bill, Bank Passbook statement)",
+      "Proof of Date of Birth (Aadhaar, Birth Certificate, 10th marksheet)",
+      "Two passport photographs (if paper route selected)"
+    ],
+    "fee": "₹107 (with physical card dispatch in India) or ₹72 (e-PAN digital copy only)",
+    "steps": [
+      {
+        "no": 1,
+        "text": "Open the official Protean (NSDL) or UTIITSL online PAN application portal.",
+        "tip": "Ensure you are using the official URL (tin-nsdl.com or utiitsl.com)."
+      },
+      {
+        "no": 2,
+        "text": "Select 'New PAN - Indian Citizen (Form 49A)' and choose Category as 'Individual'.",
+        "tip": "Provide your name, date of birth, and email exactly as in your Aadhaar."
+      },
+      {
+        "no": 3,
+        "text": "Generate and note down the 9-digit temporary Token Number.",
+        "tip": "This allows you to resume your draft application if disconnected."
+      },
+      {
+        "no": 4,
+        "text": "Select digital submission via Aadhaar e-KYC & e-Sign for 100% paperless processing.",
+        "tip": "Requires your mobile number to be linked with Aadhaar to receive OTP."
+      },
+      {
+        "no": 5,
+        "text": "Select your AO (Assessing Officer) code based on state and city.",
+        "tip": "The search tool on the page automatically inputs the Ward/Circle code."
+      },
+      {
+        "no": 6,
+        "text": "Complete online payment of ₹107 via UPI, Net Banking, or Debit Card.",
+        "tip": "Save the payment transaction receipt."
+      },
+      {
+        "no": 7,
+        "text": "Download the acknowledgment slip with the 15-digit reference number.",
+        "tip": "e-PAN is delivered to your email within 2-5 days; physical card reaches by post in 10-15 days."
+      }
+    ],
+    "common_mistakes": [
+      "Entering a name spelling different from the Aadhaar record (causes e-KYC failure)",
+      "Paying fees on third-party unofficial websites charging ₹500+",
+      "Applying for a second PAN card when you already have one (illegal under Section 272B, ₹10,000 penalty)"
+    ],
+    "source_url": "https://www.incometax.gov.in/iec/foportal/pan",
+    "last_verified": "2026-10-01",
+    "status": "verified"
+  }
+]

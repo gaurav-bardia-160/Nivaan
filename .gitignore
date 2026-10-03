@@ -1,0 +1,53 @@
+# Environment variables & secrets
+.env
+backend/.env
+*.env
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files & uploads
+backend/data/raw/*
+!backend/data/raw/.gitkeep
+backend/data/structured/*
+!backend/data/structured/.gitkeep
+backend/data/vector_index/*
+!backend/data/vector_index/.gitkeep
+temp/
+tmp/
+*.log
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
