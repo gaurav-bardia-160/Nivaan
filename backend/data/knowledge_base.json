@@ -1,63 +1,168 @@
 [
   {
-    "id": "pan_card_new_application",
-    "title": "How to Apply for a New PAN Card (Form 49A)",
-    "category": "identity",
-    "type": "procedure",
-    "state": "all-India",
-    "keywords": ["pan", "pan card", "form 49a", "tax id", "apply pan", "nsdl", "utiitsl"],
-    "who_can_apply": "Any individual resident or Indian citizen who does not already possess a Permanent Account Number (PAN).",
-    "documents": [
-      "Proof of Identity (Aadhaar, Voter ID, Passport, Driving License)",
-      "Proof of Address (Aadhaar, Electricity Bill, Bank Passbook statement)",
-      "Proof of Date of Birth (Aadhaar, Birth Certificate, 10th marksheet)",
-      "Two passport photographs (if paper route selected)"
+    "title": "Apply for a new PAN card",
+    "category": "general",
+    "summary": "You can apply for a PAN card online through the official NSDL or UTIITSL website. It takes about 15 minutes if your documents are ready. PAN is required for filing taxes, opening bank accounts, and many financial transactions.",
+    "documents_needed": [
+      "ID proof (Aadhaar, voter ID, or passport)",
+      "Address proof (Aadhaar, utility bill, or bank statement)",
+      "Date of birth proof (birth certificate, Aadhaar, or 10th marksheet)",
+      "Passport-size photograph"
     ],
-    "fee": "₹107 (with physical card dispatch in India) or ₹72 (e-PAN digital copy only)",
     "steps": [
       {
-        "no": 1,
-        "text": "Open the official Protean (NSDL) or UTIITSL online PAN application portal.",
-        "tip": "Ensure you are using the official URL (tin-nsdl.com or utiitsl.com)."
+        "title": "Go to the official NSDL or UTIITSL website",
+        "detail": "Use only official government sites. Avoid agent websites that charge extra."
       },
       {
-        "no": 2,
-        "text": "Select 'New PAN - Indian Citizen (Form 49A)' and choose Category as 'Individual'.",
-        "tip": "Provide your name, date of birth, and email exactly as in your Aadhaar."
+        "title": "Choose 'New PAN - Indian Citizen (Form 49A)'",
+        "detail": "Form 49A is for Indian citizens. Use Form 49AA only if you are a foreign citizen."
       },
       {
-        "no": 3,
-        "text": "Generate and note down the 9-digit temporary Token Number.",
-        "tip": "This allows you to resume your draft application if disconnected."
+        "title": "Fill in your details exactly as on Aadhaar",
+        "detail": "Name, date of birth, and gender must match Aadhaar. Mismatches cause rejection."
       },
       {
-        "no": 4,
-        "text": "Select digital submission via Aadhaar e-KYC & e-Sign for 100% paperless processing.",
-        "tip": "Requires your mobile number to be linked with Aadhaar to receive OTP."
+        "title": "Upload scanned documents",
+        "detail": "Keep files clear and under the size limit (usually 300 KB for photo, 2 MB for others)."
       },
       {
-        "no": 5,
-        "text": "Select your AO (Assessing Officer) code based on state and city.",
-        "tip": "The search tool on the page automatically inputs the Ward/Circle code."
+        "title": "Pay the fee online",
+        "detail": "Fee is around ₹107 for an Indian communication address. Confirm the exact fee on the site."
       },
       {
-        "no": 6,
-        "text": "Complete online payment of ₹107 via UPI, Net Banking, or Debit Card.",
-        "tip": "Save the payment transaction receipt."
-      },
-      {
-        "no": 7,
-        "text": "Download the acknowledgment slip with the 15-digit reference number.",
-        "tip": "e-PAN is delivered to your email within 2-5 days; physical card reaches by post in 10-15 days."
+        "title": "Save the acknowledgement number",
+        "detail": "You will need this to track your application. PAN card arrives by post in 10-15 days."
       }
     ],
-    "common_mistakes": [
-      "Entering a name spelling different from the Aadhaar record (causes e-KYC failure)",
-      "Paying fees on third-party unofficial websites charging ₹500+",
-      "Applying for a second PAN card when you already have one (illegal under Section 272B, ₹10,000 penalty)"
+    "warnings": [
+      {
+        "title": "Name mismatch with Aadhaar",
+        "message": "The most common reason for PAN rejection is a name mismatch with Aadhaar. Check spelling before submitting.",
+        "severity": "warning"
+      },
+      {
+        "title": "Avoid agent websites",
+        "message": "Only NSDL and UTIITSL are official. Third-party sites charge extra fees and may misuse your data.",
+        "severity": "warning"
+      }
     ],
-    "source_url": "https://www.incometax.gov.in/iec/foportal/pan",
-    "last_verified": "2026-10-01",
+    "source": {
+      "name": "NSDL Official PAN Portal",
+      "url": "https://www.onlineservices.nsdl.com/",
+      "last_verified": "2026-10-03"
+    },
+    "status": "verified"
+  },
+  {
+    "title": "File your Income Tax Return (ITR) - basics",
+    "category": "tax",
+    "summary": "Every year, individuals with taxable income must file an ITR on the Income Tax Department's e-filing portal. The deadline is usually 31 July for individuals, but confirm the current year's date on the official site.",
+    "documents_needed": [
+      "PAN card",
+      "Aadhaar number",
+      "Form 16 (from employer, if salaried)",
+      "Bank account details (for refund)",
+      "Investment proofs (for deductions under 80C, 80D, etc.)"
+    ],
+    "steps": [
+      {
+        "title": "Register on the Income Tax e-filing portal",
+        "detail": "Visit incometax.gov.in and register with your PAN. Link Aadhaar if not already linked."
+      },
+      {
+        "title": "Log in and go to 'File Income Tax Return'",
+        "detail": "Choose the correct assessment year and ITR form (usually ITR-1 for salaried individuals)."
+      },
+      {
+        "title": "Fill in your income details",
+        "detail": "Pre-filled data is available from Form 16 and your bank. Verify every number before submitting."
+      },
+      {
+        "title": "Claim deductions",
+        "detail": "Common ones are 80C (₹1.5 lakh), 80D (health insurance), and standard deduction for salaried."
+      },
+      {
+        "title": "Verify and submit",
+        "detail": "E-verify using Aadhaar OTP, net banking, or DSC. Without e-verification, filing is incomplete."
+      },
+      {
+        "title": "Save the acknowledgement (ITR-V)",
+        "detail": "Download and keep the ITR-V. This is your proof of filing."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Filing deadline",
+        "message": "Late filing attracts a penalty of up to ₹5,000 under Section 234F. Check the current deadline on the official site.",
+        "severity": "critical"
+      },
+      {
+        "title": "Not e-verifying after filing",
+        "message": "If you don't e-verify within 30 days, your return is treated as not filed.",
+        "severity": "critical"
+      }
+    ],
+    "source": {
+      "name": "Income Tax Department, Government of India",
+      "url": "https://www.incometax.gov.in/",
+      "last_verified": "2026-10-03"
+    },
+    "status": "verified"
+  },
+  {
+    "title": "Understand a loan agreement",
+    "category": "banking",
+    "summary": "A loan agreement is a contract between you (borrower) and the bank or lender. It lists the loan amount, interest rate, repayment schedule, and penalties. Read it fully before signing. Watch for hidden charges, prepayment clauses, and penalty terms.",
+    "documents_needed": [],
+    "steps": [
+      {
+        "title": "Read the loan amount and interest rate carefully",
+        "detail": "Check whether the rate is fixed or floating. Floating rates change with market conditions."
+      },
+      {
+        "title": "Look for the EMI and repayment schedule",
+        "detail": "Confirm the monthly EMI, the number of EMIs, and the total amount you will repay."
+      },
+      {
+        "title": "Check penalty and late payment clauses",
+        "detail": "Late payments often attract penal interest of 2% per month or more. Note the exact rate."
+      },
+      {
+        "title": "Look for prepayment or foreclosure charges",
+        "detail": "Some loans charge a fee if you repay early. RBI has rules limiting this for floating-rate loans."
+      },
+      {
+        "title": "Check for hidden or processing fees",
+        "detail": "Processing fee, documentation charges, insurance bundling — all should be disclosed upfront."
+      },
+      {
+        "title": "Confirm the grievance redressal process",
+        "detail": "Every bank must have a grievance officer. Their contact should be in the agreement."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "High penalty for late payment",
+        "message": "A penalty rate above 2% per month is worth questioning. Ask the lender for the exact rate and when it applies.",
+        "severity": "warning"
+      },
+      {
+        "title": "Prepayment charges",
+        "message": "Some lenders charge 2-4% of the outstanding amount if you repay early. Check the clause before signing.",
+        "severity": "warning"
+      },
+      {
+        "title": "Bundled insurance",
+        "message": "Some loans bundle insurance that you may not need. Ask if it can be removed.",
+        "severity": "info"
+      }
+    ],
+    "source": {
+      "name": "Reserve Bank of India - Fair Practices Code",
+      "url": "https://www.rbi.org.in/",
+      "last_verified": "2026-10-03"
+    },
     "status": "verified"
   }
 ]
