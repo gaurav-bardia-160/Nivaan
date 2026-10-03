@@ -1,81 +1,92 @@
-"""
-Pydantic schemas and data contracts for GovBank Assistant.
-Agreed contract between Person A (Backend/Knowledge) and Person B (Input/Frontend).
-"""
+from __future__ import annotations
 
-from typing import List, Optional, Literal
-from pydantic import BaseModel, Field
+from typing import List, Literal, Optional
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
 
 class Step(BaseModel):
-    """A single step in a procedure."""
-    no: int
-    text: str
-    tip: Optional[str] = None
+    model_config = ConfigDict(extra="forbid")
+
+    title: str
+    detail: Optional[str] = None
+
 
 class Warning(BaseModel):
-    """Risk flag, deadline alert, or cautionary clause."""
-    text: str
-    reason: str
-    source: str
+    model_config = ConfigDict(extra="forbid")
+
+    title: str
+    message: str
+    severity: Literal["info", "warning", "critical"] = "warning"
+
 
 class MaskedItem(BaseModel):
-    """Report of a masked sensitive piece of information."""
-    item_type: str  # e.g., 'aadhaar', 'pan', 'phone', 'email', 'account_number'
-    count: int = 1
-    description: Optional[str] = None
+    model_config = ConfigDict(extra="forbid")
+
+    item_type: str
+    replacement: str = "[masked]"
+
 
 class SourceInfo(BaseModel):
-    """Metadata for verified official sources."""
+    model_config = ConfigDict(extra="forbid")
+
     name: str
     url: str
-    category: str
-    description: Optional[str] = None
-    last_verified: Optional[str] = None
+    last_verified: str
 
-class KnowledgeEntry(BaseModel):
-    """Structure of an entry in knowledge_base.json (Section 9)."""
-    id: str
-    title: str
-    category: str  # 'tax', 'banking', 'identity', 'schemes', 'legal', 'property_business'
-    type: Literal["procedure", "red_flag", "disclaimer"] = "procedure"
-    state: str = "all-India"
-    keywords: List[str] = Field(default_factory=list)
-    who_can_apply: Optional[str] = None
-    documents: List[str] = Field(default_factory=list)
-    fee: Optional[str] = None
-    steps: List[Step] = Field(default_factory=list)
-    common_mistakes: List[str] = Field(default_factory=list)
-    source_url: str
-    last_verified: str  # YYYY-MM-DD
-    status: Literal["unverified", "verified"] = "unverified"
 
 class AskRequest(BaseModel):
-    """Request payload sent to POST /api/ask (Section 12)."""
-    input_type: Literal["question", "document"] = "question"
-    question: str
+    model_config = ConfigDict(extra="forbid")
+
+    input_type: Literal["question", "document"]
+    question: Optional[str] = None
     language: Literal["en", "hi", "gu"] = "en"
     conversation_id: Optional[str] = None
     file_attached: bool = False
 
+    @model_validator(mode="after")
+    def check_question(self):
+        if self.input_type == "question" and not self.question:
+            raise ValueError("question required when input_type='question'")
+        return self
+
+
+class KnowledgeEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    title: str
+    category: Literal["tax", "banking", "scheme", "legal", "general"]
+    summary: str
+    documents_needed: List[str] = Field(default_factory=list)
+    steps: List[Step] = Field(default_factory=list)
+    warnings: List[Warning] = Field(default_factory=list)
+    source: SourceInfo
+    status: Literal["verified", "unverified"] = "verified"
+
+
 class Answer(BaseModel):
-    """Standardized response format returned by every path (Section 12)."""
+    model_config = ConfigDict(extra="forbid")
+
     title: str
     summary: str
     documents_needed: List[str] = Field(default_factory=list)
     steps: List[Step] = Field(default_factory=list)
     warnings: List[Warning] = Field(default_factory=list)
     source_url: str
-    last_verified: str  # YYYY-MM-DD
-    confidence: Literal["low", "medium", "high"] = "high"
+    last_verified: str
+    confidence: Literal["low", "medium", "high"] = "medium"
     masked_items: List[MaskedItem] = Field(default_factory=list)
-    disclaimer: str
+    disclaimer: str = (
+        "This is a plain-language explanation and guidance helper, not legal, tax, or financial advice."
+    )
+
 
 __all__ = [
+    "AskRequest",
+    "Answer",
     "Step",
     "Warning",
     "MaskedItem",
-    "SourceInfo",
     "KnowledgeEntry",
-    "AskRequest",
-    "Answer"
+    "SourceInfo",
 ]
