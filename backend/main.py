@@ -54,9 +54,9 @@ def ask_question(request: AskRequest):
             steps=[],
             warnings=[
                 Warning(
-                    title="Missing input",
-                    message="A valid question is required before I can match a verified guide.",
-                    severity="warning",
+                    text="Missing input",
+                    reason="A valid question is required before I can match a verified guide.",
+                    source="GovBank Assistant",
                 )
             ],
             source_url="https://www.india.gov.in",
@@ -79,9 +79,9 @@ def ask_question(request: AskRequest):
                 steps=[],
                 warnings=[
                     Warning(
-                        title="No match in verified knowledge",
-                        message="The current knowledge base does not include a close verified match for this query.",
-                        severity="warning",
+                        text="No match in verified knowledge",
+                        reason="The current knowledge base does not include a close verified match for this query.",
+                        source="GovBank Assistant",
                     )
                 ],
                 source_url="https://www.india.gov.in",
@@ -100,9 +100,9 @@ def ask_question(request: AskRequest):
             steps=[],
             warnings=[
                 Warning(
-                    title="Technical issue",
-                    message="Please try again or rephrase the request. The verified knowledge lookup failed.",
-                    severity="critical",
+                    text="Technical issue",
+                    reason="Please try again or rephrase the request. The verified knowledge lookup failed.",
+                    source="GovBank Assistant",
                 )
             ],
             source_url="https://www.india.gov.in",
