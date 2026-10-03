@@ -1,0 +1,115 @@
+GovBank Assistant folder structure
+Generated: 2026-10-03
+Location: /Users/admin/govbank-assistant
+
+Purpose: shareable overview of the aligned RAG + agent project skeleton.
+Status: skeleton/placeholders only, no runnable app yet.
+
+/Users/admin/govbank-assistant
+├── .env.example
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── PROJECT_STRUCTURE.txt
+├── backend/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── main.py
+│   ├── pipeline.py
+│   ├── requirements.txt
+│   ├── schemas.py
+│   ├── data/
+│   │   ├── README.md
+│   │   ├── knowledge_base.json
+│   │   ├── sources.json
+│   │   ├── cleaned_chunks/
+│   │   │   └── .gitkeep
+│   │   ├── pending_review/
+│   │   │   └── .gitkeep
+│   │   ├── raw/
+│   │   │   └── .gitkeep
+│   │   ├── structured_entries/
+│   │   │   └── .gitkeep
+│   │   ├── vector_index/
+│   │   │   └── .gitkeep
+│   │   └── verified_entries/
+│   │       └── .gitkeep
+│   ├── modules/
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   ├── agent.py
+│   │   ├── explainer.py
+│   │   ├── flagger.py
+│   │   ├── ocr.py
+│   │   ├── privacy.py
+│   │   ├── retrieval.py
+│   │   ├── router.py
+│   │   ├── tools.py
+│   │   └── translate_voice.py
+│   └── offline/
+│       ├── README.md
+│       ├── __init__.py
+│       ├── build_index.py
+│       ├── clean_chunk.py
+│       ├── crawl.py
+│       ├── structure.py
+│       └── verify.py
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── BUILD_ORDER.md
+│   ├── CONTRACTS.md
+│   └── PRIVACY.md
+├── evaluation/
+│   └── README.md
+├── frontend/
+│   ├── README.md
+│   ├── app.js
+│   ├── index.html
+│   ├── sample_answer.json
+│   └── style.css
+├── presentation/
+│   └── README.md
+├── samples/
+│   ├── sample_answer.json
+│   ├── sample_chunk.json
+│   ├── sample_request.json
+│   ├── sample_source.json
+│   └── fake_documents/
+│       └── README.md
+└── tests/
+    ├── README.md
+    ├── test_api.py
+    └── test_retrieval.py
+
+Main meaning of folders:
+
+backend/offline/
+  Future offline knowledge-building pipeline: crawl official sources, clean/chunk text, structure entries, verify entries, and build an index.
+
+backend/modules/
+  Future online user-serving modules: OCR, privacy masking, routing, retrieval, flagging, explanation, agent tools, translation, and voice.
+
+backend/data/
+  Future knowledge storage: source list, raw crawled pages, cleaned chunks, reviewed entries, verified entries, and vector index.
+
+frontend/
+  Future website UI: question box, upload area later, language selector, result rendering.
+
+samples/
+  Fake sample contracts and fake documents only. No real personal/confidential documents.
+
+docs/
+  Architecture, build order, contract planning, and privacy notes.
+
+evaluation/
+  Future test results, user-testing results, timings, feedback, and accuracy notes.
+
+presentation/
+  Future slides, demo script, privacy slide, and backup demo notes.
+
+tests/
+  Future automated tests for contracts, retrieval, privacy masking, OCR, flagger, and integration.
+
+Git commits so far:
+  e701cd9 chore: create structure-only project skeleton
+  b81dc6d chore: align skeleton with RAG agent plan
