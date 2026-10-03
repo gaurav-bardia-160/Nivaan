@@ -1,0 +1,822 @@
+GOVBANK ASSISTANT PROJECT BRIEF FOR AN AI AGENT
+Generated: 2026-10-03
+Project location: /Users/admin/govbank-assistant
+Current status: folder skeleton and planning only. No runnable app yet.
+
+============================================================
+1. SHORT SUMMARY
+============================================================
+
+GovBank Assistant is planned as an AI-powered communication assistant that helps ordinary users understand government, legal, and banking information in simple language.
+
+The main problem:
+Official forms, schemes, legal notices, tax procedures, and banking documents often use complex language. People misunderstand them, miss deadlines, lose benefits, or depend on agents because the communication between institutions and citizens is unclear.
+
+The planned solution:
+A web app where a user can ask a question, and later upload a fictional or safe document, then receive:
+
+- a plain-language summary
+- documents needed
+- step-by-step procedure
+- warnings about deadlines, penalties, or risky clauses
+- source URL and last verified date
+- privacy notice and disclaimer
+- future translation and voice output
+
+Important framing:
+This is not a legal advisor, tax advisor, financial advisor, or autonomous decision maker. It is an explanation and guidance assistant. It should help users understand and prepare, not tell them final decisions like "sign this", "ignore this notice", or "take this loan".
+
+============================================================
+2. EVENT THEME CONNECTION: COMMUNICATION
+============================================================
+
+The event theme is communication. This project connects directly because it solves a communication gap between official institutions and normal citizens.
+
+The project translates communication across several barriers:
+
+1. Formal to simple
+   Official language becomes plain language.
+
+2. Written to guided action
+   A form or notice becomes a checklist.
+
+3. English to regional language
+   Future support can include Hindi and Gujarati.
+
+4. Static document to conversation
+   The user can ask follow-up questions.
+
+5. Institution to citizen
+   Government, legal, and banking instructions become understandable.
+
+One-line pitch:
+GovBank Assistant bridges the communication gap between institutions and citizens by turning complex official language into clear, sourced, step-by-step guidance.
+
+============================================================
+3. CURRENT PROJECT STATE
+============================================================
+
+The project is currently a skeleton only. That means:
+
+- folders exist
+- placeholder files exist
+- Git is initialized
+- no real app logic is implemented
+- no AI provider is connected
+- no crawler is implemented
+- no OCR is implemented
+- no document upload should be enabled
+- no private documents should be used
+
+The latest simplified structure was committed in Git:
+
+Commit:
+2d05919 chore: simplify skeleton for two-person workflow
+
+Previous useful commits:
+b52d0c3 docs: add shareable project structure
+b81dc6d chore: align skeleton with RAG agent plan
+e701cd9 chore: create structure-only project skeleton
+
+Important safety note:
+There is no real backend/.env file committed. This is intentional. Use backend/.env.example as a template only.
+
+============================================================
+4. FINAL SIMPLIFIED FOLDER STRUCTURE
+============================================================
+
+/Users/admin/govbank-assistant/
+├── README.md
+├── .env.example
+├── .gitignore
+├── PROJECT_STRUCTURE.txt
+├── PROJECT_AGENT_BRIEF.txt
+├── backend/
+│   ├── __init__.py
+│   ├── main.py                  # BOTH
+│   ├── pipeline.py              # BOTH
+│   ├── schemas.py               # BOTH
+│   ├── config.py                # BOTH
+│   ├── requirements.txt         # one backend dependency file
+│   ├── .env.example             # copy to backend/.env locally, never commit real keys
+│   │
+│   ├── offline/                 # Person A builds the knowledge pipeline
+│   │   ├── __init__.py
+│   │   ├── crawl.py
+│   │   ├── clean_chunk.py
+│   │   ├── structure.py
+│   │   ├── verify.py
+│   │   └── build_index.py
+│   │
+│   ├── modules/
+│   │   ├── __init__.py
+│   │   ├── retrieval.py         # Person A
+│   │   ├── flagger.py           # Person A
+│   │   ├── explainer.py         # Person A
+│   │   ├── ocr.py               # Person B
+│   │   ├── privacy.py           # Person B
+│   │   ├── router.py            # Person B
+│   │   ├── agent.py             # Person B
+│   │   ├── tools.py             # Person B
+│   │   └── translate_voice.py   # Person B
+│   │
+│   └── data/
+│       ├── sources.json
+│       ├── raw/
+│       │   └── .gitkeep
+│       ├── structured/          # entries can have status: unverified or verified
+│       │   └── .gitkeep
+│       ├── knowledge_base.json  # verified entries only
+│       └── vector_index/
+│           └── .gitkeep
+│
+├── frontend/                    # Person B
+│   ├── index.html
+│   ├── style.css
+│   ├── app.js
+│   ├── logo.png
+│   └── sample_answer.json
+│
+├── samples/                     # shared fake test inputs only
+│   └── fake_documents/
+│       └── README.md
+│
+└── tests/
+    ├── test_a.py                # Person A tests alone
+    └── test_b.py                # Person B tests alone
+
+============================================================
+5. TEAM SPLIT
+============================================================
+
+Person A is the Brain.
+Person A owns:
+
+- backend/offline/
+- backend/modules/retrieval.py
+- backend/modules/flagger.py
+- backend/modules/explainer.py
+- backend/data/sources.json
+- backend/data/structured/
+- backend/data/knowledge_base.json
+- backend/data/vector_index/
+- tests/test_a.py
+
+Person B is the Input and Product side.
+Person B owns:
+
+- frontend/
+- backend/modules/ocr.py
+- backend/modules/privacy.py
+- backend/modules/router.py
+- backend/modules/agent.py
+- backend/modules/tools.py
+- backend/modules/translate_voice.py
+- samples/fake_documents/
+- tests/test_b.py
+
+Both people together own:
+
+- backend/main.py
+- backend/pipeline.py
+- backend/schemas.py
+- backend/config.py
+- backend/requirements.txt
+- README.md
+- PROJECT_STRUCTURE.txt
+- PROJECT_AGENT_BRIEF.txt
+
+Rule:
+Do not change shared files without telling the other person. Especially do not change schemas.py without agreement, because it defines the contract between both sides.
+
+============================================================
+6. HIGH-LEVEL SYSTEM DESIGN
+============================================================
+
+There are two main phases.
+
+Phase 1: Offline knowledge building
+This happens before users use the app.
+
+Phase 2: Online user serving
+This happens each time a user uses the website.
+
+------------------------------------------------------------
+6.1 Phase 1: Offline knowledge building
+------------------------------------------------------------
+
+Goal:
+Create a small trusted knowledge base from official sources, then later build an index for semantic search.
+
+Planned flow:
+
+1. Choose sources
+   File: backend/data/sources.json
+   The team lists official source URLs grouped by area:
+   - tax
+   - banking
+   - schemes
+   - legal
+
+2. Crawl sources
+   File: backend/offline/crawl.py
+   Later this will download approved official pages or PDFs and save raw text into backend/data/raw/.
+
+3. Clean and chunk text
+   File: backend/offline/clean_chunk.py
+   Later this will remove page clutter, menus, repeated headers, and split text into chunks of about 300 to 500 words.
+
+4. Structure entries
+   File: backend/offline/structure.py
+   Later this may use AI to turn cleaned chunks into structured entries like:
+   - title
+   - category
+   - documents needed
+   - steps
+   - fees
+   - common mistakes
+   - source URL
+   - last checked date
+   - status: unverified
+
+5. Verify manually
+   File: backend/offline/verify.py
+   A human must check important entries before they become trusted.
+   High-stakes entries must not go live without review.
+
+6. Store verified knowledge
+   File: backend/data/knowledge_base.json
+   This should contain verified entries only.
+
+7. Build vector index
+   File: backend/offline/build_index.py
+   Later this will create embeddings and save a searchable index into backend/data/vector_index/.
+
+Important first-version simplification:
+Do not build crawler, embeddings, or full vector database immediately. Start with 3 manual entries in knowledge_base.json. Suggested first entries:
+
+- PAN card application guide
+- ITR filing basics guide
+- loan agreement explainer guide
+
+------------------------------------------------------------
+6.2 Phase 2: Online user serving
+------------------------------------------------------------
+
+Goal:
+Take a user question or future document, safely process it, retrieve verified context, and return a structured answer.
+
+Planned full flow:
+
+1. Website input
+   Files: frontend/index.html, frontend/style.css, frontend/app.js
+   User types a question, chooses language, and later may upload a fake or safe document.
+
+2. FastAPI endpoint
+   File: backend/main.py
+   Later this exposes POST /api/ask.
+
+3. Pipeline orchestration
+   File: backend/pipeline.py
+   This calls the modules in order.
+
+4. OCR or typed input handling
+   File: backend/modules/ocr.py
+   Typed text passes through. Future image or PDF uploads are converted to text.
+
+5. Privacy masking
+   File: backend/modules/privacy.py
+   Planned to mask Aadhaar, PAN, phone, email, and bank account numbers before external AI use.
+
+Important privacy correction:
+If the backend receives the document, the backend sees the original document first. So the correct claim is "masked before external AI", not "nobody sees it". True on-device masking would be a later separate feature.
+
+6. Routing
+   File: backend/modules/router.py
+   Decides:
+   - question or document
+   - banking, tax, scheme, legal, or unknown
+   - whether a clarification is needed
+
+7. Retrieval
+   File: backend/modules/retrieval.py
+   Finds the best matching verified knowledge entry or chunks.
+   Early version can use keyword search.
+   Later version can use embeddings and vector search.
+
+8. Flagging
+   File: backend/modules/flagger.py
+   Scans document text for deadlines and risky clauses.
+   Examples:
+   - penalty charges
+   - high late fee
+   - prepayment clause
+   - auto-renewal clause
+   - respond within 15 days
+
+9. Explanation
+   File: backend/modules/explainer.py
+   AI or deterministic logic creates a fixed-shape answer using only retrieved material.
+   It must not invent steps, fees, or laws.
+
+10. Tool checks
+   File: backend/modules/tools.py
+   Later this can check official pages for current fees, deadlines, or circulars.
+   Only trusted official domains should be used.
+
+11. Agent loop
+   File: backend/modules/agent.py
+   Later this decides whether to:
+   - ask a clarification question
+   - retrieve more chunks
+   - call a tool
+   - continue the conversation
+   - abstain when data is missing
+
+Do not build agent.py first. Build the basic direct pipeline first.
+
+12. Translation and voice
+   File: backend/modules/translate_voice.py
+   Later it converts the answer to Hindi or Gujarati and can generate audio.
+
+13. Frontend display
+   Files: frontend/index.html, frontend/style.css, frontend/app.js
+   Shows:
+   - summary
+   - documents needed
+   - steps as tick boxes
+   - warning box
+   - masked items panel
+   - source URL
+   - last verified date
+   - disclaimer
+
+============================================================
+7. WHAT EACH FILE SHOULD DO
+============================================================
+
+Root files:
+
+README.md
+- Short explanation of the project and team split.
+- Should stay simple.
+
+.env.example
+- General example environment file.
+- No real keys.
+
+.gitignore
+- Must ignore .env files, uploads, private documents, cache files, and generated raw/index files.
+
+PROJECT_STRUCTURE.txt
+- Shareable tree view of the simplified folder structure.
+
+PROJECT_AGENT_BRIEF.txt
+- This file.
+- Detailed explanation for another AI agent or teammate.
+
+backend/__init__.py
+- Marks backend as a Python package.
+
+backend/main.py
+- Future FastAPI app.
+- Should define endpoints like POST /api/ask.
+- Owned by both because it connects all parts.
+
+backend/pipeline.py
+- Future orchestration layer.
+- Should call OCR, privacy, router, retrieval, flagger, explainer, tools, translation.
+- Owned by both because it integrates Person A and Person B code.
+
+backend/schemas.py
+- Most important contract file.
+- Should define AskRequest, Answer, KnowledgeEntry, Warning, Step, Source, and maybe Chunk.
+- Do this before most other coding.
+
+backend/config.py
+- Future configuration values.
+- Examples: supported languages, file size limit, paths, model name, allowed source domains.
+
+backend/requirements.txt
+- The only dependency file.
+- Do not use a root requirements.txt in the current simplified structure.
+
+backend/.env.example
+- Template for local backend/.env.
+- Never commit backend/.env.
+
+backend/offline/crawl.py
+- Person A.
+- Future crawler for official sources only.
+
+backend/offline/clean_chunk.py
+- Person A.
+- Future text cleaner and chunker.
+
+backend/offline/structure.py
+- Person A.
+- Future AI-assisted structuring of source text into entries.
+
+backend/offline/verify.py
+- Person A.
+- Future manual review helper.
+
+backend/offline/build_index.py
+- Person A.
+- Future vector index builder.
+
+backend/modules/retrieval.py
+- Person A.
+- Finds relevant knowledge entry or chunks.
+- Start simple with keyword or fuzzy matching.
+
+backend/modules/flagger.py
+- Person A.
+- Finds deadlines and risky clauses.
+
+backend/modules/explainer.py
+- Person A.
+- Creates plain-language answer from trusted context.
+- Later can call an AI provider.
+
+backend/modules/ocr.py
+- Person B.
+- Reads typed text, images, or PDFs into text.
+
+backend/modules/privacy.py
+- Person B.
+- Masks sensitive values before external AI use.
+- Must return both masked text and list of masked item types.
+
+backend/modules/router.py
+- Person B.
+- Detects user intent, input type, and category.
+
+backend/modules/agent.py
+- Person B.
+- Future decision loop for clarification, tool use, and follow-up memory.
+- Build later, not first.
+
+backend/modules/tools.py
+- Person B.
+- Future official-site freshness checks.
+
+backend/modules/translate_voice.py
+- Person B.
+- Future translation and text-to-speech.
+
+backend/data/sources.json
+- Person A.
+- List of official sources by category.
+
+backend/data/raw/
+- Person A.
+- Future raw crawled official text.
+- Should not contain user uploads.
+
+backend/data/structured/
+- Person A.
+- Future structured entries.
+- Entries can have status unverified or verified.
+
+backend/data/knowledge_base.json
+- Person A.
+- Verified entries only.
+- This is what retrieval should trust in early versions.
+
+backend/data/vector_index/
+- Person A.
+- Future embedding index.
+
+frontend/index.html
+- Person B.
+- Main website layout.
+
+frontend/style.css
+- Person B.
+- Styling.
+
+frontend/app.js
+- Person B.
+- Browser logic.
+- Should first render sample_answer.json before backend is connected.
+
+frontend/logo.png
+- Person B.
+- Placeholder logo file.
+
+frontend/sample_answer.json
+- Person B.
+- Fake answer used to build UI before backend exists.
+
+samples/fake_documents/
+- Shared.
+- Fictional test documents only.
+- Never put real Aadhaar, PAN, bank, legal, tax, or personal documents here.
+
+tests/test_a.py
+- Person A.
+- Tests for retrieval, offline knowledge, flagger, and explainer.
+
+tests/test_b.py
+- Person B.
+- Tests for OCR, privacy, router, agent/tools, translation, and frontend contract behavior.
+
+============================================================
+8. RECOMMENDED BUILD ORDER
+============================================================
+
+Do not build the whole system at once. Build in small verified steps.
+
+Step 1: Agree schemas.py
+Both teammates should define the answer contract first.
+
+Suggested Answer shape:
+
+{
+  "title": "",
+  "summary": "",
+  "documents_needed": [],
+  "steps": [],
+  "warnings": [],
+  "source_url": "",
+  "last_verified": "",
+  "confidence": "low|medium|high",
+  "masked_items": [],
+  "disclaimer": ""
+}
+
+Suggested AskRequest shape:
+
+{
+  "input_type": "question|document",
+  "question": "",
+  "language": "en|hi|gu",
+  "conversation_id": null,
+  "file_attached": false
+}
+
+Step 2: Create sample_answer.json
+Person B uses it to build the frontend before the backend exists.
+
+Step 3: Person A creates 3 manual knowledge entries
+Start with:
+- PAN card
+- ITR filing basics
+- loan agreement explainer
+
+Step 4: Person A builds retrieval.py
+Start with keyword or fuzzy matching.
+No vector database yet.
+
+Step 5: Person B builds frontend mock UI
+Render sample_answer.json only.
+No backend connection yet.
+
+Step 6: Person A builds explainer.py
+It should create an answer only from the chosen entry.
+If no entry exists, return a safe "not found" answer.
+
+Step 7: Person B builds privacy.py
+Use fake data only.
+Mask common patterns:
+- Aadhaar-like numbers
+- PAN-like IDs
+- phone numbers
+- emails
+- bank account-like long numbers
+
+Step 8: Person B builds router.py
+Detect category and input type.
+
+Step 9: Person A builds flagger.py
+Detect risky clauses and deadlines in fake text.
+
+Step 10: Together build pipeline.py
+Connect one module at a time.
+Test after each connection.
+
+Step 11: Together build main.py
+Add FastAPI endpoint POST /api/ask.
+
+Step 12: Connect frontend to backend
+Switch app.js from sample_answer.json to /api/ask.
+
+Step 13: Add OCR
+Only after privacy expectations are clear.
+
+Step 14: Add translation and voice
+Only after core English flow works.
+
+Step 15: Add vector index, crawler, and agent loop
+These are later, not first.
+
+============================================================
+9. TESTING PLAN
+============================================================
+
+Person A tests in tests/test_a.py:
+
+1. Knowledge base JSON loads.
+2. Every verified entry has title, steps, source_url, last_verified, and status.
+3. Retrieval finds correct entry for 10 phrasings per guide.
+4. Retrieval returns None for nonsense or unsupported questions.
+5. Flagger detects expected clauses in fake loan agreement.
+6. Explainer returns the fixed Answer shape.
+7. Explainer does not invent source_url or last_verified.
+
+Person B tests in tests/test_b.py:
+
+1. Privacy masks fake Aadhaar, PAN, phone, email, and account numbers.
+2. Privacy returns masked item types.
+3. Router correctly classifies 15 sample inputs.
+4. OCR passes typed text through.
+5. Frontend can render sample_answer.json.
+6. Translation keeps URLs and dates unchanged.
+7. No real document upload is enabled before privacy review.
+
+Together integration tests later:
+
+1. Typed question end to end.
+2. Uploaded fake document end to end.
+3. Unsupported question returns safe abstention.
+4. Every answer shows source, date, and disclaimer.
+5. No raw user input is logged.
+6. No real secrets are committed.
+
+============================================================
+10. PRIVACY AND SAFETY RULES
+============================================================
+
+This project handles high-risk categories:
+
+- government IDs
+- tax information
+- legal notices
+- bank accounts
+- income information
+- personal addresses
+
+Important rules:
+
+1. Do not use real user documents during development.
+2. Use only fake documents in samples/fake_documents/.
+3. Never commit .env files.
+4. Never commit API keys.
+5. Never commit real documents.
+6. Do not claim perfect privacy.
+7. Do not claim the tool gives legal, tax, or financial advice.
+8. Do not let the AI make final decisions for users.
+9. Show sources and dates on every answer.
+10. If the source is missing, abstain instead of guessing.
+
+Correct privacy wording:
+The system should mask sensitive values before sending text to an external AI provider.
+
+Incorrect privacy wording:
+Nobody sees your document.
+
+Why incorrect:
+If the backend receives the file, the backend sees the original file before masking.
+
+Future improvement:
+True on-device masking in the browser could reduce backend exposure, but that is a separate advanced feature.
+
+============================================================
+11. AI BEHAVIOR RULES
+============================================================
+
+The explainer or agent must follow these rules:
+
+1. Answer only from retrieved verified context.
+2. Do not invent fees, dates, laws, deadlines, or steps.
+3. Copy source_url and last_verified from code or data, not from model-generated text.
+4. If the knowledge base does not cover the request, say so.
+5. For high-stakes legal, tax, or financial matters, explain and flag, then advise checking with a professional or official source.
+6. Use neutral language like "worth checking" instead of "bad" or "illegal".
+7. Never say "you should sign", "you should ignore", or "you are guaranteed".
+8. Provide reasons for warnings.
+9. Keep final decision with the user.
+
+============================================================
+12. WHAT MAKES THIS DIFFERENT FROM A GENERIC CHATBOT
+============================================================
+
+A generic chatbot:
+
+- answers from model memory
+- may hallucinate
+- may not show sources
+- may not follow a workflow
+- may not protect privacy
+- may not say when it does not know
+
+GovBank Assistant should:
+
+- retrieve from verified knowledge
+- show sources and dates
+- return structured checklist answers
+- mask sensitive values before external AI calls
+- flag deadlines and risky clauses
+- ask clarifying questions later through agent.py
+- abstain when no verified data exists
+
+============================================================
+13. FIRST CODING TASK FOR NEXT AGENT
+============================================================
+
+The next AI agent should not start with crawler or agent loop.
+
+Recommended first task:
+Implement backend/schemas.py with Pydantic models and update frontend/sample_answer.json to match.
+
+Suggested models:
+
+- AskRequest
+- Answer
+- Step
+- Warning
+- KnowledgeEntry
+- SourceInfo
+- MaskedItem
+
+Then commit that small change.
+
+Do not implement full FastAPI, OCR, crawler, or AI API until schemas are stable.
+
+============================================================
+14. COMMON MISTAKES TO AVOID
+============================================================
+
+1. Creating _init_.py instead of __init__.py.
+   Python package files must be __init__.py.
+
+2. Creating a root requirements.txt.
+   Current simplified structure keeps dependencies in backend/requirements.txt only.
+
+3. Committing backend/.env.
+   Never do this.
+
+4. Building the agent first.
+   Agent loop should come after basic retrieval and explanation.
+
+5. Using real personal documents.
+   Use fake documents only.
+
+6. Letting AI write source URLs or verification dates.
+   These should come from data or code.
+
+7. Making the project too broad immediately.
+   Start with 3 guides and one or two fake documents.
+
+8. Calling it legal advice or financial advice.
+   It is an explanation assistant.
+
+9. Saying privacy is guaranteed.
+   It is not guaranteed.
+
+10. Skipping tests.
+   Each person should test their own parts before integration.
+
+============================================================
+15. CURRENT IMPORTANT FILES TO OPEN FIRST
+============================================================
+
+1. PROJECT_STRUCTURE.txt
+   Quick folder overview.
+
+2. PROJECT_AGENT_BRIEF.txt
+   Full project explanation for AI agents and teammates.
+
+3. README.md
+   Short current status.
+
+4. backend/schemas.py
+   First file to implement.
+
+5. frontend/sample_answer.json
+   First frontend contract file to update.
+
+6. backend/data/knowledge_base.json
+   First knowledge base file to fill.
+
+============================================================
+16. FINAL INSTRUCTION FOR ANOTHER AI AGENT
+============================================================
+
+You are entering a skeleton-only project. Do not assume any feature works yet.
+
+Before coding:
+
+1. Read PROJECT_STRUCTURE.txt.
+2. Read PROJECT_AGENT_BRIEF.txt.
+3. Check git status.
+4. Ask which phase to implement.
+5. Make one small change at a time.
+6. Test that change.
+7. Commit that change.
+
+Preferred first implementation:
+backend/schemas.py and frontend/sample_answer.json only.
+
+Do not build crawler, vector database, document upload, or agent loop until the user explicitly asks.
