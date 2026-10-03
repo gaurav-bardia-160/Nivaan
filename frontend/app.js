@@ -36,13 +36,96 @@ const removeAttachmentBtn = document.getElementById("removeAttachmentBtn");
 // Quick Prompts
 const suggestionCards = document.querySelectorAll(".suggestion-card");
 
+// --- TRANSLATIONS ---
+const UI_TRANSLATIONS = {
+    "en": {
+        "welcomeTitle": "How can I help with official procedures today?",
+        "welcomeText": "Ask about government forms, tax notices, bank rules, or upload a photo/PDF of a document to get a plain-language checklist with verified sources.",
+        "inputPlaceholder": "Ask a question or upload a notice/form...",
+        "previewSample": "Preview Sample",
+        "darkTheme": "🌙 Dark",
+        "lightTheme": "☀️ Light",
+        "historyHeading": "Recent Inquiries",
+        "privacyBadge": "Privacy-by-Design",
+        "privacyText": "Aadhaar, PAN, phone & accounts masked before processing.",
+        "q1Title": "Apply for PAN Card", "q1Desc": "Form 49A steps, fees & documents",
+        "q2Title": "File ITR-1 Return", "q2Desc": "Income tax filing basics & proofs",
+        "q3Title": "Loan Prepayment Rules", "q3Desc": "RBI rules on floating rate penalty bans",
+        "q4Title": "Cheque Bounce Notice", "q4Desc": "Deadlines, 15-day notice & legal steps"
+    },
+    "hi": {
+        "welcomeTitle": "आज मैं सरकारी प्रक्रियाओं में आपकी क्या मदद कर सकता हूँ?",
+        "welcomeText": "सरकारी फॉर्म, टैक्स नोटिस, बैंक नियमों के बारे में पूछें, या स्पष्ट चेकलिस्ट प्राप्त करने के लिए दस्तावेज़ की फोटो/पीडीएफ अपलोड करें।",
+        "inputPlaceholder": "कोई प्रश्न पूछें या नोटिस/फॉर्म अपलोड करें...",
+        "previewSample": "नमूना देखें",
+        "darkTheme": "🌙 डार्क",
+        "lightTheme": "☀️ लाइट",
+        "historyHeading": "हाल की पूछताछ",
+        "privacyBadge": "गोपनीयता की सुरक्षा",
+        "privacyText": "आधार, पैन, फोन और खाते नंबर हटा दिए जाते हैं।",
+        "q1Title": "पैन कार्ड के लिए आवेदन", "q1Desc": "फॉर्म 49A के चरण, शुल्क और दस्तावेज़",
+        "q2Title": "ITR-1 रिटर्न भरें", "q2Desc": "आयकर रिटर्न बेसिक्स और प्रमाण",
+        "q3Title": "ऋण पूर्व भुगतान नियम", "q3Desc": "फ्लोटिंग रेट पेनल्टी पर आरबीआई के नियम",
+        "q4Title": "चेक बाउंस नोटिस", "q4Desc": "समय सीमा, 15-दिन का नोटिस और कानूनी कदम"
+    },
+    "gu": {
+        "welcomeTitle": "આજે હું સરકારી પ્રક્રિયાઓમાં તમારી કેવી રીતે મદદ કરી શકું?",
+        "welcomeText": "સરકારી ફોર્મ, ટેક્સ નોટિસ, બેંક નિયમો વિશે પૂછો, અથવા સરળ ચેકલિસ્ટ મેળવવા માટે દસ્તાવેજનો ફોટો/પીડીએફ અપલોડ કરો.",
+        "inputPlaceholder": "કોઈ પ્રશ્ન પૂછો અથવા નોટિસ/ફોર્મ અપલોડ કરો...",
+        "previewSample": "નમૂનો જુઓ",
+        "darkTheme": "🌙 ડાર્ક",
+        "lightTheme": "☀️ લાઇટ",
+        "historyHeading": "તાજેતરની પૂછપરછ",
+        "privacyBadge": "ગોપનીયતા રક્ષણ",
+        "privacyText": "આધાર, પાન, ફોન અને એકાઉન્ટ છુપાવેલ છે.",
+        "q1Title": "પાન કાર્ડ માટે અરજી", "q1Desc": "ફોર્મ 49A ના પગલાં, ફી અને દસ્તાવેજો",
+        "q2Title": "ITR-1 રિટર્ન ભરો", "q2Desc": "આવકવેરા રિટર્નની મૂળભૂત બાબતો",
+        "q3Title": "લોન પ્રીપેમેન્ટ નિયમો", "q3Desc": "ફ્લોટિંગ રેટ પેનલ્ટી પર RBI ના નિયમો",
+        "q4Title": "ચેક બાઉન્સ નોટિસ", "q4Desc": "સમય મર્યાદા, 15-દિવસની નોટિસ અને કાનૂની પગલાં"
+    }
+};
+
+function translateUI() {
+    const lang = langSelect ? langSelect.value : "en";
+    const t = UI_TRANSLATIONS[lang] || UI_TRANSLATIONS["en"];
+
+    const setInner = (selector, text) => { const el = document.querySelector(selector); if(el) el.innerHTML = text; };
+    
+    setInner('.welcome-title', t.welcomeTitle);
+    setInner('.welcome-text', t.welcomeText);
+    if(chatInput) chatInput.placeholder = t.inputPlaceholder;
+    if(previewSampleBtn) previewSampleBtn.innerHTML = t.previewSample;
+    setInner('.history-heading', t.historyHeading);
+    
+    const pBadge = document.querySelector('.privacy-badge div');
+    if(pBadge) pBadge.innerHTML = `<strong>${t.privacyBadge}</strong><p>${t.privacyText}</p>`;
+    
+    const themeToggleBtn = document.getElementById("themeToggleBtn");
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    if (themeToggleBtn) themeToggleBtn.innerHTML = isDark ? t.lightTheme : t.darkTheme;
+    
+    const cards = document.querySelectorAll('.suggestion-card');
+    if(cards.length >= 4) {
+        cards[0].querySelector('strong').innerHTML = t.q1Title; cards[0].querySelector('p').innerHTML = t.q1Desc;
+        cards[1].querySelector('strong').innerHTML = t.q2Title; cards[1].querySelector('p').innerHTML = t.q2Desc;
+        cards[2].querySelector('strong').innerHTML = t.q3Title; cards[2].querySelector('p').innerHTML = t.q3Desc;
+        cards[3].querySelector('strong').innerHTML = t.q4Title; cards[3].querySelector('p').innerHTML = t.q4Desc;
+    }
+}
+
 // --- INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
     checkBackendHealth();
     setupEventListeners();
+    translateUI(); // initialize translations based on default dropdown
 });
 
 function setupEventListeners() {
+    // Language change
+    if (langSelect) {
+        langSelect.addEventListener("change", translateUI);
+    }
+
     // Sidebar toggle
     if (sidebarToggle && sidebar) {
         sidebarToggle.addEventListener("click", () => {
@@ -58,6 +141,26 @@ function setupEventListeners() {
     // Preview Sample
     if (previewSampleBtn) {
         previewSampleBtn.addEventListener("click", loadSampleAnswer);
+    }
+    
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById("themeToggleBtn");
+    if (themeToggleBtn) {
+        if (localStorage.getItem("govbank-theme") === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+            themeToggleBtn.innerHTML = "☀️ Light";
+        }
+        themeToggleBtn.addEventListener("click", () => {
+            if (document.documentElement.getAttribute("data-theme") === "dark") {
+                document.documentElement.setAttribute("data-theme", "light");
+                localStorage.setItem("govbank-theme", "light");
+                themeToggleBtn.innerHTML = "🌙 Dark";
+            } else {
+                document.documentElement.setAttribute("data-theme", "dark");
+                localStorage.setItem("govbank-theme", "dark");
+                themeToggleBtn.innerHTML = "☀️ Light";
+            }
+        });
     }
 
     // Suggestion Cards

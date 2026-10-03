@@ -34,6 +34,133 @@
     --shadow-input: 0 4px 16px rgba(0, 0, 0, 0.07);
 }
 
+[data-theme="dark"] {
+    --bg-main: #0b0f19;
+    --bg-surface: #111827;
+    --bg-sidebar: #0f172a;
+    --border-light: #1f2937;
+    --border-focus: #3b82f6;
+    
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    
+    --brand-blue: #3b82f6;
+    --brand-blue-hover: #2563eb;
+    --brand-light: #1e293b;
+    
+    --success: #10b981;
+    --success-light: #064e3b;
+    --warning: #f59e0b;
+    --warning-light: #451a03;
+    --danger: #ef4444;
+    --danger-light: #450a0a;
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-input: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .user-bubble {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .user-attachment-pill {
+    background-color: #111827;
+    border-color: #374151;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .doc-row,
+[data-theme="dark"] .step-item {
+    background-color: #111827;
+}
+
+[data-theme="dark"] .doc-row:hover,
+[data-theme="dark"] .step-item:hover {
+    background-color: #1e293b;
+}
+
+[data-theme="dark"] .step-hint {
+    background-color: #064e3b;
+    color: #a7f3d0;
+}
+
+[data-theme="dark"] .response-summary {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+[data-theme="dark"] .disclaimer-text {
+    background-color: #1e293b;
+    color: #9ca3af;
+}
+
+[data-theme="dark"] .warning-box {
+    background-color: #451a03;
+    border-color: #78350f;
+}
+[data-theme="dark"] .warning-text {
+    color: #fde68a;
+}
+[data-theme="dark"] .warning-reason {
+    color: #fcd34d;
+}
+
+[data-theme="dark"] .privacy-alert {
+    background-color: #451a03;
+    border-color: #78350f;
+    color: #fde68a;
+}
+
+[data-theme="dark"] .attachment-preview {
+    background-color: #1e293b;
+    border-color: #374151;
+}
+
+[data-theme="dark"] .suggestion-card {
+    background-color: #111827;
+}
+[data-theme="dark"] .suggestion-card:hover {
+    background-color: #1e293b;
+}
+
+[data-theme="dark"] .history-item:hover,
+[data-theme="dark"] .history-item.active {
+    background-color: #1e293b;
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .pill-btn {
+    background-color: #1e293b;
+    border-color: #374151;
+    color: #d1d5db;
+}
+[data-theme="dark"] .pill-btn:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .new-chat-btn {
+    background-color: #111827;
+    border-color: #374151;
+    color: #f9fafb;
+}
+[data-theme="dark"] .new-chat-btn:hover {
+    background-color: #1e293b;
+}
+
+[data-theme="dark"] .lang-select {
+    background-color: #111827;
+    border-color: #374151;
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .privacy-badge {
+    background-color: #111827;
+    border-color: #1f2937;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
