@@ -1,5 +1,168 @@
-{
-  "procedures": [],
-  "flags": [],
-  "disclaimers": []
-}
+[
+  {
+    "title": "Apply for a new PAN card",
+    "category": "general",
+    "summary": "You can apply for a PAN card online through the official NSDL or UTIITSL website. It takes about 15 minutes if your documents are ready. PAN is required for filing taxes, opening bank accounts, and many financial transactions.",
+    "documents_needed": [
+      "ID proof (Aadhaar, voter ID, or passport)",
+      "Address proof (Aadhaar, utility bill, or bank statement)",
+      "Date of birth proof (birth certificate, Aadhaar, or 10th marksheet)",
+      "Passport-size photograph"
+    ],
+    "steps": [
+      {
+        "title": "Go to the official NSDL or UTIITSL website",
+        "detail": "Use only official government sites. Avoid agent websites that charge extra."
+      },
+      {
+        "title": "Choose 'New PAN - Indian Citizen (Form 49A)'",
+        "detail": "Form 49A is for Indian citizens. Use Form 49AA only if you are a foreign citizen."
+      },
+      {
+        "title": "Fill in your details exactly as on Aadhaar",
+        "detail": "Name, date of birth, and gender must match Aadhaar. Mismatches cause rejection."
+      },
+      {
+        "title": "Upload scanned documents",
+        "detail": "Keep files clear and under the size limit (usually 300 KB for photo, 2 MB for others)."
+      },
+      {
+        "title": "Pay the fee online",
+        "detail": "Fee is around ₹107 for an Indian communication address. Confirm the exact fee on the site."
+      },
+      {
+        "title": "Save the acknowledgement number",
+        "detail": "You will need this to track your application. PAN card arrives by post in 10-15 days."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Name mismatch with Aadhaar",
+        "message": "The most common reason for PAN rejection is a name mismatch with Aadhaar. Check spelling before submitting.",
+        "severity": "warning"
+      },
+      {
+        "title": "Avoid agent websites",
+        "message": "Only NSDL and UTIITSL are official. Third-party sites charge extra fees and may misuse your data.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "NSDL Official PAN Portal",
+      "url": "https://www.onlineservices.nsdl.com/",
+      "last_verified": "2026-10-03"
+    },
+    "status": "verified"
+  },
+  {
+    "title": "File your Income Tax Return (ITR) - basics",
+    "category": "tax",
+    "summary": "Every year, individuals with taxable income must file an ITR on the Income Tax Department's e-filing portal. The deadline is usually 31 July for individuals, but confirm the current year's date on the official site.",
+    "documents_needed": [
+      "PAN card",
+      "Aadhaar number",
+      "Form 16 (from employer, if salaried)",
+      "Bank account details (for refund)",
+      "Investment proofs (for deductions under 80C, 80D, etc.)"
+    ],
+    "steps": [
+      {
+        "title": "Register on the Income Tax e-filing portal",
+        "detail": "Visit incometax.gov.in and register with your PAN. Link Aadhaar if not already linked."
+      },
+      {
+        "title": "Log in and go to 'File Income Tax Return'",
+        "detail": "Choose the correct assessment year and ITR form (usually ITR-1 for salaried individuals)."
+      },
+      {
+        "title": "Fill in your income details",
+        "detail": "Pre-filled data is available from Form 16 and your bank. Verify every number before submitting."
+      },
+      {
+        "title": "Claim deductions",
+        "detail": "Common ones are 80C (₹1.5 lakh), 80D (health insurance), and standard deduction for salaried."
+      },
+      {
+        "title": "Verify and submit",
+        "detail": "E-verify using Aadhaar OTP, net banking, or DSC. Without e-verification, filing is incomplete."
+      },
+      {
+        "title": "Save the acknowledgement (ITR-V)",
+        "detail": "Download and keep the ITR-V. This is your proof of filing."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Filing deadline",
+        "message": "Late filing attracts a penalty of up to ₹5,000 under Section 234F. Check the current deadline on the official site.",
+        "severity": "critical"
+      },
+      {
+        "title": "Not e-verifying after filing",
+        "message": "If you don't e-verify within 30 days, your return is treated as not filed.",
+        "severity": "critical"
+      }
+    ],
+    "source": {
+      "name": "Income Tax Department, Government of India",
+      "url": "https://www.incometax.gov.in/",
+      "last_verified": "2026-10-03"
+    },
+    "status": "verified"
+  },
+  {
+    "title": "Understand a loan agreement",
+    "category": "banking",
+    "summary": "A loan agreement is a contract between you (borrower) and the bank or lender. It lists the loan amount, interest rate, repayment schedule, and penalties. Read it fully before signing. Watch for hidden charges, prepayment clauses, and penalty terms.",
+    "documents_needed": [],
+    "steps": [
+      {
+        "title": "Read the loan amount and interest rate carefully",
+        "detail": "Check whether the rate is fixed or floating. Floating rates change with market conditions."
+      },
+      {
+        "title": "Look for the EMI and repayment schedule",
+        "detail": "Confirm the monthly EMI, the number of EMIs, and the total amount you will repay."
+      },
+      {
+        "title": "Check penalty and late payment clauses",
+        "detail": "Late payments often attract penal interest of 2% per month or more. Note the exact rate."
+      },
+      {
+        "title": "Look for prepayment or foreclosure charges",
+        "detail": "Some loans charge a fee if you repay early. RBI has rules limiting this for floating-rate loans."
+      },
+      {
+        "title": "Check for hidden or processing fees",
+        "detail": "Processing fee, documentation charges, insurance bundling — all should be disclosed upfront."
+      },
+      {
+        "title": "Confirm the grievance redressal process",
+        "detail": "Every bank must have a grievance officer. Their contact should be in the agreement."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "High penalty for late payment",
+        "message": "A penalty rate above 2% per month is worth questioning. Ask the lender for the exact rate and when it applies.",
+        "severity": "warning"
+      },
+      {
+        "title": "Prepayment charges",
+        "message": "Some lenders charge 2-4% of the outstanding amount if you repay early. Check the clause before signing.",
+        "severity": "warning"
+      },
+      {
+        "title": "Bundled insurance",
+        "message": "Some loans bundle insurance that you may not need. Ask if it can be removed.",
+        "severity": "info"
+      }
+    ],
+    "source": {
+      "name": "Reserve Bank of India - Fair Practices Code",
+      "url": "https://www.rbi.org.in/",
+      "last_verified": "2026-10-03"
+    },
+    "status": "verified"
+  }
+]
