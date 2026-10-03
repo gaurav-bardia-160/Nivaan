@@ -1,18 +1,20 @@
-"""
-GovBank Assistant - FastAPI Entrypoint
+"""GovBank Assistant - FastAPI Entrypoint
 """
 
-import json
-from pathlib import Path
+from __future__ import annotations
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .schemas import AskRequest, Answer
-from .config import BASE_DIR, PROJECT_ROOT
+
+from backend.config import DEFAULT_DISCLAIMER
+from backend.modules.explainer import entry_to_answer
+from backend.modules.retrieval import find_entry
+from backend.schemas import Answer, AskRequest, Warning
 
 app = FastAPI(
     title="GovBank Assistant API",
     description="Explains Indian government, legal, and banking procedures in plain language.",
-    version="0.1.0"
+    version="0.1.0",
 )
 
 # Enable CORS for local frontend development
@@ -34,24 +36,71 @@ def health_check():
 @app.post("/api/ask", response_model=Answer)
 def ask_question(request: AskRequest):
     """
-    Main endpoint for user queries.
-    In Phase 0, returns the stub sample answer.
+    Match the user's question against a verified knowledge base entry and
+    return the standard Answer schema.
     """
-    sample_path = PROJECT_ROOT / "frontend" / "sample_answer.json"
-    if sample_path.exists():
-        with open(sample_path, "r", encoding="utf-8") as f:
-            sample_data = json.load(f)
-            return Answer(**sample_data)
+    if not request.question or not request.question.strip():
+        return Answer(
+            title="No question provided",
+            summary="Please ask a specific question about a government procedure, form, notice, or banking rule.",
+            documents_needed=[],
+            steps=[],
+            warnings=[
+                Warning(
+                    title="Missing input",
+                    message="A valid question is required before I can match a verified guide.",
+                    severity="warning",
+                )
+            ],
+            source_url="https://www.india.gov.in",
+            last_verified="2026-10-03",
+            confidence="low",
+            masked_items=[],
+            disclaimer=DEFAULT_DISCLAIMER,
+        )
 
-    return Answer(
-        title="Stub Answer",
-        summary=f"Received query: '{request.question}'. The pipeline will process this in Phase 1.",
-        documents_needed=[],
-        steps=[],
-        warnings=[],
-        source_url="https://india.gov.in",
-        last_verified="2026-10-01",
-        confidence="medium",
-        masked_items=[],
-        disclaimer="GovBank Assistant informational guidance only."
-    )
+    try:
+        entry = find_entry(request.question)
+        if entry is None:
+            return Answer(
+                title="No verified match found",
+                summary=(
+                    "I could not find a verified guide for this question in the current knowledge base. "
+                    "Please rephrase the question or check the official government portal for the latest procedure."
+                ),
+                documents_needed=[],
+                steps=[],
+                warnings=[
+                    Warning(
+                        title="No match in verified knowledge",
+                        message="The current knowledge base does not include a close verified match for this query.",
+                        severity="warning",
+                    )
+                ],
+                source_url="https://www.india.gov.in",
+                last_verified="2026-10-03",
+                confidence="low",
+                masked_items=[],
+                disclaimer=DEFAULT_DISCLAIMER,
+            )
+
+        return entry_to_answer(entry)
+    except Exception as exc:  # pragma: no cover - defensive fallback
+        return Answer(
+            title="Guide search failed",
+            summary=f"The retrieval system could not complete the search: {exc}",
+            documents_needed=[],
+            steps=[],
+            warnings=[
+                Warning(
+                    title="Technical issue",
+                    message="Please try again or rephrase the request. The verified knowledge lookup failed.",
+                    severity="critical",
+                )
+            ],
+            source_url="https://www.india.gov.in",
+            last_verified="2026-10-03",
+            confidence="low",
+            masked_items=[],
+            disclaimer=DEFAULT_DISCLAIMER,
+        )
