@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import List, Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class Step(BaseModel):
@@ -24,7 +24,6 @@ class MaskedItem(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     item_type: str
-    value: str = ""
     replacement: str = "[masked]"
 
 
@@ -45,6 +44,12 @@ class AskRequest(BaseModel):
     conversation_id: Optional[str] = None
     file_attached: bool = False
 
+    @model_validator(mode="after")
+    def check_question(self):
+        if self.input_type == "question" and not self.question:
+            raise ValueError("question required when input_type='question'")
+        return self
+
 
 class KnowledgeEntry(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -56,8 +61,6 @@ class KnowledgeEntry(BaseModel):
     steps: List[Step] = Field(default_factory=list)
     warnings: List[Warning] = Field(default_factory=list)
     source: SourceInfo
-    source_url: str
-    last_verified: str
     status: Literal["verified", "unverified"] = "verified"
 
 
