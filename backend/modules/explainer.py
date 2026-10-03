@@ -25,52 +25,54 @@ def _coerce_step(step: Any) -> Step:
     if isinstance(step, Step):
         return step
     if isinstance(step, Mapping):
-        return Step(
-            title=str(step.get("title", "")).strip(),
-            detail=step.get("detail"),
-        )
-    return Step(title=str(step).strip(), detail=None)
+        no = int(step.get("no", 1))
+        text = str(step.get("text") or step.get("detail") or "").strip()
+        tip = step.get("tip")
+        return Step(no=no, text=text, tip=tip)
+    return Step(no=1, text=str(step).strip(), tip=None)
 
 
 def _coerce_warning(warning: Any) -> Warning:
     if isinstance(warning, Warning):
         return warning
     if isinstance(warning, Mapping):
-        return Warning(
-            title=str(warning.get("title", "")).strip(),
-            message=str(warning.get("message", "")).strip(),
-            severity=str(warning.get("severity", "warning")),
-        )
-    return Warning(title=str(warning).strip(), message="", severity="warning")
+        text = str(warning.get("text") or warning.get("message") or "").strip()
+        reason = str(warning.get("reason") or warning.get("severity") or "").strip()
+        source = str(warning.get("source") or "Official source").strip()
+        return Warning(text=text, reason=reason, source=source)
+    return Warning(text=str(warning).strip(), reason="", source="Official source")
 
 
 def entry_to_answer(entry: Any) -> Answer:
     """Convert a verified knowledge entry into the frontend-safe Answer contract."""
     knowledge = _coerce_entry(entry)
 
-    source = getattr(knowledge, "source", None)
-    source_url = "https://www.india.gov.in"
-    last_verified = "2026-10-03"
+    steps = [_coerce_step(item) for item in list(getattr(knowledge, "steps", []) or [])]
+    warnings = []
 
-    if source is not None:
-        source_url = str(getattr(source, "url", source_url))
-        last_verified = str(getattr(source, "last_verified", last_verified))
+    # Convert common_mistakes to warnings
+    for item in list(getattr(knowledge, "common_mistakes", []) or []):
+        warnings.append(
+            Warning(
+                text=str(item).strip(),
+                reason="Common mistake to avoid",
+                source=str(getattr(knowledge, "source_url", "https://www.india.gov.in")).strip(),
+            )
+        )
 
-    steps = [
-        _coerce_step(item) for item in list(getattr(knowledge, "steps", []) or [])
-    ]
-    warnings = [
-        _coerce_warning(item) for item in list(getattr(knowledge, "warnings", []) or [])
-    ]
+    # Build summary from title and first step
+    summary = str(getattr(knowledge, "title", "")).strip()
+    if steps:
+        summary = f"{summary}. {steps[0].text}"
 
     return Answer(
-        title=str(knowledge.title).strip(),
-        summary=str(knowledge.summary).strip(),
-        documents_needed=list(getattr(knowledge, "documents_needed", []) or []),
+        title=str(getattr(knowledge, "title", "")).strip(),
+        summary=summary.strip(),
+        documents_needed=list(getattr(knowledge, "documents", []) or []),
         steps=steps,
         warnings=warnings,
-        source_url=source_url,
-        last_verified=last_verified,
+        source_url=str(getattr(knowledge, "source_url", "https://www.india.gov.in")).strip(),
+        last_verified=str(getattr(knowledge, "last_verified", "2026-10-03")).strip(),
         confidence="high",
         masked_items=[],
         disclaimer=DEFAULT_DISCLAIMER,
