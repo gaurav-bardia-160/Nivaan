@@ -1,1 +1,56 @@
-{}
+{
+  "title": "PAN Card Application Basics",
+  "summary": "A PAN card is usually required for tax and financial records. The process is simple, but applicants should check the latest official requirement before submitting documents.",
+  "documents_needed": [
+    "Proof of identity",
+    "Proof of address",
+    "Date of birth proof",
+    "Recent passport-size photograph"
+  ],
+  "steps": [
+    {
+      "title": "Choose the correct application form",
+      "detail": "Use the official PAN application form and select the correct category for your status."
+    },
+    {
+      "title": "Fill in the required details",
+      "detail": "Enter your personal information carefully and keep your full name, date of birth, and address consistent with your documents."
+    },
+    {
+      "title": "Submit the document set",
+      "detail": "Attach the required identity and address proof documents and review the form before sending it."
+    },
+    {
+      "title": "Pay the application fee if required",
+      "detail": "Check the current official fee before submission and keep the payment record for follow-up."
+    }
+  ],
+  "warnings": [
+    {
+      "title": "Check the latest fee and channel",
+      "message": "Official fees and submission channels can change. Always confirm the current notice before making a payment.",
+      "severity": "warning"
+    },
+    {
+      "title": "Do not use fake personal data",
+      "message": "Use only fictional or safe test examples in development. Real personal information should not be used in the sample flow.",
+      "severity": "info"
+    }
+  ],
+  "source_url": "https://www.incometax.gov.in/",
+  "last_verified": "2026-10-03",
+  "confidence": "medium",
+  "masked_items": [
+    {
+      "item_type": "PAN",
+      "value": "ABCDE1234F",
+      "replacement": "[PAN-masked]"
+    },
+    {
+      "item_type": "phone",
+      "value": "+91 98765 43210",
+      "replacement": "[phone-masked]"
+    }
+  ],
+  "disclaimer": "This is a plain-language explanation and guidance helper, not legal, tax, or financial advice."
+}
