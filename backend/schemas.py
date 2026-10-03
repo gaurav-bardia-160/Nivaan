@@ -1,3 +1,8 @@
+"""
+Pydantic schemas and data contracts for GovBank Assistant.
+Agreed contract between Person A (Backend/Knowledge) and Person B (Input/Frontend).
+"""
+
 from __future__ import annotations
 
 from typing import List, Literal, Optional
@@ -38,7 +43,7 @@ class SourceInfo(BaseModel):
 class AskRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    input_type: Literal["question", "document"]
+    input_type: Literal["question", "document"] = "question"
     question: Optional[str] = None
     language: Literal["en", "hi", "gu"] = "en"
     conversation_id: Optional[str] = None
