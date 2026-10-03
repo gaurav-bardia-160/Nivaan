@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Optional
 
@@ -10,13 +11,13 @@ from rapidfuzz import fuzz
 from backend.schemas import KnowledgeEntry
 
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "knowledge_base.json"
+MATCH_THRESHOLD = 55
 STOPWORDS = {
-    "a", "an", "and", "are", "as", "at", "be", "by", "can", "check", "could",
+    "a", "an", "and", "are", "as", "at", "be", "by", "can", "could",
     "did", "do", "does", "for", "from", "have", "how", "i", "if", "in", "into",
-    "is", "it", "its", "late", "look", "make", "may", "need", "needs", "of", "on",
-    "or", "read", "should", "that", "the", "their", "them", "then", "there", "these",
-    "they", "this", "those", "to", "use", "when", "where", "which", "who", "why",
-    "will", "with", "would", "you", "your"
+    "is", "it", "its", "may", "of", "on", "or", "should", "that", "the", "their",
+    "them", "then", "there", "these", "they", "this", "those", "to", "use", "when",
+    "where", "which", "who", "why", "will", "with", "would", "you", "your"
 }
 
 
@@ -27,6 +28,7 @@ def _normalize(text: str) -> str:
     return " ".join(tokens)
 
 
+@lru_cache(maxsize=1)
 def _load_entries() -> list[dict[str, Any]]:
     try:
         with DATA_PATH.open("r", encoding="utf-8") as handle:
@@ -41,7 +43,8 @@ def _load_entries() -> list[dict[str, Any]]:
     for item in data:
         try:
             valid_entries.append(KnowledgeEntry(**item).model_dump())
-        except Exception:
+        except Exception as exc:
+            print(f"[retrieval] Skipping invalid entry: {exc}")
             continue
     return valid_entries
 
@@ -84,7 +87,7 @@ def find_entry(query: str) -> Optional[dict[str, Any]]:
     if best_entry is None:
         return None
 
-    if best_score < 55:
+    if best_score < MATCH_THRESHOLD:
         return None
 
     return best_entry

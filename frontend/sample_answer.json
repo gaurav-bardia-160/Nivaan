@@ -37,7 +37,7 @@
       "severity": "info"
     }
   ],
-  "source_url": "https://www.incometax.gov.in/",
+  "source_url": "https://www.onlineservices.nsdl.com/",
   "last_verified": "2026-10-03",
   "confidence": "medium",
   "masked_items": [
@@ -46,8 +46,8 @@
       "replacement": "[PAN-masked]"
     },
     {
-      "item_type": "phone",
-      "replacement": "[phone-masked]"
+      "item_type": "PHONE",
+      "replacement": "[PHONE-masked]"
     }
   ],
   "disclaimer": "This is a plain-language explanation and guidance helper, not legal, tax, or financial advice."
