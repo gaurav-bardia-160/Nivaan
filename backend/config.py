@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 APP_NAME = "GovBank Assistant API"
-APP_VERSION = "0.3.0"
+APP_VERSION = "0.4.0"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 BACKEND_DIR = Path(__file__).resolve().parent
 DATA_DIR = BACKEND_DIR / "data"
@@ -23,6 +23,15 @@ DEFAULT_DISCLAIMER = (
 # Local demo setting. Restrict this before real deployment.
 CORS_ALLOW_ORIGINS = ["*"]
 
+CAPABILITIES = {
+    "supported_languages": list(SUPPORTED_LANGUAGES),
+    "answer_language_status": "English answers only. Hindi/Gujarati UI labels may exist, but backend answer translation is not implemented yet.",
+    "supported_uploads": [".txt", ".text", ".md", ".csv", "text-based .pdf"],
+    "unsupported_uploads": ["scanned PDFs", "images", "encrypted PDFs"],
+    "privacy_boundary": "Sensitive values are masked server-side before retrieval and explanation. Client-side masking is not implemented yet.",
+    "knowledge_status": "Starter knowledge base only. Entries remain unverified until manually checked against official sources.",
+}
+
 __all__ = [
     "APP_NAME",
     "APP_VERSION",
@@ -36,4 +45,5 @@ __all__ = [
     "MAX_CONVERSATION_ID_LENGTH",
     "DEFAULT_DISCLAIMER",
     "CORS_ALLOW_ORIGINS",
+    "CAPABILITIES",
 ]

@@ -8,7 +8,7 @@ The project is partially working, not fully production-ready yet.
 
 Working now:
 
-- FastAPI backend with `/api/health`, `/api/ask`, and `/api/ask-file`
+- FastAPI backend with `/api/health`, `/api/capabilities`, `/api/ask`, and `/api/ask-file`
 - Strict Pydantic request/answer contracts
 - Starter knowledge base with PAN, ITR basics, and loan agreement entries
 - Retrieval over the starter knowledge base
@@ -18,14 +18,14 @@ Working now:
 - Typed question flow from frontend to backend
 - Text-document flow when readable text is sent as `document_text`
 - Real `.txt` and text-based PDF upload flow through `/api/ask-file`, with no disk storage and clear rejection for scanned PDFs/images
-- Rule-based risk flagging for deadlines, penalties, prepayment/foreclosure, auto-renewal, extra charges, and legal notices
+- Honest backend language policy: non-English answer requests stay in English and include a visible translation limitation warning
 - Backend tests
 
 Important limitations:
 
 - Scanned PDF/image OCR upload is not implemented yet. The app now processes selectable-text PDFs and rejects scanned/image files honestly instead of pretending OCR works.
 - Knowledge base entries are currently marked `unverified` until manually checked against live official sources.
-- Translation/voice is not implemented for backend answers yet.
+- Translation/voice generation is not implemented for backend answers yet. Non-English requests receive an honest warning instead of fake translation.
 - Client-side privacy masking is not implemented yet. Current masking happens in the backend.
 - This is an explanation helper, not legal, tax, financial, or government advice.
 
@@ -62,7 +62,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
 Expected current result:
 
 ```text
-44 passed
+46 passed
 ```
 
 ## Project structure
@@ -83,7 +83,7 @@ backend/
     privacy.py            compatibility wrapper around guardrails.py
     router.py             compatibility wrapper around agent.py
     flagger.py            compatibility wrapper around guardrails.py
-    translate_voice.py    placeholder
+    translate_voice.py    honest language policy, no fake translation
   offline/
     data_builder.py      offline source loading, cleaning, chunking, draft structuring, KB build
 frontend/

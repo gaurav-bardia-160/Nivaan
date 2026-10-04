@@ -182,9 +182,22 @@ def test_health_endpoint():
     payload = response.json()
     assert payload["status"] == "ok"
     assert payload["service"] == "govbank-assistant"
-    assert payload["version"]
+    assert payload["version"] == "0.4.0"
     assert payload["knowledge_entries"] == 3
     assert payload["unverified_entries"] == 3
+    assert payload["capabilities_url"] == "/api/capabilities"
+
+
+def test_capabilities_endpoint_reports_honest_limits():
+    response = client.get("/api/capabilities")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["version"] == "0.4.0"
+    assert "text-based .pdf" in payload["supported_uploads"]
+    assert "images" in payload["unsupported_uploads"]
+    assert "English answers only" in payload["answer_language_status"]
+    assert "Client-side masking is not implemented" in payload["privacy_boundary"]
 
 
 def test_ask_endpoint_supported_question_uses_real_backend_boundary():
@@ -200,6 +213,19 @@ def test_ask_endpoint_supported_question_uses_real_backend_boundary():
     assert payload["warnings"]
     assert payload["source_url"].startswith("https://")
     assert payload["confidence"] == "low"
+
+
+def test_ask_endpoint_non_english_request_warns_without_fake_translation():
+    response = client.post(
+        "/api/ask",
+        json={"input_type": "question", "question": "How do I apply for a PAN card?", "language": "hi"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["title"] == "Apply for a new PAN card"
+    warning_titles = {warning["title"] for warning in payload["warnings"]}
+    assert "Answer translation not implemented yet" in warning_titles
 
 
 def test_ask_endpoint_unsupported_question_refuses_to_guess():

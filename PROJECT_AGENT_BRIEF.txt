@@ -8,7 +8,7 @@ Current status
 - Runnable partial project, not a skeleton.
 - Backend API works for typed questions and file uploads.
 - Frontend chat UI is connected to backend.
-- Tests currently pass: 44 passed.
+- Tests currently pass: 46 passed.
 - Project is still not production-ready because data is small/unverified, scanned OCR is missing, and translation/voice is not real yet.
 
 Main working endpoints

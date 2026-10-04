@@ -20,7 +20,7 @@ GovBank Assistant is a runnable partial project, not just a skeleton. It now has
 Latest validated backend test result:
 
 ```text
-44 passed
+46 passed
 ```
 
 Current overall readiness:
@@ -169,7 +169,7 @@ Current state:
 
 - Frontend language dropdown changes UI labels only.
 - Backend answers are not translated.
-- `translate_voice.py` is still a placeholder.
+- `translate_voice.py` currently adds an honest limitation warning for non-English answer requests.
 
 Required fix:
 

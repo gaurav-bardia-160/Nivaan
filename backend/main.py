@@ -7,7 +7,7 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from pydantic import ValidationError
 
-from backend.config import APP_NAME, APP_VERSION, CORS_ALLOW_ORIGINS
+from backend.config import APP_NAME, APP_VERSION, CAPABILITIES, CORS_ALLOW_ORIGINS
 from backend.modules.ocr import OCRExtractionError, extract_text_from_upload
 from backend.modules.retrieval import knowledge_stats
 from backend.pipeline import run
@@ -50,6 +50,18 @@ def health() -> dict[str, object]:
         "knowledge_entries": stats["total"],
         "verified_entries": stats["verified"],
         "unverified_entries": stats["unverified"],
+        "capabilities_url": "/api/capabilities",
+    }
+
+
+@app.get("/api/capabilities")
+def capabilities() -> dict[str, object]:
+    stats = knowledge_stats()
+    return {
+        "service": "govbank-assistant",
+        "version": APP_VERSION,
+        "knowledge_entries": stats,
+        **CAPABILITIES,
     }
 
 
@@ -69,10 +81,11 @@ async def ask_file(
     question: str = Form("Explain this document"),
     language: str = Form("en"),
 ) -> Answer:
-    """Accept a real uploaded text file and process it without storing it.
+    """Accept a real uploaded supported file and process it without storing it.
 
-    PDF/image OCR is deliberately not claimed yet. Unsupported file types return a
-    clear error instead of falling back to fake extraction.
+    Supported now: text-like files and text-based PDFs. Scanned PDFs/images are
+    deliberately not claimed yet. Unsupported file types return a clear error
+    instead of falling back to fake extraction.
     """
 
     try:
