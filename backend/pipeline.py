@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from backend.modules.explainer import explain_entry, not_found_answer
+from backend.modules.flagger import find_flags
 from backend.modules.privacy import mask_text
 from backend.modules.retrieval import find_entry
 from backend.modules.router import route
@@ -38,7 +39,12 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     if entry is None:
         return not_found_answer(masked.text or raw_text, masked_items=masked.masked_items)
 
-    return explain_entry(entry, user_question=masked.text, masked_items=masked.masked_items)
+    answer = explain_entry(entry, user_question=masked.text, masked_items=masked.masked_items)
+    if parsed_request.input_type == "document" and parsed_request.document_text:
+        existing_titles = {warning.title for warning in answer.warnings}
+        extra_warnings = [warning for warning in find_flags(masked.text) if warning.title not in existing_titles]
+        answer = answer.model_copy(update={"warnings": [*answer.warnings, *extra_warnings]})
+    return answer
 
 
 __all__ = ["run"]

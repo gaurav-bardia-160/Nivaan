@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 
+from backend.modules.flagger import find_flags
 from backend.modules.privacy import mask_text
 from backend.modules.router import route
 from backend.main import app
@@ -69,6 +70,43 @@ def test_ask_endpoint_document_text_masks_sensitive_values():
     assert "ABCDE1234F" not in payload["summary"]
     assert "9876543210" not in payload["summary"]
     assert {item["item_type"] for item in payload["masked_items"]} == {"pan", "phone"}
+
+
+def test_flagger_detects_key_document_risks():
+    flags = find_flags(
+        "This loan has a late payment fee and penal interest. "
+        "Borrower may face foreclosure charges for prepayment. "
+        "Respond within 15 days."
+    )
+
+    titles = {flag.title for flag in flags}
+    assert "Late payment or penalty clause found" in titles
+    assert "Prepayment or foreclosure condition found" in titles
+    assert "Deadline or response window found" in titles
+
+
+def test_flagger_detects_legal_notice_without_giving_verdict():
+    flags = find_flags("This is a legal notice under Section 138. You must respond within 15 days.")
+
+    assert any(flag.severity == "critical" for flag in flags)
+    combined = " ".join(flag.message.lower() for flag in flags)
+    assert "lawyer" in combined or "professional" in combined
+    assert "ignore" not in combined
+
+
+def test_pipeline_adds_document_risk_flags():
+    answer = run(
+        AskRequest(
+            input_type="document",
+            question="Explain this loan agreement",
+            document_text="Loan EMI includes a late payment fee. There is a prepayment charge. Reply within 15 days.",
+        )
+    )
+
+    titles = {warning.title for warning in answer.warnings}
+    assert "Late payment or penalty clause found" in titles
+    assert "Prepayment or foreclosure condition found" in titles
+    assert "Deadline or response window found" in titles
 
 
 def test_pipeline_returns_answer_for_supported_question():
