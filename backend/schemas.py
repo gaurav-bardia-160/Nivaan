@@ -5,6 +5,8 @@ from typing import List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator, model_validator
 
+from backend.config import MAX_CONVERSATION_ID_LENGTH, MAX_DOCUMENT_TEXT_LENGTH, MAX_QUESTION_LENGTH
+
 
 def _clean_text(value: str) -> str:
     return " ".join(value.strip().split())
@@ -24,7 +26,7 @@ class Step(BaseModel):
         if not isinstance(value, str):
             return value
         cleaned = _clean_text(value)
-        return cleaned or None if value is None else cleaned
+        return cleaned or None
 
 
 class Warning(BaseModel):
@@ -68,11 +70,11 @@ class SourceInfo(BaseModel):
 class AskRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    input_type: Literal["question", "document"]
-    question: Optional[str] = Field(default=None, max_length=1200)
-    document_text: Optional[str] = Field(default=None, max_length=12000)
+    input_type: Literal["question", "document"] = "question"
+    question: Optional[str] = Field(default=None, max_length=MAX_QUESTION_LENGTH)
+    document_text: Optional[str] = Field(default=None, max_length=MAX_DOCUMENT_TEXT_LENGTH)
     language: Literal["en", "hi", "gu"] = "en"
-    conversation_id: Optional[str] = Field(default=None, max_length=120)
+    conversation_id: Optional[str] = Field(default=None, max_length=MAX_CONVERSATION_ID_LENGTH)
     file_attached: bool = False
 
     @field_validator("question", "document_text", "conversation_id", mode="before")
@@ -89,8 +91,10 @@ class AskRequest(BaseModel):
     def validate_input_requirements(self):
         if self.input_type == "question" and not self.question:
             raise ValueError("question required when input_type='question'")
-        if self.input_type == "document" and not (self.question or self.document_text or self.file_attached):
-            raise ValueError("document input requires a question, document_text, or an attached file")
+        if self.input_type == "document" and self.file_attached and not self.document_text:
+            raise ValueError("file upload requires OCR support; send document_text until upload processing is implemented")
+        if self.input_type == "document" and not (self.question or self.document_text):
+            raise ValueError("document input requires a question or document_text")
         return self
 
 

@@ -95,7 +95,12 @@ def test_health_endpoint():
     response = client.get("/api/health")
 
     assert response.status_code == 200
-    assert response.json() == {"status": "ok", "service": "govbank-assistant"}
+    payload = response.json()
+    assert payload["status"] == "ok"
+    assert payload["service"] == "govbank-assistant"
+    assert payload["version"]
+    assert payload["knowledge_entries"] == 3
+    assert payload["unverified_entries"] == 3
 
 
 def test_ask_endpoint_supported_question_uses_real_backend_boundary():
@@ -133,3 +138,26 @@ def test_ask_endpoint_rejects_invalid_blank_question():
     )
 
     assert response.status_code == 422
+    payload = response.json()
+    assert payload["error"] == "invalid_request"
+    assert "details" in payload
+
+
+def test_ask_endpoint_rejects_file_only_until_ocr_is_implemented():
+    response = client.post(
+        "/api/ask",
+        json={"input_type": "document", "file_attached": True, "language": "en"},
+    )
+
+    assert response.status_code == 422
+    assert response.json()["error"] == "invalid_request"
+
+
+def test_ask_endpoint_defaults_to_question_input_type():
+    response = client.post(
+        "/api/ask",
+        json={"question": "How do I get PAN card?", "language": "en"},
+    )
+
+    assert response.status_code == 200
+    assert response.json()["title"] == "Apply for a new PAN card"

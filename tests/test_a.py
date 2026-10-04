@@ -80,8 +80,10 @@ def test_ask_request_accepts_clean_question_and_strips_whitespace():
     assert request.question == "How do I get a PAN card?"
 
 
-def test_ask_request_requires_document_content_or_file():
+def test_ask_request_requires_document_text_or_question_and_rejects_unprocessed_file_only():
     with pytest.raises(ValidationError):
         AskRequest(input_type="document", file_attached=False)
-    assert AskRequest(input_type="document", file_attached=True).file_attached is True
+    with pytest.raises(ValidationError):
+        AskRequest(input_type="document", file_attached=True)
+    assert AskRequest(input_type="document", document_text="Loan agreement text").document_text == "Loan agreement text"
     assert AskRequest(input_type="document", question="Explain this notice").question == "Explain this notice"

@@ -2,13 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from backend.config import DEFAULT_DISCLAIMER
 from backend.schemas import Answer, KnowledgeEntry, MaskedItem, Step, Warning
-
-DEFAULT_DISCLAIMER = (
-    "This is a plain-language explanation and guidance helper, not legal, tax, "
-    "or financial advice. Confirm important details on the official source or with "
-    "a qualified professional before acting."
-)
 
 NOT_FOUND_SOURCE_URL = "https://www.india.gov.in/"
 NOT_FOUND_LAST_VERIFIED = "2026-10-03"
@@ -18,21 +13,6 @@ def _to_entry(entry: KnowledgeEntry | dict[str, Any]) -> KnowledgeEntry:
     if isinstance(entry, KnowledgeEntry):
         return entry
     return KnowledgeEntry(**entry)
-
-
-def _masked_items_from_types(masked_types: list[str] | None) -> list[MaskedItem]:
-    if not masked_types:
-        return []
-
-    items: list[MaskedItem] = []
-    seen: set[str] = set()
-    for item_type in masked_types:
-        clean_type = " ".join(str(item_type).strip().split())
-        if not clean_type or clean_type.lower() in seen:
-            continue
-        seen.add(clean_type.lower())
-        items.append(MaskedItem(item_type=clean_type, replacement=f"[{clean_type.upper()}]"))
-    return items
 
 
 def explain_entry(

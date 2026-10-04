@@ -3,14 +3,14 @@ from __future__ import annotations
 import json
 import re
 from functools import lru_cache
-from pathlib import Path
 from typing import Any, Optional
 
 from rapidfuzz import fuzz
 
+from backend.config import KNOWLEDGE_BASE_PATH
 from backend.schemas import KnowledgeEntry
 
-DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "knowledge_base.json"
+DATA_PATH = KNOWLEDGE_BASE_PATH
 MATCH_THRESHOLD = 55
 EXACT_KEYWORD_BONUS = 80
 TOKEN_KEYWORD_BONUS = 28
@@ -145,4 +145,11 @@ def find_entry(query: str) -> Optional[dict[str, Any]]:
     return best_entry
 
 
-__all__ = ["find_entry", "_load_entries", "_normalize"]
+def knowledge_stats() -> dict[str, int]:
+    entries = _load_entries()
+    verified = sum(1 for entry in entries if entry.get("status") == "verified")
+    unverified = sum(1 for entry in entries if entry.get("status") == "unverified")
+    return {"total": len(entries), "verified": verified, "unverified": unverified}
+
+
+__all__ = ["find_entry", "knowledge_stats", "_load_entries", "_normalize"]
