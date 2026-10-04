@@ -17,13 +17,13 @@ Working now:
 - Frontend chat UI with HTML, CSS, and JavaScript
 - Typed question flow from frontend to backend
 - Text-document flow when readable text is sent as `document_text`
-- Real `.txt` upload flow through `/api/ask-file`, with no disk storage and clear rejection for unsupported OCR files
+- Real `.txt` and text-based PDF upload flow through `/api/ask-file`, with no disk storage and clear rejection for scanned PDFs/images
 - Rule-based risk flagging for deadlines, penalties, prepayment/foreclosure, auto-renewal, extra charges, and legal notices
 - Backend tests
 
 Important limitations:
 
-- PDF/image OCR upload is not implemented yet. The app now rejects those files honestly instead of pretending OCR works.
+- Scanned PDF/image OCR upload is not implemented yet. The app now processes selectable-text PDFs and rejects scanned/image files honestly instead of pretending OCR works.
 - Knowledge base entries are currently marked `unverified` until manually checked against live official sources.
 - Translation/voice is not implemented for backend answers yet.
 - Client-side privacy masking is not implemented yet. Current masking happens in the backend.
@@ -62,7 +62,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
 Expected current result:
 
 ```text
-41 passed
+43 passed
 ```
 
 ## Project structure
@@ -79,7 +79,7 @@ backend/
     privacy.py            server-side text masking
     router.py             request classification
     explainer.py          deterministic answer generation
-    ocr.py                safe text upload extraction, PDF/image OCR rejected for now
+    ocr.py                safe text and text-based PDF extraction, scanned/image OCR rejected for now
     flagger.py            rule-based risky clause and deadline warnings
     translate_voice.py    placeholder
 frontend/

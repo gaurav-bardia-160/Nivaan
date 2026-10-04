@@ -9,6 +9,34 @@ from backend.schemas import Answer, AskRequest
 
 client = TestClient(app)
 
+
+def build_minimal_pdf(text: str = "") -> bytes:
+    escaped = text.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
+    stream = f"BT /F1 12 Tf 72 720 Td ({escaped}) Tj ET" if text else ""
+    stream_bytes = stream.encode("latin-1")
+    objects = [
+        b"1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n",
+        b"2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n",
+        b"3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n",
+        b"4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n",
+        b"5 0 obj\n<< /Length " + str(len(stream_bytes)).encode("ascii") + b" >>\nstream\n" + stream_bytes + b"\nendstream\nendobj\n",
+    ]
+    content = bytearray(b"%PDF-1.4\n")
+    offsets = [0]
+    for obj in objects:
+        offsets.append(len(content))
+        content.extend(obj)
+    xref_offset = len(content)
+    content.extend(f"xref\n0 {len(objects) + 1}\n".encode("ascii"))
+    content.extend(b"0000000000 65535 f \n")
+    for offset in offsets[1:]:
+        content.extend(f"{offset:010d} 00000 n \n".encode("ascii"))
+    content.extend(
+        f"trailer\n<< /Size {len(objects) + 1} /Root 1 0 R >>\nstartxref\n{xref_offset}\n%%EOF\n".encode("ascii")
+    )
+    return bytes(content)
+
+
 def test_privacy_masks_common_sensitive_values():
     text = "PAN ABCDE1234F Aadhaar 1234 5678 9012 phone 9876543210 email user@example.com account no 123456789012 IFSC HDFC0001234"
     masked = mask_text(text)
@@ -224,15 +252,49 @@ def test_ask_file_endpoint_accepts_text_file_and_masks_sensitive_values():
     assert "Deadline or response window found" in warning_titles
 
 
-def test_ask_file_endpoint_rejects_pdf_until_ocr_is_available():
+def test_ask_file_endpoint_accepts_text_based_pdf_and_masks_sensitive_values():
+    response = client.post(
+        "/api/ask-file",
+        data={"question": "Explain this loan agreement", "language": "en"},
+        files={
+            "file": (
+                "loan.pdf",
+                build_minimal_pdf("Loan agreement for PAN ABCDE1234F. Late payment fee applies. Reply within 15 days."),
+                "application/pdf",
+            )
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["title"] == "Understand a loan agreement"
+    assert "ABCDE1234F" not in payload["summary"]
+    assert {item["item_type"] for item in payload["masked_items"]} == {"pan"}
+    warning_titles = {warning["title"] for warning in payload["warnings"]}
+    assert "Late payment or penalty clause found" in warning_titles
+    assert "Deadline or response window found" in warning_titles
+
+
+def test_ask_file_endpoint_rejects_scanned_pdf_until_ocr_is_available():
+    response = client.post(
+        "/api/ask-file",
+        data={"question": "Explain this PDF", "language": "en"},
+        files={"file": ("notice.pdf", build_minimal_pdf(), "application/pdf")},
+    )
+
+    assert response.status_code == 415
+    assert "No selectable text" in response.json()["detail"]
+
+
+def test_ask_file_endpoint_rejects_malformed_pdf():
     response = client.post(
         "/api/ask-file",
         data={"question": "Explain this PDF", "language": "en"},
         files={"file": ("notice.pdf", b"%PDF fake", "application/pdf")},
     )
 
-    assert response.status_code == 415
-    assert "PDF and image OCR are planned next" in response.json()["detail"]
+    assert response.status_code == 400
+    assert "could not be read" in response.json()["detail"]
 
 
 def test_ask_file_endpoint_rejects_empty_text_file():
