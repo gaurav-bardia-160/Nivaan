@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -8,6 +8,7 @@ from fastapi.encoders import jsonable_encoder
 from pydantic import ValidationError
 
 from backend.config import APP_NAME, APP_VERSION, CORS_ALLOW_ORIGINS
+from backend.modules.ocr import OCRExtractionError, extract_text_from_upload
 from backend.modules.retrieval import knowledge_stats
 from backend.pipeline import run
 from backend.schemas import Answer, AskRequest
@@ -60,6 +61,37 @@ def ask(request: AskRequest) -> Answer:
         raise HTTPException(status_code=422, detail=exc.errors()) from exc
     except Exception as exc:
         raise HTTPException(status_code=500, detail="The assistant could not process this request safely.") from exc
+
+
+@app.post("/api/ask-file", response_model=Answer)
+async def ask_file(
+    file: UploadFile = File(...),
+    question: str = Form("Explain this document"),
+    language: str = Form("en"),
+) -> Answer:
+    """Accept a real uploaded text file and process it without storing it.
+
+    PDF/image OCR is deliberately not claimed yet. Unsupported file types return a
+    clear error instead of falling back to fake extraction.
+    """
+
+    try:
+        content = await file.read()
+        extracted = extract_text_from_upload(file.filename, file.content_type, content)
+        request = AskRequest(
+            input_type="document",
+            question=question or "Explain this document",
+            document_text=extracted.text,
+            language=language,
+            file_attached=False,
+        )
+        return run(request)
+    except OCRExtractionError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
+    except ValidationError as exc:
+        raise HTTPException(status_code=422, detail=jsonable_encoder(exc.errors())) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="The uploaded file could not be processed safely.") from exc
 
 
 __all__ = ["app"]

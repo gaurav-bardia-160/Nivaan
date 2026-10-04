@@ -18,7 +18,7 @@ GovBank Assistant is no longer just a skeleton. It now has:
 Latest validated backend test result:
 
 ```text
-35 passed
+41 passed
 ```
 
 Current overall readiness:
@@ -26,10 +26,10 @@ Current overall readiness:
 | Area | Rating | Reason |
 |---|---:|---|
 | Concept strength | 8.5/10 | Real communication problem, strong social usefulness |
-| Backend foundation | 8.2/10 | API, schemas, retrieval, masking, tests work |
+| Backend foundation | 8.6/10 | API, schemas, retrieval, masking, risk flagging, text upload, and tests work |
 | Frontend UI | 6/10 | Real UI exists, but upload and live edge handling are incomplete |
 | Knowledge/data quality | 4/10 | Only 3 entries, all still marked unverified |
-| Document upload workflow | 2/10 | UI exists, OCR/backend file handling not built |
+| Document upload workflow | 4.5/10 | Real `.txt` upload works through backend. PDF/image OCR still not built |
 | Production readiness | 3.5/10 | Missing deployment/security/config/observability and full workflows |
 | Demo readiness | 6.5/10 | Typed question demo can work, document upload demo is not reliable yet |
 
@@ -103,7 +103,7 @@ frontend/sample_answer.json: valid against backend Answer schema
 
 ## 3. Major gaps blocking a truly useful product
 
-### Gap 1: Uploaded documents are not actually processed end-to-end
+### Gap 1: PDF/image documents are not actually processed end-to-end
 
 Current state:
 
@@ -116,8 +116,8 @@ Current state:
 
 Impact:
 
-- Upload demo can look nice but is not real.
-- PDF/image upload is not a valid backend workflow yet.
+- Text document upload now has a real backend path through `/api/ask-file`.
+- PDF/image upload is not a valid OCR workflow yet.
 
 Required fix:
 

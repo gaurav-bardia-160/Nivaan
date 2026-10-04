@@ -199,3 +199,48 @@ def test_ask_endpoint_defaults_to_question_input_type():
 
     assert response.status_code == 200
     assert response.json()["title"] == "Apply for a new PAN card"
+
+
+def test_ask_file_endpoint_accepts_text_file_and_masks_sensitive_values():
+    response = client.post(
+        "/api/ask-file",
+        data={"question": "Explain this loan agreement", "language": "en"},
+        files={
+            "file": (
+                "loan.txt",
+                b"Loan agreement for PAN ABCDE1234F. Late payment fee applies. Reply within 15 days.",
+                "text/plain",
+            )
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["title"] == "Understand a loan agreement"
+    assert "ABCDE1234F" not in payload["summary"]
+    assert {item["item_type"] for item in payload["masked_items"]} == {"pan"}
+    warning_titles = {warning["title"] for warning in payload["warnings"]}
+    assert "Late payment or penalty clause found" in warning_titles
+    assert "Deadline or response window found" in warning_titles
+
+
+def test_ask_file_endpoint_rejects_pdf_until_ocr_is_available():
+    response = client.post(
+        "/api/ask-file",
+        data={"question": "Explain this PDF", "language": "en"},
+        files={"file": ("notice.pdf", b"%PDF fake", "application/pdf")},
+    )
+
+    assert response.status_code == 415
+    assert "PDF and image OCR are planned next" in response.json()["detail"]
+
+
+def test_ask_file_endpoint_rejects_empty_text_file():
+    response = client.post(
+        "/api/ask-file",
+        data={"question": "Explain this file", "language": "en"},
+        files={"file": ("empty.txt", b"   \n\t", "text/plain")},
+    )
+
+    assert response.status_code == 400
+    assert "No readable text" in response.json()["detail"]

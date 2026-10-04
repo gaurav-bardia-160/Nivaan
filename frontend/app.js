@@ -305,6 +305,36 @@ async function sendMessage(userText, fileObj = null) {
     if (isBackendLive) {
         try {
             const hasReadableDocumentText = !!(currentAttachment && currentAttachment.textContent && currentAttachment.textContent.trim());
+
+            if (currentAttachment && !hasReadableDocumentText && currentAttachment.fileRef) {
+                const formData = new FormData();
+                formData.append("file", currentAttachment.fileRef);
+                formData.append("question", userText || "Explain this document");
+                formData.append("language", langSelect ? langSelect.value : "en");
+
+                const uploadResponse = await fetch(`${API_BASE}/api/ask-file`, {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (uploadResponse.ok) {
+                    const answer = await uploadResponse.json();
+                    appendAssistantResponse(answer);
+                    addChatHistory(userText);
+                    setLoading(false);
+                    return;
+                }
+
+                const uploadError = await safeReadJson(uploadResponse);
+                appendSystemNotice(
+                    "This file cannot be processed yet",
+                    uploadError?.detail || uploadError?.message || "Only readable text files are supported right now. PDF/image OCR is planned next."
+                );
+                addChatHistory(userText);
+                setLoading(false);
+                return;
+            }
+
             const payload = {
                 input_type: currentAttachment ? "document" : "question",
                 question: userText,
@@ -335,7 +365,7 @@ async function sendMessage(userText, fileObj = null) {
             const errorPayload = await safeReadJson(response);
             appendSystemNotice(
                 "This file cannot be processed yet",
-                errorPayload?.message || "The backend rejected this request. PDF/image OCR is not implemented yet, so use typed questions or paste text for now."
+                errorPayload?.detail || errorPayload?.message || "The backend rejected this request. PDF/image OCR is not implemented yet, so use typed questions or paste text for now."
             );
             addChatHistory(userText);
             setLoading(false);
