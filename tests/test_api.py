@@ -1,10 +1,74 @@
 from fastapi.testclient import TestClient
 
+from backend.modules.privacy import mask_text
+from backend.modules.router import route
 from backend.main import app
 from backend.pipeline import run
 from backend.schemas import Answer, AskRequest
 
 client = TestClient(app)
+
+def test_privacy_masks_common_sensitive_values():
+    text = "PAN ABCDE1234F Aadhaar 1234 5678 9012 phone 9876543210 email user@example.com account no 123456789012 IFSC HDFC0001234"
+    masked = mask_text(text)
+
+    assert "ABCDE1234F" not in masked.text
+    assert "1234 5678 9012" not in masked.text
+    assert "9876543210" not in masked.text
+    assert "user@example.com" not in masked.text
+    assert "123456789012" not in masked.text
+    assert "HDFC0001234" not in masked.text
+    assert {item.item_type for item in masked.masked_items} == {"pan", "aadhaar", "phone", "email", "bank_account", "ifsc"}
+
+
+def test_router_classifies_supported_question():
+    result = route(AskRequest(input_type="question", question="How do I file ITR with Form 16?"))
+
+    assert result.path == "question"
+    assert result.category == "tax"
+    assert result.matched_entry_id == "itr_filing_basics"
+    assert result.needs_clarification is False
+
+
+def test_router_marks_unknown_request_for_clarification():
+    result = route(AskRequest(input_type="question", question="How do I cook pasta?"))
+
+    assert result.category == "unknown"
+    assert result.needs_clarification is True
+
+
+def test_pipeline_masks_document_text_before_answering():
+    answer = run(
+        AskRequest(
+            input_type="document",
+            question="Explain this loan agreement",
+            document_text="Borrower PAN ABCDE1234F has loan EMI and late payment penalty. Phone 9876543210.",
+        )
+    )
+
+    assert answer.title == "Understand a loan agreement"
+    assert "ABCDE1234F" not in answer.summary
+    assert "9876543210" not in answer.summary
+    assert {item.item_type for item in answer.masked_items} == {"pan", "phone"}
+
+
+def test_ask_endpoint_document_text_masks_sensitive_values():
+    response = client.post(
+        "/api/ask",
+        json={
+            "input_type": "document",
+            "question": "Explain this loan agreement",
+            "document_text": "Loan EMI clause for PAN ABCDE1234F and phone 9876543210 with prepayment charge.",
+            "language": "en",
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["title"] == "Understand a loan agreement"
+    assert "ABCDE1234F" not in payload["summary"]
+    assert "9876543210" not in payload["summary"]
+    assert {item["item_type"] for item in payload["masked_items"]} == {"pan", "phone"}
 
 
 def test_pipeline_returns_answer_for_supported_question():

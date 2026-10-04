@@ -38,7 +38,7 @@ def _masked_items_from_types(masked_types: list[str] | None) -> list[MaskedItem]
 def explain_entry(
     entry: KnowledgeEntry | dict[str, Any],
     user_question: str,
-    masked_types: list[str] | None = None,
+    masked_items: list[MaskedItem] | None = None,
 ) -> Answer:
     """Build a source-grounded answer from one verified/curated knowledge entry.
 
@@ -48,6 +48,8 @@ def explain_entry(
     be copied from trusted data in code.
     """
     clean_question = " ".join(user_question.strip().split())
+    if len(clean_question) > 240:
+        clean_question = f"{clean_question[:237]}..."
     knowledge = _to_entry(entry)
 
     summary = knowledge.summary
@@ -72,13 +74,15 @@ def explain_entry(
         source_url=knowledge.source.url,
         last_verified=knowledge.source.last_verified,
         confidence="medium" if knowledge.status == "verified" else "low",
-        masked_items=_masked_items_from_types(masked_types),
+        masked_items=masked_items or [],
         disclaimer=DEFAULT_DISCLAIMER,
     )
 
 
-def not_found_answer(user_question: str, masked_types: list[str] | None = None) -> Answer:
+def not_found_answer(user_question: str, masked_items: list[MaskedItem] | None = None) -> Answer:
     clean_question = " ".join(user_question.strip().split()) or "your request"
+    if len(clean_question) > 240:
+        clean_question = f"{clean_question[:237]}..."
     return Answer(
         title="No verified guide found",
         summary=(
@@ -107,7 +111,7 @@ def not_found_answer(user_question: str, masked_types: list[str] | None = None) 
         source_url=NOT_FOUND_SOURCE_URL,
         last_verified=NOT_FOUND_LAST_VERIFIED,
         confidence="low",
-        masked_items=_masked_items_from_types(masked_types),
+        masked_items=masked_items or [],
         disclaimer=DEFAULT_DISCLAIMER,
     )
 

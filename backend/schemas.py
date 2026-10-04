@@ -70,11 +70,12 @@ class AskRequest(BaseModel):
 
     input_type: Literal["question", "document"]
     question: Optional[str] = Field(default=None, max_length=1200)
+    document_text: Optional[str] = Field(default=None, max_length=12000)
     language: Literal["en", "hi", "gu"] = "en"
     conversation_id: Optional[str] = Field(default=None, max_length=120)
     file_attached: bool = False
 
-    @field_validator("question", "conversation_id", mode="before")
+    @field_validator("question", "document_text", "conversation_id", mode="before")
     @classmethod
     def clean_optional_text(cls, value):
         if value is None:
@@ -88,8 +89,8 @@ class AskRequest(BaseModel):
     def validate_input_requirements(self):
         if self.input_type == "question" and not self.question:
             raise ValueError("question required when input_type='question'")
-        if self.input_type == "document" and not (self.question or self.file_attached):
-            raise ValueError("document input requires a question or an attached file")
+        if self.input_type == "document" and not (self.question or self.document_text or self.file_attached):
+            raise ValueError("document input requires a question, document_text, or an attached file")
         return self
 
 
