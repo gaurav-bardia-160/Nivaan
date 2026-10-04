@@ -1,31 +1,104 @@
 # GovBank Assistant
 
-Status: backend foundation in progress. The repository is not a runnable app yet, but the first shared data contracts, starter knowledge base, retrieval module, and backend tests are implemented.
+GovBank Assistant is a web app that helps users understand government, banking, tax, and legal procedures in plain language. It is designed around the communication gap between official institutions and citizens.
 
-This project follows the two-person split:
+## Current status
 
-- Person A: knowledge, retrieval, flagging, explaining.
-- Person B: input, privacy, routing, agent/tools, translation/voice, frontend.
-- Both: shared backend contract and integration files.
+The project is partially working, not fully production-ready yet.
 
-## Current implemented pieces
+Working now:
 
-- `backend/schemas.py`: strict Pydantic contracts for requests, answers, knowledge entries, warnings, steps, sources, and masked items.
-- `backend/data/knowledge_base.json`: three starter entries for PAN, ITR basics, and loan agreement explanation. These are intentionally marked `unverified` until live official re-checks are done.
-- `backend/modules/retrieval.py`: local fuzzy/keyword retrieval over the starter knowledge base.
-- `tests/test_a.py`: backend foundation tests for schema validity, retrieval behavior, and safe rejection cases.
+- FastAPI backend with `/api/health` and `/api/ask`
+- Strict Pydantic request/answer contracts
+- Starter knowledge base with PAN, ITR basics, and loan agreement entries
+- Retrieval over the starter knowledge base
+- Safe refusal for unsupported questions
+- Server-side masking for common sensitive values in text inputs
+- Frontend chat UI with HTML, CSS, and JavaScript
+- Typed question flow from frontend to backend
+- Text-document flow when readable text is sent as `document_text`
+- Backend tests
 
-## Not implemented yet
+Important limitations:
 
-- No FastAPI endpoint in `main.py` yet.
-- No pipeline integration in `pipeline.py` yet.
-- No explainer, privacy masking, OCR, router, agent loop, tools, translation, or voice implementation yet.
-- No real document upload should be enabled yet.
+- Real PDF/image OCR upload is not implemented yet.
+- Knowledge base entries are currently marked `unverified` until manually checked against live official sources.
+- Translation/voice is not implemented for backend answers yet.
+- Client-side privacy masking is not implemented yet. Current masking happens in the backend.
+- This is an explanation helper, not legal, tax, financial, or government advice.
 
-## Important notes
+## Run locally
 
-- Python package files are named `__init__.py`, not `_init_.py`.
-- Do not commit a real `.env` file. Use `.env.example` as the template.
-- `backend/data/knowledge_base.json` should contain only entries that are safe to retrieve. Use `status: "unverified"` until facts, fees, and dates are checked live from official sources.
-- `backend/data/structured/` can contain entries with `status: unverified` or `status: verified` while being prepared.
-- `samples/fake_documents/` is only for fictional test documents.
+From the project root:
+
+```bash
+cd /Users/admin/govbank-assistant
+python3 -m pip install -r backend/requirements.txt
+python3 -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+In another terminal:
+
+```bash
+cd /Users/admin/govbank-assistant
+python3 -m http.server 5500 --directory frontend
+```
+
+Open:
+
+```text
+http://127.0.0.1:5500/
+```
+
+## Test
+
+```bash
+cd /Users/admin/govbank-assistant
+PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
+```
+
+Expected current result:
+
+```text
+35 passed
+```
+
+## Project structure
+
+```text
+backend/
+  main.py                 FastAPI app
+  pipeline.py             request workflow
+  schemas.py              shared data contracts
+  config.py               backend constants
+  data/knowledge_base.json
+  modules/
+    retrieval.py          local knowledge retrieval
+    privacy.py            server-side text masking
+    router.py             request classification
+    explainer.py          deterministic answer generation
+    ocr.py                placeholder
+    flagger.py            placeholder
+    translate_voice.py    placeholder
+frontend/
+  index.html
+  app.js
+  style.css
+  sample_answer.json
+tests/
+  test_a.py
+  test_api.py
+  test_b.py
+PROJECT_STATUS_REPORT.md
+```
+
+## Next production build priorities
+
+1. Make text-file upload send `document_text` to the backend reliably.
+2. Show backend validation errors honestly in the UI instead of pretending OCR exists.
+3. Implement `flagger.py` for penalties, deadlines, prepayment clauses, and risky terms.
+4. Add safe backend file upload and OCR, starting with `.txt`, then text PDFs, then images.
+5. Expand and manually verify the knowledge base.
+6. Add translation only after core English flow is stable.
+
+See `PROJECT_STATUS_REPORT.md` for the full audit and phased roadmap.

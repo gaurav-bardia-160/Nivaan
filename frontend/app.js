@@ -47,7 +47,7 @@ const UI_TRANSLATIONS = {
         "lightTheme": "☀️ Light",
         "historyHeading": "Recent Inquiries",
         "privacyBadge": "Privacy-by-Design",
-        "privacyText": "Aadhaar, PAN, phone & accounts masked before processing.",
+        "privacyText": "Sensitive values are masked by the backend before retrieval and explanation.",
         "q1Title": "Apply for PAN Card", "q1Desc": "Form 49A steps, fees & documents",
         "q2Title": "File ITR-1 Return", "q2Desc": "Income tax filing basics & proofs",
         "q3Title": "Loan Prepayment Rules", "q3Desc": "RBI rules on floating rate penalty bans",
@@ -304,6 +304,7 @@ async function sendMessage(userText, fileObj = null) {
     // Try live backend first
     if (isBackendLive) {
         try {
+            const hasReadableDocumentText = !!(currentAttachment && currentAttachment.textContent && currentAttachment.textContent.trim());
             const payload = {
                 input_type: currentAttachment ? "document" : "question",
                 question: userText,
@@ -311,6 +312,11 @@ async function sendMessage(userText, fileObj = null) {
                 conversation_id: "conv_default",
                 file_attached: !!currentAttachment
             };
+
+            if (hasReadableDocumentText) {
+                payload.document_text = currentAttachment.textContent.trim();
+                payload.file_attached = false;
+            }
 
             const response = await fetch(`${API_BASE}/api/ask`, {
                 method: "POST",
@@ -325,6 +331,15 @@ async function sendMessage(userText, fileObj = null) {
                 setLoading(false);
                 return;
             }
+
+            const errorPayload = await safeReadJson(response);
+            appendSystemNotice(
+                "This file cannot be processed yet",
+                errorPayload?.message || "The backend rejected this request. PDF/image OCR is not implemented yet, so use typed questions or paste text for now."
+            );
+            addChatHistory(userText);
+            setLoading(false);
+            return;
         } catch (err) {
             console.warn("Backend error, falling back to local guide:", err);
         }
@@ -364,6 +379,34 @@ function appendUserBubble(text, file) {
 
     messagesContainer.appendChild(row);
     scrollToBottom();
+}
+
+// --- APPEND SYSTEM NOTICE ---
+function appendSystemNotice(title, message) {
+    appendAssistantResponse({
+        title,
+        summary: message,
+        documents_needed: [],
+        steps: [],
+        warnings: [{
+            title: "Workflow not available yet",
+            message: "Use typed questions or paste document text. Real PDF/image OCR upload is a planned next phase.",
+            severity: "warning"
+        }],
+        source_url: "https://www.india.gov.in/",
+        last_verified: new Date().toISOString().slice(0, 10),
+        confidence: "low",
+        masked_items: [],
+        disclaimer: "This is a product limitation notice, not legal, tax, or financial advice."
+    });
+}
+
+async function safeReadJson(response) {
+    try {
+        return await response.json();
+    } catch (err) {
+        return null;
+    }
 }
 
 // --- APPEND ASSISTANT RESPONSE CARD ---
