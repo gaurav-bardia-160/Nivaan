@@ -1,0 +1,1040 @@
+GOVBANK ASSISTANT COMPLETE PROJECT STRUCTURE, STATUS, AND FINISH PLAN
+Generated: 2026-10-04
+Repository: https://github.com/Gaurav-Bardia-160/govbank-assistant.git
+Local path: /Users/admin/govbank-assistant
+Latest verified test result at time of writing: 46 passed
+
+============================================================
+1. PROJECT IN ONE LINE
+============================================================
+GovBank Assistant is a source-grounded AI helper that explains government, tax, banking, and legal procedures/documents in simple language, while masking sensitive user data and showing honest sources, dates, warnings, and limitations.
+
+============================================================
+2. REAL GOAL OF THE PROJECT
+============================================================
+The project is linked to the communication theme because it solves the communication gap between official institutions and ordinary citizens.
+
+The user problem:
+- Government forms are hard to understand.
+- Tax steps are confusing.
+- Bank/loan documents hide important terms in complex wording.
+- Legal notices scare people, and people may miss deadlines.
+- People may depend on agents or middlemen because official communication is not simple.
+
+The solution:
+- User asks a question or uploads a supported document.
+- System masks sensitive data.
+- System finds a matching verified guide from the knowledge base.
+- System explains the procedure in a fixed, simple answer format.
+- System flags risky clauses and deadlines.
+- System shows source link, last verified date, confidence, and disclaimer.
+
+Important boundary:
+This project must not act like a lawyer, CA, bank officer, or government authority. It should explain, guide, flag, and cite. It should not make final decisions for the user.
+
+============================================================
+3. CURRENT OVERALL STATUS
+============================================================
+Current state: working backend prototype with starter frontend, not final production-ready.
+
+What is working now:
+- FastAPI backend starts and serves the core API.
+- Health endpoint works.
+- Capabilities endpoint works.
+- Typed question flow works.
+- Pasted document text flow works.
+- Real .txt upload flow works.
+- Text-based PDF upload flow works.
+- Scanned PDF and image uploads are rejected honestly.
+- Sensitive values are masked on the backend.
+- Retrieval works over starter knowledge base.
+- Unsupported questions are refused instead of guessed.
+- Rule-based flags detect deadlines, penalties, prepayment, auto-renewal, legal notices, and charges.
+- Frontend exists and can call backend.
+- Tests pass.
+
+Current verified test result:
+- 46 passed
+
+Current honest readiness rating:
+- Backend prototype readiness: 8.5 to 9 out of 10
+- Overall project readiness: 7 out of 10
+- Demo readiness: 7.5 out of 10
+- Production readiness: 4.5 to 5 out of 10
+
+Why not production-ready yet:
+- Knowledge base has only 3 starter entries and they are unverified.
+- Translation is not real backend translation yet.
+- Voice output is not complete.
+- Scanned image/PDF OCR is not implemented.
+- Client-side masking is not implemented.
+- No deployment hardening yet.
+- No real user testing results yet.
+- No official-source update workflow in live use yet.
+
+============================================================
+4. CURRENT PROJECT FOLDER STRUCTURE
+============================================================
+
+govbank-assistant/
+├── README.md
+├── PROJECT_STATUS_REPORT.md
+├── PROJECT_STRUCTURE.txt
+├── PROJECT_AGENT_BRIEF.txt
+├── PROJECT_FULL_FINISH_PLAN.txt     <-- this file
+├── .env.example
+├── .gitignore
+├── start_backend.bat
+├── backend/
+│   ├── __init__.py
+│   ├── .env.example
+│   ├── main.py
+│   ├── pipeline.py
+│   ├── schemas.py
+│   ├── config.py
+│   ├── requirements.txt
+│   ├── data/
+│   │   ├── sources.json
+│   │   ├── knowledge_base.json
+│   │   ├── raw/
+│   │   │   └── .gitkeep
+│   │   ├── structured/
+│   │   │   └── .gitkeep
+│   │   └── vector_index/
+│   │       └── .gitkeep
+│   ├── modules/
+│   │   ├── __init__.py
+│   │   ├── agent.py
+│   │   ├── guardrails.py
+│   │   ├── retrieval.py
+│   │   ├── explainer.py
+│   │   ├── ocr.py
+│   │   ├── translate_voice.py
+│   │   ├── tools.py
+│   │   ├── privacy.py
+│   │   ├── flagger.py
+│   │   └── router.py
+│   └── offline/
+│       ├── __init__.py
+│       └── data_builder.py
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   ├── app.js
+│   ├── logo.png
+│   └── sample_answer.json
+├── samples/
+│   └── fake_documents/
+│       └── README.md
+└── tests/
+    ├── test_api.py
+    ├── test_a.py
+    └── test_b.py
+
+============================================================
+5. FILE-BY-FILE EXPLANATION AND STATUS
+============================================================
+
+------------------------------
+ROOT FILES
+------------------------------
+
+README.md
+Purpose:
+- Main repo introduction.
+- Explains what works, what is limited, how to run backend/frontend, and how to test.
+Status:
+- Completed for current prototype.
+What is left:
+- Keep updating whenever features change.
+- Add screenshots and demo instructions later.
+
+PROJECT_STATUS_REPORT.md
+Purpose:
+- Project audit and roadmap document.
+Status:
+- Exists.
+What is left:
+- Update after every major production hardening phase.
+- Add latest frontend and user testing results.
+
+PROJECT_STRUCTURE.txt
+Purpose:
+- Folder structure explanation.
+Status:
+- Exists.
+What is left:
+- This new full finish plan is more detailed, so this file can either stay as a short summary or be replaced later.
+
+PROJECT_AGENT_BRIEF.txt
+Purpose:
+- Explains the project to another AI agent or programmer.
+Status:
+- Exists.
+What is left:
+- Keep aligned with actual code after major changes.
+
+PROJECT_FULL_FINISH_PLAN.txt
+Purpose:
+- Complete serious programmer-level project guide.
+- Shows every folder/file, current status, completed work, missing work, and exact finish plan.
+Status:
+- Newly created.
+What is left:
+- Update this after each phase.
+
+.env.example
+Purpose:
+- Shows what environment variables may be needed without exposing real secrets.
+Status:
+- Exists.
+What is left:
+- Add actual provider keys later if real LLM, translation, or OCR APIs are introduced.
+
+.gitignore
+Purpose:
+- Prevents committing secrets, virtualenv, cache, generated files.
+Status:
+- Exists.
+What is left:
+- Confirm .env, __pycache__, .pytest_cache, .DS_Store, and venv are ignored.
+
+start_backend.bat
+Purpose:
+- Windows helper script to start backend.
+Status:
+- Exists.
+What is left:
+- Verify on Windows if teammates use it.
+
+------------------------------
+BACKEND CORE
+------------------------------
+
+backend/__init__.py
+Purpose:
+- Marks backend as a Python package.
+Status:
+- Complete.
+What is left:
+- Nothing unless package exports are needed later.
+
+backend/.env.example
+Purpose:
+- Backend-specific env example.
+Status:
+- Exists.
+What is left:
+- Add keys/settings only when real services are added.
+
+backend/requirements.txt
+Purpose:
+- Python dependencies.
+Current important packages:
+- fastapi
+- uvicorn
+- pydantic
+- rapidfuzz
+- pytest
+- httpx
+- python-multipart
+- pypdf
+- pdfplumber
+Status:
+- Complete for current backend.
+What is left:
+- Add future dependencies only when needed:
+  - translation API SDK
+  - TTS package/API SDK
+  - OCR/image stack if scanned OCR is implemented
+  - vector DB or embeddings if real RAG is added
+
+backend/config.py
+Purpose:
+- Central constants.
+- App name/version.
+- max question/document limits.
+- upload size limit.
+- CORS origins.
+- capabilities response content.
+Status:
+- Working.
+What is left:
+- Tighten CORS for deployment.
+- Move environment-specific settings to env variables.
+- Update app version with releases.
+
+backend/schemas.py
+Purpose:
+- Shared backend contract.
+- Defines Answer shape, AskRequest, KnowledgeEntry, Step, Warning, MaskedItem, SourceInfo.
+What it currently does well:
+- Strict Pydantic validation.
+- Forbids extra fields.
+- Cleans text.
+- Requires source URL and last verified date.
+- Enforces language options en/hi/gu.
+Status:
+- Strong and mostly complete.
+What is left:
+- Add UploadMetadata schema if frontend needs extraction details.
+- Add ConversationTurn schema if multi-turn conversation is implemented.
+- Add SourceEvidence schema if multiple retrieved sources are shown.
+- Fix wording in AskRequest validator: message still says upload processing is not implemented, but /api/ask-file now exists. It applies only to JSON file_attached path, but wording can confuse developers.
+
+backend/main.py
+Purpose:
+- FastAPI app.
+- Exposes:
+  - GET /api/health
+  - GET /api/capabilities
+  - POST /api/ask
+  - POST /api/ask-file
+What it currently does well:
+- Clean API structure.
+- Uses response_model=Answer.
+- Handles validation errors.
+- Handles upload extraction through ocr.py.
+- Rejects unsupported uploads clearly.
+Status:
+- Working.
+What is left:
+- Add request IDs for debugging.
+- Add structured logging without logging private document text.
+- Add rate limiting before public deployment.
+- Add stricter CORS before public deployment.
+- Add better frontend-friendly error body for OCR failures.
+- Add OpenAPI examples.
+
+backend/pipeline.py
+Purpose:
+- Main workflow coordinator.
+Current flow:
+1. Parse AskRequest.
+2. Combine question + document text.
+3. Mask sensitive data.
+4. Route request.
+5. Retrieve knowledge entry.
+6. Build answer.
+7. Add risk flags for documents.
+8. Apply language policy.
+What it currently does well:
+- Simple and safe.
+- No guessing outside knowledge base.
+- Server-side masking before explanation.
+Status:
+- Working.
+What is left:
+- Use route_result.matched_entry_id more directly instead of re-searching entire masked text.
+- Add source evidence list if retrieval expands beyond one entry.
+- Add agent clarification response if required info is missing.
+- Add conversation memory later.
+- Add official-source live check tool only with safe domain allowlist.
+
+------------------------------
+BACKEND DATA
+------------------------------
+
+backend/data/sources.json
+Purpose:
+- List of official source pages for future offline builder.
+Status:
+- Placeholder or starter.
+What is left:
+- Add official sources for:
+  - PAN
+  - ITR
+  - Aadhaar
+  - RBI/KYC
+  - loan prepayment
+  - cheque bounce
+  - myScheme
+  - consumer protection
+- Each source should include name, URL, category, and trusted domain.
+
+backend/data/knowledge_base.json
+Purpose:
+- Current local source of truth for retrieval and answers.
+Current entries:
+- Apply for a new PAN card
+- ITR filing basics
+- Understand a loan agreement
+Status:
+- Working starter knowledge base.
+Important limitation:
+- Entries are marked unverified.
+What is left:
+- Manually verify every source and date.
+- Expand to 10 to 15 high-quality entries before demo.
+- Add fields for jurisdiction/region if legal content expands.
+- Add stronger warning texts and common mistakes.
+Recommended next entries:
+1. Aadhaar update guide
+2. Bank account opening/KYC guide
+3. Cheque bounce notice explainer
+4. Credit card charges explainer
+5. Government scheme eligibility explainer
+6. Income certificate procedure
+7. Caste certificate procedure, if relevant
+8. Consumer complaint procedure
+9. Basic legal notice response guide
+10. Loan recovery notice explainer
+
+backend/data/raw/
+Purpose:
+- Offline raw source text storage.
+Status:
+- Folder exists with .gitkeep.
+What is left:
+- Store downloaded or manually saved source text here if using offline builder.
+
+backend/data/structured/
+Purpose:
+- Draft structured entries before becoming verified knowledge base.
+Status:
+- Folder exists with .gitkeep.
+What is left:
+- Store unverified structured entries here.
+- Human should review before copying to knowledge_base.json.
+
+backend/data/vector_index/
+Purpose:
+- Future vector index storage.
+Status:
+- Folder exists with .gitkeep.
+What is left:
+- Only implement if you move from fuzzy retrieval to embeddings/RAG.
+- Not needed for current 3 to 15 guide prototype.
+
+------------------------------
+BACKEND MODULES
+------------------------------
+
+backend/modules/__init__.py
+Purpose:
+- Marks modules as Python package.
+Status:
+- Complete.
+What is left:
+- Nothing.
+
+backend/modules/agent.py
+Purpose:
+- Request routing and basic agent decision.
+- Decides category and whether clarification is needed.
+Status:
+- Working deterministic router.
+What is left:
+- Use route_result more strongly in pipeline.
+- Add clear clarification questions, for example state, document type, individual/company.
+- Add safer intent categories.
+- Add tests for more realistic queries.
+
+backend/modules/guardrails.py
+Purpose:
+- Main safety module.
+- Merges privacy masking and risk flagging.
+What it currently does:
+- Masks PAN, Aadhaar, phone, email, bank account, IFSC.
+- Finds risk flags for deadlines, penalties, prepayment, auto-renewal, charges, legal notices.
+Status:
+- Strong prototype.
+What is left:
+- Improve Aadhaar masking to avoid false positives.
+- Add name/address redaction only if needed, but avoid over-masking useful context.
+- Add source-backed risk flag definitions.
+- Add tests for edge cases, multiple same-type values, and formatted values.
+- Add client-side masking later for stronger privacy claim.
+
+backend/modules/retrieval.py
+Purpose:
+- Finds best matching knowledge entry.
+Current method:
+- Local fuzzy matching/keyword retrieval over knowledge_base.json.
+Status:
+- Working for starter knowledge base.
+What is left:
+- Add top-k retrieval with score explanations.
+- Add category filtering using agent route.
+- Add retrieval confidence thresholds per category.
+- Add embeddings only after knowledge base grows.
+
+backend/modules/explainer.py
+Purpose:
+- Builds final Answer from knowledge entry.
+Current method:
+- Deterministic answer generation, no LLM.
+What it currently does well:
+- Predictable.
+- Does not hallucinate.
+- Copies source and date from entry.
+- Marks confidence low for unverified content.
+Status:
+- Working and safe.
+What is left:
+- Optional LLM explanation layer with strict JSON validation.
+- Keep fallback deterministic if LLM fails.
+- Show retrieved source evidence if multiple sources are used.
+- Never allow model to invent source/date.
+
+backend/modules/ocr.py
+Purpose:
+- Extracts text from uploaded files safely.
+Current support:
+- .txt, .text, .md, .csv
+- text-based PDFs using pdfplumber
+Current unsupported:
+- scanned PDFs
+- images
+- encrypted PDFs
+Status:
+- Working.
+What is left:
+- Add scanned PDF/image OCR only after adding privacy and accuracy tests.
+- If adding OCR, choose one route:
+  1. local OCR with Tesseract/PaddleOCR
+  2. cloud OCR with consent warning
+  3. browser-side OCR if privacy is priority
+- Add tests for file size, weird encodings, corrupted PDFs.
+
+backend/modules/translate_voice.py
+Purpose:
+- Applies honest language policy.
+Current behavior:
+- English answers are returned normally.
+- Hindi/Gujarati requests return English answer with visible warning that answer translation is not implemented.
+Status:
+- Honest but incomplete.
+What is left:
+- Add real translation for Answer fields.
+- Do not translate URLs/dates/schema keys.
+- Add TTS audio generation or browser speech fallback.
+- Add tests that translated fields exist and source/date are unchanged.
+
+backend/modules/tools.py
+Purpose:
+- Placeholder for future official-site checking tools.
+Status:
+- Not core yet.
+What is left:
+- Add domain allowlist.
+- Add safe fetcher with timeout.
+- Add source extraction and citation.
+- Add human verification gate for data updates.
+
+backend/modules/privacy.py
+Purpose:
+- Compatibility wrapper around guardrails.py.
+Status:
+- Exists so old imports do not break.
+What is left:
+- Keep temporarily.
+- Remove only after all imports and teammates are updated.
+
+backend/modules/flagger.py
+Purpose:
+- Compatibility wrapper around guardrails.py.
+Status:
+- Exists so old imports do not break.
+What is left:
+- Keep temporarily.
+- Remove only after all imports and teammates are updated.
+
+backend/modules/router.py
+Purpose:
+- Compatibility wrapper around agent.py.
+Status:
+- Exists so old imports do not break.
+What is left:
+- Keep temporarily.
+- Remove only after all imports and teammates are updated.
+
+------------------------------
+BACKEND OFFLINE
+------------------------------
+
+backend/offline/__init__.py
+Purpose:
+- Marks offline as package.
+Status:
+- Complete.
+What is left:
+- Nothing.
+
+backend/offline/data_builder.py
+Purpose:
+- Merged offline ingestion builder.
+Current intended flow:
+1. Load sources.
+2. Crawl/load source content.
+3. Clean text.
+4. Chunk text.
+5. Structure draft entries.
+6. Save unverified drafts.
+7. Build verified knowledge base.
+Status:
+- Starter pipeline exists.
+What is left:
+- Add real source fetch with allowlist.
+- Add PDF extraction from official documents.
+- Add manual verification command.
+- Add change logs.
+- Add tests for actual generated structured entries.
+
+------------------------------
+FRONTEND
+------------------------------
+
+frontend/index.html
+Purpose:
+- Main user interface page.
+- Upload box, chat input, language selector, result area, suggestions.
+Status:
+- Exists and connected conceptually.
+What is left:
+- Verify full browser behavior after backend updates.
+- Improve accessibility labels.
+- Add clear upload capability note: text PDFs and text files only right now.
+- Add disclaimer visible before upload.
+
+frontend/style.css
+Purpose:
+- UI styling.
+Status:
+- Exists with styled interface.
+What is left:
+- Test mobile responsiveness.
+- Polish warning/source cards.
+- Ensure important errors are visible and readable.
+
+frontend/app.js
+Purpose:
+- Frontend logic.
+Current behavior:
+- Calls backend at http://127.0.0.1:8000.
+- Handles chat messages.
+- Handles file upload path.
+- Renders structured answer.
+- Has UI label translations.
+Status:
+- Working starter frontend logic.
+What is left:
+- Remove any claim that frontend masks PII if it only happens on backend.
+- Improve upload error handling for 415/422 responses.
+- Use environment/config for API_BASE instead of hardcoded localhost before deployment.
+- Add frontend tests or browser smoke test.
+- Add loading state and retry behavior polish.
+
+frontend/logo.png
+Purpose:
+- Logo asset.
+Status:
+- Exists.
+What is left:
+- Replace with final project logo if needed.
+
+frontend/sample_answer.json
+Purpose:
+- Mock answer for frontend development.
+Status:
+- Exists.
+What is left:
+- Keep updated with current Answer schema.
+- Add one warning-heavy sample for demo testing.
+
+------------------------------
+SAMPLES
+------------------------------
+
+samples/fake_documents/README.md
+Purpose:
+- Explains fake demo document folder.
+Status:
+- Exists.
+What is left:
+- Add fake loan agreement .txt.
+- Add fake bank notice .txt.
+- Add fake legal notice .txt.
+- Add fake text-based PDF samples.
+- Never use real personal documents.
+
+------------------------------
+TESTS
+------------------------------
+
+tests/test_api.py
+Purpose:
+- Main regression test suite.
+Current coverage:
+- privacy masking
+- routing
+- offline builder basics
+- pipeline masking
+- /api/ask
+- /api/health
+- /api/capabilities
+- language warning
+- unsupported question refusal
+- /api/ask-file text upload
+- text-based PDF upload
+- scanned/empty/malformed PDF rejection
+- image rejection
+- file size and validation paths
+Status:
+- Strong for current backend.
+Current result:
+- 46 passed
+What is left:
+- Add tests for expanded knowledge base.
+- Add tests for frontend API compatibility.
+- Add tests for real translation when implemented.
+- Add tests for deployment settings.
+
+tests/test_a.py
+Purpose:
+- Placeholder/person A tests.
+Status:
+- Exists.
+What is left:
+- Add person A unit tests for knowledge, retrieval, explainer.
+
+tests/test_b.py
+Purpose:
+- Placeholder/person B tests.
+Status:
+- Exists.
+What is left:
+- Add person B tests for OCR, guardrails, frontend API assumptions.
+
+============================================================
+6. HOW THE SYSTEM WORKS RIGHT NOW
+============================================================
+
+Typed question flow:
+1. User types a question in frontend.
+2. app.js sends POST /api/ask.
+3. main.py validates AskRequest.
+4. pipeline.py combines text.
+5. guardrails.py masks sensitive values.
+6. agent.py routes category.
+7. retrieval.py finds matching entry in knowledge_base.json.
+8. explainer.py builds structured Answer.
+9. translate_voice.py returns English or adds non-English limitation warning.
+10. frontend renders answer.
+
+File upload flow:
+1. User uploads supported file.
+2. app.js sends POST /api/ask-file multipart request.
+3. main.py reads file bytes without storing on disk.
+4. ocr.py extracts text if supported.
+5. main.py creates AskRequest with document_text.
+6. pipeline.py masks text.
+7. retrieval.py finds guide.
+8. guardrails.py adds document risk flags.
+9. explainer.py returns Answer.
+10. frontend renders checklist, warnings, masked items, source, date.
+
+Unsupported file flow:
+1. User uploads image or scanned PDF.
+2. ocr.py rejects with clear OCRExtractionError.
+3. main.py returns proper HTTP error.
+4. Frontend should show user-friendly message.
+
+============================================================
+7. WHAT HAS BEEN COMPLETED
+============================================================
+
+Completed backend work:
+- FastAPI API created.
+- Pydantic schemas created.
+- Pipeline created.
+- Knowledge base starter created.
+- Retrieval created.
+- Deterministic explainer created.
+- Guardrails module created.
+- Privacy masking created.
+- Risk flagging created.
+- Router merged into agent.
+- Offline scripts merged into data_builder.
+- Text and text-based PDF upload support added.
+- Unsupported OCR rejected honestly.
+- Capabilities endpoint added.
+- Tests added and passing.
+
+Completed frontend work:
+- Main HTML/CSS/JS frontend exists.
+- Chat-style interface exists.
+- Backend integration exists.
+- Sample answer exists.
+- Language labels exist for UI.
+
+Completed project-management work:
+- README updated.
+- Project structure docs exist.
+- Status report exists.
+- Agent brief exists.
+- Full finish plan created in this file.
+
+============================================================
+8. WHAT IS LEFT TO FINISH THE PROJECT PROPERLY
+============================================================
+
+Priority 1: Knowledge quality
+- Expand knowledge_base.json from 3 entries to at least 10 to 15 entries.
+- Manually verify every source against official websites.
+- Mark verified entries as verified only after checking.
+- Add common mistakes and warnings.
+- Add official source URLs and dates.
+
+Priority 2: Frontend polish and truthfulness
+- Make frontend clearly say what uploads are supported.
+- Show clear error messages for unsupported files.
+- Add visible privacy disclaimer before upload.
+- Make source/date/confidence easy to see.
+- Improve mobile layout.
+- Add demo-ready sample prompts.
+
+Priority 3: Real translation and voice
+- Add real translation for Answer fields.
+- Keep source URLs/dates unchanged.
+- Add voice output if time allows.
+- Add tests for translated answers.
+
+Priority 4: Better document samples
+- Add fake bank notice.
+- Add fake loan agreement.
+- Add fake legal notice.
+- Add fake PAN/ITR question cases.
+- Add text-based fake PDF samples.
+
+Priority 5: Production hardening
+- Add rate limiting.
+- Add safe logging with no private text.
+- Add CORS restriction.
+- Add request IDs.
+- Add deployment guide.
+- Add CI test workflow.
+
+Priority 6: Optional advanced features
+- Scanned PDF/image OCR.
+- Vector retrieval.
+- Official source update checker.
+- Conversation memory.
+- Live official-site checking tool.
+
+============================================================
+9. IMPORTANT CHANGES THAT SHOULD BE MADE NEXT
+============================================================
+
+Change 1: Improve pipeline retrieval logic
+Problem:
+- agent.py returns matched_entry_id, but pipeline.py still calls find_entry(masked.text).
+Why it matters:
+- If routing identifies a guide clearly, pipeline should use that result to avoid mismatch.
+Suggested fix:
+- Add find_entry_by_id() in retrieval.py.
+- In pipeline.py, if route_result.matched_entry_id exists, use it.
+
+Change 2: Fix confusing validation message in schemas.py
+Problem:
+- AskRequest validator still says file upload requires OCR support, but /api/ask-file exists.
+Suggested fix:
+- Reword to: "JSON /api/ask does not accept raw files. Use /api/ask-file for supported uploads."
+
+Change 3: Add sample fake documents
+Problem:
+- Tests generate synthetic text, but demo folder has no real fake documents yet.
+Suggested fix:
+- Add fake_loan_agreement.txt, fake_bank_notice.txt, fake_legal_notice.txt.
+
+Change 4: Add user-friendly frontend error handling
+Problem:
+- Backend can reject unsupported uploads correctly, but frontend must show this cleanly.
+Suggested fix:
+- In app.js, parse error detail and show clear message.
+
+Change 5: Expand knowledge base
+Problem:
+- Only 3 entries, all unverified.
+Suggested fix:
+- Add at least 7 more verified entries before final presentation.
+
+============================================================
+10. SERIOUS PROGRAMMER FINISH PLAN
+============================================================
+
+Phase 1: Lock current backend quality
+Goal:
+- Keep all current 46 tests passing.
+Tasks:
+1. Add find_entry_by_id.
+2. Use matched_entry_id in pipeline.
+3. Fix confusing schema validation message.
+4. Add tests for matched_entry_id path.
+Done when:
+- All tests pass.
+- /api/ask still works.
+
+Phase 2: Build serious sample data
+Goal:
+- Make project useful, not vague.
+Tasks:
+1. Add fake sample documents.
+2. Add 7 to 12 more knowledge entries.
+3. Manually verify source URLs.
+4. Mark verified only after checking.
+5. Add test questions per entry.
+Done when:
+- At least 10 entries exist.
+- Each has source URL and last_verified.
+- Test suite covers each entry.
+
+Phase 3: Polish frontend for demo
+Goal:
+- User can understand and trust the app.
+Tasks:
+1. Show backend capability limits clearly.
+2. Show privacy note before upload.
+3. Improve unsupported file error display.
+4. Add sample document button or sample prompts.
+5. Make result cards cleaner.
+Done when:
+- A user can run the app without developer explanation.
+
+Phase 4: Add real translation or keep English-only honestly
+Goal:
+- Decide and implement honestly.
+Option A:
+- Implement real translation for Hindi/Gujarati.
+Option B:
+- Keep English only and remove overpromising UI labels.
+Done when:
+- No fake translation claim exists.
+- Tests prove language behavior.
+
+Phase 5: User testing and presentation proof
+Goal:
+- Show project actually solves the problem.
+Tasks:
+1. Test with 3 to 5 people.
+2. Give them a form/question without tool, then with tool.
+3. Record time saved and confusion reduced.
+4. Add results table to report/slides.
+Done when:
+- Presentation includes real evidence, not just code.
+
+Phase 6: Deployment readiness
+Goal:
+- Make it stable enough to demo online.
+Tasks:
+1. Add deployment instructions.
+2. Add environment config.
+3. Restrict CORS.
+4. Add CI tests.
+5. Add safe logs.
+Done when:
+- Fresh clone can run tests and app.
+- Deployed app does not expose secrets or private data.
+
+============================================================
+11. HARSH TEST CHECKLIST BEFORE FINAL SUBMISSION
+============================================================
+
+Backend must pass:
+- All pytest tests pass.
+- /api/health works.
+- /api/capabilities works.
+- /api/ask works for every supported guide.
+- /api/ask refuses unknown questions.
+- /api/ask-file works for .txt.
+- /api/ask-file works for text PDF.
+- /api/ask-file rejects scanned PDF/image honestly.
+- No answer appears without source and date.
+- No raw PAN/Aadhaar/phone appears in output after masking.
+
+Frontend must pass:
+- Page loads.
+- User can ask typed question.
+- User can upload supported file.
+- User sees loading state.
+- User sees clear error for unsupported file.
+- User sees source/date/disclaimer/confidence.
+- UI works on phone-size screen.
+
+Knowledge must pass:
+- Every entry has official source.
+- Every verified entry was manually checked.
+- Dates/fees are current for demo day.
+- Risky advice is written as warning, not command.
+
+Presentation must pass:
+- Clear problem statement.
+- Clear communication theme link.
+- Clear privacy design.
+- Clear difference from generic ChatGPT.
+- Live demo and backup video.
+
+============================================================
+12. WHAT NOT TO CLAIM YET
+============================================================
+
+Do not claim:
+- It is fully production-ready.
+- It gives legal/tax/financial advice.
+- It supports scanned PDFs/images.
+- It fully translates answers into Hindi/Gujarati.
+- It uses verified government dataset for all answers.
+- It has client-side masking.
+- It has live web search update pipeline.
+- It has vector database/RAG in production.
+
+Safe claims:
+- It is a working prototype.
+- It uses a source-grounded starter knowledge base.
+- It masks common sensitive values on backend.
+- It refuses unsupported questions instead of guessing.
+- It supports typed questions, pasted document text, .txt uploads, and text-based PDFs.
+- It shows sources, dates, confidence, warnings, and disclaimer.
+
+============================================================
+13. CURRENT COMMANDS
+============================================================
+
+Install backend dependencies:
+cd /Users/admin/govbank-assistant
+python3 -m pip install -r backend/requirements.txt
+
+Run backend:
+cd /Users/admin/govbank-assistant
+python3 -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+
+Run frontend:
+cd /Users/admin/govbank-assistant
+python3 -m http.server 5500 --directory frontend
+
+Open frontend:
+http://127.0.0.1:5500/
+
+Run tests:
+cd /Users/admin/govbank-assistant
+PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
+
+Expected current result:
+46 passed
+
+============================================================
+14. FINAL HONEST STATUS
+============================================================
+
+This is not a small vague project anymore. It has a real backend architecture, strict schemas, safety guardrails, retrieval, upload handling, tests, and a frontend shell.
+
+But the project becomes impressive only if the knowledge base and demo quality are improved. The biggest remaining work is not fancy AI. The biggest remaining work is verified useful content, polished frontend behavior, and real evidence from user testing.
+
+If a serious programmer continues from here, the next best move is:
+1. Keep tests passing.
+2. Expand and verify the knowledge base.
+3. Polish frontend error handling and trust messages.
+4. Add fake demo documents.
+5. Run real user tests.
+
+That will turn the project from a working prototype into a strong conclave project.
