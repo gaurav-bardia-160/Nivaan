@@ -1,128 +1,113 @@
 from __future__ import annotations
 
+import io
+import logging
 from dataclasses import dataclass
-from io import BytesIO
-from pathlib import Path
 
-from pypdf import PdfReader
+import pdfplumber
+import pytesseract
+from PIL import Image, UnidentifiedImageError
 
-from backend.config import MAX_DOCUMENT_TEXT_LENGTH
+logger = logging.getLogger(__name__)
 
-MAX_UPLOAD_BYTES = 2_000_000
-SUPPORTED_TEXT_EXTENSIONS = {".txt", ".text", ".md", ".csv"}
-SUPPORTED_TEXT_CONTENT_PREFIXES = ("text/",)
-SUPPORTED_PDF_CONTENT_TYPES = {"application/pdf", "application/x-pdf"}
-
-
-class OCRExtractionError(ValueError):
-    """Raised when an uploaded file cannot be safely converted to text."""
-
-    def __init__(self, message: str, *, status_code: int = 400) -> None:
+class OCRExtractionError(Exception):
+    """Raised when text extraction from a file fails."""
+    def __init__(self, message: str, status_code: int = 400):
         super().__init__(message)
         self.status_code = status_code
 
-
-@dataclass(frozen=True)
-class ExtractedText:
+@dataclass
+class OCRExtractionResult:
+    """Stores the extracted text and metadata from the document."""
     text: str
-    source_type: str
-    filename: str
+    metadata: dict[str, str | int]
 
-
-def extract_text_from_upload(filename: str | None, content_type: str | None, data: bytes) -> ExtractedText:
-    """Extract text from an uploaded file without storing it on disk.
-
-    Current production-safe slice supports text-like files and text-based PDFs
-    that contain selectable text. Scanned PDFs and image OCR are intentionally
-    rejected with a clear message until OCR dependencies and tests are added.
-    This prevents pretending to support confidential document OCR before it is
-    safe and validated.
+def extract_text_from_upload(filename: str, content_type: str, content_bytes: bytes) -> OCRExtractionResult:
     """
+    Extracts text from an uploaded document (PDF, Image, or Plain Text).
+    
+    Args:
+        filename (str): The name of the uploaded file.
+        content_type (str): The MIME type of the uploaded file.
+        content_bytes (bytes): The raw bytes of the file.
+        
+    Returns:
+        OCRExtractionResult: A dataclass containing the extracted text and metadata.
+        
+    Raises:
+        OCRExtractionError: If the file type is unsupported or extraction fails.
+    """
+    if not content_bytes:
+        raise OCRExtractionError("The uploaded file is empty.", status_code=400)
 
-    safe_filename = filename or "uploaded-file"
-    if not data:
-        raise OCRExtractionError("The uploaded file is empty.")
+    content_type = content_type.lower()
+    
+    # 1. Plain Text Fallback
+    if content_type.startswith("text/") or filename.lower().endswith((".txt", ".md", ".csv")):
+        try:
+            text = content_bytes.decode("utf-8")
+            return OCRExtractionResult(text=text.strip(), metadata={"type": "text"})
+        except UnicodeDecodeError as exc:
+            logger.error("Failed to decode text file: %s", exc)
+            raise OCRExtractionError("Failed to decode text file. Ensure it is UTF-8 encoded.", status_code=400) from exc
 
-    if len(data) > MAX_UPLOAD_BYTES:
-        raise OCRExtractionError(
-            f"The uploaded file is too large. The current limit is {MAX_UPLOAD_BYTES // 1_000_000} MB.",
-            status_code=413,
-        )
+    # 2. PDF Processing
+    if content_type == "application/pdf" or filename.lower().endswith(".pdf"):
+        return _extract_from_pdf(content_bytes)
 
-    suffix = Path(safe_filename).suffix.lower()
-    normalized_content_type = (content_type or "").lower()
-    is_pdf_file = suffix == ".pdf" or normalized_content_type in SUPPORTED_PDF_CONTENT_TYPES
-    is_text_file = suffix in SUPPORTED_TEXT_EXTENSIONS or normalized_content_type.startswith(
-        SUPPORTED_TEXT_CONTENT_PREFIXES
+    # 3. Image Processing (OCR via Tesseract)
+    if content_type.startswith("image/") or filename.lower().endswith((".png", ".jpg", ".jpeg", ".bmp", ".tiff")):
+        return _extract_from_image(content_bytes)
+
+    # Unsupported format
+    raise OCRExtractionError(
+        f"Unsupported file type: {content_type}. Please upload a PDF, Image, or Text file.", 
+        status_code=415
     )
 
-    if is_pdf_file:
-        text = _extract_pdf_text(data)
-        source_type = "pdf"
-    elif is_text_file:
-        text = _decode_text(data)
-        source_type = "text"
-    else:
-        raise OCRExtractionError(
-            "Only readable text files and text-based PDFs are supported in this build. Image OCR is planned next, "
-            "so paste the document text or upload a .txt file for now.",
-            status_code=415,
-        )
-
-    text = _clean_text(text)
-
-    if not text:
-        raise OCRExtractionError("No readable text was found in the uploaded file.")
-
-    if len(text) > MAX_DOCUMENT_TEXT_LENGTH:
-        raise OCRExtractionError(
-            f"The extracted text is too long. Keep it under {MAX_DOCUMENT_TEXT_LENGTH} characters.",
-            status_code=413,
-        )
-
-    return ExtractedText(text=text, source_type=source_type, filename=safe_filename)
-
-
-def _extract_pdf_text(data: bytes) -> str:
+def _extract_from_pdf(content_bytes: bytes) -> OCRExtractionResult:
+    text_fragments = []
+    page_count = 0
     try:
-        reader = PdfReader(BytesIO(data))
-    except Exception as exc:
-        raise OCRExtractionError("The PDF could not be read. Upload a valid text-based PDF or paste the text.") from exc
-
-    if reader.is_encrypted:
-        raise OCRExtractionError("Encrypted PDFs are not supported. Remove the password or paste the text.", status_code=415)
-
-    pages_text: list[str] = []
-    for page in reader.pages:
-        try:
-            page_text = page.extract_text() or ""
-        except Exception:
-            page_text = ""
-        if page_text.strip():
-            pages_text.append(page_text)
-
-    extracted = "\n".join(pages_text).strip()
-    if not extracted:
-        raise OCRExtractionError(
-            "No selectable text was found in this PDF. Scanned PDFs and images need OCR, which is planned next.",
-            status_code=415,
+        with pdfplumber.open(io.BytesIO(content_bytes)) as pdf:
+            page_count = len(pdf.pages)
+            for page in pdf.pages:
+                page_text = page.extract_text()
+                if page_text:
+                    text_fragments.append(page_text)
+                    
+        final_text = "\n\n".join(text_fragments).strip()
+        
+        if not final_text:
+            logger.warning("No parseable text found in PDF. It might be a scanned image requiring full OCR.")
+            # Note: For scanned PDFs, advanced implementations convert PDF pages to images and run pytesseract.
+            
+        return OCRExtractionResult(
+            text=final_text, 
+            metadata={"type": "pdf", "pages": page_count}
         )
-    return extracted
+    except Exception as exc:
+        logger.exception("PDF parsing failed.")
+        raise OCRExtractionError("Failed to read the PDF. The file might be corrupted or password-protected.", status_code=400) from exc
 
-
-def _decode_text(data: bytes) -> str:
-    for encoding in ("utf-8-sig", "utf-8", "utf-16", "latin-1"):
-        try:
-            return data.decode(encoding)
-        except UnicodeDecodeError:
-            continue
-    raise OCRExtractionError("The file encoding is not readable as text.", status_code=415)
-
-
-def _clean_text(text: str) -> str:
-    lines = [" ".join(line.split()) for line in text.replace("\r\n", "\n").replace("\r", "\n").split("\n")]
-    non_empty = [line for line in lines if line]
-    return "\n".join(non_empty).strip()
-
-
-__all__ = ["ExtractedText", "OCRExtractionError", "extract_text_from_upload"]
+def _extract_from_image(content_bytes: bytes) -> OCRExtractionResult:
+    try:
+        image = Image.open(io.BytesIO(content_bytes))
+        
+        # Professional Pre-processing: Convert to Grayscale to improve OCR accuracy
+        image = image.convert('L')
+        
+        text = pytesseract.image_to_string(image)
+        return OCRExtractionResult(
+            text=text.strip(),
+            metadata={"type": "image", "format": image.format or "unknown"}
+        )
+    except UnidentifiedImageError as exc:
+        logger.error("Unidentified image format: %s", exc)
+        raise OCRExtractionError("The uploaded file does not appear to be a valid image.", status_code=400) from exc
+    except pytesseract.TesseractNotFoundError as exc:
+        logger.error("Tesseract is not installed on the system.")
+        raise OCRExtractionError("Server OCR configuration error: Tesseract is missing.", status_code=500) from exc
+    except Exception as exc:
+        logger.exception("OCR processing failed.")
+        raise OCRExtractionError("Failed to extract text from the image using OCR. Please ensure the image is clear.", status_code=500) from exc
