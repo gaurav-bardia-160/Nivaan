@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 
 from backend.pipeline import run
@@ -10,6 +11,14 @@ app = FastAPI(
     title="GovBank Assistant API",
     version="0.2.0",
     description="Source-grounded assistant for government, banking, tax, and legal procedure guidance.",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
