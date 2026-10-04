@@ -12,10 +12,15 @@ from backend.schemas import KnowledgeEntry
 
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "knowledge_base.json"
 MATCH_THRESHOLD = 55
+EXACT_KEYWORD_BONUS = 80
+TOKEN_KEYWORD_BONUS = 28
+GENERIC_MATCH_TOKENS = {
+    "application", "apply", "card", "document", "documents", "form", "new", "proof", "update"
+}
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "can", "could",
     "did", "do", "does", "for", "from", "have", "how", "i", "if", "in", "into",
-    "is", "it", "its", "may", "of", "on", "or", "should", "that", "the", "their",
+    "is", "it", "its", "may", "my", "of", "on", "or", "should", "that", "the", "their",
     "them", "then", "there", "these", "they", "this", "those", "to", "use", "when",
     "where", "which", "who", "why", "will", "with", "would", "you", "your"
 }
@@ -26,6 +31,11 @@ def _normalize(text: str) -> str:
     text = re.sub(r"[^a-z0-9\s]", " ", text)
     tokens = [token for token in text.split() if token not in STOPWORDS]
     return " ".join(tokens)
+
+
+def _tokens(text: str) -> set[str]:
+    normalized = _normalize(text)
+    return set(normalized.split()) if normalized else set()
 
 
 @lru_cache(maxsize=1)
@@ -42,15 +52,76 @@ def _load_entries() -> list[dict[str, Any]]:
     valid_entries: list[dict[str, Any]] = []
     for item in data:
         try:
-            valid_entries.append(KnowledgeEntry(**item).model_dump())
-        except Exception as exc:
-            print(f"[retrieval] Skipping invalid entry: {exc}")
+            entry = KnowledgeEntry(**item)
+        except Exception:
             continue
+        valid_entries.append(entry.model_dump(mode="json"))
     return valid_entries
 
 
+def _entry_search_text(entry: dict[str, Any]) -> str:
+    parts: list[str] = [
+        str(entry.get("id", "")),
+        str(entry.get("title", "")),
+        str(entry.get("category", "")),
+        str(entry.get("summary", "")),
+    ]
+    parts.extend(str(keyword) for keyword in entry.get("keywords", []))
+    parts.extend(str(document) for document in entry.get("documents_needed", []))
+    for step in entry.get("steps", []):
+        parts.append(str(step.get("title", "")))
+        parts.append(str(step.get("detail", "")))
+    for warning in entry.get("warnings", []):
+        parts.append(str(warning.get("title", "")))
+        parts.append(str(warning.get("message", "")))
+    return " ".join(parts)
+
+
+def _keyword_match_score(normalized_query: str, query_tokens: set[str], entry: dict[str, Any]) -> int:
+    best = 0
+    meaningful_query_tokens = query_tokens - GENERIC_MATCH_TOKENS
+    for keyword in entry.get("keywords", []):
+        keyword_norm = _normalize(str(keyword))
+        if not keyword_norm:
+            continue
+        keyword_tokens = set(keyword_norm.split())
+        meaningful_keyword_tokens = keyword_tokens - GENERIC_MATCH_TOKENS
+        if normalized_query == keyword_norm:
+            best = max(best, EXACT_KEYWORD_BONUS)
+        elif keyword_norm in normalized_query or normalized_query in keyword_norm:
+            best = max(best, TOKEN_KEYWORD_BONUS + 15)
+        else:
+            overlap = meaningful_query_tokens & meaningful_keyword_tokens
+            if overlap:
+                best = max(best, TOKEN_KEYWORD_BONUS * len(overlap))
+    return best
+
+
+def _score_entry(normalized_query: str, query_tokens: set[str], entry: dict[str, Any]) -> float:
+    title_norm = _normalize(str(entry.get("title", "")))
+    summary_norm = _normalize(str(entry.get("summary", "")))
+    search_norm = _normalize(_entry_search_text(entry))
+
+    title_score = fuzz.ratio(normalized_query, title_norm)
+    summary_score = fuzz.partial_ratio(normalized_query, summary_norm)
+    search_score = fuzz.partial_ratio(normalized_query, search_norm)
+    combined_score = (title_score * 0.45) + (summary_score * 0.2) + (search_score * 0.35)
+
+    title_tokens = _tokens(str(entry.get("title", "")))
+    search_tokens = set(search_norm.split())
+    meaningful_query_tokens = query_tokens - GENERIC_MATCH_TOKENS
+    meaningful_title_overlap = meaningful_query_tokens & (title_tokens - GENERIC_MATCH_TOKENS)
+    overlap_score = (len(meaningful_title_overlap) * 20) + (len(meaningful_query_tokens & search_tokens) * 7)
+
+    keyword_score = _keyword_match_score(normalized_query, query_tokens, entry)
+    if keyword_score == 0 and not meaningful_title_overlap:
+        return 0
+
+    return combined_score + overlap_score + keyword_score
+
+
 def find_entry(query: str) -> Optional[dict[str, Any]]:
-    """Return the best matching verified knowledge entry, or None if no good match exists."""
+    """Return the best matching knowledge entry, or None if no good match exists."""
     if not query or not query.strip():
         return None
 
@@ -58,39 +129,20 @@ def find_entry(query: str) -> Optional[dict[str, Any]]:
     if not normalized_query:
         return None
 
+    query_tokens = set(normalized_query.split())
     best_entry: Optional[dict[str, Any]] = None
     best_score = 0.0
 
     for entry in _load_entries():
-        title = str(entry.get("title", ""))
-        summary = str(entry.get("summary", ""))
-        title_norm = _normalize(title)
-        summary_norm = _normalize(summary)
-
-        title_tokens = set(title_norm.split())
-        summary_tokens = set(summary_norm.split())
-        query_tokens = set(normalized_query.split())
-
-        overlap_title = len(query_tokens & title_tokens)
-        overlap_summary = len(query_tokens & summary_tokens)
-
-        title_score = fuzz.ratio(normalized_query, title_norm)
-        summary_score = fuzz.ratio(normalized_query, summary_norm)
-        combined_score = (title_score * 0.7) + (summary_score * 0.3)
-
-        final_score = combined_score + (overlap_title * 18) + (overlap_summary * 8)
-
+        final_score = _score_entry(normalized_query, query_tokens, entry)
         if final_score > best_score:
             best_score = final_score
             best_entry = entry
 
-    if best_entry is None:
-        return None
-
-    if best_score < MATCH_THRESHOLD:
+    if best_entry is None or best_score < MATCH_THRESHOLD:
         return None
 
     return best_entry
 
 
-__all__ = ["find_entry", "_load_entries"]
+__all__ = ["find_entry", "_load_entries", "_normalize"]
