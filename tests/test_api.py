@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 
-from backend.modules.flagger import find_flags
-from backend.modules.privacy import mask_text
-from backend.modules.router import route
+from backend.modules.agent import route
+from backend.modules.guardrails import find_flags, mask_text
+from backend.offline.data_builder import SourceDocument, clean_and_chunk, clean_text, structure_chunks
 from backend.main import app
 from backend.pipeline import run
 from backend.schemas import Answer, AskRequest
@@ -64,6 +64,24 @@ def test_router_marks_unknown_request_for_clarification():
 
     assert result.category == "unknown"
     assert result.needs_clarification is True
+
+
+def test_offline_data_builder_cleans_chunks_and_creates_unverified_drafts():
+    document = SourceDocument(
+        id="sample",
+        title="Sample PAN Guide",
+        url="https://example.gov.in/sample",
+        text="Home Skip to main content Apply for PAN card with ID proof and address proof.",
+        fetched_at="2026-10-04",
+    )
+
+    assert clean_text(document.text).startswith("Apply for PAN")
+    chunks = clean_and_chunk([document], max_words=5)
+    drafts = structure_chunks(chunks)
+
+    assert chunks
+    assert drafts[0]["status"] == "unverified"
+    assert drafts[0]["source_url"] == "https://example.gov.in/sample"
 
 
 def test_pipeline_masks_document_text_before_answering():

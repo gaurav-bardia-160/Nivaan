@@ -62,7 +62,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
 Expected current result:
 
 ```text
-43 passed
+44 passed
 ```
 
 ## Project structure
@@ -75,13 +75,17 @@ backend/
   config.py               backend constants
   data/knowledge_base.json
   modules/
+    agent.py             request routing and clarification decision
+    guardrails.py        server-side text masking and rule-based risk warnings
     retrieval.py          local knowledge retrieval
-    privacy.py            server-side text masking
-    router.py             request classification
     explainer.py          deterministic answer generation
     ocr.py                safe text and text-based PDF extraction, scanned/image OCR rejected for now
-    flagger.py            rule-based risky clause and deadline warnings
+    privacy.py            compatibility wrapper around guardrails.py
+    router.py             compatibility wrapper around agent.py
+    flagger.py            compatibility wrapper around guardrails.py
     translate_voice.py    placeholder
+  offline/
+    data_builder.py      offline source loading, cleaning, chunking, draft structuring, KB build
 frontend/
   index.html
   app.js
@@ -96,11 +100,10 @@ PROJECT_STATUS_REPORT.md
 
 ## Next production build priorities
 
-1. Make text-file upload send `document_text` to the backend reliably.
-2. Show backend validation errors honestly in the UI instead of pretending OCR exists.
-3. Implement `flagger.py` for penalties, deadlines, prepayment clauses, and risky terms.
-4. Add safe backend file upload and OCR, starting with `.txt`, then text PDFs, then images.
-5. Expand and manually verify the knowledge base.
-6. Add translation only after core English flow is stable.
+1. Expand and manually verify the knowledge base.
+2. Add scanned PDF/image OCR only after privacy and accuracy tests are ready.
+3. Add backend translation and voice.
+4. Add official-source update tools and human verification flow.
+5. Add deployment/security hardening and real user testing.
 
 See `PROJECT_STATUS_REPORT.md` for the full audit and phased roadmap.

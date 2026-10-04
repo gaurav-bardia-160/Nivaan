@@ -2,11 +2,10 @@ from __future__ import annotations
 
 from typing import Any
 
+from backend.modules.agent import route
 from backend.modules.explainer import explain_entry, not_found_answer
-from backend.modules.flagger import find_flags
-from backend.modules.privacy import mask_text
+from backend.modules.guardrails import find_flags, mask_text
 from backend.modules.retrieval import find_entry
-from backend.modules.router import route
 from backend.schemas import Answer, AskRequest
 
 

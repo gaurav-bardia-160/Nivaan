@@ -1,13 +1,15 @@
 GovBank Assistant folder structure
-Generated: 2026-10-03
+Updated: 2026-10-04
 Location: /Users/admin/govbank-assistant
 
-Status: simplified skeleton only. No runnable app yet.
+Status: runnable partial project. Backend API, retrieval, guardrails, typed questions, text uploads, and text-based PDF uploads work. Scanned image OCR, translation/voice, and verified larger knowledge data are still pending.
 
 Notes:
 - Python init files are named __init__.py, not _init_.py.
 - A real backend/.env is intentionally not committed. Use backend/.env.example when needed.
 - frontend/logo.png is an empty placeholder for now.
+- privacy.py, flagger.py, and router.py are compatibility wrappers. New work should use guardrails.py and agent.py.
+- Offline data processing is now centered in backend/offline/data_builder.py.
 
 /Users/admin/govbank-assistant/
 ├── README.md
@@ -16,32 +18,29 @@ Notes:
 ├── PROJECT_STRUCTURE.txt
 ├── backend/
 │   ├── __init__.py
-│   ├── main.py                  # BOTH
-│   ├── pipeline.py              # BOTH
-│   ├── schemas.py               # BOTH
-│   ├── config.py                # BOTH
-│   ├── requirements.txt         # one backend requirements file only
+│   ├── main.py                  # FastAPI app and endpoints
+│   ├── pipeline.py              # request workflow
+│   ├── schemas.py               # shared data contracts
+│   ├── config.py                # backend constants
+│   ├── requirements.txt         # backend requirements
 │   ├── .env.example             # copy to backend/.env locally, do not commit .env
 │   │
-│   ├── offline/                 # Person A builds the knowledge
+│   ├── offline/                 # offline knowledge builder
 │   │   ├── __init__.py
-│   │   ├── crawl.py
-│   │   ├── clean_chunk.py
-│   │   ├── structure.py
-│   │   ├── verify.py
-│   │   └── build_index.py
+│   │   └── data_builder.py      # load sources, clean, chunk, structure drafts, build KB
 │   │
 │   ├── modules/
 │   │   ├── __init__.py
-│   │   ├── retrieval.py         # Person A
-│   │   ├── flagger.py           # Person A
-│   │   ├── explainer.py         # Person A
-│   │   ├── ocr.py               # Person B
-│   │   ├── privacy.py           # Person B
-│   │   ├── router.py            # Person B
-│   │   ├── agent.py             # Person B
-│   │   ├── tools.py             # Person B
-│   │   └── translate_voice.py   # Person B
+│   │   ├── agent.py             # request routing and clarification decision
+│   │   ├── guardrails.py        # privacy masking and document risk flags
+│   │   ├── retrieval.py         # local knowledge retrieval
+│   │   ├── explainer.py         # deterministic answer generation
+│   │   ├── ocr.py               # text and text-based PDF extraction
+│   │   ├── tools.py             # planned official-site tools
+│   │   ├── translate_voice.py   # planned translation and voice
+│   │   ├── privacy.py           # compatibility wrapper around guardrails.py
+│   │   ├── flagger.py           # compatibility wrapper around guardrails.py
+│   │   └── router.py            # compatibility wrapper around agent.py
 │   │
 │   └── data/
 │       ├── sources.json
@@ -49,21 +48,22 @@ Notes:
 │       │   └── .gitkeep
 │       ├── structured/          # entries can have status: unverified/verified
 │       │   └── .gitkeep
-│       ├── knowledge_base.json  # verified entries only
+│       ├── knowledge_base.json  # current starter entries
 │       └── vector_index/
 │           └── .gitkeep
 │
-├── frontend/                    # Person B
+├── frontend/
 │   ├── index.html
 │   ├── style.css
 │   ├── app.js
 │   ├── logo.png
 │   └── sample_answer.json
 │
-├── samples/                     # shared fake test inputs only
+├── samples/
 │   └── fake_documents/
 │       └── README.md
 │
 └── tests/
-    ├── test_a.py                # Person A tests alone
-    └── test_b.py                # Person B tests alone
+    ├── test_a.py
+    ├── test_api.py
+    └── test_b.py
