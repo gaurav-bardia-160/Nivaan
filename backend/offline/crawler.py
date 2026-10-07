@@ -15,7 +15,8 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 # --- CONFIGURATION ---
-DATA_DIR = Path("backend/data")
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
 SOURCES_PATH = DATA_DIR / "sources.json"
 RAW_DIR = DATA_DIR / "raw"
 NEEDS_OCR_PATH = DATA_DIR / "needs_ocr_or_js.txt"
