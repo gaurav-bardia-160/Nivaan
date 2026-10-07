@@ -5,7 +5,7 @@ from typing import Any
 from backend.modules.agent import route
 from backend.modules.explainer import explain_entry, not_found_answer
 from backend.modules.guardrails import find_flags, mask_text
-from backend.modules.retrieval import find_entry
+from backend.modules.retrieval import find_entry, find_entry_by_id
 from backend.modules.translate_voice import apply_language_policy
 from backend.schemas import Answer, AskRequest
 
@@ -36,7 +36,12 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     if route_result.needs_clarification and not route_result.matched_entry_id:
         return apply_language_policy(not_found_answer(masked.text or raw_text, masked_items=masked.masked_items), parsed_request.language)
 
-    entry = find_entry(masked.text)
+    entry = None
+    if route_result.matched_entry_id:
+        entry = find_entry_by_id(route_result.matched_entry_id)
+    if not entry:
+        entry = find_entry(masked.text)
+
     if entry is None:
         return apply_language_policy(not_found_answer(masked.text or raw_text, masked_items=masked.masked_items), parsed_request.language)
 

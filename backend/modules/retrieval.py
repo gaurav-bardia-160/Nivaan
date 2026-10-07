@@ -145,6 +145,16 @@ def find_entry(query: str) -> Optional[dict[str, Any]]:
     return best_entry
 
 
+def find_entry_by_id(entry_id: str) -> Optional[dict[str, Any]]:
+    """Return the exact knowledge entry matching the ID, or None if not found."""
+    if not entry_id:
+        return None
+    for entry in _load_entries():
+        if str(entry.get("id")) == entry_id:
+            return entry
+    return None
+
+
 def knowledge_stats() -> dict[str, int]:
     entries = _load_entries()
     verified = sum(1 for entry in entries if entry.get("status") == "verified")
@@ -152,4 +162,4 @@ def knowledge_stats() -> dict[str, int]:
     return {"total": len(entries), "verified": verified, "unverified": unverified}
 
 
-__all__ = ["find_entry", "knowledge_stats", "_load_entries", "_normalize"]
+__all__ = ["find_entry", "find_entry_by_id", "knowledge_stats", "_load_entries", "_normalize"]

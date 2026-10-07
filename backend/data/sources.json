@@ -1,11 +1,12 @@
+{
+  "tax": [],
+  "banking": [],
+  "schemes": [],
+  "legal": [],
+  "government": [
     {
-      "tax": [],
-      "banking": [],
-      "schemes": [],
-      "legal": [
-        {
-          "source_id": "my_first_test",
-          "source_url": "https://example.com"
-        }
-      ]
+      "source_id": "aadhaar_portal_overview",
+      "source_url": "https://myaadhaarbeta.uidai.gov.in/"
     }
+  ]
+}

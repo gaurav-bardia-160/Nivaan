@@ -92,7 +92,7 @@ class AskRequest(BaseModel):
         if self.input_type == "question" and not self.question:
             raise ValueError("question required when input_type='question'")
         if self.input_type == "document" and self.file_attached and not self.document_text:
-            raise ValueError("file upload requires OCR support; send document_text until upload processing is implemented")
+            raise ValueError("Please use the /api/ask-file endpoint for file uploads, not /api/ask.")
         if self.input_type == "document" and not (self.question or self.document_text):
             raise ValueError("document input requires a question or document_text")
         return self
