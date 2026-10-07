@@ -13,6 +13,7 @@ import requests
 import trafilatura
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+from playwright.sync_api import sync_playwright
 
 # --- CONFIGURATION ---
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,6 +126,24 @@ def extract_sources_from_payload(payload: dict | list) -> tuple[list[dict], dict
                 sources.extend([s for s in val if isinstance(s, dict)])
     return sources
 
+def get_js_rendered_text(url: str) -> str:
+    try:
+        with sync_playwright() as p:
+            logger.info(f"Using Playwright for JS rendering: {url}")
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page(user_agent=USER_AGENT)
+            page.goto(url, wait_until="networkidle", timeout=30000)
+            html = page.content()
+            
+            text = trafilatura.extract(html) or ""
+            if len(text) < MIN_TEXT_LENGTH:
+                text = page.inner_text("body")
+            browser.close()
+            return text
+    except Exception as e:
+        logger.error(f"Playwright failed for {url}: {e}")
+        return ""
+
 # --- MAIN CRAWLER ---
 def run_crawler() -> None:
     if not SOURCES_PATH.exists():
@@ -168,6 +187,8 @@ def run_crawler() -> None:
                 text = extract_pdf_text(resp.content)
             else:
                 text = trafilatura.extract(resp.text) or ""
+                if len(text.strip()) < MIN_TEXT_LENGTH:
+                    text = get_js_rendered_text(url)
                 
         except Exception as e:
             logger.error(f"Failed to fetch {url}: {e}")
