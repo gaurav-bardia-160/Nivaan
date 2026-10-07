@@ -2,7 +2,7 @@ GovBank Assistant agent brief
 Updated: 2026-10-04
 
 Purpose
-GovBank Assistant helps users understand government, banking, tax, and legal procedures/documents in plain language. It is a communication-gap project: official language is hard for citizens to understand, so the assistant explains, flags risks, shows sources, and refuses to guess outside the knowledge base.
+GovBank Assistant is a grounded RAG (Retrieval-Augmented Generation) assistant that helps users understand government, banking, tax, and legal procedures in plain language. It is an "open-book" communication-gap project: official language is hard for citizens to understand, so the assistant explains, flags risks, shows sources, and refuses to guess outside the knowledge base using a "not found" fallback.
 
 Current status
 - Runnable partial project, not a skeleton.

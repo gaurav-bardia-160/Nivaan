@@ -1,6 +1,11 @@
-{
-  "tax": [],
-  "banking": [],
-  "schemes": [],
-  "legal": []
-}
+    {
+      "tax": [],
+      "banking": [],
+      "schemes": [],
+      "legal": [
+        {
+          "source_id": "my_first_test",
+          "source_url": "https://example.com"
+        }
+      ]
+    }

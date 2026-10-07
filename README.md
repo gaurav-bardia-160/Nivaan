@@ -1,6 +1,6 @@
 # GovBank Assistant
 
-GovBank Assistant is a web app that helps users understand government, banking, tax, and legal procedures in plain language. It is designed around the communication gap between official institutions and citizens.
+GovBank Assistant is a grounded RAG (Retrieval-Augmented Generation) assistant that helps users understand government, banking, tax, and legal procedures in plain language. It is designed around the communication gap between official institutions and citizens. Because answers come with direct sources and a safe "not found" fallback, it operates as a secure, open-book generation system.
 
 ## Current status
 
