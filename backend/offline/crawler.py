@@ -132,7 +132,8 @@ def get_js_rendered_text(url: str) -> str:
             logger.info(f"Using Playwright for JS rendering: {url}")
             browser = p.chromium.launch(headless=True)
             page = browser.new_page(user_agent=USER_AGENT)
-            page.goto(url, wait_until="networkidle", timeout=30000)
+            page.goto(url, wait_until="load", timeout=30000)
+            page.wait_for_timeout(4000)  # Wait 4 seconds for React to render
             html = page.content()
             
             text = trafilatura.extract(html) or ""
