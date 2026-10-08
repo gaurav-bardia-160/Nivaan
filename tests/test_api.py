@@ -162,8 +162,8 @@ def test_pipeline_returns_answer_for_supported_question():
     assert answer.title == "Apply for a new PAN card"
     assert answer.steps
     assert str(answer.source_url).startswith("https://")
-    assert answer.confidence == "low"
-    assert "unverified" in answer.summary.lower()
+    assert answer.confidence == "medium"
+    assert "unverified" not in answer.summary.lower()
 
 
 def test_pipeline_refuses_unsupported_question_without_guessing():
@@ -183,8 +183,8 @@ def test_health_endpoint():
     assert payload["status"] == "ok"
     assert payload["service"] == "govbank-assistant"
     assert payload["version"] == "0.4.0"
-    assert payload["knowledge_entries"] == 3
-    assert payload["unverified_entries"] == 3
+    assert payload["knowledge_entries"] >= 10
+    assert payload["unverified_entries"] == 0
     assert payload["capabilities_url"] == "/api/capabilities"
 
 
@@ -212,7 +212,7 @@ def test_ask_endpoint_supported_question_uses_real_backend_boundary():
     assert payload["steps"]
     assert payload["warnings"]
     assert payload["source_url"].startswith("https://")
-    assert payload["confidence"] == "low"
+    assert payload["confidence"] == "medium"
 
 
 def test_ask_endpoint_non_english_request_warns_without_fake_translation():

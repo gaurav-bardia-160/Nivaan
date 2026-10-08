@@ -6,7 +6,10 @@
   "government": [
     {
       "source_id": "aadhaar_portal_overview",
-      "source_url": "https://myaadhaarbeta.uidai.gov.in/"
+      "source_url": "https://myaadhaarbeta.uidai.gov.in/",
+      "raw_path": "backend/data/raw/aadhaar_portal_overview_2026-10-08.txt",
+      "hash": "6a05edcd20844ee95e9ce3384c835009c83e1a084fc340b03b60d09377a5dee2",
+      "last_crawled": "2026-10-08"
     }
   ]
 }

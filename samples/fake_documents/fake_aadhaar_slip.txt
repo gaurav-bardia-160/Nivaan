@@ -1,0 +1,19 @@
+AADHAAR ENROLMENT / UPDATE SLIP
+
+Enrolment No: 1234/56789/01234
+Date & Time: 01/10/2026 10:45:00
+Name: Rahul Kumar
+DOB: 15/08/1990
+Gender: Male
+Address: 456 Demo Avenue, Test City, 110001
+Mobile Number: XXXXXX7890
+
+This is a proof of enrolment/update. It is not an Aadhaar card.
+To check status, visit https://myaadhaar.uidai.gov.in/ and use the 14-digit Enrolment ID.
+
+Operator details:
+Operator ID: 98765
+Center Name: CSC Demo Center
+Center Address: Test City
+
+Note: Please retain this slip till Aadhaar is generated.

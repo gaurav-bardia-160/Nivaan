@@ -1,0 +1,17 @@
+LOAN AGREEMENT
+
+Date: 2024-01-15
+Lender: Bank of Fakery
+Borrower: John Doe
+Aadhaar Number: 1234-5678-9012
+PAN: ABCDE1234F
+
+1. Loan Amount: The Lender agrees to lend the Borrower a sum of Rs. 5,00,000 (Rupees Five Lakhs).
+2. Interest Rate: The interest rate shall be 12% per annum.
+3. Prepayment: The Borrower may prepay the loan at any time. However, a prepayment penalty of 2% of the outstanding principal will be applied.
+4. Late Payment: If an installment is not paid by the 5th of the month, a late penalty of Rs. 500 will be charged.
+5. Auto-renewal: This agreement will automatically renew upon completion of the term unless written notice is provided 30 days prior.
+
+Signatures:
+Lender: _______________
+Borrower: _______________
