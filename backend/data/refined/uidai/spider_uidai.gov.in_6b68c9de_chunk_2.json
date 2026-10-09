@@ -1,0 +1,20 @@
+{
+  "id": "spider_uidai.gov.in_6b68c9de_chunk_2",
+  "source_url": "https://uidai.gov.in/en/documents",
+  "title": "1. [Home](https://uidai.gov.in/en)",
+  "section": "What is Aadhaar authentication?",
+  "text": "### \nWhat is Aadhaar authentication?\n“Aadhaar Authentication” is a process by which the Aadhaar number along with demographic information (such as name, date of birth, gender etc) or biometric information (Fingerprint or Iris) of an individual is submitted to UIDAI’s Central Identities Data Repository (CIDR) for its verification and UIDAI verifies the correctness of the details submitted, or the lack thereof, on the basis of information available with it.\n\n### \nWhat is Face Recognition?\nFace recognition is 1:N Match (one-to-many). UIDAI does 1:1 match (match against the stored biometric of the Aadhaar number holder).\n\n### \nWhat is Face Authentication?\n1. UIDAI uses face authentication as a process by which an Aadhaar number holder's identity can be verified. A successful face authentication confirms that your physical face which is being scanned for verification matches the one which was captured at the time of enrolment when your Aadhaar number was generated. A successful face authentication confirms that you are who you claim to be. 2. Face authentication is based on a 1:1 matching which means that the facial image captured during authentication is matched with your facial image which is stored in the Repository against your Aadhaar Number, which was captured at the time of enrolment. 3. Face authentication is consent based.\n[View more F.A.Qs](https://uidai.gov.in/en/faq)\n\nContent Information\nPublished on: 30 Apr 2026\nLast Updated: 11 Jun 2026\n\n  * [Vision & Mission](https://uidai.gov.in/en/vision-and-mission)\n  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)\n  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "biometric",
+    "authentication",
+    "enrolment"
+  ]
+}

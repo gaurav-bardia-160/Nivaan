@@ -1,0 +1,22 @@
+{
+  "id": "spider_uidai.gov.in_e47d7f83_chunk_32",
+  "source_url": "https://uidai.gov.in/enrolment-and-update",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "After selecting Language option – Key-in option 1 (request status) followed by option 2 (request of Aadhaar enrolment status) Provide the available EID number of the Aadhaar generated enrolment to IVRS Provide Date of Birth and PIN code as per the Aadhaar generated enrolment to IVRS If match is found, IVRS shall communicate the Aadhaar number. This service is free of cost. What is the process to get an Aadhaar letter, in case the same is misplaced or lost? Option I: By visiting enrolment centre Aadhaar number holder to visit an Aadhaar enrolment centre in person. Provide the Aadhaar number or 28 digit EID available on the acknowledgement slip (14 digit number followed by date stamp- yyyy/mm/dd/hh/mm/ss format) as per the Aadhaar generated enrolment. Please provide Biometric authentication using single fingerprint or single iris (RD device). If match is found, operator will provide printout of the e-Aadhaar letter. Operator can charge Rs.30/- for providing this service. Option II: Aadhaar holder can opt for the facility to order PVC card service available at https://myaadhaar.uidai.gov.in/genricPVC where the applicant to enter the 12 digit Aadhaar number or 28 digit EID and Captcha. This facility is available for Aadhaar holder who linked their mobile with Aadhaar or not. In case the mobile number of Aadhaar holder is linked, he shall be provided with provision to track the status of his order by providing AWB number.",
+  "text": "After selecting Language option – Key-in option 1 (request status) followed by option 2 (request of Aadhaar enrolment status) Provide the available EID number of the Aadhaar generated enrolment to IVRS Provide Date of Birth and PIN code as per the Aadhaar generated enrolment to IVRS If match is found, IVRS shall communicate the Aadhaar number. This service is free of cost. What is the process to get an Aadhaar letter, in case the same is misplaced or lost? Option I: By visiting enrolment centre Aadhaar number holder to visit an Aadhaar enrolment centre in person. Provide the Aadhaar number or 28 digit EID available on the acknowledgement slip (14 digit number followed by date stamp- yyyy/mm/dd/hh/mm/ss format) as per the Aadhaar generated enrolment. Please provide Biometric authentication using single fingerprint or single iris (RD device). If match is found, operator will provide printout of the e-Aadhaar letter. Operator can charge Rs.30/- for providing this service. Option II: Aadhaar holder can opt for the facility to order PVC card service available at https://myaadhaar.uidai.gov.in/genricPVC where the applicant to enter the 12 digit Aadhaar number or 28 digit EID and Captcha. This facility is available for Aadhaar holder who linked their mobile with Aadhaar or not. In case the mobile number of Aadhaar holder is linked, he shall be provided with provision to track the status of his order by providing AWB number.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "mobile",
+    "biometric",
+    "authentication",
+    "enrolment",
+    "status",
+    "pvc"
+  ]
+}

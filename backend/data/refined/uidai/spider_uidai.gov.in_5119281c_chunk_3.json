@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_5119281c_chunk_3",
+  "source_url": "https://uidai.gov.in/about-authentication",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "The authentication service is provided in online and real-time manner by UIDAI through its two data centres i.e. Hebbal Data Centre (HDC) and Manesar Data Centre (MDC) where online services for authentication and other services such as e-KYC are deployed in active-active mode to ensure high availability of services. The UIDAI’s Central Identities Data Repositotry (CIDR) is currently capable of handling tens of millions of authentications on a daily basis, and can be scaled up further as demand increases. Many requesting entities that provide services to Aadhaar number holders have integrated Aadhaar into their domain applications for improved service delivery anywhere in the country in a real-time, scalable, interoperable manner.  Content Information Published on: 13 Apr 2026 Last Updated: 30 Jun 2026 Owner: A & V",
+  "text": "The authentication service is provided in online and real-time manner by UIDAI through its two data centres i.e. Hebbal Data Centre (HDC) and Manesar Data Centre (MDC) where online services for authentication and other services such as e-KYC are deployed in active-active mode to ensure high availability of services. The UIDAI’s Central Identities Data Repositotry (CIDR) is currently capable of handling tens of millions of authentications on a daily basis, and can be scaled up further as demand increases. Many requesting entities that provide services to Aadhaar number holders have integrated Aadhaar into their domain applications for improved service delivery anywhere in the country in a real-time, scalable, interoperable manner.  Content Information Published on: 13 Apr 2026 Last Updated: 30 Jun 2026 Owner: A & V",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "authentication"
+  ]
+}

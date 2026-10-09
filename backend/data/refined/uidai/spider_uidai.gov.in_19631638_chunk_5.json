@@ -1,0 +1,23 @@
+{
+  "id": "spider_uidai.gov.in_19631638_chunk_5",
+  "source_url": "https://uidai.gov.in/aadhaar-paperless-offline-e-kyc",
+  "title": "1. [Home](https://uidai.gov.in/en)",
+  "section": "In this section",
+  "text": "## In this section\n  * [Introduction](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#introduction)\n  * [Why Aadhaar Paperless Offline e-KYC ?](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#why-aadhaar-paperless-offline-e-kyc)\n  * [Advantages of Aadhaar Paperless Offline e-KYC](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#advantages-of-aadhaar-paperless-offline-e-kyc)\n  * [How does it work?](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#how-does-it-work)\n  * [How to obtain Aadhaar Paperless Offline e-KYC Data](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#how-to-obtain-aadhaar-paperless-offline-e-kyc-data)\n  * [What Data is covered in e-KYC](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#what-data-is-covered-in-e-kyc)\n  * [How to share Aadhaar Paperless Offline e-KYC Data](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#how-to-share-aadhaar-paperless-offline-e-kyc-data)\n  * [Technical Facets of Aadhaar Paperless Offline e-KYC](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#technical-facets-of-aadhaar-paperless-offline-e-kyc)\n  * [XML Validation steps ](https://uidai.gov.in/en/aadhaar-paperless-offline-e-kyc#xml-validation-steps)\n\nFrequently Asked Questions\n\n### \nHow to download the Aadhaar app?\nYou can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871\n\n### \nHow to register on the Aadhaar app?\n\n### \nWhich services are available on this app?\nPresently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.\n[View more F.A.Qs](https://uidai.gov.in/en/faq)\n\nContent Information\nPublished on: 30 Apr 2026\nLast Updated: 03 Jul 2026\nOwner: A & V\n\n  * [Vision & Mission](https://uidai.gov.in/en/vision-and-mission)\n  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)\n  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "mobile",
+    "download",
+    "biometric",
+    "authentication",
+    "lock",
+    "unlock"
+  ]
+}

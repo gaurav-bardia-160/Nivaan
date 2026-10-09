@@ -1,0 +1,20 @@
+{
+  "id": "spider_uidai.gov.in_45bbb2c3_chunk_1",
+  "source_url": "https://uidai.gov.in/en/authentication-partners",
+  "title": "1. [Home](https://uidai.gov.in/en)",
+  "section": "1. [Home](https://uidai.gov.in/en)",
+  "text": "1. [Home](https://uidai.gov.in/en)\n  2. /\n  4. /\n  5. [Authentication Ecosystem](https://uidai.gov.in/en/authentication-partners)\n\n# Authentication Ecosystem\nThe Aadhaar Authentication Ecosystem, governed by the Unique Identification Authority of India (UIDAI) involves the process of “authentication” using the Aadhaar number by the Aadhaar holder along with either biometrics (Face/Fingerprint/Iris); demographics (Name, Gender, Date of Birth, Address); or OTP through seeded mobile number with Aadhaar and submitting to UIDAI’s Central Identities Data Repository (CIDR) to verify the identity. The authentication process is performed by requesting entities as authorised by the legal provisions of the Aadhaar Act and their onboarding in the ecosystem. The key stakeholders of the ecosystem include Authentication User Agencies (AUAs)/eKYC User Agencies (KUAs) and Sub Authentication User Agencies (Sub-AUAs)/ Sub-eKYC User Agencies (KUAs) onboarded under them. Submission of input Aadhaar number along with Biometric/Demographic/OTP information to UIDAI CIDR is carried out through secured leased line connectivity by Authentication Service Agencies (ASAs). The CIDR returns a digitally signed Yes/No response or where applicable, e-KYC data to the requesting entity. The input data for authentication to UIDAI CIDR and storage of the data is done in an encrypted format by requesting entity to ensures end-to-end security and privacy-preserving authentication transactions.\nIn this section\nAbout Authentication\nOperational Model\nAuthentication Requesting Agencies\nAuthentication Service Agencies\nAuthentication Documents\nAadhaar Paperless Offline e-KYC\nAbout Authentication\nLearn how Aadhaar Authentication verifies identity using demographic or biometric details through UIDAI’s secure CIDR system.\nRead More\nOperational Model\nUnderstand the Aadhaar Authentication operation model, key actors and secure data flow within the authentication ecosystem.\nRead More\nAuthentication Requesting Agencies\n\nLearn about Authentication Requesting Agencies like AUA and KUA, their roles, security requirements and Aadhaar authentication process.\nRead More\nAuthentication Service Agencies\n\nLearn about Authentication Service Agencies (ASAs), their role in secure connectivity with CIDR and Aadhaar authentication services.\nRead More\nAuthentication Documents\nAccess Aadhaar authentication circulars, regulations, guidelines, onboarding checklists and technical documents for AUAs, KUAs and ASAs.\nRead More\nAadhaar Paperless Offline e-KYC\nIt is a secure sharable document which can be used by any Aadhaar number holder for offline verification of Identification. An Aadhaar number holder desirous of using this facility shall generate his/her digitally signed Offline XML by accessing UIDAI website.\nRead More\n\nContent Information\nPublished on: 13 Apr 2026\nLast Updated: 30 Jun 2026\nFrequently Asked Questions",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "mobile",
+    "biometric",
+    "authentication"
+  ]
+}

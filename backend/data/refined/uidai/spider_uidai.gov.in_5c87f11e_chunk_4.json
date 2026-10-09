@@ -1,0 +1,20 @@
+{
+  "id": "spider_uidai.gov.in_5c87f11e_chunk_4",
+  "source_url": "https://uidai.gov.in/training-testing-and-certification",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "Important Note:",
+  "text": "### \nImportant Note:\n\n  1. New Test Structure and Question Bank for taking exam of Aadhaar Supervisor/Operator and Child Enrolment Lite Client Operator (CELC) will be applicable from 10-1-2022. All the certification exams conducted by Testing and Certification Agency (M/s NSEIT Ltd) shall be as per the new pattern. All the candidates who scheduled their Certification Exam on or after 10-1-2022 are requested to download the new Test Structure, Question Bank(s) and related Leaner Guide(s) from the table given below for self study and preparing for the Certification Exam.\n  2. For verification purpose, candidates are advised to download latest copy of their e-Aadhaar from the website link <https://myaadhaar.uidai.gov.in> and carry the black & white/color print out of the same at NSEIT Ltd exam centre on date of exam.\n  3. As per UIDAI’s Testing and Certification Policy, \"The candidates must schedule their test within 6 months of depositing the fee, failing which, their fee shall be forfeited and they shall not be allowed to appear for the test against that fee.\"\n  4. Candidates certified in Child Enrolment Lite Client will be able to work only on CELC application software and perform Child Enrolment. They will not be able to do any other type of enrolment using ECMP client. However, candidates certified as Operator/Supervisor will be able to work on both ECMP and CELC Client software. The minimum qualification for Operator/Supervisor or CELC Operator Certification is 12th pass. Only, in case of Aaganwadi/Asha workers the minimum qualification for CELC operator certification is 10th pass.\n  5. Certification is a mandatory requirement to perform Aadhaar enrolment and Update. Since UIDAI does not employ any certified candidate directly, all the Certified Candidates have to approach active Aadhaar Enrolment Agency to start Enrolment/Update work.\n  6. To register for Aadhaar ECMP Operator/Supervisor or CELC Operator Certification Exam on NSEIT Portal, candidates have to generate Offline Aadhaar XML file and share code from the following link - <https://myaadhaar.uidai.gov.in> and latest copy of e-Aadhaar having Virtual ID (VID) from the same link- <https://myaadhaar.uidai.gov.in>. The XML along with Share code and VID Number will be used for New User Registration on NSEIT UIDAI Exam Registration Page",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "fee",
+    "download",
+    "enrolment"
+  ]
+}

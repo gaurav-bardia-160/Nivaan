@@ -1,0 +1,19 @@
+{
+  "id": "spider_uidai.gov.in_fb2abd24_chunk_1",
+  "source_url": "https://myaadhaar.uidai.gov.in/retrieve-eid-uid",
+  "title": "Unique Identification Authority of India",
+  "section": "Unique Identification Authority of India",
+  "text": "Unique Identification Authority of India\n\n\nmyAadhaar\n\n\n\n  * हिंदी\n  * বাংলা\n  * ಕನ್ನಡ\n  * ગુજરાતી\n  * മലയാളം\n  * मराठी\n  * ଓଡ଼ିଆ\n  * ਪੰਜਾਬੀ\n  * தமிழ்\n  * తెలుగు\n  * اردو\n\n  1. Dashboard\n  2. Retrieve Aadhaar number/EID/SID\n\nSelect 12 Digit Aadhaar Number/ 28 digit Enrolment ID/ SID\nAadhaar Number\nEnrolment ID Number/ SID \nEnter Name as per Aadhaar\nEnter Date of Birth\nEnter Mobile Number\nOR\nEnter Email Address\n\nSend OTP\n\n## Frequently Asked Questions\n\n### How many times Aadhaar data can be updated?\n\nFollowing limits are applicable for the update of Aadhaar information: \n  * • Name: Twice in Life Time \n  * • Gender: Once in Life Time \n  * • Date of Birth: Once in life time\n\n### What changes can I do to my name in Aadhaar?\n\nFor minor corrections in your name or change in name, kindly visit nearest Aadhaar Seva Kendra.\n\n### What documents are required for Online Address Update?\n\nPOA document as per supporting document list will be required. Visit [https://uidai.gov.in.](https://uidai.gov.in)",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "mobile",
+    "enrolment"
+  ]
+}

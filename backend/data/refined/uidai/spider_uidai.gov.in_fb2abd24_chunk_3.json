@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_fb2abd24_chunk_3",
+  "source_url": "https://myaadhaar.uidai.gov.in/retrieve-eid-uid",
+  "title": "Unique Identification Authority of India",
+  "section": "Does submission of request guarantee update of demographic information?",
+  "text": "### Does submission of request guarantee update of demographic information?\n\nSubmission of information does not guarantee update of Aadhaar data. Changes submitted through Update Aadhaar online Service are subjected to verification and validation by the UIDAI and after validation only the change request is processed further for Aadhaar update.\n\n### I have lost my mobile number/ do not possess the number that I enrolled with Aadhaar. How should I submit my update request?\n\nIn case you have lost/do not possess the mobile number anymore that is registered with Aadhaar, you have to personally visit the nearest Aadhaar Seva Kendra for updation of mobile number.\n\nNo, your Aadhaar number will remain same even after the update.\n\n### I want to cancel the update request. Will I be able to do it?\n\n### Where can I see all my update requests?\n\n### How do I add my father’s / husband’s name to my address?\n\nRelationship details are a part of address field in Aadhaar. This has been standardized to C/o (Care of). Filling this is optional.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "mobile"
+  ]
+}

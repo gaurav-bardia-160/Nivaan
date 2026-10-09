@@ -58,15 +58,20 @@ def clean_markdown(md: str) -> str:
         cleaned.append(line)
     return '\n'.join(cleaned).strip()
 
-async def spider_website(start_url: str):
+import sys
+import argparse
+
+async def spider_website(start_url: str, source_name: str):
     domain = urlparse(start_url).netloc
     visited = set()
     to_visit = {start_url}
 
-    logger.info(f"Starting spider on: {start_url}")
+    target_dir = RAW_DIR / source_name
+    target_dir.mkdir(parents=True, exist_ok=True)
 
-    # Configuration for Crawl4AI
-    # magic=True automatically handles popups, cookie banners, and bot protections
+    logger.info(f"Starting spider on: {start_url}")
+    logger.info(f"Saving to: {target_dir}")
+
     config = CrawlerRunConfig(
         magic=True,
         cache_mode=CacheMode.BYPASS,
@@ -89,18 +94,15 @@ async def spider_website(start_url: str):
                 logger.error(f"Failed to crawl {current_url}: {result.error_message}")
                 continue
                 
-            # 1. Save valid content
             if result.markdown and len(result.markdown) > 100:
                 cleaned_text = clean_markdown(result.markdown)
                 if len(cleaned_text) > 100:
                     h = hashlib.md5(current_url.encode()).hexdigest()[:8]
                     filename = f"spider_{domain}_{h}.txt"
-                    filepath = RAW_DIR / filename
+                    filepath = target_dir / filename
                     filepath.write_text(f"URL: {current_url}\n\n{cleaned_text}", encoding="utf-8")
                     logger.info(f"Saved {filename}")
 
-            # 2. Extract internal links for next steps
-            # result.links is a dictionary containing 'internal', 'external'
             internal_links = result.links.get("internal", [])
             for link_obj in internal_links:
                 href = link_obj.get("href")
@@ -109,17 +111,19 @@ async def spider_website(start_url: str):
                 if not href:
                     continue
                     
-                # Normalize URL
                 full_url = urljoin(current_url, href)
                 
-                # Filter out junk and already visited
                 if full_url not in visited and full_url not in to_visit:
-                    if not is_junk_link(full_url, text):
+                    if full_url.startswith(start_url) and not is_junk_link(full_url, text):
                         to_visit.add(full_url)
+                    elif not full_url.startswith(start_url):
+                        logger.debug(f"Ignored out-of-scope link: {full_url}")
                     else:
                         logger.debug(f"Ignored junk link: {full_url}")
 
 if __name__ == "__main__":
-    import sys
-    url = sys.argv[1] if len(sys.argv) > 1 else "https://myaadhaarbeta.uidai.gov.in/"
-    asyncio.run(spider_website(url))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url", required=True)
+    parser.add_argument("--source", required=True)
+    args = parser.parse_args()
+    asyncio.run(spider_website(args.url, args.source))

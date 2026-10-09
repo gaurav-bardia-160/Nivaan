@@ -1,0 +1,21 @@
+{
+  "id": "spider_www.incometaxindia.gov.in_14f08c84_chunk_3",
+  "source_url": "https://www.incometaxindia.gov.in/tax-services/apply-for-pan",
+  "title": "Please wait...",
+  "section": "Apply for PAN",
+  "text": "# Apply for PAN\n**PAN - ONLINE APPLICATION**\nApplication for fresh allotment of PAN can be made through Internet. Further, requests for changes or correction in PAN data or request for reprint of PAN card (for an existing PAN) may also be made through Internet.\nOnline application can be made either through the portal of Protean (formerly NSDL eGov) (\nIn case of Instant E-PAN service, PAN is paperless, online and free of cost. This facility is only for those applicants who have an Aadhaar number from UIDAI and have registered their mobile number with Aadhaar. Applicants applying under this service will only be issued an e-PAN which is also a valid form of PAN.\nFor New PAN applications, in case of Individual and HUF applicants if Address for Communication is selected as Office, then Proof of Office Address along with Proof of residential address is to be submitted to Protean (formerly NSDL eGov) w.e.f. applications made on and after 1st November 2009.\nFor more details, please",
+  "category": "pan",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "pan",
+    "apply",
+    "nsdl",
+    "reprint",
+    "correction",
+    "e-pan"
+  ]
+}
