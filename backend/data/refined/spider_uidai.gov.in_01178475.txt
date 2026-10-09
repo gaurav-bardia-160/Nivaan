@@ -28,7 +28,6 @@ Verify Mobile Number
 Verify Email Address
 Enter Aadhaar Number
 Enter Mobile Number
-Enter Captcha
 Submit
 ![](https://myaadhaar.uidai.gov.in/static/media/faq-icon.2ec92ba82e3c3510425ffec418c95fb4.svg)
 ## Frequently Asked Questions

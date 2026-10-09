@@ -41,4 +41,3 @@ Email
 help@uidai.gov.in
 Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
 Privacy PolicyTerms of Service
-This website is optimised for the latest versions of Google Chrome, Mozilla Firefox, Microsoft Edge, and Apple Safari. Viewing this site in older or unsupported browsers may result in degraded functionality or visual inconsistencies.

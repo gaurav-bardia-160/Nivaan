@@ -31,7 +31,6 @@ Enter Date of Birth
 Enter Mobile Number
 OR
 Enter Email Address
-Enter Captcha
 ![CAPTCHA image: enter the characters shown](https://myaadhaar.uidai.gov.in/retrieve-eid-uid)
 Send OTP
 ![](https://myaadhaar.uidai.gov.in/static/media/faq-icon.2ec92ba82e3c3510425ffec418c95fb4.svg)
