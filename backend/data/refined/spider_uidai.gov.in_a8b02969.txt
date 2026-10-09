@@ -1,0 +1,114 @@
+URL: https://uidai.gov.in/press-releases?limit=9&page=1
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  3. [Media](https://uidai.gov.in/hi/media)
+  4. /
+  5. [News and Updates](https://uidai.gov.in/hi/news-and-updates)
+  6. /
+  7. [Press Releases](https://uidai.gov.in/hi/press-releases)
+
+# Press Releases
+Explore official UIDAI press releases covering Aadhaar updates, innovations, partnerships, policy announcements and key initiatives focused on strengthening digital identity, improving citizen services and advancing secure, inclusive governance across India.
+UIDAI unveils five new initiatives at Aadhaar Samvaad Kolkata to further advance trusted digital identity and good governance
+01-10-2026 | PDF | 223.06 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+UIDAI Launches Aadhaar Face Authentication SDK and Sandbox at Global Fintech Fest 2026
+14-09-2026 | PDF | 260.13 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+Aadhaar App Crosses 5 crore Downloads, Strengthening Convenient and Resident Centric Digital Identity Services
+21-08-2026 | PDF | 147.67 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+UIDAI Special Drive Completes over 2 Cr Mandatory Biometric Updates (MBU) in Aadhaar for School Children, Covering around 1.6 Lakh Schools Across the Country
+19-08-2026 | PDF | 143.29 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+Manipur's FIRST UIDAI Aadhaar Seva Kendra Opens in Imphal
+03-08-2026 | PDF | 229.19 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+Aadhaar App Crosses 40 Million Downloads, Driving Convenient Digital Identity Services
+21-07-2026 | PDF | 123.43 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+UIDAI Enables Free Email Update in Aadhaar through Aadhaar App
+21-07-2026 | PDF | 126.95 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+Aadhaar App crosses 31 million downloads
+23-06-2026 | PDF | 144.8 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+UIDAI successfully completes Biometric SDK Benchmarking Challenges, recognises winners
+16-06-2026 | PDF | 297.51 KB
+Download![Download](https://uidai.gov.in/assets/svgs/Download.svg)
+[](https://uidai.gov.in/press-releases?limit=9&page=0)[1](https://uidai.gov.in/press-releases?limit=9&page=1)[2](https://uidai.gov.in/press-releases?limit=9&page=2)[3](https://uidai.gov.in/press-releases?limit=9&page=3)[4](https://uidai.gov.in/press-releases?limit=9&page=4)[5](https://uidai.gov.in/press-releases?limit=9&page=5)[6](https://uidai.gov.in/press-releases?limit=9&page=6)[7](https://uidai.gov.in/press-releases?limit=9&page=7)[](https://uidai.gov.in/press-releases?limit=9&page=2)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 08 May 2026
+Last Updated: 29 Jun 2026
+Owner: Media
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 08 May 2026
+Last Updated: 29 Jun 2026
+Owner: Media
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

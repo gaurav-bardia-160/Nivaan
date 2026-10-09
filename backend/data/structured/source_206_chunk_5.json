@@ -1,0 +1,16 @@
+{
+  "id": "source_206_chunk_5",
+  "title": "Aadhaar Enrolment",
+  "category": "general",
+  "keywords": [
+    "aadhaar",
+    "enrolment"
+  ],
+  "summary": "## Aadhaar Enrolment\n![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/book_an_appointment.svg)\nBook an Appointment\nSchedule a visit to the nearest Aadhaar Seva Kendra\n![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)\nFree\n![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/check_enrolment_status.svg)\nCheck Enrolment Status\nTrack the status of your Aadhaar enrolment using your EID/SID\n![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg",
+  "documents": [],
+  "steps": [],
+  "warnings": [],
+  "source_url": "https://uidai.gov.in/en/my-aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

@@ -1,0 +1,130 @@
+URL: https://uidai.gov.in/en/authentication-requesting-agency
+
+1. [Home](https://uidai.gov.in/en)
+  2. /
+  4. /
+  5. [Authentication Ecosystem](https://uidai.gov.in/en/authentication-partners)
+  6. /
+  7. [Authentication Requesting Agencies](https://uidai.gov.in/en/authentication-requesting-agency)
+
+# Authentication Requesting Agency
+Learn about Authentication Requesting Agencies such as AUA and KUA that use UIDAI’s Aadhaar authentication services through ASAs. Explore their appointment process, security requirements, responsibilities and data protection measures for secure identity verification and service delivery.
+About Requesting Entities (AUA, KUA)
+As per the Aadhaar Act 2016, a requesting entity means an agency or a person that submits Aadhaar number and demographic information or biometric information, of an individual to the Central Identities Data Repository (CIDR) for authentication.
+Authentication User Agency (AUA) is an entity engaged in providing Aadhaar Enabled Services to Aadhaar number Holder, using the authentication as facilitated by the Authentication Service Agency (ASA). An AUA may be government / public / private legal agency registered in India, that uses Aadhaar authentication services of UIDAI and sends authentication requests to enable its services / business functions.
+**Sub AUAs** are agencies that use Aadhaar authentication to enable its services through an existing requesting entity.
+A requesting entity (such as AUA, KUA) connects to the CIDR through an ASA (either by becoming ASA on its own or by contracting services of an existing ASA).
+Appointment of Requesting Entities (Authentication User Agency & e-KYC User Agency)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Agencies seeking to become requesting entities to use the authentication facility provided by the Authority shall apply for appointment as requesting entities in accordance with the procedure as may be specified by the Authority for this purpose. Only those entities that fulfill the criteria laid down in Schedule A are eligible to apply. The Authority may by order, amend Schedule A from time to time so as to modify the eligibility criteria.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The Authority may require the applicant to furnish further information or clarifications, regarding matters relevant to the activity of such a requesting entity, as the case may be, which may otherwise be considered necessary by the Authority, to consider and dispose of the application.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The applicant shall furnish such information and clarification to the satisfaction of the Authority, within the time as may be specified in this regard by the Authority.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+While considering the application, the information furnished by the applicant and its eligibility, the Authority may verify the information through physical verification of documents, infrastructure, and technological support which the applicant is required to have.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+After verification of the application, documents, information furnished by the applicant and its eligibility, the Authority may:
+a. approve the application for requesting entity, as the case may be; and  
+b. enter into appropriate agreements with the entity or agency incorporating the terms and conditions for use by requesting entities of the Authority’s authentication facility, including damages and disincentives for non-performance of obligations.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The Authority may from time to time, determine the fees and charges payable by entities during their appointment, including application fees, annual subscription fees and fees for individual authentication transactions.
+
+Mandatory Security Requirements
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Aadhaar number should be never used as a domain specific identifier.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+In the case of operator assisted devices, operators should be authenticated using mechanisms such as password, Aadhaar authentication, etc.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Personal Identity Data (PID) block captured for Aadhaar authentication should be encrypted during capture and should never be sent in the clear over a network.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The encrypted PID block should not be stored unless it is for buffered authentication for a short period, currently configured as 24 hours.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Biometric and OTP data captured for the purposes of Aadhaar authentication should not be stored on any permanent storage or database.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The meta data and the responses should be logged for audit purposes.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Network between AUA and ASA should be secure.
+
+Requesting Entities (AUA/KUA) Responsibilities and Data Securities
+For Requesting Entities (AUA/KUA) Responsibilities and Data Securities the Aadhaar Act, 2016 and its regulations may be referred
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 14 Apr 2026
+Last Updated: 30 Jun 2026
+Owner: A & V
+## In this section
+  * [About Requesting Entities (AUA, KUA)](https://uidai.gov.in/en/authentication-requesting-agency#about-requesting-entities-aua-kua)
+  * [Appointment of Requesting Entities (Authentication User Agency & e-KYC User Agency)](https://uidai.gov.in/en/authentication-requesting-agency#appointment-of-requesting-entities-authentication-user-agency-e-kyc-user-agency)
+  * [Mandatory Security Requirements](https://uidai.gov.in/en/authentication-requesting-agency#mandatory-security-requirements)
+  * [Requesting Entities (AUA/KUA) Responsibilities and Data Securities](https://uidai.gov.in/en/authentication-requesting-agency#requesting-entities-aua-kua-responsibilities-and-data-securities)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/en/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 14 Apr 2026
+Last Updated: 30 Jun 2026
+Owner: A & V
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/en/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/en/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/en/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/en/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/en/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)
+  * [Circulars](https://uidai.gov.in/en/circulars)
+  * [ Policies](https://uidai.gov.in/en/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/en/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/en/ovse)
+
+  * [Site Map](https://uidai.gov.in/en/site-map)
+  * [Website Policies](https://uidai.gov.in/en/website-policies)
+  * [Website Help](https://uidai.gov.in/en/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

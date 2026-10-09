@@ -1,0 +1,133 @@
+URL: https://uidai.gov.in/enrolment-agencies
+
+सेवाएं खोजें
+  1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Enrolment Ecosystem](https://uidai.gov.in/hi/enrolment-partners)
+  6. /
+  7. [Enrolment Agencies](https://uidai.gov.in/hi/enrolment-agencies)
+
+# Enrolment Agencies
+Enrolment Agencies are entities hired by the Registrars for enrolment of individuals seeking to enrol during which demographic and biometric data are collected as per UIDAI enrolment process. Enrolment Agencies must ensure continued empanelment with UIDAI in order to be engaged by Registrars. 
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Enrolment Agency(EA) is an agency is hired by the Registrar under contract subject to verification of profile of the organization, technical and financial evaluation.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Enrolment agencies provide operators and supervisors for the enrolment stations on the field, and also create the necessary conditions for individuals seeking to enrol.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+In case of camps Enrolment agencies must notify individuals seeking to enrol and UIDAI, of the enrolment schedule in advance.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Enrolment agencies will be empanelled by the UIDAI and paid by the registrar for successful Aadhaar Generation
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The enrolment agencies shall setup the enrolment centre for enrolment of individuals seeking to enrol as well as correction or update of Aadhaar number holder data
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The EA shall only use the software provided by UIDAI for enrolment purpose. The enrolment software shall also have provision of capturing audit data as part of enrolment packet against each enrolment / update for traceability of enrolment client, operator, supervisor, enrolment agency, registrar, and any other information.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The equipment such as computer, printer, biometric devices and other accessories shall be as per the specification prescribed by the UIDAI from time to time.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The biometric devices used for enrolment shall meet the specification prescribed by Authority as well as certified as per the process prescribed by the UIDAI.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The enrolment operator shall collect the physical/electronic copy of supporting document or convert it into electronic format as per the process defined by UIDAI
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The Enrolment Agency shall be responsible for field level execution and audit. The Enrolment Agency shall allow the authority to have reasonable access to the premises occupied by it or by any other person on its behalf and also extend reasonable facility for examining any books, records, documents and computer data in the possession of Enrolment Agency or any other person on their behalf and also provide copies of the document or other materials which, in the opinion of the authority are relevant for the purpose of audit.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The Enrolment Agency shall at all times abide by the Code of Conduct Enrolment Agency
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The Enrolment agency shall adhere to the various process, policies and guidelines, checklists, forms and templates issued by authority from time to time.
+
+Enrolment Agency Activities
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Procurement of Devices and other requirements as per Checklist for setting up Enrolment Centre
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Enrol Operator/Supervisors and Register and Activate them at UIDAI
+    * Get first Operator enrolled by an authorised EA operator
+    * Send data packet and User management sheet for this Operator to CIDR
+    * Receive UID and go ahead for this Operator to start enrolling others.
+    * Get other Operator/Supervisor and Technical Administrators , enrolled by the first operator
+    * Send their data packets and user management file to CIDR
+    * Receive UIDs
+    * Register them for certification exam by TCA
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+**Station Registration**
+    * Obtain Registrar code, EA code from UIDAI
+    * Obtain latest Aadhaar software and install, Register and configure client laptops
+    * Complete User Setup
+    * Loading and testing of pre-enrolment data
+
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 Apr 2026
+Last Updated: 30 Jun 2026
+Owner: E&U
+## In this section
+  * [Enrolment Agency Activities](https://uidai.gov.in/hi/enrolment-agencies#enrolment-agency-activities)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 Apr 2026
+Last Updated: 30 Jun 2026
+Owner: E&U
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

@@ -1,0 +1,134 @@
+URL: https://uidai.gov.in/registrars
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Enrolment Ecosystem](https://uidai.gov.in/hi/enrolment-partners)
+  6. /
+  7. [Registrars](https://uidai.gov.in/hi/registrars)
+
+# Registrars
+Registrar is an entity authorised or recognised by the UIDAI for the purpose of enrolling individuals. They are partner to UIDAI vide a Terms of Engagement (TOE) and responsible for abiding by the roles and responsibilities assigned to them. They are primarily various state governments, central ministries, banks and public sector organizations who have signed TOE with UIDAI for enrolment of individuals seeking to enrol.
+How to be a Registrar?
+At this stage, the UIDAI has primarily engaged with state governments, central ministries, and financial institutions. The UIDAI has entered into TOE with each registrar where the roles and responsibilities are defined and has to be abided. The signed TOE allows the registrar to start the enrolment of individuals seeking to enrol either on their own or by selection of enrolment agencies.
+State and Non State Registrars
+The State Government/Union Territory agencies working as Registrar for UIDAI are State Registrar. All the banks and the public sector undertakings who sign a MoU act as Non State Registrar.
+Roles & Responsibilities
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Partner with the UIDAI and leverage the ecosystem defined by the UIDAI in implementing the enrolment process
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Only use the software provided by UIDAI for enrolment purpose, which will have the provision of capturing audit data as part of enrolment packet against each enrolment / update for traceability of enrolment client, operator, supervisor, enrolment agency, registrar, and any other information.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The biometric devices used for enrolment shall meet the specification prescribed by UIDAI as well as certified as per the process prescribed by the Authority.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Engage Enrolment Agencies for enrolment of individuals seeking to enrol, conduct training of the agencies and regular monitoring.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Ensure that standard defined by UIDAI is followed in terms of technology, devices and processes including in training, awareness building, enrolment, authentication etc.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Registrars shall carry the enrolment of individuals seeking to enrol by themselves or through enrolment agencies contracted by them. Registrars shall have option to contract with empanelled enrolment agencies or any other agencies found suitable by them following their own system of contracting such agencies..
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Ensure that all the enrolment packets have been transferred to CIDR within specified time using secured FTP channel only.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Ensure relevant security protection for data collected during the same; retain safe copies of supporting documents and provide access to UIDAI as and when required
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Partner with Civil Society Organisations and other outreach groups to maximise enrolment of marginalised individuals seeking to enrol
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Setup process for grievance resolution, monitoring EA performance etc. as defined by the UIDAI; provide assistance to UIDAI in resolving matters of dispute
+
+Registrar's Role in Inclusion
+The Registrar will have to take special measures to enrol women, children, senior citizens, persons with disability, unskilled and unorganised workers, and nomadic tribes or to such other persons who do not have any permanent dwelling house and such other categories of individuals.
+There should be provision on the Registrar front to include all categories of marginalised / vulnerable groups of individuals who have access to one or more of the supporting documents prescribed by UIDAI and other category of individuals seeking to enrol, who cannot provide any document to prove their identity.
+To the extent possible Registrar shall have provision for woman operators at institutions where only women are to be enrolled. The Registrar shall also make provision for enrolment of newly born Infants at place of birth like hospitals.
+Registrar Activities
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Onboarding of Enrolment Agencies
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Conduct of training and monitoring of enrolment
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Transfer of the enrolment packets to CIDR for processing
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Verification of the documents collected during enrolment
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Attend meetings and be updated on the process
+
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 Apr 2026
+Last Updated: 30 Jun 2026
+Owner: E&U
+## In this section
+  * [How to be a Registrar?](https://uidai.gov.in/hi/registrars#how-to-be-a-registrar)
+  * [State and Non State Registrars](https://uidai.gov.in/hi/registrars#state-and-non-state-registrars)
+  * [Roles & Responsibilities](https://uidai.gov.in/hi/registrars#roles-responsibilities)
+  * [Registrar's Role in Inclusion](https://uidai.gov.in/hi/registrars#registrars-role-in-inclusion)
+  * [Registrar Activities](https://uidai.gov.in/hi/registrars#registrar-activities)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 Apr 2026
+Last Updated: 30 Jun 2026
+Owner: E&U
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

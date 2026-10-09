@@ -1,0 +1,146 @@
+URL: https://uidai.gov.in/biometric-devices
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Authentication Devices](https://uidai.gov.in/hi/authentication-devices)
+  6. /
+  7. [Biometric Devices](https://uidai.gov.in/hi/biometric-devices)
+
+# Biometric Devices
+Biometric devices are instruments, designed to capture biometric data inputs including fingerprint and iris information from Aadhaar number holders for the purpose of authentication and identity verification. UIDAI mandates usage of only Registered Devices in Aadhaar Authentication Ecosystem. Collection of Personal Identity Data (PID) from Aadhaar number holders through the domain / client application hosted on such devices. Perform basic checks on the information collected for completeness and compliance Transmit the authentication packets and receive the authentication result In compliance with Aadhaar Act, 2016 and its Regulations. Authentication devices are deployed by requesting Entities (AUA/KUA). Based on the mode of operation, such devices are classified as Self-Assisted and Operator Assisted devices. Self-Assisted devices are the devices where Aadhaar authentication transaction is carried out by the Aadhaar number holder himself/herself without any assistance. Operator-Assisted devices are the devices where the Aadhaar authentication transaction of the Aadhaar number holder is performed with the assistance of requesting entity’s operator.
+Registered Devices
+Registered Devices means biometric devices that are registered with the authority. These devices carry a unique identifier and ensure data integrity by digitally signing biometric information within the device using a device provider’s key. This ensures that the data is captured live and not replayed or tampered with.
+These registered devices fall under two categories viz. Discrete Devices and Integrated Devices.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+**Discrete Devices:** These devices require connectivity to a host device such as PC/Laptop/Micro ATM etc.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+**Integrated Devices:** These devices have the sensor integrated into the device package i.e. Phone/Tablet etc. 
+
+![Picture11.webp](https://backend.uidai.gov.in/get/files/media/document/2026-06/Picture11.webp)
+Discrete Fingerprint Scanner
+![iris_scanner.webp](https://backend.uidai.gov.in/get/files/media/document/2026-06/iris_scanner.webp)
+Iris scanner
+![Picture4.webp](https://backend.uidai.gov.in/get/files/media/document/2026-07/Picture4.webp)
+![Picture33.webp](https://backend.uidai.gov.in/get/files/media/document/2026-06/Picture33.webp)
+Integrated device with Fingerprint & Iris Scanner
+![Picture5.webp](https://backend.uidai.gov.in/get/files/media/document/2026-06/Picture5.webp)
+Integrated PoS Device
+Level of Registered Devices
+The device application should have provisions to service genuine Aadhaar number holders who may be falsely rejected during biometric authentication. Also, there should be measures to continue service delivery in case of other technological limitations such as network non-availability, device breakdown etc. There should be no denial of service to Aadhaar number holders due to technology limitations. The exception handling mechanisms should be backed up by non-repudiable features to log/audit requests handled through exception handling mechanism to prevent any fraud attempts.
+**Level 0 Compliance:**
+L0 registered devices rely on the host system for encryption and use software-based key storage. They offer minimal protection against spoofing. Their functioning is dependent on the operating system, making them less secure and more vulnerable compared to L1 registered devices.
+**Level 1 Compliance:**
+L1 devices are chip-based and provide stronger security by performing encryption on-device within a Trusted Execution Environment (TEE). They store keys in secure hardware elements, feature advanced liveness detection for anti-spoofing. Being OS-agnostic, they deliver higher security and reliability across environments.
+UIDAI strengthened liveness detection in fingerprint devices to prevent spoofing and reduce failure rates as the capture of artificial/fake fingerprints is failed at the device level post implementation of **Fake Finger Detection (FFD)**
+Key Milestones
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+**2012:** Launch of Aadhaar Authentication - Laid the foundation for a secure, scalable digital identity system.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+**2013:** Launch of e-KYC Authentication - Enabled paperless verification and ease of access to financial and government services.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+**2017:** Introduction of Registered Devices - Enhanced security by eliminating misuse of stored biometrics.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+**2022:** Launch of L1 Fingerprint Registered Devices - Achieved alignment with international best practices in encryption and hardware security.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+**2025:** Implementation of Fake Finger Detection (FFD) strengthening prevention of anti-spoofing attempts in L1 Fingerprint Registered Devices and Introduction of L1 Iris Registered Devices, marking a decisive leap in trusted digital authentication.
+
+![Picture7.webp](https://backend.uidai.gov.in/get/files/media/document/2026-07/Picture7_0.webp)
+Success Story
+**Introduction of FMR-FIR (Finger Minutiae Record) based Authentication** : UIDAI introduced an in-house AI/ML based model FIR to check the liveness of Finger Print.
+**Migration from L0 to L1 fingerprint registered devices** : UIDAI has successfully migrated from L0 fingerprint registered devices to the more secure and advanced L1 fingerprint registered devices, ensuring enhanced encryption, robust tamper resistance and higher reliability in biometric authentication. 
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+L0 Iris Registered Devices
+Doc Type: PDF• Size: 89.22 KB• Uploaded On: 30-05-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+L1 Fingerprint Registered Devices
+Doc Type: PDF• Size: 221.92 KB• Uploaded On: 30-05-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+UIDAI Specifications
+Doc Type: PDF• Size: 727.38 KB• Uploaded On: 30-05-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 14 Apr 2026
+Last Updated: 16 Jul 2026
+Owner: A & V
+## In this section
+  * [Registered Devices](https://uidai.gov.in/hi/biometric-devices#registered-devices)
+  * [Level of Registered Devices](https://uidai.gov.in/hi/biometric-devices#level-of-registered-devices)
+  * [Key Milestones](https://uidai.gov.in/hi/biometric-devices#key-milestones)
+  * [Success Story](https://uidai.gov.in/hi/biometric-devices#success-story)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 14 Apr 2026
+Last Updated: 16 Jul 2026
+Owner: A & V
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

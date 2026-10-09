@@ -1,0 +1,111 @@
+URL: https://uidai.gov.in/discussion-forum
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Developer Resources (Sandbox)](https://uidai.gov.in/hi/developer-section)
+  6. /
+  7. [Discussion Forum](https://uidai.gov.in/hi/discussion-forum)
+
+# Discussion Forum
+Welcome to UIDAI Aadhaar Authentication discussion group. This group is created to facilitate Aadhaar Authentication related technical and integration discussions. By joining this group you automatically agree to the terms and conditions (user agreement) of this group mentioned below. All developer related content can be obtained at Aadhaar Developer Portal. Please request through Group home page for memberships 
+User Agreement for Discussion Groups
+The following disclaimer and terms of use apply generally to all postings to the Aadhaar Authentication Discussion Group and any other public discussion groups hosted by UIDAI. If you do not agree to any of these terms, please unsubscribe from this group.   
+  
+All content, information and opinions (collectively, the "Material") presented on Aadhaar Authentication Discussion Group (the "Discussion Group") are those of the authors of posts and messages (collectively, the "participants") and not UIDAI's. UIDAI does not guarantee the reliability, completeness,accuracy, timeliness or up-to-date-ness of the material presented on the Discussion Group. The material is published "as is", and does not represent the official views and opinions of UIDAI. Any reliance upon the Material presented on these forums shall be at User's own risk. UIDAI does not review the substance of the content posted by users on these forums and is therefore not responsible for any of such content. UIDAI is not responsible for the privacy practices of any user. All information that is disclosed in these areas becomes public information and users should exercise caution when deciding to share any of their personal information. However, UIDAI is authorized by you to remove or modify any data submitted by you to these forums for any reason we feel constitutes a violation of our policies, whether stated, implied or not.   
+  
+UIDAI has no control over the content and cannot ensure it will not be offensive or objectionable. We will, however, remove links to material that we feel is inappropriate as we become aware of them
+Notice
+by submitting the post(s) on the Discussion Group the participant grants UIDAI the copyright of the material submitted. Any solicited or non-solicited idea, suggestion, or comment that is mentioned in this discussion forum becomes the intellectual property of UIDAI and might end up in one of it's products or services without credit or monetary consideration given to the originator of the idea   
+  
+It is hereby also understood that any person posting to UIDAI will have been presented with this disclaimer and terms of use prior to doing so and, as such, be subject to its terms:
+Conditions of Use
+You are entirely responsible and liable for all postings, information and submissions made by you to this discussion group. You also agree that you will not post any copyrighted material that is not owned by yourself or the owners of these forums. In your use of the forum, you agree that you will not post any information which is unlawful, harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, harassing, threatening, invading of others privacy, hateful, racially, ethnically or otherwise objectionable or violates any laws. Listed below are some, though not all, violations which may result in UIDAI deleting your postings. You agree not to do any of the following actions while posting to UIDAI: (1) harass, threaten, embarrass or slander any person or entity; (2) transmit any information, data, text, files, links, software, chat, communication or other materials ("Content") that UIDAI considers to be unlawful, harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, hateful, racially, ethnically or otherwise objectionable; (3) impersonate any business or person, living or dead, famous or not yet so; (4) disrupt the normal flow of dialogue in the Discussion Group or otherwise act in a manner that negatively affects other users; (5) post or transmit any unsolicited advertising, promotional materials, or any other forms of solicitation; and (6) intentionally or unintentionally violate any applicable local, state, national or international law, including but not limited to any regulations having the force of law while using or accessing this forum or in connection with your use of this forum in any manner
+Intellectual Property
+You agree that you will not upload or transmit any Content to UIDAI and discussion boards that infringes any patent, trademark, trade secret, copyright or other proprietary rights ("Rights") of any party. You alone are responsible that you indeed have the right to submit Content to UIDAI/Forums.
+Content
+You must evaluate, and bear the risk associated with, the accuracy, completeness or usefulness of any Content. UIDAI shall not be responsible for any Content. UIDAI does not prescreen or monitor all Content as a matter of policy, but UIDAI shall have the right, but not the responsibility, to remove Content which is deemed in UIDAI's sole discretion harmful, offensive, or otherwise in violation of this Agreement, national or international legislation or any rules UIDAI has in place at the time. UIDAI may elect at its sole discretion to monitor some, all, or no areas of UIDAI for adherence to this Agreement or UIDAI's rules. This email may contain virus or malware. You are advised to take necessary protection before reading, clicking any links, or opening any attachments.
+What to Do
+If you witness a posting that violates these terms, please report to administrators of this group or to UIDAI. UIDAI cannot guarantee that any action will be taken as a result of your email
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 11 May 2026
+Last Updated: 24 Sep 2026
+Owner: Tech Center
+## In this section
+  * [User Agreement for Discussion Groups](https://uidai.gov.in/hi/discussion-forum#user-agreement-for-discussion-groups)
+  * [Notice](https://uidai.gov.in/hi/discussion-forum#notice)
+  * [Conditions of Use](https://uidai.gov.in/hi/discussion-forum#conditions-of-use)
+  * [Intellectual Property](https://uidai.gov.in/hi/discussion-forum#intellectual-property)
+  * [Content](https://uidai.gov.in/hi/discussion-forum#content)
+  * [What to Do](https://uidai.gov.in/hi/discussion-forum#what-to-do)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 11 May 2026
+Last Updated: 24 Sep 2026
+Owner: Tech Center
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

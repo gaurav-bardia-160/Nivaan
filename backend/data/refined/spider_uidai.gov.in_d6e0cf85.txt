@@ -1,0 +1,136 @@
+URL: https://uidai.gov.in/aadhaar-generation
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Understand your Aadhaar](https://uidai.gov.in/hi/understand-your-aadhaar)
+  6. /
+  7. [Aadhaar Generation](https://uidai.gov.in/hi/aadhaar-generation)
+
+# Aadhaar Generation
+Learn how Aadhaar is generated through quality checks, validation, demographic and biometric de-duplication to ensure uniqueness and secure issuance.
+Aadhaar generation & issue
+Aadhaar Generation involves process like quality check, packet validation, demographic and biometric de-duplication etc. Aadhaar is generated successfully only if:
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Quality of enrolment data meets prescribed standards laid down by UIDAI.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+The enrolment packet passes all the validations done in CIDR
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+No Demographic/Biometric duplicate is found
+
+If any of the above conditions is not satisfied, then Aadhaar number will not be issued and the enrolment gets rejected. The processes leading to Aadhaar generation are explained below.
+Uploading Enrolment Data to CIDR
+Each enrolment data is in a form of software packet which gets encrypted after completion of enrolment in the client itself and is uploaded to the central ID repository (CIDR) using the upload client provided to the Enrolment Agencies by UIDAI. The documents received from individuals seeking to enrol are also scanned and becomes part of enrolment packet which is uploaded to CIDR.
+**CIDR Sanity Checks** : Each enrolment packet is exhaustively checked for validity – checksums, packet meta data, etc. – in the CIDR DMZ using automated process before it is moved to the production zone of CIDR for processing.
+**Data Archival** : In CIDR, the contents of packet are read and stored in a table before archiving to ensure that the data is kept securely. The archival system has the following requirements:
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+All original packets (enrolments, updates, etc.) are required to be archived as-is, and “forever”, ensuring high availability, and zero data loss
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Archived packet is kept securely and separated from core enrolment and authentication systems.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Archival system may allow on-demand data retrieval with appropriate access control and approvals.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Regular back up of Archived data is taken to ensure zero data loss.
+
+Main Processing Pipeline
+After the sanity checks pass, the enrolment packet is passed onto the main processing pipeline. At a high level, this includes the following stages:
+CIDR Sanity Checks: Each enrolment packet is exhaustively checked for validity – checksums, packet meta data, etc. – in the CIDR DMZ using automated process before it is moved to the production zone of CIDR for processing.
+**Automated Data Validation** : Following validation checks are done in CIDR for demographic data
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Name & Address validations
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Language Validations
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Pincode and Administrative regions
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Regular back up of Archived data is taken to ensure zero data loss.
+
+**Demographic De-duplication** : Demographic De-duplication: Demographic de-duplication is used primarily to catch trivial duplicates (non-fraudulent cases where all the demographic fields are identical) that are inadvertently submitted to the system, e.g., when an individual seeking to enrol has not received Aadhaar number few days after enrolment and decides to re-enrol at an enrolment station again. It is also used to de-duplicate children under the age of 5 year as biometrics data is not captured for children as per UIDAI policy. The goal of demographic de-duplication is to filter these cases and hence reduce the number of trivial duplicates going for biometric de-duplication.
+**Manual Quality Checks:** Enrolment packets are sent for manual quality checks, where various quality check operators check the data for demographic and photo quality issues. This includes sanity tests against the individual photo – existence of human image, gross errors in gender and age, gender and photo mismatch as well as issues with the captured data (eg. transliteration errors).
+**Biometric De-duplication** : Once a packet passes all validations, and demographic checks, it is sent to the biometrics sub-system for biometric de-duplication. Automated Biometric Identification System ( ABIS) from 3 different vendors is used to ensure the highest levels of accuracy and performance. The vendors are incentivised based on their accuracy and performance to ensure that they continue to improve the performance of their systems. These vendors are provided with individual's anonymized biometrics along with a reference number (generated in CIDR) without disclosing identity of the individuals seeking to enrol. The ABIS system compares the individual's biometrics with all existing biometrics in their gallery to find duplicates, if any.
+**Manual Adjudication:** All duplicates identified by ABIS systems are sent to the adjudication module. The purpose of this module is to ensure no individual’s enrolment is rejected due to potential false matches of the ABIS systems.
+Aadhaar Issuance
+Aadhaar number is allotted after determining the uniqueness of the individual seeking to enrol. The demographics data of individuals seeking to enrol is associated with this Aadhaar number and so it can be used as an identity proof. This information is also sent to the authentication systems, so that authentication of Aadhaar number holder can be performed successfully.
+Aadhaar Letter Delivery
+After Aadhaar generation, the data is shared with print partner. The print partner is responsible for printing the letter (including tracking information), and delivering it to the logistics partner. The logistics partner (India Post) is then responsible for the delivery of the physical letter to the Aadhaar number holder.
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 17 Apr 2026
+Last Updated: 16 Jun 2026
+Owner: E&U
+## In this section
+  * [Aadhaar generation & issue](https://uidai.gov.in/hi/aadhaar-generation#aadhaar-generation-issue)
+  * [Uploading Enrolment Data to CIDR](https://uidai.gov.in/hi/aadhaar-generation#uploading-enrolment-data-to-cidr)
+  * [Main Processing Pipeline](https://uidai.gov.in/hi/aadhaar-generation#main-processing-pipeline)
+  * [Aadhaar Issuance](https://uidai.gov.in/hi/aadhaar-generation#aadhaar-issuance)
+  * [Aadhaar Letter Delivery](https://uidai.gov.in/hi/aadhaar-generation#aadhaar-letter-delivery)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 17 Apr 2026
+Last Updated: 16 Jun 2026
+Owner: E&U
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

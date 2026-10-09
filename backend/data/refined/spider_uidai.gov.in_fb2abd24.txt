@@ -1,0 +1,82 @@
+URL: https://myaadhaar.uidai.gov.in/retrieve-eid-uid
+
+![Government of India](https://myaadhaar.uidai.gov.in/static/media/uidai_english_logo.37b7e790fc0b23da21bc9df098a66467.svg)
+Unique Identification Authority of India
+![Aadhaar Logo](https://myaadhaar.uidai.gov.in/static/media/aadhaar_english_logo.9a2d63795a7f7bdd7acb2148585336be.svg)
+![Dashboard Icon](https://myaadhaar.uidai.gov.in/static/media/dashboard.21335c2c89af71912adf700d228cbecd.svg)
+myAadhaar
+![Language Select Icon](https://myaadhaar.uidai.gov.in/static/media/LanguageSelector.dd14b8054218a45a518df6f26aaff418.svg)
+![Language Select Icon](https://myaadhaar.uidai.gov.in/static/media/LanguageSelector.dd14b8054218a45a518df6f26aaff418.svg)
+![Toggle langauges Select Icon](https://myaadhaar.uidai.gov.in/static/media/arrowDownWhite.5705d32d953c9b17742e53145d6d5ae2.svg)
+  * हिंदी
+  * বাংলা
+  * ಕನ್ನಡ
+  * ગુજરાતી
+  * മലയാളം
+  * मराठी
+  * ଓଡ଼ିଆ
+  * ਪੰਜਾਬੀ
+  * தமிழ்
+  * తెలుగు
+  * اردو
+
+  1. Dashboard
+  2. Retrieve Aadhaar number/EID/SID
+
+Select 12 Digit Aadhaar Number/ 28 digit Enrolment ID/ SID
+Aadhaar Number
+Enrolment ID Number/ SID 
+Enter Name as per Aadhaar
+Enter Date of Birth
+Enter Mobile Number
+OR
+Enter Email Address
+Enter Captcha
+![CAPTCHA image: enter the characters shown](https://myaadhaar.uidai.gov.in/retrieve-eid-uid)
+Send OTP
+![](https://myaadhaar.uidai.gov.in/static/media/faq-icon.2ec92ba82e3c3510425ffec418c95fb4.svg)
+## Frequently Asked Questions
+### How many times Aadhaar data can be updated?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+Following limits are applicable for the update of Aadhaar information: 
+  * • Name: Twice in Life Time 
+  * • Gender: Once in Life Time 
+  * • Date of Birth: Once in life time
+
+### What changes can I do to my name in Aadhaar?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+For minor corrections in your name or change in name, kindly visit nearest Aadhaar Seva Kendra.
+### What documents are required for Online Address Update?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+POA document as per supporting document list will be required. Visit [https://uidai.gov.in.](https://uidai.gov.in)
+### Which are the documents required for updation in Aadhaar Address?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+List of supporting documents which you can select from is available here. Please select the appropriate document from the list and provide a scan/image of the same while undertaking demographic data correction.
+### How can I submit my supporting documents in case of Address Update online Service?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+You will be prompted to upload scan/image of the supporting document in pdf or jpeg format in the Update Address online Service. Please upload correct supporting document for processing of your request. For certain documents like Passport, Rent and Property agreement, image of multiple pages would be required.
+### Can I update my local language through Update Aadhaar online Service?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+At present you can not update your local language through online portal.
+### Can I update my date of birth through Update Aadhaar online Service?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+No, to update Date of Birth (DoB) kindly visit nearest Aadhaar Seva Kendra with DoB proof document.
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+No. You can update your Date of Birth (DoB) only once. Further Date of Birth (DoB) can be changed under exceptional circumstances, kindly call 1947 in this regard.
+### Does submission of request guarantee update of demographic information?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+Submission of information does not guarantee update of Aadhaar data. Changes submitted through Update Aadhaar online Service are subjected to verification and validation by the UIDAI and after validation only the change request is processed further for Aadhaar update.
+### I have lost my mobile number/ do not possess the number that I enrolled with Aadhaar. How should I submit my update request?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+In case you have lost/do not possess the mobile number anymore that is registered with Aadhaar, you have to personally visit the nearest Aadhaar Seva Kendra for updation of mobile number.
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+No, your Aadhaar number will remain same even after the update.
+### I want to cancel the update request. Will I be able to do it?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+A resident can cancel the update request from the ‘Requests’ space in the myAadhaar dashboard until the request is picked up for further processing. If cancelled, the amount paid will be refunded to the account within 21 days.
+### Where can I see all my update requests? 
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+A resident can view his/her update requests inside the ‘Requests’ space inside the myAadhaar dashboard.
+### How do I add my father’s / husband’s name to my address?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+Relationship details are a part of address field in Aadhaar. This has been standardized to C/o (Care of). Filling this is optional.

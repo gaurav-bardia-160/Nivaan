@@ -1,0 +1,18 @@
+{
+  "id": "source_28_chunk_9",
+  "title": "Lock / Unlock Aadhaar",
+  "category": "general",
+  "keywords": [
+    "lock",
+    "/",
+    "unlock",
+    "aadhaar"
+  ],
+  "summary": "### Lock / Unlock Aadhaar\nClick here to temporarily lock/unlock your Aadhaar. Please use this service carefully.",
+  "documents": [],
+  "steps": [],
+  "warnings": [],
+  "source_url": "https://myaadhaar.uidai.gov.in/en_IN",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

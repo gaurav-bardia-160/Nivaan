@@ -1,0 +1,13 @@
+{
+  "id": "source_13_chunk_24",
+  "title": "",
+  "category": "general",
+  "keywords": [],
+  "summary": "### \nV\n![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)\nVID (Virtual ID)\nVID or Virtual ID is a temporary, revocable 16-digit random number mapped with the Aadhaar number. VID can be used in lieu of Aadhaar number whenever authentication or e-KYC services are performed. Authentication may be performed using VID in a manner similar to using Aadhaar number. It is not possible to derive Aadhaar number from VID.",
+  "documents": [],
+  "steps": [],
+  "warnings": [],
+  "source_url": "https://uidai.gov.in/glossary",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

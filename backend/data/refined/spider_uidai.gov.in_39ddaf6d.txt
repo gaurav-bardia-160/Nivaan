@@ -1,0 +1,222 @@
+URL: https://uidai.gov.in/en/aadhaar-mythbusters
+
+1. [Home](https://uidai.gov.in/en)
+  2. /
+  3. [Help](https://uidai.gov.in/en/help)
+  4. /
+  5. [Resources](https://uidai.gov.in/en/resources)
+  6. /
+  7. [Aadhaar Mythbusters](https://uidai.gov.in/en/aadhaar-mythbusters)
+
+# Aadhaar Mythbusters
+Aadhaar Mythbusters clarifies common misconceptions related to privacy, security, authentication, banking, SIM linking, e-Aadhaar, data protection and Aadhaar usage. Learn facts about how Aadhaar works, what information UIDAI stores, and how residents’ data remains secure within the Aadhaar ecosystem.
+### 
+1. UIDAI has all my data including biometrics, bank account, PAN, etc. Will it track my activities?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Absolutely false. UIDAI database has only minimal information that you give at the time of enrolment or update. This includes your name, address, gender, date of birth, ten finger prints, two Iris scans, facial photograph, mobile number (optional) and email ID (optional).
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Rest assured, UIDAI does not have your information about bank accounts, shares, mutual funds, financial and property details, health records, family, caste, religion, education, etc and will never have this information in its database.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+In fact, Section 32(3) of the Aadhaar Act 2016 specifically prohibits UIDAI from controlling, collecting, keeping or maintaining any information about the purpose of authentication either by itself or through any entity. Aadhaar is an identifier, not a profiling tool.
+
+### 
+2. When I link my bank accounts, shares, mutual funds and my mobile phones with Aadhaar, will UIDAI not get this information?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Absolutely not. When you give your Aadhaar number to banks, mutual fund companies, and mobile phone companies, they only send your Aadhaar number along with your encrypted biometrics or OTP (given for authentication), or demographic details like your name, etc., to UIDAI for authentication of your identity. No account details are shared with UIDAI.
+
+As far as UIDAI is concerned, it responds to such authentication requests by replying either ‘Yes’ or ‘No’.
+* ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+In case of an e-KYC request by the requesting entity, if the authentication response is ‘Yes’, your basic KYC details (name, address, photo, etc.) available with UIDAI, are also sent to the requesting entity. UIDAI will never receive or collect the details of your bank, investments, insurance, etc.
+### 
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Absolutely false. Just as by merely knowing your ATM card number, no one can withdraw money from the ATM machine; by knowing your Aadhaar number alone, no one can hack into your bank account and withdraw money.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Your bank account is safe if you don’t part with your PIN/OTP given by banks.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Rest assured, there has not been a single case of financial loss due to Aadhaar. Aadhaar number alone cannot be used for banking or any other service.
+
+### 
+4. Is it mandatory to link my bank account with Aadhaar?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+As per the Prevention of Money-laundering (Maintenance of Records) Third Amendment Rules, 2019, if you wish to receive any benefit or subsidy under any scheme notified under section 7 of the Aadhaar (Targeted Delivery of Financial and Other subsidies, Benefits and Services) Act, 2016 (18 of 2016), it is mandatory to submit Aadhaar number to the banking service provider.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+For other banking services, Aadhaar is a preferred KYC document. However, if you do not wish to submit Aadhaar, then you may use any other officially valid documents as prescribed by Reserve Bank of India. Remember, linking your bank account with Aadhaar in this case is optional.
+
+### 
+5. Is Aadhaar mandatory for getting mobile SIM?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+NO. As per the amendments of the Telegraph Act, 1885, telecom users can use their Aadhaar number as a KYC documents along with authentication on voluntary basis to obtain a new mobile connection.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Further, for your own security and security of our country, it is advised to verify identity of all mobile subscribers using an identifier like Aadhaar.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+It has been found that most criminals and terrorists get SIM cards issued in the name of fictitious and even real people without their knowledge and use them for committing frauds & crime.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+If mobile number is verified and linked with Aadhaar, the fraudsters, criminals, terrorists or money launderers using such disposable mobiles can be easily identified and punished in accordance with law.
+
+### 
+6. Can the mobile company store my biometrics taken at the time of SIM verification and use it for other purposes later?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+No one, including, mobile phone companies can store or use your biometrics taken at the time of Aadhaar verification.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Your biometrics are encrypted as soon as you place your finger on fingerprint sensor and this encrypted data is sent to UIDAI for verification.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Regulation 17(1)(a) of the Aadhaar (Authentication) Regulations 2016, strictly prohibits any requesting entity which includes mobile phone companies, banks etc from storing, sharing or publishing the finger-prints for any reason whatsoever and neither shall it retain any copy of such fingerprints. Any violation of this provision is a punishable offence under the Aadhaar Act 2016.
+
+### 
+7. Is Aadhaar mandatory for school admissions?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Aadhaar is not mandatory for school admissions or for the examinations conducted by the Central Board of Secondary Examination, National Eligibility cum Entrance Test for medical entrance or the University Grants Commission.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+If any educational institution/ board insists on only Aadhaar as an identity document, you can show UIDAI’s [press release](https://backend.uidai.gov.in/get/files/media/document/2026-05/press-release-06092018_0.pdf) - **Doc Type: PDF Size: 0.1MB** in the regard or complaint to the concerned authorities of the institution/ board.
+
+### 
+8. Are NRIs eligible to enrol for Aadhaar? Are they allowed to use Aadhaar for banking, mobile, PAN and other services?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Aadhaar is not mandatory for school admissions or for the examinations conducted by the Central Board of Secondary Examination, National Eligibility cum Entrance Test for medical entrance or the University Grants Commission.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+If any educational institution/ board insists on only Aadhaar as an identity document, you can show UIDAI’s [press release](https://backend.uidai.gov.in/get/files/media/document/2026-05/press-release-06092018_0.pdf) - **Doc Type: PDF Size: 0.1MB** in the regard or complaint to the concerned authorities of the institution/ board.
+
+### 
+9. Aren’t the poor being denied essential services like pension & ration for want of Aadhaar?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+No. It is clearly mentioned in Section 7 that until a person is assigned an Aadhaar number, he/she cannot be denied ration or pension or such other entitlements for want of Aadhaar and the concerned department should verify the identity of the person using alternate means of identification as per the relevant notification.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+If any government official of a department denies the benefits or services for lack of Aadhaar or failure of verification for technical reasons contrary to the relevant notification, a complaint should be lodged against the concerned authorities of those departments for such unlawful denials. Complain to higher authorities in case of denial of services.
+
+### 
+10. Why are some agencies not accepting eAadhaar and insist on original Aadhaar?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+eAadhaar (downloaded Aadhaar) from UIDAI website is as legally valid as original Aadhaar issued by UIDAI.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+eAadhaar, Aadhaar Letter or Aadhaar Profile, all should be accepted by all Agencies.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+In fact, downloaded eAadhaar or Aadhaar profile have updated details of the Aadhaar number holders and therefore, these should be preferable.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+If any official/ agency/ department refuses to accept downloaded eAadhaar, the Aadhaar number holder may lodge complaint with the concerned authorities of those departments/ agencies.
+
+### 
+11. How has Aadhaar benefited the common man?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Aadhaar has benefited a common person in several ways. Foremost is - with a credible identity.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Aadhaar has empowered almost all Aadhaar number holders of the country with a widely trusted verifiable identity.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Acquiring of this verifiable identity has led to financial inclusion for the unbanked rural people in remote areas of the country. They can use their Aadhaar to open bank accounts and get government benefits directly in their accounts.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Aadhaar-based services like Aadhaar-enabled Payment System (AePS) have helped bring bank services to remote villages and towns. The elderly are able to use door-step banking access to their government benefits.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+With a portable identity like Aadhaar, people now have a means to prove their identity for jobs, travel and services like bank accounts, gas connections, mobile SIMs etc. This has led to social inclusion for the migrant population in the country.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+With Aadhaar based e-KYC, many service providers have been able to achieve paper-less user verification and instant services. This has not just benefitted customers, but has also helped save time, effort and money for the service providers.
+
+All this and more with just a 12-digit identification number that does nothing more than verifying your identity!
+### 
+12. We keep hearing in media that Aadhaar data was breached. Is this true?
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Data of all Aadhaar number holders is safe and secure in the Central Identities Data Repository (CIDR) of UIDAI. Aadhaar database in CIDR has never been breached in all these years of its existence.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Some organizations, in order to follow transparency protocols, had published their beneficiary data on their websites, which included Aadhaar details. UIDAI took appropriate steps to get this removed and has also sensitized all related organizations and agencies in the matter.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+UIDAI is working closely with all user agencies to enhance data security measures when it comes to sensitive user details like Aadhaar.
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+UIDAI uses advanced security technologies to keep your data safe and keeps upgrading them to meet emerging security threats and challenges.
+
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 30 Apr 2026
+Last Updated: 08 Jul 2026
+Owner: HO
+## In this section
+  * [1. UIDAI has all my data including biometrics, bank account, PAN, etc. Will it track my activities?](https://uidai.gov.in/en/aadhaar-mythbusters#1-uidai-has-all-my-data-including-biometrics-bank-account-pan-etc-will-it-track-my-activities)
+  * [2. When I link my bank accounts, shares, mutual funds and my mobile phones with Aadhaar, will UIDAI not get this information?](https://uidai.gov.in/en/aadhaar-mythbusters#2-when-i-link-my-bank-accounts-shares-mutual-funds-and-my-mobile-phones-with-aadhaar-will-uidai-not-get-this-information)
+  * [4. Is it mandatory to link my bank account with Aadhaar?](https://uidai.gov.in/en/aadhaar-mythbusters#4-is-it-mandatory-to-link-my-bank-account-with-aadhaar)
+  * [5. Is Aadhaar mandatory for getting mobile SIM?](https://uidai.gov.in/en/aadhaar-mythbusters#5-is-aadhaar-mandatory-for-getting-mobile-sim)
+  * [6. Can the mobile company store my biometrics taken at the time of SIM verification and use it for other purposes later?](https://uidai.gov.in/en/aadhaar-mythbusters#6-can-the-mobile-company-store-my-biometrics-taken-at-the-time-of-sim-verification-and-use-it-for-other-purposes-later)
+  * [7. Is Aadhaar mandatory for school admissions?](https://uidai.gov.in/en/aadhaar-mythbusters#7-is-aadhaar-mandatory-for-school-admissions)
+  * [8. Are NRIs eligible to enrol for Aadhaar? Are they allowed to use Aadhaar for banking, mobile, PAN and other services?](https://uidai.gov.in/en/aadhaar-mythbusters#8-are-nris-eligible-to-enrol-for-aadhaar-are-they-allowed-to-use-aadhaar-for-banking-mobile-pan-and-other-services)
+  * [9. Aren’t the poor being denied essential services like pension & ration for want of Aadhaar?](https://uidai.gov.in/en/aadhaar-mythbusters#9-aren-t-the-poor-being-denied-essential-services-like-pension-ration-for-want-of-aadhaar)
+  * [10. Why are some agencies not accepting eAadhaar and insist on original Aadhaar?](https://uidai.gov.in/en/aadhaar-mythbusters#10-why-are-some-agencies-not-accepting-eaadhaar-and-insist-on-original-aadhaar)
+  * [11. How has Aadhaar benefited the common man?](https://uidai.gov.in/en/aadhaar-mythbusters#11-how-has-aadhaar-benefited-the-common-man)
+  * [12. We keep hearing in media that Aadhaar data was breached. Is this true?](https://uidai.gov.in/en/aadhaar-mythbusters#12-we-keep-hearing-in-media-that-aadhaar-data-was-breached-is-this-true)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/en/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 30 Apr 2026
+Last Updated: 08 Jul 2026
+Owner: HO
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/en/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/en/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/en/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/en/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/en/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)
+  * [Circulars](https://uidai.gov.in/en/circulars)
+  * [ Policies](https://uidai.gov.in/en/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/en/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/en/ovse)
+
+  * [Site Map](https://uidai.gov.in/en/site-map)
+  * [Website Policies](https://uidai.gov.in/en/website-policies)
+  * [Website Help](https://uidai.gov.in/en/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

@@ -1,0 +1,54 @@
+URL: https://myaadhaar.uidai.gov.in/du/en_IN
+
+![Government of India](https://myaadhaar.uidai.gov.in/static/media/uidai_english_logo.37b7e790fc0b23da21bc9df098a66467.svg)
+Unique Identification Authority of India
+![Aadhaar Logo](https://myaadhaar.uidai.gov.in/static/media/aadhaar_english_logo.9a2d63795a7f7bdd7acb2148585336be.svg)
+![Dashboard Icon](https://myaadhaar.uidai.gov.in/static/media/dashboard.21335c2c89af71912adf700d228cbecd.svg)
+myAadhaar
+![Language Select Icon](https://myaadhaar.uidai.gov.in/static/media/LanguageSelector.dd14b8054218a45a518df6f26aaff418.svg)
+![Language Select Icon](https://myaadhaar.uidai.gov.in/static/media/LanguageSelector.dd14b8054218a45a518df6f26aaff418.svg)
+![Toggle langauges Select Icon](https://myaadhaar.uidai.gov.in/static/media/arrowDownWhite.5705d32d953c9b17742e53145d6d5ae2.svg)
+  * हिंदी
+  * বাংলা
+  * ಕನ್ನಡ
+  * ગુજરાતી
+  * മലയാളം
+  * मराठी
+  * ଓଡ଼ିଆ
+  * ਪੰਜਾਬੀ
+  * தமிழ்
+  * తెలుగు
+  * اردو
+
+हिंदी
+বাংলা
+ಕನ್ನಡ
+ગુજરાતી
+മലയാളം
+मराठी
+ଓଡ଼ିଆ
+ਪੰਜਾਬੀ
+தமிழ்
+తెలుగు
+اردو
+# Upload documents in support of identity and address
+## Free till 14/06/2027
+### 
+What to submit?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+Ration card, Voter identity card, Government-issued identity card/ certificate having address, and Indian Passport serve as proof of both identity and address.
+PAN card, Driving license, Secondary or Senior School mark sheet/ School leaving certificate having photograph, Government-issued identity card/ certificate - serve as only proof of identity.
+Electricity/water/gas bill (last 3 months), Bank / Post Office passbook, rent/ lease/ leave & license agreement serve as proof of address only.
+[For detailed list of acceptable identity and address documents, please click here.](https://uidai.gov.in/images/doc_update/en/Commonly_Asked_Questions.pdf)
+### 
+How to submit?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+The documents can be submitted online on [myAadhaar](https://myaadhaar.uidai.gov.in/) portal or by visiting any Aadhaar centre.
+Click to submit
+Need Help?
+![Video guide for online process of documente update in aadhaar \(opens in a new tab\)](https://myaadhaar.uidai.gov.in/static/media/VideoIcon.cbf9fe96f83742ea36f0cda4300a3880.svg)
+Video guide
+![Video guide for online process of documente update in aadhaar \(opens in a new tab\)](https://myaadhaar.uidai.gov.in/static/media/KnowMoreIcon.5e01ad583e249460e8adcd64288559d0.svg)
+Know More?
+![Video guide for online process of documente update in aadhaar \(opens in a new tab\)](https://myaadhaar.uidai.gov.in/static/media/CallIcon.b1dd592897921dcdb7cf791f09c99edd.svg)
+Call toll-free (1947)

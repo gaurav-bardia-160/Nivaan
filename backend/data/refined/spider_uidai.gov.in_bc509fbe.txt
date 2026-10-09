@@ -1,0 +1,95 @@
+URL: https://uidai.gov.in/usage-of-aadhaar
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Understand your Aadhaar](https://uidai.gov.in/hi/understand-your-aadhaar)
+  6. /
+  7. [Usage of Aadhaar](https://uidai.gov.in/hi/usage-of-aadhaar)
+
+# Usage of Aadhaar
+The Government of India, as well as the State Governments, fund a number of social welfare schemes and programs that are focused on the poor and most vulnerable sections of society. Aadhaar and its platform offer a unique opportunity for the government to streamline its delivery mechanism under welfare schemes, thereby ensuring transparency and efficiency. The use of Aadhaar as an identity document enables beneficiaries to get their entitlements directly in a convenient and seamless/hassle free manner by obviating the need to produce multiple documents to prove one’s identity.
+For Governments, Service Agencies
+UIDAI issues Aadhaar numbers to the individuals seeking to enroll, only after de-duplicating their demographic and biometric attributes against its entire database. Aadhaar seeding enables elimination of duplicates under various schemes which leads to substantial savings to the government exchequers. It also provides the government with accurate data on the beneficiaries and enables implementation of direct benefit transfer (DBT) programmes. Aadhaar authentication enables the implementing agencies to verify the beneficiaries at the time of service/benefits delivery and also ensures the targeted delivery of benefits to them. All these activities will lead to:-
+**Curbing Leakages through Targeted Delivery:** All social welfare programmes where beneficiaries are required to be confirmed before the service delivery, stand to benefit from UIDAI’s authentication services. This will result in curbing leakages and ensuring that services are delivered to the intended beneficiaries only. Examples include subsidized food and kerosene delivery to Public Distribution System (PDS) beneficiaries, worksite attendance of Mahatma Gandhi National Rural Employment Guarantee Scheme (MGNREGS) beneficiaries, etc.
+**Improving Efficiency and Efficacy:** With the Aadhaar platform providing accurate and transparent information about the service delivery mechanism, government can improve disbursement systems and utilize its scarce development funds more effectively and efficiently.
+For Aadhaar number holders
+Aadhaar system provides single source offline/online identity verification across the country for the Aadhaar number holders. Once Aadhaar number holders enroll, they can use their Aadhaar number to authenticate and establish their identity multiple times using electronic means or through offline verification, as the case may be. It eliminates the hassle of repeatedly providing supporting identity documents each time a Aadhaar number holder wishes to access services, benefits or subsidies. Since Aadhaar is universal identity accepted across the whole country, the Aadhaar system enables mobility to millions of people who migrate from one part of the country to another by providing a portable proof of identity that can be verified through Aadhaar authentication on-line anytime, anywhere.
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 17 Apr 2026
+Last Updated: 16 Jun 2026
+Owner: AU
+## In this section
+  * [For Governments, Service Agencies](https://uidai.gov.in/hi/usage-of-aadhaar#for-governments-service-agencies)
+  * [For Aadhaar number holders](https://uidai.gov.in/hi/usage-of-aadhaar#for-aadhaar-number-holders)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 17 Apr 2026
+Last Updated: 16 Jun 2026
+Owner: AU
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

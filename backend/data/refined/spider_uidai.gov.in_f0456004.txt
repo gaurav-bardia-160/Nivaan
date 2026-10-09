@@ -1,0 +1,109 @@
+URL: https://uidai.gov.in/composition-of-uidai-authority
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [People at UIDAI](https://uidai.gov.in/hi/people-at-uidai)
+  6. /
+  7. [Composition of UIDAI](https://uidai.gov.in/hi/composition-of-uidai-authority)
+
+# Composition of UIDAI Authority
+The Unique Identification Authority of India (UIDAI) consists of a Chairperson, two part-time Members and the Chief Executive Officer (CEO), who is also the Member-Secretary of the Authority. The present composition of the Authority is as under:
+Sh. Neelkanth Mishra, Chairperson (Part-time)
+![Neelkanth.webp](https://backend.uidai.gov.in/get/files/media/document/2026-05/Neelkanth_0.webp)
+Sh. Neelkanth Mishra, Chairperson (Part-time)
+Neelkanth Mishra is Chief Economist, Axis Bank. He is also the Head of Global Research and a Whole Time Director of Axis Capital. He has been consistently rated the best analyst in India in investor polls over the years. A highly respected expert and media columnist on global and Indian macroeconomic trends, he joined Axis in May 2023 after a long and distinguished two-decade career at Credit Suisse, where he was Co-Head of Asia Pacific Strategy and the India Strategist. He is a part-time member of the Indian Prime Minister’s Economic Advisory Council as well as part-time Chairman of UIDAI (Aadhaar). He has also advised government bodies like the India Semiconductor Mission and the 15th Finance Commission. He is a member of the CII’s Economic Affairs Council, and a frequent presenter to corporate boards. He has also worked at HUL and Infosys. He is a gold-medalist and Distinguished Alumnus Awardee from IIT-Kanpur, and was ranked fourth in the entrance exam to the IITs.
+Prof. Mausam, Member (Part-time)
+![Mausam.webp](https://backend.uidai.gov.in/get/files/media/document/2026-05/Mausam.webp)
+Prof. Mausam, Member (Part-time)
+Prof. Mausam is a Professor of Computer Science Department at IIT Delhi, and an affiliate faculty member at University of Washington, Seattle. He is the founding head of Yardi School of Artificial Intelligence, IIT Delhi. His research explores several threads in artificial intelligence, including scaling probabilistic planning algorithms, large-scale information extraction over the Web, and enabling complex computation over crowd sourced platforms.
+Sh. Nilesh Shah, Member (Part-time) 
+![Nilesh.webp](https://backend.uidai.gov.in/get/files/media/document/2026-05/Nilesh.webp)
+Sh. Nilesh Shah, Member (Part-time)
+Nilesh Shah is currently Managing Director of Kotak Mahindra Asset Management Company Limited. He is part time member of Economic Advisory Council to the Prime Minister (EAC-PM). He has worked in Leadership positions with Axis Bank Group, ICICI Bank Group and Franklin Templeton Mutual Fund covering Investment Banking and Investment Management across Debt, Equity and Real Estate for Local and Global Investors over more than three decades. He is a Gold Medalist Chartered Accountant and a Merit ranked Cost Accountant.
+Sh. Saurabh Vijay IAS (MH:98), CEO
+![CEO_Sir_image.webp](https://backend.uidai.gov.in/get/files/media/document/2026-06/CEO_Sir_image.webp)
+Sh. Saurabh Vijay IAS (MH:98), CEO
+Shri Saurabh Vijay, IAS (MH:1998) was Principal Secretary (Expenditure), Government of Maharashtra, prior to joining UIDAI.
+His earlier assignments in the cadre include Principal Secretary Planning and Development Commissioner of Maharashtra, Principal Secretary Tourism, Secretary Medical Education, Secretary Higher and Technical Education, among others.
+He has served on central deputation in significant national and international roles, including as Director at the President’s Secretariat in New Delhi, and Advisor to the Executive Director for Bangladesh, Bhutan, India and Sri Lanka at World Bank in Washington D.C.
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 11 Apr 2026
+Last Updated: 29 Jun 2026
+Owner: HR
+## In this section
+  * [Sh. Neelkanth Mishra, Chairperson (Part-time)](https://uidai.gov.in/hi/composition-of-uidai-authority#sh-neelkanth-mishra-chairperson-part-time)
+  * [Prof. Mausam, Member (Part-time)](https://uidai.gov.in/hi/composition-of-uidai-authority#prof-mausam-member-part-time)
+  * [Sh. Nilesh Shah, Member (Part-time) ](https://uidai.gov.in/hi/composition-of-uidai-authority#sh-nilesh-shah-member-part-time)
+  * [Sh. Saurabh Vijay IAS (MH:98), CEO](https://uidai.gov.in/hi/composition-of-uidai-authority#sh-saurabh-vijay-ias-mh-98-ceo)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 11 Apr 2026
+Last Updated: 29 Jun 2026
+Owner: HR
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

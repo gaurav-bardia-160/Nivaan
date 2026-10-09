@@ -1,0 +1,134 @@
+URL: https://uidai.gov.in/sitaa
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [SITAA](https://uidai.gov.in/hi/sitaa)
+
+# Building the Future of Digital Identity
+The Scheme for Innovation and Technology Association with Aadhaar (SITAA) is a strategic initiative by UIDAI to foster a culture of open innovation and co-creation around India’s Identity Technology (ID Tech) ecosystem.   
+  
+**Vision** – “To strengthen India’s digital identity ecosystem by fostering innovation and promoting indigenization in identity technologies.”
+# About SITAA
+**SITAA at a Glance**  
+  
+A national innovation and collaboration initiative by UIDAI to strengthen India’s digital identity ecosystem through research, technology development, and ecosystem partnerships.
+![Foster innovation in identity technologies](https://backend.uidai.gov.in/get/files/media/document/2026-06/bulb_0.svg)
+# Foster innovation in identity technologies
+![Enable indigenous development in ID Tech](https://backend.uidai.gov.in/get/files/media/document/2026-06/foster_0.svg)
+# Enable indigenous development in ID Tech
+![Support research and co-creation](https://backend.uidai.gov.in/get/files/media/document/2026-06/people_0.svg)
+# Support research and co-creation
+![Enable Aadhaar-aligned use cases](https://backend.uidai.gov.in/get/files/media/document/2026-06/finger_0.svg)
+# Enable Aadhaar-aligned use cases
+![Build globally benchmarked DPI solutions](https://backend.uidai.gov.in/get/files/media/document/2026-06/global_0.svg)
+# Build globally benchmarked DPI solutions
+# Who is SITAA for
+Designed for Innovators Across the Ecosystem
+![Startups](https://backend.uidai.gov.in/get/files/media/document/2026-06/plane_0.svg)
+# Startups
+Early and growth-stage startups developing innovative solutions in the digital identity domain, such as authentication, biometrics, identity verification, fraud prevention, privacy enhancement, digital trust, and emerging identity technologies
+![Academia & Research](https://backend.uidai.gov.in/get/files/media/document/2026-06/hat_0.svg)
+# Academia & Research
+Universities and research institutions working on AI, privacy, biometrics, cybersecurity, and inclusive digital systems
+![Industry & Providers](https://backend.uidai.gov.in/get/files/media/document/2026-06/building_0.svg)
+# Industry & Providers
+Established firms and technology providers building mature ID solutions for Aadhaar ecosystem requirements.
+# Why Join SITAA
+Benefits to SITAA Cohorts
+![Financial Support](https://backend.uidai.gov.in/get/files/media/document/2026-06/HandCoins_0.svg)
+# Financial Support
+Milestone-based grants for startups and academia to build and validate innovative solutions
+![Mentorship & Guidance](https://backend.uidai.gov.in/get/files/media/document/2026-06/navigate_0.svg)
+# Mentorship & Guidance
+Access to domain experts, technical advisors, and ecosystem leaders
+![UIDAI Test Environment](https://backend.uidai.gov.in/get/files/media/document/2026-06/bottle_0.svg)
+# UIDAI Test Environment
+Test and refine solutions using Aadhaar- aligned infrastructure and sandbox environment
+![Business Network](https://backend.uidai.gov.in/get/files/media/document/2026-06/angle_0.svg)
+# Business Network
+Engage with industry leaders, research institutions, and ecosystem stakeholders
+![Investor & VC Access](https://backend.uidai.gov.in/get/files/media/document/2026-06/graph_0.svg)
+# Investor & VC Access
+Curated access to venture capital firms, angel investors, and strategic partners
+![Certification & Recognition](https://backend.uidai.gov.in/get/files/media/document/2026-06/badge_0.svg)
+# Certification & Recognition
+Official recognition and validation support from UIDAl for selected candidates
+# Ready to Build the Future Identity?
+![Explore Challenges](https://backend.uidai.gov.in/get/files/media/2026-06/explore.svg)
+# Explore Challenges
+![Explore SITAA](https://backend.uidai.gov.in/get/files/media/2026-06/explore-sitaa.svg)
+# Explore SITAA
+![Download SITAA Document](https://backend.uidai.gov.in/get/files/media/2026-08/download_button.webp)
+# Download SITAA Document
+[![link](https://uidai.gov.in/assets/svgs/BlueArrowRight.svg)](https://backend.uidai.gov.in/get/files/media/document/2026-08/Download-SITAA-Document.pdf)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 26 Jun 2026
+Last Updated: 31 Aug 2026
+Owner: Tech Center
+Ready to Build the Future Identity?
+Download SITAA Document![download](https://uidai.gov.in/assets/svgs/icons/download.svg)
+## In this section
+  * [About SITAA](https://uidai.gov.in/hi/sitaa#about-sitaa)
+  * [Who is SITAA for](https://uidai.gov.in/hi/sitaa#who-is-sitaa-for)
+  * [Why Join SITAA](https://uidai.gov.in/hi/sitaa#why-join-sitaa)
+
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 26 Jun 2026
+Last Updated: 31 Aug 2026
+Owner: Tech Center
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

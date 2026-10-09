@@ -1,0 +1,136 @@
+URL: https://uidai.gov.in/en/authentication-documents?limit=10&page=1
+
+1. [Home](https://uidai.gov.in/en)
+  2. /
+  4. /
+  5. [Authentication Ecosystem](https://uidai.gov.in/en/authentication-partners)
+  6. /
+  7. [Authentication Documents](https://uidai.gov.in/en/authentication-documents)
+
+# Authentication Documents
+Access Aadhaar authentication circulars, regulations, guidelines, onboarding checklists and technical documents for AUAs, KUAs and ASAs.
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+Circular 9 of 2026 regarding Sub-AUA Sub-KUA LITE Framework
+Doc Type: PDF• Size: 1.57 MB• Uploaded On: 18-09-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Template for section 7 notification 
+Doc Type: DOCX• Size: 45.65 KB• Uploaded On: 10-09-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+Circular 8 of 2026 dated 08.09.2026, Guidelines on publishing Gazette notification, under provision of section 7 of the Aadhaar Act
+Doc Type: PDF• Size: 671.47 KB• Uploaded On: 08-09-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+Comprehensive compliance checklist for Requesting Entities
+Doc Type: PDF• Size: 2.06 MB• Uploaded On: 25-08-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+DOB format changes in eKYC response for Foreigner enrolled Aadhaar Holders
+Doc Type: PDF• Size: 705.25 KB• Uploaded On: 15-08-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+List of Good Governance Schemes presently operated in the States/UTs.
+Doc Type: PDF• Size: 325.1 KB• Uploaded On: 24-06-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+List of Sub AUAs_Sub KUAs as on 04.06.2026
+Doc Type: PDF• Size: 678.19 KB• Uploaded On: 17-06-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+List of AUAs KUAs as on 04.06.2026
+Doc Type: PDF• Size: 333.83 KB• Uploaded On: 17-06-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Sample Template for Gazette Notification 4(4)(b)(ii)
+Doc Type: DOC• Size: 42.5 KB• Uploaded On: 13-05-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+Circular 4 of 2026 regarding migration from SHA-1 to SHA-2 (SHA-256) for Digital Signing in Aadhaar Authentication Ecosystem
+Doc Type: PDF• Size: 845.6 KB• Uploaded On: 21-04-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+[](https://uidai.gov.in/en/authentication-documents?limit=10&page=0)[1](https://uidai.gov.in/en/authentication-documents?limit=10&page=1)[2](https://uidai.gov.in/en/authentication-documents?limit=10&page=2)[3](https://uidai.gov.in/en/authentication-documents?limit=10&page=3)[4](https://uidai.gov.in/en/authentication-documents?limit=10&page=4)[5](https://uidai.gov.in/en/authentication-documents?limit=10&page=5)
+...
+[10](https://uidai.gov.in/en/authentication-documents?limit=10&page=10)[](https://uidai.gov.in/en/authentication-documents?limit=10&page=2)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 21 May 2026
+Last Updated: 20 Jun 2026
+Owner: A & V
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/en/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 21 May 2026
+Last Updated: 20 Jun 2026
+Owner: A & V
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/en/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/en/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/en/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/en/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/en/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)
+  * [Circulars](https://uidai.gov.in/en/circulars)
+  * [ Policies](https://uidai.gov.in/en/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/en/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/en/ovse)
+
+  * [Site Map](https://uidai.gov.in/en/site-map)
+  * [Website Policies](https://uidai.gov.in/en/website-policies)
+  * [Website Help](https://uidai.gov.in/en/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

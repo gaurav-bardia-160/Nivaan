@@ -1,0 +1,10 @@
+{
+  "id": "source_66_chunk_4",
+  "source_url": "https://uidai.gov.in/en/aadhaar-mythbusters",
+  "title": "spider_uidai.gov.in_39ddaf6d",
+  "section": "",
+  "text": "### \n2. When I link my bank accounts, shares, mutual funds and my mobile phones with Aadhaar, will UIDAI not get this information?\n![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)\n  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)\nAbsolutely not. When you give your Aadhaar number to banks, mutual fund companies, and mobile phone companies, they only send your Aadhaar number along with your encrypted biometrics or OTP (given for authentication), or demographic details like your name, etc., to UIDAI for authentication of your identity. No account details are shared with UIDAI.\n\nAs far as UIDAI is concerned, it responds to such authentication requests by replying either ‘Yes’ or ‘No’.\n* ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)\nIn case of an e-KYC request by the requesting entity, if the authentication response is ‘Yes’, your basic KYC details (name, address, photo, etc.) available with UIDAI, are also sent to the requesting entity. UIDAI will never receive or collect the details of your bank, investments, insurance, etc.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

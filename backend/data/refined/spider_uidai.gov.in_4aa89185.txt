@@ -1,0 +1,136 @@
+URL: https://uidai.gov.in/ovse
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Offline Verification Seeking Entities](https://uidai.gov.in/hi/ovse)
+
+# Offline Verification Seeking Entity(OVSE)
+Offline verification refers to the framework that enables entities to perform Offline Verification of Aadhaar number holder for identity verification without connecting to the UIDAI’s CIDR (Central Identity Data Repository) . It allows secure, consent-based, and offline identity verification.
+Prominent Use Cases for Entities for Offline Verification
+1. Hospitality and Tourism  
+2. Healthcare  
+3. Gig Economy  
+4. Entertainment & Public Events  
+5. Real Estate and Housing  
+6. Education  
+7. Recruitment
+8. Facility Management  
+9. NGO and Trusts  
+10. Central and State Government departments  
+11. Fin tech Companies  
+12. Pilgrims Verification  
+13. Social/Community/Matchmaking  
+14. Or any other entity requiring Aadhaar offline verification
+Technical Requirement to become an OVSE
+  1. Logo in SVG format (<10Kb)*
+  2. A call back URL where UIDAI will post the response data*
+  3. Organization Name to be displayed in Aadhaar App*
+  4. Domain Name for verification*
+  5. Class 3 or 2, Public Certificate with 2 Year Validity*
+  6. Application ID - Android/iOS (App to App intent call)#
+
+* Mandatory Requirements   
+# Conditional Requirement (mandatory only in app-to-app intent cal)
+# Benefits of becoming a registered OVSE
+![generate-virtual-id.svg](https://backend.uidai.gov.in/get/files/media/document/2026-05/generate-virtual-id.svg)
+Option to verify complete or selective Aadhaar verified credentials
+![Service-icons-ovse.svg](https://backend.uidai.gov.in/get/files/media/document/2026-05/Service-icons-ovse.svg)
+Quick & seamless integration with Aadhaar application
+![Service-icons-clock.svg](https://backend.uidai.gov.in/get/files/media/document/2026-05/Service-icons-clock.svg)
+Improved efficiency and reduced operational costs
+![Service-icons-finger-print.svg](https://backend.uidai.gov.in/get/files/media/document/2026-05/Service-icons-finger-print.svg)
+Secure offline verification with savable output
+![Service-icons-cards.svg](https://backend.uidai.gov.in/get/files/media/document/2026-05/Service-icons-cards.svg)
+Proof-of-presence with offline face verification
+![Service-icons-cardboard.svg](https://backend.uidai.gov.in/get/files/media/document/2026-05/Service-icons-cardboard.svg)
+Lower compliance burden
+Instructions to Entities applying for OVSE Registration
+Entities seeking registration as an Offline Verification Seeking Entity (OVSE) to perform offline verification of Aadhaar number holder for lawful purpose may apply to the Authority in the prescribed application form.   
+  
+For Any Clarification/support reach out to: 
+Click here: [to read the Aadhaar (Authentication and Offline Verification) Regulations, 2021 (as amended in 2025).](https://backend.uidai.gov.in/get/files/media/document/2026-06/Regulation.pdf)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 May 2026
+Last Updated: 06 Oct 2026
+Owner: AU
+OVSE Actions
+[Apply for OVSE Registration![open](https://uidai.gov.in/assets/svgs/BlueArrowRight.svg) ](https://ovse.uidai.gov.in/)
+Download OVSE Handbook![download](https://uidai.gov.in/assets/svgs/icons/download.svg)
+OVSE Technology Service Providers (TSPs)![download](https://uidai.gov.in/assets/svgs/icons/download.svg)
+List of Registered OVSE & AUA/KUA![download](https://uidai.gov.in/assets/svgs/icons/download.svg)
+## In this section
+  * [Prominent Use Cases for Entities for Offline Verification](https://uidai.gov.in/hi/ovse#prominent-use-cases-for-entities-for-offline-verification)
+  * [Technical Requirement to become an OVSE](https://uidai.gov.in/hi/ovse#technical-requirement-to-become-an-ovse)
+  * [Benefits of becoming a registered OVSE](https://uidai.gov.in/hi/ovse#benefits-of-becoming-a-registered-ovse)
+  * [Instructions to Entities applying for OVSE Registration](https://uidai.gov.in/hi/ovse#instructions-to-entities-applying-for-ovse-registration)
+
+Frequently Asked Questions
+### 
+How can an entity become a registered OVSE?
+An entity willing to became OVSE may submit the application through https://ovse.uidai.gov.in/. UIDAI may register the entity as a registered OVSE, after verification of the submitted details.
+### 
+Can registered OVSE collect and store my verifiable credentials?
+Yes. A registered OVSE may collect and store verifiable credentials shared with the explicit consent of the Aadhaar Number Holder.
+### 
+Can offline verification be performed on behalf of another entity?
+No. Offline verification cannot be performed on behalf of another entity.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 May 2026
+Last Updated: 06 Oct 2026
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

@@ -1,0 +1,17 @@
+{
+  "id": "source_28_chunk_16",
+  "title": "Check Aadhaar validity",
+  "category": "general",
+  "keywords": [
+    "check",
+    "aadhaar",
+    "validity"
+  ],
+  "summary": "### Check Aadhaar validity\nClick here to validate the status of the Aadhaar.",
+  "documents": [],
+  "steps": [],
+  "warnings": [],
+  "source_url": "https://myaadhaar.uidai.gov.in/en_IN",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

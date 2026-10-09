@@ -1,0 +1,167 @@
+URL: https://uidai.gov.in/training-testing-and-certification
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Enrolment Ecosystem](https://uidai.gov.in/hi/enrolment-partners)
+  6. /
+  7. [Training, testing & certification](https://uidai.gov.in/hi/training-testing-and-certification)
+
+# Training, Testing and Certification
+UIDAI provides comprehensive training, testing and certification programs to ensure enrolment staff maintain quality and uniformity in Aadhaar enrolment and update processes. Certification is mandatory for roles such as Enrolment Supervisor/Operator and Child Enrolment Lite Client Operator.
+### 
+Introduction
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+UIDAI’s mandate is to provide a unique Aadhaar number to all the residents of India. For such a diverse and collaborative effort of successfully building the residents’ database, uniformity of Aadhaar Enrolment and Update process across the entire ecosystem of Registrars is very necessary. Achievement of such uniformity requires that the Enrolment Staff involved in the Aadhaar Enrolment or Update process at the field level is trained thoroughly to accomplish the job of enrolment. To address this need, UIDAI has developed a comprehensive Training Delivery Methodology and Training Content for all the stakeholders.
+UIDAI also believes that apart from training, there has to be a mechanism to assess the person’s skill and proficiency to work as an enrolment staff before the Enrolment Staff starts performing the Aadhaar Enrolment or Update. Considering this, UIDAI has prescribed mandatory Testing & Certification for enrolment personnel to ensure adherence to quality aspects. Currently, certification is available for the following roles:
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Enrolment Supervisor / Operator
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Child Enrolment Lite Client Operator
+
+### 
+Training Delivery
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+Training for the Enrolment Staff is provided mainly by the Registrar and Aadhaar Enrolment Agency to ensure quality of Enrolment and make them aware of all the processes involved in the Enrolment Ecosystem. Regional Offices (ROs) of UIDAI also deliver need based training through various programs like Classroom Training, Master Trainer’s Training/TOT and Orientation /Refresher program of EA staff.
+Mega Training Camps are also organized by ROs to create large pool of Enrolment Staff. The main objectives of the training are to make the Enrolment Staff understand how to setup and manage an Enrolment Centre, use various devices required for enrolment, familiarizing audience with the Aadhaar Enrolment Client and how to handle exceptional cases through these programs. The training content for self-study is available at UIDAI’s website for Enrolment Staff and other Stakeholders.
+### 
+Master Trainer’s Training/TOT
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+Master Trainer’s Training program or TOT (Training of Trainers) programs are intended to train the Master Trainer who can further train others in their respective domain. Registrar and Enrolment Agencies may nominate “Master Trainer” from their respective Department/Organization or use facilities of specialized Training Agency from time to time to gather knowledge related to any change in Aadhaar Enrolment Ecosystem. The ROs can also identify the Master Trainers from Advance Training Institute and their own resources such as SSAs, PSAs and ADGs apart from the nominated Master Trainers.
+To ensure that the trainers are proficient in the local languages and are aware of field learning at local level, Regional Offices has been given the responsibility of anchoring the programs in their respective States & UTs. The duration of these programs is fixed at 1-2 days as all the identified resources already possess the basic knowledge about Aadhaar processes and systems.
+Pool of Master Trainers trained in the TOTs will be available with the ROs/ Registrars / Enrolment Agencies/ Govt. Departments to train others stakeholders in their respective Department/ Organization thus offering benefits of the scale and size.
+### 
+Orientation/Refresher program
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+Orientation /Refresher Training Programs are intended only for the active Enrolment Agency Staff namely Supervisors or Operators or Child Enrolment Lite Operators involved in the enrolment process. Since these programs are meant for a target group that has a reasonably sound foundation, the duration of the program is fixed as 1 Day. These programs are being conducted in classroom mode and may be conducted once in every quarter by each Regional Office.
+These programs are conducted in the premises of ROs or some other place such as State Training Institutes etc. The Master Trainers act as the resource person to impart refresher training and content related to this is prepared by the Enrolment Division covering the exact change/process update. To access the learning of the participants, these programs may include a Test Session at the end of the program.
+### 
+Mega Training and Certification Program
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+These programs are conducted in places where the demand of large pool of Enrolment Supervisor/Operator/Operator CELC is required. The Training Session may be conducted by the Master Trainers available with the Regional Offices using the Training Content available on UIDAI website followed by a Certification Process through a Testing and Certification Agency engaged by UIDAI.
+### 
+Important Note:
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+  1. New Test Structure and Question Bank for taking exam of Aadhaar Supervisor/Operator and Child Enrolment Lite Client Operator (CELC) will be applicable from 10-1-2022. All the certification exams conducted by Testing and Certification Agency (M/s NSEIT Ltd) shall be as per the new pattern. All the candidates who scheduled their Certification Exam on or after 10-1-2022 are requested to download the new Test Structure, Question Bank(s) and related Leaner Guide(s) from the table given below for self study and preparing for the Certification Exam.
+  2. For verification purpose, candidates are advised to download latest copy of their e-Aadhaar from the website link <https://myaadhaar.uidai.gov.in> and carry the black & white/color print out of the same at NSEIT Ltd exam centre on date of exam.
+  3. As per UIDAI’s Testing and Certification Policy, "The candidates must schedule their test within 6 months of depositing the fee, failing which, their fee shall be forfeited and they shall not be allowed to appear for the test against that fee."
+  4. Candidates certified in Child Enrolment Lite Client will be able to work only on CELC application software and perform Child Enrolment. They will not be able to do any other type of enrolment using ECMP client. However, candidates certified as Operator/Supervisor will be able to work on both ECMP and CELC Client software. The minimum qualification for Operator/Supervisor or CELC Operator Certification is 12th pass. Only, in case of Aaganwadi/Asha workers the minimum qualification for CELC operator certification is 10th pass.
+  5. Certification is a mandatory requirement to perform Aadhaar enrolment and Update. Since UIDAI does not employ any certified candidate directly, all the Certified Candidates have to approach active Aadhaar Enrolment Agency to start Enrolment/Update work.
+  6. To register for Aadhaar ECMP Operator/Supervisor or CELC Operator Certification Exam on NSEIT Portal, candidates have to generate Offline Aadhaar XML file and share code from the following link - <https://myaadhaar.uidai.gov.in> and latest copy of e-Aadhaar having Virtual ID (VID) from the same link- <https://myaadhaar.uidai.gov.in>. The XML along with Share code and VID Number will be used for New User Registration on NSEIT UIDAI Exam Registration Page  
+  
+
+### 
+Testing and Certification of Enrolment Staff
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+**Test Structure:**
+UIDAI has appointed NSEIT Ltd as Testing and Certification Agency (TCA) to conduct online test to assess the individual's ability to carry out fresh Enrolments and Update existing information in accordance to UIDAI prescribed standards.
+UIDAI has provided Comprehensive Learner's Guide on “Aadhaar Enrolment and Update” for understanding important aspects of Aadhaar Enrolment and Update and providing -Orientation/ Refresher Training to Enrolment Staff. Separate Learner's guide particularly on “Aadhaar Update”, “Child Enrolment Lite Client”, “Roles and Responsibility of Verifier” is also available for specific training needs.
+For the aspirants interested getting certified as Enrolment Operator/ Supervisor or CELC Operator, Learner Guides, Question Banks in multiple languages and Test Structure is also provided for self study and preparing for the Online Certification Exam conducted by the Testing and Certification Agency.
+Post preparation, the Aspirants can visit NSEIT Portal (https://uidai.nseitexams.com/UIDAI/LoginAction.action) to get details of registration process, city wise Test Centers, Available dates for scheduling exam and other important details. A Test Fee of Rs. 470. 82 (including GST) and Retest Fee of Rs. 235.41 (including GST) has to be paid using Online Payment Facility provided on NSEIT Ltd Portal after successful registration. There shall be no additional transaction fee for using the Online Payment Facility. Enrolment Agencies/ Registrar may contact Training and Testing Division UIDAI H.Q. for Bulk Online Payment, Bulk Online Registration and Bulk Online Scheduling of their candidates.
+For any queries related to “Registration, Application form submission, Exam Fee, Exam Center/Exam Slot and Testing & Certification Application", Candidates can contact 022-42706500 or send in their queries at 
+As a part of the periodic revision of the training content with reference to the recent policy revisions, UIDAI has developed the updated and consolidated Training Handbook comprising of all the relevant topics related to Enrolment and Update operations.
+The updated Training Handbook and the associated Test Structure has been published in this section for the reference of the candidates aspiring to be certified as ECMP Operator cum Supervisor or CELC Operator. This Training Handbook will be the syllabus for the certification exams. This New Test Structure shall be effective from 10th January 2022 until the next revision gets published.  
+| **S. NO.**  | **Topic of Training Content**  | **Published Date**  | **Download**  |  
+| --- | --- | --- | --- |  
+| 1  | Handbook for Ecosystem Partners (Registrars/ Enrolment Agencies (EAs)/ Supervisors/ Verifiers)  
+(applicable from 01st January, 2022)  | 01st December, 2021  |  [English Doc. Type:- PDF, Doc. Size 6.5 MB](https://backend.uidai.gov.in/get/files/media/document/2026-06/UIDAI_Handbook_for_Ecosystem_Partners_English.pdf) | [Hindi Doc. Type:- PDF, Doc. Size 7 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Hindi.pdf)| [Assamese Doc. Type:- PDF, Doc. Size 7.7 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Assamese.pdf)| [Bengali Doc. Type:- PDF, Doc. Size 7.8 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Bengali.pdf)| [Gujarati Doc. Type:- PDF, Doc. Size 7.4 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Gujarati.pdf)| [Malayalam Doc. Type:- PDF, Doc. Size 8.8 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Malayalam.pdf)| [Tamil Doc. Type:- PDF, Doc. Size 7.1 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Tamil.pdf)| [Kannada Doc. Type:- PDF, Doc. Size 7.1 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Kannada.pdf)| [Marathi Doc. Type:- PDF, Doc. Size 7.0 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Marathi.pdf)| [Punjabi Doc. Type:- PDF, Doc. Size 7.3 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Punjabi.pdf)| [Odia Doc. Type:- PDF, Doc. Size 6.8 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Odiya.pdf)| [Telugu Doc. Type:- PDF, Doc. Size 7.3 MB ](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Telugu.pdf)| [Urdu Doc. Type:- PDF, Doc. Size 14 MB](https://backend.uidai.gov.in/get/files/media/document/2026-05/UIDAI_Handbook_for_Ecosystem_Partners_Urdu.pdf)  |  
+| 2  | New Test Structure for ECMP Operator cum Supervisor/CELC Operator certification  
+(applicable from 01st January, 2022)  | 01st December, 2021  | [English Doc. Type:- PDF, Doc. Size 0.4 MB](https://backend.uidai.gov.in/get/files/media/document/2026-05/New_Test_Structure_effective_from_01st_January_2022.pdf)  |  
+**Note:** The content in the Training handbook may slightly differ from the actual practice in the field as there could have been revision in the policy during the period the new content was getting developed and published. Candidates are requested to refer the content in the handbook only for their exam preparation.
+### 
+Training, Testing and Certification
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+Annual Training Calendar 2026-27 (PDF, 5.4 MB)
+Doc Type: PDF• Size: 5.42 MB• Uploaded On: 23-05-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+### 
+Training, Testing and Certification Documents
+![expand](https://uidai.gov.in/assets/svgs/AccordionArrow.svg)
+UIDAI provides comprehensive training, testing and certification programs to ensure enrolment staff maintain quality and uniformity in Aadhaar enrolment and update processes. Certification is mandatory for roles such as Enrolment Supervisor/Operator and Child Enrolment Lite Client Operator.
+View All![View All](https://uidai.gov.in/assets/svgs/icons/ArrowLeftBlue.svg)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 Apr 2026
+Last Updated: 25 Sep 2026
+Owner: TT&C
+## In this section
+  * [Introduction](https://uidai.gov.in/hi/training-testing-and-certification#introduction)
+  * [Training Delivery](https://uidai.gov.in/hi/training-testing-and-certification#training-delivery)
+  * [Master Trainer’s Training/TOT](https://uidai.gov.in/hi/training-testing-and-certification#master-trainer-s-training-tot)
+  * [Orientation/Refresher program](https://uidai.gov.in/hi/training-testing-and-certification#orientation-refresher-program)
+  * [Mega Training and Certification Program](https://uidai.gov.in/hi/training-testing-and-certification#mega-training-and-certification-program)
+  * [Important Note:](https://uidai.gov.in/hi/training-testing-and-certification#important-note)
+  * [Testing and Certification of Enrolment Staff](https://uidai.gov.in/hi/training-testing-and-certification#testing-and-certification-of-enrolment-staff)
+  * [Training, Testing and Certification Documents](https://uidai.gov.in/hi/training-testing-and-certification#training-testing-and-certification-documents)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 Apr 2026
+Last Updated: 25 Sep 2026
+Owner: TT&C
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

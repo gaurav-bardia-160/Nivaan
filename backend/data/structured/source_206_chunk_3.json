@@ -1,0 +1,18 @@
+{
+  "id": "source_206_chunk_3",
+  "title": "Download or Order Card",
+  "category": "general",
+  "keywords": [
+    "download",
+    "or",
+    "order",
+    "card"
+  ],
+  "summary": "## Download or Order Card\n![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/download-aadhaar.svg)\nDownload Aadhaar\nGet your Aadhaar instantlyMobile OTP is required\n![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)\nFree\n![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/order-aadhaar-pvc-card.svg)\nOrder Online PVC card\nDurable, easy-to-carry mode of AadhaarMobile OTP is required\n![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)\n₹ 75",
+  "documents": [],
+  "steps": [],
+  "warnings": [],
+  "source_url": "https://uidai.gov.in/en/my-aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

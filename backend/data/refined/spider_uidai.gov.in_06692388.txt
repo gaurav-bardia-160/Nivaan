@@ -1,0 +1,303 @@
+URL: https://uidai.gov.in/aadhaar-seva-kendra
+
+1. [Home](https://uidai.gov.in/hi)
+  2. /
+  4. /
+  5. [Enrolment Ecosystem](https://uidai.gov.in/hi/enrolment-partners)
+  6. /
+  7. [Aadhaar Seva Kendra](https://uidai.gov.in/hi/aadhaar-seva-kendra)
+
+# Aadhaar Seva Kendra
+The Unique Identification Authority of India (UIDAI) has set up exclusive ‘Aadhaar Seva Kendra’ or ASK as a single stop destination for all Aadhaar services for the individuals seeking to enrol and Aadhaar number holders. The ASK will offer dedicated Aadhaar enrolment and update services in a state-of-the-art environment.
+![Card image](https://backend.uidai.gov.in/get/files/media/document/2026-06/Aadhaar_Seva_Kendra.webp)
+In the first phase of the Aadhaar Seva Kendra project, UIDAI has opened Aadhaar Seva Kendra in 78 districts across India. These include dedicated centres in all metro cities, all state capitals and Union Territories. These ASK will run along with over 66,000 Aadhaar Kendra already being run by banks, post offices, BSNL and state governments.
+Aadhaar Services available at Aadhaar Seva Kendra
+Aadhaar Seva Kendra offer a comfortable air-conditioned environment to individuals seeking to enrol and Aadhaar number holders. All ASK are wheel-chair friendly and have special provisions to service the elderly or specially-abled. ASK are open all 7 days of the week from 9:30 a.m. to 5:30 p.m. (IST).
+Individuals seeking to enrol and Aadhaar number holders can visit any convenient Aadhaar Seva Kendra for the following services:
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Aadhaar Enrolment
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Update of any Demographic Information in their Aadhaar - Name, Address, Gender, Date of Birth, Mobile number or Email Id
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Update of Biometric data in their Aadhaar – Photo, Fingerprints and Iris Scans
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Download & Print Aadhaar
+  * ![arrow](https://uidai.gov.in/assets/svgs/icons/ArrowBullet.svg)
+Document update (POI and POA)
+
+These services are available for any individuals seeking to enrol and Aadhaar number holders of India (including NRIs) at any Aadhaar Seva Kendra across the country.
+Online appointment for Aadhaar Services
+Along with the Aadhaar Seva Kendra project, UIDAI launched the online appointment booking facility for individuals seeking to enrol and Aadhaar number holders. All UIDAI-run Aadhaar Seva Kendra follow the online appointment system where any individual seeking to enrol or Aadhaar number holder can book an appointment for Aadhaar enrolment or update at any convenient ASK.
+Any individual seeking to enrol or Aadhaar number holder can book an appointment for themselves or a family member from [https://bookappointment.uidai.gov.in](https://bookappointment.uidai.gov.in/). This is a free of cost service where a individual seeking to enrol or Aadhaar number holder does not require Aadhaar registered mobile number. However, one individual seeking to enrol or Aadhaar number holder can book a maximum of 2 appointments in a month.
+Service Process at Aadhaar Seva Kendra
+As per defined model per district, the Aadhaar Seva Kendra have 4/8/16 operator stations with the capacity to handle up to 160/320/640 service requests per day.
+The ASK follow an online Appointment Management System (AMS) for an individual seeking to enrol or Aadhaar number holder who choose to book their appointment prior to visiting. At ASK Token Management System (TMS) for booked appointments and for the walk-in appointments for individuals seeking to enrol or for Aadhaar number holders at the ASK is enabled. The last token for the day is given at 5:30 pm everyday.
+The below image gives a 6 step process of how any individuals seeking to enrol or Aadhaar number holder can update their details in their Aadhaar:
+![Card image](https://backend.uidai.gov.in/get/files/media/document/2026-05/Ask_Service_Process_Banner_0.webp)
+A detailed process video of the services at ASK is available here: 
+Each Aadhaar Seva Kendra has an Operations Manager and a Centre Manager. In case, any individual seeking to enrol or Aadhaar number holder has any grievance, they can contact either of these. Further, they can also reach UIDAI Help Centre at 1947 or write to 
+Charges for Aadhaar Services at Aadhaar Enrolment Centre
+UIDAI has defined the charges to be paid by any individual seeking to enrol or Aadhaar number holder wishing to avail Aadhaar Services at any Aadhaar Enrolment Centre of their choice. These are:
+Aadhaar Enrolment: Free
+Aadhaar Update Charges  
+(1) Biometric update: Update of enrolled biometrics (fingerprint, iris and photo)  
+(i) If done first time between the age of 5 to 7 years: Free#  
+(ii) If done first or second time between the age of 15 to 17 years: Free#  
+(iii) If done otherwise: ₹125* (*If done between the age of 7 to 15 years: Free, till 30.9.2027)
+(2) Demographic update: Update of enrolled name, gender, date of birth, address, mobile number or email address, or any combination of the same  
+(i) If done at the same time with biometric update: Free  
+(ii) If done separately: ₹75
+(3) PoA/PoI Document Update (Submission of documents as proofs of identity and address, in support of the name, gender, date of birth and address as enrolled)  
+(i) At Aadhaar centre: ₹75  
+(ii) Using myAadhaar portal ([https://myaadhaar.uidai.gov.in/du](https://myaadhaar.uidai.gov.in/du/en_IN)): Free (till 14.06.2027)
+(4) Aadhaar Search using eKYC/ Find Aadhaar/any other tool & colour printout on A4 Sheet)  
+(i) Download Aadhaar & Coloured Print: ₹40
+# Mandatory Biometric Update (MBU) shall be stand-alone transaction only; it may not be clubbed with any other transaction
+These charges are inclusive of any applicable taxes. For fee details you can also visit [Aadhaar Enrolment & Update Charges](https://backend.uidai.gov.in/get/files/media/document/2026-05/Aadhaar_Enrolment__and__Update__-__English.pdf).The Aadhaar number holders can make the payment at ‘Cash Counter’ available at the ASK or make online payment (to be launched soon) at the time of booking online appointment from UIDAI website.
+List of Aadhaar Seva Kendra
+As on date, the following UIDAI-run Aadhaar Seva Kendra are functional across India:  
+| **S. No.**  | **State/ UT**  | **District**  | **ASK Address**  |  
+| --- | --- | --- | --- |  
+| 1  | Delhi  | East Delhi  | Akshardham Metro station, Ground floor, Parsharvanath Mall, Delhi -110092  |  
+| 2  | Rajasthan  | Jodhpur  | Ansal Royal Plaza, Sri Ganganagar, Jodhpur - 342001  |  
+| 3  | Madhya Pradesh  | Indore  | Ground Floor,Abhay Prashal Complex, Landmark Abhay Prashal sports club, Indore, Madhya Pradesh, 452003  |  
+| 4  | Chandigarh  | Chandigarh  | Sco 57,58,59 Ground floor Sector 17A Chandigarh - 160017  |  
+| 5  | Jammu And Kashmir  | Srinagar  | Ground Floor, NB House,Commercial Complex, Exchange Road, Landmark Lal Chowk Srinagar, Jammu and Kashmir, 190001  |  
+| 6  | Uttar Pradesh  | Gautam Buddha Nagar  | Lower Ground Floor Galaxy Blue Sapphire Plaza, Gautam Buddha Nagar, Uttar Pradesh, 201301  |  
+| 7  | Uttar Pradesh  | Saharanpur  | No. 1, Pant Vihar Colony, Opposite Sahiram Hospital ITC  
+, Saharanpur, Uttar Pradesh, 247001  |  
+| 8  | Rajasthan  | Jaipur  | First Floor, Orbit Mall, Landmark Civil Lines Metro Station, Jaipur, Rajasthan, 302006  |  
+| 9  | Dadra & Nagar Haveli and Daman & Diu  | Daman  | Nawkar, Survey No.502/1, Landmark Dabhel Check Post  
+, Daman, Dadra and Nagar Haveli and Daman and Diu, 396215  |  
+| 10  | Uttar Pradesh  | Agra  | M-808 Ground Floor, Bye Pass Road, Nh-2 Khandari Chauraha, Near Sagar Ratna, Agra - Uttar Pradesh 282003  |  
+| 11  | Uttar Pradesh  | Lucknow  | Ratan Square Building, Hazratganj, Vidhan Sabha Road-Lucknow, Landmark Burlington Chauraha  
+, Lucknow, Uttar Pradesh, 226001  |  
+| 12  | West Bengal  | Malda  | Ground Floor, BSNL ADMINISTRATIVE BUILDING, ENGLISH BAZAR, NEAR SBI MAIN BRANCH. BESIDE DM OFFICE, MALDA - 732101, WEST BENGAL  |  
+| 13  | West Bengal  | Howrah  | Room No. 207,2nd Floor,Webel IT Park, Ankurhati PO-Makardaha  
+, Howrah, West Bengal, 711409  |  
+| 14  | West Bengal  | Darjeeling  | Ground Floor, Mallar Mukherjee Building, Near Mukharji Hospital, Behind Meghdoot CInema, S B Sarani Ward no. XI, Rajni Bagan, Siliguri, West Bengal, 734001  |  
+| 15  | Bihar  | Bhagalpur  | Ground Floor, Gayatri Super Market, Surkhikal Road, Tilkamanjhi Chowk  
+, Bhagalpur, Bihar, 812001  |  
+| 16  | Andhra Pradesh  | Kakinada  | 2nd Floor, Bank of Baroda Building, Temple Street Opp. Tripura Sundari Temple, Temple Street, Kakinada, Kakinada, Andhra Pradesh, 533004  |  
+| 17  | Chhattisgarh  | Raipur  | T-9T-10, Third Floor, Shyam Plaza, Main Road Opposite Pandari Bus Stand, Raipur, Chhattisgarh, 492001  |  
+| 18  | Telangana  | Hyderabad  | First floor, Shop No. S01EE, Moosarambagh Metro Station , Saroor Nagar, Hyderabad, Telangana, 500036  |  
+| 19  | Telangana  | Warangal  | 2nd Floor, Shop No. 7,8 & 9, Kandakatla Gate Way, KU Cross, Naimnagar, Hanamkonda, Warangal - 506 009  |  
+| 20  | Maharashtra  | Thane  | F-103, 104, First Floor, Tower No. 4, International Info Tech Park Vashi Railway Station Navi Mumbai - 400705  |  
+| 21  | Uttar Pradesh  | Gonda  | BSNL Care, Bus Station Road, Azad Nagar, Gonda  
+, Gonda, Uttar Pradesh, 271003  |  
+| 22  | Tripura  | West Tripura  | Banamalipur , Jail Road, Opp Najrul Kalakhetra, Agartala  
+, West Tripura, Tripura, 799001  |  
+| 23  | Assam  | Bongaigaon  | Uday Chand Mulchand Acharya,Sri Tulsi Marg, Bongaigaon, Assam, 783380  |  
+| 24  | Rajasthan  | Kota  | Retail Store 1, Ground Floor, Plot No. 3-4 ,Platina Rajat City Group, Maharan Pratap Circle,Kunhadi  
+, Kota, Rajasthan, 324008  |  
+| 25  | Bihar  | Purnia  | Ground Floor, Below Patanjali Store, Shree Nayak Hotel Campus, Near Jail Chowk  
+, Purnea, Bihar, 854301  |  
+| 26  | Punjab  | Ludhiana  | Ground Floor 3268/700, Chet Sing Nagar, Opp Grewal Hospital,Main Gil lRoad  
+, Ludhiana, Punjab, 141003  |  
+| 27  | Madhya Pradesh  | Bhopal  | 14,Narayan Nagar, Opposite Barkatullah University , Narmadapuram road, Bhopal, Madhya Pradesh, 462026  |  
+| 28  | Assam  | Kamrup Metro  | One Beltola Building, 2nd Floor, Ankur Path, Dr Bhabendra Nath Saikia Road, Survey-Beltola  
+, Kamrup Metro, Assam, 781028  |  
+| 29  | West Bengal  | Nadia  | Holding Number - 34/A, Street Name - M. M. Ghosh Street, Sadar Hospital More, Opposite of Cosmo Bazar  
+, Nadia, West Bengal, 741101  |  
+| 30  | Maharashtra  | Nashik  | Plot no. 42, Ground floor Lunge Mangal Karyalay, Swami Narayan Nagar, Near Apollo Hospital, Mumbai Agra Road, Panchvati  
+, Nashik, Maharashtra, 422003  |  
+| 31  | Karnataka  | Bengaluru  | 1st Floor, D.No 141, 5th Sector, HSR Layout, Outer Ring road  
+, Bengaluru, Karnataka, 560102  |  
+| 32  | Karnataka  | Dakshina Kannada  | F23, Mak Mark Building Ground Floor Near Father Muller Charitable Institution, Opp. Pumpwell, Mahaaveer Circle Ma  
+, Dakshina Kannada, Karnataka, 575002  |  
+| 33  | Himachal Pradesh  | Shimla  | Eastlin Complex Upper Ground Floor, SDA Complex, Kasumpti, Shimla, Himachal Pradesh, 171009  |  
+| 34  | Gujarat  | Ahmedabad  | 105,First Floor,Sukun Business Center,Commercial College Road, Navrangpura Near Swatik Char Rasta,  
+, Ahmedabad, Gujarat, 380009  |  
+| 35  | Uttar Pradesh  | Kanpur Nagar  | BSNL office Upper Ground floor, Mall road, Opposite SBI Kanpur,  
+, Kanpur Nagar, Uttar Pradesh, 208001  |  
+| 36  | West Bengal  | Murshidabad  | 20 KP, Chattaraj Road, Gora bazar, P.OP.S Berhampore  
+, Murshidabad, West Bengal, 742101  |  
+| 37  | Delhi  | South Delhi  | 45, Opposite Panchshila Rendezvous, Main Market Road, Malviya Nagar  
+, South Delhi, Delhi, 110017  |  
+| 38  | Uttar Pradesh  | Moradabad  | Oil Mill Compund,Budhi Vihar, Opposite Public Dharm Kata  
+, Moradabad, Uttar Pradesh, 244001  |  
+| 39  | Uttar Pradesh  | Meerut  | Ground Floor, Shop no 1 to 7 Mayfair Plaza, Baghpat Road, Meerut, Uttar Pradesh, 250002  |  
+| 40  | Andhra Pradesh  | N. T. R  | D No- 33-21-32,Kothagundla Plaza,Aditya Multispeciality dental Clinic,Seetharampuram,Opp Indian Petrol Bunk, , Beside Ramcor  
+, N. T. R, Andhra Pradesh, 520004  |  
+| 41  | Arunachal Pradesh  | Papum Pare  | Ground Floor, Riba mansion, under Pass Road Bank Tinali Itanagar , near MPJ Jewellers SBI ATM  
+, Papum Pare, Arunachal Pradesh, 791111  |  
+| 42  | Delhi  | North West Delhi  | DMRC Lal Bagh, Azadapur, Near Metro Station Azadpur  
+, North West Delhi, Delhi, 110033  |  
+| 43  | Meghalaya  | East Khasi Hill  | Lumsohphoh, Block 6, Nongthymmai, Near P. Marbaniang Petrol Pump, Shillong,, East Khasi Hills, Meghalaya, 793014  |  
+| 44  | Bihar  | Muzaffarpur  | ARC school building,Sadatpur,purani Motihari road, landmark In front of Middle school  
+, Muzaffarpur, Bihar, 843108  |  
+| 45  | Telangana  | Ranga Reddy  |    
+Reliance Cyber Ville, PLOT No-17 to 24/D No.1-90/8/RC/G-1 To 403, Vittal Rao Nagar, Madhapur, Hyderabad - 500081  |  
+| 46  | Odisha  | Khorda  |    
+A/167, GROUND FLOOR, SAHEED NAGAR, BHUBANESWAR, ODISHA-751007  |  
+| 47  | Andhra Pradesh  | Visakhapatnam  |    
+3rd Floor, Grand Palace, Dwaraka Nagar, Lane-1, Beside Hotel Sarovar, Visakhapatnam, Andhra, Pradesh-530016.  |  
+| 48  | Jammu And Kashmir  | Jammu  |    
+Ground floor, Chanderbagha Municipal Corporation hall, Canal Road, Talab Tillo Area, Jammu-180016  |  
+| 49  | Delhi  | South West Delhi  |    
+Ground Floor, Dhaula Kuan Metro station, Dhaula Kuan Enclave-1, Dhaula Kuan, New Delhi - 110010  |  
+| 50  | Punjab  | Amritsar  |    
+Plot No XVII near Navjot Public School Batala Road, Amritsar – 143001  |  
+| 51  | Jharkhand  | Dhanbad  |    
+UNIVISTA TOWER, MAIN ROAD SARAIDHELA, NEAR BIG BAZAR SAHYOGI NAGAR SECTOR 1 DHANBAD 828127  |  
+| 52  | Jharkhand  | East Singhbhum  |    
+Ho no- 8D1, Old purulia Road Mango Jamshedpur, Near Prakash General Store , East Singhbhum 831012  |  
+| 53  | Maharashtra  | Nagpur  | Aadhaar Seva Kendra, TCS Passport Office Bilquis Plaza Sadiqabad Mankapur Nagpur - 440030  |  
+| 54  | Jharkhand  | Ranchi  |    
+2nd Floor, Estate Plaza, Behind Mangal Tower, Near Kantatoli Chowk, Kokar Road, Ranchi, Jharkhand  |  
+| 55  | West Bengal  | Cooch Behar  |    
+Administrative building, COB, Sagardighi Square, Debibari Road, Cooch Behar-736101  |  
+| 56  | Uttar Pradesh  | Prayagraj  | US Tower 42/24/1 First Floor, in front of Legend Hotel, Civil Lines, Civil Lines, Prayagraj-211001  |  
+| 57  | West Bengal  | Paschim Bardhaman  | Asansol Sentrum Office Building,   
+1st Floor, Shristinagar, Sen Raleigh Road,   
+Asansol (Beside Sentrum Mall), PIN – 713305  |  
+| 58  | Maharashtra  | Aurangabad  | Office No.3, Ground Floor, Ghai Chambers, Backside  
+of ICICI Bank, Near CIDCO Bus Stand Bridge, Chhatrapati  
+Sambhajinagar, Maharashtra 431003  |  
+| 59  | Uttarakhand  | Dehradun  | Ground floor, Townhouse, Patel Nagar, Near sharanpur chowk, Near Police Station -Lakhilbagh, Police station, Dehradun-248001, Uttarakhand  |  
+| 60  | Assam  | Dibrugarh  | Dibrugarh H.S Road, Rangghar Plaza, 2nd floor , Landmark - PNB Bank, , Assam -786001  |  
+| 61  | Delhi  | North West Delhi  | Plot No. ND3,near DAV public school,Pitampura New Delhi-110034  |  
+| 62  | West Bengal  | North 24 Parganas  | Centre for Excellence, Plot No. X-1.2 & 3,   
+Block EP, Sector V, Salt Lake,   
+Kolkata, West Bengal, India – 700091  |  
+| 63  | Tamil Nadu  | Madurai  | Jai Shanmuga Complex, 10, Vinayaga Nagar, Melur Main Road, K.K. Nagar, Madurai-625020  |  
+| 64  | Karnataka  | Mysuru  | Deeksha's Setty Mansion  
+No. 991/2 CH-34/2 991/3 CH-34/3 991/4 CH-34/4, SithaVilas Road, Chamraja Mohalla, Mysore - 570004  |  
+| 65  | Assam  | Lakhimpur  | Main College Road, Khelmati, Ward 14, North Lakhimpur, Assam - 787031  |  
+| 66  | Gujarat  | Surat  | Tulsi Krupa Arcade- First Floor,   
+Near Aia Mata Chowk- Puna Kumbhaiya Road,   
+Parvat Patia- Surat-395010.  
+Gujarat.  |  
+| 67  | Tamil Nadu  | Chennai  | TNUIFS Towers, 1st Floor (Left Wing), Block H1, 3rd Avenue, Annanagar East, Chennai- 600102  |  
+| 68  | Karnataka  | Davangere  | Sampige Karadagi complex, #975, Ashoka road, 2nd cross KB Extension,  
+Davangere - 577002  |  
+| 69  | Uttar Pradesh  | Ghaziabad  | Shahibabad Pocket C, NCRTC Metro Station, near gate no. 3, Ghaziabad-201010  |  
+| 70  | Uttar Pradesh  | Gorakhpur  | RR Builder Besides Reliance Digital ,PO Kunraghar, Mohaddipur, Gorakhpur -273008  |  
+| 71  | Haryana  | Hisar  | SCO-43, First Floor, Sector 13, Main Parking, Tosham Road, Dabra Chowk, Hisar-125001  |  
+| 72  | Karnataka  | Dharwad  | Jolad Building, Beside SBI Bank, opp. Railway officers Rest House, Bhavani Nagar, Keshwapur, Hubballi, Karnataka 580023  |  
+| 73  | Kerala  | Ernakulam  | 1st Floor, Kochery Chambers, Old Railway station road, adjacent to Income Tax Office, Kacheripady, Ernakulam, Kerala – 682018  |  
+| 74  | Maharashtra  | Mumbai Suburban  | Dattani Plaza, Gala No C-14, Ground Floor, Behind East West Industrial Estate, K. A. Road, Safed Pool, Sakinaka, Village Mohili, Andheri East, Mumbai - 400072  |  
+| 75  | Assam  | Cachar  | BIRENDRA BHAWAN, HOUSE NO. 113, VIVEKANANDA ROAD, SILCHAR, DISTRICT CACHAR, ASSAM 788007, NEAR PRONOTI MEDICOS, PS SADAR  |  
+| 76  | DD&DN  | Dadra and Nagar Haveli  | Shop no.1,2,34, Ground Floor, Center Point, Opp. Pipariya Police Station, Near Ring road, Amli, Silvassa 396230.  |  
+| 77  | Bihar  | Patna  | Shakti tower, 1st floor, Shivpuri, Tej Pratap Nagar, Patna, Bihar 800032  |  
+| 78  | Uttar Pradesh  | Varanasi  | D65/243, C-1-A, Lahartara, DLW Road, Varanasi - 221002  |  
+| 79  | Uttar Pradesh  | Aligarh  | shanti complex, G.T. Road Naurangabad Near Etah Chungi , near suman hospital Aligarh UP - 202001  |  
+| 80  | Uttar Pradesh  | Ayodhya  | BSNL Office, Lajpat Nagar, Near Nagar Nigam, Faizabad, Ayodhya UP - 224001  |  
+| 81  | Odisha  | Bhadrak  | Jayanti Tower, Ground Floor, Plont No-672, At-Mathasahi, Dahanigadia, Near Bajaj showroom, National Highway - 16, P.O- Charampa, Bhadrak, Odisha-756101  |  
+| 82  | Karnataka  | Bidar  | D. No : 19-6-215/1A, Upper ground Floor, Near Central Bus Station, Papnash Gate, NGO 1st Cross Shiv Nagar North Bidar 585401  |  
+| 83  | Jharkhand  | Bokaro  | Plot No 7710/7898 Ground Floor, Landmark - Near Neelam Hospital, ward No - 18 , Mohalla - Bhagwati Colony, Post - Chas, Police Station Chas, Block - Chas, District - Bokaro , Jharkhand-827013  |  
+| 84  | Jammu And Kashmir  | Budgam  | Al-Hassan Shopping Complex, Shop No. 2, Railway Approach Road, Budgam, Jammu & Kashmir-191111  |  
+| 85  | Rajasthan  | Dausa  | Ground Floor, New Building, Near oswal Petrol Pump, Jaipur Road, Dausa, Rajasthan-303303  |  
+| 86  | Jharkhand  | Deoghar  | Ground Floor, Rikhiya Road, Ward No 26, Mohalla - Kalika Vihar, Landmark Bhurbhura More, Deoghar, Jharkhand - 814112  |  
+| 87  | Maharashtra  | Dhule  | Padmshree Tower, vijay police colony, wadibhokar road, near Dhule panchayat samiti Dhule - 424002  |  
+| 88  | Sikkim  | East Sikkim  | Tadong Bazar, Near vishal Mega Mart, In front of Kailash flour Mill Gangtok, Sikkim Pin- 737102  |  
+| 89  | Uttar Pradesh  | Etawah  | Madhav Avenue, Vivek Vihar, Farukkhabad Road, shubh Hospital Near JK Hospital, Etawah- 206001  |  
+| 90  | Madhya Pradesh  | Jabalpur  | Plot No 909, Link Road/Ladli Laxmi Path, Sneh Nagar, Kamla Nehru Nagar Ward, Jabalpur , M.P- 482002  |  
+| 91  | Rajasthan  | Jalor  | 1st floor sankalp complex, plot no 12, One, Way , Road, cross , Manpura Colony, Jalore, Rajasthan 343001  |  
+| 92  | Tamil Nadu  | Krishnagiri  | Azad Nagar, Venkatapuram, Near kotak mahindra bank, Krishnagiri - 635001  |  
+| 93  | Uttar Pradesh  | Mainpuri  | Madhav Guest House, Agrawal Mohalla, Mainpuri, Auden Padariya, Uttar Pradesh 205001  |  
+| 94  | Uttar Pradesh  | Mirzapur  | BSNL office Angarh Raod, Dankinganj, Mirzapur-231001  |  
+| 95  | Uttar Pradesh  | Muzaffarnagar  | Adhar Sewa Kendra Deepak Palace, Roorki Road, Muzaffar Nagar- 251001  |  
+| 96  | Rajasthan  | Nagaur  | Hardin Manda Tower, Ground Floor, Near Nakash Gate, Mahila Police Station Ke Samne, Nagaur 341001  |  
+| 97  | Uttar Pradesh  | Rae Bareli  | Malikamau, Sultanpur Road, Raebareli- 229010  |  
+| 98  | Madhya Pradesh  | Raisen  | House No-11, Ward No-4, VIP Colony, Bharat Nagar sanchi road Raisen, MP 464551  |  
+| 99  | Madhya Pradesh  | Rajgarh  | Beside labour Office, Post Office road, Bus stand Rajgarh , M.P- 465661  |  
+| 100  | Gujarat  | Rajkot  | Pragati Plaza infornt of Shivani Hospital, Dhebar Road and Shree Swaminarayan Gurukul Rajkot Sansthan, Gujarat-360002  |  
+| 101  | Bihar  | Saharsa  | Ground Floor, Landmark - Near DAV Public School, Ward No-29, Mohalla- Hatiya Gachhi, Post - Saharsa, Block-Kahra, District- saharsa, Bihar-852201  |  
+| 102  | Rajasthan  | Sikar  | Office no 103/104 First Floor, Shiv Mandir Cine Mall, Ramdev Singh Maharia Marg, Fatehpur Road, Sikar, Rajasthan - 332001  |  
+| 103  | Tamil Nadu  | Tirunelveli  |  Plot No-1/1 Vasantham Nagar, Near Sceince Center Opposite of Devi Hospital, Kokkirakulam, Tirunelveli TN-627009  |  
+| 104  | Rajasthan  | Udaipur  | Plot No 17, The Vimla heights, Ground Floor, Main Road, Near Jadao nursery, Sec - 8 , Hiran Magri, Udaipur, Rajasthan 313002  |  
+| 105  | Madhya Pradesh  | Ujjain  | c/108 Mahakal vanijya kendra nanakheda near cosmos mall ujjain- 456010  |  
+| 106  | Uttar Pradesh  | Unnao  | 1073 Adarsh Nagar, Near Utsav Lawn, Unnao UP 209801  |  
+| 107  | Tamil Nadu  | Vellore  | 306 A , 1 st Floor , Near Palar River, kappadi Main Road, Durgam Bhatt, Sri Balaji Complex, Viruthanpattu Vellore- 632006  |  
+| 108  | Madhya Pradesh  | Vidisha  | H.no 108 , Ward NO 28 , Durga Nagar Main Road, Opposite Indian Bank, Vidisha, Madhya Pradesh-464001  |  
+| 109  | Tamil Nadu  | Villupuram  | Door No-16 , first Floor, Lakshmi Tower , North Street, Villupuram - 605602  |  
+| 110  | Karnataka  | Vijayapura  | Ashram Rd, opp. BLDE HOSPITAL,beside,Gacchina kattiColony,Vijayapura,  
+Karnataka 586103  |  
+| 111  | Kerala  | Thrissur  | CKM heights, Vasanth Nagar, Patturaikkal, Thrissur, Kerala 680022  |  
+| 112  | Puducherry  | Puducherry  | Sindhu Plaza,No.108, 100 Ft Road, Ozhanthaikeerai Palayam, Muthaliar pettai post, Puducherry - 605004  |  
+| 113  | Uttar Pradesh  | Sitapur  | Ground Floor, Lashamanpur near Navin Chouk, Hardoi Bypass, Sitapur 261001  |  
+| 114  | Uttar Pradesh  | Azamgarh  | GRAM KODAR AZAMATPUR BLOCK PALHANI DIST SADAR, AZAMGARH BY PASS ROAD AZAMGARH UP 276001  |  
+| 115  | Uttar Pradesh  | Ghazipur  | R kachaari Road Mauhabag apheem factory ke samne ,Ghazipur-233001  |  
+| 116  | Uttar Pradesh  | Hathras  | Ground Floor, No 5/5, Agra Road, Opp. MG Polytechnic, Avas Vikas Colony, Hathras- 204101  |  
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 Apr 2026
+Last Updated: 01 Oct 2026
+Owner: E&U
+## In this section
+  * [Aadhaar Services available at Aadhaar Seva Kendra](https://uidai.gov.in/hi/aadhaar-seva-kendra#aadhaar-services-available-at-aadhaar-seva-kendra)
+  * [Online appointment for Aadhaar Services](https://uidai.gov.in/hi/aadhaar-seva-kendra#online-appointment-for-aadhaar-services)
+  * [Service Process at Aadhaar Seva Kendra](https://uidai.gov.in/hi/aadhaar-seva-kendra#service-process-at-aadhaar-seva-kendra)
+  * [Charges for Aadhaar Services at Aadhaar Enrolment Centre](https://uidai.gov.in/hi/aadhaar-seva-kendra#charges-for-aadhaar-services-at-aadhaar-enrolment-centre)
+  * [List of Aadhaar Seva Kendra](https://uidai.gov.in/hi/aadhaar-seva-kendra#list-of-aadhaar-seva-kendra)
+
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/hi/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 13 Apr 2026
+Last Updated: 01 Oct 2026
+Owner: E&U
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/hi/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/hi/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)
+  * [Circulars](https://uidai.gov.in/hi/circulars)
+  * [ Policies](https://uidai.gov.in/hi/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/hi/ovse)
+
+  * [Site Map](https://uidai.gov.in/hi/site-map)
+  * [Website Policies](https://uidai.gov.in/hi/website-policies)
+  * [Website Help](https://uidai.gov.in/hi/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026

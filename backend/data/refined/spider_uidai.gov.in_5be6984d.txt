@@ -1,0 +1,83 @@
+URL: https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en
+
+![Government of India](https://myaadhaar.uidai.gov.in/static/media/uidai_english_logo.37b7e790fc0b23da21bc9df098a66467.svg)
+Unique Identification Authority of India
+![Aadhaar Logo](https://myaadhaar.uidai.gov.in/static/media/aadhaar_english_logo.9a2d63795a7f7bdd7acb2148585336be.svg)
+![Dashboard Icon](https://myaadhaar.uidai.gov.in/static/media/dashboard.21335c2c89af71912adf700d228cbecd.svg)
+myAadhaar
+![Language Select Icon](https://myaadhaar.uidai.gov.in/static/media/LanguageSelector.dd14b8054218a45a518df6f26aaff418.svg)
+![Language Select Icon](https://myaadhaar.uidai.gov.in/static/media/LanguageSelector.dd14b8054218a45a518df6f26aaff418.svg)
+![Toggle langauges Select Icon](https://myaadhaar.uidai.gov.in/static/media/arrowDownWhite.5705d32d953c9b17742e53145d6d5ae2.svg)
+  * हिंदी
+  * বাংলা
+  * ಕನ್ನಡ
+  * ગુજરાતી
+  * മലയാളം
+  * मराठी
+  * ଓଡ଼ିଆ
+  * ਪੰਜਾਬੀ
+  * தமிழ்
+  * తెలుగు
+  * اردو
+
+  1. Dashboard
+  2. eAadhaar Download
+
+Select 12 digit Aadhaar Number /16 digit Virtual ID (VID) Number / 28 digit Enrolment ID (EID) Number / 28 digit Service ID (SID) Number.
+Aadhaar NumberEnrolment ID NumberVirtual ID NumberSID
+Enter Aadhaar Number
+Enter Captcha
+![CAPTCHA image: enter the characters shown](data:application/image;base64,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)
+Send OTP
+![](https://myaadhaar.uidai.gov.in/static/media/faq-icon.2ec92ba82e3c3510425ffec418c95fb4.svg)
+## Frequently Asked Questions
+### What is e-Aadhaar?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+e-Aadhaar is a password protected electronic copy of Aadhaar, digitally signed by UIDAI.
+### Is e-Aadhaar equally valid like physical copy of Aadhaar?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+As per Aadhaar Act, e-Aadhaar is equally valid like Physical Copy of Aadhaar for all purposes. For validity of eAadhaar, please visit UIDAI circular- [https://uidai.gov.in/images/ uidai_om_on_e_aadhaar_validity.pdf](https://uidai.gov.in/images/%20uidai_om_on_e_aadhaar_validity.pdf)
+### What is Masked Aadhaar?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+Masked Aadhaar implies replacing of first 8 digits of Aadhaar number with “xxxx-xxxx” while only last 4 digits of the Aadhaar Number are visible.
+### How do I validate the digital signature?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+To successfully validate the digital signature on e-Aadhaar and see the 'green tick' in the PDF, we recommend that you download and open it in the latest version of Adobe Acrobat Reader on Microsoft Windows or MacOS.   
+  
+If the signature still shows a warning or question mark, you may need to manually add the signing certificate to your trusted identities.  
+  
+Instructions on how to do this can be found on the Adobe Help website: 
+### What Is the Password of e-Aadhaar?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+Password of eAadhaar is a combination of the first 4 letters of name in CAPITAL and the year of birth (YYYY).  
+  
+**For Example:**
+  * Example 1
+    1. Name: SURESH KUMAR
+    2. Year of Birth: 1990
+    3. Password: SURE1990
+  * Example 2
+    1. Name: SAI KUMAR
+    2. Year of Birth: 1990
+    3. Password: SAIK1990
+  * Example 3
+    1. Name: P. KUMAR
+    2. Year of Birth: 1990
+    3. Password: P.KU1990
+  * Example 4
+    1. Name: RIA
+    2. Year of Birth: 1990
+    3. Password: RIA1990
+
+### What supporting software needed to open e-Aadhaar?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+Resident needs 'Adobe Reader' to view e-Aadhaar. You have 'Adobe Reader' installed in your System. To install Adobe Reader in the System
+  * visit 
+
+### How can an Aadhaar Number holder download e-Aadhaar?
+![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)
+An Aadhaar Number holder can download e-Aadhaar by following three ways.
+  * By Using Enrolment Number:
+  * By Using Aadhaar No:
+  * By using VID:
+  * OTP for downloading eAadhaar will be received on registered mobile number.

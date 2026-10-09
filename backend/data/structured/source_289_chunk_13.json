@@ -1,0 +1,19 @@
+{
+  "id": "source_289_chunk_13",
+  "title": "Check enrolment or update status",
+  "category": "general",
+  "keywords": [
+    "check",
+    "enrolment",
+    "or",
+    "update",
+    "status"
+  ],
+  "summary": "### Check enrolment or update status\nClick here to check the status of the Enrolment or Update request.\n![Arrow Icon](https://myaadhaar.uidai.gov.in/static/media/arrowRight.36a2fb68edf604ae8a0b73169525cdb3.svg)\n![Service Icon](https://myaadhaar.uidai.gov.in/static/media/LecIcon.ec816ce5df2591d29d04ba14530d9fb7.svg)",
+  "documents": [],
+  "steps": [],
+  "warnings": [],
+  "source_url": "https://myaadhaar.uidai.gov.in",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

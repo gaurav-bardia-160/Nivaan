@@ -1,0 +1,10 @@
+{
+  "id": "source_107_chunk_5",
+  "source_url": "https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en",
+  "title": "spider_uidai.gov.in_5be6984d",
+  "section": "What is Masked Aadhaar?",
+  "text": "### What is Masked Aadhaar?\n![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)\nMasked Aadhaar implies replacing of first 8 digits of Aadhaar number with “xxxx-xxxx” while only last 4 digits of the Aadhaar Number are visible.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

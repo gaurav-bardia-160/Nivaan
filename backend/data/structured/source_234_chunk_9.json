@@ -1,0 +1,10 @@
+{
+  "id": "source_234_chunk_9",
+  "source_url": "https://myaadhaar.uidai.gov.in/CheckAadhaarStatus",
+  "title": "spider_uidai.gov.in_cf7ba17a",
+  "section": "How to raise request using Registered Mobile Number?",
+  "text": "### How to raise request using Registered Mobile Number?\n![](https://myaadhaar.uidai.gov.in/static/media/ArrowDown.a5229ab197c918ede75c7ae811502301.svg)\nPlease Visit https://uidai.gov.in or https://myaadhaar.uidai.gov.in.\n  * Click on Login, Enter your 12-digit Aadhaar Number (UID).\n  * Enter the security code\n  * Click on “Login with OTP” button. \n  * Enter OTP received on registered mobile number.\n  * Click on 'Order Aadhaar PVC Card' tile.\n  * On next screen, select option 'Order Aadhaar PVC Card for Self', preview of the Aadhaar details will appear for verification by Aadhaar number holder before placing the order for Aadhaar PVC Card.\n  * Click on the check box against “Terms and Conditions”. (Note: Click on hyper link to see details).\n  * Click on “Submit” Button to complete OTP verification. \n  * Click on “Make payment”. You will be re-directed to Payment Gateway page with payment options as Credit/Debit Card, Net banking and UPI.\n  * After successful payment, receipt will get generated having digital signature which can be downloaded by Aadhaar number holder in PDF format. Aadhaar number holder will also get the Service Request Number via SMS.\n  * Aadhaar number holder can track the status of SRN till dispatch of Aadhaar Card on Check Aadhaar Card Status.\n  * SMS containing AWB number will also be sent once dispatched from DoP. Aadhaar number holder can further track delivery status by visiting DoP website.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified"
+}

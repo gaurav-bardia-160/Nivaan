@@ -1,0 +1,162 @@
+URL: https://uidai.gov.in/my-aadhaar
+
+1. [Home](https://uidai.gov.in/en)
+  2. /
+
+Understand Aadhaar, its features, enrolment process, benefits, security and its role in enabling trusted digital identity and governance.
+In this section
+Updates Details
+Download or Order Card
+Keep Aadhaar Secure
+Aadhaar Enrolment
+Understand your Aadhaar
+## Updates Details
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/address-update.svg)
+Address update
+Use your documents or family member’s AadhaarMobile OTP is required
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+₹ 75 fee
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/Photo.svg)
+Photo biometric update and more
+At seva kendra
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+Charges applied
+Check Status
+Address Update
+## Download or Order Card
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/download-aadhaar.svg)
+Download Aadhaar
+Get your Aadhaar instantlyMobile OTP is required
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+Free
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/order-aadhaar-pvc-card.svg)
+Order Online PVC card
+Durable, easy-to-carry mode of AadhaarMobile OTP is required
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+₹ 75 fee
+Check Status
+Order Aadhaar PVC Card
+![More icon](https://uidai.gov.in/assets/svgs/more-icon.svg)
+![Promo banner image](https://backend.uidai.gov.in/get/files/media/2026-04/aadhaar.svg)
+You can do more with your Aadhaar
+[Show all services](https://myaadhaarbeta.uidai.gov.in/)
+## Keep Aadhaar Secure
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/generate-virtual-id_0.svg)
+Generate Virtual ID
+16-digit VID as Aadhaar number replacementMobile OTP is required
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+Free
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/download-masked-aadhaar.svg)
+Download Masked Aadhaar
+Only the last 4 digits of your Aadhaar number are visibleMobile OTP is required
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+Free
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/lock-and-unlock-biometrics.svg)
+Lock/Unlock Biometrics
+Lock your fingerprints and iris dataMobile OTP is required
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/lock-and-unlock-aadhaar.svg)
+Lock/Unlock Aadhaar
+Lock your Aadhaar to restrict the use of your Aadhaar numberMobile OTP is required
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+Free
+## Aadhaar Enrolment
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/book_an_appointment.svg)
+Book an Appointment
+Schedule a visit to the nearest Aadhaar Seva Kendra
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+Free
+![Service icon](https://backend.uidai.gov.in/get/files/media/2026-04/check_enrolment_status.svg)
+Check Enrolment Status
+Track the status of your Aadhaar enrolment using your EID/SID
+![Arrow](https://uidai.gov.in/assets/svgs/icons/RoundArrow.svg)
+Free
+Enrolment & Updates
+Access Aadhaar enrolment and update resources, forms, guidelines and related documents for residents, NRIs, children and foreign nationals to manage Aadhaar details seamlessly.
+Enrolment & Updates![Enrolment & Updates](https://uidai.gov.in/assets/svgs/icons/ArrowLeftBlue.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+Aadhaar Enrolment And Update Charges
+Doc Type: PDF• Size: 153.05 KB• Uploaded On: 28-09-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![](https://uidai.gov.in/assets/svgs/icons/pdf.svg)
+List Of Acceptable Documents
+Doc Type: PDF• Size: 2.08 MB• Uploaded On: 29-04-2026
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+Download![](https://uidai.gov.in/assets/svgs/icons/download.svg)
+![Card image](https://backend.uidai.gov.in/get/files/media/document/2026-06/understand_ur_aadhaar.webp)
+Understand your Aadhaar
+Know more about our organisation Structure, composition of UIDAI, policies and officers served in past
+Read More
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 22 Apr 2026
+Last Updated: 26 Jun 2026
+Frequently Asked Questions
+### 
+How to download the Aadhaar app?
+You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871 
+### 
+How to register on the Aadhaar app?
+After downloading the app, the Aadhaar Number Holder (ANH): →Select Language→ Enters their Aadhaar number → Agrees to the Terms and Conditions and Privacy Policy → Chooses the SIM card → Performs Face Authentication → Gets registered on the app → Sets a 6-digit PIN to secure access to the app.
+### 
+Which services are available on this app?
+Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.
+[View more F.A.Qs](https://uidai.gov.in/en/faq)
+![Information](https://uidai.gov.in/assets/svgs/icons/Info.svg)
+Content Information
+Published on: 22 Apr 2026
+Last Updated: 26 Jun 2026
+![UIDIA Logo](https://backend.uidai.gov.in/get/files/media/2026-04/logoWithTitle.svg)
+  * [Vision & Mission](https://uidai.gov.in/en/vision-and-mission)
+  * [Aadhaar Dashboard](https://uidai.gov.in/en/aadhaar-dashboard)
+  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)
+  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)
+
+## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)
+  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)
+  * [Update Aadhaar](https://uidai.gov.in/en/updating-data-on-aadhaar)
+  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)
+  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)
+  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)
+  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)
+
+  * [Enrolment & Update Forms](https://uidai.gov.in/en/enrolment-and-updates)
+  * [Handbooks](https://uidai.gov.in/en/handbooks)
+  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)
+  * [Circulars](https://uidai.gov.in/en/circulars)
+  * [ Policies](https://uidai.gov.in/en/policies)
+
+  * [Developer Sandbox](https://uidai.gov.in/en/developer-section)
+  * [Become an OVSE](https://uidai.gov.in/en/ovse)
+
+  * [Site Map](https://uidai.gov.in/en/site-map)
+  * [Website Policies](https://uidai.gov.in/en/website-policies)
+  * [Website Help](https://uidai.gov.in/en/website-help)
+
+### UIDAI Head Office
+Unique Identification Authority of India
+Bangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001
+2
+3
+6
+4
+5
+9
+5
+8
+Total Visitors
+Regional and State Offices
+Assam
+​
+**UIDAI Regional Office, Guwahati**
+Block-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006
+Contact details
+![Toll-free Number](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-tele.svg)
+Toll-free Number
+1947
+![Email](https://backend.uidai.gov.in/get/files/media/2026-05/Vector-email.svg)
+Email
+help[at]uidai[dot]gov[dot]in
+Copyright © 2026 Unique Identification Authority of India All Rights Reserved.
+Last reviewed and updated on: October 6, 2026
