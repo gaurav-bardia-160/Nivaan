@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_17255be8_chunk_5",
+  "source_url": "https://uidai.gov.in/your-aadhaar",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "My request for name update rejected as limit exceeded, how can I update my name?\nYou are permitted to update Name twice by presenting any of the valid document as per the list of documents available at : [List of Supporting Documents](https://backend.uidai.gov.in/get/files/media/document/2026-06/List_of_Supporting_Document_for_Aadhaar_Enrolment_and_Update_0.pdf)\nIn case you need further update in name you require a gazette notification for name change and follow the following process:\n  1. Enrol at the nearest centre with 'gazette notification for name change' alongwith any supporting POI document of old name with Photograph (for first/full name change) / Divorce Decree / Adoption Certificate / Marriage Certificate.\n  2. Once your request gets rejected for limit exceed, please call \n  3. While sending the mail please ensure to attach all the required documents such as EID slip of latest enrolment, gazette notification of name change, alongwith any supporting POI document of old name with Photograph (for first /full name change) / Divorce Decree / Adoption Certificate / Marriage Certificate.\n  4. The detailed process is available at - [Name & Gender update request under exception](https://backend.uidai.gov.in/get/files/media/document/2026-10/SOP_dated_28-10-2021-Name_and_Gender_update_request_under_exception_handling_process_Circular_dated_03-11-2021.pdf)",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "enrolment"
+  ]
+}

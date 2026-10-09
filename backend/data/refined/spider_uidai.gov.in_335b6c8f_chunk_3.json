@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_335b6c8f_chunk_3",
+  "source_url": "https://uidai.gov.in/enrolment-agencies",
+  "title": "सेवाएं खोजें",
+  "section": "सेवाएं खोजें",
+  "text": "Enrolment Agency Activities\n  * \nProcurement of Devices and other requirements as per Checklist for setting up Enrolment Centre\n  * \nEnrol Operator/Supervisors and Register and Activate them at UIDAI\n    * Get first Operator enrolled by an authorised EA operator\n    * Send data packet and User management sheet for this Operator to CIDR\n    * Receive UID and go ahead for this Operator to start enrolling others.\n    * Get other Operator/Supervisor and Technical Administrators , enrolled by the first operator\n    * Send their data packets and user management file to CIDR\n    * Receive UIDs\n    * Register them for certification exam by TCA\n  * \n**Station Registration**\n    * Obtain Registrar code, EA code from UIDAI\n    * Obtain latest Aadhaar software and install, Register and configure client laptops\n    * Complete User Setup\n    * Loading and testing of pre-enrolment data\n\n\nContent Information\nPublished on: 13 Apr 2026\nLast Updated: 30 Jun 2026\nOwner: E&U",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "enrolment"
+  ]
+}

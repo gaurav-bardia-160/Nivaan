@@ -1,0 +1,19 @@
+{
+  "id": "spider_uidai.gov.in_e47d7f83_chunk_1",
+  "source_url": "https://uidai.gov.in/enrolment-and-update",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  3. [Help](https://uidai.gov.in/hi/help)\n  4. /\n  5. [Frequently Asked Questions](https://uidai.gov.in/hi/faq)\n  6. /\n  7. [Enrolment & Update](https://uidai.gov.in/hi/enrolment-and-update)\n\n# Enrolment & Update\nAccess services related to Aadhaar enrolment, demographic and biometric updates, Mandatory Biometric Update (MBU), child enrolment, Aadhaar Seva Kendras, update charges and online update facilities. Residents can find guidance, support and information for managing Aadhaar details securely and conveniently.\n\n### \nAadhaar Enrolment Process\n\nMy twin son’s or daughter’s biometrics are mixed with one another, now what should I do?\nYou should contact with regional office at the earliest and whenever Regional office calls, you should be present with your sons to do biometric updates.\nI want to change my surname. What is the simplest method for same?\nYou should provide any POI mentioned in list of documents, with same address mentioned in your Aadhaar.\nI am >18 year old and Aadhaar center near me refusing to enroll. Is there any specific reason?\nAadhaar centers for enrolment >18 years of age, can be located on UIDAI portal at \nI am 18 year old and want to enroll for Aadhaar card, where should I go for enrolment. Also, I don’t have any document, what minimal document should I have?\nHow can I apply for Aadhaar?\nTo apply for Aadhaar, visit an Aadhaar Seva Kendra with valid identity and address proof. Biometric details will be captured, and you will receive your Aadhaar number after verification.\nWhat arrangements have been made for individuals whose fingerprints (biometrics) have worn out due to old age?\nIn case of difficulty in capturing proper fingerprints of the individual due to old age. The enrolment operator should use force capture tab available in the enrolment software. During force capture\nWhether documents submitted in a request will be verified by external authority?\nYes, Enrolment/Update request may go to other authorities(state) for verification.\nIs Aadhaar issued to Resident Foreign Nationals will be valid for lifetime ?\nNo, Aadhaar issued to Resident Foreign National will be valid till:\n  1. Validity of VISA/Passport.\n  2. In case of OCI card holder and Nationals of Nepal and Bhutan validity will be 10 years from the date of enrolment.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "biometric",
+    "enrolment"
+  ]
+}

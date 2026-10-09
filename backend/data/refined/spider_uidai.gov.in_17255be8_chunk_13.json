@@ -1,0 +1,17 @@
+{
+  "id": "spider_uidai.gov.in_17255be8_chunk_13",
+  "source_url": "https://uidai.gov.in/your-aadhaar",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "What are the Data protection and privacy measures taken by UIDAI ?\nThe UIDAI ensures the security and confidentiality of the data collected. The enrolment data is collected on client application provided by the UIDAI, which is encrypted at source and the packet is transmitted in a secure manner. UIDAI has published guidelines in this regard which is available on its website. UIDAI has security policy in place for data security in motion and at rest.\nPenalty for unauthorized access to Central Identities Data Repository have been detailed in Aadhaar (Targeted delivery of financial and other subsidies , benefits and services) Act, 2016 - Chapter VII under Offences and Penalties, Section 38.\nWhat are the privacy protections in place to protect the right to privacy of the individual?\nProtection of the individual and the safeguarding their information is inherent in the design of the UID project. From having a random number which does not reveal anything about the individual to other features listed below, the UID project keeps the interest of the individual at the core of its purpose and objectives.\n  * \n**Collecting limited information**  \nThe UIDAI is collecting only basic data fields - Name, Date of Birth, Gender, Address, Parent/ Guardian’s (name essential for children but not for others) photo, 10 finger prints and iris scan.\n  * \n**No profiling and tracking information collected**  \nThe UIDAI policy bars it from collecting sensitive personal information such as religion, caste, community, class, ethnicity, income and health. The profiling of individuals is therefore not possible through the UID system. Release of information – yes or no response The UIDAI will not reveal personal information in the Aadhaar database – the only response will be a ‘yes’ or ‘no’ to requests to verify an identity\n  * \n**Convergence and linking of UIDAI information to other databases**\n  * \nThe UID database is not linked to any other databases, or to information held in other databases. Its only purpose will be to verify a person’s identity at the point of receiving a service, and that too with the consent of the aadhaar number holder  \nThe UID database will be guarded both physically and electronically by a few select individuals with high clearance. The data will be secured with the best encryption, and in a highly secure data vault. All access details will be properly logged.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "enrolment"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_81f3759b_chunk_1",
+  "source_url": "https://uidai.gov.in/biometric-devices",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  4. /\n  5. [Authentication Devices](https://uidai.gov.in/hi/authentication-devices)\n  6. /\n  7. [Biometric Devices](https://uidai.gov.in/hi/biometric-devices)\n\n# Biometric Devices\nBiometric devices are instruments, designed to capture biometric data inputs including fingerprint and iris information from Aadhaar number holders for the purpose of authentication and identity verification. UIDAI mandates usage of only Registered Devices in Aadhaar Authentication Ecosystem. Collection of Personal Identity Data (PID) from Aadhaar number holders through the domain / client application hosted on such devices. Perform basic checks on the information collected for completeness and compliance Transmit the authentication packets and receive the authentication result In compliance with Aadhaar Act, 2016 and its Regulations. Authentication devices are deployed by requesting Entities (AUA/KUA). Based on the mode of operation, such devices are classified as Self-Assisted and Operator Assisted devices. Self-Assisted devices are the devices where Aadhaar authentication transaction is carried out by the Aadhaar number holder himself/herself without any assistance. Operator-Assisted devices are the devices where the Aadhaar authentication transaction of the Aadhaar number holder is performed with the assistance of requesting entity’s operator.\nRegistered Devices\nRegistered Devices means biometric devices that are registered with the authority. These devices carry a unique identifier and ensure data integrity by digitally signing biometric information within the device using a device provider’s key. This ensures that the data is captured live and not replayed or tampered with.\nThese registered devices fall under two categories viz. Discrete Devices and Integrated Devices.\n  * \n**Discrete Devices:** These devices require connectivity to a host device such as PC/Laptop/Micro ATM etc.\n  * \n**Integrated Devices:** These devices have the sensor integrated into the device package i.e. Phone/Tablet etc. \n\n\nDiscrete Fingerprint Scanner\n\nIris scanner\n\n\nIntegrated device with Fingerprint & Iris Scanner",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "biometric",
+    "authentication"
+  ]
+}

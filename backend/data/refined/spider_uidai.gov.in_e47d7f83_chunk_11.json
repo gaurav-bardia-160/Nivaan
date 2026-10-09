@@ -1,0 +1,22 @@
+{
+  "id": "spider_uidai.gov.in_e47d7f83_chunk_11",
+  "source_url": "https://uidai.gov.in/enrolment-and-update",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "What is the role and responsibilities of a verifier at Aadhaar Enrolment and Update centre?\nVerifier to play a major role in enrolment and verify the information mentioned in the supporting documents with the information mentioned in the Aadhaar enrolment or update form. In case the authenticity of document can be verified by using QR code or any online mode, the same should be verified before using for enrolment.\nWhat is the role and responsibilities of an operator at Aadhaar Enrolment and Update centre?\n  1. Operator to login, lock (if she is away from from the machine) and sync the machine time to time as specified\n  2. Inform the individual seeking enrolment or Aadhaar number holder about the form and documents required for enrolment or update\n  3. Verify the information mentioned in the supporting documents with the information mentioned in the Aadhaar enrolment or update form. In case the authenticity of document can be verified by using QR code or any online mode, the same should be verified before using for enrolment.\n  4. Ensure entered data into the software is correct\n  5. Capture Biometrics for enrolment or update, in case of difficulty in capturing proper biometric of the applicant (poor biometrics) use force capture option.\n  6. After enrolment or update return the documents submitted alongwith acknowledgment slip. Operators are not permitted to keep details/copies of document submitted for enrolment.\n  7. In case of Biometric exception, ensure to take the Exception photograph of the applicant showing applicant’s face and both hands, irrespective of the type of exception\n  8. Please behave properly with the customers and deny service politely if required documents not available.\n  9. Keep oneself updated with latest guidelines & policies for enrolments & updates\n  10. Operators are advised for not to link their mobile number for applicants and encourage the individual seeking enrolment or Aadhaar number holder to enter their own mobile number and email id or where they have better access to such number, as the mobile/email can be used for various OTP based Authentications for availing services.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "mobile",
+    "biometric",
+    "authentication",
+    "enrolment",
+    "lock"
+  ]
+}

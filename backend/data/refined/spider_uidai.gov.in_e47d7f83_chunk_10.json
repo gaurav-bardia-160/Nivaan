@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_e47d7f83_chunk_10",
+  "source_url": "https://uidai.gov.in/enrolment-and-update",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "",
+  "text": "### \nEnrolment Partners/Ecosystem Partners\n\nIs there any provision available to update my regional language in Aadhaar to display all fields in same regional language?\nUpdate of regional language in Aadhaar is possible by visiting Aadhaar enrolment centre having this facility. For details of Aadhaar enrolment centre please click here \nAction by operator in case an applicant request for update of regional language in his Aadhaar the following steps to be taken:-\n  1. If operator is logged in different regional language, please logout and re-login with the desired language (option to select regional language is available under ‘local language settings’ on the top right of demographic screen).\n  2. Update the demographic details (name, address) by submitting Proof of Identity (POI) and Proof of Address (POA) documents. Documents in English can be accepted as documentary proof.\n  3. If operator is not well versed with the desired regional language, he/she shall intimate the same to the applicant and inform him that applicant shall be responsible for transliteration errors.\n  4. After completion of request, operator can logout and continue operations after re-login with regional language of that region.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "enrolment"
+  ]
+}

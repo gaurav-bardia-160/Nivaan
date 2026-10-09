@@ -1,0 +1,20 @@
+{
+  "id": "spider_uidai.gov.in_17255be8_chunk_2",
+  "source_url": "https://uidai.gov.in/your-aadhaar",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "",
+  "text": "### \nUse Aadhaar Freely\n\nJust by knowing your Aadhaar number or Aadhaar linked bank account, no one can withdraw money from Aadhaar linked bank account.\nDoes linking my bank account, PAN, and other services with Aadhaar make me vulnerable?\nNo. UIDAI does not have visibility of linking of your Aadhaar with any other services. Concern departments such as bank, income tax etc. do not share any information of Aadhaar number holder neither UIDAI stores any such informations.\nWhy am I asked to verify Bank account, Demat account, PAN and various other services with Aadhaar?\nAadhaar verification/authentication is governed by the sections of Aadhaar Act, 2016, under which the use case has been notified by the concerned Ministry/Department for providing services.\nThere are many agencies that simply accept physical copy of Aadhaar and do not carry out any biometric or OTP authentication or verification. Is this a good practice?\nNo, in this connection MeitY has issued detailed instructions to all Government Ministries/Departments vide office memorandum no [10(22)/2017-EG-II(VOL-1) dated 19.06.2023](https://backend.uidai.gov.in/get/files/media/document/2026-09/Advisory_to_GOI_Secy.pdf) .\nNo. Just, by knowing your Aadhaar number, no one can harm you. To prove your identity, Aadhaar number is verfied/authenticated by agencies through various modes as prescribed under Aadhaar Act, 2016.\nIf Aadhaar has to be freely used for proving identity and it is safe to do so, then why has UIDAI advised people not to put up their Aadhaar number in Social Media or public domain?\nYou use PAN card, debit card, credit card, bank cheques wherever required. But do you put these details openly on internet and social media such as Facebook, Twitter, etc.? Obviously no! You do not put such personal details unnecessarily in public domain so that there is no unwarranted invasion attempt on your privacy. The same logic needs to be applied in case of uses of Aadhaar.\nRecently, UIDAI has issued an advisory asking people not to share their Aadhaar number openly in the public domain especially on Social Media or other public platforms. Does this mean that I should not use Aadhaar freely?\nYou should use your Aadhaar without any hesitation for proving your identity and doing transactions, just like you use your bank account number, PAN card, debit card, credit card, etc., wherever required. What UIDAI has advised is that Aadhaar card should be freely used for proving identity and doing transactions, but should not be put on public platforms like Twitter, Facebook, etc. People give their debit card or credit card details or cheque (which has bank account number) when they purchase goods, or pay school fee, water, electricity, telephone and other utility bills, etc. Similarly, you can freely use your Aadhaar to establish your identity as and when required without any fear. While using Aadhaar, you should do the same level of due diligence as you do in case of other ID cards – not more, not less.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "fee",
+    "biometric",
+    "authentication",
+    "pan"
+  ]
+}

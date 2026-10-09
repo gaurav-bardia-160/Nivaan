@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_5be6984d_chunk_1",
+  "source_url": "https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en",
+  "title": "![Government of India](https://myaadhaar.uidai.gov.in/static/media/uidai_english_logo.37b7e790fc0b23da21bc9df098a66467.svg)",
+  "section": "![Government of India](https://myaadhaar.uidai.gov.in/static/media/uidai_english_logo.37b7e790fc0b23da21bc9df098a66467.svg)",
+  "text": "Unique Identification Authority of India\n\n\nmyAadhaar\n\n\n\n  * हिंदी\n  * বাংলা\n  * ಕನ್ನಡ\n  * ગુજરાતી\n  * മലയാളം\n  * मराठी\n  * ଓଡ଼ିଆ\n  * ਪੰਜਾਬੀ\n  * தமிழ்\n  * తెలుగు\n  * اردو\n\n  1. Dashboard\n  2. eAadhaar Download\n\nSelect 12 digit Aadhaar Number /16 digit Virtual ID (VID) Number / 28 digit Enrolment ID (EID) Number / 28 digit Service ID (SID) Number.\nAadhaar NumberEnrolment ID NumberVirtual ID NumberSID\nEnter Aadhaar Number\n\nSend OTP\n\n## Frequently Asked Questions\n\n### What is e-Aadhaar?\n\ne-Aadhaar is a password protected electronic copy of Aadhaar, digitally signed by UIDAI.\n\n### Is e-Aadhaar equally valid like physical copy of Aadhaar?\n\nAs per Aadhaar Act, e-Aadhaar is equally valid like Physical Copy of Aadhaar for all purposes. For validity of eAadhaar, please visit UIDAI circular- [https://uidai.gov.in/images/ uidai_om_on_e_aadhaar_validity.pdf](https://uidai.gov.in/images/%20uidai_om_on_e_aadhaar_validity.pdf)\n\n### What is Masked Aadhaar?\n\nMasked Aadhaar implies replacing of first 8 digits of Aadhaar number with “xxxx-xxxx” while only last 4 digits of the Aadhaar Number are visible.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "download",
+    "enrolment"
+  ]
+}

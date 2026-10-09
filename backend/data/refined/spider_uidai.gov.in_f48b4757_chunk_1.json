@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_f48b4757_chunk_1",
+  "source_url": "https://uidai.gov.in/direct-benefit-transfer",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  3. [Help](https://uidai.gov.in/hi/help)\n  4. /\n  5. [Frequently Asked Questions](https://uidai.gov.in/hi/faq)\n  6. /\n  7. [Direct Benefit Transfer (DBT)](https://uidai.gov.in/hi/direct-benefit-transfer)\n\n# Direct Benefit Transfer (DBT)\nAadhaar-enabled Direct Benefit Transfer (DBT) helps deliver subsidies, pensions, scholarships and welfare benefits directly to beneficiaries’ bank accounts. It promotes transparency, reduces leakages, ensures targeted delivery and strengthens efficient governance across welfare schemes in India.\n\n### \nAadhaar for Direct Benefit Transfer (DBT)\n\nFor availing benefits, you have to first enroll yourself under the schemes through the concerned implementing authorities in your area and authenticate yourself using Aadhaar, as per the requirements of the specific scheme.\nShall I get benefits if my authentication fails?\nYes. The notifications issued by the Central or State Governments have the provisions for exception handling mechanism to handel such cases.\nHow would I know that DBT funds have come to my account?\nIf you have availed SMS alerts facility from the concerned bank where your DBT account is opened, then the bank will send out SMS alerts when you get DBT funds in account. Alternatively, you can also check your account balance using ATM, microATM/ Bank Mitra, internet/mobile banking or through phone-banking.\nHow do I receive benefits under the Govt. Schemes in my bank account?\nTo receive DBT benefits in your bank account, please visit the bank branch where you have opened the account and request the bank to link your Aadhaar with your account by filling up the mandate and consent form of the bank. This account will be seeded with NPCI-mapper by the bank to operate as DBT enabled account.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "mobile",
+    "authentication"
+  ]
+}

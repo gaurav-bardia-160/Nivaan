@@ -1,0 +1,20 @@
+{
+  "id": "spider_uidai.gov.in_d6e0cf85_chunk_1",
+  "source_url": "https://uidai.gov.in/aadhaar-generation",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  4. /\n  5. [Understand your Aadhaar](https://uidai.gov.in/hi/understand-your-aadhaar)\n  6. /\n  7. [Aadhaar Generation](https://uidai.gov.in/hi/aadhaar-generation)\n\n# Aadhaar Generation\nLearn how Aadhaar is generated through quality checks, validation, demographic and biometric de-duplication to ensure uniqueness and secure issuance.\nAadhaar generation & issue\nAadhaar Generation involves process like quality check, packet validation, demographic and biometric de-duplication etc. Aadhaar is generated successfully only if:\n  * \nQuality of enrolment data meets prescribed standards laid down by UIDAI.\n  * \nThe enrolment packet passes all the validations done in CIDR\n  * \nNo Demographic/Biometric duplicate is found\n\nIf any of the above conditions is not satisfied, then Aadhaar number will not be issued and the enrolment gets rejected. The processes leading to Aadhaar generation are explained below.\nUploading Enrolment Data to CIDR\nEach enrolment data is in a form of software packet which gets encrypted after completion of enrolment in the client itself and is uploaded to the central ID repository (CIDR) using the upload client provided to the Enrolment Agencies by UIDAI. The documents received from individuals seeking to enrol are also scanned and becomes part of enrolment packet which is uploaded to CIDR.\n**CIDR Sanity Checks** : Each enrolment packet is exhaustively checked for validity – checksums, packet meta data, etc. – in the CIDR DMZ using automated process before it is moved to the production zone of CIDR for processing.\n**Data Archival** : In CIDR, the contents of packet are read and stored in a table before archiving to ensure that the data is kept securely. The archival system has the following requirements:\n  * \nAll original packets (enrolments, updates, etc.) are required to be archived as-is, and “forever”, ensuring high availability, and zero data loss\n  * \nArchived packet is kept securely and separated from core enrolment and authentication systems.\n  * \nArchival system may allow on-demand data retrieval with appropriate access control and approvals.\n  * \nRegular back up of Archived data is taken to ensure zero data loss.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "biometric",
+    "authentication",
+    "enrolment"
+  ]
+}

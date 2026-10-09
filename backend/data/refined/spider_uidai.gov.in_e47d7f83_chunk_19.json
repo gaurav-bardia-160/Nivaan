@@ -1,0 +1,17 @@
+{
+  "id": "spider_uidai.gov.in_e47d7f83_chunk_19",
+  "source_url": "https://uidai.gov.in/enrolment-and-update",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "",
+  "text": "### \nDate of Birth Update in Aadhaar\n\nWhat is the current procedure for updating date of birth in Aadhaar?\nPlease refer to the Standard Operating Procedure for Date of Birth update which is available at the below mentioned link: https://uidai.gov.in/images/SOP_for_DOB_update.pdf\n\n### \nLost/Forgotten Aadhaar",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update"
+  ]
+}

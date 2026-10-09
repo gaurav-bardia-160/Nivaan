@@ -1,0 +1,24 @@
+{
+  "id": "spider_uidai.gov.in_033f8184_chunk_1",
+  "source_url": "https://uidai.gov.in/aadhaar-online-services",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  3. [Help](https://uidai.gov.in/hi/help)\n  4. /\n  5. [Frequently Asked Questions](https://uidai.gov.in/hi/faq)\n  6. /\n  7. [Aadhaar Online Services](https://uidai.gov.in/hi/aadhaar-online-services)\n\n# Aadhaar Online Services\nExplore Aadhaar Online Services including e-Aadhaar download, VID generation, address update, biometric lock/unlock, Aadhaar PVC Card, authentication history and offline e-KYC. These secure digital services enable residents to manage Aadhaar conveniently anytime and anywhere.\n\n### \nE-Aadhaar\n\nWhat is e-Aadhaar?\ne-Aadhaar is a password protected electronic copy of Aadhaar, digitally signed by UIDAI.\nIs e-Aadhaar equally valid like physical copy of Aadhaar?\nAs per Aadhaar Act, e-Aadhaar is equally valid like Physical Copy of Aadhaar for all purposes. For validity of eAadhaar, please visit UIDAI circular- https://uidai.gov.in/images/uidai_om_on_e_aadhaar_validity.pdf\nFrom where an Aadhaar number holder can download e-Aadhaar?\nAadhaar Number holder can download e-Aadhaar by visiting UIDAI's MyAadhaar portal - <https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en> or by using Aadhaar app for mobile phones.\nHow can an Aadhaar Number holder download e-Aadhaar?\nAn Aadhaar Number holder can [download e-Aadhaar](https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en) by following three ways.\nBy Using Enrollment Number\nBy Using Aadhaar No\nBy using VID\nOTP for downloading eAadhaar will be received on registered mobile number.\nWhat is Masked Aadhaar?\nMasked Aadhaar implies replacing of first 8 digits of Aadhaar number with “xxxx-xxxx” while only last 4 digits of the Aadhaar Number are visible.\nWhat Is the Password of e-Aadhaar?\nPassword of eAadhaar is a combination of the first 4 letters of name in CAPITAL and the year of birth (YYYY).\nFor Example:\nExample 1  \nName: SURESH KUMAR\nYear of Birth: 1990\nPassword: SURE1990\nExample 2\nName: SAI KUMAR\nYear of Birth: 1990\nPassword: SAIK1990\nExample 3\nName: P. KUMAR\nYear of Birth: 1990\nPassword: P.KU1990\nExample 4\nName: RIA\nYear of Birth: 1990\nPassword: RIA1990\nWhat supporting software needed to view e-Aadhaar?\nAadhaar number holder needs 'Adobe Reader' to view digitally verified e-Aadhaar. To install Adobe Reader in the System visit \nHow to validate digital signatures in e-Aadhaar?\nPlease visit Aadhaar YouTube Channel and watch tutorial link on",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "mobile",
+    "download",
+    "biometric",
+    "authentication",
+    "lock",
+    "unlock",
+    "pvc"
+  ]
+}

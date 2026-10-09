@@ -1,0 +1,19 @@
+{
+  "id": "spider_uidai.gov.in_f6091b78_chunk_2",
+  "source_url": "https://uidai.gov.in/en/authentication-requesting-agency",
+  "title": "1. [Home](https://uidai.gov.in/en)",
+  "section": "Authentication Requesting Agency",
+  "text": "# Authentication Requesting Agency\nLearn about Authentication Requesting Agencies such as AUA and KUA that use UIDAI’s Aadhaar authentication services through ASAs. Explore their appointment process, security requirements, responsibilities and data protection measures for secure identity verification and service delivery.\nAbout Requesting Entities (AUA, KUA)\nAs per the Aadhaar Act 2016, a requesting entity means an agency or a person that submits Aadhaar number and demographic information or biometric information, of an individual to the Central Identities Data Repository (CIDR) for authentication.\nAuthentication User Agency (AUA) is an entity engaged in providing Aadhaar Enabled Services to Aadhaar number Holder, using the authentication as facilitated by the Authentication Service Agency (ASA). An AUA may be government / public / private legal agency registered in India, that uses Aadhaar authentication services of UIDAI and sends authentication requests to enable its services / business functions.\n**Sub AUAs** are agencies that use Aadhaar authentication to enable its services through an existing requesting entity.\nA requesting entity (such as AUA, KUA) connects to the CIDR through an ASA (either by becoming ASA on its own or by contracting services of an existing ASA).\nAppointment of Requesting Entities (Authentication User Agency & e-KYC User Agency)\n  * \nAgencies seeking to become requesting entities to use the authentication facility provided by the Authority shall apply for appointment as requesting entities in accordance with the procedure as may be specified by the Authority for this purpose. Only those entities that fulfill the criteria laid down in Schedule A are eligible to apply. The Authority may by order, amend Schedule A from time to time so as to modify the eligibility criteria.\n  * \nThe Authority may require the applicant to furnish further information or clarifications, regarding matters relevant to the activity of such a requesting entity, as the case may be, which may otherwise be considered necessary by the Authority, to consider and dispose of the application.\n  * \nThe applicant shall furnish such information and clarification to the satisfaction of the Authority, within the time as may be specified in this regard by the Authority.\n  * \nWhile considering the application, the information furnished by the applicant and its eligibility, the Authority may verify the information through physical verification of documents, infrastructure, and technological support which the applicant is required to have.\n  * \nAfter verification of the application, documents, information furnished by the applicant and its eligibility, the Authority may:\na. approve the application for requesting entity, as the case may be; and  \nb. enter into appropriate agreements with the entity or agency incorporating the terms and conditions for use by requesting entities of the Authority’s authentication facility, including damages and disincentives for non-performance of obligations.\n  * \nThe Authority may from time to time, determine the fees and charges payable by entities during their appointment, including application fees, annual subscription fees and fees for individual authentication transactions.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "fee",
+    "biometric",
+    "authentication"
+  ]
+}

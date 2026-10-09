@@ -1,0 +1,20 @@
+{
+  "id": "spider_uidai.gov.in_335b6c8f_chunk_2",
+  "source_url": "https://uidai.gov.in/enrolment-agencies",
+  "title": "सेवाएं खोजें",
+  "section": "Enrolment Agencies",
+  "text": "# Enrolment Agencies\nEnrolment Agencies are entities hired by the Registrars for enrolment of individuals seeking to enrol during which demographic and biometric data are collected as per UIDAI enrolment process. Enrolment Agencies must ensure continued empanelment with UIDAI in order to be engaged by Registrars. \n  * \nEnrolment Agency(EA) is an agency is hired by the Registrar under contract subject to verification of profile of the organization, technical and financial evaluation.\n  * \nEnrolment agencies provide operators and supervisors for the enrolment stations on the field, and also create the necessary conditions for individuals seeking to enrol.\n  * \nIn case of camps Enrolment agencies must notify individuals seeking to enrol and UIDAI, of the enrolment schedule in advance.\n  * \nEnrolment agencies will be empanelled by the UIDAI and paid by the registrar for successful Aadhaar Generation\n  * \nThe enrolment agencies shall setup the enrolment centre for enrolment of individuals seeking to enrol as well as correction or update of Aadhaar number holder data\n  * \nThe EA shall only use the software provided by UIDAI for enrolment purpose. The enrolment software shall also have provision of capturing audit data as part of enrolment packet against each enrolment / update for traceability of enrolment client, operator, supervisor, enrolment agency, registrar, and any other information.\n  * \nThe equipment such as computer, printer, biometric devices and other accessories shall be as per the specification prescribed by the UIDAI from time to time.\n  * \nThe biometric devices used for enrolment shall meet the specification prescribed by Authority as well as certified as per the process prescribed by the UIDAI.\n  * \nThe enrolment operator shall collect the physical/electronic copy of supporting document or convert it into electronic format as per the process defined by UIDAI\n  * \nThe Enrolment Agency shall be responsible for field level execution and audit. The Enrolment Agency shall allow the authority to have reasonable access to the premises occupied by it or by any other person on its behalf and also extend reasonable facility for examining any books, records, documents and computer data in the possession of Enrolment Agency or any other person on their behalf and also provide copies of the document or other materials which, in the opinion of the authority are relevant for the purpose of audit.\n  * \nThe Enrolment Agency shall at all times abide by the Code of Conduct Enrolment Agency\n  * \nThe Enrolment agency shall adhere to the various process, policies and guidelines, checklists, forms and templates issued by authority from time to time.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "biometric",
+    "enrolment",
+    "pan"
+  ]
+}

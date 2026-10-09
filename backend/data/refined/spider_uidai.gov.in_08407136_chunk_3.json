@@ -1,0 +1,19 @@
+{
+  "id": "spider_uidai.gov.in_08407136_chunk_3",
+  "source_url": "https://uidai.gov.in/glossary",
+  "title": "1. [Home](https://uidai.gov.in/en)",
+  "section": "",
+  "text": "### \nB\n\nBC or Business Correspondent\nBusiness Correspondent is a term for banking channel for rural India.\nB-FTE\nBiometric Failure to Enrol\nBFD Best Finger Detection\nBest Finger Detection means identification of the best finger(s) to improve authentication accuracy and hence be more inclusive in supporting Aadhaar authentication across all sections of society.\nBPL\nBelow Poverty Line\nBiometric Information\nBiometric Information shall mean face photograph, ten finger prints and iris image of an individual seeking to enrol, captured by UIDAI, as a part of the enrolment process for issuance of Aadhaar Number.\nBiometric Data\nBiometric Data refers to the facial image, iris scan and fingerprints collected by the Enrolment Agency from the enrollees based on the standards prescribed by the UIDAI and by following the process laid down for the purpose. The data collected is passed onto the UIDAI as per the process prescribed.\n\n### \nC\n\nCSC\nCommon Service Centres operating as franchisees of Service Center Agency (SCA) within a State, as part of the CSC Scheme of the National E-Governance Plan of India.\nCSO\nCivil Society Outreach, an invitation undertaken by UIDAI to get learnings from NGOs on issues related to Migrant labour, homeless etc.\nCGHS\nCentral Government Health Scheme\nCSV\nComma Separated Variables or values, a simple file format for Computer which is widely used due to ease.\nCIDR or Central ID Data Repository\nCIDR is the data centre/s where data of individuals enrolled and Aadhaar number holders is stored and accessed from.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "biometric",
+    "authentication",
+    "enrolment"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "spider_uidai.gov.in_b4926121_chunk_2",
+  "source_url": "https://uidai.gov.in/ovse-faq",
+  "title": "सेवाएं खोजें",
+  "section": "सेवाएं खोजें",
+  "text": "How can an entity become a registered OVSE?\nAn entity willing to became OVSE may submit the application through https://ovse.uidai.gov.in/. UIDAI may register the entity as a registered OVSE, after verification of the submitted details.\nCan registered OVSE collect and store my verifiable credentials?\nYes. A registered OVSE may collect and store verifiable credentials shared with the explicit consent of the Aadhaar Number Holder.\nCan offline verification be performed on behalf of another entity?\nNo. Offline verification cannot be performed on behalf of another entity.\nWhat details are required for onboarding on the Aadhaar app?\nThe ANH should have a smartphone (Android version 9.0 and above and iOS version 16.0 and above) with internet connectivity.\nWhat is an Aadhaar Verifiable Credential in the context of the Aadhaar App?\nAn Aadhaar Verifiable Credential is a digitally signed document issued by the Authority to the Aadhaar Number Holder. It may contain the last 4 digits of the Aadhaar number, demographic data such as name, address, gender, date of birth, and photograph of the Aadhaar Number Holder, and such other information as may be specified by the Authority. These credentials may be shared by the Aadhaar Number Holder, in full or in part, with an OVSE in the manner specified by the Authority, for verifying the demographic information or the photograph of the Aadhaar Number Holder.\nDoes an entity need a specific SDK from UIDAI to generate QR codes, or is there a different approach?\nNo SDK is required. The OVSE must follow the QR generation guidelines issued by UIDAI. A registered OVSE may contact UIDAI for any technical support related to QR generation.\nWhether an OVSE can request and receive the last 4 digits of Aadhaar number through the Aadhaar App from an Aadhaar Number Holder?\nYes, the OVSE is permitted to request and receive the last 4 digits of the Aadhaar number from Aadhaar Number Holder as part of the Aadhaar Verified Credentials through the Aadhaar App.\n[The Terms and Conditions shall continue to apply on OVSE including the following provisions of The Aadhaar (Targeted Delivery of Financial and Other Subsidies. Benefits and Services) Act, 2016:\nSection 8A (3) An offline verification -seeking entity shall inform the individual undergoing the offline verification, or in case of a child, his parent or guardian, the following details with respect to offline verification, in such manner as may be specified by regulations, namely:-- \n  1. the nature of information that may be shared upon offline verification;\n  2. the uses to which the information received during offline verification may be put by the offline verification-seeking entity; and\n  3. alternatives to submission of information requested for, if any. ]",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "spider_uidai.gov.in_e2652b8a_chunk_2",
+  "source_url": "https://uidai.gov.in/registrars",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "Registrars",
+  "text": "# Registrars\nRegistrar is an entity authorised or recognised by the UIDAI for the purpose of enrolling individuals. They are partner to UIDAI vide a Terms of Engagement (TOE) and responsible for abiding by the roles and responsibilities assigned to them. They are primarily various state governments, central ministries, banks and public sector organizations who have signed TOE with UIDAI for enrolment of individuals seeking to enrol.\nHow to be a Registrar?\nAt this stage, the UIDAI has primarily engaged with state governments, central ministries, and financial institutions. The UIDAI has entered into TOE with each registrar where the roles and responsibilities are defined and has to be abided. The signed TOE allows the registrar to start the enrolment of individuals seeking to enrol either on their own or by selection of enrolment agencies.\nState and Non State Registrars\nThe State Government/Union Territory agencies working as Registrar for UIDAI are State Registrar. All the banks and the public sector undertakings who sign a MoU act as Non State Registrar.\nRoles & Responsibilities\n  * \nPartner with the UIDAI and leverage the ecosystem defined by the UIDAI in implementing the enrolment process\n  * \nOnly use the software provided by UIDAI for enrolment purpose, which will have the provision of capturing audit data as part of enrolment packet against each enrolment / update for traceability of enrolment client, operator, supervisor, enrolment agency, registrar, and any other information.\n  * \nThe biometric devices used for enrolment shall meet the specification prescribed by UIDAI as well as certified as per the process prescribed by the Authority.\n  * \nEngage Enrolment Agencies for enrolment of individuals seeking to enrol, conduct training of the agencies and regular monitoring.\n  * \nEnsure that standard defined by UIDAI is followed in terms of technology, devices and processes including in training, awareness building, enrolment, authentication etc.\n  * \nRegistrars shall carry the enrolment of individuals seeking to enrol by themselves or through enrolment agencies contracted by them. Registrars shall have option to contract with empanelled enrolment agencies or any other agencies found suitable by them following their own system of contracting such agencies..\n  * \nEnsure that all the enrolment packets have been transferred to CIDR within specified time using secured FTP channel only.\n  * \nEnsure relevant security protection for data collected during the same; retain safe copies of supporting documents and provide access to UIDAI as and when required\n  * \nPartner with Civil Society Organisations and other outreach groups to maximise enrolment of marginalised individuals seeking to enrol\n  * \nSetup process for grievance resolution, monitoring EA performance etc. as defined by the UIDAI; provide assistance to UIDAI in resolving matters of dispute",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "update",
+    "biometric",
+    "authentication",
+    "enrolment",
+    "pan"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "spider_uidai.gov.in_5119281c_chunk_3",
+  "source_url": "https://uidai.gov.in/about-authentication",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "Obtaining Aadhaar number holder’s Consent for Authentication\nThe Central / State Government may, for the purpose of establishing the identity of individual as a condition for receipt of subsidy, benefit or service require that such individual undergo authentication, or furnish proof of possession of Aadhaar number or in the case of an individual to whom no Aadhaar number has been assigned, such individual makes an application for enrolment of Aadhaar.\nIf an Aadhaar number is not assigned to an individual, the individual shall be offered alternate and viable means of identification for delivery of subsidy, benefit or service.\nIn compliance with Aadhaar Act, all requesting entities or service providers shall\n  * \nunless otherwise provided in the Act, obtain the consent of an individual before collecting his/her identity information for the purpose of authentication in such manner as mandated by UIDAI’s policy and regulations.\n  * \nensure that the identity information of an individual is only used for submission to the CIDR for authentication.\n\nNothing contained in this Aadhaar Act shall prevent the use of Aadhaar number for establishing the identity of an individual for any purpose, whether by the State or anybody corporate or person, pursuant by law, for the time being in force, or any contract to this effect.  \nProvided that the use of Aadhaar number shall be subject to the procedure and obligations under section 8 and Chapter VI of the Act.\nAuthentication Services\n\nThe authentication service is provided in online and real-time manner by UIDAI through its two data centres i.e. Hebbal Data Centre (HDC) and Manesar Data Centre (MDC) where online services for authentication and other services such as e-KYC are deployed in active-active mode to ensure high availability of services.\nThe UIDAI’s Central Identities Data Repositotry (CIDR) is currently capable of handling tens of millions of authentications on a daily basis, and can be scaled up further as demand increases. Many requesting entities that provide services to Aadhaar number holders have integrated Aadhaar into their domain applications for improved service delivery anywhere in the country in a real-time, scalable, interoperable manner.\n\nContent Information\nPublished on: 13 Apr 2026\nLast Updated: 30 Jun 2026\nOwner: A & V",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "authentication",
+    "enrolment"
+  ]
+}

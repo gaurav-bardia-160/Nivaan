@@ -1,0 +1,19 @@
+{
+  "id": "spider_uidai.gov.in_ff0d94df_chunk_6",
+  "source_url": "https://uidai.gov.in/en/glossary",
+  "title": "1. [Home](https://uidai.gov.in/en)",
+  "section": "",
+  "text": "### \nJ\n\n### \nK\n\nKSA or KYC Service Agency\nA valid ASA who has been approved and has signed the agreement to access KYC API through their network\nKUA or KYC User Agency\nA valid AUA who has been approved and has signed the agreement to access KYC API\nOn the lines of KYC of Banking Industry like e.g, Ration Card Number or welfare beneficiary identity number\nKYR+\nFields required in addition to KYR fields required by the Registrars\n\n### \nL\n\n### \nM\n\nMNREGA\nMahatma Gandhi National Rural Employment Guarantee Act\nManual\nEnrolment Manual\nMoU\nMemorandum of Understanding\n\n### \nN\n\nNGO\nNon-Government Organization\nNPR\nNational Population Register, which is a programme of Registrar General of India/Census Office for enrolling and assigning ID numbers to individuals seeking to enrol\nNREGA\nNational Rural Employment Guarantee Act\n\n### \nO\n\nOTP – One Time Password\nOTP is a one time personal identification number generally, sent to the mobile phone number for authentication framework.\nOperator\nOperator is the person employed by the Enrolment Agency and engaged in the capture of Demographic and Biometric Data.\nORGI\nOffice of Registrar General of India",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "mobile",
+    "biometric",
+    "authentication",
+    "enrolment"
+  ]
+}

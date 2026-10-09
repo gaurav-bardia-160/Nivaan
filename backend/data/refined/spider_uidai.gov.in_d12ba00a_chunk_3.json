@@ -1,0 +1,20 @@
+{
+  "id": "spider_uidai.gov.in_d12ba00a_chunk_3",
+  "source_url": "https://uidai.gov.in/en/updating-data-on-aadhaar",
+  "title": "1. [Home](https://uidai.gov.in/en)",
+  "section": "1. [Home](https://uidai.gov.in/en)",
+  "text": "Biometric update, the need could arise from:\n  * \n**Age <5 years at the time of initial enrolment** -The child should be re-enroled when the child attains an age of 5 years and all biometric data should be provided. A de-duplication would be done for the child at this stage. This request will be treated similar to a new enrolment request while retaining the original Aadhaar number\n  * \n**Age between 5 and 15 years at the time of enrolment** - The Aadhaar number holder should furnish all biometrics for updates when he/she attains age of 15 years.\n  * \n**Age >15 years at the time of enrolment** – Aadhaar number holders are recommended to update their biometric data every 10 years.\n  * \nEvents like accidents or diseases leading to biometric exception\n  * \nAs the Aadhaar authentication service is becoming ubiquitous, Aadhaar number holders may also approach for biometric updates because of authentication failures (called false rejects – where a correct Aadhaar number holder with valid Aadhaar number may be incorrectly rejected) which may result from incorrect biometric capture or poor biometric quality captured at the time of enrolment. With improvements in technology, it may be possible to capture better quality biometrics in the CIDR.\n  * \nUIDAI may verify the **quality** of biometrics captured during enrolment/ update and decide a threshold quality. All Aadhaar number holders with biometrics below the threshold level would/**will** be notified by UIDAI to update their biometrics",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "biometric",
+    "authentication",
+    "enrolment"
+  ]
+}

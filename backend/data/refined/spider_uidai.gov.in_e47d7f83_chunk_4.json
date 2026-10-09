@@ -1,0 +1,19 @@
+{
+  "id": "spider_uidai.gov.in_e47d7f83_chunk_4",
+  "source_url": "https://uidai.gov.in/enrolment-and-update",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "Where can I enrol for Aadhaar?\nYou can enrol by visiting any Aadhaar Enrolment centre for Aadhaar enrolment. Which can be found by following criteria:\n  1. All enrolment (including 18+) and Update\n  2. All enrolment (excluding 18+) and Update\n  3. Only child enrolment and mobile update\n  4. Only child enrolment  \nDetailed list with navigation and address of Aadhaar Enrolment centres is available at Bhuvan portal:",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "update",
+    "mobile",
+    "enrolment"
+  ]
+}

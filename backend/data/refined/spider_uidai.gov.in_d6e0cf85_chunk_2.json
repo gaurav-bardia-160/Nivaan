@@ -1,0 +1,16 @@
+{
+  "id": "spider_uidai.gov.in_d6e0cf85_chunk_2",
+  "source_url": "https://uidai.gov.in/aadhaar-generation",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "Main Processing Pipeline\nAfter the sanity checks pass, the enrolment packet is passed onto the main processing pipeline. At a high level, this includes the following stages:\nCIDR Sanity Checks: Each enrolment packet is exhaustively checked for validity – checksums, packet meta data, etc. – in the CIDR DMZ using automated process before it is moved to the production zone of CIDR for processing.\n**Automated Data Validation** : Following validation checks are done in CIDR for demographic data\n  * \nName & Address validations\n  * \nLanguage Validations\n  * \nPincode and Administrative regions\n  * \nRegular back up of Archived data is taken to ensure zero data loss.",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "enrolment"
+  ]
+}

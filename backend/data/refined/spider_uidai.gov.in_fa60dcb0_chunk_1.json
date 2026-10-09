@@ -1,0 +1,18 @@
+{
+  "id": "spider_uidai.gov.in_fa60dcb0_chunk_1",
+  "source_url": "https://uidai.gov.in/authentication",
+  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "section": "1. [Home](https://uidai.gov.in/hi)",
+  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  3. [Help](https://uidai.gov.in/hi/help)\n  4. /\n  5. [Frequently Asked Questions](https://uidai.gov.in/hi/faq)\n  6. /\n  7. [Authentication](https://uidai.gov.in/hi/authentication)\n\n# Authentication\nAadhaar Authentication means the process by which the Aadhaar number along with the demographic information or biometric information of an Aadhaar number holder is submitted to the Central Identities Data Repository (CIDR) for its verification and such repository verifies the correctness, or the lack thereof, on the basis of the information available with it.\n\n### \nFor Aadhaar Number Holders",
+  "category": "aadhaar",
+  "last_verified": "2026-10-09",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "biometric",
+    "authentication"
+  ]
+}
