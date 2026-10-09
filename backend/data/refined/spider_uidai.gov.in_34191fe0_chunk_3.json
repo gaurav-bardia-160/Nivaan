@@ -2,8 +2,8 @@
   "id": "spider_uidai.gov.in_34191fe0_chunk_3",
   "source_url": "https://uidai.gov.in/en/website-help",
   "title": "Website Help",
-  "section": "In this section",
-  "text": "## In this section\n  * [Sections of this Website](https://uidai.gov.in/en/website-help#sections-of-this-website)\n  * [Audio & Videos](https://uidai.gov.in/en/website-help#audio-videos)\n  * [Viewing Information in various file formats](https://uidai.gov.in/en/website-help#viewing-information-in-various-file-formats)\n\n\nContent Information\nPublished on: 12 May 2026\nLast Updated: 08 Jun 2026\n\n  * [Vision & Mission](https://uidai.gov.in/en/vision-and-mission)\n  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)\n  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)\n\n## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)\n  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)\n  * [Update Aadhaar](https://uidai.gov.in/en/updating-data-on-aadhaar)\n  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)\n  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)\n  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)\n  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)\n\n  * [Enrolment & Update Forms](https://uidai.gov.in/en/enrolment-and-updates)\n  * [Handbooks](https://uidai.gov.in/en/handbooks)\n  * [ Annual Reports](https://uidai.gov.in/en/annual-reports)\n  * [Circulars](https://uidai.gov.in/en/circulars)\n  * [ Policies](https://uidai.gov.in/en/policies)\n\n  * [Developer Sandbox](https://uidai.gov.in/en/developer-section)\n  * [Become an OVSE](https://uidai.gov.in/en/ovse)\n\n  * [Site Map](https://uidai.gov.in/en/site-map)\n  * [Website Policies](https://uidai.gov.in/en/website-policies)\n  * [Website Help](https://uidai.gov.in/en/website-help)\n\n### UIDAI Head Office\nUnique Identification Authority of India\nBangla Sahib Road, Behind Kali Mandir, Gole Market, New Delhi - 110001\n2\n3\n6\n4\n5\n9\n5\n8\nTotal Visitors\nRegional and State Offices\nAssam\n​\n**UIDAI Regional Office, Guwahati**\nBlock-V, First Floor, HOUSEFED Complex, Beltola-Basistha Road, Dispur, Guwahati - 781 006\nContact details\n\nToll-free Number\n1947\n\nEmail\nhelp[at]uidai[dot]gov[dot]in\nCopyright © 2026 Unique Identification Authority of India All Rights Reserved.\nLast reviewed and updated on: October 6, 2026",
+  "section": "The table lists the required plug-ins needed to view the information in various file formats. **Plug-in for alternate document types**   | Document Type  | Plug-in for Download  |   | --- | --- |   | Portable Document Format (PDF) files  |   |   | Word files  |   |   | Excel files  |   |   | PowerPoint presentations  |   |    Content Information Published on: 12 May 2026 Last Updated: 08 Jun 2026",
+  "text": "The table lists the required plug-ins needed to view the information in various file formats. **Plug-in for alternate document types**   | Document Type  | Plug-in for Download  |   | --- | --- |   | Portable Document Format (PDF) files  |   |   | Word files  |   |   | Excel files  |   |   | PowerPoint presentations  |   |    Content Information Published on: 12 May 2026 Last Updated: 08 Jun 2026",
   "category": "aadhaar",
   "last_verified": "2026-10-09",
   "status": "unverified",
@@ -11,12 +11,7 @@
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
-    "aadhaar",
     "update",
-    "download",
-    "enrolment",
-    "status",
-    "lock",
-    "pvc"
+    "download"
   ]
 }

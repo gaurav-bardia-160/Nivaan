@@ -91,15 +91,17 @@ def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_
     for piece in merged_pieces:
         words = piece.split()
         if len(words) > 500:
-            # split by paragraphs
-            paragraphs = piece.split('\n\n')
+            # force split by sentences/lines to respect max size
+            lines = piece.split('\n')
             temp_chunk = ""
-            for p in paragraphs:
-                if len((temp_chunk + " " + p).split()) > 400 and temp_chunk:
-                    final_chunks.append(temp_chunk.strip())
-                    temp_chunk = p
-                else:
-                    temp_chunk += "\n\n" + p if temp_chunk else p
+            for line in lines:
+                sentences = re.split(r'(?<=\.)\s+', line)
+                for sentence in sentences:
+                    if len((temp_chunk + " " + sentence).split()) > 400 and temp_chunk:
+                        final_chunks.append(temp_chunk.strip())
+                        temp_chunk = sentence
+                    else:
+                        temp_chunk += " " + sentence if temp_chunk else sentence
             if temp_chunk:
                 final_chunks.append(temp_chunk.strip())
         else:
@@ -113,8 +115,11 @@ def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_
             
         section = title
         lines = chunk_text.split('\n')
-        if lines and lines[0].startswith('#'):
-            section = lines[0].strip('# ').strip()
+        for line in lines:
+            line_clean = re.sub(r'!\[.*?\]\(.*?\)', '', line).strip('# ').strip()
+            if line_clean:
+                section = line_clean
+                break
             
         chunk_id = f"{doc_id}_chunk_{i+1}"
         draft = {
@@ -176,11 +181,12 @@ def run_refiner():
                 # Extract real page title instead of file-hash
                 title = doc_id
                 for line in cleaned_content.split('\n'):
-                    if line.strip() and not line.startswith('#'):
-                        title = line.strip()
+                    line_clean = re.sub(r'!\[.*?\]\(.*?\)', '', line).strip()
+                    if line_clean and not line_clean.startswith('#'):
+                        title = line_clean
                         break
-                    elif line.startswith('#'):
-                        title = line.strip('# ').strip()
+                    elif line_clean.startswith('#'):
+                        title = line_clean.strip('# ').strip()
                         break
                         
                 chunk_and_save(doc_id, title, url, cleaned_content, all_chunks)
