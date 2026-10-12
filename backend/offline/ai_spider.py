@@ -118,9 +118,7 @@ async def spider_website(start_url: str, source_name: str = "pan"):
                     
                     file_content = f"URL: {current_url}\n\n{raw_text}"
                     
-                    # Save directly to raw/
-                    (RAW_DIR / filename).write_text(file_content, encoding="utf-8")
-                    # Also save to raw/{source_name}/
+                    # Save to raw/{source_name}/
                     (source_raw_dir / filename).write_text(file_content, encoding="utf-8")
                     logger.info(f"Saved {filename} ({len(raw_text.split())} words)")
 

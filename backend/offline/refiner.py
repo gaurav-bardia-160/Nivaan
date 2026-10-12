@@ -82,7 +82,7 @@ def extract_tags(text: str, source_name: str) -> list:
         tags = [f"{source_name}_service"]
     return sorted(list(set(tags)))
 
-def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_list: list, source_name: str, refined_dir: Path, global_refined_dir: Path):
+def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_list: list, source_name: str, refined_dir: Path):
     # Strip image markdowns
     cleaned_text = re.sub(r'!\[.*?\]\(.*?\)', '', cleaned_text)
     
@@ -163,10 +163,9 @@ def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_
             "retrieval_tags": extract_tags(chunk_text, source_name)
         }
         
-        # Save individual JSON chunk to both refined/{source_name}/ and refined/
+        # Save individual JSON chunk to refined/{source_name}/
         json_content = json.dumps(draft, indent=2, ensure_ascii=False) + "\n"
         (refined_dir / f"{chunk_id}.json").write_text(json_content, encoding="utf-8")
-        (global_refined_dir / f"{chunk_id}.json").write_text(json_content, encoding="utf-8")
         chunks_list.append(draft)
 
 def run_refiner(source_name: str = "pan"):
@@ -227,29 +226,23 @@ def run_refiner(source_name: str = "pan"):
                         title = line_clean.strip('# ').strip()
                         break
                         
-                chunk_and_save(doc_id, title, url, cleaned_content, all_chunks, source_name, refined_source_dir, REFINED_DIR)
+                chunk_and_save(doc_id, title, url, cleaned_content, all_chunks, source_name, refined_source_dir)
                 processed_count += 1
                 
         except Exception as e:
             print(f"Failed to process {path.name}: {e}")
             
-    # Save combined JSONL file to both refined/{source_name}/ and refined/
+    # Save combined JSONL file to refined/{source_name}/
     jsonl_filename = f"{source_name}_chunks_clean.jsonl"
     jsonl_path = refined_source_dir / jsonl_filename
-    global_jsonl_path = REFINED_DIR / jsonl_filename
     
     with open(jsonl_path, 'w', encoding='utf-8') as f:
         for chunk in all_chunks:
             f.write(json.dumps(chunk, ensure_ascii=False) + '\n')
             
-    with open(global_jsonl_path, 'w', encoding='utf-8') as f:
-        for chunk in all_chunks:
-            f.write(json.dumps(chunk, ensure_ascii=False) + '\n')
-            
     print(f"Successfully refined {processed_count} out of {len(raw_files)} raw files.")
-    print(f"Generated {len(all_chunks)} clean JSON chunks.")
-    print(f"Source JSONL available at: {jsonl_path}")
-    print(f"Global JSONL available at: {global_jsonl_path}")
+    print(f"Generated {len(all_chunks)} clean JSON chunks in {refined_source_dir}.")
+    print(f"JSONL available at: {jsonl_path}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
