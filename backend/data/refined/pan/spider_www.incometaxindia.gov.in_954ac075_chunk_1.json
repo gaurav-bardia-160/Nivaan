@@ -1,0 +1,17 @@
+{
+  "id": "spider_www.incometaxindia.gov.in_954ac075_chunk_1",
+  "source_url": "https://www.incometaxindia.gov.in/tax-services/status-of-pan-utitsl",
+  "title": "Status of PAN – UTITSL",
+  "section": "Status of PAN – UTITSL",
+  "text": "# Status of PAN – UTITSL\n  1. To check the status of PAN Application visit <https://www.trackpan.utiitsl.com/PANONLINE/forms/TrackPan/trackApp>\n  2. Select Application type from given drop-down option\n  3. Enter \"Coupon Number\" (generated after successfully filing of PAN application) and click on \"Submit\" button\n\n[Click here](https://www.trackpan.utiitsl.com/PANONLINE/forms/TrackPan/trackApp) to Know the status of PAN Application - UTITSL",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "pan",
+    "utiitsl"
+  ]
+}

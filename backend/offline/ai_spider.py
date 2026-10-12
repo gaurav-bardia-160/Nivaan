@@ -2,6 +2,9 @@ import asyncio
 import json
 import logging
 import hashlib
+import re
+import sys
+import argparse
 from pathlib import Path
 from urllib.parse import urlparse, urljoin
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
@@ -19,7 +22,10 @@ JUNK_KEYWORDS = [
     "terms", "conditions", "privacy", "policy", "login", "register", 
     "captcha", "contact", "sitemap", "disclaimer",
     "archive", "media", "video", "career", "regional", "dashboard", "/hi",
-    "developer"
+    "developer", "update_language", "languageid=hi_in", "screen-reader",
+    "report-phishing", "childrens-corner", "feedback", "locators",
+    "tax-helpline", "website-analytics", "website-policies", "accessibility",
+    "website-certifications"
 ]
 
 def is_junk_link(url: str, text: str) -> bool:
@@ -29,54 +35,63 @@ def is_junk_link(url: str, text: str) -> bool:
             return True
     return False
 
-import re
-
-def clean_markdown(md: str) -> str:
+def clean_raw_markdown(md: str, url: str) -> str:
+    """Pre-cleaning before saving raw text to avoid saving massive repetitive navigation menus."""
     lines = md.split('\n')
-    cleaned = []
-    # Common UI noises found on government sites
-    skip_keywords = [
-        "Skip to Main Content", "Screen Reader", "Language selection", 
-        "Footer background", "Menu icon", "Open external website",
-        "Hindi (हिन्दी)", "My Aadhaar", "About UIDAI",
-        "Build with Us", "Quick Links", "Other Links", "UIDAI — Unique", 
-        "Mobile menu toggle", "JavaScript must be enabled", "UIDAl website translation",
-        "Ask Me Anything!!", "Search Services"
-    ]
-    exact_skip_keywords = ["Home", "More", "Media", "Documents", "Help", "English"]
     
-    for line in lines:
-        line_clean = line.strip()
-        # Remove markdown link syntax for exact matching, e.g. [Home](...) -> Home
-        text_only = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', line_clean).strip()
-        text_only = re.sub(r'^[#*\- ]+', '', text_only).strip() # remove bullets/headings
-        
-        if any(k.lower() in line.lower() for k in skip_keywords):
-            continue
-        if any(k.lower() == text_only.lower() for k in exact_skip_keywords):
-            continue
-        cleaned.append(line)
-    return '\n'.join(cleaned).strip()
+    # For incometaxindia.gov.in, extract main content starting from main headings
+    if "incometaxindia.gov.in" in url:
+        content_lines = []
+        capturing = False
+        for line in lines:
+            # Main content starts at the service heading
+            if re.match(r'^#\s+.*', line) and not capturing:
+                if "IT Bill" not in line and "TDS" not in line:
+                    capturing = True
+            # Cut off footer widgets like IT Bill Comparison Tool or Public Awareness
+            if capturing and any(marker in line for marker in ["IT Bill Comparison Tool", "Public Awareness", "Last reviewed and updated on:"]):
+                break
+            if capturing:
+                content_lines.append(line)
+                
+        if content_lines:
+            return '\n'.join(content_lines).strip()
+            
+    return md.strip()
 
-import sys
-import argparse
-
-async def spider_website(start_url: str, source_name: str):
+async def spider_website(start_url: str, source_name: str = "pan"):
     domain = urlparse(start_url).netloc
     visited = set()
     to_visit = {start_url}
 
-    target_dir = RAW_DIR / source_name
-    target_dir.mkdir(parents=True, exist_ok=True)
+    # Dedicated source dir inside raw
+    source_raw_dir = RAW_DIR / source_name
+    source_raw_dir.mkdir(parents=True, exist_ok=True)
 
-    logger.info(f"Starting spider on: {start_url}")
-    logger.info(f"Saving to: {target_dir}")
+    # Seed related PAN pages if targeting income tax PAN service
+    if "incometaxindia.gov.in" in domain and "pan" in start_url.lower():
+        pan_seed_urls = [
+            "https://www.incometaxindia.gov.in/tax-services/apply-for-pan",
+            "https://www.incometaxindia.gov.in/tax-services/instant-e-pan",
+            "https://www.incometaxindia.gov.in/tax-services/online-pan-verification",
+            "https://www.incometaxindia.gov.in/tax-services/status-of-pan-protean",
+            "https://www.incometaxindia.gov.in/tax-services/status-of-pan-utitsl",
+            "https://www.incometaxindia.gov.in/tax-services/link-aadhaar",
+            "https://www.incometaxindia.gov.in/tax-services/tan-pan-consolidated-file",
+            "https://www.incometaxindia.gov.in/pan-verification",
+            "https://www.incometaxindia.gov.in/pan",
+            "https://www.incometaxindia.gov.in/pan-as-per-income-tax-act-1961-"
+        ]
+        for s_url in pan_seed_urls:
+            to_visit.add(s_url)
+
+    logger.info(f"Starting spider on: {start_url} (queue size: {len(to_visit)})")
 
     config = CrawlerRunConfig(
         magic=True,
         cache_mode=CacheMode.BYPASS,
-        word_count_threshold=50,
-        exclude_external_links=True
+        word_count_threshold=30,
+        exclude_external_links=False
     )
 
     async with AsyncWebCrawler() as crawler:
@@ -86,7 +101,7 @@ async def spider_website(start_url: str, source_name: str):
                 continue
                 
             visited.add(current_url)
-            logger.info(f"Crawling: {current_url}")
+            logger.info(f"Crawling ({len(visited)}/{len(visited) + len(to_visit)}): {current_url}")
             
             result = await crawler.arun(url=current_url, config=config)
             
@@ -94,15 +109,22 @@ async def spider_website(start_url: str, source_name: str):
                 logger.error(f"Failed to crawl {current_url}: {result.error_message}")
                 continue
                 
-            if result.markdown and len(result.markdown) > 100:
-                cleaned_text = clean_markdown(result.markdown)
-                if len(cleaned_text) > 100:
+            # 1. Save valid raw content
+            if result.markdown and len(result.markdown) > 50:
+                raw_text = clean_raw_markdown(result.markdown, current_url)
+                if len(raw_text) > 50:
                     h = hashlib.md5(current_url.encode()).hexdigest()[:8]
                     filename = f"spider_{domain}_{h}.txt"
-                    filepath = target_dir / filename
-                    filepath.write_text(f"URL: {current_url}\n\n{cleaned_text}", encoding="utf-8")
-                    logger.info(f"Saved {filename}")
+                    
+                    file_content = f"URL: {current_url}\n\n{raw_text}"
+                    
+                    # Save directly to raw/
+                    (RAW_DIR / filename).write_text(file_content, encoding="utf-8")
+                    # Also save to raw/{source_name}/
+                    (source_raw_dir / filename).write_text(file_content, encoding="utf-8")
+                    logger.info(f"Saved {filename} ({len(raw_text.split())} words)")
 
+            # 2. Extract internal links
             internal_links = result.links.get("internal", [])
             for link_obj in internal_links:
                 href = link_obj.get("href")
@@ -114,16 +136,22 @@ async def spider_website(start_url: str, source_name: str):
                 full_url = urljoin(current_url, href)
                 
                 if full_url not in visited and full_url not in to_visit:
-                    if full_url.startswith(start_url) and not is_junk_link(full_url, text):
-                        to_visit.add(full_url)
-                    elif not full_url.startswith(start_url):
-                        logger.debug(f"Ignored out-of-scope link: {full_url}")
-                    else:
-                        logger.debug(f"Ignored junk link: {full_url}")
+                    parsed_full = urlparse(full_url)
+                    if parsed_full.netloc == domain and not is_junk_link(full_url, text):
+                        # Filter to relevant PAN links on incometaxindia
+                        if "incometaxindia.gov.in" in domain:
+                            u_lower = full_url.lower()
+                            t_lower = text.lower()
+                            if any(k in u_lower for k in ["apply-for-pan", "instant-e-pan", "online-pan", "status-of-pan", "link-aadhaar", "tan-pan", "pan-verification", "/pan"]):
+                                to_visit.add(full_url)
+                        else:
+                            to_visit.add(full_url)
+
+    logger.info(f"Spider completed! Crawled {len(visited)} pages. Saved to {RAW_DIR} and {source_raw_dir}.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--url", required=True)
-    parser.add_argument("--source", required=True)
+    parser.add_argument("--url", default="https://www.incometaxindia.gov.in/tax-services/apply-for-pan")
+    parser.add_argument("--source", default="pan")
     args = parser.parse_args()
     asyncio.run(spider_website(args.url, args.source))

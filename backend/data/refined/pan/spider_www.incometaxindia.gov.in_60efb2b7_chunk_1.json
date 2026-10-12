@@ -1,0 +1,17 @@
+{
+  "id": "spider_www.incometaxindia.gov.in_60efb2b7_chunk_1",
+  "source_url": "https://www.incometaxindia.gov.in/tax-services/status-of-pan-protean",
+  "title": "Status of PAN – Protean",
+  "section": "Status of PAN – Protean",
+  "text": "# Status of PAN – Protean\n**Option I Track on basis of Acknowledgement Number**\n  1. Visit **<https://tin.tin.proteantech.in/pantan/StatusTrack.html>**\n  2. Select \" PAN-New/Change Request\" from drop-down menu in \"Application Type\" option.\n  3. Enter your Acknowledgement Number and click on \"Submit\" button\n\n[Click here](https://tin.tin.proteantech.in/pantan/StatusTrack.html) to Know the Status of PAN application - Protean",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "pan",
+    "protean"
+  ]
+}

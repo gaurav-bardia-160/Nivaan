@@ -7,11 +7,13 @@ from pathlib import Path
 from datetime import date
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+RAW_DIR = BASE_DIR / "data" / "raw"
+REFINED_DIR = BASE_DIR / "data" / "refined"
 
 def clean_markdown(md: str, source_name: str) -> str:
     lines = md.split('\n')
     cleaned = []
-    # Common UI noises found on government sites
+    
     skip_keywords = [
         "Skip to Main Content", "Screen Reader", "Language selection", 
         "Footer background", "Menu icon", "Open external website",
@@ -24,18 +26,33 @@ def clean_markdown(md: str, source_name: str) -> str:
         "Hyperlink Policy", "Copyright Policy", "Disclaimer", "Accessibility Statement",
         "Contact Us", "Sitemap", "Bhuvan Aadhaar", "Aadhaar Dashboard", "Aadhaar Data Vault",
         "Aadhaar Mitra", "Grievance Redressal", "Follow Us On",
-        "Income Tax Department", "Ministry of Finance", "Government of India",
-        "Tax Services", "Taxpayer Services", "File your Return", "TDS/TCS", "Tax Information Network",
-        "Report Evasion", "Tax Calendar", "Important Links", "Income Tax Rules",
-        "Connect with us", "Central Board of Direct Taxes"
+        "Guided Tour", "Department Officials", "IRS Officers Online", "Official Email Systems",
+        "Employees Corner", "Take Online Oath", "Accessibility Options", "Font Size",
+        "Saturation", "High Contrast Theme", "Basic HTML View", "Invert Colors", "Language Options",
+        "Quick Access International Taxation", "Organizations and Functions", "Taxpayers",
+        "Tax Laws & Rules", "Media Gallery", "Advanced Search",
+        "IT Bill Comparison Tool", "Compare Income-tax Act 1961 with Income-tax Act 2025",
+        "Upload FilesSelect from CatalogEnter URLs", "Compare sections first to enable export",
+        "Select sections from both Acts and click",
+        "For reference purposes only", "Public Awareness", "Report Phishing", "Children's Corner", "Useful Links",
+        "Subscribe - Newsletter", "Subscribe - Tax Feeds", "e-Governance",
+        "This site is best viewed in", "Copyright Income Tax Department",
+        "Show More", "Act, 1961", "Act, 2025", "Acts", "Rules", "Circulars", "Notifications",
+        "Orders & Instructions", "Forms/Downloads", "Budget & Bills", "Finance Acts", "Finance Bills"
     ]
-    exact_skip_keywords = ["Home", "More", "Media", "Documents", "Help", "English", "Facebook", "Twitter", "YouTube", "Instagram", "LinkedIn", "Koo", "Login", "Register", "e-Filing"]
+    
+    exact_skip_keywords = [
+        "Home", "More", "Media", "Documents", "Help", "English", "Facebook", "Twitter",
+        "YouTube", "Instagram", "LinkedIn", "Koo", "Login", "Register", "e-Filing",
+        "Close", "Hidden", "Compare", "Drop file here orChoose File", "etds-htmletds-pdf",
+        "Tax e-Services"
+    ]
     
     for line in lines:
         line_clean = line.strip()
         # Remove markdown link syntax for exact matching, e.g. [Home](...) -> Home
         text_only = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', line_clean).strip()
-        text_only = re.sub(r'^[#*\- ]+', '', text_only).strip() # remove bullets/headings
+        text_only = re.sub(r'^[#*\- 0-9\.]+', '', text_only).strip()
         
         if any(k.lower() in line.lower() for k in skip_keywords):
             continue
@@ -43,7 +60,6 @@ def clean_markdown(md: str, source_name: str) -> str:
             continue
         cleaned.append(line)
         
-    # Remove excessive empty lines
     text = '\n'.join(cleaned).strip()
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text
@@ -54,9 +70,9 @@ def extract_tags(text: str, source_name: str) -> list:
     if source_name == "uidai":
         keywords = ["aadhaar", "update", "mobile", "fee", "download", "biometric", "authentication", "enrolment", "pan", "status", "lock", "unlock", "pvc"]
     elif source_name == "pan":
-        keywords = ["pan", "apply", "form 49a", "form 49aa", "nsdl", "utiitsl", "reprint", "correction", "minor", "nri", "tatkal", "eproof", "ao code", "e-pan", "kyc"]
+        keywords = ["pan", "apply", "form 49a", "form 49aa", "nsdl", "protean", "utiitsl", "reprint", "correction", "minor", "nri", "tatkal", "eproof", "ao code", "e-pan", "kyc", "instant", "verification", "aadhaar_link", "fee"]
     else:
-        keywords = []
+        keywords = [source_name]
         
     for kw in keywords:
         if kw in text_lower:
@@ -64,9 +80,9 @@ def extract_tags(text: str, source_name: str) -> list:
             
     if not tags:
         tags = [f"{source_name}_service"]
-    return tags
+    return sorted(list(set(tags)))
 
-def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_list: list, source_name: str, refined_dir: Path):
+def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_list: list, source_name: str, refined_dir: Path, global_refined_dir: Path):
     # Strip image markdowns
     cleaned_text = re.sub(r'!\[.*?\]\(.*?\)', '', cleaned_text)
     
@@ -78,7 +94,8 @@ def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_
     current_piece = ""
     for piece in raw_pieces:
         piece = piece.strip()
-        if not piece: continue
+        if not piece:
+            continue
         
         if current_piece:
             current_piece += "\n\n" + piece
@@ -101,7 +118,6 @@ def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_
     for piece in merged_pieces:
         words = piece.split()
         if len(words) > 500:
-            # force split by sentences/lines to respect max size
             lines = piece.split('\n')
             temp_chunk = ""
             for line in lines:
@@ -141,34 +157,45 @@ def chunk_and_save(doc_id: str, title: str, url: str, cleaned_text: str, chunks_
             "category": source_name,
             "last_verified": date.today().isoformat(),
             "status": "unverified",
-            "quality_score": 0.85, # automated quality score for clean chunks
+            "quality_score": 0.85,
             "source_confidence": "official",
             "verification_method": "automated_official_source",
             "retrieval_tags": extract_tags(chunk_text, source_name)
         }
         
-        # Save individual JSON chunk
-        chunk_path = refined_dir / f"{chunk_id}.json"
-        chunk_path.write_text(json.dumps(draft, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        # Save individual JSON chunk to both refined/{source_name}/ and refined/
+        json_content = json.dumps(draft, indent=2, ensure_ascii=False) + "\n"
+        (refined_dir / f"{chunk_id}.json").write_text(json_content, encoding="utf-8")
+        (global_refined_dir / f"{chunk_id}.json").write_text(json_content, encoding="utf-8")
         chunks_list.append(draft)
 
-def run_refiner(source_name: str):
-    raw_dir = BASE_DIR / "data" / "raw" / source_name
-    refined_dir = BASE_DIR / "data" / "refined" / source_name
+def run_refiner(source_name: str = "pan"):
+    raw_source_dir = RAW_DIR / source_name
+    refined_source_dir = REFINED_DIR / source_name
     
-    if not raw_dir.exists():
-        print(f"Error: {raw_dir} does not exist.")
-        return
-
-    refined_dir.mkdir(parents=True, exist_ok=True)
+    refined_source_dir.mkdir(parents=True, exist_ok=True)
+    REFINED_DIR.mkdir(parents=True, exist_ok=True)
     
-    # Remove old files to avoid confusion
-    for old_file in refined_dir.glob("*"):
+    # Clean previous chunks for this source
+    for old_file in refined_source_dir.glob("*.json"):
         old_file.unlink()
         
-    raw_files = list(raw_dir.glob("*.txt"))
+    # Collect raw files from raw/{source_name}/ or raw/ matching the domain
+    raw_files = []
+    if raw_source_dir.exists():
+        raw_files = list(raw_source_dir.glob("*.txt"))
+        
     if not raw_files:
-        print(f"No text files found in {raw_dir}")
+        # Fallback to search in RAW_DIR directly
+        if source_name == "pan":
+            raw_files = list(RAW_DIR.glob("*incometaxindia*.txt"))
+        elif source_name == "uidai":
+            raw_files = list(RAW_DIR.glob("*uidai*.txt"))
+        else:
+            raw_files = list(RAW_DIR.glob("*.txt"))
+
+    if not raw_files:
+        print(f"No text files found for source '{source_name}'.")
         return
         
     processed_count = 0
@@ -178,12 +205,10 @@ def run_refiner(source_name: str):
         try:
             content = path.read_text(encoding="utf-8")
             
-            # Extract URL if present at the top
             lines = content.split('\n')
             url = ""
             if lines and lines[0].startswith("URL: "):
                 url = lines[0].replace("URL: ", "").strip()
-                # Strip URL from content for cleaning
                 content = '\n'.join(lines[1:])
             
             cleaned_content = clean_markdown(content, source_name)
@@ -202,24 +227,32 @@ def run_refiner(source_name: str):
                         title = line_clean.strip('# ').strip()
                         break
                         
-                chunk_and_save(doc_id, title, url, cleaned_content, all_chunks, source_name, refined_dir)
+                chunk_and_save(doc_id, title, url, cleaned_content, all_chunks, source_name, refined_source_dir, REFINED_DIR)
                 processed_count += 1
                 
         except Exception as e:
             print(f"Failed to process {path.name}: {e}")
             
-    # Save combined JSONL file
-    jsonl_path = refined_dir / f"{source_name}_chunks_clean.jsonl"
+    # Save combined JSONL file to both refined/{source_name}/ and refined/
+    jsonl_filename = f"{source_name}_chunks_clean.jsonl"
+    jsonl_path = refined_source_dir / jsonl_filename
+    global_jsonl_path = REFINED_DIR / jsonl_filename
+    
     with open(jsonl_path, 'w', encoding='utf-8') as f:
         for chunk in all_chunks:
             f.write(json.dumps(chunk, ensure_ascii=False) + '\n')
             
+    with open(global_jsonl_path, 'w', encoding='utf-8') as f:
+        for chunk in all_chunks:
+            f.write(json.dumps(chunk, ensure_ascii=False) + '\n')
+            
     print(f"Successfully refined {processed_count} out of {len(raw_files)} raw files.")
-    print(f"Generated {len(all_chunks)} clean JSON chunks in {refined_dir}")
-    print(f"Combined JSONL available at: {jsonl_path}")
+    print(f"Generated {len(all_chunks)} clean JSON chunks.")
+    print(f"Source JSONL available at: {jsonl_path}")
+    print(f"Global JSONL available at: {global_jsonl_path}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--source", required=True)
+    parser.add_argument("--source", default="pan")
     args = parser.parse_args()
     run_refiner(args.source)

@@ -1,0 +1,16 @@
+{
+  "id": "spider_www.incometaxindia.gov.in_b6fd1c54_chunk_3",
+  "source_url": "https://www.incometaxindia.gov.in/pan-verification",
+  "title": "PAN Verification",
+  "section": "Steps to Verify PAN details   1. Go to home page of ‘e-Filing’ Portal [ https://www.incometax.gov.in/iec/foportal/](https://www.incometax.gov.in/iec/foportal/)   2. Click on 'Verify PAN Status' from left hand panel   3. Enter the PAN, Full Name, Date of Birth and Mobile number and click on ‘Continue’.   4. Enter OTP and click on ‘Validate’ button.  Go to [**https://www.incometax.gov.in/iec/foportal/**](https://www.incometax.gov.in/iec/foportal/)",
+  "text": "## Steps to Verify PAN details   1. Go to home page of ‘e-Filing’ Portal [ https://www.incometax.gov.in/iec/foportal/](https://www.incometax.gov.in/iec/foportal/)   2. Click on 'Verify PAN Status' from left hand panel   3. Enter the PAN, Full Name, Date of Birth and Mobile number and click on ‘Continue’.   4. Enter OTP and click on ‘Validate’ button.  Go to [**https://www.incometax.gov.in/iec/foportal/**](https://www.incometax.gov.in/iec/foportal/)",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "unverified",
+  "quality_score": 0.85,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "pan"
+  ]
+}
