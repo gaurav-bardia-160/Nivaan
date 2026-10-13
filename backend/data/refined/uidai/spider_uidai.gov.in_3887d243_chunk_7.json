@@ -1,13 +1,13 @@
 {
   "id": "spider_uidai.gov.in_3887d243_chunk_7",
   "source_url": "https://uidai.gov.in/aadhaar-mythbusters",
-  "title": "1. [Home](https://uidai.gov.in/en)",
+  "title": "Aadhaar Mythbusters",
   "section": "12. We keep hearing in media that Aadhaar data was breached. Is this true?",
   "text": "### \n12. We keep hearing in media that Aadhaar data was breached. Is this true?\n\n  * \nData of all Aadhaar number holders is safe and secure in the Central Identities Data Repository (CIDR) of UIDAI. Aadhaar database in CIDR has never been breached in all these years of its existence.\n  * \nSome organizations, in order to follow transparency protocols, had published their beneficiary data on their websites, which included Aadhaar details. UIDAI took appropriate steps to get this removed and has also sensitized all related organizations and agencies in the matter.\n  * \nUIDAI is working closely with all user agencies to enhance data security measures when it comes to sensitive user details like Aadhaar.\n  * \nUIDAI uses advanced security technologies to keep your data safe and keeps upgrading them to meet emerging security threats and challenges.\n\n\nContent Information\nPublished on: 30 Apr 2026\nLast Updated: 08 Jul 2026\nOwner: HO",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [

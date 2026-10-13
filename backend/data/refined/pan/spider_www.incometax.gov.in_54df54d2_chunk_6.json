@@ -1,0 +1,19 @@
+{
+  "id": "spider_www.incometax.gov.in_54df54d2_chunk_6",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-link-aadhaar",
+  "title": "[ ![EFiling Logo](https://www.incometax.gov.in/iec/foportal/themes/custom/itdbase/logo.svg) ](https://www.incometax.gov.in/iec/foportal/ \"Home\") Link Aadhaar User Manual | Income Tax Department",
+  "section": "**4. How to Submit the Aadhaar PAN link request post Payment of Fee**",
+  "text": "### **4. How to Submit the Aadhaar PAN link request post Payment of Fee**\nAadhaar PAN link request can be made both in the Post login as well as in Pre-login mode.\nThe steps for each of the mode are detailed below one by one: \n**_Submit Aadhaar PAN link Request (Post login):_**\n**Step 1:** Go to **e-filing Portal** > **Login** > On **Dashboard** , in **Profile** section under the **Link Aadhaar to PAN** option, click **Link Aadhaar**.\n\nOr alternatively, click on **L******in** k Aadhaar** in personal details section.\n\n**Step 2:** Enter the Aadhaar number and click on **Validate.**\n\n**_Submit Aadhaar PAN link Request (Pre-login):_**\n\n**Step 2:** Enter the PAN and Aadhaar and click **Validate.**\n\n**Step 3:** Enter the mandatory details as required and click on **Link Aadhaar**.\n\n**Step 4:** Enter the 6-digit OTP received on mobile number mentioned in the previous step and click on **Validate**.\n\n**Step 5:** Request for link of Aadhaar has been submitted successfully, now you can check the Aadhaar-PAN link status.\n\n**Scenario 1: If the payment details are not verified on the e-Filing Portal.**\n**Step 1:** After validating PAN and Aadhaar, you will see a pop-up message that \n” **Payments details not found** ”. Click on **Continue To Pay Through e-Pay Tax** for the payment of fee as payment of fee is the pre-requisite to submit the Aadhaar PAN link request.\n\n**Note: If you have already paid the fee, then wait for 4-5 working days. After that, you can submit the request**.\n**Note: Please ensure you link your correct Aadhaar with your PAN.**\nIf Aadhaar and PAN are already linked or PAN linked to some other Aadhaar or vice versa, you will get following errors**:**\n**Scenario 2:****PAN is already linked with the Aadhaar or with some other Aadhaar:**\n\nYou may need to contact your Jurisdictional Assessing Officer and submit a request for delinking your Aadhaar with incorrect PAN.\nTo know your AO’s contact details, visit [https://eportal.incometax.gov.in/iec/foservices/#/pre-login/knowYourAO](https://eportal.incometax.gov.in/iec/foservices/#/pre-login/knowYourAO)(Prelogin) \nOr <https://eportal.incometax.gov.in/iec/foservices/#/dashboard/myProfile/jurisdictionDetail> (Post login)\n**Scenario 3: If you have made payment of Challan and payments and details are verified at e-filing Portal**.\n**Step 1:** After validating PAN and Aadhaar you will see a pop-up message that ”**Your payment details are verified”.** Please click **Continue** on the pop-up message to submit Aadhaar PAN linking request.\n\n**Step 2:** Enter the required details and click on **Link Aadhaar** button.\n\n**Step 3:** Request for link of Aadhaar PAN has been submitted successfully, now you can check the Aadhaar PAN link status.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "fee",
+    "link",
+    "pan"
+  ]
+}

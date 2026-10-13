@@ -1,0 +1,20 @@
+{
+  "id": "spider_www.incometax.gov.in_54df54d2_chunk_5",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-link-aadhaar",
+  "title": "[ ![EFiling Logo](https://www.incometax.gov.in/iec/foportal/themes/custom/itdbase/logo.svg) ](https://www.incometax.gov.in/iec/foportal/ \"Home\") Link Aadhaar User Manual | Income Tax Department",
+  "section": "Link Aadhaar User Manual",
+  "text": "##  Link Aadhaar User Manual\n\n### 1. Overview\nFor new applicants of PAN card, the Aadhaar PAN linking is done automatically during the application stage. For existing PAN holders, who were allotted PAN on or before 01-07-2017 it is mandatory to link PAN with Aadhaar. The Link Aadhaar service is available to individual taxpayers (both registered and unregistered on e-Filing Portal). If you do not link your PAN with the Aadhaar till 30th June 2023, your PAN will become inoperative. However, people who fall under the exempted category will not be subject to the effects of PAN becoming inoperative.\n\n### 2. Prerequisites for availing this service:\n  * Valid PAN\n  * Aadhaar number\n  * Valid mobile number\n\n### **3. How to make payment of Aadhaar Pan link fee on e-Filing Portal**\n\n**Step 2:** Enter your PAN and Aadhaar Number.\n\n**Step 3** : Click on **Continue to Pay Through e-Pay Tax.**\n\n**Step 4:** Enter your PAN, confirm PAN, and any mobile number to receive OTP.\n\n**Step 5** : Post OTP verification, you will be redirected to e-Pay Tax page.\n\n**Step 6:** Click on **Proceed** on the **Income Tax** tile**.**\n\n**Step 7** : Select the relevant **Assessment Year** and **Type of Payment** as **Other Receipts (500)** and click **Continue.**\n\n**Step 8:** Applicable amount will be pre-filled against **Others.** Click **Continue.**\n\nNow, challan will be generated. On the next screen, you have to select the mode of payment. After selecting the mode of payment, you will be re-directed to the Bank website where you can make the payment.\nPost payment of fee, you can link your Aadhaar with PAN on the e-Filing Portal.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "fee",
+    "link",
+    "pan",
+    "verification"
+  ]
+}

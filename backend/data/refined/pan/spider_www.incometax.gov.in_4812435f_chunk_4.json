@@ -1,0 +1,20 @@
+{
+  "id": "spider_www.incometax.gov.in_4812435f_chunk_4",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/instant-e-pan",
+  "title": "Instant e-PAN",
+  "section": "12. How do I know my e-PAN application was submitted successfully?",
+  "text": "### 12. How do I know my e-PAN application was submitted successfully?\nA success message is displayed along with an Acknowledgement Number, which you should note for future reference. A confirmation message is also sent to your Aadhaar-linked mobile number.\n\n### 13. How do I check the status of my e-PAN request without logging in?\n\n### 14. What do I need to check my status?\nEnter your 12-digit Aadhaar number and click ‘Continue’, then enter the 6-digit OTP received on your Aadhaar-registered mobile number and click ‘Validate Aadhaar OTP and Continue’.\n\n### 15. What can I do once I see my e-PAN status?\nIf the e-PAN has been generated and allotted, you can click ‘View e-PAN’ to view it, ‘Download e-PAN’ to download a copy, or ‘Create e-Filing Account’ to register on the e-Filing portal.\n\n### 16. Do I need to validate my email during e-Filing account registration?\nIf you did not validate your email ID (as per your Aadhaar KYC) while generating your e-PAN or while updating PAN details, validating it becomes compulsory during registration.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "e-pan",
+    "kyc",
+    "link",
+    "pan"
+  ]
+}

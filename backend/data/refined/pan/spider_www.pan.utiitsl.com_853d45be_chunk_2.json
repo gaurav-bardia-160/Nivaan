@@ -1,0 +1,26 @@
+{
+  "id": "spider_www.pan.utiitsl.com_853d45be_chunk_2",
+  "source_url": "https://www.pan.utiitsl.com/PAN/",
+  "title": "UTIITSL PAN Portal Home",
+  "section": "PAN Services",
+  "text": "#### PAN Services\n\n#### PAN Card for Indian Citizen / Indian Entitiy\n[Click to Apply](https://www.pan.utiitsl.com/PAN/newA.html)\n\n#### PAN Card for Foreign Citizen / Foreign Entitiy\n[Click to Apply](https://www.pan.utiitsl.com/PAN/newAA.html)\n\n#### Change/Correction in PAN Card\n[ Click to Apply](https://www.pan.utiitsl.com/PAN/csf.html)\n\n#### Download e-PAN\n(for PAN Card dispatched cases or e-PAN issued cases) \n[Click to Download](https://www.pan.utiitsl.com/PAN_ONLINE/ePANCardHome)\n\n#### Reprint PAN Card\n(for PAN Card dispatched cases) \n[Click to Reprint](https://www.pan.utiitsl.com/PAN/reprint.html)\n\n#### Facility for address update in PAN through eKYC mode\n[Click to Update](https://www.pan.utiitsl.com/PAN_ONLINE/addresschangeHome)\n\n#### Track PAN Card\n[Click to Track Status](https://www.trackpan.utiitsl.com/PANONLINE/#forward)\n\n#### PAN Bulk Verfication\n[Click to View](https://www.pbv.utiitsl.com/pan_dcs/)\n  \n\n[   \nInstructions &   \nFAQs  ](https://www.pan.utiitsl.com/PAN/faqs.html)\n[   \nCustomer Feedback Corner  ](https://www.pan.utiitsl.com/feedback/pan)\n[   \nPAN & Aadhaar Link Status](https://eportal.incometax.gov.in/iec/foservices/#/pre-login/link-aadhaar-status)\n[   \nPAN Application  \nCenters  ](https://psaonline.utiitsl.com/PanPSACenters/forms/applicationCenters)\n  \n\n  \n\nPAN - All India Customer Care Centre \n  \n\nContact: +91 33 40802999, 033 40802999   \nTimings: 9:00AM to 8:00PM (Open all days)   \nEmail: **utiitsl.gsd@utiitsl.com**\n!\nBiometric Notification\n  \n\nBiometric Aadhaar Authentication is required for Aadhaar linking in case of Demographic Data mismatch in PAN and Aadhaar. Please visit your nearest designated PAN center for Biometric Aadhaar Authentication.  \n  \nFor more information on biometric centers visit ([PAN Application Centers](https://www.psaonline.utiitsl.com/PanPSACenters/forms/applicationCenters)).",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "address",
+    "apply",
+    "correction",
+    "e-pan",
+    "fee",
+    "kyc",
+    "link",
+    "pan",
+    "reprint",
+    "utiitsl"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "spider_tinpan.proteantech.in_9cbad794_chunk_7",
+  "source_url": "https://tinpan.proteantech.in/services/pan/instructionscorr.html",
+  "title": "PAN",
+  "section": "Documents to be Submitted Along with the Application",
+  "text": "### Documents to be Submitted Along with the Application\n\n#### Proof of Identity and Address\n  * Documents which are acceptable as proof of identity and address are mentioned in detailed instructions for documents to be submitted.\n  * Proof of Identity and address must be in the full expanded name of the applicant as mentioned in the application form.\n  * If the applicant is a minor (i.e. below 18 years of age at the time of application), any of the documents acceptable as proof of identity and address of any of the parents/ guardian of such minor shall be deemed to be the proof of identity and address of the applicant.\n  * Proof of address in the name of spouse/parents/sibling etc will can be accepted as valid proof of address.\n  * Proof of Address is required for the address mentioned in \"Address\" in item no.4. This address should be mentioned in the proof.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "address",
+    "minor",
+    "pan"
+  ]
+}

@@ -1,20 +1,20 @@
 {
   "id": "spider_uidai.gov.in_81f3759b_chunk_2",
   "source_url": "https://uidai.gov.in/biometric-devices",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "title": "Biometric Devices",
   "section": "Their functioning is dependent on the operating system, making them less secure and more vulnerable compared to L1 registered devices. **Level 1 Compliance:** L1 devices are chip-based and provide stronger security by performing encryption on-device within a Trusted Execution Environment (TEE). They store keys in secure hardware elements, feature advanced liveness detection for anti-spoofing. Being OS-agnostic, they deliver higher security and reliability across environments. UIDAI strengthened liveness detection in fingerprint devices to prevent spoofing and reduce failure rates as the capture of artificial/fake fingerprints is failed at the device level post implementation of **Fake Finger Detection (FFD)** Key Milestones   *  **2012:** Launch of Aadhaar Authentication - Laid the foundation for a secure, scalable digital identity system.   *  **2013:** Launch of e-KYC Authentication - Enabled paperless verification and ease of access to financial and government services.   *  **2017:** Introduction of Registered Devices - Enhanced security by eliminating misuse of stored biometrics.   *  **2022:** Launch of L1 Fingerprint Registered Devices - Achieved alignment with international best practices in encryption and hardware security.   *  **2025:** Implementation of Fake Finger Detection (FFD) strengthening prevention of anti-spoofing attempts in L1 Fingerprint Registered Devices and Introduction of L1 Iris Registered Devices, marking a decisive leap in trusted digital authentication.   Success Story **Introduction of FMR-FIR (Finger Minutiae Record) based Authentication** : UIDAI introduced an in-house AI/ML based model FIR to check the liveness of Finger Print. **Migration from L0 to L1 fingerprint registered devices** : UIDAI has successfully migrated from L0 fingerprint registered devices to the more secure and advanced L1 fingerprint registered devices, ensuring enhanced encryption, robust tamper resistance and higher reliability in biometric authentication.   L0 Iris Registered Devices Doc Type: PDF• Size: 89.22 KB• Uploaded On: 30-05-2026 Download Download  L1 Fingerprint Registered Devices Doc Type: PDF• Size: 221.92 KB• Uploaded On: 30-05-2026 Download Download  UIDAI Specifications Doc Type: PDF• Size: 727.38 KB• Uploaded On: 30-05-2026 Download Download  Content Information Published on: 14 Apr 2026 Last Updated: 16 Jul 2026 Owner: A & V",
   "text": "Their functioning is dependent on the operating system, making them less secure and more vulnerable compared to L1 registered devices. **Level 1 Compliance:** L1 devices are chip-based and provide stronger security by performing encryption on-device within a Trusted Execution Environment (TEE). They store keys in secure hardware elements, feature advanced liveness detection for anti-spoofing. Being OS-agnostic, they deliver higher security and reliability across environments. UIDAI strengthened liveness detection in fingerprint devices to prevent spoofing and reduce failure rates as the capture of artificial/fake fingerprints is failed at the device level post implementation of **Fake Finger Detection (FFD)** Key Milestones   *  **2012:** Launch of Aadhaar Authentication - Laid the foundation for a secure, scalable digital identity system.   *  **2013:** Launch of e-KYC Authentication - Enabled paperless verification and ease of access to financial and government services.   *  **2017:** Introduction of Registered Devices - Enhanced security by eliminating misuse of stored biometrics.   *  **2022:** Launch of L1 Fingerprint Registered Devices - Achieved alignment with international best practices in encryption and hardware security.   *  **2025:** Implementation of Fake Finger Detection (FFD) strengthening prevention of anti-spoofing attempts in L1 Fingerprint Registered Devices and Introduction of L1 Iris Registered Devices, marking a decisive leap in trusted digital authentication.   Success Story **Introduction of FMR-FIR (Finger Minutiae Record) based Authentication** : UIDAI introduced an in-house AI/ML based model FIR to check the liveness of Finger Print. **Migration from L0 to L1 fingerprint registered devices** : UIDAI has successfully migrated from L0 fingerprint registered devices to the more secure and advanced L1 fingerprint registered devices, ensuring enhanced encryption, robust tamper resistance and higher reliability in biometric authentication.   L0 Iris Registered Devices Doc Type: PDF• Size: 89.22 KB• Uploaded On: 30-05-2026 Download Download  L1 Fingerprint Registered Devices Doc Type: PDF• Size: 221.92 KB• Uploaded On: 30-05-2026 Download Download  UIDAI Specifications Doc Type: PDF• Size: 727.38 KB• Uploaded On: 30-05-2026 Download Download  Content Information Published on: 14 Apr 2026 Last Updated: 16 Jul 2026 Owner: A & V",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "download",
+    "authentication",
     "biometric",
-    "authentication"
+    "download",
+    "update"
   ]
 }

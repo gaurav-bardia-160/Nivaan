@@ -1,19 +1,19 @@
 {
   "id": "spider_uidai.gov.in_5be6984d_chunk_2",
   "source_url": "https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en",
-  "title": "Unique Identification Authority of India",
+  "title": "Frequently Asked Questions",
   "section": "How do I validate the digital signature?",
   "text": "### How do I validate the digital signature?\n\nTo successfully validate the digital signature on e-Aadhaar and see the 'green tick' in the PDF, we recommend that you download and open it in the latest version of Adobe Acrobat Reader on Microsoft Windows or MacOS.   \n  \nIf the signature still shows a warning or question mark, you may need to manually add the signing certificate to your trusted identities.  \n  \nInstructions on how to do this can be found on the Adobe Help website:\n\n### What Is the Password of e-Aadhaar?\n\nPassword of eAadhaar is a combination of the first 4 letters of name in CAPITAL and the year of birth (YYYY).  \n  \n**For Example:**\n  * Example 1\n    1. Name: SURESH KUMAR\n    2. Year of Birth: 1990\n    3. Password: SURE1990\n  * Example 2\n    1. Name: SAI KUMAR\n    2. Year of Birth: 1990\n    3. Password: SAIK1990\n  * Example 3\n    1. Name: P. KUMAR\n    2. Year of Birth: 1990\n    3. Password: P.KU1990\n  * Example 4\n    1. Name: RIA\n    2. Year of Birth: 1990\n    3. Password: RIA1990\n\n### What supporting software needed to open e-Aadhaar?\n\nResident needs 'Adobe Reader' to view e-Aadhaar. You have 'Adobe Reader' installed in your System. To install Adobe Reader in the System\n  * visit\n\n### How can an Aadhaar Number holder download e-Aadhaar?\n\nAn Aadhaar Number holder can download e-Aadhaar by following three ways.\n  * By Using Enrolment Number:\n  * By Using Aadhaar No:\n  * By using VID:\n  * OTP for downloading eAadhaar will be received on registered mobile number.",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "mobile",
     "download",
-    "enrolment"
+    "enrolment",
+    "mobile"
   ]
 }

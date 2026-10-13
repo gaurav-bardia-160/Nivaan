@@ -1,0 +1,18 @@
+{
+  "id": "spider_tinpan.proteantech.in_807844d0_chunk_3",
+  "source_url": "https://tinpan.proteantech.in/services/pan/pan-introduction.html",
+  "title": "PAN & Tax Information Network Services",
+  "section": "How to apply",
+  "text": "# How to apply\nApplicant may either make an online application through this website or submit physical PAN Application to any TIN-FC or PAN centre of Protean.\nApplicants should go through the instructions and guidelines provided in the application form before filling the form.\n\n# Where to get a physical application forms\nApplicants may obtain the application forms from TIN-FCs, PAN centres, any other vendors providing such forms or can freely download the same from this website.\n\n# Documents required\nApplicants can view the list of accepted documents for PAN application by clicking [here](https://tinpan.proteantech.in/services/pan/documents-required.html).\n\n# Status Track\nThe applicants may track the status of their application using 15 digit unique Acknowledgment Number after three days of application using the status track facility. Alternatively, applicant may call TIN Call Centre on 020 – 2721 8080 to enquire about the status of application. The status of the PAN application can also be tracked by sending an SMS - PTNPAN < space> 15 digit Acknowledgement No. to 57575.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "apply",
+    "pan",
+    "protean"
+  ]
+}

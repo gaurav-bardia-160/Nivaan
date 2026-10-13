@@ -5,22 +5,22 @@
   "section": "Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type*   Services Seva Kendra Guides Switch back to legacy Welcome to myAadhaar What do you want to do today ? Update Services Get Aadhaar Keep Aadhaar Secure Plan Enrolment Find Services relevant to you I’m a Parent Aadhaar for babies, biometrics updates & more I’m a Senior Citizen Aadhaar for senior citizens I’m a Student Aadhaar for admissions & schooling needs I’m a Working Professional Aadhaar for working professionals I’m an Overseas Indian / NRI Aadhaar for overseas Indians and NRIs I’m Newly Married Aadhaar for newly wed couple Popular Aadhaar Services Download Aadhaar Download digitally signed and password protected electronic copy Mobile OTP is required Check Enrolment / Update Status Check the status of the Enrolment or Update request Check Aadhaar Status Validate the status of the Aadhaar Update Address Use your documents or family member’s Aadhaar Mobile OTP is required **₹ 75 fee** Check Bank Seeding Status Find your Bank Seeding Status Mobile OTP is required Update Services Update Address Use your documents or family member’s Aadhaar Mobile OTP is required **₹ 75 fee** Photo, Biometrics Update and more At Seva Kendra Check status Update Address Get Aadhaar Download Aadhaar Download digitally signed and password protected electronic copy Mobile OTP is required Order Aadhaar PVC Card Order a secure, wallet-sized Aadhaar PVC card Mobile OTP is required **₹ 75 fee** Check status Order Aadhaar PVC Card You can do more with your Aadhaar Show all services Keep Aadhaar Secure Download Masked Aadhaar Download digitally signed and password protected electronic masked copy Mobile OTP is required Generate / Retrieve Virtual ID Generate 16 Digit Virtual ID(VID) pathed to your Aadhaar Mobile OTP is required Lock / Unlock Aadhaar Temporarily lock/unlock your Aadhaar Mobile OTP is required Lock / Unlock Biometrics Lock your fingerprints and iris data Mobile OTP is required What is Masked Aadhaar? Masked Aadhaar implies replacing of first 8 digits of Aadhaar number with “xxxx-xxxx” while only last 4 digits of the Aadhaar Number are visible. What is Virtual ID (VID)? What is Aadhaar (UID) Lock & Unlock? What happens when Biometric is locked? What is Biometric Locking? Plan Enrolment Book an Appointment Book an Appointment for Enrolment or Update Locate Enrolment Centre Search and locate nearby Aadhaar Seva Kendras",
   "text": "Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type* Select type*   Services Seva Kendra Guides Switch back to legacy Welcome to myAadhaar What do you want to do today ? Update Services Get Aadhaar Keep Aadhaar Secure Plan Enrolment Find Services relevant to you I’m a Parent Aadhaar for babies, biometrics updates & more I’m a Senior Citizen Aadhaar for senior citizens I’m a Student Aadhaar for admissions & schooling needs I’m a Working Professional Aadhaar for working professionals I’m an Overseas Indian / NRI Aadhaar for overseas Indians and NRIs I’m Newly Married Aadhaar for newly wed couple Popular Aadhaar Services Download Aadhaar Download digitally signed and password protected electronic copy Mobile OTP is required Check Enrolment / Update Status Check the status of the Enrolment or Update request Check Aadhaar Status Validate the status of the Aadhaar Update Address Use your documents or family member’s Aadhaar Mobile OTP is required **₹ 75 fee** Check Bank Seeding Status Find your Bank Seeding Status Mobile OTP is required Update Services Update Address Use your documents or family member’s Aadhaar Mobile OTP is required **₹ 75 fee** Photo, Biometrics Update and more At Seva Kendra Check status Update Address Get Aadhaar Download Aadhaar Download digitally signed and password protected electronic copy Mobile OTP is required Order Aadhaar PVC Card Order a secure, wallet-sized Aadhaar PVC card Mobile OTP is required **₹ 75 fee** Check status Order Aadhaar PVC Card You can do more with your Aadhaar Show all services Keep Aadhaar Secure Download Masked Aadhaar Download digitally signed and password protected electronic masked copy Mobile OTP is required Generate / Retrieve Virtual ID Generate 16 Digit Virtual ID(VID) pathed to your Aadhaar Mobile OTP is required Lock / Unlock Aadhaar Temporarily lock/unlock your Aadhaar Mobile OTP is required Lock / Unlock Biometrics Lock your fingerprints and iris data Mobile OTP is required What is Masked Aadhaar? Masked Aadhaar implies replacing of first 8 digits of Aadhaar number with “xxxx-xxxx” while only last 4 digits of the Aadhaar Number are visible. What is Virtual ID (VID)? What is Aadhaar (UID) Lock & Unlock? What happens when Biometric is locked? What is Biometric Locking? Plan Enrolment Book an Appointment Book an Appointment for Enrolment or Update Locate Enrolment Centre Search and locate nearby Aadhaar Seva Kendras",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "mobile",
-    "fee",
-    "download",
     "biometric",
+    "download",
     "enrolment",
-    "status",
+    "fee",
     "lock",
+    "mobile",
+    "pvc",
+    "status",
     "unlock",
-    "pvc"
+    "update"
   ]
 }

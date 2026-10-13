@@ -1,0 +1,18 @@
+{
+  "id": "spider_pan.utiitsl.com_doc_10607af7_chunk_1",
+  "source_url": "https://www.pan.utiitsl.com/PAN/downloadFile?FileName=Valid mode of PAN Card.pdf",
+  "title": "UTIITSL Valid Modes of PAN Card (e-PAN & Physical)",
+  "section": "--- Page 1 ---",
+  "text": "--- Page 1 ---\n1. Electronically issued and Digitally signed ePAN is now a valid mode of issue of\nPermanent Account Number (PAN) post amendments in clause (c) in the Explanation\nrule (6) of Rule 114 of the Income Tax Rules, 1962.\n2. Government has recently amended sub-rule (6) of Rule 114 of the Income Tax Rules,\n1962, vide G.F.R 1128(E), dated 19/11/2018 for empowering the Pr. DGIT(S) to\nnotify formats and standards along with procedure of issue of PAN.\n3. Consequent to notification dated 19/11/2018, Pr. DGIT(S) has notified procedure,\nformats and standards of issue of Permanent Account Number (PAN) vide Directorate\nof Income-tax (Systems) notification 7/2018 dated 27.12.2018. Consequent to this\nnotification, electronically issued digitally signed e-PAN now is a valid mode of issue\nof PAN.\n4. e-PAN also contains enhanced QR code having demographic (Name, DOB, Father’s\nName) as well as biometric (scanned photo and signatures) information of the PAN\nholders which can be accessed and used for PAN verification purposes in off-line\nmode. Information of enhanced QR code is accessible to user agencies through freely\navailable Android version of ‘PAN QR Code Reader’ on Google’s ‘Play store’ which\ncan be downloaded in any mobile phone running on Android operating system.\nFormat of e-PAN",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "e-pan",
+    "pan",
+    "verification"
+  ]
+}

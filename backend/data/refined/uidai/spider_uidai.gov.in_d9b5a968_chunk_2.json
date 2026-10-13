@@ -3,18 +3,19 @@
   "source_url": "https://www.uidai.gov.in",
   "title": "New Era of IDENTITY VERIFICATION begins",
   "section": "1947",
-  "text": "## 1947\nFile a grievance\nFile a grievance\n\n## Aadhaar on Mobile\nDownload the new Aadhaar App to share and update your details **on the go!**\n\n**The Unique Identification Authority of India (UIDAI)** is a statutory authority established under the provisions of the **Aadhaar (Targeted Delivery of Financial and Other Subsidies, Benefits and Services) Act, 2016 (“Aadhaar Act 2016”)** on 12 July 2016 by the Government of India, under the Ministry of Electronics and Information Technology (MeitY). The Aadhaar Act 2016 has been amended by the Aadhaar and Other Laws (Amendment) Act, 2019 (14 of 2019) w.e.f. 25.07.2019.\nKnow More\n\n## Updates\nAnnouncements\nNEW\nOfficial Memorandums\nPress Release\nCirculars\nTenders\nCEO Message on Hindi Diwas\nSep 9, 2026\nPlay Book on Ease of Onboarding\nSep 9, 2026\nCharges waived off for availing service of email address update through Aadhaar mobile application till 31.12.2026\nJun 18, 2026\nVisit Dashboard \n145.32\nCroreCr+\nAadhaar Enrolments\n2,632.51\nCroreCr+\nEKYC Transactions\n2.45\nCroreCr+\nRegistered Devices\nVisit Dashboard",
+  "text": "## 1947\nFile a grievance\nFile a grievance\n\n## Aadhaar on Mobile\nDownload the new Aadhaar App to share and update your details **on the go!**\n\nKnow More\n\n## Updates\nAnnouncements\nNEW\nOfficial Memorandums\nPress Release\nTenders\nCEO Message on Hindi Diwas\nSep 9, 2026\nPlay Book on Ease of Onboarding\nSep 9, 2026\nCharges waived off for availing service of email address update through Aadhaar mobile application till 31.12.2026\nJun 18, 2026\nVisit Dashboard \n145.32\nCroreCr+\nAadhaar Enrolments\n2,632.51\nCroreCr+\nEKYC Transactions\n2.45\nCroreCr+\nRegistered Devices\nVisit Dashboard\n\n## Work at UIDAI\nBe part of the movement that is defining India’s digital future.\nVisit Career Portal\n\n## Explore The Aadhaar Ecosystem\n\n\n\nAuthentication Model\nSecure Aadhaar authentication flow connecting AUAs, ASAs and CIDR for verification.\nRead More\n\n\n\nEnrolment Ecosystem\nUIDAI’s enrolment ecosystem connects registrars, agencies and operators securely.\nRead More\n\n\n\nUIDAI Sandbox\nAccess UIDAI Sandbox to build, integrate and test Aadhaar-enabled applications.\nRead More\nCalling all organisations to join our OVSE ecosystem today\nBecome A Partner",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "mobile",
+    "authentication",
     "download",
-    "enrolment"
+    "enrolment",
+    "mobile",
+    "update"
   ]
 }

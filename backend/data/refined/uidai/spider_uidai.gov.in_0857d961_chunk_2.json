@@ -1,19 +1,19 @@
 {
   "id": "spider_uidai.gov.in_0857d961_chunk_2",
   "source_url": "https://uidai.gov.in/about-aadhaar",
-  "title": "सेवाएं खोजें",
+  "title": "About Your Aadhaar",
   "section": "Aadhaar can be used as a permanent Financial Address and facilitates financial inclusion of the underprivileged and weaker sections of the society and is therefore a tool of distributive justice and equality. The Aadhaar identity platform is one of the key pillars of the ‘Digital India’, wherein every resident of the country is provided with a unique identity. The Aadhaar programme has already achieved several milestones and is by far the largest biometrics based identification system in the world. Aadhaar identity platform with its inherent features of Uniqueness, Authentication, Financial Address and e-KYC, enables the Government of India to directly reach residents of the country in delivery of various subsidies, benefits and services by using the resident’s Aadhaar number only.  Content Information Published on: 17 Apr 2026 Last Updated: 16 Jun 2026 Owner: E&U",
   "text": "Aadhaar can be used as a permanent Financial Address and facilitates financial inclusion of the underprivileged and weaker sections of the society and is therefore a tool of distributive justice and equality. The Aadhaar identity platform is one of the key pillars of the ‘Digital India’, wherein every resident of the country is provided with a unique identity. The Aadhaar programme has already achieved several milestones and is by far the largest biometrics based identification system in the world. Aadhaar identity platform with its inherent features of Uniqueness, Authentication, Financial Address and e-KYC, enables the Government of India to directly reach residents of the country in delivery of various subsidies, benefits and services by using the resident’s Aadhaar number only.  Content Information Published on: 17 Apr 2026 Last Updated: 16 Jun 2026 Owner: E&U",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
+    "authentication",
     "biometric",
-    "authentication"
+    "update"
   ]
 }

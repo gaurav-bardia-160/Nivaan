@@ -1,0 +1,21 @@
+{
+  "id": "spider_www.incometax.gov.in_933ea6b3_chunk_1",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/instant-e-pan/instant-UM",
+  "title": "Instant E-PAN User Manual",
+  "section": "Instant E-PAN User Manual",
+  "text": "#  Instant E-PAN User Manual\n\n####  1. Overview\nThe Instant e-PAN service is available to all Individual taxpayers, who have not been allotted a Permanent Account Number (PAN) but possess Aadhaar and access to DigiLocker for fetching documents related to valid proof of **Date of Birth** upon obtaining the applicant’s consent. \nThe applicant shall select any one of the prescribed documents available on the Digi Locker platform as valid proof of Date of Birth:  \n1. Birth Certificate issued by a Municipal Authority or any office authorized to issue birth and death certificates, or by the Registrar of Births and Deaths, or the Indian Consulate  \n2. Matriculation Certificate  \n3. Driving License  \n4. Matriculation Marksheet issued by a recognized board  \n5. Central Government Health Scheme (CGHS) Card\nUsing Instant e-PAN pre-login service, you can:  \n1. Obtain digitally signed PAN in electronic format, free of cost, with the help of Aadhaar and your mobile number linked with Aadhaar   \n2. Create e-Filing account based on e-KYC details after allotment, and  \n3. Check status of pending e-PAN request / Download e-PAN either before or after logging in to the e-Filing portal.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "e-pan",
+    "instant",
+    "kyc",
+    "link",
+    "pan"
+  ]
+}

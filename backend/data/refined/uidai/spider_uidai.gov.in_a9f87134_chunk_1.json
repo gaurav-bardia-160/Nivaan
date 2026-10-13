@@ -1,26 +1,26 @@
 {
   "id": "spider_uidai.gov.in_a9f87134_chunk_1",
   "source_url": "https://uidai.gov.in/en/my-aadhaar",
-  "title": "1. [Home](https://uidai.gov.in/en)",
-  "section": "1. [Home](https://uidai.gov.in/en)",
-  "text": "1. [Home](https://uidai.gov.in/en)\n  2. /\n\nUnderstand Aadhaar, its features, enrolment process, benefits, security and its role in enabling trusted digital identity and governance.\nIn this section\nUpdates Details\nDownload or Order Card\nKeep Aadhaar Secure\nAadhaar Enrolment\nUnderstand your Aadhaar\n\n## Updates Details\n\nAddress update\nUse your documents or family member’s AadhaarMobile OTP is required\n\n₹ 75 fee\n\nPhoto biometric update and more\nAt seva kendra\n\nCharges applied\nCheck Status\nAddress Update\n\n## Download or Order Card\n\nDownload Aadhaar\nGet your Aadhaar instantlyMobile OTP is required\n\nFree\n\nOrder Online PVC card\nDurable, easy-to-carry mode of AadhaarMobile OTP is required\n\n₹ 75 fee\nCheck Status\nOrder Aadhaar PVC Card\n\n\nYou can do more with your Aadhaar\n[Show all services](https://myaadhaarbeta.uidai.gov.in/)\n\n## Keep Aadhaar Secure\n\nGenerate Virtual ID\n16-digit VID as Aadhaar number replacementMobile OTP is required\n\nFree\n\nDownload Masked Aadhaar\nOnly the last 4 digits of your Aadhaar number are visibleMobile OTP is required\n\nFree\n\nLock/Unlock Biometrics\nLock your fingerprints and iris dataMobile OTP is required\n\n\nLock/Unlock Aadhaar\nLock your Aadhaar to restrict the use of your Aadhaar numberMobile OTP is required\n\nFree",
+  "title": "Updates Details",
+  "section": "2. /",
+  "text": "2. /\n\nUnderstand Aadhaar, its features, enrolment process, benefits, security and its role in enabling trusted digital identity and governance.\nIn this section\nUpdates Details\nDownload or Order Card\nKeep Aadhaar Secure\nAadhaar Enrolment\nUnderstand your Aadhaar\n\n## Updates Details\n\nAddress update\nUse your documents or family member’s AadhaarMobile OTP is required\n\n₹ 75 fee\n\nPhoto biometric update and more\nAt seva kendra\n\nCharges applied\nCheck Status\nAddress Update\n\n## Download or Order Card\n\nDownload Aadhaar\nGet your Aadhaar instantlyMobile OTP is required\n\nFree\n\nOrder Online PVC card\nDurable, easy-to-carry mode of AadhaarMobile OTP is required\n\n₹ 75 fee\nCheck Status\nOrder Aadhaar PVC Card\n\n\nYou can do more with your Aadhaar\n[Show all services](https://myaadhaarbeta.uidai.gov.in/)\n\n## Keep Aadhaar Secure\n\nGenerate Virtual ID\n16-digit VID as Aadhaar number replacementMobile OTP is required\n\nFree\n\nDownload Masked Aadhaar\nOnly the last 4 digits of your Aadhaar number are visibleMobile OTP is required\n\nFree\n\nLock/Unlock Biometrics\nLock your fingerprints and iris dataMobile OTP is required\n\n\nLock/Unlock Aadhaar\nLock your Aadhaar to restrict the use of your Aadhaar numberMobile OTP is required\n\nFree",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "mobile",
-    "fee",
-    "download",
     "biometric",
+    "download",
     "enrolment",
-    "status",
+    "fee",
     "lock",
+    "mobile",
+    "pvc",
+    "status",
     "unlock",
-    "pvc"
+    "update"
   ]
 }

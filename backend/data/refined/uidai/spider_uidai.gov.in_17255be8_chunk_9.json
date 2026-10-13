@@ -1,20 +1,20 @@
 {
   "id": "spider_uidai.gov.in_17255be8_chunk_9",
   "source_url": "https://uidai.gov.in/your-aadhaar",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "title": "Your Aadhaar",
   "section": "**Electronic benefit transfers:** The UID-enabled-Bank-Account network will offer a secure and low cost platform to directly remit benefits to Aadhaar number holders without the heavy costs associated today with benefit distribution; the leakages in the current system will also be stemmed as a result. **Aadhaar-based authentication to confirm entitlement delivered to the beneficiary:** The UIDAI will offer online authentication services for agencies who wish to validate a A adhaar number holder 's identity; this service will enable confirmation of the entitlement actually reaching the intended beneficiary. Improved services through increased transparency: Clear accountability and transparent monitoring would significantly improve access and quality of entitlements to beneficiaries and the agency alike. **Self-service puts A adhaar number holders in control :** Using Aadhaar as an authentication mechanism, A adhaar number holder s should be able to access up-to-date information about their entitlements, demand services and redress their grievances directly from their mobile phone, kiosks or other means. In the case of self-service on the A adhaar number holder 's mobile, security is assured using two-factor authentication (i.e. by proving possession of the A adhaar number holder 's registered Mobile Number and knowledge of the A adhaar number holder 's Aadhaar PIN). These standards are compliant with the Reserve Bank of India's approved standards for Mobile Banking and Payments. What is Aadhaar? Aadhaar number is a 12 digit random number assigned to an individual seeking enrolment on completing the enrolment process. This is digital identity issued to an Aadhaar holder which can be authenticated through biometric or mobile OTP.",
   "text": "**Electronic benefit transfers:** The UID-enabled-Bank-Account network will offer a secure and low cost platform to directly remit benefits to Aadhaar number holders without the heavy costs associated today with benefit distribution; the leakages in the current system will also be stemmed as a result. **Aadhaar-based authentication to confirm entitlement delivered to the beneficiary:** The UIDAI will offer online authentication services for agencies who wish to validate a A adhaar number holder 's identity; this service will enable confirmation of the entitlement actually reaching the intended beneficiary. Improved services through increased transparency: Clear accountability and transparent monitoring would significantly improve access and quality of entitlements to beneficiaries and the agency alike. **Self-service puts A adhaar number holders in control :** Using Aadhaar as an authentication mechanism, A adhaar number holder s should be able to access up-to-date information about their entitlements, demand services and redress their grievances directly from their mobile phone, kiosks or other means. In the case of self-service on the A adhaar number holder 's mobile, security is assured using two-factor authentication (i.e. by proving possession of the A adhaar number holder 's registered Mobile Number and knowledge of the A adhaar number holder 's Aadhaar PIN). These standards are compliant with the Reserve Bank of India's approved standards for Mobile Banking and Payments. What is Aadhaar? Aadhaar number is a 12 digit random number assigned to an individual seeking enrolment on completing the enrolment process. This is digital identity issued to an Aadhaar holder which can be authenticated through biometric or mobile OTP.",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "mobile",
-    "biometric",
     "authentication",
-    "enrolment"
+    "biometric",
+    "enrolment",
+    "mobile"
   ]
 }

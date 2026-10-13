@@ -1,0 +1,17 @@
+{
+  "id": "spider_www.incometax.gov.in_a3e1fa08_chunk_7",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/Instant%20e-PAN-faq",
+  "title": "[ ![EFiling Logo](https://www.incometax.gov.in/iec/foportal/themes/custom/itdbase/logo.svg) ](https://www.incometax.gov.in/iec/foportal/ \"Home\") Instant e-PAN FAQ | Income Tax Department",
+  "section": "8. What happens if I select multiple documents in DigiLocker for date of birth proof?",
+  "text": "### 8. What happens if I select multiple documents in DigiLocker for date of birth proof?\nMultiple documents can be selected and as proof for Date of birth. If multiple documents in DigiLocker is the selected, then documents will be sorted alphabetically, and the first document in that order will be used as proof of date of birth.\n\n### 9. Is validating my email ID compulsory?\nNo, linking or validating the email ID registered with your Aadhaar is optional.\n\n### 10. What if my email ID is updated in Aadhaar but not validated?\nClick on ‘Validate Email’, then on the Validate Email ID page enter the 6-digit OTP sent to your Aadhaar-linked mobile number and then click ‘Continue’.\n\n### 11. What if I have not updated my email ID in Aadhaar at all?\nClick on ‘Link Email ID’, then on the Validate Email ID page enter the 6-digit OTP sent to your Aadhaar-linked mobile number and then click ‘Continue’.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "link"
+  ]
+}

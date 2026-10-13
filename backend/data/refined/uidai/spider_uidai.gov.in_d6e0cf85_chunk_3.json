@@ -1,18 +1,17 @@
 {
   "id": "spider_uidai.gov.in_d6e0cf85_chunk_3",
   "source_url": "https://uidai.gov.in/aadhaar-generation",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
-  "section": "This information is also sent to the authentication systems, so that authentication of Aadhaar number holder can be performed successfully. Aadhaar Letter Delivery After Aadhaar generation, the data is shared with print partner. The print partner is responsible for printing the letter (including tracking information), and delivering it to the logistics partner. The logistics partner (India Post) is then responsible for the delivery of the physical letter to the Aadhaar number holder.  Content Information Published on: 17 Apr 2026 Last Updated: 16 Jun 2026 Owner: E&U",
-  "text": "This information is also sent to the authentication systems, so that authentication of Aadhaar number holder can be performed successfully. Aadhaar Letter Delivery After Aadhaar generation, the data is shared with print partner. The print partner is responsible for printing the letter (including tracking information), and delivering it to the logistics partner. The logistics partner (India Post) is then responsible for the delivery of the physical letter to the Aadhaar number holder.  Content Information Published on: 17 Apr 2026 Last Updated: 16 Jun 2026 Owner: E&U",
+  "title": "Aadhaar Generation",
+  "section": "After Aadhaar generation, the data is shared with print partner. The print partner is responsible for printing the letter (including tracking information), and delivering it to the logistics partner. The logistics partner (India Post) is then responsible for the delivery of the physical letter to the Aadhaar number holder.  Content Information Published on: 17 Apr 2026 Last Updated: 16 Jun 2026 Owner: E&U",
+  "text": "After Aadhaar generation, the data is shared with print partner. The print partner is responsible for printing the letter (including tracking information), and delivering it to the logistics partner. The logistics partner (India Post) is then responsible for the delivery of the physical letter to the Aadhaar number holder.  Content Information Published on: 17 Apr 2026 Last Updated: 16 Jun 2026 Owner: E&U",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "authentication"
+    "update"
   ]
 }

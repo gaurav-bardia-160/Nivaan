@@ -1,0 +1,18 @@
+{
+  "id": "spider_www.pan.utiitsl.com_ee6eb2dc_chunk_1",
+  "source_url": "https://www.pan.utiitsl.com/PAN_ONLINE/regenPANHomereprint",
+  "title": "Regenerate Reprint PAN Card Request",
+  "section": "|",
+  "text": "|   \n |   |  \n| --- |  \n|   \n |   |  \n| --- |  \n| Regenerate PAN reprint Application  |  \n|  PAN Reprint Application Number *   |   |  \n|   |  \n|  PAN *   |   |  \n|   |  \n| Captcha   |  ! [ ! ](https://www.pan.utiitsl.com/PAN_ONLINE/regenPANHomereprint)  |  \n|   |  \n|  Enter the text shown in above Captcha  *   |   |  \n|   |  \n|   |  \n|   |   |  \n|  *  Mark fields are mandatory.   |  \n|   |  \n |  \n |",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "pan",
+    "reprint",
+    "utiitsl"
+  ]
+}

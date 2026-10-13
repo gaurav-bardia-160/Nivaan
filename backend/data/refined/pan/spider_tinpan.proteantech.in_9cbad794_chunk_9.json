@@ -1,0 +1,18 @@
+{
+  "id": "spider_tinpan.proteantech.in_9cbad794_chunk_9",
+  "source_url": "https://tinpan.proteantech.in/services/pan/instructionscorr.html",
+  "title": "PAN",
+  "section": "Proof for Change Requested",
+  "text": "#### Proof for Change Requested\nThe applicant shall be required to provide further documentary proof to support request for correction or change in PAN data like name, father's name, date of birth, for example: \n  * Request for change (marginal correction like spelling correction, expansion of initials, etc.,) in applicant's or father's name will have to be supported with suitable proof of identity containing corrected data.\n  * Request for change (significant change) in applicant's or father's name will have to be supported with such proof that will contain proof of change of name from the old to the new in addition to the proof of identity. The documents that shall be accepted as proof in this case are: \n    * For married ladies - change of name on account of marriage - marriage certificate, marriage invitation card, publication of 'name-change' in gazette, a certificate from a gazetted officer stating name change, copy of passport showing husband's name.\n    * For individual applicants other than married ladies - publication of 'name-change' in gazette, a certificate from a gazetted officer stating name change.\n  * Request for correction of date of birth (for individuals) will have to be supported with documents issued by competent authority containing the correct date.\n  * The address for communication in the ITD database will be updated with the address for communication mentioned in the application, even if change in address for communication is not requested in the application.\n\nIf the core data relating to the PAN (the applicant's name, date of birth, father's name (for individual) provided in the application substantially varies with the PAN data in the ITD database and the applicant has not requested for the change in the same with sufficient support documents, the applicant will be intimated of this variance. In such case the applicant will have to provide necessary support documents.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "address",
+    "correction",
+    "pan"
+  ]
+}

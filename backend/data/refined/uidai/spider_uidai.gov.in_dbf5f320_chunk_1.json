@@ -1,20 +1,20 @@
 {
   "id": "spider_uidai.gov.in_dbf5f320_chunk_1",
   "source_url": "https://uidai.gov.in/en/vision-and-mission",
-  "title": "1. [Home](https://uidai.gov.in/en)",
-  "section": "1. [Home](https://uidai.gov.in/en)",
-  "text": "1. [Home](https://uidai.gov.in/en)\n  2. /\n  4. /\n  5. [Who we are](https://uidai.gov.in/en/who-we-are)\n  6. /\n  7. [Vision and Mission](https://uidai.gov.in/en/vision-and-mission)\n\n# Vision and Mission\nVision\nTo empower Aadhaar number holders of India with a unique identity and a digital platform to authenticate anytime, anywhere.\nMission\n  * \nTo provide for good governance, efficient, transparent and targeted delivery of subsidies, benefits and services, the expenditure for which is incurred from the Consolidated Fund of India or the Consolidated Fund of State to Aadhaar number holders of India through assigning of unique identity numbers.\n  * \nTo develop policy, procedure and system for issuing Aadhaar number to individuals seeking to enrol of India, who request for same by submitting their demographic information and biometric information by undergoing the process of enrolment.\n  * \nTo develop policy, procedure and systems for Aadhaar number holders for updating and authenticating their digital identity.\n  * \nEnsure availability, scalability and resilience of the technology infrastructure.\n  * \nBuild a long term sustainable organization to carry forward the vision and values of the UIDAI.\n  * \nTo ensure security and confidentiality of identity information and authentication records of the Aadhaar number holders.\n  * \nTo ensure compliance of Aadhaar Act by all individual and agencies in letter and spirit.\n  * \nTo make regulations & rules consistent with the Aadhaar Act, for carrying out the provisions of the Aadhaar Act.\n\nCore Values\n  * \nWe believe in facilitating good governance \n  * \nWe value integrity\n  * \nWe are committed to inclusive nation building\n  * \nWe pursue a collaborative approach and value our partners\n  * \nWe will strive towards excellence in services to the Aadhaar number holders and service providers\n  * \nWe will always focus on continuous learning and quality improvements\n  * \nWe are driven by innovation and provide a platform for our partners to innovate\n  * \nWe believe in a transparent and open organization\n\n\nContent Information\nPublished on: 24 Apr 2026\nLast Updated: 30 Jun 2026\nOwner: HO",
+  "title": "Vision and Mission",
+  "section": "2. /",
+  "text": "2. /\n  4. /\n  5. [Who we are](https://uidai.gov.in/en/who-we-are)\n  6. /\n  7. [Vision and Mission](https://uidai.gov.in/en/vision-and-mission)\n\n# Vision and Mission\nVision\nTo empower Aadhaar number holders of India with a unique identity and a digital platform to authenticate anytime, anywhere.\nMission\n  * \nTo provide for good governance, efficient, transparent and targeted delivery of subsidies, benefits and services, the expenditure for which is incurred from the Consolidated Fund of India or the Consolidated Fund of State to Aadhaar number holders of India through assigning of unique identity numbers.\n  * \nTo develop policy, procedure and system for issuing Aadhaar number to individuals seeking to enrol of India, who request for same by submitting their demographic information and biometric information by undergoing the process of enrolment.\n  * \nTo develop policy, procedure and systems for Aadhaar number holders for updating and authenticating their digital identity.\n  * \nEnsure availability, scalability and resilience of the technology infrastructure.\n  * \nBuild a long term sustainable organization to carry forward the vision and values of the UIDAI.\n  * \nTo ensure security and confidentiality of identity information and authentication records of the Aadhaar number holders.\n  * \nTo ensure compliance of Aadhaar Act by all individual and agencies in letter and spirit.\n  * \n\nCore Values\n  * \nWe believe in facilitating good governance \n  * \nWe value integrity\n  * \nWe are committed to inclusive nation building\n  * \nWe pursue a collaborative approach and value our partners\n  * \nWe will strive towards excellence in services to the Aadhaar number holders and service providers\n  * \nWe will always focus on continuous learning and quality improvements\n  * \nWe are driven by innovation and provide a platform for our partners to innovate\n  * \nWe believe in a transparent and open organization\n\n\nContent Information\nPublished on: 24 Apr 2026\nLast Updated: 30 Jun 2026\nOwner: HO",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "biometric",
     "authentication",
-    "enrolment"
+    "biometric",
+    "enrolment",
+    "update"
   ]
 }

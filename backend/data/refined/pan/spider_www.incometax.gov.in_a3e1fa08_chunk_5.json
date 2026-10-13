@@ -1,0 +1,24 @@
+{
+  "id": "spider_www.incometax.gov.in_a3e1fa08_chunk_5",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/Instant%20e-PAN-faq",
+  "title": "[ ![EFiling Logo](https://www.incometax.gov.in/iec/foportal/themes/custom/itdbase/logo.svg) ](https://www.incometax.gov.in/iec/foportal/ \"Home\") Instant e-PAN FAQ | Income Tax Department",
+  "section": "Instant e-PAN FAQ",
+  "text": "##  Instant e-PAN FAQ\n\n### 1. What is Instant e-PAN and who can use the Instant e-PAN service?\nInstant e-PAN is a free, pre-login service on the e-Filing portal that lets an individual taxpayer who has not yet been allotted a PAN obtain a digitally signed PAN in electronic form, using their Aadhaar and the mobile number linked to it. This Instant e-PAN service can be used by any individual who does not already have a PAN, has a valid Aadhaar linked to an active mobile number, and has access to DigiLocker.\n\n### 2. Is there any fee for generating an Instant e-PAN?\nNo. The service is free of cost.\n\n### 3. Who is not eligible to apply for Instant e-PAN?\n  1. An Individual who already has a PAN allotted.\n  2. A minor as on the date of the request.\n\n### 4. What are the prerequisites for Instant e-PAN?\n  1. A valid Aadhaar number.\n  2. A mobile number linked to that Aadhaar (for OTP verification).\n  3. Access to DigiLocker.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "apply",
+    "e-pan",
+    "fee",
+    "instant",
+    "link",
+    "minor",
+    "pan",
+    "verification"
+  ]
+}

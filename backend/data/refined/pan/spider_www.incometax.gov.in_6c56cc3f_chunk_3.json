@@ -1,0 +1,18 @@
+{
+  "id": "spider_www.incometax.gov.in_6c56cc3f_chunk_3",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/link-aadhaar",
+  "title": "Link Aadhaar",
+  "section": "4. What will happen if I don't link Aadhaar and PAN?",
+  "text": "### 4. What will happen if I don't link Aadhaar and PAN?\nYour PAN will become inoperative if you do not link it with Aadhaar till 30 June 2023 and shall face the following consequences because of PAN becoming inoperative:\n  1. refund of any amount of tax or part thereof, due under the provisions of the Act shall not be made to him;\n  2. interest shall not be payable to him on such refund for the period, beginning with the date specified under sub-rule (4) of rule 114AAA and ending with the date on which it becomes operative;\n  3. where tax is deductible under Chapter XVJJ-B in case of such person, such tax shall be deducted at higher rate, in accordance with the provisions of section 206AA;\n  4. where tax is collectible at source under Chapter XVJJ-BB in case of such person, such tax shall be collected at higher rate, in accordance with the provisions of section 206CC.\n\nFor more information, _kindly refer to the Circular No. 03 of 2023 dated 28 th March 2023 & Notification No. 26/2025 dated 3rd April, 2025_.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "link",
+    "pan"
+  ]
+}

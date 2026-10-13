@@ -1,21 +1,21 @@
 {
   "id": "spider_uidai.gov.in_cf7ba17a_chunk_1",
   "source_url": "https://myaadhaar.uidai.gov.in/CheckAadhaarStatus",
-  "title": "Unique Identification Authority of India",
-  "section": "Unique Identification Authority of India",
-  "text": "Unique Identification Authority of India\n\n\nmyAadhaar\n\n\n\n  * हिंदी\n  * বাংলা\n  * ಕನ್ನಡ\n  * ગુજરાતી\n  * മലയാളം\n  * मराठी\n  * ଓଡ଼ିଆ\n  * ਪੰਜਾਬੀ\n  * தமிழ்\n  * తెలుగు\n  * اردو\n\n  1. Dashboard\n  2. Check enrolment or update status\n\nCheck Enrolment or Update Status\n  \n\nCheck if your Aadhaar is generated or updated.  \n  \nThe 14 digit enrolment number, printed on acknowledgement slip while physically visiting Enrolment / Update center. Sample: 1234/12345/12345  \n  \n\nIn case if you lost EID you can retrieve lost or forgotten EID by your registered mobile number or email ID. [Click here](https://myaadhaar.uidai.gov.in/retrieve-eid-uid) to Retrieve EID\n  \n\nEnrolment NoSRNURNSID\nEnter 14 digit Enrolment Number\nMention date and time as per the acknowledgement slip (**optional**)\nSelect date\nSelect time\n\nSubmit\n\n## Frequently Asked Questions\n\n### What are the different forms of Aadhaar and what are their features?\n\nThe different forms of Aadhaar are Aadhaar Letter, Aadhaar PVC card, eAadhaar and mAadhaar. All forms of Aadhaar are equally valid and acceptable.",
+  "title": "Frequently Asked Questions",
+  "section": "myAadhaar",
+  "text": "myAadhaar\n\n\n\n  * हिंदी\n  * বাংলা\n  * ಕನ್ನಡ\n  * ગુજરાતી\n  * മലയാളം\n  * मराठी\n  * ଓଡ଼ିଆ\n  * ਪੰਜਾਬੀ\n  * தமிழ்\n  * తెలుగు\n  * اردو\n\n  1. Dashboard\n  2. Check enrolment or update status\n\nCheck Enrolment or Update Status\n  \n\nCheck if your Aadhaar is generated or updated.  \n  \nThe 14 digit enrolment number, printed on acknowledgement slip while physically visiting Enrolment / Update center. Sample: 1234/12345/12345  \n  \n\nIn case if you lost EID you can retrieve lost or forgotten EID by your registered mobile number or email ID. [Click here](https://myaadhaar.uidai.gov.in/retrieve-eid-uid) to Retrieve EID\n  \n\nEnrolment NoSRNURNSID\nEnter 14 digit Enrolment Number\nMention date and time as per the acknowledgement slip (**optional**)\nSelect date\nSelect time\n\nSubmit\n\n## Frequently Asked Questions\n\n### What are the different forms of Aadhaar and what are their features?\n\nThe different forms of Aadhaar are Aadhaar Letter, Aadhaar PVC card, eAadhaar and mAadhaar. All forms of Aadhaar are equally valid and acceptable.",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "mobile",
     "enrolment",
+    "mobile",
+    "pvc",
     "status",
-    "pvc"
+    "update"
   ]
 }

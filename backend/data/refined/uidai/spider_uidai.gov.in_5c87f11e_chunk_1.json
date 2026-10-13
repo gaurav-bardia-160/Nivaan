@@ -1,18 +1,18 @@
 {
   "id": "spider_uidai.gov.in_5c87f11e_chunk_1",
   "source_url": "https://uidai.gov.in/training-testing-and-certification",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
-  "section": "1. [Home](https://uidai.gov.in/hi)",
-  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  4. /\n  5. [Enrolment Ecosystem](https://uidai.gov.in/hi/enrolment-partners)\n  6. /\n  7. [Training, testing & certification](https://uidai.gov.in/hi/training-testing-and-certification)\n\n# Training, Testing and Certification\nUIDAI provides comprehensive training, testing and certification programs to ensure enrolment staff maintain quality and uniformity in Aadhaar enrolment and update processes. Certification is mandatory for roles such as Enrolment Supervisor/Operator and Child Enrolment Lite Client Operator.\n\n### \nIntroduction\n\nUIDAI’s mandate is to provide a unique Aadhaar number to all the residents of India. For such a diverse and collaborative effort of successfully building the residents’ database, uniformity of Aadhaar Enrolment and Update process across the entire ecosystem of Registrars is very necessary. Achievement of such uniformity requires that the Enrolment Staff involved in the Aadhaar Enrolment or Update process at the field level is trained thoroughly to accomplish the job of enrolment. To address this need, UIDAI has developed a comprehensive Training Delivery Methodology and Training Content for all the stakeholders.\nUIDAI also believes that apart from training, there has to be a mechanism to assess the person’s skill and proficiency to work as an enrolment staff before the Enrolment Staff starts performing the Aadhaar Enrolment or Update. Considering this, UIDAI has prescribed mandatory Testing & Certification for enrolment personnel to ensure adherence to quality aspects. Currently, certification is available for the following roles:\n  * \nEnrolment Supervisor / Operator\n  * \nChild Enrolment Lite Client Operator",
+  "title": "Training, Testing and Certification",
+  "section": "2. /",
+  "text": "2. /\n  4. /\n  5. [Enrolment Ecosystem](https://uidai.gov.in/hi/enrolment-partners)\n  6. /\n  7. [Training, testing & certification](https://uidai.gov.in/hi/training-testing-and-certification)\n\n# Training, Testing and Certification\nUIDAI provides comprehensive training, testing and certification programs to ensure enrolment staff maintain quality and uniformity in Aadhaar enrolment and update processes. Certification is mandatory for roles such as Enrolment Supervisor/Operator and Child Enrolment Lite Client Operator.\n\n### \nIntroduction\n\nUIDAI’s mandate is to provide a unique Aadhaar number to all the residents of India. For such a diverse and collaborative effort of successfully building the residents’ database, uniformity of Aadhaar Enrolment and Update process across the entire ecosystem of Registrars is very necessary. Achievement of such uniformity requires that the Enrolment Staff involved in the Aadhaar Enrolment or Update process at the field level is trained thoroughly to accomplish the job of enrolment. To address this need, UIDAI has developed a comprehensive Training Delivery Methodology and Training Content for all the stakeholders.\nUIDAI also believes that apart from training, there has to be a mechanism to assess the person’s skill and proficiency to work as an enrolment staff before the Enrolment Staff starts performing the Aadhaar Enrolment or Update. Considering this, UIDAI has prescribed mandatory Testing & Certification for enrolment personnel to ensure adherence to quality aspects. Currently, certification is available for the following roles:\n  * \nEnrolment Supervisor / Operator\n  * \nChild Enrolment Lite Client Operator",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "enrolment"
+    "enrolment",
+    "update"
   ]
 }

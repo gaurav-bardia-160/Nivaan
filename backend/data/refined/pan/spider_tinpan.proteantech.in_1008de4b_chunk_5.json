@@ -1,0 +1,20 @@
+{
+  "id": "spider_tinpan.proteantech.in_1008de4b_chunk_5",
+  "source_url": "https://tinpan.proteantech.in/services/pan/correction.html",
+  "title": "PAN",
+  "section": "**PAN applications submitted Online using physical mode (i.e. Physical documents forwarded to Protean.)**",
+  "text": "###    \n**PAN applications submitted Online using physical mode (i.e. Physical documents forwarded to Protean.)**\n |  \n| 1  | e-PAN Card will be dispatched at the email ID mentioned in the PAN application form  | 61  | 72  |  \n|\n\n###    \n**PAN applications submitted Online through paperless modes (e-KYC & e-Sign / e-Sign scanned based / DSC scanned based):**\n |  \n| 1  | e-PAN Card will be dispatched at the email ID mentioned in the PAN application form  | 56  | 66  |  \n  3. If any of addresses i.e., office address or residential address is a foreign address, the payment can be made only through credit card/debit card/Net banking / Demand Draft payable at Mumbai (drawn in favour of 'Protean – PAN). Name of the applicant and the acknowledgment number should be mentioned on the reverse of the demand draft. At present this facility is available for a **[select list of countries](https://tinpan.proteantech.in/services/pan/country.html)**. Applicants from other countries may contact Protean at the contact details given in point (5) below.\n  4. However, if online application is made through e-KYC & e-Sign paperless application/ e-Sign scanned based/ DSC scanned based option (i.e. other than physical mode), then the payment can be made only through credit card/debit card or Net banking.\n  5. Credit card / Debit card / Net banking payment - Persons authorised to make Credit card / Debit card / Net banking payment are as below: \n\n  \n| Category of Applicant  | Payment by Credit Card / Debit Card / Net Banking can be made by / for  |  \n| --- | --- |  \n| Individual  | Self, immediate family members   |  \n| HUF  | Karta of the HUF   |  \n| Company  | Any Director of the Company   |  \n| Individual  | Self, immediate family members   |  \n| Firm/ Limited Liability Partnership  | Any Partner of the Firm   |  \n  1. On successful credit card / debit card / net banking payment, acknowledgment will be displayed. Applicant shall save and print the acknowledgment and send it to Protean as mentioned in point '4. Mode of Submission of Documents' below.\n  2. To regenerate acknowledgement receipt, please click [here](https://onlineservices.proteantech.in/paam/endUserRegisterContact.html) (Application made from July 16, 2016 onwards) or [here](https://tin.tin.proteantech.in/pan/changemode.html) (Application made on or before July 15, 2016) and fill details accordingly.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "address",
+    "e-pan",
+    "kyc",
+    "pan",
+    "protean"
+  ]
+}

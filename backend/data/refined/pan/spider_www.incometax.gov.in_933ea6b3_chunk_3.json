@@ -1,0 +1,18 @@
+{
+  "id": "spider_www.incometax.gov.in_933ea6b3_chunk_3",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/instant-e-pan/instant-UM",
+  "title": "Instant E-PAN User Manual",
+  "section": "If your Aadhaar details are not matching with the Digi locker details, it will show below error:  If PAN is already allotted and link with the Aadhaar or link with some other PAN, it will show below error:  **Step 10:** Enter the OTP received on Aadhaar registered Mobile no. and click continue  **Note:** • OTP will be valid for 15 minutes only.  • You have 3 attempts to enter the correct OTP.  • The OTP expiry countdown timer on screen tells you when the OTP will expire.  • On clicking Resend OTP, a new OTP will be generated and sent. **Step 11:** On the Aadhaar Details page, enter father’s name and confirm the checkbox ‘I Accept that’ and click ‘Submit’.   Click ‘Continue’.  **Note 2:** • Linking / Validating email ID (registered with your Aadhaar) is optional.  • If you have updated your email ID in Aadhaar but it has not been validated, click Validate Email. On the Validate Email ID page, enter the 6-digit OTP received on your mobile number linked with Aadhaar and click Continue.  • If you have not updated your email ID in Aadhaar, click Link Email ID. On the Validate Email ID page, enter the 6-digit OTP received on your mobile number linked with Aadhaar and click Continue. On successful submission, a success message is displayed along with an Acknowledgement Number. Please keep a note of the Acknowledgement Number for future reference. You will also receive a confirmation message on your mobile number linked with Aadhaar.",
+  "text": "If your Aadhaar details are not matching with the Digi locker details, it will show below error:  If PAN is already allotted and link with the Aadhaar or link with some other PAN, it will show below error:  **Step 10:** Enter the OTP received on Aadhaar registered Mobile no. and click continue  **Note:** • OTP will be valid for 15 minutes only.  • You have 3 attempts to enter the correct OTP.  • The OTP expiry countdown timer on screen tells you when the OTP will expire.  • On clicking Resend OTP, a new OTP will be generated and sent. **Step 11:** On the Aadhaar Details page, enter father’s name and confirm the checkbox ‘I Accept that’ and click ‘Submit’.   Click ‘Continue’.  **Note 2:** • Linking / Validating email ID (registered with your Aadhaar) is optional.  • If you have updated your email ID in Aadhaar but it has not been validated, click Validate Email. On the Validate Email ID page, enter the 6-digit OTP received on your mobile number linked with Aadhaar and click Continue.  • If you have not updated your email ID in Aadhaar, click Link Email ID. On the Validate Email ID page, enter the 6-digit OTP received on your mobile number linked with Aadhaar and click Continue. On successful submission, a success message is displayed along with an Acknowledgement Number. Please keep a note of the Acknowledgement Number for future reference. You will also receive a confirmation message on your mobile number linked with Aadhaar.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "link",
+    "pan"
+  ]
+}

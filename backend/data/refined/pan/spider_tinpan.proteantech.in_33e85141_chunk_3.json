@@ -1,0 +1,23 @@
+{
+  "id": "spider_tinpan.proteantech.in_33e85141_chunk_3",
+  "source_url": "https://tinpan.proteantech.in/services/pan/new-do-donts-form_95-form-96.html",
+  "title": "PAN",
+  "section": "Don'ts",
+  "text": "## Don'ts\n  * Do not overwrite or make corrections in the application form.\n  * Do not pin, staple, or clip photographs on the form.\n  * Do not sign outside the signature box or across the form.\n  * Do not submit PoI or PoA that are not in the name of the applicant.\n  * Do not write additional details such as date, designation, rank, etc., along with the signature.\n  * Do not use abbreviations or initials in the name of the applicant or entity.\n  * Do not prefix titles such as Shri, Mr., Ms., Dr., M/s, etc., to the name.\n  * Do not enter future dates in Date of Birth / Incorporation / Formation fields.\n  * Do not leave mandatory fields blank, especially: \n    * PAN (for PAN CR forms)\n    * Aadhaar (where applicable)\n    * Mobile Number\n    * Email ID\n    * Communication Address\n  * Do not apply for a new PAN if PAN has already been allotted. For correction or reprint, use the PAN Change/Correction (PAN CR) form only.\n\n**For further assistance :**\n  * Call PAN/TDS Call Centre: **020-27218080**\n  * Email: (as updated on the website)\n  * Track Application Status: <https://tin.tin.proteantech.in/pantan/StatusTrack.html>\n  * Write to:  **Protean eGov Technologies Limited** , 4th Floor, Sapphire Chambers, Baner Road, Baner, Pune – 411045 \n  * SMS: Type **NSDLPAN <15-digit Acknowledgement Number>** and send to **57575** to obtain application status.\n\nUpdated As On 2026-10-12 10:00 AM    \nSite best viewed in IE 11+, Google Chrome 61 +,Mozilla Firefox 50+, Microsoft Edge 14+ and Safari for Mac 5.1+. \n×",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "address",
+    "apply",
+    "correction",
+    "nsdl",
+    "pan",
+    "protean",
+    "reprint"
+  ]
+}

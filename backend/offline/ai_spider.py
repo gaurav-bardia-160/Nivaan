@@ -39,17 +39,17 @@ def clean_raw_markdown(md: str, url: str) -> str:
     """Pre-cleaning before saving raw text to avoid saving massive repetitive navigation menus."""
     lines = md.split('\n')
     
-    # For incometaxindia.gov.in, extract main content starting from main headings
-    if "incometaxindia.gov.in" in url:
+    # For incometaxindia.gov.in and incometax.gov.in, extract main content starting from main headings
+    if "incometaxindia.gov.in" in url or "incometax.gov.in" in url:
         content_lines = []
         capturing = False
         for line in lines:
             # Main content starts at the service heading
             if re.match(r'^#\s+.*', line) and not capturing:
-                if "IT Bill" not in line and "TDS" not in line:
+                if "IT Bill" not in line and "TDS" not in line and "EFiling" not in line and "Home" not in line:
                     capturing = True
-            # Cut off footer widgets like IT Bill Comparison Tool or Public Awareness
-            if capturing and any(marker in line for marker in ["IT Bill Comparison Tool", "Public Awareness", "Last reviewed and updated on:"]):
+            # Cut off footer widgets like IT Bill Comparison Tool, Public Awareness, or Footer
+            if capturing and any(marker in line for marker in ["IT Bill Comparison Tool", "Public Awareness", "## Footer", "Follow us on", "Last reviewed and updated on"]):
                 break
             if capturing:
                 content_lines.append(line)
@@ -136,8 +136,8 @@ async def spider_website(start_url: str, source_name: str = "pan"):
                 if full_url not in visited and full_url not in to_visit:
                     parsed_full = urlparse(full_url)
                     if parsed_full.netloc == domain and not is_junk_link(full_url, text):
-                        # Filter to relevant PAN links on incometaxindia
-                        if "incometaxindia.gov.in" in domain:
+                        # Filter to relevant PAN links on incometax domains
+                        if "incometaxindia.gov.in" in domain or "incometax.gov.in" in domain:
                             u_lower = full_url.lower()
                             t_lower = text.lower()
                             if any(k in u_lower for k in ["apply-for-pan", "instant-e-pan", "online-pan", "status-of-pan", "link-aadhaar", "tan-pan", "pan-verification", "/pan"]):

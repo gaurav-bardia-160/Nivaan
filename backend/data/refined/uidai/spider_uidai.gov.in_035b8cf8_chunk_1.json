@@ -1,21 +1,21 @@
 {
   "id": "spider_uidai.gov.in_035b8cf8_chunk_1",
   "source_url": "https://uidai.gov.in/enrolment-partners",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
-  "section": "1. [Home](https://uidai.gov.in/hi)",
-  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  4. /\n  5. [Enrolment Ecosystem](https://uidai.gov.in/hi/enrolment-partners)\n\n# Enrolment Ecosystem\nEnrolment Ecosystem consists of Registrars and Enrolment Agencies. Registrar is an entity authorised or recognized by UIDAI for the purpose of enrolling individuals. Enrolment Agencies are appointed by Registrars and are responsible for collecting demographic and biometric information of individuals during the enrolment process by engaging certified Operators/Supervisors. In co-ordination with the Registrars, the Enrolment Agencies set up Enrolment Centres, where residents can enrol for Aadhaar.\nIn this section\nRegistrars\nEnrolment Agencies\nAadhaar Seva Kendra\nEnrolment Documents\nTraining, Testing & Certification\nRegistrars\nRegistrars are UIDAI-authorised entities responsible for Aadhaar enrolment and updates, ensuring secure, inclusive and efficient enrolment services nationwide.\nRead More\nEnrolment Agencies\n\nEnrolment Agencies are UIDAI-empanelled entities engaged by Registrars to manage Aadhaar enrolment, updates and secure data collection processes.\nRead More\nAadhaar Seva Kendra\n\nAadhaar Seva Kendra (ASK) are UIDAI-run centres offering Aadhaar enrolment, updates, biometric services and online appointments in a citizen-friendly setup.\nRead More\nEnrolment Documents\nDownload Aadhaar enrolment and update forms for residents, NRIs, children and foreign nationals with supporting document details as per UIDAI guidelines.\nRead More\nTraining, Testing & Certification\nUIDAI provides training, testing and certification for enrolment staff to ensure quality Aadhaar enrolment and update services across India.\nRead More\n\nContent Information\nPublished on: 13 Apr 2026\nLast Updated: 30 Jun 2026\nFrequently Asked Questions",
+  "title": "Enrolment Ecosystem",
+  "section": "2. /",
+  "text": "2. /\n  4. /\n  5. [Enrolment Ecosystem](https://uidai.gov.in/hi/enrolment-partners)\n\n# Enrolment Ecosystem\nEnrolment Ecosystem consists of Registrars and Enrolment Agencies. Registrar is an entity authorised or recognized by UIDAI for the purpose of enrolling individuals. Enrolment Agencies are appointed by Registrars and are responsible for collecting demographic and biometric information of individuals during the enrolment process by engaging certified Operators/Supervisors. In co-ordination with the Registrars, the Enrolment Agencies set up Enrolment Centres, where residents can enrol for Aadhaar.\nIn this section\nRegistrars\nEnrolment Agencies\nAadhaar Seva Kendra\nEnrolment Documents\nTraining, Testing & Certification\nRegistrars\nRegistrars are UIDAI-authorised entities responsible for Aadhaar enrolment and updates, ensuring secure, inclusive and efficient enrolment services nationwide.\nRead More\nEnrolment Agencies\n\nEnrolment Agencies are UIDAI-empanelled entities engaged by Registrars to manage Aadhaar enrolment, updates and secure data collection processes.\nRead More\nAadhaar Seva Kendra\n\nAadhaar Seva Kendra (ASK) are UIDAI-run centres offering Aadhaar enrolment, updates, biometric services and online appointments in a citizen-friendly setup.\nRead More\nEnrolment Documents\nDownload Aadhaar enrolment and update forms for residents, NRIs, children and foreign nationals with supporting document details as per UIDAI guidelines.\nRead More\nTraining, Testing & Certification\nUIDAI provides training, testing and certification for enrolment staff to ensure quality Aadhaar enrolment and update services across India.\nRead More\n\nContent Information\nPublished on: 13 Apr 2026\nLast Updated: 30 Jun 2026\nFrequently Asked Questions",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "download",
     "biometric",
+    "download",
     "enrolment",
-    "pan"
+    "pan",
+    "update"
   ]
 }

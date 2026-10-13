@@ -11,6 +11,7 @@ from backend.config import DATA_DIR, PROJECT_ROOT
 
 SOURCES_PATH = DATA_DIR / "sources.json"
 RAW_DIR = DATA_DIR / "raw"
+REFINED_DIR = DATA_DIR / "refined"
 STRUCTURED_DIR = DATA_DIR / "structured"
 KNOWLEDGE_BASE_PATH = DATA_DIR / "knowledge_base.json"
 
@@ -53,13 +54,13 @@ def load_sources(path: Path = SOURCES_PATH) -> list[dict[str, Any]]:
 
 
 def crawl_sources(sources: list[dict[str, Any]] | None = None) -> list[SourceDocument]:
-    """Return local source documents from downloaded raw text files in RAW_DIR."""
+    """Return local source documents from downloaded refined text files in REFINED_DIR."""
     documents: list[SourceDocument] = []
     
-    if not RAW_DIR.exists():
+    if not REFINED_DIR.exists():
         return documents
         
-    for index, path in enumerate(RAW_DIR.glob("spider_*.txt"), start=1):
+    for index, path in enumerate(REFINED_DIR.glob("*.txt"), start=1):
         content = path.read_text(encoding="utf-8")
         lines = content.split('\n')
         url = ""
@@ -85,10 +86,30 @@ def crawl_sources(sources: list[dict[str, Any]] | None = None) -> list[SourceDoc
     return documents
 
 
-def clean_and_chunk(documents: list[SourceDocument]) -> list[CleanChunk]:
+def clean_and_chunk(documents: list[SourceDocument], *, max_words: int | None = None) -> list[CleanChunk]:
     chunks: list[CleanChunk] = []
     for document in documents:
         cleaned = clean_text(document.text)
+        
+        if max_words:
+            words = cleaned.split()
+            for start in range(0, len(words), max_words):
+                chunk_words = words[start : start + max_words]
+                if not chunk_words:
+                    continue
+                chunk_no = start // max_words + 1
+                chunks.append(
+                    CleanChunk(
+                        source_id=document.id,
+                        doc_title=document.title,
+                        section=document.title,
+                        url=document.url,
+                        chunk_id=f"{document.id}_chunk_{chunk_no}",
+                        text=" ".join(chunk_words),
+                        fetched_at=document.fetched_at,
+                    )
+                )
+            continue
         
         # Chunk by markdown headings (## or #)
         # We split by \n# and then restore the #
@@ -120,8 +141,9 @@ def clean_and_chunk(documents: list[SourceDocument]) -> list[CleanChunk]:
 
 
 def clean_text(text: str) -> str:
+    text = re.sub(r"(?:Home|Contact|Login|Skip to main content)\s+", "", text or "", flags=re.IGNORECASE)
     # We remove excessive empty lines
-    text = re.sub(r"\n{3,}", "\n\n", text or "")
+    text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
 
 

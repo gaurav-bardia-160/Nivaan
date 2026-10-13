@@ -1,0 +1,22 @@
+{
+  "id": "spider_www.pan.utiitsl.com_3af0fc75_chunk_1",
+  "source_url": "https://www.pan.utiitsl.com/PAN_ONLINE/addresschangeHome",
+  "title": "Facility for Address Change in PAN",
+  "section": "|",
+  "text": "|   \n |   |  \n| --- |  \n|   |   \n |   |  \n| --- |  \n|  PAN *   |   |  \n|   |  \n|  Aadhaar Number*   |   |  \n|   |  \n|  Mobile Number*   |   |  \n|   |  \n|  Email Id.*   |   |  \n|   |  \n| GSTIN Number   |   |  \n|   |  \n| Address Update Source  |  Select Source Aadhaar base eKYC Address update DigiLocker Address update  |  \n|   |  \n| Captcha   |  ! [ ! ](https://www.pan.utiitsl.com/PAN_ONLINE/addresschangeHome)  |  \n|   |  \n|  Enter the text shown in above Captcha *   |   |  \n|   |  \n|  I agree that on submission of this application, my address will be updated in PAN database as per the information available in UIDAI database.   |  \n|   |  \n|   \n |   |  \n| --- |  \n|   |  \n|   |  **_Instructions:_**\n  * The address update facility is applicable only for Indian Citizens those Aadhaar is already linked with the PAN\n  * This facility may be availed using through Digilocker service or through Aadhaar based eKYC mode.\n  * Applicant will get an OTP for Aadhaar authentication on the mobile number and eMail ID provided which is registered with UIDAI records. If the mobile number and eMail ID does not exist as per UIDAI records or the OTP is not authenticated, this services will not be facilitate to update the address as per UIDAI records.\n  * The address fetched from UIDAI records will be display in mask format for applicant's confirmation. \n  * On successful transaction the application will be processed for updation at Income Tax Department records. Those who are not willing to update the address as per UIDAI records are requested to apply through change request mode to update the address.\n\n |   |  \n |  \n|   \n |   |  \n| --- |  \n|   |   |  \n|  *  Mark fields are mandatory.   |  \n|   |  \n |  \n |",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "address",
+    "apply",
+    "kyc",
+    "link",
+    "pan",
+    "utiitsl"
+  ]
+}

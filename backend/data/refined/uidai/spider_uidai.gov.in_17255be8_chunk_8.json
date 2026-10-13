@@ -1,22 +1,22 @@
 {
   "id": "spider_uidai.gov.in_17255be8_chunk_8",
   "source_url": "https://uidai.gov.in/your-aadhaar",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "title": "Your Aadhaar",
   "section": "Aadhaar Features, Eligibility  How Date of Birth (DOB) in Aadhaar can be verified ? DOB in Aadhaar shall be marked as verified when a valid proof of birth document is submitted at the time of enrolment or update. You are requested to ensure that the operator selects 'verified' option for DOB. Only year of birth (YOB) shall be printed on your Aadhaar Letter if the DOB is marked as 'declared' or 'approximate'. What is the process to be followed for Aadhaar enrolment and what information is to be provided to get Aadhaar? An individual seeking enrolment to visit an Aadhar enrolment centre and submit a request (as specified) alongwith valid supporting documents. The enrolment operator shall capture the following information during the course of enrolment: Mandatory Demographic information (Name, Date of Birth, Gender, Address) Optional demographic information (mobile number, email) Details of Mother/Father/Legal Guardian (in case of HOF based enrolment) And Biometric Information (Photo, 10 finger prints, both Iris) After completing the enrolment the operator shall return all the documents alongwith an acknowledgement slip containing the applicable charges.( New Enrolment is Free of charge) List of valid supporting documents is available at [List of Supporting Document](https://backend.uidai.gov.in/get/files/media/document/2026-06/List_of_Supporting_Document_for_Aadhaar_Enrolment_and_Update.pdf) You can locate the nearest enrolment centre at :  Will getting Aadhaar be compulsory? Individuals who are eligible for Aadhaar can apply for Aadhaar as per the provisions of the Aadhaar Act and the Regulations framed thereunder. Similarly, agencies providing benefits and services may choose to use Aadhaar in their systems and may require that their beneficiaries or customers provide their Aadhaar for these services. What are the features and benefits of Aadhaar? **One Aadhaar:** Aadhaar is a unique number, and no Aadhaar number holder can have a duplicate number since it is linked to their individual biometrics; thereby identifying fake and ghost identities which result in leakages today. Savings from eliminating duplicates and fakes through Aadhaar-based identification will further enable governments to expand benefits to other eligible individuals. **Portability:** Aadhaar is a universal number, and agencies and services can contact the central Unique Identification database from anywhere in the country to authenticate a beneficiary's identity by availing authentication services.",
   "text": "###  Aadhaar Features, Eligibility  How Date of Birth (DOB) in Aadhaar can be verified ? DOB in Aadhaar shall be marked as verified when a valid proof of birth document is submitted at the time of enrolment or update. You are requested to ensure that the operator selects 'verified' option for DOB. Only year of birth (YOB) shall be printed on your Aadhaar Letter if the DOB is marked as 'declared' or 'approximate'. What is the process to be followed for Aadhaar enrolment and what information is to be provided to get Aadhaar? An individual seeking enrolment to visit an Aadhar enrolment centre and submit a request (as specified) alongwith valid supporting documents. The enrolment operator shall capture the following information during the course of enrolment: Mandatory Demographic information (Name, Date of Birth, Gender, Address) Optional demographic information (mobile number, email) Details of Mother/Father/Legal Guardian (in case of HOF based enrolment) And Biometric Information (Photo, 10 finger prints, both Iris) After completing the enrolment the operator shall return all the documents alongwith an acknowledgement slip containing the applicable charges.( New Enrolment is Free of charge) List of valid supporting documents is available at [List of Supporting Document](https://backend.uidai.gov.in/get/files/media/document/2026-06/List_of_Supporting_Document_for_Aadhaar_Enrolment_and_Update.pdf) You can locate the nearest enrolment centre at :  Will getting Aadhaar be compulsory? Individuals who are eligible for Aadhaar can apply for Aadhaar as per the provisions of the Aadhaar Act and the Regulations framed thereunder. Similarly, agencies providing benefits and services may choose to use Aadhaar in their systems and may require that their beneficiaries or customers provide their Aadhaar for these services. What are the features and benefits of Aadhaar? **One Aadhaar:** Aadhaar is a unique number, and no Aadhaar number holder can have a duplicate number since it is linked to their individual biometrics; thereby identifying fake and ghost identities which result in leakages today. Savings from eliminating duplicates and fakes through Aadhaar-based identification will further enable governments to expand benefits to other eligible individuals. **Portability:** Aadhaar is a universal number, and agencies and services can contact the central Unique Identification database from anywhere in the country to authenticate a beneficiary's identity by availing authentication services.",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "mobile",
-    "biometric",
     "authentication",
+    "biometric",
     "enrolment",
-    "pan"
+    "mobile",
+    "pan",
+    "update"
   ]
 }

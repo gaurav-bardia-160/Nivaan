@@ -1,19 +1,19 @@
 {
   "id": "spider_uidai.gov.in_4aa89185_chunk_2",
   "source_url": "https://uidai.gov.in/ovse",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "title": "Offline Verification Seeking Entity(OVSE)",
   "section": "Conditional Requirement (mandatory only in app-to-app intent cal)",
   "text": "# Conditional Requirement (mandatory only in app-to-app intent cal)\n\n# Benefits of becoming a registered OVSE\n\nOption to verify complete or selective Aadhaar verified credentials\n\nQuick & seamless integration with Aadhaar application\n\nImproved efficiency and reduced operational costs\n\nSecure offline verification with savable output\n\nProof-of-presence with offline face verification\n\nLower compliance burden\nInstructions to Entities applying for OVSE Registration\nEntities seeking registration as an Offline Verification Seeking Entity (OVSE) to perform offline verification of Aadhaar number holder for lawful purpose may apply to the Authority in the prescribed application form.   \n  \nFor Any Clarification/support reach out to: \nClick here: [to read the Aadhaar (Authentication and Offline Verification) Regulations, 2021 (as amended in 2025).](https://backend.uidai.gov.in/get/files/media/document/2026-06/Regulation.pdf)\n\nContent Information\nPublished on: 13 May 2026\nLast Updated: 06 Oct 2026\nOwner: AU\nOVSE Actions\n[Apply for OVSE Registration ](https://ovse.uidai.gov.in/)\nDownload OVSE Handbook\nOVSE Technology Service Providers (TSPs)\nList of Registered OVSE & AUA/KUA\n\n## In this section\n  * [Prominent Use Cases for Entities for Offline Verification](https://uidai.gov.in/hi/ovse#prominent-use-cases-for-entities-for-offline-verification)\n  * [Technical Requirement to become an OVSE](https://uidai.gov.in/hi/ovse#technical-requirement-to-become-an-ovse)\n  * [Benefits of becoming a registered OVSE](https://uidai.gov.in/hi/ovse#benefits-of-becoming-a-registered-ovse)\n  * [Instructions to Entities applying for OVSE Registration](https://uidai.gov.in/hi/ovse#instructions-to-entities-applying-for-ovse-registration)\n\nFrequently Asked Questions",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
+    "authentication",
     "download",
-    "authentication"
+    "update"
   ]
 }

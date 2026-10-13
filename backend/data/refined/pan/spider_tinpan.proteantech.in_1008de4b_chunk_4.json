@@ -1,0 +1,22 @@
+{
+  "id": "spider_tinpan.proteantech.in_1008de4b_chunk_4",
+  "source_url": "https://tinpan.proteantech.in/services/pan/correction.html",
+  "title": "PAN",
+  "section": "**PAN applications submitted Online through paperless modes (e-KYC & e-Sign / e-Sign scanned based / DSC scanned based): **",
+  "text": "###    \n**PAN applications submitted Online through paperless modes (e-KYC & e-Sign / e-Sign scanned based / DSC scanned based): **\n |  \n| 1  | Dispatch of physical PAN Card in India (Communication address is Indian address)  | 86  | 101  |  \n| 2  | Dispatch of physical PAN Card outside India (where foreign address is provided as address for communication)  | 857  | 1,011  |  \n|\n\n###    \n**Request for Reprint of PAN card submitted through separate online link**\n |  \n| 1  | Dispatch of physical PAN Card in India (Communication address is Indian address)  | 42  | 50  |  \n| 2  | Dispatch of physical PAN Card outside India (where foreign address is provided as address for communication)  | 813  | 959  |  \n  2. **If physical PAN Card is not required:**  \nPAN applicant will have to indicate at the time of submission of PAN application, if the physical PAN Card is not required. In such cases, email ID will be mandatory & e-PAN Card will be sent to the PAN applicant at the email ID. Physical PAN Card will not be dispatched in such cases. Fees applicable are as follows:-   \n| Sr. No.  | Particulars  | Fees (exclusive of applicable taxes)(₹)  | Fees (inclusive of applicable taxes)(₹)  |  \n| --- | --- | --- | --- |  \n|",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "address",
+    "e-pan",
+    "fee",
+    "kyc",
+    "link",
+    "pan",
+    "reprint"
+  ]
+}

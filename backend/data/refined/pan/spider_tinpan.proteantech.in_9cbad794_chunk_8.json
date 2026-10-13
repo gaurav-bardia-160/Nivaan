@@ -1,0 +1,19 @@
+{
+  "id": "spider_tinpan.proteantech.in_9cbad794_chunk_8",
+  "source_url": "https://tinpan.proteantech.in/services/pan/instructionscorr.html",
+  "title": "PAN",
+  "section": "Proof of PAN",
+  "text": "#### Proof of PAN\n  * Proof of PAN is required for the PAN currently in use (i.e. existing PAN). This is required for the PAN mentioned at the beginning of the application.\n  * Proof of PAN can be one of the following only: \n    * Copy of PAN card; or\n    * Copy of intimation letter issued by the Income Tax Department in lieu of PAN card intimating PAN.\n    * In case one of the above proofs are not available, a copy of FIR (stating loss of PAN card) can be submitted.\n\nIf proof of PAN (as stated above) is not submitted, the application will be processed on a 'good effort' basis even without a copy of FIR. During verification at Protean, if it is found that there are differences between the PAN or the data provided in the application with the ITD database, the application may not be processed and the processing fee will be forfeited.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "fee",
+    "pan",
+    "protean",
+    "verification"
+  ]
+}

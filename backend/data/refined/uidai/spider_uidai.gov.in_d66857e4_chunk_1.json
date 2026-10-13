@@ -1,24 +1,26 @@
 {
   "id": "spider_uidai.gov.in_d66857e4_chunk_1",
   "source_url": "https://uidai.gov.in/compendium",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
-  "section": "1. [Home](https://uidai.gov.in/hi)",
-  "text": "1. [Home](https://uidai.gov.in/hi)\n  2. /\n  3. [Documents](https://uidai.gov.in/hi/documents)\n  4. /\n  5. [Compendium](https://uidai.gov.in/hi/compendium)\n\n# Compendium\nExplore the UIDAI Compendium featuring consolidated instructions, operational guidelines, circulars and reference documents related to Aadhaar enrolment, authentication, updates and service delivery processes for residents, partners and stakeholders.\n\nCompendium of Instructions Issued by UIDAI March 2026 (High Resolution)\nDoc Type: PDF• Size: 47.24 MB• Uploaded On: 22-05-2026\nDownload\nDownload\n\nCompendium of Instructions Issued by UIDAI March 2026\nDoc Type: PDF• Size: 31.61 MB• Uploaded On: 08-05-2026\nDownload\nDownload\n\nContent Information\nPublished on: 08 May 2026\nLast Updated: 30 Jun 2026\nFrequently Asked Questions\n\n### \nHow to download the Aadhaar app?\nYou can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871\n\n### \nHow to register on the Aadhaar app?\n\n### \nWhich services are available on this app?\nPresently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.\n[View more F.A.Qs](https://uidai.gov.in/hi/faq)\n\nContent Information\nPublished on: 08 May 2026\nLast Updated: 30 Jun 2026\n\n  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)\n  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)\n  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)",
+  "title": "Compendium",
+  "section": "2. /",
+  "text": "2. /\n  4. /\n  5. [Compendium](https://uidai.gov.in/hi/compendium)\n\n# Compendium\n\nCompendium of Instructions Issued by UIDAI March 2026 (High Resolution)\nDoc Type: PDF• Size: 47.24 MB• Uploaded On: 22-05-2026\nDownload\nDownload\n\nCompendium of Instructions Issued by UIDAI March 2026\nDoc Type: PDF• Size: 31.61 MB• Uploaded On: 08-05-2026\nDownload\nDownload\n\nContent Information\nPublished on: 08 May 2026\nLast Updated: 30 Jun 2026\nFrequently Asked Questions\n\n### \nHow to download the Aadhaar app?\nYou can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871\n\n### \nHow to register on the Aadhaar app?\n\n### \nWhich services are available on this app?\nPresently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc.\n[View more F.A.Qs](https://uidai.gov.in/hi/faq)\n\nContent Information\nPublished on: 08 May 2026\nLast Updated: 30 Jun 2026\n\n  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)\n  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)\n  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)\n\n## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)\n  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)\n  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)\n  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)\n  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)\n  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)\n  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)\n\n  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)\n  * [Handbooks](https://uidai.gov.in/hi/handbooks)\n  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)\n  * [ Policies](https://uidai.gov.in/hi/policies)\n\n  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)\n  * [Become an OVSE](https://uidai.gov.in/hi/ovse)\n\n  * [Site Map](https://uidai.gov.in/hi/site-map)\n  * [Website Policies](https://uidai.gov.in/hi/website-policies)\n  * [Website Help](https://uidai.gov.in/hi/website-help)",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "mobile",
-    "download",
-    "biometric",
     "authentication",
+    "biometric",
+    "download",
     "enrolment",
     "lock",
-    "unlock"
+    "mobile",
+    "pvc",
+    "status",
+    "unlock",
+    "update"
   ]
 }

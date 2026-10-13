@@ -1,0 +1,18 @@
+{
+  "id": "spider_www.incometax.gov.in_a3e1fa08_chunk_9",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/Instant%20e-PAN-faq",
+  "title": "[ ![EFiling Logo](https://www.incometax.gov.in/iec/foportal/themes/custom/itdbase/logo.svg) ](https://www.incometax.gov.in/iec/foportal/ \"Home\") Instant e-PAN FAQ | Income Tax Department",
+  "section": "17. Can I download my e-PAN after logging in to the e-Filing portal?",
+  "text": "### 17. Can I download my e-PAN after logging in to the e-Filing portal?\nYes. Log in using your User ID and password, then on the Dashboard go to ‘Services’ > ‘View / Download e-PAN’.\n\n### 18. Do I need to register on the e-Filing portal before I can log in?\nYes. You must register on the e-Filing portal after receiving your e-PAN; only after successful registration can you log in.\n\n### 19. What is the step-by-step process to download e-PAN after logging in?\n  * Go to Dashboard > Services > View / Download e-PAN.\n  * On the Enter Aadhaar Number page, enter your 12-digit Aadhaar number and click ‘Continue’.\n  * On the OTP Validation page, enter the 6-digit OTP received on your Aadhaar-registered mobile number and click ‘Validate Aadhaar OTP and Continue’.\n  * On the View / Download e-PAN page, click ‘View e-PAN’ to view or ‘Download e-PAN’ to download a copy.\n  * ‘Resend OTP’ generates and sends a fresh OTP.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "e-pan",
+    "pan"
+  ]
+}

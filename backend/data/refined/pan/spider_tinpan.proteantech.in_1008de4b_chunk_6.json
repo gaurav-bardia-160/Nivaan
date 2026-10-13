@@ -1,0 +1,17 @@
+{
+  "id": "spider_tinpan.proteantech.in_1008de4b_chunk_6",
+  "source_url": "https://tinpan.proteantech.in/services/pan/correction.html",
+  "title": "PAN",
+  "section": "3. ACKNOWLEDGMENT",
+  "text": "##  3. ACKNOWLEDGMENT\n  1. On confirmation, and in case of credit card / debit card / net banking payment (on successful payment), an acknowledgment screen with downloadable acknowledgement receipt will be displayed. An e-mail containing this acknowledgement receipt (in PDF) as well as payment receipt (in PDF) as attachments will be sent to applicant's e-mail ID mentioned in the application.\n  2. Applicant shall save and print this acknowledgment. \n  3. 'Individual' applicants making \"PAN Change Request Application\" should affix two recent colour photographs (3.5 cm x 2.5 cm) in the space provided in the acknowledgment. The photograph should not be stapled or clipped to the acknowledgment. (The clarity of the image on PAN card will depend on the quality and clarity of the photograph affixed on the form). \n  4. Signature / Left hand thumb impression should be provided across the photo affixed on the left side of the acknowledgement in such a manner that portion of signature/impression is on photo as well as on acknowledgement receipt. \n  5. The signature/ left thumb impression should not be on the photograph affixed on right side of the acknowledgement. If there is any mark on this photograph such that it hinders the clear visibility of the face of the applicant, the application may not be processed.\n  6. Signature / left thumb impression should only be **within the box** provided in the acknowledgment. In case of non-individual PAN applicants, the acknowledgement receipt shall be signed by the authorized signatory (Karta in case of HUF, Director in case of Company, Partner in case of Partnership Firm / LLP, Trustee in case of Trust and Authorized signatory in remaining categories). In case of PAN applications from non-individuals, Seal and/or Stamp is not required on PAN application form \"Request for New PAN Card or/and Changes or Correction in PAN data\".\n  7. Thumb impression, if used, should be attested by a Magistrate or a Notary Public or Gazetted Officer, under official seal and stamp.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "correction",
+    "pan"
+  ]
+}

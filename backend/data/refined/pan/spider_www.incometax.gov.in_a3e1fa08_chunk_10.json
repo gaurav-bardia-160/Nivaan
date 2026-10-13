@@ -1,0 +1,22 @@
+{
+  "id": "spider_www.incometax.gov.in_a3e1fa08_chunk_10",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/Instant%20e-PAN-faq",
+  "title": "[ ![EFiling Logo](https://www.incometax.gov.in/iec/foportal/themes/custom/itdbase/logo.svg) ](https://www.incometax.gov.in/iec/foportal/ \"Home\") Instant e-PAN FAQ | Income Tax Department",
+  "section": "20. I do not have a DigiLocker account. Can I still apply for Instant e-PAN?",
+  "text": "### 20. I do not have a DigiLocker account. Can I still apply for Instant e-PAN?\nIf you are applying for Instant e-PAN you need a DigiLocker account to complete the process, since it is used to fetch your date of birth proof. If you do not already have DigiLocker Account, you can create it during the e-PAN flow itself using your Aadhaar-linked mobile number for OTP verification, after which you can select a username and password to complete sign-up.\n\n### 21. What if my mobile number is not linked to Aadhaar, so I cannot sign up on DigiLocker?\nYou will first need to get your mobile number linked to your Aadhaar at a nearby Aadhaar Enrolment/Update Centre, since both Aadhaar OTP validation and DigiLocker sign-up depend on this link. Once the mobile number is linked with Aadhar and active, retry the Instant e-PAN process.\n\n### 22. None of my accepted Date of Birth documents (Birth Certificate, Matriculation Certificate, Driving License, Matriculation Marksheet, CGHS Card) are available in my DigiLocker. What should I do now?\n  * Check whether the issuing authority (e.g., school board, RTO, municipal body, CGHS) is listed as a partner department on DigiLocker and ‘pull’ the document directly from there using your relevant ID details. \n  * If the document is available only in physical form, you can upload a self-attested scanned copy to DigiLocker and e-sign it, where this option is supported for that document type.\n  * If the document cannot be fetched or uploaded, you will not be able to complete the Instant e-PAN route and should consider applying for a PAN through the regular PAN application process instead.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "apply",
+    "e-pan",
+    "instant",
+    "link",
+    "pan",
+    "verification"
+  ]
+}

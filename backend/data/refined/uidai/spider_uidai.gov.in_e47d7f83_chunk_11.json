@@ -1,18 +1,18 @@
 {
   "id": "spider_uidai.gov.in_e47d7f83_chunk_11",
   "source_url": "https://uidai.gov.in/enrolment-and-update",
-  "title": "1. [Home](https://uidai.gov.in/hi)",
+  "title": "Enrolment & Update",
   "section": "To know the reason, you may contact UIDAI helpline at  You may file a complaint by providing EID, URN or SRN on the myAadhaar portal using the link provided: <https://myaadhaar.uidai.gov.in/grievance-feedback/en>. Alternatively, you can contact UIDAI helpline at [ help[at]uidai[dot]gov[dot]in](https://uidai.gov.in/hi/help@uidai.gov.in).  You may file a complaint by providing your EID, URN or SRN on the myAadhaar portal using the link provided: [ https://myaadhaar.uidai.gov.in/grievance-feedback/en](https://myaadhaar.uidai.gov.in/grievance-feedback/en). Alternatively, you can contact UIDAI helpline at  What is a Head of Family (HoF)-based address update ? Who can use the HoF method ?",
   "text": "To know the reason, you may contact UIDAI helpline at  You may file a complaint by providing EID, URN or SRN on the myAadhaar portal using the link provided: <https://myaadhaar.uidai.gov.in/grievance-feedback/en>. Alternatively, you can contact UIDAI helpline at [ help[at]uidai[dot]gov[dot]in](https://uidai.gov.in/hi/help@uidai.gov.in).  You may file a complaint by providing your EID, URN or SRN on the myAadhaar portal using the link provided: [ https://myaadhaar.uidai.gov.in/grievance-feedback/en](https://myaadhaar.uidai.gov.in/grievance-feedback/en). Alternatively, you can contact UIDAI helpline at  What is a Head of Family (HoF)-based address update ? Who can use the HoF method ?",
   "category": "aadhaar",
-  "last_verified": "2026-10-09",
-  "status": "unverified",
-  "quality_score": 0.85,
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
   "source_confidence": "official",
   "verification_method": "automated_official_source",
   "retrieval_tags": [
     "aadhaar",
-    "update",
-    "fee"
+    "fee",
+    "update"
   ]
 }

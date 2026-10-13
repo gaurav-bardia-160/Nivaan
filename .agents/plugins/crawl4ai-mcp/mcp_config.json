@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "crawl4ai": {
+      "command": "C:\\Users\\gaura\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "args": ["C:\\Users\\gaura\\Documents\\govbank-assistant\\.agents\\plugins\\crawl4ai-mcp\\server.py"]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "spider_www.incometax.gov.in_933ea6b3_chunk_4",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/instant-e-pan/instant-UM",
+  "title": "Instant E-PAN User Manual",
+  "section": "3.2 Check status of pending e-PAN request / Create e-Filing Portal account / Download e-PAN",
+  "text": "#### 3.2 Check status of pending e-PAN request / Create e-Filing Portal account / Download e-PAN\n**Step 1:** Go to the e-Filing portal homepage. \n\n\n**Step 2:** On the ‘e-PAN’ page, click **‘Continue’** on the **Check Status / Download e-PAN** tile.\n\n**Step 3:** On the Check status / Download e-PAN page, enter your 12-digit Aadhaar and click ‘Continue’.\n\n**Step 4:** On the ‘OTP Validation’ page, enter the 6-digit OTP received on your mobile number registered with Aadhaar and click ‘Validate Aadhaar OTP and Continue’.\n\n**Note:**\n• OTP will be valid for 15 minutes only.  \n• You have 3 attempts to enter the correct OTP.  \n• The OTP expiry countdown timer on screen tells you when the OTP will expire.  \n• On clicking Resend OTP, a new OTP will be generated and sent.\n**Step 5:** On the Current status of your e-PAN request page, you will be able to see the status of your e-PAN request. In case the new e-PAN has been generated and allotted, click ‘View e-PAN’ to view or ‘Download e-PAN’ to download a copy. Click ‘Create e-Filing Account’ to register on the e-Filing portal.\n\n**Note:** If did not validate your email ID (as per your Aadhaar KYC) when generating your e-PAN, or while updating PAN details, it is compulsory to do so during registration.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "aadhaar",
+    "e-pan",
+    "kyc",
+    "pan"
+  ]
+}

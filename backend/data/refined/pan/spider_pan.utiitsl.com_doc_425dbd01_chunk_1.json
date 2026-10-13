@@ -1,0 +1,18 @@
+{
+  "id": "spider_pan.utiitsl.com_doc_425dbd01_chunk_1",
+  "source_url": "https://www.pan.utiitsl.com/PAN/downloadFile?FileName=PBV_Approved_category.pdf",
+  "title": "UTIITSL Approved Categories for Online PAN Verification",
+  "section": "--- Page 1 ---",
+  "text": "--- Page 1 ---\nList of approved categories who all can avail Online PAN Verification\n1) Financial Institutions like Banks etc.\n2) Credit card companies/Institutions\n3) Government Agencies\n4) Mutual Fund\n5) Depository Participant\n6) Persons required to file Annual Information Returns\n7) Any other entity required to furnish Annual Information return.\n8) Insurance Companies.\n9) Educational Institutions established by Regulatory Bodies.\n10) KYC Registration Agency(KRA).\n11) Credit Information Companies Approved By RBI.\n12) Stock Exchanges/ Commodity Exchanges/ Clearing Corporations.\n13) Companies and Government deductors of TDS for the purpose of verifying PAN of TDS/\nTCS deductees.\n14) Non-Banking Financial Companies approved by RBI.\n15) Insurance Repository.\n16) Goods and Services Tax Network -reg.\n17) DSC issuing Authorities -reg.\n18) Housing Finance Companies-reg.\n19) Prepaid Payment Instrument Issuers approved by RBI.\n20) Stamp and Registration Department.\n21) Investment Adviser approved by SEBI.\n22) Payments Bank approved RBI.\n23) Department of Commercial Taxes.\n24) Insurance Web Aggregators.\n25) Income Tax Projects.\n26) Payment and Settlement System Operators authorized by RBI.\n27) Central Recordkeeping Agency of National Pension System.\n28) Pension Fund Regulatory and Development Authority (PFRDA) approved point of\nPresence (For online Platform).\n29) Insurance Regulatory and Development Authority (IRDAI) approved Direct (Life &\nGeneral) Brokers.\n30) Reserve Bank Of India (RBI) approved Authorised Dealer - Category II.\n31) Association of Mutual Funds in India (AMFI) registered approved Mutual Fund Advisor.\n32) Securities and Exchange Board of India (SEBI) approved Registrar to Issue and Share\nTransfer Agent.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "kyc",
+    "pan",
+    "verification"
+  ]
+}

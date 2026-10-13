@@ -1,0 +1,24 @@
+{
+  "id": "spider_tinpan.proteantech.in_1008de4b_chunk_2",
+  "source_url": "https://tinpan.proteantech.in/services/pan/correction.html",
+  "title": "PAN",
+  "section": "PAN",
+  "text": "# PAN\n  1. \n  2. [Services](https://tinpan.proteantech.in/services/pan/pan-index.html)\n  3. [PAN](https://tinpan.proteantech.in/services/pan/pan-index.html)\n  4. [Apply Online](https://tinpan.proteantech.in/services/pan/pan-apply-online.html)\n  5. [Reprint of PAN Card](https://tinpan.proteantech.in/services/pan/correction.html)\n  6. Read Guidelines\n\nPAN\n\n  * )\n    * [Types of PAN Applications](https://tinpan.proteantech.in/services/pan/pan-introduction.html)\n    * [How to Apply](https://tinpan.proteantech.in/services/pan/pan-introduction.html#how)\n    * [Supporting Documents](https://tinpan.proteantech.in/services/pan/pan-introduction.html#doc)\n    * [Communications](https://tinpan.proteantech.in/services/pan/pan-introduction.html#communication)\n    * [Processing Fee](https://tinpan.proteantech.in/services/pan/pan-introduction.html#fee)\n    * [Processing Time](https://tinpan.proteantech.in/services/pan/pan-introduction.html#soon)\n  * [Apply Online](https://tinpan.proteantech.in/services/pan/pan-index.html)\n  * [Guidelines for Corporate PAN applicants](https://tinpan.proteantech.in/downloads/pan/Additional_Instructions_for_Corporate_applicants.pdf)\n  * [Guidelines for Foreign Citizens](https://tinpan.proteantech.in/downloads/pan/Additionalguidelines_Revised_Oct_2019.pdf)\n  * [Know Status of Your Application](https://tin.tin.proteantech.in/pantan/StatusTrack.html)\n  * [Know Status of Your Credit Card / debit card / net banking transaction for online application](https://tin.tin.proteantech.in/pan/changemode.html)\n  *)\n    * [General](https://tinpan.proteantech.in/faqs/pan/faq-pan-general.html)\n    * [New PAN](https://tinpan.proteantech.in/faqs/pan/faq-pan-procedure.html)\n    * [Reprint of PAN Card Change/Correction in PAN Data](https://tinpan.proteantech.in/faqs/pan/faq-pan-reqfornewpan.html)\n    * [Cancellation of PAN](https://tinpan.proteantech.in/faqs/pan/faq-pan-cancellation.html)\n    * [PAN Online](https://tinpan.proteantech.in/faqs/pan/faq-pan-tatkalpan.html)\n  * [AO Codes](https://tinpan.proteantech.in/services/pan/pan-aocode.html)\n  * [Documents Required](https://tinpan.proteantech.in/services/pan/documents-required.html)\n\n##  1. STEPS FOR ONLINE APPLICATION\n  1. Applicant will fill PAN Change Request Form online and submit the form. The same form will be applicable for citizens as well as non-citizens of India. Form no is PAN CR-01 – For Individual and PAN CR-02 – For Non-individual. \n  2. Applicant will initially select PAN Change Request along with citizenship, category and title of the applicant and then enter the required details and submit the form. A token number will be generated and displayed to the applicant before filling the form. This token number would also be sent on e-mail ID (provided in the application) for reference purpose. There is a facility to save the details entered in the application form such that this data can be viewed by the applicant prior to its final submission by using this temporary token number. \n  3. Applicant can select any one of the four options while filling online PAN Change Request application. \n  4. If the data submitted fails in any format level validation, a response indicating the error(s) will be displayed on the screen. The applicant shall rectify the error(s) and re-submit the form. \n  5. If there are no format level error(s), a confirmation screen with data filled by the applicant will be displayed. The applicant may either edit or confirm the same. \n  6. For Changes or Correction in PAN data, fill all mandatory fields (marked with *) of the Form and select the corresponding box on left margin of appropriate field where correction is required. \n  7. If the application is for re-issuance of a PAN card without any changes in PAN related data of the applicant, fill all fields in the Form but do not select any box on left margin. \n  8. In case of either a request for Change or Correction in PAN data or request for re-issuance of a PAN Card without any changes in PAN data, the address for communication will be updated in the ITD database using address for communication provided in the application.",
+  "category": "pan",
+  "last_verified": "2026-10-12",
+  "status": "verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "automated_official_source",
+  "retrieval_tags": [
+    "address",
+    "ao code",
+    "apply",
+    "correction",
+    "fee",
+    "pan",
+    "protean",
+    "reprint",
+    "tatkal"
+  ]
+}
