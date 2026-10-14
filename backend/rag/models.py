@@ -128,3 +128,19 @@ class IngestionReport:
 class LoadResult:
     documents: tuple[RagDocument, ...]
     report: IngestionReport
+
+
+@dataclass(frozen=True)
+class RetrievalHit:
+    document: RagDocument
+    score: float
+    rank: int
+    signals: dict[str, float]
+
+
+@dataclass(frozen=True)
+class RetrievalResult:
+    query: str
+    hits: tuple[RetrievalHit, ...]
+    status: str
+    searched_documents: int

@@ -1,0 +1,10 @@
+[
+  {"question": "How do I download e-PAN card?", "category": "pan", "must_match": ["e-PAN", "PAN"]},
+  {"question": "PAN application fees and charges", "category": "pan", "must_match": ["fee", "PAN"]},
+  {"question": "Track PAN application status", "category": "pan", "must_match": ["status", "PAN"]},
+  {"question": "How to verify Aadhaar email mobile number?", "category": "aadhaar", "must_match": ["Verify", "Mobile"]},
+  {"question": "Aadhaar biometric lock unlock", "category": "aadhaar", "must_match": ["Lock", "Unlock"]},
+  {"question": "Download Aadhaar online", "category": "aadhaar", "must_match": ["Download", "Aadhaar"]},
+  {"question": "Generate or retrieve VID", "category": "aadhaar", "must_match": ["VID"]},
+  {"question": "Aadhaar PVC card status", "category": "aadhaar", "must_match": ["PVC", "Aadhaar"]}
+]
