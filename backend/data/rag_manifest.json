@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "datasets": [
+    {
+      "id": "pan",
+      "path": "refined/pan/pan_chunks_clean.jsonl",
+      "category": "pan",
+      "allowed_hosts": [
+        "tinpan.proteantech.in",
+        "onlineservices.proteantech.in",
+        "www.incometax.gov.in",
+        "pan.utiitsl.com",
+        "www.pan.utiitsl.com",
+        "www.trackpan.utiitsl.com"
+      ]
+    },
+    {
+      "id": "uidai",
+      "path": "refined/uidai/uidai_chunks_clean.jsonl",
+      "category": "aadhaar",
+      "allowed_hosts": [
+        "uidai.gov.in",
+        "www.uidai.gov.in",
+        "myaadhaar.uidai.gov.in",
+        "ovse.uidai.gov.in"
+      ]
+    }
+  ]
+}
