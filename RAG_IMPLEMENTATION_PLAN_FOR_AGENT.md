@@ -1,6 +1,7 @@
 # GovBank Assistant: Professional Flexible RAG Implementation Plan
 
 Date: 2026-10-13
+Revision: 2026-10-14. Section 18 supersedes conflicting earlier examples.
 Repo: govbank-assistant
 Purpose: give any future AI agent or developer the complete context and step-by-step plan to add a production-style RAG layer without breaking the existing project.
 
@@ -81,15 +82,9 @@ Good chunk schema from current data:
 }
 ```
 
-Data status from latest user-provided zip checks:
+Earlier dataset ratings were subjective inspection scores, not measured accuracy or production approval. Canonical files contain 291 PAN records and 705 UIDAI records (996 total). Individual JSON exports repeat the JSONL records and must not also be ingested. Whole-record hashes hide repeated text when IDs and URLs differ.
 
-- PAN dataset: around 8.6/10
-- UIDAI dataset: around 8.7/10
-- Approved for project demo/RAG use
-- Limitation: automated official-source verification, not human verification
-- Known weakness: small leftover logo/navigation/captcha/breadcrumb noise
-
-Do not claim human verification. Use wording: `automated official-source verified`.
+The current refiner unconditionally assigns `status: verified`, `quality_score: 0.95`, and the processing date as `last_verified`. These are producer assertions, not evidence of factual verification. Preserve reported metadata, but normalize factual verification to `unverified` unless independently supported. Do not present this corpus as human-verified or fact-verified.
 
 ---
 
@@ -286,22 +281,7 @@ Embedding options:
 
 ### Step E: Merge results
 
-Combine scores:
-
-```text
-final_retrieval_score =
-  0.45 * vector_score
-+ 0.35 * bm25_score
-+ 0.10 * metadata_score
-+ 0.10 * quality_score
-```
-
-Metadata boost examples:
-
-- exact category match: +0.10
-- official source: +0.05
-- last_verified exists: +0.03
-- retrieval tag match: +0.05
+Use rank fusion (RRF) as the initial hybrid baseline rather than adding incomparable raw BM25 and cosine scores. Evaluate dense-only, lexical-only, and hybrid against held-out passage labels. Fusion constants and metadata boosts are tunable configuration, not accuracy guarantees. Metadata dates and producer quality scores are not evidence of factual accuracy.
 
 ### Step F: Rerank
 
@@ -329,11 +309,7 @@ Rules:
 - If only noisy chunks, fallback to `knowledge_base.json`
 - If fallback also weak, say not enough verified data
 
-Suggested thresholds:
-
-- high confidence: top score >= 0.72 and at least 2 supporting chunks
-- medium: top score >= 0.55
-- low: below 0.55, use fallback or refusal
+Calibrate abstention on held-out answerable, unanswerable, and conflicting-source cases. Previously suggested 0.55/0.72 thresholds are unvalidated, not correctness probabilities. One sufficient source can support an answer; duplicate chunks are not independent sources. Fallback guides must pass their own relevance and freshness checks.
 
 ---
 
@@ -472,7 +448,7 @@ Goal: use RAG only when enabled.
 Add config:
 
 ```python
-RAG_ENABLED = True
+RAG_ENABLED = False  # enable only after integration and evaluation gates
 RAG_PROVIDER = "local"
 RAG_TOP_K = 8
 RAG_MIN_CONFIDENCE = 0.55
@@ -572,7 +548,7 @@ Metrics:
 - Groundedness: answer uses only retrieved source facts
 - Fallback correctness: weak/out-of-scope query refuses or uses fallback
 
-Target scores before calling it 9/10:
+Do not award production readiness from these targets alone. Evaluate passage-level Recall@k (relevant passages retrieved / all labeled relevant passages), Hit@k, MRR, supported-claim rate, abstention errors, latency, and each language. Category/domain matching alone is not Recall@k. Keep development and held-out sets separate.
 
 - 90 percent Recall@5 on PAN/Aadhaar eval set
 - 80 percent Recall@3
@@ -603,11 +579,11 @@ Rules:
 Add to `backend/config.py` or `backend/rag/config.py`:
 
 ```python
-RAG_ENABLED = True
+RAG_ENABLED = False  # enable only after integration and evaluation gates
 RAG_DATA_PATHS = [
     DATA_DIR / "refined" / "pan" / "pan_chunks_clean.jsonl",
     DATA_DIR / "refined" / "uidai" / "uidai_chunks_clean.jsonl",
-    DATA_DIR / "processed" / "uidai_chunks.jsonl",
+    # Exclude legacy processed exports and individual JSON mirrors.
 ]
 RAG_VECTOR_PROVIDER = "local"
 RAG_EMBEDDING_PROVIDER = "sentence_transformers"
@@ -716,6 +692,74 @@ Before saying RAG is complete, verify:
 Do not delete current fallback retrieval until the new RAG path is proven.
 
 ---
+
+## 18. Authoritative implementation decisions (2026-10-14)
+
+These requirements override earlier alternatives and illustrative thresholds.
+
+### 18.1 Milestones and delivery
+
+M0: canonical ingestion, provenance normalization, duplicate control, read-only validation CLI and regression tests. No change to live answers and no external model calls.
+M1: lexical baseline, embedding/provider contracts, genuine multilingual dense retrieval, persistent vector adapter, rank fusion and passage-level evaluation.
+M2: bounded answer generation, supporting citations, safe routing/fallback, feature-flagged API integration and privacy regression tests.
+M3: citation UI, per-language query/answer behavior and real browser acceptance tests.
+M4: remote vector adapter, timeout/retry/resource budgets, atomic versioned index rollout/rollback, deployment and failure testing.
+
+After each complete milestone: run its tests plus existing regressions, inspect staged diff, commit only owned changes, fetch, integrate collaborator changes safely, push without force and verify remote HEAD. Never overwrite collaborator work. Report precisely which milestone is complete. A working loader is not a working RAG system.
+
+### 18.2 Cross-lingual retrieval and answer language
+
+- Keep original query, masked query, requested answer language and detected input language separate. A UI language selection is not proof of input language.
+- Mask both question and document before remote translation, embeddings or generation. Current pipeline retains the raw question in `safe_request`; correct this before any network-capable routing is added.
+- Evaluate a multilingual embedding candidate against English, Hindi, Gujarati, Hinglish and transliterated Gujarati examples. `paraphrase-multilingual-MiniLM-L12-v2` is a candidate, not guaranteed Gujarati support. Pin model revision, dimensions, tokenizer and normalization in the index manifest. Use the same encoder contract at indexing and query time.
+- If a language does not meet acceptance criteria, use an explicit QueryTranslator adapter to English after masking. Preserve PAN/Aadhaar/ITR/VID identifiers, form codes, numeric amounts and dates. Search original and translated variants, with lexical search for exact terms. Do not silently translate the stored evidence.
+- Translation failure must return an honest unsupported-language/clarification response or an explicitly labeled English fallback. Never mark English-only answers as translated.
+- Retain chunk language as `und` when unknown; do not infer Hindi from a URL or Gujarati from navigation links. Query translation and output translation are different components.
+- Start with at least 20 held-out question pairs per advertised language, labeled to relevant source passages and unanswerable cases, plus mixed-language cases. Evaluate retrieval per language, numeric preservation and answer groundedness separately. Automated evaluation is useful but is not expert factual certification.
+
+### 18.3 Backward-compatible citations and frontend contract
+
+At M2 extend Answer additively, preserving source_url and last_verified for old clients:
+
+- `citations`: default empty list. Each item has a request-scoped ID, chunk ID, source URL, title, section, evidence excerpt, nullable factual-check date and explicit verification label.
+- `claim_citations`: mappings from displayed summary/step/warning to citation IDs that actually support that claim.
+- `retrieval_status`: not_run, supported, insufficient, conflict or unavailable. Retrieval scores are not probabilities of correctness.
+- `answer_language` and `language_status`: report actual delivered language and fallback state.
+
+Server builds citations from retrieved records, not model-invented URLs or dates. A valid URL is not proof that a claim is supported. Reject unknown citation IDs, detect unsupported material claims, preserve conflicting-source warnings and abstain when necessary. Processing dates must not become fresh verification dates.
+
+At M3 change frontend/app.js to render accessible numbered source buttons next to supported content and a source list showing title, section, source domain, date availability and verification label. Keep the old single-source renderer when citations is empty or absent. Use DOM textContent for untrusted text, validate http(s) URLs, reject javascript/data URLs, and set rel=noopener noreferrer for new tabs. Add minimal responsive styles in style.css and accessible markup in index.html. Show insufficient/conflicting evidence without falsely reassuring users with a numeric confidence percentage.
+
+Browser acceptance: legacy answers, one/multiple citations, Unicode labels, long titles, absent dates, malformed URLs, HTML/XSS strings, keyboard navigation, narrow screens and backend failure. Frontend updates belong to M3, not this ingestion milestone.
+
+### 18.4 Canonical data, provenance and provider boundaries
+
+- Load ONLY the two explicitly listed refined JSONL files by default. Never recursively ingest both aggregate JSONL and individual JSON mirrors or the obsolete processed dataset.
+- Resolve manifest paths within the approved data directory. Bound file, record and corpus sizes; validate JSON, nonempty text, IDs, dates, numeric scores and exact permitted URL hosts. Do not fetch source URLs during loading.
+- Keep producer status/date/quality separate from factual verification. All existing automated records normalize to factual `unverified`. Host allowlisting is a provenance screening rule only. Leave original files unchanged.
+- Use deterministic category+normalized-content fingerprints to deduplicate identical text while preserving every contributing source reference. Reject conflicting reuse of an ID. Do not drop useful short complete FAQs solely for missing a word target; flag suspicious sizes instead. Near-duplicates and boilerplate need separate evaluation.
+- Manifest records corpus selection and schema version. Ingestion output records source-file hashes, accepted/rejected counts, duplicate counts, coverage and warnings. Candidate documents are eligible for indexing, not approved factual answers.
+- Source adapters (JSONL, future SQL/API) are separate from embedding adapters and vector-store adapters. Supporting another database requires an implemented/tested adapter, not merely changing a setting.
+- Start with canonical ingestion with no new dependency. Before M1 choose one real persistent backend after checking environment and provider fit. Do not implement every Chroma/FAISS/Qdrant alternative. Preserve provider-independent upsert/search/delete/health contracts and index metadata.
+- Build indexes into versioned staging directories/collections. Verify IDs/counts/model fingerprints before atomically activating. Keep rollback and idempotent updates/deletions. Never ingest private user uploads into the public corpus.
+
+### 18.5 Safety and release gates
+
+- Treat retrieved text as untrusted data, never agent instructions. Test prompt injection in queries, uploads and source chunks.
+- Do not depend on arbitrary quality_score >= 0.75 or status=verified for truth. Source freshness, effective dates, conflicts and claim support need evidence.
+- A legal notice without adequate legal sources must not be answered with an unrelated PAN/savings-account guide. Every fallback is gated too.
+- Unit tests are not a factual accuracy benchmark. A phase gate needs observed results from the actual CLI/provider/API/browser workflow for that phase.
+- Do not claim production readiness from a review rating. Record unsupported features and blocked external dependencies explicitly.
+
+### 18.6 Primary technical references
+
+Reviewed for planning, not evidence of project accuracy:
+
+```text
+https://www.sbert.net/docs/sentence_transformer/pretrained_models.html
+https://www.sbert.net/examples/sentence_transformer/training/multilingual/README.html
+https://qdrant.tech/documentation/search/hybrid-queries/
+```
 
 ## 17. One-line goal
 
