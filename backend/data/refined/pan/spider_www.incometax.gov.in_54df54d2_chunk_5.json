@@ -2,19 +2,18 @@
   "id": "spider_www.incometax.gov.in_54df54d2_chunk_5",
   "source_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-link-aadhaar",
   "title": "[ ![EFiling Logo](https://www.incometax.gov.in/iec/foportal/themes/custom/itdbase/logo.svg) ](https://www.incometax.gov.in/iec/foportal/ \"Home\") Link Aadhaar User Manual | Income Tax Department",
-  "section": "Link Aadhaar User Manual",
-  "text": "##  Link Aadhaar User Manual\n\n### 1. Overview\nFor new applicants of PAN card, the Aadhaar PAN linking is done automatically during the application stage. For existing PAN holders, who were allotted PAN on or before 01-07-2017 it is mandatory to link PAN with Aadhaar. The Link Aadhaar service is available to individual taxpayers (both registered and unregistered on e-Filing Portal). If you do not link your PAN with the Aadhaar till 30th June 2023, your PAN will become inoperative. However, people who fall under the exempted category will not be subject to the effects of PAN becoming inoperative.\n\n### 2. Prerequisites for availing this service:\n  * Valid PAN\n  * Aadhaar number\n  * Valid mobile number\n\n### **3. How to make payment of Aadhaar Pan link fee on e-Filing Portal**\n\n**Step 2:** Enter your PAN and Aadhaar Number.\n\n**Step 3** : Click on **Continue to Pay Through e-Pay Tax.**\n\n**Step 4:** Enter your PAN, confirm PAN, and any mobile number to receive OTP.\n\n**Step 5** : Post OTP verification, you will be redirected to e-Pay Tax page.\n\n**Step 6:** Click on **Proceed** on the **Income Tax** tile**.**\n\n**Step 7** : Select the relevant **Assessment Year** and **Type of Payment** as **Other Receipts (500)** and click **Continue.**\n\n**Step 8:** Applicable amount will be pre-filled against **Others.** Click **Continue.**\n\nNow, challan will be generated. On the next screen, you have to select the mode of payment. After selecting the mode of payment, you will be re-directed to the Bank website where you can make the payment.\nPost payment of fee, you can link your Aadhaar with PAN on the e-Filing Portal.",
+  "section": "5. View Link Aadhaar Status (Pre-Login)",
+  "text": "### **5. View Link Aadhaar Status (Pre-Login)**\n\n**Step 2:** Enter your PAN and Aadhaar Number, and click **View Link Aadhaar Status**. \n\nOn successful validation, a message will be displayed regarding your Link Aadhaar Status. \nIf the Aadhaar-PAN link is in progress:\n\nIf the Aadhaar-PAN linking is successful:\n\n### **6. View Link Aadhaar Status (Post-Login)**\n**Step 1:** On your Dashboard**,** click **Link Aadhaar Status**.\n\n**Step 2:** Alternatively, you can go to **My Profile** **> Link Aadhaar Status**. \n(If your Aadhaar is already linked, Aadhaar number will be displayed. If Aadhaar is not linked **Link Aadhaar Status** is displayed).\n\n**_Note:_**\n  * If the validation fails, click **Link Aadhaar** on the **Status** page, and you will need to repeat the steps to link your PAN and Aadhaar.\n  * If your request to link PAN and Aadhaar is pending with UIDAI for validation, you will need to check the status later.\n  * You may need to contact the Jurisdictional AO to delink Aadhaar and PAN if:\n    * your Aadhaar is linked with some other PAN\n    * your PAN is linked with some other Aadhaar\n\nOn successful validation, a message will be displayed regarding your Link Aadhaar status.\n\nThis user manual is issued for information and general guidance purposes only. Taxpayers are advised to refer to relevant circulars, notifications, rules and provision of the the I.T. Act for precise information, interpretations, clarifications applicable to their cases. The department will not be responsible for actions taken and/or decisions made based on this user manual.\n* * *\n\n[ ](https://www.youtube.com/channel/UC-le1Uh6DI1oHjVxKck6Hpw) [  ](https://twitter.com/incometaxindia) [  ](https://www.facebook.com/Incometaxindia/)[  ](https://www.whatsapp.com/Incometaxindia/)[  ](https://www.instagram.com/incometaxindia.official?igshid=1npzoca4rcy57)",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
-    "fee",
     "link",
-    "pan",
-    "verification"
-  ]
+    "pan"
+  ],
+  "language": "en"
 }

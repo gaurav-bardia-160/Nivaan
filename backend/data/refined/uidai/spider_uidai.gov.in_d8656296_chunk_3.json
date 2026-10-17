@@ -2,15 +2,16 @@
   "id": "spider_uidai.gov.in_d8656296_chunk_3",
   "source_url": "https://uidai.gov.in/departments",
   "title": "Departments",
-  "section": "Authentication and Verification Division",
+  "section": "Departments",
   "text": "### \nAuthentication and Verification Division\n  \n| S.No  | Name  | Phone number  | Email id  | Designation  |  \n| --- | --- | --- | --- | --- |  \n| 1  | Abhishek Kumar Singh  | 011-23478391  | ddg[dot]auth-hq[at]uidai[dot]net[dot]in  | Deputy Director General  |  \n| 2  | Sanjeev Yadav  | 011-23478604  | dir2[dot]auth-hq[at]uidai[dot]net[dot]in  | Director  |  \n| 3  | Abhijeet  | 011-23478602  | dir1[dot]auth-hq[at]uidai [dot]net [dot]in  | Director  |  \n| 4  | Lt Col Neeraj Chaudhary  | 011-23478554  | -  | Director(Tech)  |  \n| 5  | Arpit Agrawal  | 011-23478641  | dd2[dot]auth-hq[at]uidai[dot]net[dot]in  | Deputy Director  |  \n| 6  | Pratik Choudhary  | 011-23478608  | dd1[dot]auth-hq[at]uidai[dot]net[dot]in  | Deputy Director  |\n\n### \nMedia Division\n  \n| S.No  | Name  | Phone number  | Email id  | Designation  |  \n| --- | --- | --- | --- | --- |  \n| 1  | Vivek Chandra Verma  | 011-23478551  | ddg[dot]media-hq[at]uidai[dot]net[dot]in  | Deputy Director General  |  \n| 2  | Praveen Chaudhary  | 011-23478507  | dir[dot]media-hq[at]uidai[dot]net[dot]in  | Director  |  \n| 3  | Rajesh Gupta  | 011-23478513  | dd[dot]media[at]uidai[dot]net[dot]in  | Deputy Director  |",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "authentication"
-  ]
+  ],
+  "language": "en"
 }

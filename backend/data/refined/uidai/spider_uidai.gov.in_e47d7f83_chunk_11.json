@@ -2,17 +2,20 @@
   "id": "spider_uidai.gov.in_e47d7f83_chunk_11",
   "source_url": "https://uidai.gov.in/enrolment-and-update",
   "title": "Enrolment & Update",
-  "section": "To know the reason, you may contact UIDAI helpline at  You may file a complaint by providing EID, URN or SRN on the myAadhaar portal using the link provided: <https://myaadhaar.uidai.gov.in/grievance-feedback/en>. Alternatively, you can contact UIDAI helpline at [ help[at]uidai[dot]gov[dot]in](https://uidai.gov.in/hi/help@uidai.gov.in).  You may file a complaint by providing your EID, URN or SRN on the myAadhaar portal using the link provided: [ https://myaadhaar.uidai.gov.in/grievance-feedback/en](https://myaadhaar.uidai.gov.in/grievance-feedback/en). Alternatively, you can contact UIDAI helpline at  What is a Head of Family (HoF)-based address update ? Who can use the HoF method ?",
-  "text": "To know the reason, you may contact UIDAI helpline at  You may file a complaint by providing EID, URN or SRN on the myAadhaar portal using the link provided: <https://myaadhaar.uidai.gov.in/grievance-feedback/en>. Alternatively, you can contact UIDAI helpline at [ help[at]uidai[dot]gov[dot]in](https://uidai.gov.in/hi/help@uidai.gov.in).  You may file a complaint by providing your EID, URN or SRN on the myAadhaar portal using the link provided: [ https://myaadhaar.uidai.gov.in/grievance-feedback/en](https://myaadhaar.uidai.gov.in/grievance-feedback/en). Alternatively, you can contact UIDAI helpline at  What is a Head of Family (HoF)-based address update ? Who can use the HoF method ?",
+  "section": "Enrolment & Update",
+  "text": "### \nEnrolment Partners/Ecosystem Partners\n\nIs there any provision available to update my regional language in Aadhaar to display all fields in same regional language? Update of regional language in Aadhaar is possible by visiting Aadhaar enrolment centre having this facility. For details of Aadhaar enrolment centre please click here \nAction by operator in case an applicant request for update of regional language in his Aadhaar the following steps to be taken:-\n  1. If operator is logged in different regional language, please logout and re-login with the desired language (option to select regional language is available under ‘local language settings’ on the top right of demographic screen). 2. Update the demographic details (name, address) by submitting Proof of Identity (POI) and Proof of Address (POA) documents. Documents in English can be accepted as documentary proof. 3. If operator is not well versed with the desired regional language, he/she shall intimate the same to the applicant and inform him that applicant shall be responsible for transliteration errors. 4. After completion of request, operator can logout and continue operations after re-login with regional language of that region. What is the role and responsibilities of a verifier at Aadhaar Enrolment and Update centre? Verifier to play a major role in enrolment and verify the information mentioned in the supporting documents with the information mentioned in the Aadhaar enrolment or update form. In case the authenticity of document can be verified by using QR code or any online mode, the same should be verified before using for enrolment. What is the role and responsibilities of an operator at Aadhaar Enrolment and Update centre? 1. Operator to login, lock (if she is away from from the machine) and sync the machine time to time as specified\n  2. Inform the individual seeking enrolment or Aadhaar number holder about the form and documents required for enrolment or update\n  3. Verify the information mentioned in the supporting documents with the information mentioned in the Aadhaar enrolment or update form. In case the authenticity of document can be verified by using QR code or any online mode, the same should be verified before using for enrolment. 4. Ensure entered data into the software is correct\n  5. Capture Biometrics for enrolment or update, in case of difficulty in capturing proper biometric of the applicant (poor biometrics) use force capture option. 6. After enrolment or update return the documents submitted alongwith acknowledgment slip. Operators are not permitted to keep details/copies of document submitted for enrolment.",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
-    "fee",
+    "biometric",
+    "enrolment",
+    "lock",
     "update"
-  ]
+  ],
+  "language": "en"
 }

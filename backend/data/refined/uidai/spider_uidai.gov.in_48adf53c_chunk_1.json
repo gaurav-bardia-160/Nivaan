@@ -2,17 +2,19 @@
   "id": "spider_uidai.gov.in_48adf53c_chunk_1",
   "source_url": "https://uidai.gov.in/authentication-documents?limit=10&page=10",
   "title": "Authentication Documents",
-  "section": "2. /",
-  "text": "2. /\n  4. /\n  5. [Authentication Ecosystem](https://uidai.gov.in/en/authentication-partners)\n  6. /\n  7. [Authentication Documents](https://uidai.gov.in/en/authentication-documents)\n\n# Authentication Documents\n\nAppointment of Sub-AUA –Application & Undertaking\nDoc Type: PDF• Size: 379.62 KB• Uploaded On: 12-07-2017\nDownload\nDownload\n\nDelta Certification process for Registered Devices\nDoc Type: PDF• Size: 880.84 KB• Uploaded On: 13-06-2017\nDownload\nDownload\n\nCircular for AUA/KUA and ASA Agreements v.4.0\nDoc Type: PDF• Size: 359.41 KB• Uploaded On: 31-05-2017\nDownload\nDownload\n\nASA Agreement V 4.0\nDoc Type: PDF• Size: 936.56 KB• Uploaded On: 28-05-2017\nDownload\nDownload\n\nASA Application Form\nDoc Type: PDF• Size: 764.71 KB• Uploaded On: 27-05-2017\nDownload\nDownload\n\nASA Appointment Letter and Bank Guarantee\nDoc Type: PDF• Size: 697.56 KB• Uploaded On: 26-05-2017\nDownload\nDownload\n\nAUA KUA Agreement V 4.0\nDoc Type: PDF• Size: 1019.47 KB• Uploaded On: 22-05-2017\nDownload\nDownload\n\nDisincentives to be imposed on Authentication Service Agencies (ASA)\nDoc Type: PDF• Size: 213.86 KB• Uploaded On: 22-05-2017\nDownload\nDownload\n\nAUA KUA Appointment Letter and Bank Guarantee\nDoc Type: PDF• Size: 707.92 KB• Uploaded On: 19-05-2017\nDownload\nDownload\n\nDisincentives to be imposed on Authentication eKYC User Agencies (AUA/KUA)\nDoc Type: PDF• Size: 215.85 KB• Uploaded On: 16-05-2017\nDownload\nDownload\n[](https://uidai.gov.in/en/authentication-documents?limit=10&page=9)[1](https://uidai.gov.in/en/authentication-documents?limit=10&page=1)\n...\n[6](https://uidai.gov.in/en/authentication-documents?limit=10&page=6)[7](https://uidai.gov.in/en/authentication-documents?limit=10&page=7)[8](https://uidai.gov.in/en/authentication-documents?limit=10&page=8)[9](https://uidai.gov.in/en/authentication-documents?limit=10&page=9)[10](https://uidai.gov.in/en/authentication-documents?limit=10&page=10)[](https://uidai.gov.in/en/authentication-documents?limit=10&page=11)\n\nContent Information\nPublished on: 21 May 2026\nLast Updated: 20 Jun 2026\nOwner: A & V\nFrequently Asked Questions",
+  "section": "Authentication Documents",
+  "text": "2. /\n  4. /\n  5. [Authentication Ecosystem](https://uidai.gov.in/en/authentication-partners)\n  6. /\n  7. [Authentication Documents](https://uidai.gov.in/en/authentication-documents)\n\n# Authentication Documents\nAccess Aadhaar authentication circulars, regulations, guidelines, onboarding checklists and technical documents for AUAs, KUAs and ASAs.\n!\nAppointment of Sub-AUA –Application & Undertaking\nDoc Type: PDF• Size: 379.62 KB• Uploaded On: 12-07-2017\nDownload!\nDownload!\n!\nDelta Certification process for Registered Devices\nDoc Type: PDF• Size: 880.84 KB• Uploaded On: 13-06-2017\nDownload!\nDownload!\n!\nCircular for AUA/KUA and ASA Agreements v.4.0\nDoc Type: PDF• Size: 359.41 KB• Uploaded On: 31-05-2017\nDownload!\nDownload!\n!\nASA Agreement V 4.0\nDoc Type: PDF• Size: 936.56 KB• Uploaded On: 28-05-2017\nDownload!\nDownload!\n!\nASA Application Form\nDoc Type: PDF• Size: 764.71 KB• Uploaded On: 27-05-2017\nDownload!\nDownload!\n!\nASA Appointment Letter and Bank Guarantee\nDoc Type: PDF• Size: 697.56 KB• Uploaded On: 26-05-2017\nDownload!\nDownload!\n!\nAUA KUA Agreement V 4.0\nDoc Type: PDF• Size: 1019.47 KB• Uploaded On: 22-05-2017\nDownload!\nDownload!\n!\nDisincentives to be imposed on Authentication Service Agencies (ASA)\nDoc Type: PDF• Size: 213.86 KB• Uploaded On: 22-05-2017\nDownload!\nDownload!\n!\nAUA KUA Appointment Letter and Bank Guarantee\nDoc Type: PDF• Size: 707.92 KB• Uploaded On: 19-05-2017\nDownload!\nDownload!\n!\nDisincentives to be imposed on Authentication eKYC User Agencies (AUA/KUA)\nDoc Type: PDF• Size: 215.85 KB• Uploaded On: 16-05-2017\nDownload!\nDownload!\n[1](https://uidai.gov.in/en/authentication-documents?limit=10&page=1)\n...\n[6](https://uidai.gov.in/en/authentication-documents?limit=10&page=6)[7](https://uidai.gov.in/en/authentication-documents?limit=10&page=7)[8](https://uidai.gov.in/en/authentication-documents?limit=10&page=8)[9](https://uidai.gov.in/en/authentication-documents?limit=10&page=9)[10](https://uidai.gov.in/en/authentication-documents?limit=10&page=10)\n\nContent Information\nPublished on: 21 May 2026\nLast Updated: 20 Jun 2026\nOwner: A & V\nFrequently Asked Questions\n###",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
+    "aadhaar",
     "authentication",
     "download",
     "update"
-  ]
+  ],
+  "language": "en"
 }

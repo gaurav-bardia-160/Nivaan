@@ -2,17 +2,18 @@
   "id": "spider_uidai.gov.in_7824f2aa_chunk_1",
   "source_url": "https://uidai.gov.in/crm-division",
   "title": "CRM Division",
-  "section": "2. /",
+  "section": "CRM Division",
   "text": "2. /\n  4. /\n  5. [Frequently Asked Questions](https://uidai.gov.in/hi/faq)\n  6. /\n  7. [CRM Division](https://uidai.gov.in/hi/crm-division)\n\n# CRM Division\nGet Aadhaar-related assistance through UIDAI’s CRM Division via phone, email, chatbot, web portal, walk-in support and social media channels. Residents can raise queries, track grievances, seek support and receive timely resolution for Aadhaar-related concerns and services.\n\n### \n\nThe detailed information about available channels are as below:\n  1. **Phone Call (Toll Free Number) -**\nIndividuals can contact UIDAI Toll Free Number (1947) for concerns related to Aadhaar. UIDAI contact center consists of a self service IVRS (Interactive Voice Response system) and Contact Center Executive based assistance. Individual can choose any of below mentioned language for communication as per their ease.  \n| 1. Hindi  | 5. Kannada  |  9. Gujarati  |  \n| --- | --- | --- |  \n| 2. English  | 6. Malayalam  | 10. Marathi  |  \n| 3. Telugu  | 7. Assamese  | 11. Punjabi  |  \n| 4. Tamil  | 8. Bengali  | 12. Odia  |  \n\n**Timings:**\n  1. a) **Availing of self service through IVRS** :   \nServices through IVRS can be availed in self service mode on 24X7 basis.\n  2. b)**Contact Center Executive assistance:** This service can be availed from   \nMonday - Saturday: 7 AM to 11 PM,   \nSunday: 8 AM to 5 PM.\nGeneral Queries are resolved by Contact Center Executive through UIDAI approved Standard Responses and complaints are assigned to concerned Divisions/Regional Offices of UIDAI on real time basis. These complaints are examined internally at concerned Division/Regional Offices of UIDAI for effective resolution and communication thereafter to the individual.\n  3. **Chatbot (Udai) –** Individuals can raise their concern related to Aadhaar through UIDAI chatbot service \"Udai\" which is available on UIDAI’s Official website This chatbot is trained to respond to the queries and aimed at improving the individual's experience.\n  4. **UIDAI Web Portal –** Individuals can lodge and check the status of their grievance on UIDAI website under **Grievance and Feedback & Check Grievance / Feedback Status respectively.**\n  5. **Email –** Individuals can send email to \n  6. **Walk-In at Regional Offices:** Individuals can directly walk in to the respective regional offices according to their state for the resolution of their queries or submission of complaints related to Aadhaar.\n  7. **Post/Letter:** Individuals can lodge their grievances in UIDAI HO or Regional offices through post or submit application by hand. The concerned Regional Office/ division will take necessary steps to resolve the grievance.\n  8. **Social Media:** Grievances may be lodged through multiple social media platforms like Twitter, Facebook, You tube, Instagram etc. Individual can upload a post related to their concern/grievance tagging the UIDAI or DM the support page on different social media streams.\n  9. **Public Grievance Portal (CPGRAMS) of the Government of India:** Grievances can be lodged at UIDAI through Centralized Public Grievance Redress and Monitoring System (CPGRAMS).This is an online platform available for the citizens 24x7.",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.82,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "fee",
     "status"
-  ]
+  ],
+  "language": "en"
 }

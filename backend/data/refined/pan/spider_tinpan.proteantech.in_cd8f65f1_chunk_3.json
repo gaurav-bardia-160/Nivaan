@@ -2,18 +2,19 @@
   "id": "spider_tinpan.proteantech.in_cd8f65f1_chunk_3",
   "source_url": "https://tinpan.proteantech.in/faqs/pan/faq-pan-reqfornewpan.html",
   "title": "FAQ's",
-  "section": "**PAN applications submitted at TIN Facilitation Centres / PAN Centres**",
+  "section": "FAQ's",
   "text": "###    \n**PAN applications submitted at TIN Facilitation Centres / PAN Centres**\n |  \n| 1  | Dispatch of physical PAN Card in India (Communication address is Indian address)  | 91  | 107  |  \n| 2  | Dispatch of physical PAN Card outside India (where foreign address is provided as address for communication)  | 862  | 1,017  |  \n|\n\n###    \n**PAN applications submitted Online using physical mode (i.e. Physical documents forwarded to Protean e-Gov.)**\n |  \n| 1  | Dispatch of physical PAN Card in India (Communication address is Indian address)  | 91  | 107  |  \n| 2  | Dispatch of physical PAN Card outside India (where foreign address is provided as address for communication)  | 862  | 1,017  |  \n|\n\n###    \n**PAN applications submitted Online through paperless modes (e-KYC & e-Sign / e-Sign scanned based / DSC scanned based): **\n |  \n| 1  | Dispatch of physical PAN Card in India (Communication address is Indian address)  | 86  | 101  |  \n| 2  | Dispatch of physical PAN Card outside India (where foreign address is provided as address for communication)  | 857  | 1,011  |  \n|",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "address",
     "kyc",
     "pan",
     "protean"
-  ]
+  ],
+  "language": "en"
 }

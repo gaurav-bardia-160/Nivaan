@@ -2,21 +2,21 @@
   "id": "spider_www.incometax.gov.in_a3e1fa08_chunk_10",
   "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/Instant%20e-PAN-faq",
   "title": "[ ![EFiling Logo](https://www.incometax.gov.in/iec/foportal/themes/custom/itdbase/logo.svg) ](https://www.incometax.gov.in/iec/foportal/ \"Home\") Instant e-PAN FAQ | Income Tax Department",
-  "section": "20. I do not have a DigiLocker account. Can I still apply for Instant e-PAN?",
-  "text": "### 20. I do not have a DigiLocker account. Can I still apply for Instant e-PAN?\nIf you are applying for Instant e-PAN you need a DigiLocker account to complete the process, since it is used to fetch your date of birth proof. If you do not already have DigiLocker Account, you can create it during the e-PAN flow itself using your Aadhaar-linked mobile number for OTP verification, after which you can select a username and password to complete sign-up.\n\n### 21. What if my mobile number is not linked to Aadhaar, so I cannot sign up on DigiLocker?\nYou will first need to get your mobile number linked to your Aadhaar at a nearby Aadhaar Enrolment/Update Centre, since both Aadhaar OTP validation and DigiLocker sign-up depend on this link. Once the mobile number is linked with Aadhar and active, retry the Instant e-PAN process.\n\n### 22. None of my accepted Date of Birth documents (Birth Certificate, Matriculation Certificate, Driving License, Matriculation Marksheet, CGHS Card) are available in my DigiLocker. What should I do now?\n  * Check whether the issuing authority (e.g., school board, RTO, municipal body, CGHS) is listed as a partner department on DigiLocker and ‘pull’ the document directly from there using your relevant ID details. \n  * If the document is available only in physical form, you can upload a self-attested scanned copy to DigiLocker and e-sign it, where this option is supported for that document type.\n  * If the document cannot be fetched or uploaded, you will not be able to complete the Instant e-PAN route and should consider applying for a PAN through the regular PAN application process instead.",
+  "section": "25. Whom do I contact if I am unable to resolve a DigiLocker-related issue?",
+  "text": "### 25. Whom do I contact if I am unable to resolve a DigiLocker-related issue?\n  * For issues specific to DigiLocker itself (account creation, document fetch, login), reach out to DigiLocker’ s support channels. \n  * For issues within the Instant e-PAN flow on the e-Filing portal, use the e-Filing portal’s helpdesk options.\n\nLoad More\n\n[ ](https://www.youtube.com/channel/UC-le1Uh6DI1oHjVxKck6Hpw) [  ](https://twitter.com/incometaxindia) [  ](https://www.facebook.com/Incometaxindia/)[  ](https://www.whatsapp.com/Incometaxindia/)[  ](https://www.instagram.com/incometaxindia.official?igshid=1npzoca4rcy57)\n\n## Footer\n  * ### About Us\n    * [About the Portal](https://www.incometax.gov.in/iec/foportal/about-portal)\n    * [History of Direct Taxation](https://www.incometaxindia.gov.in/history-of-direct-taxation)\n    * [Vision, Mission, Values](https://www.incometax.gov.in/iec/foportal/sites/default/files/2020-02/vision-mission-values-2020-07012011.pdf)\n    * [Vision, Mission, Values (Hindi)](https://www.incometax.gov.in/iec/foportal/sites/default/files/2022-11/Vision-Mission-Document-Hindi.pdf)\n    * [Who We Are](https://www.incometaxindia.gov.in/who-we-are)\n    * [Right to Information](https://www.incometaxindia.gov.in/right-to-information)\n    * [Organization & Functions](https://www.incometaxindia.gov.in/cbdt)\n    * [e-Filing Calendar 2026](https://eportal.incometax.gov.in/iec/foservices/#/TaxCalc/calender)\n    * [Tax Payer Charter](https://www.incometax.gov.in/iec/foportal/sites/default/files/2024-04/taxpayer-charter-english.pdf)\n    * [Tax Payer Charter (Hindi)](https://www.incometax.gov.in/iec/foportal/sites/default/files/2022-11/TAXPAYERS-CHARTER-hindi.pdf)\n    * [Helpdesk Numbers](https://www.incometax.gov.in/iec/foportal/contact-us)\n    * [Grievances](https://eportal.incometax.gov.in/iec/foservices/#/fo-greivance/submit)\n    * [View Grievance](https://eportal.incometax.gov.in/iec/foservices/#/fo-greivance/view)\n  * ### [Using the Portal ](https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/Instant%20e-PAN-faq#/)\n    * [Website Policies](https://www.incometax.gov.in/iec/foportal/using-the-portal/webSitePolicies)\n    * [Browser Support](https://www.incometax.gov.in/iec/foportal/using-the-portal/browser-support)\n  * ### [Related Sites ](https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/Instant%20e-PAN-faq#/)\n    * [Income Tax India](https://www.incometaxindia.gov.in/Pages/default.aspx)\n    * [Protean (previously NSDL)(link is external)](https://www.protean-tinpan.com)\n    * [TRACES](https://traces.tdscpc.gov.in/)\n\n* * *\nLast reviewed and updated on : 12-Oct-2026\nCopyright @ Income Tax Department, Ministry of Finance, Government of India. All Rights Reserved.\n[  ](https://www.india.gov.in/)",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
-    "aadhaar",
-    "apply",
     "e-pan",
     "instant",
     "link",
+    "nsdl",
     "pan",
-    "verification"
-  ]
+    "protean"
+  ],
+  "language": "en"
 }

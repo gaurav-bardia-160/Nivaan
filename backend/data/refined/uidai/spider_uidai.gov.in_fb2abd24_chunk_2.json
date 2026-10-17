@@ -3,15 +3,16 @@
   "source_url": "https://myaadhaar.uidai.gov.in/retrieve-eid-uid",
   "title": "Frequently Asked Questions",
   "section": "Which are the documents required for updation in Aadhaar Address?",
-  "text": "### Which are the documents required for updation in Aadhaar Address?\n\nList of supporting documents which you can select from is available here. Please select the appropriate document from the list and provide a scan/image of the same while undertaking demographic data correction.\n\n### How can I submit my supporting documents in case of Address Update online Service?\n\nYou will be prompted to upload scan/image of the supporting document in pdf or jpeg format in the Update Address online Service. Please upload correct supporting document for processing of your request. For certain documents like Passport, Rent and Property agreement, image of multiple pages would be required.\n\n### Can I update my local language through Update Aadhaar online Service?\n\nAt present you can not update your local language through online portal.\n\n### Can I update my date of birth through Update Aadhaar online Service?\n\nNo, to update Date of Birth (DoB) kindly visit nearest Aadhaar Seva Kendra with DoB proof document.\n\nNo. You can update your Date of Birth (DoB) only once. Further Date of Birth (DoB) can be changed under exceptional circumstances, kindly call 1947 in this regard.",
+  "text": "### Which are the documents required for updation in Aadhaar Address?\n!\nList of supporting documents which you can select from is available here. Please select the appropriate document from the list and provide a scan/image of the same while undertaking demographic data correction.\n\n### How can I submit my supporting documents in case of Address Update online Service?\n!\nYou will be prompted to upload scan/image of the supporting document in pdf or jpeg format in the Update Address online Service. Please upload correct supporting document for processing of your request. For certain documents like Passport, Rent and Property agreement, image of multiple pages would be required.\n\n### Can I update my local language through Update Aadhaar online Service?\n!\nAt present you can not update your local language through online portal.\n\n### Can I update my date of birth through Update Aadhaar online Service?\n!\nNo, to update Date of Birth (DoB) kindly visit nearest Aadhaar Seva Kendra with DoB proof document.\n!\nNo. You can update your Date of Birth (DoB) only once. Further Date of Birth (DoB) can be changed under exceptional circumstances, kindly call 1947 in this regard.",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "update"
-  ]
+  ],
+  "language": "en"
 }

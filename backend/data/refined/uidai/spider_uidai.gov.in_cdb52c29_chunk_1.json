@@ -3,17 +3,18 @@
   "source_url": "https://uidai.gov.in/en/legal?isFilter=false&source=documents&sourceTitle=Documents",
   "title": "Legal",
   "section": "Legal",
-  "text": "# Legal\nAccess Aadhaar legal documents including the Aadhaar Act, 2016, Aadhaar and Other Laws (Amendment) Act, 2019, ordinances and updated regulations related to targeted delivery of subsidies, benefits and services. These documents define the legal framework governing Aadhaar, authentication and related services in India. \n\nTHE AADHAAR (TARGETED DELIVERY OF FINANCIAL AND OTHER SUBSIDIES, BENEFITS AND SERVICES) ACT, 2016 (updated upto 10th October, 2023)\nDoc Type: PDF• Size: 350.91 KB• Uploaded On: 29-05-2026\nDownload\nDownload\n\nAadhaar and Other Laws (Amendment) Act, 2019\nDoc Type: PDF• Size: 1.03 MB• Uploaded On: 29-05-2026\nDownload\nDownload\n\nAadhaar (Targeted Delivery of Financial and Other Subsidies, Benefits and Services) Act, 2016\nDoc Type: PDF• Size: 139.08 KB• Uploaded On: 29-05-2026\nDownload\nDownload\n\nContent Information\nPublished on: 11 May 2026\nLast Updated: 07 Jul 2026\nFrequently Asked Questions\n\n### \nHow to download the Aadhaar app?\nYou can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android: https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan For iOS: https://apps.apple.com/in/app/aadhaar/id6744029871",
+  "text": "# Legal\nAccess Aadhaar legal documents including the Aadhaar Act, 2016, Aadhaar and Other Laws (Amendment) Act, 2019, ordinances and updated regulations related to targeted delivery of subsidies, benefits and services. These documents define the legal framework governing Aadhaar, authentication and related services in India. \n!\nTHE AADHAAR (TARGETED DELIVERY OF FINANCIAL AND OTHER SUBSIDIES, BENEFITS AND SERVICES) ACT, 2016 (updated upto 10th October, 2023)\nDoc Type: PDF• Size: 350.91 KB• Uploaded On: 29-05-2026\nDownload!\nDownload!\n!\nAadhaar and Other Laws (Amendment) Act, 2019\nDoc Type: PDF• Size: 1.03 MB• Uploaded On: 29-05-2026\nDownload!\nDownload!\n!\nAadhaar (Targeted Delivery of Financial and Other Subsidies, Benefits and Services) Act, 2016\nDoc Type: PDF• Size: 139.08 KB• Uploaded On: 29-05-2026\nDownload!\nDownload!\n\nContent Information\nPublished on: 11 May 2026\nLast Updated: 07 Jul 2026\nFrequently Asked Questions\n###",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "authentication",
     "download",
     "update"
-  ]
+  ],
+  "language": "en"
 }

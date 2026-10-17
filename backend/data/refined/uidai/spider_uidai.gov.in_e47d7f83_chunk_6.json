@@ -2,23 +2,20 @@
   "id": "spider_uidai.gov.in_e47d7f83_chunk_6",
   "source_url": "https://uidai.gov.in/enrolment-and-update",
   "title": "Enrolment & Update",
-  "section": "Aadhaar software has provisions to handle such exceptions. Photo of the missing fingers/iris will be used for identification of the exception and there will be markers to determine uniqueness. Please request the operator to conduct enrolment as per exception process with supervisor authentication. Is there any age limit for Aadhaar enrolment? No, there is no age limit defined for Aadhaar Enrolment. Even a new born baby can also get Enroled for Aadhaar. Yes, once your Aadhaar is generated, eAadhaar can be downloaded online. Your Aadhaar enrolment or update request has been rejected due to various reasons such as document mismatches, discrepancy in the information provided, operator errors, invalid documents, exceeding the permissible update limit, or policy non-compliance. Please refer to the myAadhaar portal to check the status of your request [(Click here)](https://myaadhaarbeta.uidai.gov.in/CheckAadhaarStatus/en). For more information, you may contact the UIDAI Helpline at  What should I do if my enrolment or update request is rejected ? After checking the status of your enrolment or update request on the myAadhaar portal ([Click here](https://myaadhaarbeta.uidai.gov.in/CheckAadhaarStatus/en)). You may re-enrol or update your details using the correct documents, ensuring you remain within the permissible update limits. Within 10 days of Aadhaar Number generation or update (except mobile & email updates), Aadhaar letters are printed and handed over to Department of Posts (DoPT). The letters are delivered via first class franking mode to the Aadhaar Number Holders (ANH) according to the timelines specified in the Citizen’s Charter of the Department of Posts, which is available on the India Post website at the following link:  You may download an e-Aadhaar, order an Aadhaar PVC Card, or use the Aadhaar App. All forms of Aadhaar are equally valid and acceptable. For more information, please refer to the UIDAI circular ([Click here](https://backend.uidai.gov.in/get/files/media/document/2026-05/Circular_dated_30_09_2020_regarding_Aadhaar_PVC_Card.pdf))",
-  "text": "Aadhaar software has provisions to handle such exceptions. Photo of the missing fingers/iris will be used for identification of the exception and there will be markers to determine uniqueness. Please request the operator to conduct enrolment as per exception process with supervisor authentication. Is there any age limit for Aadhaar enrolment? No, there is no age limit defined for Aadhaar Enrolment. Even a new born baby can also get Enroled for Aadhaar. Yes, once your Aadhaar is generated, eAadhaar can be downloaded online. Your Aadhaar enrolment or update request has been rejected due to various reasons such as document mismatches, discrepancy in the information provided, operator errors, invalid documents, exceeding the permissible update limit, or policy non-compliance. Please refer to the myAadhaar portal to check the status of your request [(Click here)](https://myaadhaarbeta.uidai.gov.in/CheckAadhaarStatus/en). For more information, you may contact the UIDAI Helpline at  What should I do if my enrolment or update request is rejected ? After checking the status of your enrolment or update request on the myAadhaar portal ([Click here](https://myaadhaarbeta.uidai.gov.in/CheckAadhaarStatus/en)). You may re-enrol or update your details using the correct documents, ensuring you remain within the permissible update limits. Within 10 days of Aadhaar Number generation or update (except mobile & email updates), Aadhaar letters are printed and handed over to Department of Posts (DoPT). The letters are delivered via first class franking mode to the Aadhaar Number Holders (ANH) according to the timelines specified in the Citizen’s Charter of the Department of Posts, which is available on the India Post website at the following link:  You may download an e-Aadhaar, order an Aadhaar PVC Card, or use the Aadhaar App. All forms of Aadhaar are equally valid and acceptable. For more information, please refer to the UIDAI circular ([Click here](https://backend.uidai.gov.in/get/files/media/document/2026-05/Circular_dated_30_09_2020_regarding_Aadhaar_PVC_Card.pdf))",
+  "section": "Enrolment & Update",
+  "text": "You may re-enrol or update your details using the correct documents, ensuring you remain within the permissible update limits. Within 10 days of Aadhaar Number generation or update (except mobile & email updates), Aadhaar letters are printed and handed over to Department of Posts (DoPT). The letters are delivered via first class franking mode to the Aadhaar Number Holders (ANH) according to the timelines specified in the Citizen’s Charter of the Department of Posts, which is available on the India Post website at the following link: \nYou may download an e-Aadhaar, order an Aadhaar PVC Card, or use the Aadhaar App. All forms of Aadhaar are equally valid and acceptable. For more information, please refer to the UIDAI circular ([Click here](https://backend.uidai.gov.in/get/files/media/document/2026-05/Circular_dated_30_09_2020_regarding_Aadhaar_PVC_Card.pdf))",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.88,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
-    "authentication",
     "download",
-    "enrolment",
     "mobile",
-    "pan",
     "pvc",
-    "status",
     "update"
-  ]
+  ],
+  "language": "en"
 }

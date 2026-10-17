@@ -2,14 +2,14 @@
   "id": "spider_uidai.gov.in_ae088f2a_chunk_1",
   "source_url": "https://uidai.gov.in/gazetted-notifications?limit=10&page=2",
   "title": "Gazetted Notifications",
-  "section": "2. /",
-  "text": "2. /\n  4. /\n  5. [Legal Framework](https://uidai.gov.in/hi/legal-framework)\n  6. /\n  7. [Regulations](https://uidai.gov.in/hi/regulations)\n  8. /\n\n\nThe Aadhaar (Enrolment and Update) Amendment Regulations, 2024 published on 16.1.2024\nDoc Type: PDF• Size: 2.47 MB• Uploaded On: 22-03-2024\nDownload\nDownload\n\nDoc Type: PDF• Size: 578.21 KB• Uploaded On: 22-03-2024\nDownload\nDownload\n\nThe Aadhaar (Enrolment and Update) Second Amendment Regulations, 2024 published on 27.1.2024\nDoc Type: PDF• Size: 1.17 MB• Uploaded On: 22-03-2024\nDownload\nDownload\n\nThe Aadhaar (Sharing of Information) Amendment Regulations, 2024 published on 27.1.2024\nDoc Type: PDF• Size: 1.6 MB• Uploaded On: 22-03-2024\nDownload\nDownload\n\nThe Aadhaar (Payment of Fees for Performance of Authentication) Amendment Regulations, 2024 published on 31.1.2024\nDoc Type: PDF• Size: 734.8 KB• Uploaded On: 22-03-2024\nDownload\nDownload\n\nCorrigendum for the Aadhaar (Payment of Fees for Performance of Authentication) Amendment Regulations, 2024, Notification No. HQ-13073/1/2020-AUTH.II(E), dated the 31.1.2024, published on 9.2.2024\nDoc Type: PDF• Size: 915.35 KB• Uploaded On: 22-03-2024\nDownload\nDownload\n\nThe Aadhaar (Authentication and Offline Verification) Amendment Regulations, 2023\nDoc Type: PDF• Size: 1.21 MB• Uploaded On: 10-10-2023\nDownload\nDownload\n\nThe Aadhaar (Enrolment and Update) Amendment Regulations, 2023\nDoc Type: PDF• Size: 1.1 MB• Uploaded On: 10-10-2023\nDownload\nDownload\n\nThe Aadhaar (Payment of Fees for Performance of Authentication) Regulations, 2023\nDoc Type: PDF• Size: 1.2 MB• Uploaded On: 10-10-2023\nDownload\nDownload\n\nDoc Type: PDF• Size: 1.33 MB• Uploaded On: 10-10-2023\nDownload\nDownload\n\nContent Information\nPublished on: 28 May 2026\nLast Updated: 30 Jun 2026\nOwner: Legal\nFrequently Asked Questions",
+  "section": "Gazetted Notifications",
+  "text": "2. /\n  4. /\n  5. [Legal Framework](https://uidai.gov.in/hi/legal-framework)\n  6. /\n  7. [Regulations](https://uidai.gov.in/hi/regulations)\n  8. /\n  9. [Gazetted Notifications](https://uidai.gov.in/hi/gazetted-notifications)\n\n# Gazetted Notifications\nExplore gazetted notifications and amendment regulations related to Aadhaar enrolment, authentication, data sharing, fees and UIDAI operational policies.\n!\nThe Aadhaar (Enrolment and Update) Amendment Regulations, 2024 published on 16.1.2024\nDoc Type: PDF• Size: 2.47 MB• Uploaded On: 22-03-2024\nDownload!\nDownload!\n!\nDoc Type: PDF• Size: 578.21 KB• Uploaded On: 22-03-2024\nDownload!\nDownload!\n!\nThe Aadhaar (Enrolment and Update) Second Amendment Regulations, 2024 published on 27.1.2024\nDoc Type: PDF• Size: 1.17 MB• Uploaded On: 22-03-2024\nDownload!\nDownload!\n!\nThe Aadhaar (Sharing of Information) Amendment Regulations, 2024 published on 27.1.2024\nDoc Type: PDF• Size: 1.6 MB• Uploaded On: 22-03-2024\nDownload!\nDownload!\n!\nThe Aadhaar (Payment of Fees for Performance of Authentication) Amendment Regulations, 2024 published on 31.1.2024\nDoc Type: PDF• Size: 734.8 KB• Uploaded On: 22-03-2024\nDownload!\nDownload!\n!\nCorrigendum for the Aadhaar (Payment of Fees for Performance of Authentication) Amendment Regulations, 2024, Notification No. HQ-13073/1/2020-AUTH.II(E), dated the 31.1.2024, published on 9.2.2024\nDoc Type: PDF• Size: 915.35 KB• Uploaded On: 22-03-2024\nDownload!\nDownload!\n!\nThe Aadhaar (Authentication and Offline Verification) Amendment Regulations, 2023\nDoc Type: PDF• Size: 1.21 MB• Uploaded On: 10-10-2023\nDownload!\nDownload!\n!\nThe Aadhaar (Enrolment and Update) Amendment Regulations, 2023\nDoc Type: PDF• Size: 1.1 MB• Uploaded On: 10-10-2023\nDownload!\nDownload!\n!\nThe Aadhaar (Payment of Fees for Performance of Authentication) Regulations, 2023\nDoc Type: PDF• Size: 1.2 MB• Uploaded On: 10-10-2023\nDownload!\nDownload!\n!\nDoc Type: PDF• Size: 1.33 MB• Uploaded On: 10-10-2023\nDownload!\nDownload!\n[1](https://uidai.gov.in/gazetted-notifications?limit=10&page=1)[2](https://uidai.gov.in/gazetted-notifications?limit=10&page=2)[3](https://uidai.gov.in/gazetted-notifications?limit=10&page=3)[4](https://uidai.gov.in/gazetted-notifications?limit=10&page=4)\n\nContent Information\nPublished on: 28 May 2026\nLast Updated: 30 Jun 2026\nOwner: Legal\nFrequently Asked Questions\n###",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "authentication",
@@ -17,5 +17,6 @@
     "enrolment",
     "fee",
     "update"
-  ]
+  ],
+  "language": "en"
 }

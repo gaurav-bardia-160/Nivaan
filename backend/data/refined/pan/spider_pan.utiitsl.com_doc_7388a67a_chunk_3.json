@@ -2,19 +2,20 @@
   "id": "spider_pan.utiitsl.com_doc_7388a67a_chunk_3",
   "source_url": "https://www.pan.utiitsl.com/PAN/downloadFile?FileName=Form 93-FAQs.pdf",
   "title": "UTIITSL Form 93 FAQs (Indian Citizen)",
-  "section": "Ans: Yes, Aadhaar is mandatory for all except cases under exempted category. 5. Whether minor can apply for PAN and what are the documents required for applying for PAN? Ans: Yes. In case of a person being a minor PAN can be applied through RA. In addition to Aadhaar and photograph of the minor, proof of identity and proof of address of RA is required for applying. 6. Which address can be selected as address for Communication? Ans: Any of the following address can be selected for communication: i. Residential Address ii. Office Address iii. Representative Assessee Address, if applicable.",
-  "text": "Ans: Yes, Aadhaar is mandatory for all except cases under exempted category. 5. Whether minor can apply for PAN and what are the documents required for applying for PAN? Ans: Yes. In case of a person being a minor PAN can be applied through RA. In addition to Aadhaar and photograph of the minor, proof of identity and proof of address of RA is required for applying. 6. Which address can be selected as address for Communication? Ans: Any of the following address can be selected for communication: i. Residential Address ii. Office Address iii. Representative Assessee Address, if applicable.",
+  "section": "UTIITSL Form 93 FAQs (Indian Citizen)",
+  "text": "3 Certificate of address signed by a No Yes No\nMember of Parliament or Member\nof Legislative Assembly or\nMunicipal Councilor or a\nGazetted Officer, as the case\nmay be\n4 Employer certificate. No Yes No\n5 Affidavit sworn before a No No Yes\nMagistrate stating the date of\nbirth\nNote 1: In case of a person being a minor, in addition to Aadhaar of the minor, any of\nthe above listed documents of any of the parents or guardian of such minor shall be\ndeemed to be the proof of identity\nNote 2: In case of an Indian citizen residing outside India, copy of bank account\nstatement in country of residence or copy of non-resident external bank account\nstatements shall be the proof of address. Note 3: In case of a minor, any of the above listed documents of any of the parents or\nguardian of such minor shall be deemed to be the proof of address. --- Page 4 ---\n4. Is Aadhaar mandatory for applying PAN? Ans: Yes, Aadhaar is mandatory for all except cases under exempted category. 5. Whether minor can apply for PAN and what are the documents required for\napplying for PAN? Ans: Yes. In case of a person being a minor PAN can be applied through RA. In addition\nto Aadhaar and photograph of the minor, proof of identity and proof of address of RA is\nrequired for applying. 6. Which address can be selected as address for Communication? Ans: Any of the following address can be selected for communication:\ni. Residential Address\nii. Office Address\niii. Representative Assessee Address, if applicable.",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.92,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "address",
     "apply",
     "minor",
     "pan"
-  ]
+  ],
+  "language": "en"
 }

@@ -2,19 +2,20 @@
   "id": "spider_www.pan.utiitsl.com_bc64cac8_chunk_1",
   "source_url": "https://www.pan.utiitsl.com/PAN_ONLINE/ePANCardHome",
   "title": "Download e-PAN Card Facility",
-  "section": "|",
+  "section": "Download e-PAN Card Facility",
   "text": "|   \n |  |  \n| --- |  \n|   |   \n |  PAN  *   |   |  \n| --- | --- |  \n|   |  \n|  Month & Year of (Date of Birth / Incorporation / Agreement / Partnership or Trust Deed / Formation of Body of Individuals / Association of Persons)  \n(Format : MM/YYYY)  *   |   |  \n|   |  \n| GSTIN Number   |   |  \n|   |  \n|   |  \n|  Enter the text shown in above Captcha  *   |   |  \n|   |  \n|   |  \n|  *  Mark fields are mandatory.   |  \n|  |  \n|   \n |    \nPAN applicants can now download their e-PANs through this UTIITSL's website / Mobile App.  \nThe e-PAN download facility on this website is available only for the applicants,  \n1. Who have applied for PAN Card through PAN Application Form or applied for change/correction and issued through UTIITSL.  \n  \n2. The ePAN will be send only on the eMail ID available as per PAN records with Income Tax Department. The Applicants will receive their e-PAN in PDF form \"free of cost\" only if their e-PAN was issued within last one month. For requests received after one month of last issuance of their e-PAN, the Applicant shall have to make an online payment of Rs.8.26 (inclusive of taxes) against every request of their e-PAN. Note: _(scroll down to read more)_  \n1. The request for e-PAN will be verified with OTP based authentication through email only.  \n2. In case the Applicants email is not available/updated with ITD Records, the user should get this updated by applying through a change/correction request application to avail the e-PAN request facility later.  \n |  \n| --- |  \n |  \n|  |  \n|  Users are requested to contact UTIITSL Helpdesk number **033 40802999** ,  \nin case of any discrepancy observed in their e-PAN Card downloaded from this website.    \n  \n |  \n|   |  \n |",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "apply",
     "correction",
     "e-pan",
     "pan",
     "utiitsl"
-  ]
+  ],
+  "language": "en"
 }

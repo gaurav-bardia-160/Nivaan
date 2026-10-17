@@ -2,20 +2,18 @@
   "id": "spider_uidai.gov.in_65f8e535_chunk_1",
   "source_url": "https://uidai.gov.in/photos",
   "title": "Photos",
-  "section": "सेवाएं खोजें",
-  "text": "सेवाएं खोजें\n  2. /\n  4. /\n  5. [Gallery](https://uidai.gov.in/hi/gallery)\n  6. /\n  7. [Photos](https://uidai.gov.in/hi/photos)\n\n# Photos\nBrowse official Aadhaar photographs from events, launches and outreach initiatives.\n\n### Aadhaar Enrolment Camp at Nawada Bihar\n\n### Aadhaar Reunion of Sabir Nadaff at Ramgarh Jharkhand\n\n### Aadhaar Enrolment of kids at Salaam Baalak Trust NewDelhi\n\n### Aadhaar Enrolment of Elderly at Ranchi Jharkhand\n\nContent Information\nPublished on: 07 May 2026\nLast Updated: 16 Jun 2026\nOwner: Media\n\n  * [Vision & Mission](https://uidai.gov.in/hi/vision-and-mission)\n  * [ Citizens Charter](https://backend.uidai.gov.in/get/files/media/document/2026-05/Citizen_Charter_Jan24.pdf)\n  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)\n\n## [Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)\n  * [Download Aadhaar](https://myaadhaarbeta.uidai.gov.in/)\n  * [Update Aadhaar](https://uidai.gov.in/hi/updating-data-on-aadhaar)\n  * [Check Aadhaar Status](https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en)\n  * [ Order PVC Card](https://myaadhaarbeta.uidai.gov.in/pvc/en)\n  * [ Generate VID](https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/)\n  * [Retrieve Lost UID](https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en)\n\n  * [Enrolment & Update Forms](https://uidai.gov.in/hi/enrolment-and-updates)\n  * [Handbooks](https://uidai.gov.in/hi/handbooks)\n  * [ Annual Reports](https://uidai.gov.in/hi/annual-reports)\n  * [ Policies](https://uidai.gov.in/hi/policies)\n\n  * [Developer Sandbox](https://uidai.gov.in/hi/developer-section)\n  * [Become an OVSE](https://uidai.gov.in/hi/ovse)\n\n  * [Site Map](https://uidai.gov.in/hi/site-map)\n  * [Website Policies](https://uidai.gov.in/hi/website-policies)\n  * [Website Help](https://uidai.gov.in/hi/website-help)",
+  "section": "Photos",
+  "text": "सेवाएं खोजें\n  2. /\n  4. /\n  5. [Gallery](https://uidai.gov.in/hi/gallery)\n  6. /\n  7. [Photos](https://uidai.gov.in/hi/photos)\n\n# Photos\nBrowse official Aadhaar photographs from events, launches and outreach initiatives.\n\n### Aadhaar Enrolment Camp at Nawada Bihar\n\n### Aadhaar Reunion of Sabir Nadaff at Ramgarh Jharkhand\n\n### Aadhaar Enrolment of kids at Salaam Baalak Trust NewDelhi\n\n### Aadhaar Enrolment of Elderly at Ranchi Jharkhand\n\nContent Information\nPublished on: 07 May 2026\nLast Updated: 16 Jun 2026\nOwner: Media\n\n  * [",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.84,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
-    "download",
     "enrolment",
-    "pvc",
-    "status",
     "update"
-  ]
+  ],
+  "language": "en"
 }

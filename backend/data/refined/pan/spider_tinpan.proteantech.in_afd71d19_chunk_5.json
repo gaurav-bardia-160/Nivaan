@@ -5,11 +5,11 @@
   "section": "FORM 94 - For Non-Individual (Indian Entities)",
   "text": "###### FORM 94 - For Non-Individual (Indian Entities)  \n| SR NO  | Applicant  | Documents as proof of identity, address and date of birth or date of incorporation  |  \n| --- | --- | --- |  \n| 1  | Hindu undivided family  |  (a) Original affidavit by the karta of the Hindu Undivided Family duly authenticated by a Notary Public or Oath Commissioner or Judicial Magistrate stating the name, father's name, Aadhaar number or Permanent Account Number and address of all the coparceners on the date of application; and   \n(b) a copy of any document applicable in the case of an individual specified in serial number 1, in respect of karta of the Hindu undivided family, as proof of identity, address and date of birth.   |  \n| 2  | Company (registered in India)  |  (a) Copy of Certificate of Registration issued in India by the Registrar of Companies; or   \n(b) corporate identity number allotted by the Registrar under section 7 of the Companies Act, 2013 (18 of 2013).   |  \n| 3  | Limited Liability Partnership (formed or registered in India)  |  (a) Copy of Certificate of Registration issued in India by the Registrar of Limited Liability Partnerships; or   \n(b) LLP identification number allotted in India by the Registrar under the Limited Liability Partnership Act, 2008(6 of 2009).   |  \n| 4  | Firm (other than Limited Liability Partnership) formed or registered in India  | Firm (other than Limited Liability Partnership) formed or registered in India  |  \n| 5  | Trusts (formed or registered in India)  |  (a) Copy of trust deed; or   \n(b) Copy of Certificate of Registration Number issued by Charity Commissioner.   |  \n| 6  | Association of persons (other than trusts) or body of individuals formed or registered in India  |  (a) Copy of agreement; or  \n(b) copy of Certificate of Registration Number issued by Charity Commissioner or Registrar of Cooperative Society or any other competent authority; or  \n(c) any document originating from any Central Government or State Government Department, establishing identity and address of such person.   |  \n| 7  | Local authority or artificial juridical person (formed or registered in India)  | Any document originating from any Central Government or State Government Department establishing identity and address of such person.  |  \n| 8  | Any person on behalf of the Central Government or State Government or Union Territory Administration  | Certificate in original from the Head of the Department or Pay and Accounts Officer or Zonal Accounts Officer or District Treasury Officer or Cheque Drawing and Disbursing Officer.  |\n\n### Search\n  * [ TIN Facilitation Centers cum PAN centers](https://tinpan.proteantech.in/tin-facilities.html)\n  * [ PAN Centers](https://tinpan.proteantech.in/pan-center.html)\n  * [PAN Service Agency Centres](https://tinpan.proteantech.in/%20downloads/PSA-Centre-list.xlsx)\n\n  * [ Rights](https://tinpan.proteantech.in/customer-care.html)\n  * [ Complains / Queries](https://tinpan.proteantech.in/customerfeedback.html)\n  * [Protean Addresses](https://tinpan.proteantech.in/nsdl-addresses.html)\n\nUpdated As On 2026-10-12 10:00 AM    \nSite best viewed in IE 11+, Google Chrome 61 +,Mozilla Firefox 50+, Microsoft Edge 14+ and Safari for Mac 5.1+. \n×",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "address",
@@ -18,5 +18,6 @@
     "nsdl",
     "pan",
     "protean"
-  ]
+  ],
+  "language": "en"
 }

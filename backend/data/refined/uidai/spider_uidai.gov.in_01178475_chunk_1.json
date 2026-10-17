@@ -2,18 +2,19 @@
   "id": "spider_uidai.gov.in_01178475_chunk_1",
   "source_url": "https://myaadhaar.uidai.gov.in/verify-email-mobile/en",
   "title": "Please Enter Required Details to Verify Email / Mobile Number",
-  "section": "myAadhaar",
-  "text": "myAadhaar\n\n\n\n  * हिंदी\n  * বাংলা\n  * ಕನ್ನಡ\n  * ગુજરાતી\n  * മലയാളം\n  * मराठी\n  * ଓଡ଼ିଆ\n  * ਪੰਜਾਬੀ\n  * தமிழ்\n  * తెలుగు\n  * اردو\n\n  1. Dashboard\n  2. Verify Email / Mobile\n\n# Please Enter Required Details to Verify Email / Mobile Number\nVerify Mobile Number\nVerify Email Address\nEnter Aadhaar Number\nEnter Mobile Number\nSubmit\n\n## Frequently Asked Questions\n\n### Is there any fee involved for Online updation of Demographics details?\n\nYes, for online update of demographic information you have to pay Rs. 75/- (including GST).",
+  "section": "Please Enter Required Details to Verify Email / Mobile Number",
+  "text": "myAadhaar\n\n  * हिंदी\n  * বাংলা\n  * ಕನ್ನಡ\n  * ગુજરાતી\n  * മലയാളം\n  * मराठी\n  * ଓଡ଼ିଆ\n  * ਪੰਜਾਬੀ\n  * தமிழ்\n  * తెలుగు\n  * اردو\n\n  1. Dashboard\n  2. Verify Email / Mobile\n\n# Please Enter Required Details to Verify Email / Mobile Number\nVerify Mobile Number\nVerify Email Address\nEnter Aadhaar Number\nEnter Mobile Number\nSubmit\n!\n\n## Frequently Asked Questions\n\n### Is there any fee involved for Online updation of Demographics details?\n!\nYes, for online update of demographic information you have to pay Rs. 75/- (including GST).",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.84,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "fee",
     "mobile",
     "update"
-  ]
+  ],
+  "language": "en"
 }

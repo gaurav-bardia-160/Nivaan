@@ -2,17 +2,19 @@
   "id": "spider_uidai.gov.in_677c9a93_chunk_2",
   "source_url": "https://uidai.gov.in/iec",
   "title": "IEC",
-  "section": "Print",
-  "text": "### \nPrint\n\nUse newspapers, magazines, and online publications to communicate Aadhaar-related developments, success stories, and citizen benefits. Credible content can improve understanding and encourage informed adoption.\n\n### \nOutdoor (Posters, Handouts, Banners, Hoardings etc)\n\nDeployment of communication materials in public spaces may be considered as per requirement to ensure broad community outreach. Outdoor media reinforces key messages and reaching citizens in both urban and rural areas.\n\n### \nEvents and Entertainment\n\nIntegrate Aadhaar messaging into popular event, entertainment and sporting platforms to enhance recall and engagement. Influential personalities and culturally relevant content can help connect with audiences more effectively.\n\n### \nInter-personal (Audio, Video, Telecom)\n\nFacilitate direct communication through audio-visual content, mobile outreach, and telecom channels. Personalized engagement helps address queries, improve awareness, and encourage responsible usage of Aadhaar services. This can be disseminated through social media as well.\n\n### \nSocial Media\n\nHarness social media platforms to drive real-time engagement, awareness, and dialogue around Aadhaar. Interactive content, user stories, short videos, focused campaigns can help simplify complex topics and reach a wider audience and more so among younger, digitally active audiences.\nSocial media also enables rapid dissemination of updates, myth-busting, and citizen support while fostering a two-way communication channel.",
+  "section": "In this section",
+  "text": "### \nPrint\n\nUse newspapers, magazines, and online publications to communicate Aadhaar-related developments, success stories, and citizen benefits. Credible content can improve understanding and encourage informed adoption.\n\n### \nOutdoor (Posters, Handouts, Banners, Hoardings etc)\n\nDeployment of communication materials in public spaces may be considered as per requirement to ensure broad community outreach. Outdoor media reinforces key messages and reaching citizens in both urban and rural areas.\n\n### \nEvents and Entertainment\n\nIntegrate Aadhaar messaging into popular event, entertainment and sporting platforms to enhance recall and engagement. Influential personalities and culturally relevant content can help connect with audiences more effectively.\n\n### \nInter-personal (Audio, Video, Telecom)\n\nFacilitate direct communication through audio-visual content, mobile outreach, and telecom channels. Personalized engagement helps address queries, improve awareness, and encourage responsible usage of Aadhaar services. This can be disseminated through social media as well.\n\n### \nSocial Media\n\nHarness social media platforms to drive real-time engagement, awareness, and dialogue around Aadhaar. Interactive content, user stories, short videos, focused campaigns can help simplify complex topics and reach a wider audience and more so among younger, digitally active audiences.\nSocial media also enables rapid dissemination of updates, myth-busting, and citizen support while fostering a two-way communication channel.\n\n### \nSupport Infrastructure\n\nUtilise the network of authorised Aadhaar Centres including Aadhaar Seva Kendras (ASKs), registrars, enrolment agencies, as key touchpoints for public communication.\n\nContent Information\nPublished on: 01 May 2026\nLast Updated: 16 Jun 2026\nOwner: Media\n\n## In this section\n  * [Information, Education and Communication Strategy](https://uidai.gov.in/hi/iec#information-education-and-communication-strategy)\n  * [Broadcast & Telecast](https://uidai.gov.in/hi/iec#broadcast-telecast)\n  * [Print](https://uidai.gov.in/hi/iec#print)\n  * [Outdoor (Posters, Handouts, Banners, Hoardings etc)](https://uidai.gov.in/hi/iec#outdoor-posters-handouts-banners-hoardings-etc)\n  * [Events and Entertainment](https://uidai.gov.in/hi/iec#events-and-entertainment)\n  * [Inter-personal (Audio, Video, Telecom)](https://uidai.gov.in/hi/iec#inter-personal-audio-video-telecom)\n  * [Social Media](https://uidai.gov.in/hi/iec#social-media)\n  * [Support Infrastructure](https://uidai.gov.in/hi/iec#support-infrastructure)\n\nFrequently Asked Questions\n###",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
+    "enrolment",
     "mobile",
     "update"
-  ]
+  ],
+  "language": "en"
 }

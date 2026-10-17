@@ -2,17 +2,18 @@
   "id": "spider_uidai.gov.in_08407136_chunk_4",
   "source_url": "https://uidai.gov.in/glossary",
   "title": "Glossary",
-  "section": "F",
+  "section": "Glossary",
   "text": "### \nF\n\nFPIR\nFalse Positive Identification Rate which describes the proportion of identification transactions by users not enrolled in the system, in which an identifier is returned.\nFI- Financial Inclusion\nProgramme of banking industry to expand banking to rural India.\nFTE or Failure to Enrol\nFailure to Enrol refers to the failure of the biometric system to form a proper enrolment template for an end-user. The failure may be due to failure to capture the biometric sample or failure to extract template data (of sufficient quality)\n\n### \nG\n\nG2C\nGovernment –to- Citizen or transactions of Government which are targeted to large population.\nG2G\nGovernment-to-Government are those transactions that are with Central or State Government.\n\n### \nH\n\n### \nI\n\nIFSC\nIFSC or Indian Financial System Code which is the code used by banking industry to identify a particular Branch.\nIOCL\nIndian Oil Corporation Ltd.\nISO International Standards Organization\nISO (International Organization for Standardization) is the world’s largest developer of voluntary International Standards. International Standards give state of the art specifications for products, services and good practice, helping to make industry more efficient and effective. Developed through global consensus, they help to break down barriers to international trade",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "biometric",
     "enrolment",
     "pan"
-  ]
+  ],
+  "language": "en"
 }

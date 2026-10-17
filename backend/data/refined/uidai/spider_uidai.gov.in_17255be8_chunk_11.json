@@ -2,15 +2,17 @@
   "id": "spider_uidai.gov.in_17255be8_chunk_11",
   "source_url": "https://uidai.gov.in/your-aadhaar",
   "title": "Your Aadhaar",
-  "section": "The data will be collected on software provided by the UIDAI and encrypted to prevent leaks in transit. Trained and certified enrollers will collect the information, which will not have access to the data being collected. The UIDAI has a comprehensive security policy to ensure the safety and integrity of its data. It will publish more details on this, including the Information Security Plan and Policies for the CIDR and mechanisms for auditing the compliance of the UIDAI and its contracting agencies. In addition, there will be strict security and storage protocols in place. Penalties for any security violation will be severe, and include penalties for disclosing identity information. There will also be penal consequences for unauthorised access to CIDR – including hacking, and penalties for tampering with data in the CIDR under the Aadhaar Act, 2016. **Convergence and linking of UIDAI information to other databases:** The UID database is not linked to any other databases, or to information held in other databases. Its only purpose will be to verify a person’s identity at the point of receiving a service, and that too with the consent of the aadhaar number holder. The UID database will be guarded both physically and electronically by a few select individuals with high clearance. It will not be available even for many members of the UID staff and will be secured with the best encryption, and in a highly secure data vault. All access details will be properly logged.",
-  "text": "The data will be collected on software provided by the UIDAI and encrypted to prevent leaks in transit. Trained and certified enrollers will collect the information, which will not have access to the data being collected. The UIDAI has a comprehensive security policy to ensure the safety and integrity of its data. It will publish more details on this, including the Information Security Plan and Policies for the CIDR and mechanisms for auditing the compliance of the UIDAI and its contracting agencies. In addition, there will be strict security and storage protocols in place. Penalties for any security violation will be severe, and include penalties for disclosing identity information. There will also be penal consequences for unauthorised access to CIDR – including hacking, and penalties for tampering with data in the CIDR under the Aadhaar Act, 2016. **Convergence and linking of UIDAI information to other databases:** The UID database is not linked to any other databases, or to information held in other databases. Its only purpose will be to verify a person’s identity at the point of receiving a service, and that too with the consent of the aadhaar number holder. The UID database will be guarded both physically and electronically by a few select individuals with high clearance. It will not be available even for many members of the UID staff and will be secured with the best encryption, and in a highly secure data vault. All access details will be properly logged.",
+  "section": "Your Aadhaar",
+  "text": "### \nUse of Aadhaar\n\nCan Aadhaar be used for eKYC?\nYes, Aadhaar can be used for eKYC (electronic Know Your Customer) to open bank accounts, get SIM cards, and access financial services without submitting physical documents.\nWhat use can Aadhaar be put to?\nAadhaar can be used to identity beneficiaries for delivery of financial and other subsidies, benefits and services offered by the scheme implementing agencies. Beside this, Aadhaar authentication is allowed in the interest of good governance preventing leakage of public funds, promoting ease of living of Aadhaar number holders and enabling better access to services for them.\nHow is Aadhaar different from any other identity issued by the government?\nAadhaar is a unique 12 digit random number assigned to a individual which is apart from offline or physical verification, verifiable online anywhere anytime using the Aadhaar authentication platform. This number, when authenticated successfully, would serve as proof of identity and could be used for identification of beneficiaries for transfer of benefits, subsidies, services and other purposes.",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
-    "aadhaar"
-  ]
+    "aadhaar",
+    "authentication"
+  ],
+  "language": "en"
 }

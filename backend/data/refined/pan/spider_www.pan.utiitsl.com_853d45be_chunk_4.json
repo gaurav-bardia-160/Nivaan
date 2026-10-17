@@ -2,18 +2,19 @@
   "id": "spider_www.pan.utiitsl.com_853d45be_chunk_4",
   "source_url": "https://www.pan.utiitsl.com/PAN/",
   "title": "UTIITSL PAN Portal Home",
-  "section": "Important Notice for PAN Applicants",
+  "section": "MyPAN Mobile App",
   "text": "##### \nImportant Notice for PAN Applicants\n  \n\nThe existing PAN forms (Form 49A, Form 49AA and Change Request) will **NOT** be accepted after **31.03.2026.**\n  \n  \n\nOK\n\n##### \nRevised PAN Application Forms w.e.f 01stApril 2026\n  \n\n  \nAs per directives received from the Central Board of Direct Taxes (CBDT), the following actions shall be taken in respect of PAN applications pending under discrepancies:   \n  \n**Instructions for PAN Applications Pending with Discrepancies.**  \n1. All PAN applications pending under discrepancies or incomplete documentation shall be mandatorily closed by 30th March 2026.  \n2. Applicants are advised to submit the required documentary proof in respect of pending PAN applications under discrepancies or incomplete documentation on or before 30th March 2026. In case the required documents are not submitted within the stipulated timeline, such PAN applications shall stand rejected and disposed of without any further notice.  \n\n  \n  \n\nOK\n\n### MyPAN Mobile App\n\n### MyPAN On Umang App\n\nVisit [UTIITSL](https://www.utiitsl.com/) Corporate Website \nCopyright © 2019 UTI Infrastructure Technology And Services Limited, All rights reserved. \nThis website is best viewed at 1600x900 resolution on Internet Explorer (version 10.0 or higher), Google Chrome (version 71 or higher), Microsoft Edge and Mozilla Firefox browsers.",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "form 49a",
     "form 49aa",
     "pan",
     "utiitsl"
-  ]
+  ],
+  "language": "en"
 }

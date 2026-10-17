@@ -2,22 +2,21 @@
   "id": "spider_uidai.gov.in_033f8184_chunk_9",
   "source_url": "https://uidai.gov.in/aadhaar-online-services",
   "title": "Aadhaar Online Services",
-  "section": "Biometric Lock/Unlock",
-  "text": "### \nBiometric Lock/Unlock\n\nWhat is Biometric Locking?\nBiometric Locking/Unlocking is a service that allows an Aadhaar holder to lock and temporarily unlock their biometrics. This facility aims to strengthen privacy and confidentiality of Aadhaar number holder's Biometrics Data.\nWhat all Biometric data can be locked?\nFingerprint, iris and Face as a biometric moadlity will be locked and after biometric locking, Aadhaar holder will not be able to perform the Aadhaar authentication using the above mentioned biometric modalities.\nWhat happens when Biometric is locked?\nLocked Biometrics confirms that Aadhaar holder will not be able to use Biometrics (fingerprints/iris/Face) for authentication, it is a safety feature to stop any kind of biometric authentication. It also ensures that any entity by any means cannot perform biometric based Aadhaar authentication for that Aadhaar holder.\nHow to Unlock (locked)Biometrics?\nOnce Aadhaar number holder enables Biometric Locking system their biometric remains locked till the Aadhaar Holder chose any below mentioned option: Unlock it (which is temporary )or Disable the Locking system The biometric unlock can be done by Aadhaar number holder either by visiting UIDAI website, enrolment centre, Aadhaar Seva Kendra(ASK), through Aadhaar app. Note: Registered Mobile Number is essential to avail this service. In case your mobile number is not registered with Aadhaar visit the nearest Enrolment Centre/Mobile Update End Point.\nWho and when to lock Biometrics?\nAadhaar number holders who have registered mobile number may lock their biometrics. This facility aims to strengthen privacy and confidentiality of Aadhaar number holder 's Biometrics Data After locking biometrics if a UID is used for invoking any of the Authentication services using a biometric modality (Fingerprint/Iris/Face) a specific error code '330' indicating biometrics are locked will be displayed and the entity will not be able to perform the biometric authentication.",
+  "section": "Aadhaar Online Services",
+  "text": "### \nAadhaar Lock/Unlock\n\nWhat is Aadhaar (UID) Lock & Unlock?\nFor an Aadhaar number holder, security and privacy of personal data is always a primary concern. To strengthen the security of his/her Aadhaar number and to provide control to the Aadhaar number holder, UIDAI provide a mechanism of locking and unlocking Aadhaar number (UID).\nAadhaar number holder can lock his or her Aadhaar (UID) via UIDAI website ([www.myaadhaar.uidai.gov.in](https://www.myaadhaar.uidai.gov.in)).\nBy doing this Aadhaar number holder cannot perform any sort of Authentication using UID, UID Token & VID for Biometrics, Demographic & OTP modality\nIf Aadhaar number holder wants to unlock UID he/she can do so by using latest VID, through UIDAI website.  \nAfter unlocking Aadhaar (UID), Aadhaar number holder can perform authentication using UID, UID Token & VID.\nHow can Aadhaar number holder Lock UID?\nHow can Aadhaar number holder Unlock UID ?\nFor Unlocking UID Aadhaar number holder should have latest 16 digit VID and if Aadhaar number holder forgot 16 digit VID he can retrieve latest VID through SMS services\nRVID Space last 4 or 8 digit of UID. SMS to 1947. Ex- RVID 1234\nTo unlock UID, Aadhaar number holder may visit UIDAI website (<https://myaadhaarbeta.uidai.gov.in/lock-unlock-aadhaar/en>), select Unlock radio button, Enter Latest VID and security Code and click on send OTP or select TOTP and click on Submit. Your UID will be unlocked successfully.\nI forgot my VID. How can I get it after locking UID?\nAfter Locking UID if Aadhaar number holder forgot VID, Aadhaar number holder can make use of SMS service to Retrieve 16 digit VID. Aadhaar number holder will receive VID on his/her register mobile number. Send SMS to 1947 from Aadhaar Register mobile number, RVID Space last 4 or 8 digit of UID. Ex:- RVID 1234",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "authentication",
     "biometric",
-    "enrolment",
     "lock",
     "mobile",
-    "unlock",
-    "update"
-  ]
+    "unlock"
+  ],
+  "language": "en"
 }

@@ -5,13 +5,14 @@
   "section": "Applicant information",
   "text": "##### Applicant information \nFirst Name Enter your First name as per Aadhaar# to avoid authentication failure\nMiddle Name Enter your Middle name as per Aadhaar# to avoid authentication failure\nLast Name / Surname* Enter your last name/surname as per Aadhaar# to avoid authentication failure*\nDate of Birth / Incorporation / Formation (DD/MM/YYYY)* Select your Date of Birth/Incorporation/Formation\n(DD/MM/YYYY)*\nFor Individuals Date of Birth should be as per Aadhaar#\nEmail ID* Enter valid Email ID*  \n  \n\nYour ePAN will be sent to the provided Email ID\nMobile Number* Enter valid mobile number*  \n  \n\nYou will recieve PAN application status updates on this number\nWhether Citizen of India* Yes  No \nPAN NUMBER*\n\n# If Aadhaar is applicable and category is Individual\n  \n  \n  \n\n  \n\nYou are just 4 steps away from completing your online PAN Application.  \nEnter your token number to get started now!\nEnter token number sent to your email ID\nEnter your Email ID used previously \nEnter your Date of Birth used previously\n  \n\nStuck in your PAN Application? Reach out to our dedicated customer care team now!Just give us a call at 020-27218080 any day between 7AM-11PM.\n  \n\nGot a question or need assistance? Our dedicated customer care team is ready to help! Just give us a call at **020-27218080** any day between **7 am to 11 pm**. We're here for you!\n\n\"",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "pan"
-  ]
+  ],
+  "language": "en"
 }

@@ -2,18 +2,19 @@
   "id": "spider_uidai.gov.in_97501840_chunk_1",
   "source_url": "https://uidai.gov.in/en/build-with-us",
   "title": "[Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)",
-  "section": "2. /",
-  "text": "2. /\n\nUIDAI works with a strong ecosystem of Registrars, Enrolment Agencies, Operators, OVSE, Certification Bodies and Technology Partners to deliver secure and seamless Aadhaar services across India. Together, these partners support enrolment, updates, authentication, training, certification and innovation, helping build a trusted digital identity platform for every resident.\nIn this section\nEnrolment Ecosystem\nAuthentication Ecosystem\nAuthentication Devices\nOVSE\nSITAA\nTenders\nUIDAI Sandbox\n\nEnrolment Ecosystem\nUIDAI partners with trusted agencies and technology providers to deliver secure, seamless and inclusive Aadhaar services nationwide.\nKnow More\n\nAuthentication Ecosystem\nAuthentication Ecosystem enable secure Aadhaar authentication by providing compliant network connectivity and trusted data transmission services.\nKnow More\n\nAuthentication Devices\nAuthentication devices securely capture and transmit Aadhaar data for fast, reliable identity verification across multiple platforms.\nKnow More\n\nOVSE\nOffline Aadhaar verification enables secure, consent-based identity verification without connecting to the UIDAI database.\nKnow More\n\nSITAA\nThe Scheme for Innovation and Technology Association with Aadhaar (SITAA) is a strategic initiative by UIDAI to foster a culture of open innovation and co-creation around India’s Identity Technology (ID Tech) ecosystem.\nKnow More\n\nTenders\nExplore UIDAI tenders, bids and procurement notices for infrastructure, technology, maintenance and operational services.\nKnow More\n\nUIDAI Sandbox\nUIDAI Sandbox enables developers to securely integrate, test and build Aadhaar-based authentication and eKYC solutions.\nKnow More\n\nContent Information\nPublished on: 13 Apr 2026\nLast Updated: 21 Jul 2026\nFrequently Asked Questions",
+  "section": "[Aadhaar Services](https://myaadhaarbeta.uidai.gov.in/)",
+  "text": "2. /\n\nUIDAI works with a strong ecosystem of Registrars, Enrolment Agencies, Operators, OVSE, Certification Bodies and Technology Partners to deliver secure and seamless Aadhaar services across India. Together, these partners support enrolment, updates, authentication, training, certification and innovation, helping build a trusted digital identity platform for every resident.\nIn this section\nEnrolment Ecosystem\nAuthentication Ecosystem\nAuthentication Devices\nOVSE\nSITAA\nTenders\nUIDAI Sandbox\n\nEnrolment Ecosystem\nUIDAI partners with trusted agencies and technology providers to deliver secure, seamless and inclusive Aadhaar services nationwide.\nKnow More\n\nAuthentication Ecosystem\nAuthentication Ecosystem enable secure Aadhaar authentication by providing compliant network connectivity and trusted data transmission services.\nKnow More\n\nAuthentication Devices\nAuthentication devices securely capture and transmit Aadhaar data for fast, reliable identity verification across multiple platforms.\nKnow More\n\nOVSE\nOffline Aadhaar verification enables secure, consent-based identity verification without connecting to the UIDAI database.\nKnow More\n\nSITAA\nThe Scheme for Innovation and Technology Association with Aadhaar (SITAA) is a strategic initiative by UIDAI to foster a culture of open innovation and co-creation around India’s Identity Technology (ID Tech) ecosystem.\nKnow More\n\nTenders\nExplore UIDAI tenders, bids and procurement notices for infrastructure, technology, maintenance and operational services.\nKnow More\n\nUIDAI Sandbox\nUIDAI Sandbox enables developers to securely integrate, test and build Aadhaar-based authentication and eKYC solutions.\nKnow More\n\nContent Information\nPublished on: 13 Apr 2026\nLast Updated: 21 Jul 2026\nFrequently Asked Questions\n###",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "authentication",
     "enrolment",
     "update"
-  ]
+  ],
+  "language": "en"
 }

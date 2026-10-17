@@ -2,14 +2,14 @@
   "id": "spider_uidai.gov.in_b14eed15_chunk_2",
   "source_url": "https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/",
   "title": "Select type*",
-  "section": "What is Aadhaar Seva Kendra (ASK)? 'Aadhaar Seva Kendra' or ASK is a single-stop destination for all Aadhaar services in a comfortable air-conditioned facility. All ASKs are wheelchair friendly and have special provisions to service the elderly and specially abled. More info on ASKs is available here: [uidai.gov.in](https://uidai.gov.in). Where can I find the list of UIDAI ASKs (Aadhaar Seva Kendras)? What services I can avail from Aadhaar Seva Kendra? Check Status Check Aadhaar PVC Card Order Status Check the status of the already ordered PVC card Check Aadhaar Status Validate the status of the Aadhaar Check Bank Seeding Status Find your Bank Seeding Status Mobile OTP is required Check Email / Mobile Link Check mobile and email link status with the Aadhaar Mobile OTP is required Check Enrolment / Update Status Check the status of the Enrolment or Update request Check Grievance / Feedback Status Check the status of the Grievance / Feedback Check all your Aadhaar services in one place Did you know ? Aadhaar can be used to access government services, subsidies, and benefits.  Keep your Aadhaar always handy Get the all new Aadhaar Mobile App",
-  "text": "What is Aadhaar Seva Kendra (ASK)? 'Aadhaar Seva Kendra' or ASK is a single-stop destination for all Aadhaar services in a comfortable air-conditioned facility. All ASKs are wheelchair friendly and have special provisions to service the elderly and specially abled. More info on ASKs is available here: [uidai.gov.in](https://uidai.gov.in). Where can I find the list of UIDAI ASKs (Aadhaar Seva Kendras)? What services I can avail from Aadhaar Seva Kendra? Check Status Check Aadhaar PVC Card Order Status Check the status of the already ordered PVC card Check Aadhaar Status Validate the status of the Aadhaar Check Bank Seeding Status Find your Bank Seeding Status Mobile OTP is required Check Email / Mobile Link Check mobile and email link status with the Aadhaar Mobile OTP is required Check Enrolment / Update Status Check the status of the Enrolment or Update request Check Grievance / Feedback Status Check the status of the Grievance / Feedback Check all your Aadhaar services in one place Did you know ? Aadhaar can be used to access government services, subsidies, and benefits.  Keep your Aadhaar always handy Get the all new Aadhaar Mobile App",
+  "section": "Select type*",
+  "text": "Where can I find the list of UIDAI ASKs (Aadhaar Seva Kendras)? What services I can avail from Aadhaar Seva Kendra? Check Status\nCheck Aadhaar PVC Card Order Status\nCheck the status of the already ordered PVC card\nCheck Aadhaar Status\nValidate the status of the Aadhaar\nCheck Bank Seeding Status\nFind your Bank Seeding Status\nMobile OTP is required\nCheck Email / Mobile Link\nCheck mobile and email link status with the Aadhaar\nMobile OTP is required\nCheck Enrolment / Update Status\nCheck the status of the Enrolment or Update request\nCheck Grievance / Feedback Status\nCheck the status of the Grievance / Feedback\nCheck all your Aadhaar services in one place\nDid you know ? Aadhaar can be used to access government services, subsidies, and benefits. Keep your Aadhaar always handy\nGet the all new Aadhaar Mobile App\n!",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.92,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "enrolment",
@@ -18,5 +18,6 @@
     "pvc",
     "status",
     "update"
-  ]
+  ],
+  "language": "en"
 }

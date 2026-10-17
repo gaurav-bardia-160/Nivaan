@@ -2,14 +2,14 @@
   "id": "spider_www.pan.utiitsl.com_b2d6622e_chunk_1",
   "source_url": "https://www.pan.utiitsl.com/PAN_ONLINE/reprintHome",
   "title": "Online Reprint PAN Card Request",
-  "section": "|   |",
+  "section": "Online Reprint PAN Card Request",
   "text": "|   |  \n| --- |  \n|   \n |   \n |   |   \n |  PAN  *   |   |  \n| --- | --- |  \n|   |  \n| Aadhaar Number  |   |  \n|   |  \n|  Date of Birth / Incorporation / Agreement / Partnership or Trust Deed / Formation of Body of Individuals / Association of Persons  *   |   |  \n|   |  \n| GSTIN Number   |   |  \n|   |  \n| Captcha   |  ! [ ! ](https://www.pan.utiitsl.com/PAN_ONLINE/reprintHome)  |  \n|   |  \n|  Enter the text shown in above Captcha  *   |   |  \n|   |  \n|   |  \n|  *  Mark fields are mandatory.   |  \n|   \n |   |  **_Instructions:_**\n  * PAN applicants can now apply for Reprint of PAN card directly through this UTIITSL's website only when there is no change in PAN data.\n  * This facility is available for the users where in PAN application processed and PAN card is dispatched through UTIITSL or PAN is obtained using **Instant e-PAN** facility through Income Tax Department.\n  * To avail this facility, the applicants need to apply and pay by making an online fee payment of Rs.50.00 (inclusive of taxes) for delivery to an Indian address OR of Rs.959.00 (inclusive of taxes) for delivery to a foreign address, as per their communication address updated with latest records.\n\n |   |  \n| --- | --- | --- |  \n |  \n|   |  \n|   \n | Users are requested to immediately contact at UTIITSL's Helpdesk number **033 40802999** , in case of any discrepancy found in receive of the Reprinted PAN Card.   |  \n| --- |  \n |  \n|   |  \n |  \n |",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "address",
@@ -20,5 +20,6 @@
     "pan",
     "reprint",
     "utiitsl"
-  ]
+  ],
+  "language": "en"
 }

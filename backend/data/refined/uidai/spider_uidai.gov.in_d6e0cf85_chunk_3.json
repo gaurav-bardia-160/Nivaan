@@ -2,16 +2,18 @@
   "id": "spider_uidai.gov.in_d6e0cf85_chunk_3",
   "source_url": "https://uidai.gov.in/aadhaar-generation",
   "title": "Aadhaar Generation",
-  "section": "After Aadhaar generation, the data is shared with print partner. The print partner is responsible for printing the letter (including tracking information), and delivering it to the logistics partner. The logistics partner (India Post) is then responsible for the delivery of the physical letter to the Aadhaar number holder.  Content Information Published on: 17 Apr 2026 Last Updated: 16 Jun 2026 Owner: E&U",
-  "text": "After Aadhaar generation, the data is shared with print partner. The print partner is responsible for printing the letter (including tracking information), and delivering it to the logistics partner. The logistics partner (India Post) is then responsible for the delivery of the physical letter to the Aadhaar number holder.  Content Information Published on: 17 Apr 2026 Last Updated: 16 Jun 2026 Owner: E&U",
+  "section": "In this section",
+  "text": "The logistics partner (India Post) is then responsible for the delivery of the physical letter to the Aadhaar number holder. Content Information\nPublished on: 17 Apr 2026\nLast Updated: 16 Jun 2026\nOwner: E&U\n\n## In this section\n  * [Aadhaar generation & issue](https://uidai.gov.in/hi/aadhaar-generation#aadhaar-generation-issue)\n  * [Uploading Enrolment Data to CIDR](https://uidai.gov.in/hi/aadhaar-generation#uploading-enrolment-data-to-cidr)\n  * [Main Processing Pipeline](https://uidai.gov.in/hi/aadhaar-generation#main-processing-pipeline)\n  * [Aadhaar Issuance](https://uidai.gov.in/hi/aadhaar-generation#aadhaar-issuance)\n  * [Aadhaar Letter Delivery](https://uidai.gov.in/hi/aadhaar-generation#aadhaar-letter-delivery)\n\nFrequently Asked Questions\n###",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.84,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
+    "enrolment",
     "update"
-  ]
+  ],
+  "language": "en"
 }

@@ -2,17 +2,18 @@
   "id": "spider_uidai.gov.in_5119281c_chunk_3",
   "source_url": "https://uidai.gov.in/about-authentication",
   "title": "About Authentication",
-  "section": "The authentication service is provided in online and real-time manner by UIDAI through its two data centres i.e. Hebbal Data Centre (HDC) and Manesar Data Centre (MDC) where online services for authentication and other services such as e-KYC are deployed in active-active mode to ensure high availability of services. The UIDAI’s Central Identities Data Repositotry (CIDR) is currently capable of handling tens of millions of authentications on a daily basis, and can be scaled up further as demand increases. Many requesting entities that provide services to Aadhaar number holders have integrated Aadhaar into their domain applications for improved service delivery anywhere in the country in a real-time, scalable, interoperable manner.  Content Information Published on: 13 Apr 2026 Last Updated: 30 Jun 2026 Owner: A & V",
-  "text": "The authentication service is provided in online and real-time manner by UIDAI through its two data centres i.e. Hebbal Data Centre (HDC) and Manesar Data Centre (MDC) where online services for authentication and other services such as e-KYC are deployed in active-active mode to ensure high availability of services. The UIDAI’s Central Identities Data Repositotry (CIDR) is currently capable of handling tens of millions of authentications on a daily basis, and can be scaled up further as demand increases. Many requesting entities that provide services to Aadhaar number holders have integrated Aadhaar into their domain applications for improved service delivery anywhere in the country in a real-time, scalable, interoperable manner.  Content Information Published on: 13 Apr 2026 Last Updated: 30 Jun 2026 Owner: A & V",
+  "section": "In this section",
+  "text": "Many requesting entities that provide services to Aadhaar number holders have integrated Aadhaar into their domain applications for improved service delivery anywhere in the country in a real-time, scalable, interoperable manner. Content Information\nPublished on: 13 Apr 2026\nLast Updated: 30 Jun 2026\nOwner: A & V\n\n## In this section\n  * [What is Aadhaar Authentication?](https://uidai.gov.in/hi/about-authentication#what-is-aadhaar-authentication)\n  * [Overview](https://uidai.gov.in/hi/about-authentication#overview)\n  * [Modes of Authentication](https://uidai.gov.in/hi/about-authentication#modes-of-authentication)\n  * [Obtaining Aadhaar number holder’s Consent for Authentication](https://uidai.gov.in/hi/about-authentication#obtaining-aadhaar-number-holder-s-consent-for-authentication)\n  * [Authentication Services](https://uidai.gov.in/hi/about-authentication#authentication-services)\n\nFrequently Asked Questions\n###",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.84,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "authentication",
     "update"
-  ]
+  ],
+  "language": "en"
 }

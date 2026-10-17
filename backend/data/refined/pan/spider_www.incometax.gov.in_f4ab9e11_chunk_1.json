@@ -5,13 +5,14 @@
   "section": "Verify your PAN",
   "text": "#  Verify your PAN \n(PAN Verification Made Simple)\n(PAN Verification Made Simple)\n[FAQFrequently Asked Questions](https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/verify-your-pan#faq-section--content)\n\n##  [ Verify Your PAN FAQ ](https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/verify%20your%20pan-faq)\n\n### 1. Why do I need to verify my PAN?\nYou can verify your PAN to:\n  * Check if the details of your PAN, such as name on the PAN card, date of birth are same as the details available in the PAN database.\n  * Validate if your PAN is active or not.\n\n### 2. Do I need my mobile number registered on the e-Filing portal for PAN verification?\nYou can use any valid mobile number accessible to you during the verification on which you will receive an OTP (valid for 15 minutes with a maximum of three attempts).\n\n### 3. Is there a limit to the number of PANs which can be verified with a single mobile number for an individual taxpayer?\nYes. You can verify a maximum of 5 different PANs using one mobile number in a day.\n\n### 4. As an external agency, can I validate PAN of a user?\nYes, Verify PAN service is available for all registered users including external agencies. Bulk PAN / TAN verification is a separate service for external agencies that requires the approval of the department.\n\n### 5. How can I see my PAN details online?\nYou can visit the **Know your PAN** service available in the e-Filing portal. You can also use this service to check if your PAN is valid or not.\n[User ManualDetailed guides and documentation](https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/verify-your-pan#usermanual-section--content)\n \n[ Verify Your PAN User Manual ](https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/verify-your-pan/verify-pan-UM)",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "pan",
     "verification"
-  ]
+  ],
+  "language": "en"
 }

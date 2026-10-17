@@ -2,23 +2,16 @@
   "id": "spider_uidai.gov.in_7a77c8dc_chunk_1",
   "source_url": "https://uidai.gov.in/aadhaar-app-faq",
   "title": "Aadhaar App",
-  "section": "2. /   4. /   5. [Frequently Asked Questions](https://uidai.gov.in/hi/faq)   6. /   7. [Aadhaar App](https://uidai.gov.in/hi/aadhaar-app-faq)  # Aadhaar App Find answers to frequently asked questions about the Aadhaar App, including registration, login, profile management, document sharing, QR code verification, security features, troubleshooting, and other services available through the app for a seamless Aadhaar experience.  ###  Aadhaar App  How to download the Aadhaar app? You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android:  For iOS:   What details are required for onboarding on the Aadhaar app? The ANH should have a smartphone (Android version 9.0 and above and iOS version 16.0 and above) with internet connectivity. How to register on the Aadhaar app? Which services are available on this app? Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc. Who is an Aadhaar Number Holder (ANH)? ANH is an individual who has been assigned a 12-digit Aadhaar number by UIDAI. Is this app available in other official languages? Yes, the Aadhaar app is available in 13 languages in total, English and 12 other Indian languages, including Hindi, Bengali, Tamil, Telugu, Kannada, Malayalam, Gujarati, Odia, Punjabi, Marathi, Urdu, and Assamese. How to update a mobile number through the Aadhaar app? Scenario 1: If the Aadhaar Number Holder is registered on the Aadhaar app using the same mobile number that is registered with Aadhaar, ANH will be required to verify the new mobile number with OTP, perform Face Authentication, and pay the prescribed charges Scenario 2: If the Aadhaar Number Holder is registered on the Aadhaar app using a different mobile number from the one registered with Aadhaar, ANH will be required to verify both the old registered mobile number and the new mobile number with OTP, perform Face Authentication, and pay the prescribed charges Scenario 3: If the Aadhaar Number Holder does not have access to the old registered mobile number or has not registered a mobile number earlier, ANH must visit the nearest Aadhaar Seva Kendra or an authorised Aadhaar enrolment and update centre to update or register their mobile number. Can a mobile number be registered in Aadhaar for the very first time using this app?",
-  "text": "2. /   4. /   5. [Frequently Asked Questions](https://uidai.gov.in/hi/faq)   6. /   7. [Aadhaar App](https://uidai.gov.in/hi/aadhaar-app-faq)  # Aadhaar App Find answers to frequently asked questions about the Aadhaar App, including registration, login, profile management, document sharing, QR code verification, security features, troubleshooting, and other services available through the app for a seamless Aadhaar experience.  ###  Aadhaar App  How to download the Aadhaar app? You can download the Aadhaar app on your Android/iOS device from the Play Store/App Store. For Android:  For iOS:   What details are required for onboarding on the Aadhaar app? The ANH should have a smartphone (Android version 9.0 and above and iOS version 16.0 and above) with internet connectivity. How to register on the Aadhaar app? Which services are available on this app? Presently, the Aadhaar app offers various services like - Mobile Number Update, Address Update, Biometric lock/unlock, Selective Sharing of Aadhaar Verifiable Credential, check Authentication History, download e-Aadhaar, share Contact Card, Track my request, etc. Who is an Aadhaar Number Holder (ANH)? ANH is an individual who has been assigned a 12-digit Aadhaar number by UIDAI. Is this app available in other official languages? Yes, the Aadhaar app is available in 13 languages in total, English and 12 other Indian languages, including Hindi, Bengali, Tamil, Telugu, Kannada, Malayalam, Gujarati, Odia, Punjabi, Marathi, Urdu, and Assamese. How to update a mobile number through the Aadhaar app? Scenario 1: If the Aadhaar Number Holder is registered on the Aadhaar app using the same mobile number that is registered with Aadhaar, ANH will be required to verify the new mobile number with OTP, perform Face Authentication, and pay the prescribed charges Scenario 2: If the Aadhaar Number Holder is registered on the Aadhaar app using a different mobile number from the one registered with Aadhaar, ANH will be required to verify both the old registered mobile number and the new mobile number with OTP, perform Face Authentication, and pay the prescribed charges Scenario 3: If the Aadhaar Number Holder does not have access to the old registered mobile number or has not registered a mobile number earlier, ANH must visit the nearest Aadhaar Seva Kendra or an authorised Aadhaar enrolment and update centre to update or register their mobile number. Can a mobile number be registered in Aadhaar for the very first time using this app?",
+  "section": "Aadhaar App",
+  "text": "2. /\n  4. /\n  5. [Frequently Asked Questions](https://uidai.gov.in/hi/faq)\n  6. /\n  7. [Aadhaar App](https://uidai.gov.in/hi/aadhaar-app-faq)\n\n# Aadhaar App\nFind answers to frequently asked questions about the Aadhaar App, including registration, login, profile management, document sharing, QR code verification, security features, troubleshooting, and other services available through the app for a seamless Aadhaar experience.\n\n### \nAadhaar App",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.72,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
-    "aadhaar",
-    "authentication",
-    "biometric",
-    "download",
-    "enrolment",
-    "lock",
-    "mobile",
-    "unlock",
-    "update"
-  ]
+    "aadhaar"
+  ],
+  "language": "en"
 }

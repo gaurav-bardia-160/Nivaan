@@ -5,11 +5,11 @@
   "section": "PAN",
   "text": "# PAN\n  1. \n  2. [Services](https://tinpan.proteantech.in/services/pan/pan-index.html)\n  3. [PAN](https://tinpan.proteantech.in/services/pan/pan-index.html)\n  4. [Apply Online](https://tinpan.proteantech.in/services/pan/pan-apply-online.html)\n  5. [Reprint of PAN Card](https://tinpan.proteantech.in/services/pan/correction.html)\n  6. Read Instructions\n\nPAN\n\n  * )\n    * [Types of PAN Applications](https://tinpan.proteantech.in/services/pan/pan-introduction.html)\n    * [How to Apply](https://tinpan.proteantech.in/services/pan/pan-introduction.html#how)\n    * [Supporting Documents](https://tinpan.proteantech.in/services/pan/pan-introduction.html#doc)\n    * [Communications](https://tinpan.proteantech.in/services/pan/pan-introduction.html#communication)\n    * [Processing Fee](https://tinpan.proteantech.in/services/pan/pan-introduction.html#fee)\n    * [Processing Time](https://tinpan.proteantech.in/services/pan/pan-introduction.html#soon)\n  * [Apply Online](https://tinpan.proteantech.in/services/pan/pan-index.html)\n  * [Guidelines for Corporate PAN applicants](https://tinpan.proteantech.in/downloads/pan/Additional_Instructions_for_Corporate_applicants.pdf)\n  * [Guidelines for Foreign Citizens](https://tinpan.proteantech.in/downloads/pan/Additionalguidelines_Revised_Oct_2019.pdf)\n  * [Know Status of Your Application](https://tin.tin.proteantech.in/pantan/StatusTrack.html)\n  * [Know Status of Your Credit Card / debit card / net banking transaction for online application](https://tin.tin.proteantech.in/pan/changemode.html)\n  *)\n    * [General](https://tinpan.proteantech.in/faqs/pan/faq-pan-general.html)\n    * [New PAN](https://tinpan.proteantech.in/faqs/pan/faq-pan-procedure.html)\n    * [Reprint of PAN Card Change/Correction in PAN Data](https://tinpan.proteantech.in/faqs/pan/faq-pan-reqfornewpan.html)\n    * [Cancellation of PAN](https://tinpan.proteantech.in/faqs/pan/faq-pan-cancellation.html)\n    * [PAN Online](https://tinpan.proteantech.in/faqs/pan/faq-pan-tatkalpan.html)\n  * [AO Codes](https://tinpan.proteantech.in/services/pan/pan-aocode.html)\n  * [Brief Process](https://tinpan.proteantech.in/downloads/Online_PAN_Application_Final_Brief_process_March_14_2019.pdf)\n  * [Documents Required](https://tinpan.proteantech.in/services/pan/documents-required.html)\n  * [Download e-PAN XML Verification Utility](https://tinpan.proteantech.in/%20downloads/pan/ePANxmlVerificationUtility_20sep2019.zip)\n\n##  Read  Instructions\n  * Form to be filled legibly in BLOCK LETTERS and preferably in BLACK INK. Form should be filled in English only. \n  * Mention your PAN correctly. Applicant to provide copy of PAN card with this form. In case of loss of PAN card, a copy of FIR to be submitted along with this form. \n  * Aadhaar number is mandatory except for exempt category. Every person who possesses Aadhaar shall mandatorily quote Aadhaar in the application. \n  * Each box, wherever provided, should contain only one character (alphabet / number / punctuation sign), leaving a blank box after each word. \n  * Applicants should affix two recent colour photographs with white background (size 4.5 cm x 3.5 cm) in the space provided on the form. The photographs should not be stapled or clipped to the form. The clarity of image on PAN card will depend on the quality and clarity of photograph affixed on the form. \n  * Signature / Left hand thumb impression should be provided across the photo affixed on the left side of the form in such a manner that portion of signature/impression is on photo as well as on form. The photograph affixed on right side of the form should be clear and without any mark. \n  * Signature / Left hand thumb impression should be within the box provided at the bottom right side of the form. \n  * Thumb impression, if used, should be attested by a Magistrate or a Notary Public or an Oath Commissioner or a Gazetted Officer under official seal and stamp. \n  * For changes or correction in PAN data, tick box on the left margin of appropriate S. No. where change/correction is required and fill that field along with the other mandatory fields in the form.",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "ao code",
@@ -22,5 +22,6 @@
     "reprint",
     "tatkal",
     "verification"
-  ]
+  ],
+  "language": "en"
 }

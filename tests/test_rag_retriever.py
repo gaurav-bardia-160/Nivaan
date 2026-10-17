@@ -46,7 +46,7 @@ def test_lexical_retriever_handles_empty_and_category_filter():
 
     pan = retriever.search("download e-PAN card", category="pan", top_k=3)
     assert pan.status == "supported"
-    assert pan.searched_documents == 269
+    assert pan.searched_documents == 242
     assert pan.hits
     assert all(hit.document.category == "pan" for hit in pan.hits)
     assert "pan" in (pan.hits[0].document.text + " " + " ".join(pan.hits[0].document.tags)).lower()

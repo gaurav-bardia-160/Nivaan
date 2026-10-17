@@ -2,17 +2,19 @@
   "id": "spider_tinpan.proteantech.in_9cbad794_chunk_7",
   "source_url": "https://tinpan.proteantech.in/services/pan/instructionscorr.html",
   "title": "PAN",
-  "section": "Documents to be Submitted Along with the Application",
-  "text": "### Documents to be Submitted Along with the Application\n\n#### Proof of Identity and Address\n  * Documents which are acceptable as proof of identity and address are mentioned in detailed instructions for documents to be submitted.\n  * Proof of Identity and address must be in the full expanded name of the applicant as mentioned in the application form.\n  * If the applicant is a minor (i.e. below 18 years of age at the time of application), any of the documents acceptable as proof of identity and address of any of the parents/ guardian of such minor shall be deemed to be the proof of identity and address of the applicant.\n  * Proof of address in the name of spouse/parents/sibling etc will can be accepted as valid proof of address.\n  * Proof of Address is required for the address mentioned in \"Address\" in item no.4. This address should be mentioned in the proof.",
+  "section": "Proof of PAN",
+  "text": "#### Proof of PAN\n  * Proof of PAN is required for the PAN currently in use (i.e. existing PAN). This is required for the PAN mentioned at the beginning of the application.\n  * Proof of PAN can be one of the following only: \n    * Copy of PAN card; or\n    * Copy of intimation letter issued by the Income Tax Department in lieu of PAN card intimating PAN.\n    * In case one of the above proofs are not available, a copy of FIR (stating loss of PAN card) can be submitted.\n\nIf proof of PAN (as stated above) is not submitted, the application will be processed on a 'good effort' basis even without a copy of FIR. During verification at Protean, if it is found that there are differences between the PAN or the data provided in the application with the ITD database, the application may not be processed and the processing fee will be forfeited.",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
-    "address",
-    "minor",
-    "pan"
-  ]
+    "fee",
+    "pan",
+    "protean",
+    "verification"
+  ],
+  "language": "en"
 }

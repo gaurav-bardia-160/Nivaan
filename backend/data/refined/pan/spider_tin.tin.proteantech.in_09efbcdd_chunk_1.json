@@ -5,12 +5,13 @@
   "section": "Tax Information Network",
   "text": "Tax Information Network  \nof Income Tax Department\n**Track your PAN/TAN Application Status**  \n|   \n |  **Please select type of application:**  |  \n| --- |  \n|   | **Application Type**  |  -- Select --  PAN - New / Change Request  TAN - New / Change Request   |  \n|   | **ACKNOWLEDGEMENT NUMBER**  |  **N-** _(Please enter 15 digit numeric number)_  |  \n|   |   \n | *** Verify Status of Application **  |  \n| --- |  \n|   |  \n |  \n|   |   |  \n |",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
-  "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.88,
+  "source_confidence": "unknown",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "pan"
-  ]
+  ],
+  "language": "en"
 }

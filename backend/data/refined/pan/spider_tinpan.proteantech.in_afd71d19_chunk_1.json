@@ -2,14 +2,14 @@
   "id": "spider_tinpan.proteantech.in_afd71d19_chunk_1",
   "source_url": "https://tinpan.proteantech.in/services/pan/documents-form_93-form_94.html",
   "title": "PAN",
-  "section": "* [Services](https://tinpan.proteantech.in/services/pan/documents-form_93-form_94.html)",
+  "section": "PAN",
   "text": "* [Services](https://tinpan.proteantech.in/services/pan/documents-form_93-form_94.html)\n    *       * [e-TDS/e-TCS](https://tinpan.proteantech.in/services/etds-etcs/)\n      * [Annual Information Return (AIR)](https://tinpan.proteantech.in/services/air/air-index.html)\n      * [TAN](https://tinpan.proteantech.in/services/tan/tan-introduction)\n      * [PAN](https://tinpan.proteantech.in/services/pan/pan-index)\n      * [e-payment: Pay Taxes Online](https://onlineservices.tin.egov.proteantech.in/etaxnew/tdsnontds.jsp)\n      * [e-Return Intermediary](https://tinpan.proteantech.in/%20services/e-return/ereturn-overview.html%20)\n      * [Online PAN Verification](https://tinpan.proteantech.in/%20services/online-pan-verification/pan-verification-overview)\n      * [Form No. 137 (Earlier Form 24G)](https://tinpan.proteantech.in/services/form-no_137/form-no_137-index.html%20)\n      * [Online AIN Registration](https://tinpan.proteantech.in/services/ain/online_ain_registration_overview.html)\n      * [Status of Tax Refunds](https://tinpan.proteantech.in/services/status-tax-refunds/refundstatuslogin.html)\n      * [Challan Status Inquiry](https://tin.tin.proteantech.in/oltas/index.html)\n  * [Facilitation center](https://tinpan.proteantech.in/facilation-center)\n  * [Publications](https://tinpan.proteantech.in/services/pan/documents-form_93-form_94.html)\n    * [ITD/RBI Notifications](https://tinpan.proteantech.in/publication-itd-rbi.html)\n    * [Introduction](https://tinpan.proteantech.in/guided/guide.html)\n    * [PAN Application](https://tinpan.proteantech.in/guided/guide-pan-introduction.html)\n    * [TAN Application](https://tinpan.proteantech.in/guided/guide-tan-introduction.html)\n  * [Downloads](https://tinpan.proteantech.in/services/pan/documents-form_93-form_94.html)\n    * [e-TDS/e-TCS](https://tinpan.proteantech.in/services/pan/documents-form_93-form_94.html)\n      * Quaterly Returns\n        * [Regular](https://tinpan.proteantech.in/downloads/e-tds/eTDS-download-regular.html)\n        * [Correction](https://tinpan.proteantech.in/downloads/e-tds/eTDS-download-corr.html)\n      * [Protean RPU_e-Tutorial ](https://tinpan.proteantech.in/downloads/e-tds/RPU_e-Tutorial_on_TDS_TCS_1.pdf)\n    * [Form No. 137 (Earlier Form 24G)](https://tinpan.proteantech.in/downloads/form-no_137/form-no_137-download.html)\n    * [AIR](https://tinpan.proteantech.in/downloads/air/airdownloads.html)\n    * [Online PAN Verification](https://tinpan.proteantech.in/downloads/online-pan-verification/pan-verify-download.html)\n    * [TAN](https://tinpan.proteantech.in/downloads/tan/tan-downloads.html)\n    * [PAN](https://tinpan.proteantech.in/downloads/pan/downloads-pan.html)\n  * [FAQs](https://tinpan.proteantech.in/faq.html)\n    *       * [e-TDS](https://tinpan.proteantech.in/services/etds-etcs#faqs)\n      * [Annual Information Return (AIR)](https://tinpan.proteantech.in/faqs/air/faqairgeneral.html)\n      * [TAN](https://tinpan.proteantech.in/services/tan/tan-introduction#faqs)\n      * [Online PAN Verification](https://tinpan.proteantech.in/online-pan-verification#faqs)\n      * [PAN](https://tinpan.proteantech.in/services/pan/pan-index#faqs)\n      * [PAN 2.0](https://tinpan.proteantech.in/services/pan/documents-form_93-form_94.html)\n        * [Press Release_PAN 2.0 Project of the CBDT receives CCEA Approval](https://tinpan.proteantech.in/downloads/publications/Press%20Release_PAN%202.0%20Project%20of%20the%20CBDT.pdf)\n        * [प्रेस विज्ञप्ति_केंद्रीय प्रत्यक्ष कर बोर्ड की पैन 2.0 पररयोजना को आर्थडक मामलों पर कैबबनेट सममतत की मंजूरी](https://tinpan.proteantech.in/downloads/publications/Press%20Release_PAN%202.0%20Project%20of%20the%20CBDT_hindi.pdf)\n      * [Form No. 24Q Q4](https://tinpan.proteantech.in/faqs/form-24q-q4/faq-form-fourth.html)\n      * [Statement of Financial Transaction](https://tinpan.proteantech.in/faqs/SFT/faq-SFT.html)\n      * [Form No. 137 (Earlier Form 24G)](https://tinpan.proteantech.in/faqs/form-no_137/form-no_137-faq-general.html)\n      * [View All](https://tinpan.proteantech.in/faq.html)\n  * [Customer Care](https://tinpan.proteantech.in/services/pan/documents-form_93-form_94.html)\n    * [Complaints/Queries](https://tinpan.proteantech.in/customerfeedback)\n    * [Protean Addresses](https://tinpan.proteantech.in/nsdl-addresses)",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.94,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "address",
     "correction",
@@ -19,5 +19,6 @@
     "pan",
     "protean",
     "verification"
-  ]
+  ],
+  "language": "en"
 }

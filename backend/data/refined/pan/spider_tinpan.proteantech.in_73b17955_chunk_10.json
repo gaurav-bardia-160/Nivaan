@@ -1,0 +1,18 @@
+{
+  "id": "spider_tinpan.proteantech.in_73b17955_chunk_10",
+  "source_url": "https://tinpan.proteantech.in/services/pan/instructions-form_93-form_94.html",
+  "title": "PAN",
+  "section": "फॉर्मभरने के लिए दिशानिर्देश",
+  "text": "##  फॉर्मभरने के लिए दिशानिर्देश\n[ १. पूरा नाम](https://tinpan.proteantech.in/services/pan/instructions-form_93-form_94.html#h01)\nकृपया उचित शीर्षक चुनें।\nव्यक्ति अपना पूर्ण विस्तारित नाम बताएं। संक्षिप्ताक्षर और आद्याक्षर का उपयोग न करें। \nउदाहरण के लिए **RAVIKANT** को इस प्रकार लिखा जाना चाहिए:\nअंतिम नाम/उपनाम: RAVIKANT\nपहला नाम:\nमध्य नाम:\nउदाहरण के लिए **SURESH SARDA** को इस प्रकार लिखा जाना चाहिए: \nअंतिम नाम/उपनाम: SARDA\nपहला नाम: SURESH\nमध्य नाम:\nउदाहरण के लिए **POONAM RAVI NARAYAN** को इस प्रकार लिखा जाना चाहिए:\nअंतिम नाम/उपनाम: NARAYAN\nपहला नाम: POONAM\nमध्य नाम: RAVI\nउदाहरण के लिए **SATYAMVENKAT M. K. RAO** को इस प्रकार लिखा जाना चाहिए:\nअंतिम नाम/उपनाम: R A O\nपहला नाम: SATYAM\nमध्य नाम: VENKAT M K\nउदाहरण के लिए **M. S. KANDASWAMY (MADURAISOMASUNDRAM KANDASWAMY)** को इस प्रकार लिखा जाना चाहिए:\nअंतिम नाम/उपनाम: KANDASWAMY\nपहला नाम: MADURAI\nमध्य नाम: SOMASUNDRAM\nवैयक्तिक के अलावा अन्य आवेदक निर्देशों के ऊपर ध्यान ना दें।\nगैर- वैयक्तिक को अपना पूरा नाम अंतिम नाम/उपनाम के पहले ब्लॉक से शुरू करना चाहिए। यदि नाम अंतिम नाम के लिए प्रदान किए गए स्थान से अधिक लंबा है, तो इसे पहले और मध्य नाम के लिए प्रदान किए गए स्थान में जारी रखा जा सकता है।\nउदाहरण के लिए **XYZ DATA CORPORATION(INDIA) PRIVATE LIMITED** को इस प्रकार लिखा जाना चाहिए:\nअंतिम नाम/उपनाम: XYZ DATA CORPRATION(IND \nपहला नाम: IA) PRIVATE L\nमध्य नाम:\nउदाहरण के लिए **MANOJ MAFATLAL DAVE (HUF)** को इस प्रकार लिखा जाना चाहिए:\nअंतिम नाम/उपनाम: MANOJ MAFATLAL DAVE (HUF) \nपहला नाम:\nमध्य नाम:\nकंपनी के मामले में, नाम किसी संक्षिप्तिकरण के बिना प्रदान किया जाना चाहिए। उदाहरण के लिए, 'Private Limited' viz Pvt Ltd, Private Ltd, Pvt Limited, P Ltd, P. Ltd., P. Ltd की विभिन्न विधितताओं की अनुमति नहीं है। यह केवल 'Private Limited' ही होना चाहिए।\nस्वयं के स्वामित्व (प्रोप्राइटरशिप) के मामले में, मालिक को अपने नाम से पैन के लिए आवेदन करना चाहिए। \nनाम किसी भी शीर्षक जैसे श्री, श्रीमती, कुमारी, डॉ, मेजर, मेसर्स आदि के साथ उपसर्ग नहीं होना चाहिए।\n[ २. उपरोक्त नाम का संक्षिप्त नाम, जैसा कि आप इसे कार्ड पर मुद्रित करना चाहते हैं। ](https://tinpan.proteantech.in/services/pan/instructions-form_93-form_94.html#h02)\nवैयक्तिक आवेदकों को पैन कार्ड पर मुद्रित होने के लिए पूर्ण / संक्षिप्त नाम प्रदान करना चाहिए। यदि संक्षिप्त नाम है, तो अंतिम नाम आवश्यक रूप से होना चाहिए। \nउदाहरण के लिए **SATYAM VENKAT M. K. RAO** जो कि नाम क्षेत्र में लिखा गया है:\nअंतिम नाम/उपनाम: R A O\nपहला नाम: SATYAM\nमध्य नाम: VENKAT M K\n‘पैन कार्ड पर नाम मुद्रित होना चाहिए’ के कॉलम में इस प्रकार लिखा जा सकता है:\nSATYAM VENKAT M. K. RAO or\nS. V. M. K. RAO or\nSATYAM V. M. K.",
+  "category": "pan",
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
+  "source_confidence": "official",
+  "verification_method": "automated_refiner_v2",
+  "retrieval_tags": [
+    "pan",
+    "protean"
+  ],
+  "language": "mixed"
+}

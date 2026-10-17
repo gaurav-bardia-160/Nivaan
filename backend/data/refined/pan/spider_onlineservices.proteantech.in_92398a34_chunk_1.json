@@ -2,14 +2,14 @@
   "id": "spider_onlineservices.proteantech.in_92398a34_chunk_1",
   "source_url": "https://onlineservices.proteantech.in/paam/endUserRegisterContact.html",
   "title": "Online PAN application",
-  "section": "[!](https://onlineservices.proteantech.in/paam/endUserRegisterContact.html)",
-  "text": "[!](https://onlineservices.proteantech.in/paam/endUserRegisterContact.html)\n\n#  Online PAN application\nIf Name as per Aadhaar contains initials, please enter full expanded name (without initials) in the Name fields as applicable. Thereafter, you can provide your Name exactly as it appears on your Aadhaar card in the specified field \"Name as per Aadhaar\" while filling the form. Name as per Aadhaar will be printed on your PAN card. \nAs per ITD guidelines,'Request for New PAN Card or/and Changes or Correction in PAN Data' application is presently to be used _**only for update/correction in PAN database.**_ For procedure to link Aadhaar with PAN, please click [here.](https://www.incometax.gov.in/iec/foportal/help/how-to-link-aadhaar)\n* * *\n  * [  \nNew Application  \n](https://onlineservices.proteantech.in/paam/endUserRegisterContact.html#left-icon-tab1)\n  * [ Resume Application  \n(With Token Number)](https://onlineservices.proteantech.in/paam/endUserRegisterContact.html#left-icon-tab2)\n\nSelect PAN Application Type*\n(New or Change Request)\n----Please Select------ New PAN - Form No. 93 (Indian Citizen) New PAN - Form No. 94 (Indian Entity) New PAN - Form No. 95 (Foreign Citizen) New PAN – Form No. 96 (Foreign Entity) Changes or Correction in existing PAN Data / Reprint of PAN Card (No changes in existing PAN Data) ----Please Select------\nSelect Applicant Category*\n(Individual,Trust,HUF,...)\n----Please Select------ INDIVIDUAL ASSOCIATION OF PERSONS BODY OF INDIVIDUALS COMPANY TRUST LIMITED LIABILITY PARTNERSHIP FIRM GOVERNMENT HINDU UNDIVIDED FAMILY ARTIFICIAL JURIDICAL PERSON LOCAL AUTHORITY ----Please Select------",
+  "section": "Online PAN application",
+  "text": "#  Online PAN application\nIf Name as per Aadhaar contains initials, please enter full expanded name (without initials) in the Name fields as applicable. Thereafter, you can provide your Name exactly as it appears on your Aadhaar card in the specified field \"Name as per Aadhaar\" while filling the form. Name as per Aadhaar will be printed on your PAN card. \nAs per ITD guidelines,'Request for New PAN Card or/and Changes or Correction in PAN Data' application is presently to be used _**only for update/correction in PAN database.**_ For procedure to link Aadhaar with PAN, please click [here.](https://www.incometax.gov.in/iec/foportal/help/how-to-link-aadhaar)\n* * *\n  * [  \nNew Application  \n](https://onlineservices.proteantech.in/paam/endUserRegisterContact.html#left-icon-tab1)\n  * [ Resume Application  \n(With Token Number)](https://onlineservices.proteantech.in/paam/endUserRegisterContact.html#left-icon-tab2)\n\nSelect PAN Application Type*\n(New or Change Request)\n----Please Select------ New PAN - Form No. 93 (Indian Citizen) New PAN - Form No. 94 (Indian Entity) New PAN - Form No. 95 (Foreign Citizen) New PAN – Form No. 96 (Foreign Entity) Changes or Correction in existing PAN Data / Reprint of PAN Card (No changes in existing PAN Data) ----Please Select------\nSelect Applicant Category*\n(Individual,Trust,HUF,...)\n----Please Select------ INDIVIDUAL ASSOCIATION OF PERSONS BODY OF INDIVIDUALS COMPANY TRUST LIMITED LIABILITY PARTNERSHIP FIRM GOVERNMENT HINDU UNDIVIDED FAMILY ARTIFICIAL JURIDICAL PERSON LOCAL AUTHORITY ----Please Select------",
   "category": "pan",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.98,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "correction",
@@ -17,5 +17,6 @@
     "pan",
     "protean",
     "reprint"
-  ]
+  ],
+  "language": "en"
 }

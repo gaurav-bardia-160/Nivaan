@@ -2,17 +2,18 @@
   "id": "spider_uidai.gov.in_5f61f324_chunk_1",
   "source_url": "https://myaadhaar.uidai.gov.in/du/en_IN",
   "title": "Upload documents in support of identity and address",
-  "section": "myAadhaar",
-  "text": "myAadhaar\n\n\n\n  * हिंदी\n  * বাংলা\n  * ಕನ್ನಡ\n  * ગુજરાતી\n  * മലയാളം\n  * मराठी\n  * ଓଡ଼ିଆ\n  * ਪੰਜਾਬੀ\n  * தமிழ்\n  * తెలుగు\n  * اردو\n\nहिंदी\nবাংলা\nಕನ್ನಡ\nગુજરાતી\nമലയാളം\nमराठी\nଓଡ଼ିଆ\nਪੰਜਾਬੀ\nதமிழ்\nతెలుగు\nاردو\n\n# Upload documents in support of identity and address\n\n## Free till 14/06/2027\n\n### \nWhat to submit?\n\nRation card, Voter identity card, Government-issued identity card/ certificate having address, and Indian Passport serve as proof of both identity and address.\nPAN card, Driving license, Secondary or Senior School mark sheet/ School leaving certificate having photograph, Government-issued identity card/ certificate - serve as only proof of identity.\nElectricity/water/gas bill (last 3 months), Bank / Post Office passbook, rent/ lease/ leave & license agreement serve as proof of address only.\n[For detailed list of acceptable identity and address documents, please click here.](https://uidai.gov.in/images/doc_update/en/Commonly_Asked_Questions.pdf)\n\n### \nHow to submit?\n\nThe documents can be submitted online on [myAadhaar](https://myaadhaar.uidai.gov.in/) portal or by visiting any Aadhaar centre.\nClick to submit\nNeed Help?\n\nVideo guide\n\nKnow More?\n\nCall toll-free (1947)",
+  "section": "Upload documents in support of identity and address",
+  "text": "myAadhaar\n\n  * हिंदी\n  * বাংলা\n  * ಕನ್ನಡ\n  * ગુજરાતી\n  * മലയാളം\n  * मराठी\n  * ଓଡ଼ିଆ\n  * ਪੰਜਾਬੀ\n  * தமிழ்\n  * తెలుగు\n  * اردو\n\nहिंदी\nবাংলা\nಕನ್ನಡ\nગુજરાતી\nമലയാളം\nमराठी\nଓଡ଼ିଆ\nਪੰਜਾਬੀ\nதமிழ்\nతెలుగు\nاردو\n\n# Upload documents in support of identity and address\n\n## Free till 14/06/2027\n\n### \nWhat to submit?\n!\nRation card, Voter identity card, Government-issued identity card/ certificate having address, and Indian Passport serve as proof of both identity and address.\nPAN card, Driving license, Secondary or Senior School mark sheet/ School leaving certificate having photograph, Government-issued identity card/ certificate - serve as only proof of identity.\nElectricity/water/gas bill (last 3 months), Bank / Post Office passbook, rent/ lease/ leave & license agreement serve as proof of address only.\n[For detailed list of acceptable identity and address documents, please click here.](https://uidai.gov.in/images/doc_update/en/Commonly_Asked_Questions.pdf)\n\n### \nHow to submit?\n!\nThe documents can be submitted online on [myAadhaar](https://myaadhaar.uidai.gov.in/) portal or by visiting any Aadhaar centre.\nClick to submit\nNeed Help?\n\nVideo guide\n\nKnow More?\n\nCall toll-free (1947)",
   "category": "aadhaar",
-  "last_verified": "2026-10-12",
-  "status": "verified",
-  "quality_score": 0.95,
+  "last_verified": "2026-10-17",
+  "status": "automated_verified",
+  "quality_score": 0.9,
   "source_confidence": "official",
-  "verification_method": "automated_official_source",
+  "verification_method": "automated_refiner_v2",
   "retrieval_tags": [
     "aadhaar",
     "pan",
     "update"
-  ]
+  ],
+  "language": "en"
 }
