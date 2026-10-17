@@ -223,8 +223,36 @@ def test_live_rag_is_feature_flagged_and_returns_cited_candidate_evidence(monkey
     assert health["documents"] == 746
 
 
+def test_live_rag_rejects_out_of_corpus_topics_and_preserves_document_routing(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    monkeypatch.setenv("RAG_VECTOR_ENABLED", "true")
+
+    passport = client.post(
+        "/api/ask",
+        json={"input_type": "question", "question": "How do I apply for a passport?", "language": "en"},
+    ).json()
+    assert passport["title"] == "No verified guide found"
+    assert passport["citations"] == []
+
+    notice = client.post(
+        "/api/ask",
+        json={
+            "input_type": "document",
+            "question": "Explain this bank recovery notice",
+            "document_text": "Loan payment overdue. Respond within 15 days. Late payment penalty applies.",
+            "language": "en",
+        },
+    ).json()
+    assert notice["title"] == "Understand a loan agreement"
+    assert notice["citations"] == []
+    warning_titles = {warning["title"] for warning in notice["warnings"]}
+    assert "Deadline or response window found" in warning_titles
+    assert "Late payment or penalty clause found" in warning_titles
+
+
 def test_live_rag_defaults_to_disabled(monkeypatch):
     monkeypatch.delenv("RAG_ENABLED", raising=False)
+    monkeypatch.delenv("RAG_VECTOR_ENABLED", raising=False)
     response = client.post(
         "/api/ask",
         json={"input_type": "question", "question": "How do I apply for a PAN card?", "language": "en"},

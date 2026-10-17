@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import re
 from functools import lru_cache
 
 from backend.config import DATA_DIR
@@ -12,6 +13,10 @@ from backend.rag.vector_store import QdrantLocalVectorStore
 
 _TRUE_VALUES = {"1", "true", "yes", "on"}
 DEFAULT_VECTOR_PATH = DATA_DIR / "vector_index" / "qdrant"
+_CATEGORY_TERMS = {
+    "pan": ("pan", "e-pan", "epan", "form 49a", "form 49aa", "पैन", "पॅन", "પૅન"),
+    "aadhaar": ("aadhaar", "aadhar", "uidai", "e-aadhaar", "eaadhaar", "आधार", "આધાર"),
+}
 
 
 def _enabled(name: str, default: str = "false") -> bool:
@@ -41,10 +46,21 @@ def get_retriever() -> RagRetriever:
     return _get_retriever(vector_enabled())
 
 
+def supported_category(query: str) -> str | None:
+    lowered = query.lower()
+    for category, terms in _CATEGORY_TERMS.items():
+        if any(re.search(rf"(?<!\w){re.escape(term)}(?!\w)", lowered) for term in terms):
+            return category
+    return None
+
+
 def retrieve_if_enabled(query: str, *, top_k: int = 3) -> RetrievalResult | None:
     if not rag_enabled():
         return None
-    return get_retriever().search(query, top_k=top_k)
+    category = supported_category(query)
+    if category is None:
+        return None
+    return get_retriever().search(query, category=category, top_k=top_k)
 
 
 def rag_health() -> dict[str, object]:
@@ -66,4 +82,4 @@ def rag_health() -> dict[str, object]:
     }
 
 
-__all__ = ["get_retriever", "rag_enabled", "rag_health", "retrieve_if_enabled", "vector_enabled"]
+__all__ = ["get_retriever", "rag_enabled", "rag_health", "retrieve_if_enabled", "supported_category", "vector_enabled"]
