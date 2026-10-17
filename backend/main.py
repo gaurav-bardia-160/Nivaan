@@ -11,6 +11,7 @@ from backend.config import APP_NAME, APP_VERSION, CAPABILITIES, CORS_ALLOW_ORIGI
 from backend.modules.ocr import OCRExtractionError, extract_text_from_upload
 from backend.modules.retrieval import knowledge_stats
 from backend.pipeline import run
+from backend.rag.runtime import rag_health
 from backend.schemas import Answer, AskRequest
 
 app = FastAPI(
@@ -51,6 +52,7 @@ def health() -> dict[str, object]:
         "verified_entries": stats["verified"],
         "unverified_entries": stats["unverified"],
         "capabilities_url": "/api/capabilities",
+        "rag": rag_health(),
     }
 
 
@@ -61,6 +63,7 @@ def capabilities() -> dict[str, object]:
         "service": "govbank-assistant",
         "version": APP_VERSION,
         "knowledge_entries": stats,
+        "rag": rag_health(),
         **CAPABILITIES,
     }
 

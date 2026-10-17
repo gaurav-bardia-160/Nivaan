@@ -202,9 +202,43 @@ def test_pipeline_refuses_unsupported_question_without_guessing():
     assert answer.warnings[0].title == "Answer not grounded"
 
 
+def test_live_rag_is_feature_flagged_and_returns_cited_candidate_evidence(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    response = client.post(
+        "/api/ask",
+        json={"input_type": "question", "question": "How can I download e-PAN?", "language": "en"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["confidence"] == "low"
+    assert payload["citations"]
+    assert payload["citations"][0]["factual_verification"] == "unverified"
+    assert payload["citations"][0]["url"].startswith("https://")
+    assert "not been independently fact-checked" in payload["summary"]
+
+    health = client.get("/api/health").json()["rag"]
+    assert health["enabled"] is True
+    assert health["ready"] is True
+    assert health["documents"] == 746
+
+
+def test_live_rag_defaults_to_disabled(monkeypatch):
+    monkeypatch.delenv("RAG_ENABLED", raising=False)
+    response = client.post(
+        "/api/ask",
+        json={"input_type": "question", "question": "How do I apply for a PAN card?", "language": "en"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["title"] == "Apply for a new PAN card"
+    assert payload["citations"] == []
+    assert client.get("/api/health").json()["rag"]["enabled"] is False
+
+
 def test_health_endpoint():
     response = client.get("/api/health")
-
     assert response.status_code == 200
     payload = response.json()
     assert payload["status"] == "ok"
