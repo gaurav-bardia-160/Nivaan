@@ -4,6 +4,7 @@ from backend.modules.agent import route
 from backend.modules.guardrails import find_flags, mask_text
 from backend.offline.data_builder import SourceDocument, clean_and_chunk, clean_text, structure_chunks
 from backend.main import app
+import backend.pipeline as pipeline_module
 from backend.pipeline import run
 from backend.schemas import Answer, AskRequest
 
@@ -99,6 +100,32 @@ def test_pipeline_masks_document_text_before_answering():
     assert {item.item_type for item in answer.masked_items} == {"pan", "phone"}
 
 
+def test_pipeline_masks_question_and_document_before_routing(monkeypatch):
+    captured = {}
+    original_route = pipeline_module.route
+
+    def capture_route(request):
+        captured["question"] = request.question
+        captured["document_text"] = request.document_text
+        return original_route(request)
+
+    monkeypatch.setattr(pipeline_module, "route", capture_route)
+    answer = pipeline_module.run(
+        AskRequest(
+            input_type="document",
+            question="Explain PAN ABCDE1234F for phone 9876543210",
+            document_text="Loan account no 123456789012 uses IFSC HDFC0001234.",
+        )
+    )
+
+    routed_text = f"{captured['question']} {captured['document_text']}"
+    for secret in ("ABCDE1234F", "9876543210", "123456789012", "HDFC0001234"):
+        assert secret not in routed_text
+    assert "[PAN]" in captured["question"]
+    assert "[BANK_ACCOUNT]" in captured["document_text"]
+    assert {item.item_type for item in answer.masked_items} == {"pan", "phone", "bank_account", "ifsc"}
+
+
 def test_ask_endpoint_document_text_masks_sensitive_values():
     response = client.post(
         "/api/ask",
@@ -175,9 +202,71 @@ def test_pipeline_refuses_unsupported_question_without_guessing():
     assert answer.warnings[0].title == "Answer not grounded"
 
 
+def test_live_rag_is_feature_flagged_and_returns_cited_candidate_evidence(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    response = client.post(
+        "/api/ask",
+        json={"input_type": "question", "question": "How can I download e-PAN?", "language": "en"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["confidence"] == "low"
+    assert payload["citations"]
+    assert payload["citations"][0]["factual_verification"] == "unverified"
+    assert payload["citations"][0]["url"].startswith("https://")
+    assert "not been independently fact-checked" in payload["summary"]
+
+    health = client.get("/api/health").json()["rag"]
+    assert health["enabled"] is True
+    assert health["ready"] is True
+    assert health["documents"] == 632
+
+
+def test_live_rag_rejects_out_of_corpus_topics_and_preserves_document_routing(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    monkeypatch.setenv("RAG_VECTOR_ENABLED", "true")
+
+    passport = client.post(
+        "/api/ask",
+        json={"input_type": "question", "question": "How do I apply for a passport?", "language": "en"},
+    ).json()
+    assert passport["title"] == "No verified guide found"
+    assert passport["citations"] == []
+
+    notice = client.post(
+        "/api/ask",
+        json={
+            "input_type": "document",
+            "question": "Explain this bank recovery notice",
+            "document_text": "Loan payment overdue. Respond within 15 days. Late payment penalty applies.",
+            "language": "en",
+        },
+    ).json()
+    assert notice["title"] == "Understand a loan agreement"
+    assert notice["citations"] == []
+    warning_titles = {warning["title"] for warning in notice["warnings"]}
+    assert "Deadline or response window found" in warning_titles
+    assert "Late payment or penalty clause found" in warning_titles
+
+
+def test_live_rag_defaults_to_disabled(monkeypatch):
+    monkeypatch.delenv("RAG_ENABLED", raising=False)
+    monkeypatch.delenv("RAG_VECTOR_ENABLED", raising=False)
+    response = client.post(
+        "/api/ask",
+        json={"input_type": "question", "question": "How do I apply for a PAN card?", "language": "en"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["title"] == "Apply for a new PAN card"
+    assert payload["citations"] == []
+    assert client.get("/api/health").json()["rag"]["enabled"] is False
+
+
 def test_health_endpoint():
     response = client.get("/api/health")
-
     assert response.status_code == 200
     payload = response.json()
     assert payload["status"] == "ok"

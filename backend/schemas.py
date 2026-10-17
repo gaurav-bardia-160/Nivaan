@@ -136,6 +136,21 @@ class KnowledgeEntry(BaseModel):
         return cleaned
 
 
+class Citation(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    title: str = Field(min_length=1, max_length=300)
+    url: HttpUrl
+    excerpt: str = Field(min_length=1, max_length=700)
+    reported_last_verified: date
+    factual_verification: Literal["unverified", "verified"] = "unverified"
+
+    @field_validator("title", "excerpt", mode="before")
+    @classmethod
+    def clean_text(cls, value):
+        return _clean_text(value) if isinstance(value, str) else value
+
+
 class Answer(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -148,6 +163,7 @@ class Answer(BaseModel):
     last_verified: date
     confidence: Literal["low", "medium", "high"] = "medium"
     masked_items: List[MaskedItem] = Field(default_factory=list, max_length=30)
+    citations: List[Citation] = Field(default_factory=list, max_length=10)
     disclaimer: str = Field(
         default="This is a plain-language explanation and guidance helper, not legal, tax, or financial advice.",
         min_length=1,
@@ -175,4 +191,5 @@ __all__ = [
     "MaskedItem",
     "KnowledgeEntry",
     "SourceInfo",
+    "Citation",
 ]

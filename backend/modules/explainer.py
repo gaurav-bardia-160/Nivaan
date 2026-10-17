@@ -3,7 +3,8 @@ from __future__ import annotations
 from typing import Any
 
 from backend.config import DEFAULT_DISCLAIMER
-from backend.schemas import Answer, KnowledgeEntry, MaskedItem, Step, Warning
+from backend.rag.models import RetrievalResult
+from backend.schemas import Answer, Citation, KnowledgeEntry, MaskedItem, Step, Warning
 
 NOT_FOUND_SOURCE_URL = "https://www.india.gov.in/"
 NOT_FOUND_LAST_VERIFIED = "2026-10-03"
@@ -59,6 +60,74 @@ def explain_entry(
     )
 
 
+def explain_rag_result(
+    result: RetrievalResult,
+    user_question: str,
+    masked_items: list[MaskedItem] | None = None,
+) -> Answer | None:
+    """Return a conservative extractive answer from candidate official passages.
+
+    The corpus has source provenance but has not been independently fact-checked.
+    Therefore this function quotes short passages, exposes that limitation, and
+    never turns candidate text into invented procedures or recommendations.
+    """
+    if not result.hits:
+        return None
+
+    citations: list[Citation] = []
+    seen_urls: set[str] = set()
+    for hit in result.hits:
+        for source in hit.document.sources:
+            if source.source_url in seen_urls:
+                continue
+            seen_urls.add(source.source_url)
+            excerpt = " ".join(hit.document.text.split())[:697]
+            citations.append(
+                Citation(
+                    title=source.title[:300],
+                    url=source.source_url,
+                    excerpt=excerpt,
+                    reported_last_verified=source.reported_last_verified,
+                    factual_verification="unverified",
+                )
+            )
+            break
+        if len(citations) >= 3:
+            break
+
+    if not citations:
+        return None
+
+    first = citations[0]
+    question = " ".join(user_question.split())[:240]
+    return Answer(
+        title=f"Relevant official material: {first.title}"[:180],
+        summary=(
+            f"I found official-source material related to '{question}'. "
+            "The passages below are shown as evidence, but this imported corpus has not been independently fact-checked. "
+            "Confirm any fee, deadline, eligibility rule, or required action on the linked official page before relying on it."
+        ),
+        documents_needed=[],
+        steps=[
+            Step(title="Read the cited passage", detail=first.excerpt),
+            Step(title="Confirm the current rule", detail="Open the cited official page and verify time-sensitive details before acting."),
+        ],
+        warnings=[
+            Warning(
+                title="Candidate evidence, not verified advice",
+                message="Retrieval found related official-source text, but the project has not independently validated every factual statement.",
+                severity="warning",
+            )
+        ],
+        source_url=first.url,
+        last_verified=first.reported_last_verified,
+        confidence="low",
+        masked_items=masked_items or [],
+        citations=citations,
+        disclaimer=DEFAULT_DISCLAIMER,
+    )
+
+
 def not_found_answer(user_question: str, masked_items: list[MaskedItem] | None = None) -> Answer:
     clean_question = " ".join(user_question.strip().split()) or "your request"
     if len(clean_question) > 240:
@@ -96,4 +165,4 @@ def not_found_answer(user_question: str, masked_items: list[MaskedItem] | None =
     )
 
 
-__all__ = ["DEFAULT_DISCLAIMER", "explain_entry", "not_found_answer"]
+__all__ = ["DEFAULT_DISCLAIMER", "explain_entry", "explain_rag_result", "not_found_answer"]

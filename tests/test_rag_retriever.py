@@ -3,11 +3,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from backend.rag.loader import load_corpus
 from backend.rag.retriever import RagRetriever
 from backend.rag.bm25 import tokenize
 from backend.rag.embeddings import DisabledEmbeddingProvider, EmbeddingsUnavailable
-from backend.rag.vector_store import DisabledVectorStore, VectorStoreUnavailable
+from backend.rag.vector_store import DisabledVectorStore, QdrantLocalVectorStore, VectorHit, VectorStoreUnavailable
 
 
 def test_tokenizer_preserves_civic_exact_terms():
@@ -45,7 +47,7 @@ def test_lexical_retriever_handles_empty_and_category_filter():
     assert empty.hits == ()
 
     pan = retriever.search("download e-PAN card", category="pan", top_k=3)
-    assert pan.status == "supported"
+    assert pan.status == "supported_lexical"
     assert pan.searched_documents == 242
     assert pan.hits
     assert all(hit.document.category == "pan" for hit in pan.hits)
@@ -63,3 +65,47 @@ def test_lexical_eval_questions_hit_expected_category_and_terms():
             failures.append({"question": case["question"], "status": result.status, "hits": [h.document.id for h in result.hits]})
         assert all(hit.document.category == case["category"] for hit in result.hits)
     assert failures == []
+
+
+class _FakeEmbeddingProvider:
+    def embed_texts(self, texts):
+        return tuple((1.0, 0.0, 0.0) for _ in texts)
+
+
+class _FakeVectorStore:
+    def __init__(self, document_id):
+        self.document_id = document_id
+
+    def search(self, query_vector, *, top_k, category=None):
+        return (VectorHit(document_id=self.document_id, score=0.95),)
+
+    def health(self):
+        return {"provider": "fake", "ready": True}
+
+
+def test_hybrid_retriever_fuses_vector_and_lexical_signals():
+    loaded = load_corpus()
+    target = next(document for document in loaded.documents if document.category == "aadhaar")
+    retriever = RagRetriever(
+        loaded,
+        embedding_provider=_FakeEmbeddingProvider(),
+        vector_store=_FakeVectorStore(target.id),
+    )
+
+    result = retriever.search("zzzxxyy qqqvvv", top_k=3)
+    assert result.status == "supported_hybrid"
+    assert result.hits[0].document.id == target.id
+    assert result.hits[0].signals["vector_score"] == 0.95
+
+
+def test_qdrant_local_store_persists_and_filters_canonical_documents(tmp_path):
+    pytest.importorskip("qdrant_client")
+    documents = load_corpus().documents[:3]
+    vectors = ((1.0, 0.0), (0.0, 1.0), (0.5, 0.5))
+    store = QdrantLocalVectorStore(tmp_path / "qdrant", collection="test_chunks")
+    store.rebuild(documents, vectors)
+
+    assert store.health()["points"] == 3
+    hits = store.search(vectors[0], top_k=1, category=documents[0].category)
+    assert hits
+    assert hits[0].document_id == documents[0].id

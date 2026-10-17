@@ -1,67 +1,114 @@
-"""Read-only retrieval baseline. Not wired into live answers yet."""
+"""Hybrid lexical and vector retrieval over the canonical corpus."""
 from __future__ import annotations
 
 from dataclasses import dataclass
 
 from backend.rag.bm25 import BM25Index, tokenize
+from backend.rag.embeddings import EmbeddingProvider
 from backend.rag.loader import load_corpus
 from backend.rag.models import LoadResult, RagDocument, RetrievalHit, RetrievalResult
+from backend.rag.vector_store import VectorStore
 
 
 @dataclass(frozen=True)
 class RetrieverConfig:
     lexical_top_k: int = 30
+    vector_top_k: int = 30
     final_top_k: int = 8
     rrf_k: int = 60
 
     def __post_init__(self):
-        if self.lexical_top_k < 1 or self.final_top_k < 1 or self.rrf_k < 1:
+        if min(self.lexical_top_k, self.vector_top_k, self.final_top_k, self.rrf_k) < 1:
             raise ValueError("retriever config values must be positive")
 
 
-def _document_text(doc: RagDocument) -> str:
+def document_text(doc: RagDocument) -> str:
     title_bits = " ".join(f"{source.title} {source.section}" for source in doc.sources)
     return f"{doc.category} {' '.join(doc.tags)} {title_bits} {doc.text}"
 
 
 class RagRetriever:
-    def __init__(self, load_result: LoadResult | None = None, *, config: RetrieverConfig | None = None):
+    def __init__(
+        self,
+        load_result: LoadResult | None = None,
+        *,
+        config: RetrieverConfig | None = None,
+        embedding_provider: EmbeddingProvider | None = None,
+        vector_store: VectorStore | None = None,
+    ):
+        if (embedding_provider is None) != (vector_store is None):
+            raise ValueError("embedding_provider and vector_store must be configured together")
         self.load_result = load_result or load_corpus()
         self.config = config or RetrieverConfig()
         self.documents = self.load_result.documents
-        self.index = BM25Index(_document_text(document) for document in self.documents)
+        self.documents_by_id = {document.id: document for document in self.documents}
+        self.index = BM25Index(document_text(document) for document in self.documents)
+        self.embedding_provider = embedding_provider
+        self.vector_store = vector_store
 
     def search(self, query: str, *, category: str | None = None, top_k: int | None = None) -> RetrievalResult:
         clean_query = " ".join((query or "").split())
+        requested_top_k = self.config.final_top_k if top_k is None else top_k
+        if requested_top_k < 1:
+            raise ValueError("top_k must be positive")
         if not clean_query:
             return RetrievalResult(query=clean_query, hits=(), status="empty_query", searched_documents=0)
+
         allowed = None
         if category:
             allowed = {idx for idx, doc in enumerate(self.documents) if doc.category == category}
-        hits = self.index.search(clean_query, top_k=self.config.lexical_top_k, allowed_indices=allowed)
-        fused = []
+
+        lexical_hits = self.index.search(clean_query, top_k=self.config.lexical_top_k, allowed_indices=allowed)
+        candidates: dict[str, dict[str, float]] = {}
+        lexical_ranks: dict[str, int] = {}
         q_terms = set(tokenize(clean_query))
-        for rank, hit in enumerate(hits, 1):
-            doc = self.documents[hit.index]
-            tags = set(doc.tags)
-            metadata_overlap = len(q_terms & tags) / max(len(q_terms), 1)
-            # RRF keeps rank stable and avoids presenting BM25 score as probability.
-            score = 1 / (self.config.rrf_k + rank) + min(metadata_overlap, 1.0) * 0.01
-            fused.append(RetrievalHit(
-                document=doc,
-                score=score,
-                rank=rank,
-                signals={"bm25_score": hit.score, "rrf": 1 / (self.config.rrf_k + rank), "tag_overlap": metadata_overlap},
-            ))
+        for rank, hit in enumerate(lexical_hits, 1):
+            document = self.documents[hit.index]
+            lexical_ranks[document.id] = rank
+            signals = candidates.setdefault(document.id, {})
+            signals["bm25_score"] = hit.score
+            signals["lexical_rrf"] = 1 / (self.config.rrf_k + rank)
+
+        if self.embedding_provider is not None and self.vector_store is not None:
+            query_vector = self.embedding_provider.embed_texts((clean_query,))[0]
+            for rank, hit in enumerate(
+                self.vector_store.search(query_vector, top_k=self.config.vector_top_k, category=category),
+                1,
+            ):
+                if hit.document_id not in self.documents_by_id:
+                    continue
+                signals = candidates.setdefault(hit.document_id, {})
+                signals["vector_score"] = hit.score
+                signals["vector_rrf"] = 1 / (self.config.rrf_k + rank)
+
+        fused: list[RetrievalHit] = []
+        for document_id, signals in candidates.items():
+            document = self.documents_by_id[document_id]
+            metadata_overlap = len(q_terms & set(document.tags)) / max(len(q_terms), 1)
+            signals["tag_overlap"] = metadata_overlap
+            score = signals.get("lexical_rrf", 0.0) + signals.get("vector_rrf", 0.0) + min(metadata_overlap, 1.0) * 0.01
+            fused.append(
+                RetrievalHit(
+                    document=document,
+                    score=score,
+                    rank=lexical_ranks.get(document_id, self.config.vector_top_k + 1),
+                    signals=signals,
+                )
+            )
+
         fused.sort(key=lambda result: (-result.score, result.rank, result.document.id))
-        final = tuple(fused[:top_k or self.config.final_top_k])
+        final = tuple(fused[:requested_top_k])
+        mode = "hybrid" if self.embedding_provider is not None else "lexical"
         return RetrievalResult(
             query=clean_query,
             hits=final,
-            status="supported" if final else "insufficient",
+            status=f"supported_{mode}" if final else "insufficient",
             searched_documents=len(allowed) if allowed is not None else len(self.documents),
         )
 
 
 def search(query: str, *, category: str | None = None, top_k: int = 8) -> RetrievalResult:
     return RagRetriever().search(query, category=category, top_k=top_k)
+
+
+__all__ = ["RagRetriever", "RetrieverConfig", "document_text", "search"]
