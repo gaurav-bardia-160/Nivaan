@@ -4,6 +4,7 @@ from backend.modules.agent import route
 from backend.modules.guardrails import find_flags, mask_text
 from backend.offline.data_builder import SourceDocument, clean_and_chunk, clean_text, structure_chunks
 from backend.main import app
+import backend.pipeline as pipeline_module
 from backend.pipeline import run
 from backend.schemas import Answer, AskRequest
 
@@ -97,6 +98,32 @@ def test_pipeline_masks_document_text_before_answering():
     assert "ABCDE1234F" not in answer.summary
     assert "9876543210" not in answer.summary
     assert {item.item_type for item in answer.masked_items} == {"pan", "phone"}
+
+
+def test_pipeline_masks_question_and_document_before_routing(monkeypatch):
+    captured = {}
+    original_route = pipeline_module.route
+
+    def capture_route(request):
+        captured["question"] = request.question
+        captured["document_text"] = request.document_text
+        return original_route(request)
+
+    monkeypatch.setattr(pipeline_module, "route", capture_route)
+    answer = pipeline_module.run(
+        AskRequest(
+            input_type="document",
+            question="Explain PAN ABCDE1234F for phone 9876543210",
+            document_text="Loan account no 123456789012 uses IFSC HDFC0001234.",
+        )
+    )
+
+    routed_text = f"{captured['question']} {captured['document_text']}"
+    for secret in ("ABCDE1234F", "9876543210", "123456789012", "HDFC0001234"):
+        assert secret not in routed_text
+    assert "[PAN]" in captured["question"]
+    assert "[BANK_ACCOUNT]" in captured["document_text"]
+    assert {item.item_type for item in answer.masked_items} == {"pan", "phone", "bank_account", "ifsc"}
 
 
 def test_ask_endpoint_document_text_masks_sensitive_values():
