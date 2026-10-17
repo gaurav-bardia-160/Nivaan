@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GovBank Assistant - AI Chatbot for Indian government, banking, and legal procedures.">
     <title>GovBank Assistant</title>
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,7 +62,7 @@
                         <span class="brand-avatar">🏛️</span>
                         <div>
                             <h1 class="brand-title">GovBank Assistant</h1>
-                            <span class="brand-subtitle">Verified procedures in plain language</span>
+                            <span class="brand-subtitle">Source-backed procedures in plain language</span>
                         </div>
                     </div>
                 </div>
@@ -79,7 +80,7 @@
                     <div class="welcome-badge">🇮🇳 IBCP AI Conclave 2026</div>
                     <h2 class="welcome-title">How can I help with official procedures today?</h2>
                     <p class="welcome-text">
-                        Ask about government forms, tax notices, bank rules, or upload a photo/PDF of a document to get a plain-language checklist with verified sources.
+                        Ask about PAN, Aadhaar, government forms, tax notices, and bank rules, or upload a text-based PDF/text file for a plain-language checklist with source evidence.
                     </p>
 
                     <!-- Quick Prompt Suggestions -->
@@ -124,17 +125,13 @@
                     <input 
                         type="file" 
                         id="fileInput" 
-                        accept="image/*,application/pdf,.txt,.doc,.docx" 
-                        capture="environment"
+                        accept="application/pdf,text/plain,text/markdown,text/csv,.txt,.md,.csv"
                         style="display: none;"
                     >
 
-                    <!-- Camera & Document Attachment Buttons -->
-                    <button class="btn-attach" id="attachBtn" title="Upload document, photo or scan notice">
+                    <!-- Supported document attachment -->
+                    <button class="btn-attach" id="attachBtn" title="Upload a text file or text-based PDF">
                         <span>📎</span>
-                    </button>
-                    <button class="btn-attach" id="cameraBtn" title="Take a picture of form or notice with camera">
-                        <span>📷</span>
                     </button>
 
                     <!-- Text Input -->
@@ -159,6 +156,5 @@
 
     <!-- Main Controller Script -->
     <script src="app.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>

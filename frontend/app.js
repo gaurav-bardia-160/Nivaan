@@ -40,7 +40,7 @@ const suggestionCards = document.querySelectorAll(".suggestion-card");
 const UI_TRANSLATIONS = {
     "en": {
         "welcomeTitle": "How can I help with official procedures today?",
-        "welcomeText": "Ask about government forms, tax notices, bank rules, or upload a photo/PDF of a document to get a plain-language checklist with verified sources.",
+        "welcomeText": "Ask about PAN, Aadhaar, government forms, tax notices, and bank rules, or upload a text-based PDF/text file for source-backed guidance.",
         "inputPlaceholder": "Ask a question or upload a notice/form...",
         "previewSample": "Preview Sample",
         "darkTheme": "🌙 Dark",
@@ -55,7 +55,7 @@ const UI_TRANSLATIONS = {
     },
     "hi": {
         "welcomeTitle": "आज मैं सरकारी प्रक्रियाओं में आपकी क्या मदद कर सकता हूँ?",
-        "welcomeText": "सरकारी फॉर्म, टैक्स नोटिस, बैंक नियमों के बारे में पूछें, या स्पष्ट चेकलिस्ट प्राप्त करने के लिए दस्तावेज़ की फोटो/पीडीएफ अपलोड करें।",
+        "welcomeText": "पैन, आधार, सरकारी फॉर्म, टैक्स नोटिस और बैंक नियमों के बारे में पूछें, या स्रोत-आधारित मार्गदर्शन के लिए टेक्स्ट पीडीएफ/फाइल अपलोड करें।",
         "inputPlaceholder": "कोई प्रश्न पूछें या नोटिस/फॉर्म अपलोड करें...",
         "previewSample": "नमूना देखें",
         "darkTheme": "🌙 डार्क",
@@ -70,7 +70,7 @@ const UI_TRANSLATIONS = {
     },
     "gu": {
         "welcomeTitle": "આજે હું સરકારી પ્રક્રિયાઓમાં તમારી કેવી રીતે મદદ કરી શકું?",
-        "welcomeText": "સરકારી ફોર્મ, ટેક્સ નોટિસ, બેંક નિયમો વિશે પૂછો, અથવા સરળ ચેકલિસ્ટ મેળવવા માટે દસ્તાવેજનો ફોટો/પીડીએફ અપલોડ કરો.",
+        "welcomeText": "PAN, આધાર, સરકારી ફોર્મ, ટેક્સ નોટિસ અને બેંક નિયમો વિશે પૂછો, અથવા સ્રોત આધારિત માર્ગદર્શન માટે ટેક્સ્ટ PDF/ફાઇલ અપલોડ કરો.",
         "inputPlaceholder": "કોઈ પ્રશ્ન પૂછો અથવા નોટિસ/ફોર્મ અપલોડ કરો...",
         "previewSample": "નમૂનો જુઓ",
         "darkTheme": "🌙 ડાર્ક",
@@ -533,6 +533,37 @@ function appendAssistantResponse(answer) {
         `;
     }
 
+    // 5. Evidence citations
+    let citationsHtml = "";
+    const citations = Array.isArray(answer.citations) ? answer.citations : [];
+    if (citations.length > 0) {
+        const citationItems = citations.map((citation, idx) => `
+            <article class="citation-card">
+                <div class="citation-header">
+                    <span class="citation-number">${idx + 1}</span>
+                    <a href="${escapeHtml(citation.url)}" target="_blank" rel="noopener noreferrer" class="citation-title">
+                        ${escapeHtml(citation.title)} ↗
+                    </a>
+                </div>
+                <p class="citation-excerpt">${escapeHtml(citation.excerpt)}</p>
+                <div class="citation-meta">
+                    <span>Reported date: ${escapeHtml(citation.reported_last_verified)}</span>
+                    <span class="verification-status verification-${escapeHtml(citation.factual_verification || 'unverified')}">
+                        ${escapeHtml((citation.factual_verification || 'unverified').toUpperCase())}
+                    </span>
+                </div>
+            </article>
+        `).join("");
+        citationsHtml = `
+            <section class="citations-section" aria-label="Answer evidence sources">
+                <div class="section-title"><span>📚 Evidence Sources</span></div>
+                <div class="citations-list">${citationItems}</div>
+            </section>
+        `;
+    }
+    const hasUnverifiedEvidence = citations.some(citation => citation.factual_verification !== "verified");
+    const sourceDateLabel = hasUnverifiedEvidence ? "Source date reported" : "Verified";
+
     row.innerHTML = `
         <div class="message-avatar bot-avatar">🏛️</div>
         <div class="message-content">
@@ -562,13 +593,16 @@ function appendAssistantResponse(answer) {
                 <!-- Risk Flags -->
                 ${warningsHtml}
 
+                <!-- Evidence citations -->
+                ${citationsHtml}
+
                 <!-- Sourced & Dated Footer -->
                 <div class="response-footer">
                     <a href="${escapeHtml(answer.source_url)}" target="_blank" rel="noopener noreferrer" class="source-anchor">
                         🔗 Official Source: ${escapeHtml(answer.source_url)} ↗
                     </a>
                     <span class="verify-pill">
-                        Verified: <strong>${escapeHtml(answer.last_verified)}</strong>
+                        ${sourceDateLabel}: <strong>${escapeHtml(answer.last_verified)}</strong>
                     </span>
                 </div>
 
