@@ -176,6 +176,24 @@
     border-color: #1f2937;
 }
 
+[data-theme="dark"] .user-bubble {
+    background-color: #1e293b;
+    color: #f1f5f9;
+}
+[data-theme="dark"] .user-edit-textarea {
+    background-color: #111827;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+[data-theme="dark"] .user-edit-btn.cancel-btn {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+[data-theme="dark"] .edit-msg-btn:hover {
+    background-color: #374151;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -281,15 +299,44 @@ body {
     gap: 4px;
 }
 .history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 8px 10px;
     font-size: 13px;
     color: var(--text-secondary);
     border-radius: var(--radius-sm);
     cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    gap: 8px;
+    user-select: none;
+}
+.history-item-title {
+    flex-grow: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: background 0.15s;
+}
+.history-item-del {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.15s, color 0.15s;
+    padding: 2px 4px;
+    border-radius: 4px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.history-item:hover .history-item-del {
+    opacity: 0.6;
+}
+.history-item-del:hover {
+    opacity: 1 !important;
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
 }
 .history-item:hover, .history-item.active {
     background-color: #e5e7eb;
@@ -553,6 +600,89 @@ body {
     color: var(--text-primary);
     line-height: 1.5;
     display: inline-block;
+    word-break: break-word;
+}
+
+.user-bubble-wrapper {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 8px;
+    flex-direction: row-reverse;
+}
+
+.edit-msg-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    opacity: 0;
+    padding: 4px 6px;
+    border-radius: var(--radius-sm);
+    transition: opacity 0.15s, background 0.15s;
+    color: var(--text-muted);
+}
+.message-row:hover .edit-msg-btn {
+    opacity: 0.6;
+}
+.edit-msg-btn:hover {
+    opacity: 1 !important;
+    background-color: var(--border-light);
+}
+
+.user-edit-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto;
+    text-align: left;
+}
+.user-edit-textarea {
+    width: 100%;
+    min-height: 70px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    resize: vertical;
+    outline: none;
+    box-sizing: border-box;
+}
+.user-edit-textarea:focus {
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.user-edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.user-edit-btn {
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border-light);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    transition: background 0.15s;
+}
+.user-edit-btn.save-btn {
+    background-color: var(--brand-blue);
+    color: #ffffff;
+    border-color: var(--brand-blue);
+}
+.user-edit-btn.save-btn:hover {
+    background-color: #1d4ed8;
+}
+.user-edit-btn.cancel-btn:hover {
+    background-color: var(--border-light);
 }
 
 .user-attachment-pill {

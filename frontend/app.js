@@ -1,19 +1,23 @@
 /**
  * GovBank Assistant - Minimal Chatbot Controller
- * Handles conversation flow, camera/file upload, PII masking, and structured checklist rendering.
+ * Handles conversation flow, camera/file upload, PII masking, structured checklist rendering,
+ * editable user prompts, and multi-turn persistent chat history in localStorage.
  */
 
 const API_BASE = "http://127.0.0.1:8000";
+const STORAGE_KEY = "govbank_chats_v1";
+const ACTIVE_CHAT_KEY = "govbank_active_chat_id";
+
 let isBackendLive = false;
-let currentChatHistory = [];
-let attachedFile = null; // { name, type, size, textContent }
+let chats = []; // Array of chat session objects
+let activeChatId = null;
+let attachedFile = null; // { name, type, size, textContent, fileRef, isImage, isPdf }
 
 // DOM Elements
 const sidebar = document.getElementById("sidebar");
 const sidebarToggle = document.getElementById("sidebarToggle");
 const newChatBtn = document.getElementById("newChatBtn");
 const historyList = document.getElementById("historyList");
-const langSelect = document.getElementById("langSelect");
 const backendBadge = document.getElementById("backendBadge");
 const previewSampleBtn = document.getElementById("previewSampleBtn");
 
@@ -33,99 +37,23 @@ const previewFilename = document.getElementById("previewFilename");
 const previewIcon = document.getElementById("previewIcon");
 const removeAttachmentBtn = document.getElementById("removeAttachmentBtn");
 
-// Quick Prompts
 const suggestionCards = document.querySelectorAll(".suggestion-card");
-
-// --- TRANSLATIONS ---
-const UI_TRANSLATIONS = {
-    "en": {
-        "welcomeTitle": "How can I help with official procedures today?",
-        "welcomeText": "Ask about PAN, Aadhaar, government forms, tax notices, and bank rules, or upload a text-based PDF/text file for source-backed guidance.",
-        "inputPlaceholder": "Ask a question or upload a notice/form...",
-        "previewSample": "Preview Sample",
-        "darkTheme": "🌙 Dark",
-        "lightTheme": "☀️ Light",
-        "historyHeading": "Recent Inquiries",
-        "privacyBadge": "Privacy-by-Design",
-        "privacyText": "Sensitive values are masked by the backend before retrieval and explanation.",
-        "q1Title": "Apply for PAN Card", "q1Desc": "Form 49A steps, fees & documents",
-        "q2Title": "File ITR-1 Return", "q2Desc": "Income tax filing basics & proofs",
-        "q3Title": "Loan Prepayment Rules", "q3Desc": "RBI rules on floating rate penalty bans",
-        "q4Title": "Cheque Bounce Notice", "q4Desc": "Deadlines, 15-day notice & legal steps"
-    },
-    "hi": {
-        "welcomeTitle": "आज मैं सरकारी प्रक्रियाओं में आपकी क्या मदद कर सकता हूँ?",
-        "welcomeText": "पैन, आधार, सरकारी फॉर्म, टैक्स नोटिस और बैंक नियमों के बारे में पूछें, या स्रोत-आधारित मार्गदर्शन के लिए टेक्स्ट पीडीएफ/फाइल अपलोड करें।",
-        "inputPlaceholder": "कोई प्रश्न पूछें या नोटिस/फॉर्म अपलोड करें...",
-        "previewSample": "नमूना देखें",
-        "darkTheme": "🌙 डार्क",
-        "lightTheme": "☀️ लाइट",
-        "historyHeading": "हाल की पूछताछ",
-        "privacyBadge": "गोपनीयता की सुरक्षा",
-        "privacyText": "आधार, पैन, फोन और खाते नंबर हटा दिए जाते हैं।",
-        "q1Title": "पैन कार्ड के लिए आवेदन", "q1Desc": "फॉर्म 49A के चरण, शुल्क और दस्तावेज़",
-        "q2Title": "ITR-1 रिटर्न भरें", "q2Desc": "आयकर रिटर्न बेसिक्स और प्रमाण",
-        "q3Title": "ऋण पूर्व भुगतान नियम", "q3Desc": "फ्लोटिंग रेट पेनल्टी पर आरबीआई के नियम",
-        "q4Title": "चेक बाउंस नोटिस", "q4Desc": "समय सीमा, 15-दिन का नोटिस और कानूनी कदम"
-    },
-    "gu": {
-        "welcomeTitle": "આજે હું સરકારી પ્રક્રિયાઓમાં તમારી કેવી રીતે મદદ કરી શકું?",
-        "welcomeText": "PAN, આધાર, સરકારી ફોર્મ, ટેક્સ નોટિસ અને બેંક નિયમો વિશે પૂછો, અથવા સ્રોત આધારિત માર્ગદર્શન માટે ટેક્સ્ટ PDF/ફાઇલ અપલોડ કરો.",
-        "inputPlaceholder": "કોઈ પ્રશ્ન પૂછો અથવા નોટિસ/ફોર્મ અપલોડ કરો...",
-        "previewSample": "નમૂનો જુઓ",
-        "darkTheme": "🌙 ડાર્ક",
-        "lightTheme": "☀️ લાઇટ",
-        "historyHeading": "તાજેતરની પૂછપરછ",
-        "privacyBadge": "ગોપનીયતા રક્ષણ",
-        "privacyText": "આધાર, પાન, ફોન અને એકાઉન્ટ છુપાવેલ છે.",
-        "q1Title": "પાન કાર્ડ માટે અરજી", "q1Desc": "ફોર્મ 49A ના પગલાં, ફી અને દસ્તાવેજો",
-        "q2Title": "ITR-1 રિટર્ન ભરો", "q2Desc": "આવકવેરા રિટર્નની મૂળભૂત બાબતો",
-        "q3Title": "લોન પ્રીપેમેન્ટ નિયમો", "q3Desc": "ફ્લોટિંગ રેટ પેનલ્ટી પર RBI ના નિયમો",
-        "q4Title": "ચેક બાઉન્સ નોટિસ", "q4Desc": "સમય મર્યાદા, 15-દિવસની નોટિસ અને કાનૂની પગલાં"
-    }
-};
-
-function translateUI() {
-    const lang = langSelect ? langSelect.value : "en";
-    const t = UI_TRANSLATIONS[lang] || UI_TRANSLATIONS["en"];
-
-    const setInner = (selector, text) => { const el = document.querySelector(selector); if(el) el.innerHTML = text; };
-    
-    setInner('.welcome-title', t.welcomeTitle);
-    setInner('.welcome-text', t.welcomeText);
-    if(chatInput) chatInput.placeholder = t.inputPlaceholder;
-    if(previewSampleBtn) previewSampleBtn.innerHTML = t.previewSample;
-    setInner('.history-heading', t.historyHeading);
-    
-    const pBadge = document.querySelector('.privacy-badge div');
-    if(pBadge) pBadge.innerHTML = `<strong>${t.privacyBadge}</strong><p>${t.privacyText}</p>`;
-    
-    const themeToggleBtn = document.getElementById("themeToggleBtn");
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    if (themeToggleBtn) themeToggleBtn.innerHTML = isDark ? t.lightTheme : t.darkTheme;
-    
-    const cards = document.querySelectorAll('.suggestion-card');
-    if(cards.length >= 4) {
-        cards[0].querySelector('strong').innerHTML = t.q1Title; cards[0].querySelector('p').innerHTML = t.q1Desc;
-        cards[1].querySelector('strong').innerHTML = t.q2Title; cards[1].querySelector('p').innerHTML = t.q2Desc;
-        cards[2].querySelector('strong').innerHTML = t.q3Title; cards[2].querySelector('p').innerHTML = t.q3Desc;
-        cards[3].querySelector('strong').innerHTML = t.q4Title; cards[3].querySelector('p').innerHTML = t.q4Desc;
-    }
-}
 
 // --- INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
     checkBackendHealth();
     setupEventListeners();
-    translateUI(); // initialize translations based on default dropdown
+    loadChatsFromStorage();
+    renderHistoryList();
+
+    if (activeChatId) {
+        loadActiveChatMessages();
+    } else {
+        resetChatView();
+    }
 });
 
 function setupEventListeners() {
-    // Language change
-    if (langSelect) {
-        langSelect.addEventListener("change", translateUI);
-    }
-
     // Sidebar toggle
     if (sidebarToggle && sidebar) {
         sidebarToggle.addEventListener("click", () => {
@@ -133,16 +61,16 @@ function setupEventListeners() {
         });
     }
 
-    // New Chat
+    // New Chat Button
     if (newChatBtn) {
-        newChatBtn.addEventListener("click", resetChat);
+        newChatBtn.addEventListener("click", handleNewChatBtn);
     }
 
-    // Preview Sample
+    // Preview Sample Button
     if (previewSampleBtn) {
         previewSampleBtn.addEventListener("click", loadSampleAnswer);
     }
-    
+
     // Theme Toggle
     const themeToggleBtn = document.getElementById("themeToggleBtn");
     if (themeToggleBtn) {
@@ -182,14 +110,13 @@ function setupEventListeners() {
                 handleUserSubmit();
             }
         });
-        // Auto-expand input height
         chatInput.addEventListener("input", () => {
             chatInput.style.height = "auto";
             chatInput.style.height = Math.min(chatInput.scrollHeight, 140) + "px";
         });
     }
 
-    // File Attachment (Document Picker)
+    // File Attachment Picker
     if (attachBtn && fileInput) {
         attachBtn.addEventListener("click", () => {
             fileInput.removeAttribute("capture");
@@ -197,7 +124,7 @@ function setupEventListeners() {
         });
     }
 
-    // Camera Button (Direct Camera Capture)
+    // Camera Capture
     if (cameraBtn && fileInput) {
         cameraBtn.addEventListener("click", () => {
             fileInput.setAttribute("capture", "environment");
@@ -205,7 +132,7 @@ function setupEventListeners() {
         });
     }
 
-    // File Input Handler
+    // File Selected
     if (fileInput) {
         fileInput.addEventListener("change", handleFileSelected);
     }
@@ -216,6 +143,172 @@ function setupEventListeners() {
     }
 }
 
+// --- STORAGE & PERSISTENCE ---
+function loadChatsFromStorage() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        chats = raw ? JSON.parse(raw) : [];
+        if (!Array.isArray(chats)) chats = [];
+
+        const savedActiveId = localStorage.getItem(ACTIVE_CHAT_KEY);
+        if (savedActiveId && chats.some(c => c.id === savedActiveId)) {
+            activeChatId = savedActiveId;
+        } else {
+            activeChatId = chats.length > 0 ? chats[0].id : null;
+        }
+    } catch (e) {
+        console.error("Failed to load chats from storage:", e);
+        chats = [];
+        activeChatId = null;
+    }
+}
+
+function saveChatsToStorage() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(chats));
+        if (activeChatId) {
+            localStorage.setItem(ACTIVE_CHAT_KEY, activeChatId);
+        } else {
+            localStorage.removeItem(ACTIVE_CHAT_KEY);
+        }
+    } catch (e) {
+        console.error("Failed to save chats to storage:", e);
+    }
+}
+
+function getActiveChat() {
+    if (!activeChatId) return null;
+    return chats.find(c => c.id === activeChatId) || null;
+}
+
+function createNewChat(firstPrompt = "") {
+    const id = "chat_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
+    const title = generateTitle(firstPrompt);
+    const chat = {
+        id,
+        title,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        messages: []
+    };
+    chats.unshift(chat);
+    activeChatId = id;
+    saveChatsToStorage();
+    renderHistoryList();
+    return chat;
+}
+
+function generateTitle(text) {
+    if (!text || !text.trim()) return "New Inquiry";
+    const clean = text.trim().replace(/\s+/g, " ");
+    return clean.length > 28 ? clean.substring(0, 26) + "..." : clean;
+}
+
+function renderHistoryList() {
+    if (!historyList) return;
+    historyList.innerHTML = "";
+
+    if (chats.length === 0) {
+        const empty = document.createElement("div");
+        empty.style.fontSize = "12px";
+        empty.style.color = "var(--text-muted)";
+        empty.style.padding = "8px 10px";
+        empty.textContent = "No recent inquiries";
+        historyList.appendChild(empty);
+        return;
+    }
+
+    chats.forEach(chat => {
+        const item = document.createElement("div");
+        item.className = "history-item" + (chat.id === activeChatId ? " active" : "");
+
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "history-item-title";
+        titleSpan.textContent = chat.title || "Inquiry";
+        titleSpan.title = chat.title || "Inquiry";
+        titleSpan.onclick = () => switchChat(chat.id);
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "history-item-del";
+        delBtn.innerHTML = "&times;";
+        delBtn.title = "Delete chat";
+        delBtn.onclick = (e) => {
+            e.stopPropagation();
+            deleteChat(chat.id);
+        };
+
+        item.appendChild(titleSpan);
+        item.appendChild(delBtn);
+        historyList.appendChild(item);
+    });
+}
+
+function switchChat(chatId) {
+    if (activeChatId === chatId) return;
+    activeChatId = chatId;
+    saveChatsToStorage();
+    renderHistoryList();
+    loadActiveChatMessages();
+}
+
+function deleteChat(chatId) {
+    const idx = chats.findIndex(c => c.id === chatId);
+    if (idx === -1) return;
+    chats.splice(idx, 1);
+    if (activeChatId === chatId) {
+        activeChatId = chats.length > 0 ? chats[0].id : null;
+    }
+    saveChatsToStorage();
+    renderHistoryList();
+    if (activeChatId) {
+        loadActiveChatMessages();
+    } else {
+        resetChatView();
+    }
+}
+
+function handleNewChatBtn() {
+    activeChatId = null;
+    saveChatsToStorage();
+    renderHistoryList();
+    resetChatView();
+}
+
+function resetChatView() {
+    messagesContainer.innerHTML = "";
+    if (welcomeScreen) {
+        messagesContainer.appendChild(welcomeScreen);
+        welcomeScreen.style.display = "block";
+    }
+    clearAttachment();
+    if (chatInput) {
+        chatInput.value = "";
+        chatInput.style.height = "auto";
+        chatInput.focus();
+    }
+}
+
+function loadActiveChatMessages() {
+    const currentChat = getActiveChat();
+    if (!currentChat || currentChat.messages.length === 0) {
+        resetChatView();
+        return;
+    }
+
+    messagesContainer.innerHTML = "";
+    if (welcomeScreen) welcomeScreen.style.display = "none";
+
+    currentChat.messages.forEach(msg => {
+        if (msg.role === "user") {
+            appendUserBubble(msg.text, msg.file, msg.id, false);
+        } else if (msg.role === "assistant" && msg.answer) {
+            appendAssistantResponse(msg.answer, false);
+        }
+    });
+
+    scrollToBottom();
+}
+
 // --- FILE / CAMERA UPLOAD HANDLER ---
 function handleFileSelected(e) {
     const file = e.target.files && e.target.files[0];
@@ -223,7 +316,7 @@ function handleFileSelected(e) {
 
     const isImage = file.type.startsWith("image/");
     const isPdf = file.type === "application/pdf";
-    
+
     attachedFile = {
         name: file.name,
         type: file.type,
@@ -234,7 +327,6 @@ function handleFileSelected(e) {
         textContent: ""
     };
 
-    // If it's a plain text file, read text
     if (file.type.startsWith("text/")) {
         const reader = new FileReader();
         reader.onload = (event) => {
@@ -243,12 +335,10 @@ function handleFileSelected(e) {
         reader.readAsText(file);
     }
 
-    // Update Preview Pill
     if (previewFilename) previewFilename.textContent = `${file.name} (${Math.round(file.size / 1024)} KB)`;
     if (previewIcon) previewIcon.textContent = isImage ? "📷" : (isPdf ? "📕" : "📄");
     if (attachmentPreview) attachmentPreview.style.display = "flex";
 
-    // Focus input
     chatInput.focus();
 }
 
@@ -269,7 +359,7 @@ async function checkBackendHealth() {
             return;
         }
     } catch (e) {
-        // Backend not running
+        // Backend offline
     }
     isBackendLive = false;
     backendBadge.className = "connection-badge mock";
@@ -292,16 +382,47 @@ function handleUserSubmit() {
 async function sendMessage(userText, fileObj = null) {
     if (welcomeScreen) welcomeScreen.style.display = "none";
 
-    // Append User Message to UI
-    appendUserBubble(userText, fileObj);
+    let currentChat = getActiveChat();
+    if (!currentChat) {
+        currentChat = createNewChat(userText);
+    } else if (currentChat.messages.length === 0) {
+        currentChat.title = generateTitle(userText);
+        saveChatsToStorage();
+        renderHistoryList();
+    }
 
-    // Save attachment snapshot and clear input attachment
+    const msgId = "msg_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
+    const fileMeta = fileObj ? {
+        name: fileObj.name,
+        type: fileObj.type,
+        size: fileObj.size,
+        isImage: fileObj.isImage,
+        isPdf: fileObj.isPdf
+    } : null;
+
+    currentChat.messages.push({
+        id: msgId,
+        role: "user",
+        text: userText,
+        file: fileMeta
+    });
+    currentChat.updatedAt = Date.now();
+    saveChatsToStorage();
+
+    appendUserBubble(userText, fileMeta, msgId, true);
+
     const currentAttachment = fileObj || attachedFile;
     clearAttachment();
 
     setLoading(true);
+    await executeQuery(userText, currentAttachment, currentChat);
+    setLoading(false);
+}
 
-    // Try live backend first
+// --- QUERY EXECUTION ---
+async function executeQuery(userText, currentAttachment, chatObj) {
+    let answer = null;
+
     if (isBackendLive) {
         try {
             const hasReadableDocumentText = !!(currentAttachment && currentAttachment.textContent && currentAttachment.textContent.trim());
@@ -310,7 +431,6 @@ async function sendMessage(userText, fileObj = null) {
                 const formData = new FormData();
                 formData.append("file", currentAttachment.fileRef);
                 formData.append("question", userText || "Explain this document");
-                formData.append("language", langSelect ? langSelect.value : "en");
 
                 const uploadResponse = await fetch(`${API_BASE}/api/ask-file`, {
                     method: "POST",
@@ -318,73 +438,152 @@ async function sendMessage(userText, fileObj = null) {
                 });
 
                 if (uploadResponse.ok) {
-                    const answer = await uploadResponse.json();
-                    appendAssistantResponse(answer);
-                    addChatHistory(userText);
-                    setLoading(false);
-                    return;
+                    answer = await uploadResponse.json();
+                } else {
+                    const uploadError = await safeReadJson(uploadResponse);
+                    answer = createSystemNotice(
+                        "This file cannot be processed yet",
+                        uploadError?.detail || uploadError?.message || "Only readable text files are supported right now. PDF/image OCR is planned next."
+                    );
+                }
+            } else {
+                const payload = {
+                    input_type: currentAttachment ? "document" : "question",
+                    question: userText,
+                    conversation_id: chatObj ? chatObj.id : "conv_default",
+                    file_attached: !!currentAttachment
+                };
+
+                if (hasReadableDocumentText) {
+                    payload.document_text = currentAttachment.textContent.trim();
+                    payload.file_attached = false;
                 }
 
-                const uploadError = await safeReadJson(uploadResponse);
-                appendSystemNotice(
-                    "This file cannot be processed yet",
-                    uploadError?.detail || uploadError?.message || "Only readable text files are supported right now. PDF/image OCR is planned next."
-                );
-                addChatHistory(userText);
-                setLoading(false);
-                return;
+                const response = await fetch(`${API_BASE}/api/ask`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    answer = await response.json();
+                } else {
+                    const errorPayload = await safeReadJson(response);
+                    answer = createSystemNotice(
+                        "This file cannot be processed yet",
+                        errorPayload?.detail || errorPayload?.message || "The backend rejected this request. PDF/image OCR is not implemented yet, so use typed questions or paste text for now."
+                    );
+                }
             }
-
-            const payload = {
-                input_type: currentAttachment ? "document" : "question",
-                question: userText,
-                language: langSelect ? langSelect.value : "en",
-                conversation_id: "conv_default",
-                file_attached: !!currentAttachment
-            };
-
-            if (hasReadableDocumentText) {
-                payload.document_text = currentAttachment.textContent.trim();
-                payload.file_attached = false;
-            }
-
-            const response = await fetch(`${API_BASE}/api/ask`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-
-            if (response.ok) {
-                const answer = await response.json();
-                appendAssistantResponse(answer);
-                addChatHistory(userText);
-                setLoading(false);
-                return;
-            }
-
-            const errorPayload = await safeReadJson(response);
-            appendSystemNotice(
-                "This file cannot be processed yet",
-                errorPayload?.detail || errorPayload?.message || "The backend rejected this request. PDF/image OCR is not implemented yet, so use typed questions or paste text for now."
-            );
-            addChatHistory(userText);
-            setLoading(false);
-            return;
         } catch (err) {
             console.warn("Backend error, falling back to local guide:", err);
         }
     }
 
-    // Intelligent local fallback matching the project spec
-    await handleLocalFallback(userText, currentAttachment);
-    addChatHistory(userText);
-    setLoading(false);
+    if (!answer) {
+        answer = await getLocalFallbackAnswer(userText, currentAttachment);
+    }
+
+    if (chatObj) {
+        chatObj.messages.push({
+            id: "msg_ast_" + Date.now(),
+            role: "assistant",
+            answer: answer
+        });
+        chatObj.updatedAt = Date.now();
+        saveChatsToStorage();
+    }
+
+    appendAssistantResponse(answer, true);
 }
 
+// --- EDITABLE MESSAGE PROMPTS ---
+window.startEditPrompt = function(msgId) {
+    const currentChat = getActiveChat();
+    if (!currentChat) return;
+    const msg = currentChat.messages.find(m => m.id === msgId);
+    if (!msg) return;
+
+    const row = document.getElementById("row_" + msgId);
+    if (!row) return;
+
+    const wrapper = row.querySelector(".user-bubble-wrapper");
+    if (!wrapper) return;
+
+    wrapper.innerHTML = `
+        <div class="user-edit-container">
+            <textarea class="user-edit-textarea" id="edit_textarea_${msgId}">${escapeHtml(msg.text)}</textarea>
+            <div class="user-edit-actions">
+                <button type="button" class="user-edit-btn cancel-btn" onclick="cancelEditPrompt('${msgId}')">Cancel</button>
+                <button type="button" class="user-edit-btn save-btn" onclick="submitEditPrompt('${msgId}')">Save & Submit</button>
+            </div>
+        </div>
+    `;
+
+    const textarea = document.getElementById(`edit_textarea_${msgId}`);
+    if (textarea) {
+        textarea.focus();
+        textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+    }
+};
+
+window.cancelEditPrompt = function(msgId) {
+    const currentChat = getActiveChat();
+    if (!currentChat) return;
+    const msg = currentChat.messages.find(m => m.id === msgId);
+    if (!msg) return;
+
+    const row = document.getElementById("row_" + msgId);
+    if (!row) return;
+
+    const wrapper = row.querySelector(".user-bubble-wrapper");
+    if (!wrapper) return;
+
+    wrapper.innerHTML = `
+        <div class="user-bubble" id="bubble_${msgId}">${escapeHtml(msg.text)}</div>
+        <button class="edit-msg-btn" onclick="startEditPrompt('${msgId}')" title="Edit prompt">✏️</button>
+    `;
+};
+
+window.submitEditPrompt = async function(msgId) {
+    const currentChat = getActiveChat();
+    if (!currentChat) return;
+    const textarea = document.getElementById(`edit_textarea_${msgId}`);
+    if (!textarea) return;
+
+    const newText = textarea.value.trim();
+    if (!newText) return;
+
+    const msgIdx = currentChat.messages.findIndex(m => m.id === msgId);
+    if (msgIdx === -1) return;
+
+    const msg = currentChat.messages[msgIdx];
+    msg.text = newText;
+
+    // Truncate messages after this message in conversation history
+    currentChat.messages = currentChat.messages.slice(0, msgIdx + 1);
+    if (msgIdx === 0) {
+        currentChat.title = generateTitle(newText);
+    }
+    currentChat.updatedAt = Date.now();
+    saveChatsToStorage();
+    renderHistoryList();
+
+    // Re-render UI up to this message
+    loadActiveChatMessages();
+
+    // Re-execute query for updated prompt
+    setLoading(true);
+    await executeQuery(newText, msg.file, currentChat);
+    setLoading(false);
+};
+
 // --- APPEND USER BUBBLE ---
-function appendUserBubble(text, file) {
+function appendUserBubble(text, file, msgId = null, shouldScroll = true) {
+    const id = msgId || ("msg_" + Date.now());
     const row = document.createElement("div");
     row.className = "message-row";
+    row.id = "row_" + id;
     row.style.justifyContent = "flex-end";
 
     let fileHtml = "";
@@ -402,18 +601,21 @@ function appendUserBubble(text, file) {
     row.innerHTML = `
         <div class="message-content" style="text-align: right;">
             ${fileHtml}
-            <div class="user-bubble">${escapeHtml(text)}</div>
+            <div class="user-bubble-wrapper">
+                <div class="user-bubble" id="bubble_${id}">${escapeHtml(text)}</div>
+                <button class="edit-msg-btn" onclick="startEditPrompt('${id}')" title="Edit prompt">✏️</button>
+            </div>
         </div>
         <div class="message-avatar user-avatar">👤</div>
     `;
 
     messagesContainer.appendChild(row);
-    scrollToBottom();
+    if (shouldScroll) scrollToBottom();
 }
 
-// --- APPEND SYSTEM NOTICE ---
-function appendSystemNotice(title, message) {
-    appendAssistantResponse({
+// --- CREATE SYSTEM NOTICE ---
+function createSystemNotice(title, message) {
+    return {
         title,
         summary: message,
         documents_needed: [],
@@ -428,7 +630,7 @@ function appendSystemNotice(title, message) {
         confidence: "low",
         masked_items: [],
         disclaimer: "This is a product limitation notice, not legal, tax, or financial advice."
-    });
+    };
 }
 
 async function safeReadJson(response) {
@@ -440,7 +642,7 @@ async function safeReadJson(response) {
 }
 
 // --- APPEND ASSISTANT RESPONSE CARD ---
-function appendAssistantResponse(answer) {
+function appendAssistantResponse(answer, shouldScroll = true) {
     const row = document.createElement("div");
     row.className = "message-row";
 
@@ -615,7 +817,7 @@ function appendAssistantResponse(answer) {
     `;
 
     messagesContainer.appendChild(row);
-    scrollToBottom();
+    if (shouldScroll) scrollToBottom();
 }
 
 // --- CHECKLIST INTERACTION HELPERS ---
@@ -635,15 +837,36 @@ window.toggleStepItem = function(checkboxEl) {
 // --- PREVIEW SAMPLE PAN GUIDE ---
 async function loadSampleAnswer() {
     if (welcomeScreen) welcomeScreen.style.display = "none";
-    appendUserBubble("How do I apply for a new PAN card online?");
+
+    let currentChat = getActiveChat();
+    if (!currentChat) {
+        currentChat = createNewChat("Apply for new PAN card");
+    }
+
+    const msgId = "msg_" + Date.now();
+    currentChat.messages.push({
+        id: msgId,
+        role: "user",
+        text: "How do I apply for a new PAN card online?",
+        file: null
+    });
+    appendUserBubble("How do I apply for a new PAN card online?", null, msgId, true);
     setLoading(true);
 
     try {
         const res = await fetch("sample_answer.json");
         const data = await res.json();
         setTimeout(() => {
-            appendAssistantResponse(data);
-            addChatHistory("Apply for new PAN card");
+            currentChat.messages.push({
+                id: "msg_ast_" + Date.now(),
+                role: "assistant",
+                answer: data
+            });
+            currentChat.updatedAt = Date.now();
+            saveChatsToStorage();
+            renderHistoryList();
+
+            appendAssistantResponse(data, true);
             setLoading(false);
         }, 300);
     } catch (e) {
@@ -652,17 +875,11 @@ async function loadSampleAnswer() {
 }
 
 // --- LOCAL FALLBACK (SIMULATED GUIDES) ---
-async function handleLocalFallback(text, file) {
-    const qLower = text.toLowerCase();
+async function getLocalFallbackAnswer(text, file) {
+    const qLower = (text || "").toLowerCase();
 
-    // Check if user uploaded a document or notice
     if (file) {
-        const fakeMasked = [
-            { item_type: "Aadhaar Number", count: 1 },
-            { item_type: "Bank Account Number", count: 1 }
-        ];
-
-        appendAssistantResponse({
+        return {
             title: `Document Analysis: ${file.name}`,
             summary: "We reviewed your uploaded document. Personal identifiers were masked before analysis. Here is a plain-language summary of the terms, procedure, and critical warnings detected.",
             documents_needed: [
@@ -700,15 +917,16 @@ async function handleLocalFallback(text, file) {
             source_url: "https://www.rbi.org.in",
             last_verified: "2026-09-28",
             confidence: "high",
-            masked_items: fakeMasked,
+            masked_items: [
+                { item_type: "Aadhaar Number", count: 1 },
+                { item_type: "Bank Account Number", count: 1 }
+            ],
             disclaimer: "GovBank Assistant provides educational guidance and does not provide legal representation. Please consult a legal professional or the RBI Ombudsman."
-        });
-        return;
+        };
     }
 
-    // Query Fallbacks
     if (qLower.includes("tax") || qLower.includes("itr") || qLower.includes("income")) {
-        appendAssistantResponse({
+        return {
             title: "How to File Income Tax Return (ITR-1 Sahaj)",
             summary: "ITR-1 (Sahaj) is for resident individuals having total income up to ₹50 lakh from salary, one house property, and other sources (such as interest). It can be filed electronically on the Income Tax e-Filing portal.",
             documents_needed: [
@@ -759,12 +977,11 @@ async function handleLocalFallback(text, file) {
             confidence: "high",
             masked_items: [],
             disclaimer: "GovBank Assistant provides step-by-step guidance based on official Income Tax Department instructions. It does not replace a Chartered Accountant for complex audit cases."
-        });
-        return;
+        };
     }
 
     if (qLower.includes("loan") || qLower.includes("prepayment") || qLower.includes("rbi") || qLower.includes("foreclosure")) {
-        appendAssistantResponse({
+        return {
             title: "RBI Guidelines on Floating Rate Loan Prepayment & Foreclosure Charges",
             summary: "Under RBI Master Directions (Fair Practices Code), Scheduled Commercial Banks and NBFCs are strictly prohibited from charging foreclosure charges or pre-payment penalties on home loans and consumer loans sanctioned on a floating interest rate basis to individual borrowers.",
             documents_needed: [
@@ -805,44 +1022,15 @@ async function handleLocalFallback(text, file) {
             confidence: "high",
             masked_items: [],
             disclaimer: "GovBank Assistant provides informational guidance based on RBI regulations. It does not constitute formal legal advice."
-        });
-        return;
+        };
     }
 
-    // Default: Return the verified PAN guide
     try {
         const res = await fetch("sample_answer.json");
-        const data = await res.json();
-        appendAssistantResponse(data);
+        return await res.json();
     } catch (e) {
-        // Fallback
+        return createSystemNotice("No Guide Found", "No local procedure guide was found for this query.");
     }
-}
-
-// --- CHAT HISTORY MANAGEMENT ---
-function addChatHistory(title) {
-    if (!historyList) return;
-    const cleanTitle = title.length > 28 ? title.substring(0, 26) + "..." : title;
-    const item = document.createElement("div");
-    item.className = "history-item";
-    item.textContent = cleanTitle;
-    item.onclick = () => {
-        chatInput.value = title;
-        handleUserSubmit();
-    };
-    historyList.prepend(item);
-}
-
-function resetChat() {
-    messagesContainer.innerHTML = "";
-    if (welcomeScreen) {
-        messagesContainer.appendChild(welcomeScreen);
-        welcomeScreen.style.display = "block";
-    }
-    clearAttachment();
-    chatInput.value = "";
-    chatInput.style.height = "auto";
-    chatInput.focus();
 }
 
 // --- UTILITIES ---
@@ -859,7 +1047,7 @@ function scrollToBottom() {
 
 function escapeHtml(str) {
     if (!str) return "";
-    return str
+    return String(str)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
