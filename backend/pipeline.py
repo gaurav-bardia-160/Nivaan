@@ -66,7 +66,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             existing_titles = {warning.title for warning in answer.warnings}
             extra_warnings = [warning for warning in find_flags(masked_document.text) if warning.title not in existing_titles]
             answer = answer.model_copy(update={"warnings": [*answer.warnings, *extra_warnings]})
-        return apply_language_policy(answer, parsed_request.language)
+        return apply_language_policy(answer, parsed_request.language, query_text=safe_text)
 
     # Use RAG as a conservative fallback for supported PAN/Aadhaar requests
     # that are not covered by a verified procedure. This preserves citations
@@ -82,12 +82,12 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                     if warning.title not in existing_titles
                 ]
                 rag_answer = rag_answer.model_copy(update={"warnings": [*rag_answer.warnings, *extra_warnings]})
-            return apply_language_policy(rag_answer, parsed_request.language)
+            return apply_language_policy(rag_answer, parsed_request.language, query_text=safe_text)
 
     if route_result.needs_clarification and not route_result.matched_entry_id:
-        return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), parsed_request.language)
+        return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), parsed_request.language, query_text=safe_text)
 
-    return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), parsed_request.language)
+    return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), parsed_request.language, query_text=safe_text)
 
 
 __all__ = ["run"]
