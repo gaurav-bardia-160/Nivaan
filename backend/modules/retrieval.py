@@ -28,6 +28,9 @@ STOPWORDS = {
 
 def _normalize(text: str) -> str:
     text = text.lower()
+    text = re.sub(r"\baadhar\b", "aadhaar", text)
+    text = re.sub(r"\badhar\b", "aadhaar", text)
+    text = re.sub(r"\bpancard\b", "pan card", text)
     text = re.sub(r"[^a-z0-9\s]", " ", text)
     tokens = [token for token in text.split() if token not in STOPWORDS]
     return " ".join(tokens)

@@ -4,12 +4,14 @@ import pytest
 
 from backend.modules.translator import (
     detect_language,
+    extract_language_and_clean_query,
     is_translation_enabled,
     translate_answer,
     translate_text,
 )
 from backend.modules.translate_voice import apply_language_policy
-from backend.schemas import Answer, Step, Warning
+from backend.pipeline import run
+from backend.schemas import Answer, AskRequest, Step, Warning
 
 
 def test_detect_language_recognizes_scripts_and_explicit_codes():
@@ -105,3 +107,34 @@ def test_language_policy_translates_when_feature_flag_is_active(monkeypatch):
     result = apply_language_policy(answer, "hi")
     assert result.title != "Apply for a new PAN card"
     assert "पैन" in result.title or "आवेदन" in result.title or len(result.title) > 0
+
+
+def test_extract_language_and_clean_query():
+    cleaned, lang = extract_language_and_clean_query("apply for aadhar card in hindi")
+    assert cleaned == "apply for aadhar card"
+    assert lang == "hi"
+
+    cleaned, lang = extract_language_and_clean_query("download e-pan in gujarati")
+    assert cleaned == "download e-pan"
+    assert lang == "gu"
+
+    cleaned, lang = extract_language_and_clean_query("how to check cibil score hindi me")
+    assert cleaned == "how to check cibil score"
+    assert lang == "hi"
+
+    cleaned, lang = extract_language_and_clean_query("aadhaar update")
+    assert cleaned == "aadhaar update"
+    assert lang == "en"
+
+
+def test_pipeline_recognizes_aadhar_spelling_and_natural_language(monkeypatch):
+    monkeypatch.delenv("TRANSLATION_ENABLED", raising=False)
+    # Query with 'aadhar' (single 'a') and 'in hindi'
+    ans = run(AskRequest(question="apply for aadhar card in hindi"))
+    assert ans.confidence == "medium"
+    assert "Aadhaar Enrolment Basics" in ans.title
+    assert len(ans.documents_needed) >= 3
+    # Check that translation warning is present because TRANSLATION_ENABLED is False
+    warning_titles = {w.title for w in ans.warnings}
+    assert "Answer translation not implemented yet" in warning_titles
+

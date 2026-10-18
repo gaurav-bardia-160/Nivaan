@@ -24,7 +24,7 @@ _CATEGORY_KEYWORDS: dict[Category, tuple[str, ...]] = {
     "banking": ("bank", "loan", "emi", "interest", "kyc", "account", "rbi", "penalty", "prepayment"),
     "legal": ("legal notice", "agreement", "contract", "court", "lawyer", "clause", "respond within"),
     "scheme": ("scheme", "benefit", "subsidy", "eligibility", "myscheme"),
-    "general": ("pan card", "government", "portal", "form"),
+    "general": ("pan card", "aadhaar", "aadhar", "uidai", "government", "portal", "form"),
 }
 
 

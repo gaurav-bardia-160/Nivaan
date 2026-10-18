@@ -30,10 +30,36 @@ def is_translation_enabled() -> bool:
     return os.getenv("TRANSLATION_ENABLED", "false").strip().lower() in ("true", "1", "yes")
 
 
+_LANG_PHRASE_PATTERNS = [
+    (re.compile(r"\b(in\s+hindi|hindi\s+me|hindi\s+mai|हिंदी\s+में)\b", re.IGNORECASE), "hi"),
+    (re.compile(r"\b(in\s+gujarati|gujarati\s+ma|ગુજરાતીમાં)\b", re.IGNORECASE), "gu"),
+    (re.compile(r"\b(in\s+english|english\s+me)\b", re.IGNORECASE), "en"),
+]
+
+
+def extract_language_and_clean_query(text: str | None, requested_lang: str | None = None) -> tuple[str, str]:
+    """Extract natural language requests (like 'in hindi') from text, clean the query, and return (cleaned_text, lang)."""
+    if not text:
+        return "", detect_language(text, requested_lang)
+
+    cleaned = text
+    detected_lang: str | None = None
+
+    for pattern, lang in _LANG_PHRASE_PATTERNS:
+        if pattern.search(cleaned):
+            detected_lang = lang
+            cleaned = pattern.sub("", cleaned).strip()
+            cleaned = re.sub(r"\s+", " ", cleaned).strip()
+            break
+
+    final_lang = detected_lang or detect_language(text, requested_lang)
+    return cleaned, final_lang
+
+
 def detect_language(text: str | None, requested_lang: str | None = None) -> str:
     """Detect whether a query or requested language is Hindi, Gujarati, or English.
 
-    Recognizes explicit language codes as well as native Devanagari and Gujarati scripts.
+    Recognizes explicit language codes, natural phrases ('in hindi'), and native scripts.
     """
     req = (requested_lang or "").strip().lower()
     if req in ("hi", "hindi", "hin"):
@@ -42,6 +68,10 @@ def detect_language(text: str | None, requested_lang: str | None = None) -> str:
         return "gu"
 
     if text:
+        for pattern, lang in _LANG_PHRASE_PATTERNS:
+            if pattern.search(text):
+                return lang
+
         # Check Devanagari Unicode block (\u0900-\u097F)
         if any("\u0900" <= char <= "\u097f" for char in text):
             return "hi"
@@ -171,6 +201,7 @@ def translate_answer(answer: Answer, target_lang: str) -> Answer:
 
 __all__ = [
     "detect_language",
+    "extract_language_and_clean_query",
     "is_translation_enabled",
     "translate_answer",
     "translate_text",
