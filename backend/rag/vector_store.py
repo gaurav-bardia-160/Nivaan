@@ -78,7 +78,12 @@ class QdrantLocalVectorStore:
                 PointStruct(
                     id=self._point_id(document.id),
                     vector=list(vector),
-                    payload={"document_id": document.id, "category": document.category},
+                    payload={
+                        "document_id": document.id,
+                        "category": document.category,
+                        "title": document.sources[0].title if getattr(document, "sources", None) else "",
+                        "source_url": document.sources[0].source_url if getattr(document, "sources", None) else "",
+                    },
                 )
                 for document, vector in zip(documents[offset:offset + batch_size], vectors[offset:offset + batch_size])
             ]
@@ -116,6 +121,14 @@ class QdrantLocalVectorStore:
             "points": count,
             "path": str(self.path),
         }
+
+    def close(self) -> None:
+        if hasattr(self, "_client") and self._client is not None:
+            try:
+                self._client.close()
+            except Exception:
+                pass
+
 
 
 __all__ = [

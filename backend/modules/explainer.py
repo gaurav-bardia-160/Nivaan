@@ -60,6 +60,39 @@ def explain_entry(
     )
 
 
+import re
+
+
+def clean_rag_text(text: str) -> str:
+    """Clean markdown links, images, headings, and formatting noise from excerpts."""
+    if not text:
+        return ""
+    # Strip markdown image syntax ![alt](url) -> alt
+    cleaned = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", text)
+    # Strip markdown link syntax [text](url) -> text
+    cleaned = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", cleaned)
+    # Strip heading symbols (#, ##, etc.)
+    cleaned = re.sub(r"#+\s*", "", cleaned)
+    # Clean breadcrumb junk like "* ) *" or "* *" or list numbers like "1. 2."
+    cleaned = re.sub(r"\*\s*\)?\s*\*?", " ", cleaned)
+    cleaned = re.sub(r"\b\d+\.\s*", "", cleaned)
+    # Normalize whitespaces
+    return " ".join(cleaned.split())
+
+
+def _passage_quality_score(raw_text: str) -> float:
+    """Measure whether a chunk contains real sentences vs pure navigation links."""
+    cleaned = clean_rag_text(raw_text)
+    words = cleaned.split()
+    if len(words) < 5:
+        return -10.0
+    sentence_punct = sum(1 for c in cleaned if c in ".!?;")
+    links = re.findall(r"\[([^\]]+)\]\([^)]+\)", raw_text)
+    link_words = sum(len(l.split()) for l in links)
+    link_ratio = link_words / max(len(raw_text.split()), 1)
+    return (sentence_punct * 4.0) - (link_ratio * 15.0) + min(len(words), 80) * 0.1
+
+
 def explain_rag_result(
     result: RetrievalResult,
     user_question: str,
@@ -76,21 +109,25 @@ def explain_rag_result(
 
     citations: list[Citation] = []
     seen_urls: set[str] = set()
+    scored_hits: list[tuple[float, Citation]] = []
+
     for hit in result.hits:
         for source in hit.document.sources:
             if source.source_url in seen_urls:
                 continue
             seen_urls.add(source.source_url)
-            excerpt = " ".join(hit.document.text.split())[:697]
-            citations.append(
-                Citation(
-                    title=source.title[:300],
-                    url=source.source_url,
-                    excerpt=excerpt,
-                    reported_last_verified=source.reported_last_verified,
-                    factual_verification="unverified",
-                )
+            clean_title_str = clean_rag_text(source.title) or "Official civic procedure"
+            clean_excerpt_str = clean_rag_text(hit.document.text)[:697]
+            q_score = _passage_quality_score(hit.document.text)
+            citation = Citation(
+                title=clean_title_str[:300],
+                url=source.source_url,
+                excerpt=clean_excerpt_str,
+                reported_last_verified=source.reported_last_verified,
+                factual_verification="unverified",
             )
+            citations.append(citation)
+            scored_hits.append((q_score, citation))
             break
         if len(citations) >= 3:
             break
@@ -98,7 +135,10 @@ def explain_rag_result(
     if not citations:
         return None
 
-    first = citations[0]
+    # Prioritize the most descriptive, informational passage for the primary step
+    scored_hits.sort(key=lambda x: x[0], reverse=True)
+    first = scored_hits[0][1]
+
     question = " ".join(user_question.split())[:240]
     return Answer(
         title=f"Relevant official material: {first.title}"[:180],
@@ -126,6 +166,7 @@ def explain_rag_result(
         citations=citations,
         disclaimer=DEFAULT_DISCLAIMER,
     )
+
 
 
 def not_found_answer(user_question: str, masked_items: list[MaskedItem] | None = None) -> Answer:

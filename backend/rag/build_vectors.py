@@ -34,11 +34,13 @@ def build_vector_index(
 
     store = QdrantLocalVectorStore(path)
     store.rebuild(loaded.documents, tuple(vectors))
+    health = store.health()
+    store.close()
     return {
         "corpus_sha256": loaded.report.corpus_sha256,
         "documents": len(loaded.documents),
         "embedding": provider.info.__dict__,
-        "vector_store": store.health(),
+        "vector_store": health,
     }
 
 

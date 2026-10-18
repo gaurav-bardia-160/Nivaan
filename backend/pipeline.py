@@ -5,7 +5,7 @@ from typing import Any
 from backend.modules.agent import route
 from backend.modules.explainer import explain_entry, explain_rag_result, not_found_answer
 from backend.modules.guardrails import find_flags, mask_text
-from backend.modules.retrieval import find_entry, find_entry_by_id
+from backend.modules.retrieval import find_entry, find_entry_by_id, find_entry_with_score
 from backend.modules.translate_voice import apply_language_policy
 from backend.rag.runtime import retrieve_if_enabled
 from backend.schemas import Answer, AskRequest
@@ -55,7 +55,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     if route_result.matched_entry_id:
         entry = find_entry_by_id(route_result.matched_entry_id)
     if not entry:
-        entry = find_entry(safe_text)
+        entry, _ = find_entry_with_score(safe_text)
 
     # Prefer the small, manually verified procedure library whenever it has a
     # match. The broader imported RAG corpus is explicitly unverified and must

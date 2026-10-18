@@ -120,14 +120,14 @@ def _score_entry(normalized_query: str, query_tokens: set[str], entry: dict[str,
     return combined_score + overlap_score + keyword_score
 
 
-def find_entry(query: str) -> Optional[dict[str, Any]]:
-    """Return the best matching knowledge entry, or None if no good match exists."""
+def find_entry_with_score(query: str) -> tuple[Optional[dict[str, Any]], float]:
+    """Return the best matching knowledge entry and its score."""
     if not query or not query.strip():
-        return None
+        return None, 0.0
 
     normalized_query = _normalize(query)
     if not normalized_query:
-        return None
+        return None, 0.0
 
     query_tokens = set(normalized_query.split())
     best_entry: Optional[dict[str, Any]] = None
@@ -140,9 +140,15 @@ def find_entry(query: str) -> Optional[dict[str, Any]]:
             best_entry = entry
 
     if best_entry is None or best_score < MATCH_THRESHOLD:
-        return None
+        return None, 0.0
 
-    return best_entry
+    return best_entry, best_score
+
+
+def find_entry(query: str) -> Optional[dict[str, Any]]:
+    """Return the best matching knowledge entry, or None if no good match exists."""
+    entry, _ = find_entry_with_score(query)
+    return entry
 
 
 def find_entry_by_id(entry_id: str) -> Optional[dict[str, Any]]:
@@ -162,4 +168,12 @@ def knowledge_stats() -> dict[str, int]:
     return {"total": len(entries), "verified": verified, "unverified": unverified}
 
 
-__all__ = ["find_entry", "find_entry_by_id", "knowledge_stats", "_load_entries", "_normalize"]
+__all__ = [
+    "find_entry",
+    "find_entry_with_score",
+    "find_entry_by_id",
+    "knowledge_stats",
+    "_load_entries",
+    "_normalize",
+]
+
