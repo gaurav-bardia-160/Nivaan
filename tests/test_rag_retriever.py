@@ -9,6 +9,7 @@ from backend.rag.loader import load_corpus
 from backend.rag.retriever import RagRetriever
 from backend.rag.bm25 import tokenize
 from backend.rag.embeddings import DisabledEmbeddingProvider, EmbeddingsUnavailable
+from backend.rag.runtime import expand_retrieval_query
 from backend.rag.vector_store import DisabledVectorStore, QdrantLocalVectorStore, VectorHit, VectorStoreUnavailable
 
 
@@ -65,6 +66,30 @@ def test_lexical_eval_questions_hit_expected_category_and_terms():
             failures.append({"question": case["question"], "status": result.status, "hits": [h.document.id for h in result.hits]})
         assert all(hit.document.category == case["category"] for hit in result.hits)
     assert failures == []
+
+
+def test_multilingual_address_queries_expand_to_canonical_retrieval_terms():
+    hindi = expand_retrieval_query("आधार कार्ड में पता कैसे बदलें?")
+    gujarati = expand_retrieval_query("આધાર કાર્ડમાં સરનામું કેવી રીતે બદલવું?")
+    unrelated = expand_retrieval_query("आधार कार्ड डाउनलोड करें")
+
+    assert hindi.endswith("online address update process demographic details")
+    assert gujarati.endswith("online address update process demographic details")
+    assert unrelated == "आधार कार्ड डाउनलोड करें"
+
+
+def test_expanded_hindi_address_query_retrieves_address_update_material():
+    retriever = RagRetriever(load_corpus())
+    query = expand_retrieval_query("आधार कार्ड में पता कैसे बदलें?")
+    result = retriever.search(query, category="aadhaar", top_k=3)
+    evidence = " ".join(
+        f"{source.title} {source.section} {hit.document.text}"
+        for hit in result.hits
+        for source in hit.document.sources[:1]
+    ).lower()
+
+    assert result.hits
+    assert "address update" in evidence
 
 
 class _FakeEmbeddingProvider:

@@ -17,6 +17,10 @@ _CATEGORY_TERMS = {
     "pan": ("pan", "e-pan", "epan", "form 49a", "form 49aa", "पैन", "पॅन", "પૅન"),
     "aadhaar": ("aadhaar", "aadhar", "uidai", "e-aadhaar", "eaadhaar", "आधार", "આધાર"),
 }
+_MULTILINGUAL_QUERY_HINTS = (
+    (("आधार",), ("पता", "पते"), ("बदल", "अपडेट"), "online address update process demographic details"),
+    (("આધાર",), ("સરનામ",), ("બદલ", "અપડેટ"), "online address update process demographic details"),
+)
 
 
 def _enabled(name: str, default: str = "false") -> bool:
@@ -54,13 +58,27 @@ def supported_category(query: str) -> str | None:
     return None
 
 
+def expand_retrieval_query(query: str) -> str:
+    """Append narrow English retrieval hints for supported Hindi/Gujarati civic intents."""
+    normalized = " ".join((query or "").split())
+    for identity_terms, subject_terms, action_terms, hint in _MULTILINGUAL_QUERY_HINTS:
+        if (
+            any(term in normalized for term in identity_terms)
+            and any(term in normalized for term in subject_terms)
+            and any(term in normalized for term in action_terms)
+        ):
+            return f"{normalized} {hint}"
+    return normalized
+
+
 def retrieve_if_enabled(query: str, *, top_k: int = 3) -> RetrievalResult | None:
     if not rag_enabled():
         return None
     category = supported_category(query)
     if category is None:
         return None
-    return get_retriever().search(query, category=category, top_k=top_k)
+    expanded_query = expand_retrieval_query(query)
+    return get_retriever().search(expanded_query, category=category, top_k=top_k)
 
 
 def rag_health() -> dict[str, object]:
@@ -82,4 +100,12 @@ def rag_health() -> dict[str, object]:
     }
 
 
-__all__ = ["get_retriever", "rag_enabled", "rag_health", "retrieve_if_enabled", "supported_category", "vector_enabled"]
+__all__ = [
+    "expand_retrieval_query",
+    "get_retriever",
+    "rag_enabled",
+    "rag_health",
+    "retrieve_if_enabled",
+    "supported_category",
+    "vector_enabled",
+]
