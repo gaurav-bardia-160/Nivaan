@@ -82,6 +82,50 @@ def detect_language(text: str | None, requested_lang: str | None = None) -> str:
     return req if req and req != "und" else "en"
 
 
+# High-precision civic/government terminology glossary to ensure 100% accuracy for official terms
+_CIVIC_GLOSSARY: dict[tuple[str, str], str] = {
+    # Hindi
+    ("proof of date of birth (pob)", "hi"): "जन्मतिथि का प्रमाण (PoB)",
+    ("date of birth proof", "hi"): "जन्मतिथि का प्रमाण",
+    ("proof of identity (poi)", "hi"): "पहचान का प्रमाण (PoI)",
+    ("proof of identity", "hi"): "पहचान का प्रमाण",
+    ("proof of address (poa)", "hi"): "पते का प्रमाण (PoA)",
+    ("proof of address", "hi"): "पते का प्रमाण",
+    ("free of cost", "hi"): "नि:शुल्क (कोई शुल्क नहीं)",
+    ("recent photograph if required by the selected application flow", "hi"): "हाल ही की तस्वीर (यदि चयनित आवेदन प्रक्रिया में आवश्यक हो)",
+    ("recent photographs", "hi"): "हाल ही की तस्वीरें",
+    ("pan card", "hi"): "पैन कार्ड",
+    ("aadhaar card", "hi"): "आधार कार्ड",
+    ("aadhaar number if applicable", "hi"): "आधार संख्या (यदि लागू हो)",
+    ("registered mobile number", "hi"): "पंजीकृत मोबाइल नंबर",
+    ("bank account details", "hi"): "बैंक खाता विवरण",
+    ("bank account details for refund", "hi"): "रिफंड के लिए बैंक खाता विवरण",
+    ("valid kyc document (aadhaar, passport, voter id, etc.)", "hi"): "मान्य केवाईसी दस्तावेज़ (आधार, पासपोर्ट, वोटर आईडी, आदि)",
+    ("avoid sharing real id data in the demo", "hi"): "डेमो में वास्तविक पहचान डेटा साझा करने से बचें",
+    ("confirm the latest official form and fee", "hi"): "नवीनतम आधिकारिक फॉर्म और शुल्क की पुष्टि करें",
+
+    # Gujarati
+    ("proof of date of birth (pob)", "gu"): "જન્મ તારીખનો પુરાવો (PoB)",
+    ("date of birth proof", "gu"): "જન્મ તારીખનો પુરાવો",
+    ("proof of identity (poi)", "gu"): "ઓળખનો પુરાવો (PoI)",
+    ("proof of identity", "gu"): "ઓળખનો પુરાવો",
+    ("proof of address (poa)", "gu"): "સરનામાનો પુરાવો (PoA)",
+    ("proof of address", "gu"): "સરનામાનો પુરાવો",
+    ("free of cost", "gu"): "મફત / નિઃશુલ્ક",
+    ("recent photograph if required by the selected application flow", "gu"): "તાજેતરનો ફોટોગ્રાફ (જો અરજી માટે જરૂરી હોય)",
+    ("recent photographs", "gu"): "તાજેતરના ફોટોગ્રાફ્સ",
+    ("pan card", "gu"): "પાન કાર્ડ",
+    ("aadhaar card", "gu"): "આધાર કાર્ડ",
+    ("aadhaar number if applicable", "gu"): "આધાર નંબર (જો લાગુ હોય તો)",
+    ("registered mobile number", "gu"): "નોંધાયેલ મોબાઈલ નંબર",
+    ("bank account details", "gu"): "બેંક ખાતાની વિગતો",
+    ("bank account details for refund", "gu"): "રિફંડ માટે બેંક ખાતાની વિગતો",
+    ("valid kyc document (aadhaar, passport, voter id, etc.)", "gu"): "માન્ય કેવાયસી દસ્તાવેજ (આધાર, પાસપોર્ટ, મતદાર આઈડી, વગેરે)",
+    ("avoid sharing real id data in the demo", "gu"): "ડેમોમાં વાસ્તવિક આઈડી ડેટા શેર કરવાનું ટાળો",
+    ("confirm the latest official form and fee", "gu"): "નવીનતમ સત્તાવાર ફોર્મ અને ફીની પુષ્ટિ કરો",
+}
+
+
 def _target_code(lang: str) -> str:
     """Map short code to standard Indic locale for translation providers."""
     if lang == "hi":
@@ -100,6 +144,10 @@ def translate_text(text: str, target_lang: str) -> str:
         return text
 
     clean_text = text.strip()
+    glossary_key = (clean_text.lower(), target_lang)
+    if glossary_key in _CIVIC_GLOSSARY:
+        return _CIVIC_GLOSSARY[glossary_key]
+
     cache_key = (clean_text, target_lang)
     if cache_key in _TRANSLATION_CACHE:
         return _TRANSLATION_CACHE[cache_key]
