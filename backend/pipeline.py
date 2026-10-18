@@ -16,6 +16,16 @@ def _request_text(request: AskRequest) -> str:
     return "\n\n".join(part.strip() for part in parts if part and part.strip())
 
 
+def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
+    """Reject broad router matches when the verified guide does not cover the requested subtask."""
+    lowered = text.lower()
+    if entry_id == "pan_card_new":
+        out_of_scope_intents = ("download", "reprint", "correction", "correct", "link aadhaar", "status")
+        if any(intent in lowered for intent in out_of_scope_intents):
+            return False
+    return True
+
+
 def run(request: AskRequest | dict[str, Any]) -> Answer:
     """Run the safe backend workflow for typed text and supported uploads.
 
@@ -39,6 +49,28 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     )
     safe_text = _request_text(safe_request)
 
+    route_result = route(safe_request)
+
+    entry = None
+    if route_result.matched_entry_id:
+        entry = find_entry_by_id(route_result.matched_entry_id)
+    if not entry:
+        entry = find_entry(safe_text)
+
+    # Prefer the small, manually verified procedure library whenever it has a
+    # match. The broader imported RAG corpus is explicitly unverified and must
+    # not replace a trusted workflow with a lower-confidence candidate passage.
+    if entry is not None and _verified_entry_covers_request(entry.get("id", ""), safe_text):
+        answer = explain_entry(entry, user_question=safe_text, masked_items=masked_items)
+        if parsed_request.input_type == "document" and parsed_request.document_text:
+            existing_titles = {warning.title for warning in answer.warnings}
+            extra_warnings = [warning for warning in find_flags(masked_document.text) if warning.title not in existing_titles]
+            answer = answer.model_copy(update={"warnings": [*answer.warnings, *extra_warnings]})
+        return apply_language_policy(answer, parsed_request.language)
+
+    # Use RAG as a conservative fallback for supported PAN/Aadhaar requests
+    # that are not covered by a verified procedure. This preserves citations
+    # without allowing unverified chunks to override higher-trust guidance.
     rag_result = retrieve_if_enabled(safe_text, top_k=3)
     if rag_result is not None and rag_result.hits:
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
@@ -52,26 +84,10 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 rag_answer = rag_answer.model_copy(update={"warnings": [*rag_answer.warnings, *extra_warnings]})
             return apply_language_policy(rag_answer, parsed_request.language)
 
-    route_result = route(safe_request)
-
     if route_result.needs_clarification and not route_result.matched_entry_id:
         return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), parsed_request.language)
 
-    entry = None
-    if route_result.matched_entry_id:
-        entry = find_entry_by_id(route_result.matched_entry_id)
-    if not entry:
-        entry = find_entry(safe_text)
-
-    if entry is None:
-        return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), parsed_request.language)
-
-    answer = explain_entry(entry, user_question=safe_text, masked_items=masked_items)
-    if parsed_request.input_type == "document" and parsed_request.document_text:
-        existing_titles = {warning.title for warning in answer.warnings}
-        extra_warnings = [warning for warning in find_flags(masked_document.text) if warning.title not in existing_titles]
-        answer = answer.model_copy(update={"warnings": [*answer.warnings, *extra_warnings]})
-    return apply_language_policy(answer, parsed_request.language)
+    return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), parsed_request.language)
 
 
 __all__ = ["run"]
