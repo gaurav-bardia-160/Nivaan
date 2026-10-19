@@ -24,6 +24,47 @@
         "myaadhaar.uidai.gov.in",
         "ovse.uidai.gov.in"
       ]
+    },
+    {
+      "id": "civic",
+      "path": "refined/civic/civic_chunks_clean.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "anyror.gujarat.gov.in",
+        "bhavishya.nic.in",
+        "censusindia.gov.in",
+        "ebanking.indiapost.gov.in",
+        "egazette.gov.in",
+        "garvi.gujarat.gov.in",
+        "goicharters.nic.in",
+        "ippbonline.bank.in",
+        "ncbc.nic.in",
+        "nfsa.gov.in",
+        "ociservices.gov.in",
+        "parikshasangam.cbse.gov.in",
+        "parivahan.gov.in",
+        "passbook.epfindia.gov.in",
+        "pgportal.gov.in",
+        "pmkisan.gov.in",
+        "rbi.org.in",
+        "rtionline.gov.in",
+        "services.ecourts.gov.in",
+        "socialjustice.gov.in",
+        "udyamregistration.gov.in",
+        "www.annualreports.com",
+        "www.constitutionofindia.net",
+        "www.digilocker.gov.in",
+        "www.gseb.org",
+        "www.gst.gov.in",
+        "www.incometax.gov.in",
+        "www.india.gov.in",
+        "www.indiabudget.gov.in",
+        "www.mygov.in",
+        "www.nsws.gov.in",
+        "www.sebi.gov.in",
+        "www.stockholding.com",
+        "www.understandupsc.com"
+      ]
     }
   ]
 }

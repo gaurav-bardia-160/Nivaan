@@ -161,9 +161,10 @@ def test_build_unified_vector_db_uses_canonical_loader(tmp_path, monkeypatch):
     )
 
     assert result["status"] == "success"
-    assert result["total_documents"] == 632  # Must be 632, rejecting the 15 unsafe records
+    assert result["total_documents"] == 669  # Must be 669, rejecting the 15 unsafe records
     assert result["categories"]["aadhaar"] == 390
     assert result["categories"]["pan"] == 242
-    assert result["vector_store_health"]["points"] == 632
+    assert result["categories"]["civic"] == 37
+    assert result["vector_store_health"]["points"] == 669
 
 

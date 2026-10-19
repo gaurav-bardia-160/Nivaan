@@ -131,10 +131,10 @@ def test_loader_flags_overlong_metadata_without_rejecting(tmp_path):
 def test_loader_default_repo_corpus_counts_are_explicit():
     result = load_corpus(as_of=date(2026, 10, 17))
 
-    assert result.report.records_seen == 647
-    assert result.report.accepted_records == 632
+    assert result.report.records_seen == 685
+    assert result.report.accepted_records == 670
     assert result.report.rejected_records == 15
-    assert result.report.unique_documents == 632
-    assert result.report.retained_source_references == 632
-    assert result.report.category_counts == {"aadhaar": 390, "pan": 242}
+    assert result.report.unique_documents == 669
+    assert result.report.retained_source_references == 670
+    assert result.report.category_counts == {"aadhaar": 390, "civic": 37, "pan": 242}
     assert result.report.factual_verification == "unverified"
