@@ -23,6 +23,7 @@ from typing import Any, Sequence
 
 from backend.config import DATA_DIR
 from backend.rag.embeddings import DEFAULT_MULTILINGUAL_MODEL, FastEmbedProvider
+from backend.rag.loader import DEFAULT_MANIFEST, load_corpus
 from backend.rag.models import RagDocument, SourceReference
 from backend.rag.retriever import document_text
 from backend.rag.vector_store import QdrantLocalVectorStore
@@ -219,6 +220,8 @@ def build_unified_vector_db(
     collection_name: str = DEFAULT_COLLECTION,
     model_name: str = DEFAULT_MULTILINGUAL_MODEL,
     batch_size: int = 32,
+    manifest_path: Path | str | None = None,
+    use_canonical_loader: bool = True,
 ) -> dict[str, Any]:
     """Build a single, unified vector database from all refined files.
 
@@ -231,14 +234,26 @@ def build_unified_vector_db(
 
     source_path = Path(source_dir).resolve()
     dest_path = Path(dest_dir).resolve()
+    manifest_file = Path(manifest_path) if manifest_path else DEFAULT_MANIFEST
 
-    logger.info("Scanning refined documents from: %s", source_path)
-    records = discover_and_load_records(source_path)
-    if not records:
-        raise RuntimeError(f"No valid refined records found in {source_path}")
+    if use_canonical_loader and manifest_file.is_file() and (manifest_path is not None or source_path == DEFAULT_REFINED_DIR.resolve()):
+        logger.info("Loading canonical safe corpus via rag.loader: %s", manifest_file)
+        load_result = load_corpus(manifest_file)
+        documents = load_result.documents
+        logger.info(
+            "Loaded %d safe canonical documents (rejected %d unsafe records, SHA: %s)",
+            len(documents),
+            load_result.report.rejected_records,
+            load_result.report.corpus_sha256[:12] if load_result.report.corpus_sha256 else "none",
+        )
+    else:
+        logger.info("Scanning refined documents from: %s", source_path)
+        records = discover_and_load_records(source_path)
+        if not records:
+            raise RuntimeError(f"No valid refined records found in {source_path}")
 
-    documents = records_to_rag_documents(records)
-    logger.info("Loaded %d unique canonical documents", len(documents))
+        documents = records_to_rag_documents(records)
+        logger.info("Loaded %d unique canonical documents", len(documents))
 
     category_counts: dict[str, int] = {}
     for doc in documents:
@@ -320,6 +335,13 @@ def main() -> int:
         default=DEFAULT_MULTILINGUAL_MODEL,
         help="Embedding model name (default: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2)",
     )
+    parser.add_argument(
+        "--manifest",
+        "-man",
+        type=Path,
+        default=None,
+        help="Path to rag_manifest.json to enforce safe canonical ingestion (default: auto-detected)",
+    )
 
     args = parser.parse_args()
 
@@ -330,6 +352,7 @@ def main() -> int:
             collection_name=args.collection,
             model_name=args.model,
             batch_size=args.batch_size,
+            manifest_path=args.manifest,
         )
         print("\n=== Vector Database Build Summary ===")
         print(json.dumps(result, indent=2))

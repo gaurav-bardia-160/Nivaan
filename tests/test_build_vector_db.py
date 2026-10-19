@@ -135,3 +135,35 @@ def test_build_unified_vector_db_end_to_end(tmp_path, monkeypatch):
     assert result["vector_store_health"]["ready"] is True
     assert result["vector_store_health"]["points"] == 1
 
+
+def test_build_unified_vector_db_uses_canonical_loader(tmp_path, monkeypatch):
+    pytest.importorskip("qdrant_client")
+    from backend.offline.build_vector_db import build_unified_vector_db
+    from backend.rag.embeddings import EmbeddingModelInfo
+    from backend.rag.loader import DEFAULT_MANIFEST
+
+    class FakeProvider:
+        @property
+        def info(self):
+            return EmbeddingModelInfo(provider="fake", model="fake", dimensions=3, multilingual=True)
+
+        def embed_texts(self, texts):
+            return tuple((0.1, 0.2, 0.3) for _ in texts)
+
+    monkeypatch.setattr("backend.offline.build_vector_db.FastEmbedProvider", lambda **_: FakeProvider())
+
+    dest_dir = tmp_path / "vector_index" / "qdrant"
+    result = build_unified_vector_db(
+        manifest_path=DEFAULT_MANIFEST,
+        dest_dir=dest_dir,
+        collection_name="test_canonical",
+        batch_size=100,
+    )
+
+    assert result["status"] == "success"
+    assert result["total_documents"] == 632  # Must be 632, rejecting the 15 unsafe records
+    assert result["categories"]["aadhaar"] == 390
+    assert result["categories"]["pan"] == 242
+    assert result["vector_store_health"]["points"] == 632
+
+

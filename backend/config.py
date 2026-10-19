@@ -25,11 +25,11 @@ CORS_ALLOW_ORIGINS = ["*"]
 
 CAPABILITIES = {
     "supported_languages": list(SUPPORTED_LANGUAGES),
-    "answer_language_status": "English answers only. Hindi/Gujarati UI labels may exist, but backend answer translation is not implemented yet.",
+    "answer_language_status": "English answers only by default. Hindi/Gujarati translation is available via TRANSLATION_ENABLED.",
     "supported_uploads": [".txt", ".text", ".md", ".csv", "text-based .pdf"],
     "unsupported_uploads": ["scanned PDFs", "images", "encrypted PDFs"],
     "privacy_boundary": "Sensitive values are masked server-side before retrieval and explanation. Client-side masking is not implemented yet.",
-    "knowledge_status": "Starter knowledge base only. Entries remain unverified until manually checked against official sources.",
+    "knowledge_status": "Curated knowledge base with verified-first routing; unverified RAG corpus used as conservative fallback.",
 }
 
 __all__ = [

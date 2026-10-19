@@ -58,13 +58,27 @@ def health() -> dict[str, object]:
 
 @app.get("/api/capabilities")
 def capabilities() -> dict[str, object]:
+    from backend.modules.translator import is_translation_enabled
     stats = knowledge_stats()
+    translation_on = is_translation_enabled()
+    base_caps = dict(CAPABILITIES)
+    if translation_on:
+        base_caps["answer_language_status"] = (
+            "English answers only by default; automatic translation into Hindi and Gujarati is currently active."
+        )
     return {
         "service": "govbank-assistant",
         "version": APP_VERSION,
         "knowledge_entries": stats,
         "rag": rag_health(),
-        **CAPABILITIES,
+        "translation": {
+            "enabled": translation_on,
+            "supported_targets": ["hi", "gu"],
+            "script_auto_detection": True,
+            "natural_phrase_extraction": True,
+            "civic_glossary": True,
+        },
+        **base_caps,
     }
 
 

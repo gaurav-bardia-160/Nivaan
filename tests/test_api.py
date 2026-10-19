@@ -287,6 +287,20 @@ def test_capabilities_endpoint_reports_honest_limits():
     assert "images" in payload["unsupported_uploads"]
     assert "English answers only" in payload["answer_language_status"]
     assert "Client-side masking is not implemented" in payload["privacy_boundary"]
+    assert "translation" in payload
+    assert payload["translation"]["enabled"] is False
+
+
+def test_capabilities_endpoint_reports_active_translation(monkeypatch):
+    monkeypatch.setenv("TRANSLATION_ENABLED", "true")
+    response = client.get("/api/capabilities")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["translation"]["enabled"] is True
+    assert "translation into Hindi and Gujarati is currently active" in payload["answer_language_status"]
+    assert "English answers only" in payload["answer_language_status"]
+
 
 
 def test_ask_endpoint_supported_question_uses_real_backend_boundary():
