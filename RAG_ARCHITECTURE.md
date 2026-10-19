@@ -22,7 +22,7 @@ RAG has two stages. You prepare the knowledge once, then run the query stage eve
 
 ### Stage B: Answer each question (runs on every request)
 
-**Step 6. Receive and clean the input.** The question comes in through `main.py`. If a document was uploaded, `ocr.py` reads it, and `privacy.py` masks sensitive numbers before anything goes to an outside AI.
+**Step 6. Receive and clean the input.** The question comes in through `main.py`. If a document was uploaded, `ocr.py` reads it, and `guardrails.py` masks sensitive numbers before anything goes to an outside AI.
 
 **Step 7. Retrieve.** `retrieval.py` searches the knowledge base and returns the best 1 or 2 matching entries, with a match score.
 
