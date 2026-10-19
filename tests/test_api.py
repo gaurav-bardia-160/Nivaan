@@ -220,7 +220,7 @@ def test_live_rag_is_feature_flagged_and_returns_cited_candidate_evidence(monkey
     health = client.get("/api/health").json()["rag"]
     assert health["enabled"] is True
     assert health["ready"] is True
-    assert health["documents"] == 669
+    assert health["documents"] == 681
 
 
 def test_live_rag_rejects_out_of_corpus_topics_and_preserves_document_routing(monkeypatch):
