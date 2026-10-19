@@ -19,7 +19,6 @@ const sidebarToggle = document.getElementById("sidebarToggle");
 const newChatBtn = document.getElementById("newChatBtn");
 const historyList = document.getElementById("historyList");
 const backendBadge = document.getElementById("backendBadge");
-const previewSampleBtn = document.getElementById("previewSampleBtn");
 
 const messagesContainer = document.getElementById("messagesContainer");
 const welcomeScreen = document.getElementById("welcomeScreen");
@@ -64,11 +63,6 @@ function setupEventListeners() {
     // New Chat Button
     if (newChatBtn) {
         newChatBtn.addEventListener("click", handleNewChatBtn);
-    }
-
-    // Preview Sample Button
-    if (previewSampleBtn) {
-        previewSampleBtn.addEventListener("click", loadSampleAnswer);
     }
 
     // Theme Toggle
@@ -834,46 +828,6 @@ window.toggleStepItem = function(checkboxEl) {
     }
 };
 
-// --- PREVIEW SAMPLE PAN GUIDE ---
-async function loadSampleAnswer() {
-    if (welcomeScreen) welcomeScreen.style.display = "none";
-
-    let currentChat = getActiveChat();
-    if (!currentChat) {
-        currentChat = createNewChat("Apply for new PAN card");
-    }
-
-    const msgId = "msg_" + Date.now();
-    currentChat.messages.push({
-        id: msgId,
-        role: "user",
-        text: "How do I apply for a new PAN card online?",
-        file: null
-    });
-    appendUserBubble("How do I apply for a new PAN card online?", null, msgId, true);
-    setLoading(true);
-
-    try {
-        const res = await fetch("sample_answer.json");
-        const data = await res.json();
-        setTimeout(() => {
-            currentChat.messages.push({
-                id: "msg_ast_" + Date.now(),
-                role: "assistant",
-                answer: data
-            });
-            currentChat.updatedAt = Date.now();
-            saveChatsToStorage();
-            renderHistoryList();
-
-            appendAssistantResponse(data, true);
-            setLoading(false);
-        }, 300);
-    } catch (e) {
-        setLoading(false);
-    }
-}
-
 // --- LOCAL FALLBACK (SIMULATED GUIDES) ---
 async function getLocalFallbackAnswer(text, file) {
     const qLower = (text || "").toLowerCase();
@@ -1025,12 +979,57 @@ async function getLocalFallbackAnswer(text, file) {
         };
     }
 
-    try {
-        const res = await fetch("sample_answer.json");
-        return await res.json();
-    } catch (e) {
-        return createSystemNotice("No Guide Found", "No local procedure guide was found for this query.");
+    if (qLower.includes("pan")) {
+        return {
+            title: "PAN Card Application Basics (Form 49A)",
+            summary: "A PAN card is required for tax and financial transactions. Indian citizens can apply online through authorized portals (Protean / UTIITSL) using Form 49A.",
+            documents_needed: [
+                "Proof of Identity (Aadhaar, Passport, Voter ID, Driving License)",
+                "Proof of Address (Aadhaar, Utility Bill, Bank Account Statement)",
+                "Proof of Date of Birth (Birth Certificate, Matriculation Certificate, Aadhaar)",
+                "Two recent passport-size colour photographs"
+            ],
+            steps: [
+                {
+                    no: 1,
+                    text: "Visit the official Protean (formerly NSDL) or UTIITSL online portal and select 'Form 49A'.",
+                    tip: "Choose application type 'Indian Citizen (Form 49A)' and category 'Individual'."
+                },
+                {
+                    no: 2,
+                    text: "Fill in personal details, name, date of birth, and Assessing Officer (AO) code.",
+                    tip: "Ensure your name and date of birth match your supporting documents exactly."
+                },
+                {
+                    no: 3,
+                    text: "Submit supporting documents online via Aadhaar paperless e-KYC or physical courier.",
+                    tip: "Aadhaar e-KYC completes verification instantly using OTP."
+                },
+                {
+                    no: 4,
+                    text: "Pay the processing fee and save the 15-digit acknowledgement slip to track delivery status.",
+                    tip: "Physical PAN cards are dispatched within 10-15 business days."
+                }
+            ],
+            warnings: [
+                {
+                    text: "Mandatory Aadhaar-PAN Linking",
+                    reason: "Failure to link Aadhaar with PAN makes the card inoperative under Income Tax rules."
+                },
+                {
+                    text: "Use Authorized Portals Only",
+                    reason: "Only use protean-tinpan.com or utiitsl.com to avoid third-party phishing or excessive fees."
+                }
+            ],
+            source_url: "https://www.incometax.gov.in",
+            last_verified: "2026-10-03",
+            confidence: "high",
+            masked_items: [],
+            disclaimer: "GovBank Assistant provides step-by-step guidance based on official income tax instructions. It does not replace formal legal or tax advice."
+        };
     }
+
+    return createSystemNotice("No Guide Found", "No local procedure guide was found for this query. Ensure backend server is connected for full access to 600+ official guidelines.");
 }
 
 // --- UTILITIES ---
