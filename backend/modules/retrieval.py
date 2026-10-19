@@ -82,13 +82,13 @@ def _entry_search_text(entry: dict[str, Any]) -> str:
 
 def _keyword_match_score(normalized_query: str, query_tokens: set[str], entry: dict[str, Any]) -> int:
     best = 0
-    meaningful_query_tokens = query_tokens - GENERIC_MATCH_TOKENS
+    meaningful_query_tokens = {t for t in query_tokens if len(t) > 1 and t not in GENERIC_MATCH_TOKENS}
     for keyword in entry.get("keywords", []):
         keyword_norm = _normalize(str(keyword))
         if not keyword_norm:
             continue
         keyword_tokens = set(keyword_norm.split())
-        meaningful_keyword_tokens = keyword_tokens - GENERIC_MATCH_TOKENS
+        meaningful_keyword_tokens = {t for t in keyword_tokens if len(t) > 1 and t not in GENERIC_MATCH_TOKENS}
         if normalized_query == keyword_norm:
             best = max(best, EXACT_KEYWORD_BONUS)
         elif keyword_norm in normalized_query or normalized_query in keyword_norm:

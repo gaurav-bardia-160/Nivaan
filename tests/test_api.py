@@ -227,12 +227,12 @@ def test_live_rag_rejects_out_of_corpus_topics_and_preserves_document_routing(mo
     monkeypatch.setenv("RAG_ENABLED", "true")
     monkeypatch.setenv("RAG_VECTOR_ENABLED", "true")
 
-    passport = client.post(
+    out_of_scope = client.post(
         "/api/ask",
-        json={"input_type": "question", "question": "How do I apply for a passport?", "language": "en"},
+        json={"input_type": "question", "question": "How do I get a fishing permit in Alaska?", "language": "en"},
     ).json()
-    assert passport["title"] == "No verified guide found"
-    assert passport["citations"] == []
+    assert out_of_scope["title"] == "No verified guide found"
+    assert out_of_scope["citations"] == []
 
     notice = client.post(
         "/api/ask",
