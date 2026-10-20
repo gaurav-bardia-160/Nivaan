@@ -12,6 +12,42 @@ from backend.rag.runtime import retrieve_if_enabled
 from backend.schemas import Answer, AskRequest
 
 
+_FOLLOW_UP_MARKERS = {
+    "that", "this", "it", "its", "same", "above", "these", "those", "here", "there",
+    # Hindi/Hinglish pronouns
+    "iska", "iski", "iske", "uska", "uski", "uske", "yeh", "ye", "woh", "wo", "isme", "usme",
+    # Gujarati pronouns
+    "ana", "ama", "te", "tenu",
+}
+
+_FOLLOW_UP_INTENTS = {
+    "document", "documents", "doc", "docs", "proof", "proofs", "paper", "papers", "paperwork",
+    "step", "steps", "procedure", "process", "apply", "requirement", "requirements",
+    "fee", "fees", "cost", "charge", "charges", "price", "penalty", "free", "pay",
+    "time", "days", "duration", "tat", "deadline", "long", "when",
+    "status", "track", "tracking", "check", "verify",
+    "eligibility", "eligible", "criteria", "who can",
+    # Hindi/Gujarati intents
+    "dastavej", "kagaj", "paisa", "shulk", "samay", "kya", "kaise",
+}
+
+
+def _has_anaphoric_reference(text: str) -> bool:
+    tokens = {t.lower().strip("?,.!:;'\"") for t in text.split()}
+    return bool(tokens & _FOLLOW_UP_MARKERS)
+
+
+def _is_follow_up_query(text: str) -> bool:
+    tokens = {t.lower().strip("?,.!:;'\"") for t in text.split()}
+    has_pronoun = bool(tokens & _FOLLOW_UP_MARKERS)
+    has_intent = bool(tokens & _FOLLOW_UP_INTENTS)
+    if has_pronoun:
+        return True
+    if has_intent and len(tokens) <= 8:
+        return True
+    return False
+
+
 def _request_text(request: AskRequest) -> str:
     parts = [request.question or "", request.document_text or ""]
     return "\n\n".join(part.strip() for part in parts if part and part.strip())
@@ -68,6 +104,21 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     if not entry:
         entry, _ = find_entry_with_score(search_text)
 
+    # Multi-turn conversational context resolution:
+    # If no standalone entry matched (or entry matched incidentally while the user explicitly
+    # used an anaphoric pronoun like 'for that' / 'for this' pointing to the previous topic),
+    # resolve against previous_entry_id or context_topic.
+    if parsed_request.previous_entry_id and _is_follow_up_query(search_text):
+        if entry is None or _has_anaphoric_reference(search_text):
+            candidate = find_entry_by_id(parsed_request.previous_entry_id)
+            if candidate:
+                entry = candidate
+
+    if entry is None and parsed_request.context_topic and _is_follow_up_query(search_text):
+        candidate, _ = find_entry_with_score(parsed_request.context_topic)
+        if candidate:
+            entry = candidate
+
     # Prefer the small, manually verified procedure library whenever it has a
     # match. The broader imported RAG corpus is explicitly unverified and must
     # not replace a trusted workflow with a lower-confidence candidate passage.
@@ -82,7 +133,10 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     # Use RAG as a conservative fallback for supported PAN/Aadhaar requests
     # that are not covered by a verified procedure. This preserves citations
     # without allowing unverified chunks to override higher-trust guidance.
-    rag_result = retrieve_if_enabled(search_text, top_k=3)
+    rag_query = search_text
+    if parsed_request.context_topic and _is_follow_up_query(search_text):
+        rag_query = f"{parsed_request.context_topic} {search_text}"
+    rag_result = retrieve_if_enabled(rag_query, top_k=3)
     if rag_result is not None and rag_result.hits:
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
         if rag_answer is not None:

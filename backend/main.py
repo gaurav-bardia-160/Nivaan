@@ -97,6 +97,8 @@ async def ask_file(
     file: UploadFile = File(...),
     question: str = Form("Explain this document"),
     language: str = Form("en"),
+    previous_entry_id: Optional[str] = Form(None),
+    context_topic: Optional[str] = Form(None),
 ) -> Answer:
     """Accept a real uploaded supported file and process it without storing it.
 
@@ -113,6 +115,8 @@ async def ask_file(
             question=question or "Explain this document",
             document_text=extracted.text,
             language=language,
+            previous_entry_id=previous_entry_id,
+            context_topic=context_topic,
             file_attached=False,
         )
         return run(request)

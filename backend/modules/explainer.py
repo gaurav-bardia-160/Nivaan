@@ -44,6 +44,7 @@ def explain_entry(
         summary = f"For your question, '{clean_question}', this is the closest guide I found. {summary}"
 
     return Answer(
+        entry_id=knowledge.id,
         title=knowledge.title,
         summary=summary,
         documents_needed=knowledge.documents_needed,

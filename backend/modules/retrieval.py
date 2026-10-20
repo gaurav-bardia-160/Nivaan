@@ -15,11 +15,13 @@ MATCH_THRESHOLD = 55
 EXACT_KEYWORD_BONUS = 80
 TOKEN_KEYWORD_BONUS = 28
 GENERIC_MATCH_TOKENS = {
-    "application", "apply", "card", "document", "documents", "form", "new", "proof", "update"
+    "application", "apply", "card", "document", "documents", "form", "new", "proof", "update",
+    "fee", "fees", "charge", "charges", "cost", "penalty"
 }
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "can", "could",
     "did", "do", "does", "for", "from", "have", "how", "i", "if", "in", "into",
+    "what",
     "is", "it", "its", "may", "my", "of", "on", "or", "should", "that", "the", "their",
     "them", "then", "there", "these", "they", "this", "those", "to", "use", "when",
     "where", "which", "who", "why", "will", "with", "would", "you", "your"
@@ -83,6 +85,8 @@ def _entry_search_text(entry: dict[str, Any]) -> str:
 def _keyword_match_score(normalized_query: str, query_tokens: set[str], entry: dict[str, Any]) -> int:
     best = 0
     meaningful_query_tokens = {t for t in query_tokens if len(t) > 1 and t not in GENERIC_MATCH_TOKENS}
+    if not meaningful_query_tokens:
+        return 0
     for keyword in entry.get("keywords", []):
         keyword_norm = _normalize(str(keyword))
         if not keyword_norm:
@@ -91,7 +95,10 @@ def _keyword_match_score(normalized_query: str, query_tokens: set[str], entry: d
         meaningful_keyword_tokens = {t for t in keyword_tokens if len(t) > 1 and t not in GENERIC_MATCH_TOKENS}
         if normalized_query == keyword_norm:
             best = max(best, EXACT_KEYWORD_BONUS)
-        elif keyword_norm in normalized_query or normalized_query in keyword_norm:
+        elif len(normalized_query) > 1 and (
+            re.search(rf"\b{re.escape(keyword_norm)}\b", normalized_query)
+            or re.search(rf"\b{re.escape(normalized_query)}\b", keyword_norm)
+        ):
             best = max(best, TOKEN_KEYWORD_BONUS + 15)
         else:
             overlap = meaningful_query_tokens & meaningful_keyword_tokens
@@ -112,7 +119,7 @@ def _score_entry(normalized_query: str, query_tokens: set[str], entry: dict[str,
 
     title_tokens = _tokens(str(entry.get("title", "")))
     search_tokens = set(search_norm.split())
-    meaningful_query_tokens = query_tokens - GENERIC_MATCH_TOKENS
+    meaningful_query_tokens = {t for t in query_tokens if len(t) > 1 and t not in GENERIC_MATCH_TOKENS}
     meaningful_title_overlap = meaningful_query_tokens & (title_tokens - GENERIC_MATCH_TOKENS)
     overlap_score = (len(meaningful_title_overlap) * 20) + (len(meaningful_query_tokens & search_tokens) * 7)
 
@@ -129,10 +136,12 @@ def find_entry_with_score(query: str) -> tuple[Optional[dict[str, Any]], float]:
         return None, 0.0
 
     normalized_query = _normalize(query)
-    if not normalized_query:
+    if not normalized_query or len(normalized_query) < 2:
         return None, 0.0
 
     query_tokens = set(normalized_query.split())
+    if not any(len(t) > 1 for t in query_tokens):
+        return None, 0.0
     best_entry: Optional[dict[str, Any]] = None
     best_score = 0.0
 

@@ -137,12 +137,46 @@ function setupEventListeners() {
     }
 }
 
+// --- CLIENT-SIDE PII MASKING & STORAGE SAFEGUARDS ---
+function maskClientPII(text) {
+    if (!text || typeof text !== "string") return text;
+    let sanitized = text;
+    // Bank account: account no / number followed by 9-18 digits
+    sanitized = sanitized.replace(/\b(?:account\s*(?:no\.?|number)?\s*[:\-]?\s*)\d{9,18}\b/gi, "[BANK_ACCOUNT]");
+    // Aadhaar: 12 digits (with optional single space or hyphen separator)
+    sanitized = sanitized.replace(/(?<!\d)(?:\d{4}[\s-]?\d{4}[\s-]?\d{4})(?!\d)/g, "[AADHAAR]");
+    // PAN: 5 letters, 4 digits, 1 letter
+    sanitized = sanitized.replace(/\b[A-Za-z]{5}\d{4}[A-Za-z]\b/g, "[PAN]");
+    // IFSC code: 4 letters, zero, 6 alphanumeric
+    sanitized = sanitized.replace(/\b[A-Za-z]{4}0[A-Za-z0-9]{6}\b/g, "[IFSC]");
+    // Email address
+    sanitized = sanitized.replace(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g, "[EMAIL]");
+    // Phone number: optional +91, 10 digits starting with 6-9
+    sanitized = sanitized.replace(/(?<!\d)(?:\+91[\s-]?)?[6-9]\d{9}(?!\d)/g, "[PHONE]");
+    return sanitized;
+}
+
+function sanitizeAllChats(chatList) {
+    if (!Array.isArray(chatList)) return [];
+    return chatList.map(chat => ({
+        ...chat,
+        title: maskClientPII(chat.title || ""),
+        messages: Array.isArray(chat.messages) ? chat.messages.map(m => {
+            if (m.role === "user" && m.text) {
+                return { ...m, text: maskClientPII(m.text) };
+            }
+            return m;
+        }) : []
+    }));
+}
+
 // --- STORAGE & PERSISTENCE ---
 function loadChatsFromStorage() {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
         chats = raw ? JSON.parse(raw) : [];
         if (!Array.isArray(chats)) chats = [];
+        chats = sanitizeAllChats(chats);
 
         const savedActiveId = localStorage.getItem(ACTIVE_CHAT_KEY);
         if (savedActiveId && chats.some(c => c.id === savedActiveId)) {
@@ -159,6 +193,7 @@ function loadChatsFromStorage() {
 
 function saveChatsToStorage() {
     try {
+        chats = sanitizeAllChats(chats);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(chats));
         if (activeChatId) {
             localStorage.setItem(ACTIVE_CHAT_KEY, activeChatId);
@@ -177,7 +212,7 @@ function getActiveChat() {
 
 function createNewChat(firstPrompt = "") {
     const id = "chat_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
-    const title = generateTitle(firstPrompt);
+    const title = generateTitle(maskClientPII(firstPrompt));
     const chat = {
         id,
         title,
@@ -394,16 +429,17 @@ async function sendMessage(userText, fileObj = null) {
         isPdf: fileObj.isPdf
     } : null;
 
+    const sanitizedUserText = maskClientPII(userText);
     currentChat.messages.push({
         id: msgId,
         role: "user",
-        text: userText,
+        text: sanitizedUserText,
         file: fileMeta
     });
     currentChat.updatedAt = Date.now();
     saveChatsToStorage();
 
-    appendUserBubble(userText, fileMeta, msgId, true);
+    appendUserBubble(sanitizedUserText, fileMeta, msgId, true);
 
     const currentAttachment = fileObj || attachedFile;
     clearAttachment();
@@ -422,9 +458,24 @@ async function executeQuery(userText, currentAttachment, chatObj) {
             const hasReadableDocumentText = !!(currentAttachment && currentAttachment.textContent && currentAttachment.textContent.trim());
 
             if (currentAttachment && !hasReadableDocumentText && currentAttachment.fileRef) {
+                let previousEntryId = null;
+                let contextTopic = null;
+                if (chatObj && Array.isArray(chatObj.messages)) {
+                    for (let i = chatObj.messages.length - 1; i >= 0; i--) {
+                        const m = chatObj.messages[i];
+                        if (m.role === "assistant" && m.answer) {
+                            if (m.answer.entry_id) previousEntryId = m.answer.entry_id;
+                            if (m.answer.title && m.answer.title !== "No verified guide found") contextTopic = m.answer.title;
+                            break;
+                        }
+                    }
+                }
+
                 const formData = new FormData();
                 formData.append("file", currentAttachment.fileRef);
                 formData.append("question", userText || "Explain this document");
+                if (previousEntryId) formData.append("previous_entry_id", previousEntryId);
+                if (contextTopic) formData.append("context_topic", contextTopic);
 
                 const uploadResponse = await fetch(`${API_BASE}/api/ask-file`, {
                     method: "POST",
@@ -441,12 +492,31 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                     );
                 }
             } else {
+                let previousEntryId = null;
+                let contextTopic = null;
+                if (chatObj && Array.isArray(chatObj.messages)) {
+                    for (let i = chatObj.messages.length - 1; i >= 0; i--) {
+                        const m = chatObj.messages[i];
+                        if (m.role === "assistant" && m.answer) {
+                            if (m.answer.entry_id) {
+                                previousEntryId = m.answer.entry_id;
+                            }
+                            if (m.answer.title && m.answer.title !== "No verified guide found") {
+                                contextTopic = m.answer.title;
+                            }
+                            break;
+                        }
+                    }
+                }
+
                 const payload = {
                     input_type: currentAttachment ? "document" : "question",
                     question: userText,
                     conversation_id: chatObj ? chatObj.id : "conv_default",
                     file_attached: !!currentAttachment
                 };
+                if (previousEntryId) payload.previous_entry_id = previousEntryId;
+                if (contextTopic) payload.context_topic = contextTopic;
 
                 if (hasReadableDocumentText) {
                     payload.document_text = currentAttachment.textContent.trim();
@@ -552,7 +622,7 @@ window.submitEditPrompt = async function(msgId) {
     if (msgIdx === -1) return;
 
     const msg = currentChat.messages[msgIdx];
-    msg.text = newText;
+    msg.text = maskClientPII(newText);
 
     // Truncate messages after this message in conversation history
     currentChat.messages = currentChat.messages.slice(0, msgIdx + 1);

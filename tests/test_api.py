@@ -453,3 +453,74 @@ def test_ask_file_endpoint_rejects_empty_text_file():
 
     assert response.status_code == 400
     assert "No readable text" in response.json()["detail"]
+
+
+def test_ask_endpoint_rejects_meaningless_single_character_query():
+    response = client.post("/api/ask", json={"question": "x", "language": "en"})
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["title"] == "No verified guide found"
+
+
+def test_ask_endpoint_supports_multi_turn_conversational_context():
+    # Turn 1: User asks initial PAN question
+    turn1_res = client.post("/api/ask", json={"question": "How do I apply for a new PAN card?", "language": "en"})
+    assert turn1_res.status_code == 200
+    turn1 = turn1_res.json()
+    assert turn1["entry_id"] == "pan_card_new"
+    assert turn1["title"] == "Apply for a new PAN card"
+
+    # Turn 2: User asks follow-up referencing previous topic
+    turn2_res = client.post(
+        "/api/ask",
+        json={
+            "question": "What documents do I need for that?",
+            "previous_entry_id": turn1["entry_id"],
+            "language": "en",
+        },
+    )
+    assert turn2_res.status_code == 200
+    turn2 = turn2_res.json()
+    assert turn2["entry_id"] == "pan_card_new"
+    assert turn2["title"] == "Apply for a new PAN card"
+    assert len(turn2["documents_needed"]) >= 3
+
+    # Turn 3: User asks follow-up about fees
+    turn3_res = client.post(
+        "/api/ask",
+        json={
+            "question": "What is the fee?",
+            "previous_entry_id": turn1["entry_id"],
+            "language": "en",
+        },
+    )
+    assert turn3_res.status_code == 200
+    turn3 = turn3_res.json()
+    assert turn3["entry_id"] == "pan_card_new"
+
+    # Turn 4: User switches to an independent topic - must NOT use previous_entry_id
+    turn4_res = client.post(
+        "/api/ask",
+        json={
+            "question": "How do I file ITR?",
+            "previous_entry_id": turn1["entry_id"],
+            "language": "en",
+        },
+    )
+    assert turn4_res.status_code == 200
+    turn4 = turn4_res.json()
+    assert turn4["entry_id"] == "itr_filing_basics"
+    assert "Income Tax Return" in turn4["title"]
+
+    # Turn 5: User asks an unrelated out-of-scope query - must NOT use previous_entry_id
+    turn5_res = client.post(
+        "/api/ask",
+        json={
+            "question": "What is the capital of France?",
+            "previous_entry_id": turn1["entry_id"],
+            "language": "en",
+        },
+    )
+    assert turn5_res.status_code == 200
+    turn5 = turn5_res.json()
+    assert turn5["title"] == "No verified guide found"

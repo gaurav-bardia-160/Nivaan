@@ -88,3 +88,10 @@ def test_ask_request_requires_document_text_or_question_and_rejects_unprocessed_
         AskRequest(input_type="document", file_attached=True)
     assert AskRequest(input_type="document", document_text="Loan agreement text").document_text == "Loan agreement text"
     assert AskRequest(input_type="document", question="Explain this notice").question == "Explain this notice"
+
+
+def test_find_entry_rejects_single_character_and_meaningless_queries():
+    assert find_entry("x") is None
+    assert find_entry("a") is None
+    assert find_entry("?") is None
+    assert find_entry("1") is None

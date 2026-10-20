@@ -75,9 +75,11 @@ class AskRequest(BaseModel):
     document_text: Optional[str] = Field(default=None, max_length=MAX_DOCUMENT_TEXT_LENGTH)
     language: Literal["en", "hi", "gu"] = "en"
     conversation_id: Optional[str] = Field(default=None, max_length=MAX_CONVERSATION_ID_LENGTH)
+    previous_entry_id: Optional[str] = Field(default=None, max_length=80)
+    context_topic: Optional[str] = Field(default=None, max_length=120)
     file_attached: bool = False
 
-    @field_validator("question", "document_text", "conversation_id", mode="before")
+    @field_validator("question", "document_text", "conversation_id", "previous_entry_id", "context_topic", mode="before")
     @classmethod
     def clean_optional_text(cls, value):
         if value is None:
@@ -154,6 +156,7 @@ class Citation(BaseModel):
 class Answer(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
+    entry_id: Optional[str] = Field(default=None, max_length=80)
     title: str = Field(min_length=1, max_length=180)
     summary: str = Field(min_length=1, max_length=1200)
     documents_needed: List[str] = Field(default_factory=list, max_length=30)
@@ -169,6 +172,16 @@ class Answer(BaseModel):
         min_length=1,
         max_length=500,
     )
+
+    @field_validator("entry_id", mode="before")
+    @classmethod
+    def clean_entry_id(cls, value):
+        if value is None:
+            return value
+        if not isinstance(value, str):
+            return value
+        cleaned = _clean_text(value)
+        return cleaned or None
 
     @field_validator("title", "summary", "disclaimer", mode="before")
     @classmethod
