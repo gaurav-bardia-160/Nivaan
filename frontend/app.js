@@ -872,10 +872,7 @@ function appendAssistantResponse(answer, shouldScroll = true) {
                     </span>
                 </div>
 
-                <!-- Legal Disclaimer -->
-                <div class="disclaimer-text">
-                    ℹ️ <strong>Disclaimer:</strong> ${escapeHtml(answer.disclaimer)}
-                </div>
+
             </div>
         </div>
     `;
