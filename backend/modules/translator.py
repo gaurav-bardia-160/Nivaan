@@ -126,6 +126,7 @@ _CIVIC_GLOSSARY: dict[tuple[str, str], str] = {
 
     # Curated Guide Titles & Disclaimers (Hindi)
     ("apply for a new pan card", "hi"): "नए पैन कार्ड के लिए आवेदन करें",
+    ("apply for an indian passport (fresh/re-issue)", "hi"): "भारतीय पासपोर्ट के लिए आवेदन करें (नया/पुनः जारी)",
     ("file your income tax return (itr) - basics", "hi"): "अपना आयकर रिटर्न (ITR) दाखिल करें - बुनियादी बातें",
     ("understand a loan agreement", "hi"): "ऋण समझौते (लोन एग्रीमेंट) को समझें",
     ("aadhaar enrolment basics", "hi"): "आधार नामांकन की बुनियादी प्रक्रिया",
@@ -140,6 +141,7 @@ _CIVIC_GLOSSARY: dict[tuple[str, str], str] = {
 
     # Curated Guide Titles & Disclaimers (Gujarati)
     ("apply for a new pan card", "gu"): "નવા પાન કાર્ડ માટે અરજી કરો",
+    ("apply for an indian passport (fresh/re-issue)", "gu"): "ભારતીય પાસપોર્ટ માટે અરજી કરો (નવું/ફરીથી જારી)",
     ("file your income tax return (itr) - basics", "gu"): "તમારું ઇન્કમ ટેક્સ રિટર્ન (ITR) ફાઇલ કરો - મૂળભૂત બાબતો",
     ("understand a loan agreement", "gu"): "લોન કરારને સમજો",
     ("aadhaar enrolment basics", "gu"): "આધાર નોંધણીની મૂળભૂત બાબતો",

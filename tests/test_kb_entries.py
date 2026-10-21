@@ -37,3 +37,11 @@ def test_kb_entry_retrieval_consumer_court():
     response = client.post("/api/ask", json={"input_type": "question", "question": "I want to file a complaint in consumer court against a seller.", "language": "en"})
     assert response.status_code == 200
     assert "Filing a Consumer Court Complaint" in response.json()["title"]
+
+
+def test_kb_entry_retrieval_passport():
+    response = client.post("/api/ask", json={"input_type": "question", "question": "how to make paspot", "language": "en"})
+    assert response.status_code == 200
+    data = response.json()
+    assert "Passport" in data["title"]
+    assert data["confidence"] in ["medium", "high"]

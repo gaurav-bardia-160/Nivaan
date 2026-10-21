@@ -39,6 +39,8 @@ def test_knowledge_entries_have_required_retrieval_and_trust_fields():
     ("query", "expected_id"),
     [
         ("How do I get a PAN card?", "pan_card_new"),
+        ("how to make paspot", "passport_application_new"),
+        ("passport", "passport_application_new"),
         ("pan", "pan_card_new"),
         ("Form 49A", "pan_card_new"),
         ("permanent account number", "pan_card_new"),
@@ -62,7 +64,7 @@ def test_find_entry_handles_common_short_and_full_queries(query, expected_id):
     "query",
     [
         "when does the moon turn into a banana",
-        "passport application",
+        "commercial pilot license",
         "weather tomorrow",
         "college admission form",
     ],

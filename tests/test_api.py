@@ -194,7 +194,7 @@ def test_pipeline_returns_answer_for_supported_question():
 
 
 def test_pipeline_refuses_unsupported_question_without_guessing():
-    answer = run(AskRequest(input_type="question", question="How do I apply for a passport?"))
+    answer = run(AskRequest(input_type="question", question="How do I apply for a commercial pilot license?"))
 
     assert answer.title == "No verified guide found"
     assert answer.confidence == "low"

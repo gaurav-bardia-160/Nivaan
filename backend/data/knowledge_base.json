@@ -591,5 +591,81 @@
       "last_verified": "2026-10-08"
     },
     "status": "verified"
+  },
+  {
+    "id": "passport_application_new",
+    "title": "Apply for an Indian Passport (Fresh/Re-issue)",
+    "category": "general",
+    "summary": "Apply for a fresh Indian passport or re-issue of an existing passport online through the official Passport Seva portal (passportindia.gov.in) under the Ministry of External Affairs. The process involves online registration, filling Form No. 1, paying the fee, scheduling an appointment at a Passport Seva Kendra (PSK) or Post Office PSK (POPSK), biometric capture, document verification, and police verification before final dispatch.",
+    "keywords": [
+      "passport",
+      "paspot",
+      "pasport",
+      "passsport",
+      "apply passport",
+      "new passport",
+      "fresh passport",
+      "make passport",
+      "how to make passport",
+      "how to make paspot",
+      "passport online",
+      "passport seva",
+      "psk",
+      "popsk",
+      "tatkaal passport",
+      "passport application"
+    ],
+    "documents_needed": [
+      "Proof of Date of Birth (Birth Certificate, School Leaving Certificate, Aadhaar Card, or PAN Card)",
+      "Proof of Present Address (Aadhaar Card, Water/Electricity Bill, Bank Passbook with Photo, or Rent Agreement)",
+      "Proof of Identity with Photo (Aadhaar Card, Voter ID, or PAN Card)",
+      "Standard Annexure E declaration (for adult fresh passport applicants)",
+      "Non-ECR Proof (10th standard matriculation certificate or higher educational degree, if applicable)"
+    ],
+    "steps": [
+      {
+        "title": "Register on the Passport Seva Online Portal",
+        "detail": "Visit the official portal at passportindia.gov.in and click 'New User Registration'. Select your jurisdictional Passport Office and provide your basic details."
+      },
+      {
+        "title": "Fill out the Passport Application Form",
+        "detail": "Login with your registered ID, click 'Apply for Fresh Passport/Re-issue of Passport', choose Normal or Tatkaal scheme, select a 36 or 60 page booklet, and complete the form accurately."
+      },
+      {
+        "title": "Pay Application Fee and Schedule Appointment",
+        "detail": "Go to 'View Saved/Submitted Applications' and click 'Pay and Schedule Appointment'. Pay online (₹1,500 for normal adult 36-page passport) and select your preferred PSK/POPSK and appointment slot."
+      },
+      {
+        "title": "Visit PSK / POPSK for Biometrics and Document Verification",
+        "detail": "Arrive on the scheduled date with original documents, self-attested photocopies, and application receipt. Complete photograph, fingerprint capture, and document checking."
+      },
+      {
+        "title": "Complete Police Verification and Receive Passport",
+        "detail": "After your appointment, local police will verify your residential address. Once cleared, your passport is printed and delivered to your doorstep via India Post Speed Post."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Beware of Fraudulent Third-Party Websites",
+        "message": "Only apply through the official government portal www.passportindia.gov.in. Avoid fake intermediary sites charging extra fees.",
+        "severity": "critical"
+      },
+      {
+        "title": "Carry All Original Documents to PSK",
+        "message": "You must bring original documents corresponding to every uploaded copy. Missing originals will lead to appointment cancellation and rescheduling.",
+        "severity": "warning"
+      },
+      {
+        "title": "Ensure Present Residential Address is Accurate",
+        "message": "Police verification is strictly carried out at the current address entered in the application. Concealing residential history can lead to penalties under the Passports Act.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "Ministry of External Affairs - Passport Seva Portal",
+      "url": "https://www.passportindia.gov.in/",
+      "last_verified": "2026-10-01"
+    },
+    "status": "verified"
   }
 ]

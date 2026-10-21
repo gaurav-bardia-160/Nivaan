@@ -1103,6 +1103,65 @@ async function getLocalFallbackAnswer(text, file) {
                     };
     }
 
+    if (qLower.includes("passport") || qLower.includes("paspot") || qLower.includes("pasport")) {
+        return {
+            title: "Apply for an Indian Passport (Fresh/Re-issue)",
+            summary: "Apply for a fresh Indian passport or re-issue of an existing passport online through the official Passport Seva portal (passportindia.gov.in) under the Ministry of External Affairs. The process involves online registration, filling Form No. 1, paying the fee, scheduling an appointment at a Passport Seva Kendra (PSK) or Post Office PSK (POPSK), biometric capture, document verification, and police verification.",
+            documents_needed: [
+                "Proof of Date of Birth (Birth Certificate, School Leaving Certificate, Aadhaar Card, or PAN Card)",
+                "Proof of Present Address (Aadhaar Card, Water/Electricity Bill, Bank Passbook with Photo, or Rent Agreement)",
+                "Proof of Identity with Photo (Aadhaar Card, Voter ID, or PAN Card)",
+                "Standard Annexure E declaration (for adult fresh passport applicants)",
+                "Non-ECR Proof (10th standard matriculation certificate or higher educational degree, if applicable)"
+            ],
+            steps: [
+                {
+                    no: 1,
+                    text: "Register on the Passport Seva Online Portal (passportindia.gov.in).",
+                    tip: "Select your jurisdictional Passport Office and enter basic contact information."
+                },
+                {
+                    no: 2,
+                    text: "Fill out the Passport Application Form (Form No. 1).",
+                    tip: "Choose Fresh Passport or Re-issue, Normal or Tatkaal, and 36 or 60 pages booklet."
+                },
+                {
+                    no: 3,
+                    text: "Pay the Application Fee and Schedule an Appointment.",
+                    tip: "Fee is ₹1,500 for normal 36-page adult passport. Select your nearest PSK or POPSK."
+                },
+                {
+                    no: 4,
+                    text: "Visit PSK / POPSK for Biometrics and Document Verification.",
+                    tip: "Arrive with all original documents and self-attested photocopies."
+                },
+                {
+                    no: 5,
+                    text: "Complete Police Verification and Receive Passport via Speed Post.",
+                    tip: "Track your 15-digit File Number online until dispatched by India Post."
+                }
+            ],
+            warnings: [
+                {
+                    text: "Beware of Fraudulent Third-Party Websites",
+                    reason: "Only apply through www.passportindia.gov.in. Avoid fake intermediary sites charging extra fees."
+                },
+                {
+                    text: "Carry All Original Documents to PSK",
+                    reason: "Missing originals will lead to appointment cancellation and rescheduling."
+                },
+                {
+                    text: "Ensure Present Residential Address is Accurate",
+                    reason: "Police verification is strictly carried out at the current address entered in the application."
+                }
+            ],
+            source_url: "https://www.passportindia.gov.in/",
+            last_verified: "2026-10-01",
+            confidence: "high",
+            masked_items: []
+        };
+    }
+
     if (qLower.includes("pan")) {
         return {
             title: "PAN Card Application Basics (Form 49A)",
