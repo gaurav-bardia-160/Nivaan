@@ -16,7 +16,7 @@ EXACT_KEYWORD_BONUS = 80
 TOKEN_KEYWORD_BONUS = 28
 GENERIC_MATCH_TOKENS = {
     "application", "apply", "card", "document", "documents", "form", "new", "proof", "update",
-    "fee", "fees", "charge", "charges", "cost", "penalty"
+    "fee", "fees", "charge", "charges", "cost", "penalty", "make"
 }
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "can", "could",
@@ -191,4 +191,3 @@ __all__ = [
     "_load_entries",
     "_normalize",
 ]
-

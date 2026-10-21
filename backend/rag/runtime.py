@@ -17,8 +17,9 @@ _CATEGORY_TERMS = {
     "pan": ("pan", "e-pan", "epan", "form 49a", "form 49aa", "पैन", "पॅन", "પૅન"),
     "aadhaar": ("aadhaar", "aadhar", "uidai", "e-aadhaar", "eaadhaar", "आधार", "આધાર"),
     "civic": (
-        "passport", "efrro", "frro", "visa", "voter", "voters", "parivahan", "license",
-        "dl", "rc", "ration", "pds", "nfsa", "post office", "ippb", "epf", "epfo",
+        "passport", "efrro", "frro", "visa", "voter", "voters", "parivahan",
+        "driving license", "driving licence", "driver license", "driver licence", "dl", "rc",
+        "ration", "pds", "nfsa", "post office", "ippb", "epf", "epfo",
         "pension", "bhavishya", "pmkisan", "pm-kisan", "kisan", "rti", "pgportal",
         "grievance", "sebi", "rbi", "budget", "gazette", "judiciary", "court",
         "digilocker", "udyam", "msme", "gst", "constitution", "marriage", "ews"

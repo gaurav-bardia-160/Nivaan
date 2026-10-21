@@ -202,6 +202,13 @@ def test_pipeline_refuses_unsupported_question_without_guessing():
     assert answer.warnings[0].title == "Answer not grounded"
 
 
+def test_pipeline_refuses_unrelated_make_query_without_matching_passport():
+    answer = run(AskRequest(input_type="question", question="How to make chocolate cake at home?"))
+
+    assert answer.title == "No verified guide found"
+    assert answer.entry_id is None
+
+
 def test_live_rag_is_feature_flagged_and_returns_cited_candidate_evidence(monkeypatch):
     monkeypatch.setenv("RAG_ENABLED", "true")
     response = client.post(

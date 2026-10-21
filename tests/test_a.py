@@ -65,6 +65,7 @@ def test_find_entry_handles_common_short_and_full_queries(query, expected_id):
     [
         "when does the moon turn into a banana",
         "commercial pilot license",
+        "How to make chocolate cake at home?",
         "weather tomorrow",
         "college admission form",
     ],
