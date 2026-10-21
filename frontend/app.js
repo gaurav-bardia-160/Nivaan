@@ -725,28 +725,27 @@ function appendAssistantResponse(answer, shouldScroll = true) {
         `;
     }
 
-    // 2. Documents required
+    // 2. Documents required (Clean list - no checkboxes)
     let docsHtml = "";
     if (answer.documents_needed && answer.documents_needed.length > 0) {
-        const docItems = answer.documents_needed.map((doc, idx) => `
-            <li class="doc-row" onclick="toggleCheckboxRow(this)">
-                <input type="checkbox" id="dchk_${Date.now()}_${idx}">
-                <label>${escapeHtml(doc)}</label>
+        const docItems = answer.documents_needed.map(doc => `
+            <li class="clean-doc-item">
+                <span class="clean-doc-icon">📄</span>
+                <span class="clean-doc-text">${escapeHtml(doc)}</span>
             </li>
         `).join("");
 
         docsHtml = `
-            <div>
+            <div class="clean-section">
                 <div class="section-title">
                     <span>📑 Required Documents</span>
-                    <span style="font-size: 11px; font-weight: normal; color: var(--text-muted);">(tick to check off)</span>
                 </div>
-                <ul class="docs-checklist">${docItems}</ul>
+                <ul class="clean-docs-list">${docItems}</ul>
             </div>
         `;
     }
 
-    // 3. Step-by-Step Procedure Checklist
+    // 3. Step-by-Step Procedure (Clean numbered process - no checkboxes)
     let stepsHtml = "";
     if (answer.steps && answer.steps.length > 0) {
         const stepItems = answer.steps.map((st, idx) => {
@@ -754,23 +753,22 @@ function appendAssistantResponse(answer, shouldScroll = true) {
             const stepText = st.text || st.title || "Step";
             const stepTip = st.tip || st.detail || "";
             return `
-            <div class="step-item" id="step_${Date.now()}_${stepNo}">
-                <input type="checkbox" onchange="toggleStepItem(this)">
-                <div class="step-body">
-                    <div class="step-num">Step ${stepNo}</div>
-                    <div class="step-desc">${escapeHtml(stepText)}</div>
-                    ${stepTip ? `<div class="step-hint">💡 <strong>Details:</strong> ${escapeHtml(stepTip)}</div>` : ""}
+            <div class="clean-step-card">
+                <div class="clean-step-badge">${stepNo}</div>
+                <div class="clean-step-content">
+                    <div class="clean-step-title">${escapeHtml(stepText)}</div>
+                    ${stepTip ? `<div class="clean-step-detail">💡 <strong>Details:</strong> ${escapeHtml(stepTip)}</div>` : ""}
                 </div>
             </div>
         `;
         }).join("");
 
         stepsHtml = `
-            <div>
+            <div class="clean-section">
                 <div class="section-title">
-                    <span>✅ Step-by-Step Action Plan</span>
+                    <span>📋 Step-by-Step Procedure</span>
                 </div>
-                <div class="steps-checklist">${stepItems}</div>
+                <div class="clean-steps-list">${stepItems}</div>
             </div>
         `;
     }
@@ -790,7 +788,7 @@ function appendAssistantResponse(answer, shouldScroll = true) {
         }).join("");
 
         warningsHtml = `
-            <div>
+            <div class="clean-section">
                 <div class="section-title" style="color: var(--warning);">
                     <span>⚠️ Risk & Deadline Warnings</span>
                 </div>
@@ -799,36 +797,102 @@ function appendAssistantResponse(answer, shouldScroll = true) {
         `;
     }
 
-    // 5. Evidence citations
-    let citationsHtml = "";
-    const citations = Array.isArray(answer.citations) ? answer.citations : [];
-    if (citations.length > 0) {
-        const citationItems = citations.map((citation, idx) => `
-            <article class="citation-card">
-                <div class="citation-header">
-                    <span class="citation-number">${idx + 1}</span>
-                    <a href="${escapeHtml(citation.url)}" target="_blank" rel="noopener noreferrer" class="citation-title">
-                        ${escapeHtml(citation.title)} ↗
-                    </a>
-                </div>
-                <p class="citation-excerpt">${escapeHtml(citation.excerpt)}</p>
-                <div class="citation-meta">
-                    <span>Reported date: ${escapeHtml(citation.reported_last_verified)}</span>
-                    <span class="verification-status verification-${escapeHtml(citation.factual_verification || 'unverified')}">
-                        ${escapeHtml((citation.factual_verification || 'unverified').toUpperCase())}
-                    </span>
-                </div>
-            </article>
-        `).join("");
-        citationsHtml = `
-            <section class="citations-section" aria-label="Answer evidence sources">
-                <div class="section-title"><span>📚 Evidence Sources</span></div>
-                <div class="citations-list">${citationItems}</div>
-            </section>
-        `;
+    // 5. Gather and format tagged source links at the end
+    const sourcesList = [];
+    const seenUrls = new Set();
+
+    function formatSourceDomain(urlStr) {
+        try {
+            const u = new URL(urlStr);
+            return u.hostname.replace(/^www\./, "");
+        } catch (e) {
+            return "Official Portal";
+        }
     }
+
+    if (answer.source_url) {
+        const urlStr = String(answer.source_url).trim();
+        if (urlStr) {
+            seenUrls.add(urlStr.toLowerCase());
+            sourcesList.push({
+                url: urlStr,
+                title: answer.title || "Official Portal",
+                domain: formatSourceDomain(urlStr)
+            });
+        }
+    }
+
+    const citations = Array.isArray(answer.citations) ? answer.citations : [];
+    citations.forEach(c => {
+        const cUrl = String(c.url || "").trim();
+        if (!cUrl) return;
+        const lowerUrl = cUrl.toLowerCase();
+        if (!seenUrls.has(lowerUrl)) {
+            seenUrls.add(lowerUrl);
+            sourcesList.push({
+                url: cUrl,
+                title: c.title || formatSourceDomain(cUrl),
+                domain: formatSourceDomain(cUrl)
+            });
+        }
+    });
+
     const hasUnverifiedEvidence = citations.some(citation => citation.factual_verification !== "verified");
     const sourceDateLabel = hasUnverifiedEvidence ? "Source date reported" : "Verified";
+
+    let sourcesHtml = "";
+    if (sourcesList.length > 0) {
+        const sourceTags = sourcesList.map((src, idx) => `
+            <a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer" class="source-tag-pill" title="${escapeHtml(src.title)} - ${escapeHtml(src.url)}">
+                <span class="source-tag-index">[${idx + 1}]</span>
+                <span class="source-tag-text">${escapeHtml(src.title)}</span>
+                <span class="source-tag-domain">${escapeHtml(src.domain)}</span>
+                <span class="source-tag-arrow">↗</span>
+            </a>
+        `).join("");
+
+        const citationsAccordion = citations.some(c => c.excerpt) ? `
+            <details class="clean-evidence-accordion">
+                <summary class="clean-evidence-toggle">
+                    <span>🔍 View RAG Evidence Excerpts (${citations.length})</span>
+                </summary>
+                <div class="clean-evidence-list">
+                    ${citations.map((c, i) => `
+                        <div class="clean-evidence-item">
+                            <div class="clean-evidence-head">
+                                <span class="clean-evidence-num">[${i + 1}]</span>
+                                <a href="${escapeHtml(c.url)}" target="_blank" rel="noopener noreferrer" class="clean-evidence-link">
+                                    ${escapeHtml(c.title)} ↗
+                                </a>
+                                <span class="verification-status verification-${escapeHtml(c.factual_verification || 'verified')}">
+                                    ${escapeHtml((c.factual_verification || 'verified').toUpperCase())}
+                                </span>
+                            </div>
+                            <p class="clean-evidence-excerpt">${escapeHtml(c.excerpt)}</p>
+                        </div>
+                    `).join("")}
+                </div>
+            </details>
+        ` : "";
+
+        sourcesHtml = `
+            <div class="clean-sources-section">
+                <div class="clean-sources-header">
+                    <div class="clean-sources-heading">
+                        <span>🏷️ Tagged Official Sources</span>
+                    </div>
+                    ${answer.last_verified ? `
+                    <span class="clean-sources-verify">
+                        ${sourceDateLabel}: <strong>${escapeHtml(answer.last_verified)}</strong>
+                    </span>` : ""}
+                </div>
+                <div class="clean-sources-tags">
+                    ${sourceTags}
+                </div>
+                ${citationsAccordion}
+            </div>
+        `;
+    }
 
     row.innerHTML = `
         <div class="message-avatar bot-avatar">🏛️</div>
@@ -850,29 +914,17 @@ function appendAssistantResponse(answer, shouldScroll = true) {
                     ${escapeHtml(answer.summary)}
                 </div>
 
-                <!-- Documents Needed -->
+                <!-- Documents Needed (Clean list) -->
                 ${docsHtml}
 
-                <!-- Steps Checklist -->
+                <!-- Steps (Clean procedure) -->
                 ${stepsHtml}
 
                 <!-- Risk Flags -->
                 ${warningsHtml}
 
-                <!-- Evidence citations -->
-                ${citationsHtml}
-
-                <!-- Sourced & Dated Footer -->
-                <div class="response-footer">
-                    <a href="${escapeHtml(answer.source_url)}" target="_blank" rel="noopener noreferrer" class="source-anchor">
-                        🔗 Official Source: ${escapeHtml(answer.source_url)} ↗
-                    </a>
-                    <span class="verify-pill">
-                        ${sourceDateLabel}: <strong>${escapeHtml(answer.last_verified)}</strong>
-                    </span>
-                </div>
-
-
+                <!-- Tagged Sources & References at End -->
+                ${sourcesHtml}
             </div>
         </div>
     `;
@@ -881,14 +933,18 @@ function appendAssistantResponse(answer, shouldScroll = true) {
     if (shouldScroll) scrollToBottom();
 }
 
-// --- CHECKLIST INTERACTION HELPERS ---
+// --- CHECKLIST INTERACTION HELPERS (COMPATIBILITY STUBS) ---
 window.toggleCheckboxRow = function(rowEl) {
+    if (!rowEl) return;
     const chk = rowEl.querySelector('input[type="checkbox"]');
-    if (event.target !== chk) chk.checked = !chk.checked;
-    rowEl.classList.toggle("checked", chk.checked);
+    if (chk) {
+        if (typeof event !== "undefined" && event.target !== chk) chk.checked = !chk.checked;
+        rowEl.classList.toggle("checked", chk.checked);
+    }
 };
 
 window.toggleStepItem = function(checkboxEl) {
+    if (!checkboxEl) return;
     const item = checkboxEl.closest(".step-item");
     if (item) {
         item.classList.toggle("checked", checkboxEl.checked);
