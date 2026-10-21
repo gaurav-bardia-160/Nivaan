@@ -20,15 +20,21 @@ DEFAULT_DISCLAIMER = (
     "a qualified professional before acting."
 )
 
-# Local demo setting. Restrict this before real deployment.
-CORS_ALLOW_ORIGINS = ["*"]
+import os
+
+# Dynamic CORS configuration
+_cors_env = os.getenv("CORS_ORIGINS", "").strip()
+if _cors_env:
+    CORS_ALLOW_ORIGINS = [origin.strip() for origin in _cors_env.split(",") if origin.strip()]
+else:
+    CORS_ALLOW_ORIGINS = ["*"]
 
 CAPABILITIES = {
     "supported_languages": list(SUPPORTED_LANGUAGES),
     "answer_language_status": "English answers only by default. Hindi/Gujarati translation is available via TRANSLATION_ENABLED.",
     "supported_uploads": [".txt", ".text", ".md", ".csv", "text-based .pdf"],
     "unsupported_uploads": ["scanned PDFs", "images", "encrypted PDFs"],
-    "privacy_boundary": "Sensitive values are masked server-side before retrieval and explanation. Client-side masking is not implemented yet.",
+    "privacy_boundary": "Sensitive values are masked server-side before retrieval and explanation. Client-side masking is not implemented yet in legacy clients, but now active in frontend app.",
     "knowledge_status": "Curated knowledge base with verified-first routing; unverified RAG corpus used as conservative fallback.",
 }
 

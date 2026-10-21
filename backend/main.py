@@ -7,12 +7,77 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from pydantic import ValidationError
 
+import os
+import time
+from collections import defaultdict
+
 from backend.config import APP_NAME, APP_VERSION, CAPABILITIES, CORS_ALLOW_ORIGINS
-from backend.modules.ocr import OCRExtractionError, extract_text_from_upload
+from backend.modules.ocr import OCRExtractionError, extract_text_from_upload, _is_tesseract_available
 from backend.modules.retrieval import knowledge_stats
 from backend.pipeline import run
 from backend.rag.runtime import rag_health
 from backend.schemas import Answer, AskRequest
+
+# Metrics state
+_METRICS = {
+    "start_time": time.time(),
+    "total_requests": 0,
+    "successful_requests": 0,
+    "failed_requests": 0,
+    "rag_queries": 0,
+    "verified_hits": 0,
+    "unsupported_refusals": 0,
+}
+
+
+class InMemoryRateLimiter:
+    """Sliding-window rate limiter per client IP."""
+
+    def __init__(self, max_requests: int = 120, window_seconds: int = 60):
+        self.max_requests = max_requests
+        self.window_seconds = window_seconds
+        self._requests: dict[str, list[float]] = defaultdict(list)
+
+    def is_allowed(self, client_ip: str) -> tuple[bool, int]:
+        now = time.time()
+        window_start = now - self.window_seconds
+        reqs = [t for t in self._requests[client_ip] if t > window_start]
+        self._requests[client_ip] = reqs
+        if len(reqs) >= self.max_requests:
+            retry_after = int(reqs[0] - window_start) + 1
+            return False, retry_after
+        self._requests[client_ip].append(now)
+        return True, 0
+
+
+_RATE_LIMITER = InMemoryRateLimiter(
+    max_requests=int(os.getenv("RATE_LIMIT_RPM", "120")),
+    window_seconds=60,
+)
+
+
+def _check_rate_limit(request: Request) -> None:
+    if os.getenv("RATE_LIMIT_ENABLED", "true").lower() not in ("true", "1", "yes"):
+        return
+    client_ip = request.headers.get("X-Forwarded-For", request.client.host if request.client else "127.0.0.1").split(",")[0].strip()
+    allowed, retry_after = _RATE_LIMITER.is_allowed(client_ip)
+    if not allowed:
+        raise HTTPException(
+            status_code=429,
+            detail="Too Many Requests. Please wait before retrying.",
+            headers={"Retry-After": str(retry_after)},
+        )
+
+
+def _check_auth(request: Request) -> None:
+    required_key = os.getenv("API_KEY", "").strip()
+    if not required_key:
+        return
+    api_key = request.headers.get("X-API-Key")
+    auth_header = request.headers.get("Authorization", "")
+    bearer_token = auth_header.replace("Bearer ", "").strip() if auth_header.startswith("Bearer ") else ""
+    if api_key != required_key and bearer_token != required_key:
+        raise HTTPException(status_code=401, detail="Unauthorized. Invalid or missing API key.")
 
 app = FastAPI(
     title=APP_NAME,
@@ -82,18 +147,53 @@ def capabilities() -> dict[str, object]:
     }
 
 
+@app.get("/api/metrics")
+def metrics() -> dict[str, object]:
+    now = time.time()
+    uptime = round(now - _METRICS["start_time"], 2)
+    return {
+        "status": "healthy",
+        "uptime_seconds": uptime,
+        "total_requests": _METRICS["total_requests"],
+        "successful_requests": _METRICS["successful_requests"],
+        "failed_requests": _METRICS["failed_requests"],
+        "rag_queries": _METRICS["rag_queries"],
+        "verified_hits": _METRICS["verified_hits"],
+        "unsupported_refusals": _METRICS["unsupported_refusals"],
+        "rate_limiter": {
+            "tracked_clients": len(_RATE_LIMITER._requests),
+            "rpm_limit": _RATE_LIMITER.max_requests,
+        },
+        "ocr_available": _is_tesseract_available(),
+    }
+
+
 @app.post("/api/ask", response_model=Answer)
-def ask(request: AskRequest) -> Answer:
+def ask(request: AskRequest, req: Request) -> Answer:
+    _check_auth(req)
+    _check_rate_limit(req)
+    _METRICS["total_requests"] += 1
     try:
-        return run(request)
+        ans = run(request)
+        _METRICS["successful_requests"] += 1
+        if ans.title == "No verified guide found":
+            _METRICS["unsupported_refusals"] += 1
+        elif ans.citations:
+            _METRICS["rag_queries"] += 1
+        else:
+            _METRICS["verified_hits"] += 1
+        return ans
     except ValidationError as exc:
+        _METRICS["failed_requests"] += 1
         raise HTTPException(status_code=422, detail=exc.errors()) from exc
     except Exception as exc:
+        _METRICS["failed_requests"] += 1
         raise HTTPException(status_code=500, detail="The assistant could not process this request safely.") from exc
 
 
 @app.post("/api/ask-file", response_model=Answer)
 async def ask_file(
+    req: Request,
     file: UploadFile = File(...),
     question: str = Form("Explain this document"),
     language: str = Form("en"),
@@ -102,10 +202,12 @@ async def ask_file(
 ) -> Answer:
     """Accept a real uploaded supported file and process it without storing it.
 
-    Supported now: text-like files and text-based PDFs. Scanned PDFs/images are
-    deliberately not claimed yet. Unsupported file types return a clear error
-    instead of falling back to fake extraction.
+    Supported now: text-like files, text-based PDFs, and images/scanned PDFs when OCR is available.
+    Unsupported file types return a clear error instead of falling back to fake extraction.
     """
+    _check_auth(req)
+    _check_rate_limit(req)
+    _METRICS["total_requests"] += 1
 
     try:
         content = await file.read()
@@ -119,12 +221,17 @@ async def ask_file(
             context_topic=context_topic,
             file_attached=False,
         )
-        return run(request)
+        ans = run(request)
+        _METRICS["successful_requests"] += 1
+        return ans
     except OCRExtractionError as exc:
+        _METRICS["failed_requests"] += 1
         raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
     except ValidationError as exc:
+        _METRICS["failed_requests"] += 1
         raise HTTPException(status_code=422, detail=jsonable_encoder(exc.errors())) from exc
     except Exception as exc:
+        _METRICS["failed_requests"] += 1
         raise HTTPException(status_code=500, detail="The uploaded file could not be processed safely.") from exc
 
 

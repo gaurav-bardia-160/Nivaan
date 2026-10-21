@@ -524,3 +524,63 @@ def test_ask_endpoint_supports_multi_turn_conversational_context():
     assert turn5_res.status_code == 200
     turn5 = turn5_res.json()
     assert turn5["title"] == "No verified guide found"
+
+
+def test_metrics_endpoint_reports_live_counters():
+    res = client.get("/api/metrics")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["status"] == "healthy"
+    assert "uptime_seconds" in data
+    assert "total_requests" in data
+    assert "rate_limiter" in data
+    assert "ocr_available" in data
+
+
+def test_rate_limiter_throttles_excessive_requests(monkeypatch):
+    # Set a low limit for this test
+    monkeypatch.setenv("RATE_LIMIT_ENABLED", "true")
+    monkeypatch.setenv("RATE_LIMIT_RPM", "2")
+    from backend.main import _RATE_LIMITER
+    _RATE_LIMITER.max_requests = 2
+    _RATE_LIMITER._requests.clear()
+
+    # Requests 1 and 2 should pass
+    r1 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
+    assert r1.status_code == 200
+    r2 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
+    assert r2.status_code == 200
+
+    # Request 3 should be throttled
+    r3 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
+    assert r3.status_code == 429
+    assert "Too Many Requests" in r3.json()["detail"]
+
+    # Reset limiter for subsequent tests
+    _RATE_LIMITER.max_requests = 120
+    _RATE_LIMITER._requests.clear()
+
+
+def test_api_key_auth_enforcement_when_configured(monkeypatch):
+    monkeypatch.setenv("API_KEY", "secret-conclave-token")
+
+    # Call without key -> 401
+    unauth = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
+    assert unauth.status_code == 401
+    assert "Unauthorized" in unauth.json()["detail"]
+
+    # Call with correct X-API-Key header -> 200
+    auth_x = client.post(
+        "/api/ask",
+        headers={"X-API-Key": "secret-conclave-token"},
+        json={"question": "apply pan card", "language": "en"},
+    )
+    assert auth_x.status_code == 200
+
+    # Call with correct Bearer header -> 200
+    auth_bearer = client.post(
+        "/api/ask",
+        headers={"Authorization": "Bearer secret-conclave-token"},
+        json={"question": "apply pan card", "language": "en"},
+    )
+    assert auth_bearer.status_code == 200

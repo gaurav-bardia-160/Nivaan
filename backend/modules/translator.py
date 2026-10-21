@@ -123,6 +123,34 @@ _CIVIC_GLOSSARY: dict[tuple[str, str], str] = {
     ("valid kyc document (aadhaar, passport, voter id, etc.)", "gu"): "માન્ય કેવાયસી દસ્તાવેજ (આધાર, પાસપોર્ટ, મતદાર આઈડી, વગેરે)",
     ("avoid sharing real id data in the demo", "gu"): "ડેમોમાં વાસ્તવિક આઈડી ડેટા શેર કરવાનું ટાળો",
     ("confirm the latest official form and fee", "gu"): "નવીનતમ સત્તાવાર ફોર્મ અને ફીની પુષ્ટિ કરો",
+
+    # Curated Guide Titles & Disclaimers (Hindi)
+    ("apply for a new pan card", "hi"): "नए पैन कार्ड के लिए आवेदन करें",
+    ("file your income tax return (itr) - basics", "hi"): "अपना आयकर रिटर्न (ITR) दाखिल करें - बुनियादी बातें",
+    ("understand a loan agreement", "hi"): "ऋण समझौते (लोन एग्रीमेंट) को समझें",
+    ("aadhaar enrolment basics", "hi"): "आधार नामांकन की बुनियादी प्रक्रिया",
+    ("link pan with aadhaar", "hi"): "पैन को आधार से लिंक करें",
+    ("epf withdrawal process", "hi"): "ईपीएफ (EPF) निकासी प्रक्रिया",
+    ("filing a first information report (fir)", "hi"): "प्रथम सूचना रिपोर्ट (FIR) दर्ज करना",
+    ("opening a savings bank account", "hi"): "बचत बैंक खाता खोलना",
+    ("pm kisan samman nidhi yojana", "hi"): "पीएम किसान सम्मान निधि योजना",
+    ("filing a consumer court complaint", "hi"): "उपभोक्ता अदालत में शिकायत दर्ज करना",
+    ("no verified guide found", "hi"): "कोई सत्यापित मार्गदर्शिका नहीं मिली",
+    ("this is a plain-language explanation and guidance helper, not legal, tax, or financial advice.", "hi"): "यह सरल भाषा में व्याख्या और मार्गदर्शन सहायता है, कानूनी, कर या वित्तीय सलाह नहीं।",
+
+    # Curated Guide Titles & Disclaimers (Gujarati)
+    ("apply for a new pan card", "gu"): "નવા પાન કાર્ડ માટે અરજી કરો",
+    ("file your income tax return (itr) - basics", "gu"): "તમારું ઇન્કમ ટેક્સ રિટર્ન (ITR) ફાઇલ કરો - મૂળભૂત બાબતો",
+    ("understand a loan agreement", "gu"): "લોન કરારને સમજો",
+    ("aadhaar enrolment basics", "gu"): "આધાર નોંધણીની મૂળભૂત બાબતો",
+    ("link pan with aadhaar", "gu"): "પાન કાર્ડને આધાર સાથે લિંક કરો",
+    ("epf withdrawal process", "gu"): "ઇપીએફ (EPF) ઉપાડવાની પ્રક્રિયા",
+    ("filing a first information report (fir)", "gu"): "પ્રથમ માહિતી અહેવાલ (FIR) નોંધાવવી",
+    ("opening a savings bank account", "gu"): "બચત બેંક ખાતું ખોલવું",
+    ("pm kisan samman nidhi yojana", "gu"): "પીએમ કિસાન સન્માન નિધિ યોજના",
+    ("filing a consumer court complaint", "gu"): "ગ્રાહક અદાલતમાં ફરિયાદ નોંધાવવી",
+    ("no verified guide found", "gu"): "કોઈ ચકાસાયેલ માર્ગદર્શિકા મળી નથી",
+    ("this is a plain-language explanation and guidance helper, not legal, tax, or financial advice.", "gu"): "આ સરળ ભાષામાં સમજૂતી અને માર્ગદર્શન સહાયક છે, કાનૂની, કર અથવા નાણાકીય સલાહ નથી.",
 }
 
 
