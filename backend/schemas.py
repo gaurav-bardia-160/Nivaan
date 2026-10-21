@@ -167,9 +167,8 @@ class Answer(BaseModel):
     confidence: Literal["low", "medium", "high"] = "medium"
     masked_items: List[MaskedItem] = Field(default_factory=list, max_length=30)
     citations: List[Citation] = Field(default_factory=list, max_length=10)
-    disclaimer: str = Field(
-        default="This is a plain-language explanation and guidance helper, not legal, tax, or financial advice.",
-        min_length=1,
+    disclaimer: Optional[str] = Field(
+        default=None,
         max_length=500,
     )
 
@@ -183,10 +182,18 @@ class Answer(BaseModel):
         cleaned = _clean_text(value)
         return cleaned or None
 
-    @field_validator("title", "summary", "disclaimer", mode="before")
+    @field_validator("title", "summary", mode="before")
     @classmethod
     def clean_required_text(cls, value):
         return _clean_text(value) if isinstance(value, str) else value
+
+    @field_validator("disclaimer", mode="before")
+    @classmethod
+    def clean_disclaimer(cls, value):
+        if value is None:
+            return None
+        cleaned = _clean_text(value) if isinstance(value, str) else value
+        return cleaned or None
 
     @field_validator("documents_needed", mode="before")
     @classmethod

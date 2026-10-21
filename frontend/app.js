@@ -165,6 +165,11 @@ function sanitizeAllChats(chatList) {
             if (m.role === "user" && m.text) {
                 return { ...m, text: maskClientPII(m.text) };
             }
+            if (m.role === "assistant" && m.answer) {
+                const cleanedAnswer = { ...m.answer };
+                delete cleanedAnswer.disclaimer;
+                return { ...m, answer: cleanedAnswer };
+            }
             return m;
         }) : []
     }));
@@ -693,8 +698,7 @@ function createSystemNotice(title, message) {
         last_verified: new Date().toISOString().slice(0, 10),
         confidence: "low",
         masked_items: [],
-        disclaimer: "This is a product limitation notice, not legal, tax, or financial advice."
-    };
+            };
 }
 
 async function safeReadJson(response) {
@@ -998,8 +1002,7 @@ async function getLocalFallbackAnswer(text, file) {
                 { item_type: "Aadhaar Number", count: 1 },
                 { item_type: "Bank Account Number", count: 1 }
             ],
-            disclaimer: "GovBank Assistant provides educational guidance and does not provide legal representation. Please consult a legal professional or the RBI Ombudsman."
-        };
+                    };
     }
 
     if (qLower.includes("tax") || qLower.includes("itr") || qLower.includes("income")) {
@@ -1053,8 +1056,7 @@ async function getLocalFallbackAnswer(text, file) {
             last_verified: "2026-10-01",
             confidence: "high",
             masked_items: [],
-            disclaimer: "GovBank Assistant provides step-by-step guidance based on official Income Tax Department instructions. It does not replace a Chartered Accountant for complex audit cases."
-        };
+                    };
     }
 
     if (qLower.includes("loan") || qLower.includes("prepayment") || qLower.includes("rbi") || qLower.includes("foreclosure")) {
@@ -1098,8 +1100,7 @@ async function getLocalFallbackAnswer(text, file) {
             last_verified: "2026-09-28",
             confidence: "high",
             masked_items: [],
-            disclaimer: "GovBank Assistant provides informational guidance based on RBI regulations. It does not constitute formal legal advice."
-        };
+                    };
     }
 
     if (qLower.includes("pan")) {
@@ -1148,8 +1149,7 @@ async function getLocalFallbackAnswer(text, file) {
             last_verified: "2026-10-03",
             confidence: "high",
             masked_items: [],
-            disclaimer: "GovBank Assistant provides step-by-step guidance based on official income tax instructions. It does not replace formal legal or tax advice."
-        };
+                    };
     }
 
     return createSystemNotice("No Guide Found", "No local procedure guide was found for this query. Ensure backend server is connected for full access to 600+ official guidelines.");

@@ -261,7 +261,7 @@ def translate_answer(answer: Answer, target_lang: str) -> Answer:
     )
 
     # 5. Translate Disclaimer
-    translated_disclaimer = translate_text(answer.disclaimer, target_lang)
+    translated_disclaimer = translate_text(answer.disclaimer, target_lang) if answer.disclaimer else None
 
     return answer.model_copy(
         update={

@@ -14,11 +14,7 @@ MAX_QUESTION_LENGTH = 1200
 MAX_DOCUMENT_TEXT_LENGTH = 12000
 MAX_CONVERSATION_ID_LENGTH = 120
 
-DEFAULT_DISCLAIMER = (
-    "This is a plain-language explanation and guidance helper, not legal, tax, "
-    "or financial advice. Confirm important details on the official source or with "
-    "a qualified professional before acting."
-)
+DEFAULT_DISCLAIMER = None
 
 import os
 
