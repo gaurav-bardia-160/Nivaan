@@ -183,9 +183,7 @@ function sanitizeAllChats(chatList) {
                     if (m.answer && typeof m.answer === "object") {
                         const cleanedAnswer = { ...m.answer };
                         delete cleanedAnswer.disclaimer;
-                        if (Array.isArray(cleanedAnswer.warnings)) {
-                            cleanedAnswer.warnings = cleanedAnswer.warnings.filter(w => !isInternalWarning(w));
-                        }
+                        cleanedAnswer.warnings = [];
                         if (cleanedAnswer.summary) {
                             cleanedAnswer.summary = cleanedAnswer.summary
                                 .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
@@ -628,9 +626,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
     if (targetChat) {
         const cleanedForStorage = { ...answer };
         delete cleanedForStorage.disclaimer;
-        if (Array.isArray(cleanedForStorage.warnings)) {
-            cleanedForStorage.warnings = cleanedForStorage.warnings.filter(w => !isInternalWarning(w));
-        }
+        cleanedForStorage.warnings = [];
         targetChat.messages.push({
             id: "msg_ast_" + Date.now(),
             role: "assistant",
@@ -850,31 +846,8 @@ function appendAssistantResponse(answer, shouldScroll = true) {
         `;
     }
 
-    // 4. Warnings & Red Flags
+    // 4. Warnings & Red Flags (Completely removed per user request)
     let warningsHtml = "";
-    const rawWarnings = Array.isArray(answer.warnings) ? answer.warnings : [];
-    const displayWarnings = rawWarnings.filter(w => !isInternalWarning(w));
-    if (displayWarnings.length > 0) {
-        const warnItems = displayWarnings.map(w => {
-            const warningText = w.text || w.title || "Warning";
-            const warningReason = w.reason || w.message || w.source || "Review this point carefully.";
-            return `
-            <div class="warning-box">
-                <div class="warning-text">⚠️ ${escapeHtml(warningText)}</div>
-                <div class="warning-reason">${escapeHtml(warningReason)}</div>
-            </div>
-        `;
-        }).join("");
-
-        warningsHtml = `
-            <div class="clean-section">
-                <div class="section-title" style="color: var(--warning);">
-                    <span>⚠️ Risk & Deadline Warnings</span>
-                </div>
-                <div style="display:flex; flex-direction:column; gap:8px;">${warnItems}</div>
-            </div>
-        `;
-    }
 
     // 5. Gather and format tagged source links at the end
     const sourcesList = [];
@@ -1012,9 +985,6 @@ function appendAssistantResponse(answer, shouldScroll = true) {
 
                 <!-- Steps (Clean procedure) -->
                 ${stepsHtml}
-
-                <!-- Risk Flags -->
-                ${warningsHtml}
 
                 <!-- Tagged Sources & References at End -->
                 ${sourcesHtml}
