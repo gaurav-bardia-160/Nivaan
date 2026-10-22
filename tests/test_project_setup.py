@@ -5,8 +5,24 @@ import shutil
 import subprocess
 from pathlib import Path
 
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _find_bash() -> str | None:
+    found = shutil.which("bash")
+    if found:
+        return found
+    common_windows_paths = [
+        Path(r"C:\Program Files\Git\bin\bash.exe"),
+        Path(r"C:\Program Files\Git\usr\bin\bash.exe"),
+        Path(r"C:\Program Files (x86)\Git\bin\bash.exe"),
+    ]
+    for p in common_windows_paths:
+        if p.exists():
+            return str(p)
+    return None
 
 
 def _package_names(path: Path) -> set[str]:
@@ -28,8 +44,9 @@ def test_unified_requirements_cover_backend_runtime_dependencies():
 
 
 def test_unix_launchers_have_valid_shell_syntax():
-    bash = shutil.which("bash")
-    assert bash is not None
+    bash = _find_bash()
+    if bash is None:
+        pytest.skip("Bash executable is not available on this system.")
 
     subprocess.run(
         [bash, "-n", str(ROOT / "run_backend.sh"), str(ROOT / "start.sh")],
