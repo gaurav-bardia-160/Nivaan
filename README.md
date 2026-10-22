@@ -40,18 +40,29 @@ GovBank Assistant is a grounded, privacy-aware RAG (Retrieval-Augmented Generati
 
 ## Running Locally
 
-### 1. Backend Server
+### One-Click Launch Scripts
+
+| Platform | Backend Only | Full-Stack (Backend + Frontend + Browser) |
+| :--- | :--- | :--- |
+| **Windows** | Double-click `run_backend.bat` or run `.\run_backend.ps1` | Double-click `start.bat` or run `.\start.ps1` |
+| **macOS / Linux** | `./run_backend.sh` | `./start.sh` |
+
+---
+
+### Manual Launch
+
+#### 1. Backend Server
 
 ```bash
 # Install dependencies
-python -m pip install -r backend/requirements.txt
+python -m pip install -r requirements.txt
 
 # Start backend with full feature set (RAG + Vectors + Translation)
 # On Windows PowerShell:
-$env:RAG_ENABLED="true"; $env:RAG_VECTOR_ENABLED="true"; $env:TRANSLATION_ENABLED="true"; python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+$env:RAG_ENABLED="true"; $env:RAG_VECTOR_ENABLED="true"; $env:TRANSLATION_ENABLED="true"; python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
 
 # On Linux/macOS:
-RAG_ENABLED=true RAG_VECTOR_ENABLED=true TRANSLATION_ENABLED=true python3 -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+RAG_ENABLED=true RAG_VECTOR_ENABLED=true TRANSLATION_ENABLED=true python3 -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 ### Optional local Ollama answer enhancement
