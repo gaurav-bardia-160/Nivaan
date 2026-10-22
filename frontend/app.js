@@ -156,6 +156,15 @@ function maskClientPII(text) {
     return sanitized;
 }
 
+function isInternalWarning(w) {
+    if (!w) return false;
+    const title = (w.title || w.text || "").toLowerCase().trim();
+    const msg = (w.message || w.reason || "").toLowerCase().trim();
+    if (title.includes("answer not grounded") || title.includes("not grounded")) return true;
+    if (msg.includes("no matching local guide was found") || msg.includes("intentionally refusing to guess")) return true;
+    return false;
+}
+
 function sanitizeAllChats(chatList) {
     if (!Array.isArray(chatList)) return [];
     return chatList.map(chat => ({
@@ -168,6 +177,9 @@ function sanitizeAllChats(chatList) {
             if (m.role === "assistant" && m.answer) {
                 const cleanedAnswer = { ...m.answer };
                 delete cleanedAnswer.disclaimer;
+                if (Array.isArray(cleanedAnswer.warnings)) {
+                    cleanedAnswer.warnings = cleanedAnswer.warnings.filter(w => !isInternalWarning(w));
+                }
                 return { ...m, answer: cleanedAnswer };
             }
             return m;
@@ -558,10 +570,15 @@ async function executeQuery(userText, currentAttachment, chatObj) {
     }
 
     if (chatObj) {
+        const cleanedForStorage = { ...answer };
+        delete cleanedForStorage.disclaimer;
+        if (Array.isArray(cleanedForStorage.warnings)) {
+            cleanedForStorage.warnings = cleanedForStorage.warnings.filter(w => !isInternalWarning(w));
+        }
         chatObj.messages.push({
             id: "msg_ast_" + Date.now(),
             role: "assistant",
-            answer: answer
+            answer: cleanedForStorage
         });
         chatObj.updatedAt = Date.now();
         saveChatsToStorage();
@@ -783,8 +800,10 @@ function appendAssistantResponse(answer, shouldScroll = true) {
 
     // 4. Warnings & Red Flags
     let warningsHtml = "";
-    if (answer.warnings && answer.warnings.length > 0) {
-        const warnItems = answer.warnings.map(w => {
+    const rawWarnings = Array.isArray(answer.warnings) ? answer.warnings : [];
+    const displayWarnings = rawWarnings.filter(w => !isInternalWarning(w));
+    if (displayWarnings.length > 0) {
+        const warnItems = displayWarnings.map(w => {
             const warningText = w.text || w.title || "Warning";
             const warningReason = w.reason || w.message || w.source || "Review this point carefully.";
             return `
