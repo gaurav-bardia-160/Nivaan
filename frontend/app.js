@@ -162,6 +162,8 @@ function isInternalWarning(w) {
     const msg = (w.message || w.reason || "").toLowerCase().trim();
     if (title.includes("answer not grounded") || title.includes("not grounded")) return true;
     if (msg.includes("no matching local guide was found") || msg.includes("intentionally refusing to guess")) return true;
+    if (title.includes("workflow not available yet") || title.includes("not available yet")) return true;
+    if (msg.includes("planned next phase") || msg.includes("use typed questions or paste document text")) return true;
     return false;
 }
 
@@ -710,16 +712,12 @@ function createSystemNotice(title, message) {
         summary: message,
         documents_needed: [],
         steps: [],
-        warnings: [{
-            title: "Workflow not available yet",
-            message: "Use typed questions or paste document text. Real PDF/image OCR upload is a planned next phase.",
-            severity: "warning"
-        }],
+        warnings: [],
         source_url: "https://www.india.gov.in/",
         last_verified: new Date().toISOString().slice(0, 10),
         confidence: "low",
         masked_items: [],
-            };
+    };
 }
 
 async function safeReadJson(response) {
