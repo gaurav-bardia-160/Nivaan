@@ -169,37 +169,46 @@ function isInternalWarning(w) {
 
 function sanitizeAllChats(chatList) {
     if (!Array.isArray(chatList)) return [];
-    return chatList.map(chat => ({
-        ...chat,
-        title: maskClientPII(chat.title || ""),
-        messages: Array.isArray(chat.messages) ? chat.messages.map(m => {
-            if (m.role === "user" && m.text) {
-                return { ...m, text: maskClientPII(m.text) };
-            }
-            if (m.role === "assistant" && m.answer) {
-                const cleanedAnswer = { ...m.answer };
-                delete cleanedAnswer.disclaimer;
-                if (Array.isArray(cleanedAnswer.warnings)) {
-                    cleanedAnswer.warnings = cleanedAnswer.warnings.filter(w => !isInternalWarning(w));
+    return chatList
+        .filter(chat => chat && Array.isArray(chat.messages) && chat.messages.length > 0)
+        .map(chat => ({
+            ...chat,
+            title: maskClientPII(chat.title || ""),
+            messages: chat.messages.map(m => {
+                if (!m) return m;
+                if (m.role === "user" && m.text) {
+                    return { ...m, text: maskClientPII(m.text) };
                 }
-                return { ...m, answer: cleanedAnswer };
-            }
-            return m;
-        }) : []
-    }));
+                if (m.role === "assistant") {
+                    if (m.answer && typeof m.answer === "object") {
+                        const cleanedAnswer = { ...m.answer };
+                        delete cleanedAnswer.disclaimer;
+                        if (Array.isArray(cleanedAnswer.warnings)) {
+                            cleanedAnswer.warnings = cleanedAnswer.warnings.filter(w => !isInternalWarning(w));
+                        }
+                        return { ...m, answer: cleanedAnswer };
+                    }
+                }
+                return m;
+            }).filter(Boolean)
+        }));
 }
 
 // --- STORAGE & PERSISTENCE ---
 function loadChatsFromStorage() {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
-        chats = raw ? JSON.parse(raw) : [];
-        if (!Array.isArray(chats)) chats = [];
-        chats = sanitizeAllChats(chats);
+        let parsed = raw ? JSON.parse(raw) : [];
+        if (!Array.isArray(parsed)) parsed = [];
+        // Purge empty chats with no messages
+        parsed = parsed.filter(c => c && Array.isArray(c.messages) && c.messages.length > 0);
+        chats = sanitizeAllChats(parsed);
 
         const savedActiveId = localStorage.getItem(ACTIVE_CHAT_KEY);
-        if (savedActiveId && chats.some(c => c.id === savedActiveId)) {
+        if (savedActiveId && savedActiveId !== "__new__" && chats.some(c => c.id === savedActiveId)) {
             activeChatId = savedActiveId;
+        } else if (savedActiveId === "__new__") {
+            activeChatId = null;
         } else {
             activeChatId = chats.length > 0 ? chats[0].id : null;
         }
@@ -212,12 +221,12 @@ function loadChatsFromStorage() {
 
 function saveChatsToStorage() {
     try {
-        chats = sanitizeAllChats(chats);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(chats));
+        const toSave = sanitizeAllChats(chats);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
         if (activeChatId) {
             localStorage.setItem(ACTIVE_CHAT_KEY, activeChatId);
         } else {
-            localStorage.removeItem(ACTIVE_CHAT_KEY);
+            localStorage.setItem(ACTIVE_CHAT_KEY, "__new__");
         }
     } catch (e) {
         console.error("Failed to save chats to storage:", e);
@@ -241,7 +250,6 @@ function createNewChat(firstPrompt = "") {
     };
     chats.unshift(chat);
     activeChatId = id;
-    saveChatsToStorage();
     renderHistoryList();
     return chat;
 }
@@ -308,7 +316,7 @@ function switchChat(chatId) {
     renderHistoryList();
     loadActiveChatMessages();
     if (sidebar && window.innerWidth <= 768) {
-        sidebar.classList.remove("open");
+        sidebar.classList.add("collapsed");
     }
 }
 
@@ -334,9 +342,12 @@ function deleteChat(chatId) {
 
 function handleNewChatBtn() {
     activeChatId = null;
-    saveChatsToStorage();
+    localStorage.setItem(ACTIVE_CHAT_KEY, "__new__");
     renderHistoryList();
     resetChatView();
+    if (sidebar && window.innerWidth <= 768) {
+        sidebar.classList.add("collapsed");
+    }
 }
 
 function resetChatView() {
@@ -368,8 +379,12 @@ function loadActiveChatMessages() {
         try {
             if (msg.role === "user") {
                 appendUserBubble(msg.text, msg.file, msg.id, false);
-            } else if (msg.role === "assistant" && msg.answer) {
-                appendAssistantResponse(msg.answer, false);
+            } else if (msg.role === "assistant") {
+                if (msg.answer) {
+                    appendAssistantResponse(msg.answer, false);
+                } else if (msg.text) {
+                    appendAssistantResponse(createSystemNotice("Response", msg.text), false);
+                }
             }
         } catch (err) {
             console.error("Error rendering message:", err, msg);
@@ -453,14 +468,7 @@ async function sendMessage(userText, fileObj = null) {
     if (welcomeScreen) welcomeScreen.style.display = "none";
 
     let currentChat = getActiveChat();
-    if (!currentChat) {
-        currentChat = createNewChat(userText);
-    } else if (currentChat.messages.length === 0) {
-        currentChat.title = generateTitle(userText);
-        saveChatsToStorage();
-        renderHistoryList();
-    }
-
+    const sanitizedUserText = maskClientPII(userText);
     const msgId = "msg_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
     const fileMeta = fileObj ? {
         name: fileObj.name,
@@ -470,15 +478,37 @@ async function sendMessage(userText, fileObj = null) {
         isPdf: fileObj.isPdf
     } : null;
 
-    const sanitizedUserText = maskClientPII(userText);
-    currentChat.messages.push({
-        id: msgId,
-        role: "user",
-        text: sanitizedUserText,
-        file: fileMeta
-    });
-    currentChat.updatedAt = Date.now();
+    if (!currentChat) {
+        const newId = "chat_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
+        currentChat = {
+            id: newId,
+            title: generateTitle(sanitizedUserText),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+            messages: [{
+                id: msgId,
+                role: "user",
+                text: sanitizedUserText,
+                file: fileMeta
+            }]
+        };
+        chats.unshift(currentChat);
+        activeChatId = newId;
+    } else {
+        if (currentChat.messages.length === 0) {
+            currentChat.title = generateTitle(sanitizedUserText);
+        }
+        currentChat.messages.push({
+            id: msgId,
+            role: "user",
+            text: sanitizedUserText,
+            file: fileMeta
+        });
+        currentChat.updatedAt = Date.now();
+    }
+
     saveChatsToStorage();
+    renderHistoryList();
 
     appendUserBubble(sanitizedUserText, fileMeta, msgId, true);
 
@@ -589,18 +619,19 @@ async function executeQuery(userText, currentAttachment, chatObj) {
         answer = await getLocalFallbackAnswer(userText, currentAttachment);
     }
 
-    if (chatObj) {
+    const targetChat = (chatObj && chats.find(c => c.id === chatObj.id)) || getActiveChat() || chatObj;
+    if (targetChat) {
         const cleanedForStorage = { ...answer };
         delete cleanedForStorage.disclaimer;
         if (Array.isArray(cleanedForStorage.warnings)) {
             cleanedForStorage.warnings = cleanedForStorage.warnings.filter(w => !isInternalWarning(w));
         }
-        chatObj.messages.push({
+        targetChat.messages.push({
             id: "msg_ast_" + Date.now(),
             role: "assistant",
             answer: cleanedForStorage
         });
-        chatObj.updatedAt = Date.now();
+        targetChat.updatedAt = Date.now();
         saveChatsToStorage();
     }
 
