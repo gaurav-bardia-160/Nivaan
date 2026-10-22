@@ -269,12 +269,23 @@ function renderHistoryList() {
     chats.forEach(chat => {
         const item = document.createElement("div");
         item.className = "history-item" + (chat.id === activeChatId ? " active" : "");
+        item.setAttribute("role", "button");
+        item.setAttribute("tabindex", "0");
+        item.onclick = (e) => {
+            if (e.target.closest(".history-item-del")) return;
+            switchChat(chat.id);
+        };
+        item.onkeydown = (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                switchChat(chat.id);
+            }
+        };
 
         const titleSpan = document.createElement("span");
         titleSpan.className = "history-item-title";
         titleSpan.textContent = chat.title || "Inquiry";
         titleSpan.title = chat.title || "Inquiry";
-        titleSpan.onclick = () => switchChat(chat.id);
 
         const delBtn = document.createElement("button");
         delBtn.className = "history-item-del";
@@ -292,11 +303,13 @@ function renderHistoryList() {
 }
 
 function switchChat(chatId) {
-    if (activeChatId === chatId) return;
     activeChatId = chatId;
     saveChatsToStorage();
     renderHistoryList();
     loadActiveChatMessages();
+    if (sidebar && window.innerWidth <= 768) {
+        sidebar.classList.remove("open");
+    }
 }
 
 function deleteChat(chatId) {
@@ -342,7 +355,7 @@ function resetChatView() {
 
 function loadActiveChatMessages() {
     const currentChat = getActiveChat();
-    if (!currentChat || currentChat.messages.length === 0) {
+    if (!currentChat || !Array.isArray(currentChat.messages) || currentChat.messages.length === 0) {
         resetChatView();
         return;
     }
@@ -351,10 +364,15 @@ function loadActiveChatMessages() {
     if (welcomeScreen) welcomeScreen.style.display = "none";
 
     currentChat.messages.forEach(msg => {
-        if (msg.role === "user") {
-            appendUserBubble(msg.text, msg.file, msg.id, false);
-        } else if (msg.role === "assistant" && msg.answer) {
-            appendAssistantResponse(msg.answer, false);
+        if (!msg) return;
+        try {
+            if (msg.role === "user") {
+                appendUserBubble(msg.text, msg.file, msg.id, false);
+            } else if (msg.role === "assistant" && msg.answer) {
+                appendAssistantResponse(msg.answer, false);
+            }
+        } catch (err) {
+            console.error("Error rendering message:", err, msg);
         }
     });
 
