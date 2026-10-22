@@ -7,7 +7,7 @@ GovBank Assistant is a grounded, privacy-aware RAG (Retrieval-Augmented Generati
 ## Current Architecture & Capabilities
 
 ### 1. Hybrid Grounded Retrieval (Verified-First + RAG Fallback)
-- **Verified Knowledge Base:** Deterministic, human-checked procedure guides (e.g. Form 49A PAN application, Aadhaar enrolment, ITR filing, loan prepayment) are checked first and take absolute precedence over candidate passages.
+- **Verified Knowledge Base:** 11 deterministic, human-checked procedure guides (e.g. Passport Seva fresh/re-issue application, Form 49A PAN application, Aadhaar enrolment, ITR filing basics, EPF withdrawal, loan prepayment, FIR filing) are checked first and take absolute precedence over candidate passages.
 - **Hybrid RAG Fallback:** Lexical search (BM25) combined with dense multilingual vector search (FastEmbed `paraphrase-multilingual-MiniLM-L12-v2` + local Qdrant) via Reciprocal Rank Fusion (RRF).
 - **Strict Ingestion Allowlist:** Ingests exactly 681 safe canonical chunks across PAN, Aadhaar, and civic portals while rejecting non-allowlisted and malformed sources.
 - **Explicit Provenance:** Every response includes official source URLs, reporting dates, verification labels (`VERIFIED` vs `UNVERIFIED`), and step-by-step checklists.
@@ -25,8 +25,9 @@ GovBank Assistant is a grounded, privacy-aware RAG (Retrieval-Augmented Generati
 
 ### 4. Interactive Frontend
 - **Editable User Prompts:** Users can edit previously sent messages with inline Save/Submit and Cancel.
-- **Persistent Multi-Turn Sessions:** Conversations, checklists, and active session history persist across page reloads via `localStorage`.
-- **Document & Checklist Actions:** Interactive checkboxes for required documents and procedure steps.
+- **Persistent Multi-Turn Sessions:** Conversations and active session history persist across page reloads via `localStorage` with client-side PII masking.
+- **Clean Structured Responses (No Checkboxes):** Formats required documents with clean bullet points and step-by-step procedures with numbered badges, bold titles, and contextual details—eliminating messy checkboxes.
+- **Tagged Official Source Links:** Displays verified primary portals and RAG citations as numbered pill tags (`[1]`, `[2]`, ...) with domain badges, external link arrows (`↗`), and an optional expandable drawer for RAG evidence excerpts.
 
 ---
 
@@ -117,6 +118,13 @@ Also run `python tests/eval_retrieval.py` to verify retrieval, refusal, privacy,
 
 ```text
 govbank-assistant/
+├── run_backend.bat                 # Windows one-click backend runner (CMD/Explorer)
+├── run_backend.ps1                 # Windows PowerShell backend runner
+├── run_backend.sh                  # macOS / Linux backend runner
+├── start.bat                       # Windows one-click full-stack launcher (Backend + Frontend + Browser)
+├── start.ps1                       # Windows PowerShell full-stack launcher
+├── start.sh                        # macOS / Linux full-stack launcher
+├── requirements.txt                # Unified project dependencies
 ├── backend/
 │   ├── main.py                     # FastAPI application endpoints (/api/health, /api/capabilities, /api/ask, /api/ask-file)
 │   ├── pipeline.py                 # Core request pipeline (masking -> routing -> verified KB / RAG -> translation)
