@@ -1,16 +1,47 @@
 # GovBank Assistant - Single Launch Script (PowerShell)
+$ErrorActionPreference = "Stop"
+Set-Location -Path $PSScriptRoot
+
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host " Starting GovBank Assistant Full-Stack System..." -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Cyan
+
+$pyCmd = $null
+if (Get-Command py -ErrorAction SilentlyContinue) {
+    $pyCmd = "py"
+} elseif (Get-Command python -ErrorAction SilentlyContinue) {
+    $pyCmd = "python"
+} elseif (Get-Command python3 -ErrorAction SilentlyContinue) {
+    $pyCmd = "python3"
+} else {
+    Write-Host "[ERROR] Python 3.10+ was not found in PATH." -ForegroundColor Red
+    Write-Host "Install Python from https://www.python.org/ and try again." -ForegroundColor Yellow
+    exit 1
+}
+
+if (Test-Path "venv\Scripts\Activate.ps1") {
+    & "venv\Scripts\Activate.ps1"
+} elseif (Test-Path ".venv\Scripts\Activate.ps1") {
+    & ".venv\Scripts\Activate.ps1"
+}
 
 $env:PYTHONIOENCODING = "utf-8"
 $env:RAG_ENABLED = "true"
 $env:RAG_VECTOR_ENABLED = "true"
 $env:TRANSLATION_ENABLED = "true"
 
+& $pyCmd -c "import backend.main" 2>$null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[INFO] Installing project dependencies..." -ForegroundColor Yellow
+    & $pyCmd -m pip install -r requirements.txt
+    if ($LASTEXITCODE -ne 0) {
+        throw "Dependency installation failed."
+    }
+}
+
 # 1. Start Frontend Server in background on port 5500
 Write-Host "[1/3] Starting Frontend static server on port 5500..." -ForegroundColor Yellow
-$frontendProcess = Start-Process -FilePath "py" -ArgumentList "-m http.server 5500 --directory frontend" -PassThru -WindowStyle Hidden
+$frontendProcess = Start-Process -FilePath $pyCmd -ArgumentList "-m http.server 5500 --directory frontend" -PassThru -WindowStyle Hidden
 
 # 2. Open Web Browser
 Write-Host "[2/3] Opening Web App in default browser..." -ForegroundColor Yellow
@@ -24,7 +55,7 @@ Write-Host "Metrics API:  http://127.0.0.1:8000/api/metrics" -ForegroundColor Cy
 Write-Host "----------------------------------------------------------" -ForegroundColor DarkGray
 
 try {
-    py -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+    & $pyCmd -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
 } finally {
     if ($frontendProcess -and -not $frontendProcess.HasExited) {
         Stop-Process -Id $frontendProcess.Id -Force -ErrorAction SilentlyContinue
