@@ -73,14 +73,42 @@ class LocalLLMClient:
         self.config = config or LocalLLMConfig.from_env()
         self.config.validate_privacy_boundary()
 
-    def available(self) -> bool:
+    def probe(self) -> dict[str, object]:
         if not self.config.enabled:
-            return False
+            return {"available": False, "server_available": False, "model_available": False}
         try:
             response = httpx.get(f"{self.config.base_url}/api/tags", timeout=min(self.config.timeout_seconds, 2.0))
-            return response.status_code == 200
-        except (httpx.HTTPError, OSError):
-            return False
+            response.raise_for_status()
+            body = response.json()
+            models = body.get("models", []) if isinstance(body, dict) else []
+            installed = {
+                str(value).strip()
+                for item in models
+                if isinstance(item, dict)
+                for value in (item.get("name"), item.get("model"))
+                if value
+            }
+            configured = self.config.model
+            aliases = {configured}
+            if ":" not in configured:
+                aliases.add(f"{configured}:latest")
+            model_available = bool(installed & aliases)
+            return {
+                "available": model_available,
+                "server_available": True,
+                "model_available": model_available,
+                "error": None if model_available else "configured_model_not_installed",
+            }
+        except (httpx.HTTPError, OSError, ValueError, TypeError):
+            return {
+                "available": False,
+                "server_available": False,
+                "model_available": False,
+                "error": "ollama_unavailable",
+            }
+
+    def available(self) -> bool:
+        return bool(self.probe()["available"])
 
     def rewrite_summary(
         self,
@@ -105,7 +133,9 @@ class LocalLLMClient:
             "You are GovBank Assistant, a civic information explainer. Rewrite the answer as one clear, "
             "concise paragraph using only the supplied evidence. Never invent fees, deadlines, eligibility, "
             "documents, laws, or procedures. If evidence is incomplete, state that limitation. Do not give a "
-            "legal, tax, or financial verdict. Return JSON only with exactly one key: summary."
+            "legal, tax, or financial verdict. When the evidence describes alternative routes, present them as "
+            "separate alternatives and never merge their prerequisites or steps. Preserve qualifications such as "
+            "'after logging in', 'if eligible', and 'for registered users'. Return JSON only with exactly one key: summary."
         )
         prompt = (
             f"Conversation context (already redacted):\n{history}\n\n"
@@ -156,7 +186,23 @@ def _is_grounded(summary: str, answer: Answer) -> bool:
     evidence_text = " ".join(citation.excerpt for citation in answer.citations)
     evidence_tokens = _tokens(evidence_text)
     overlap = len(summary_tokens & evidence_tokens) / max(len(summary_tokens), 1)
-    return overlap >= 0.35
+    if overlap < 0.35:
+        return False
+    citation_token_sets = tuple(_tokens(citation.excerpt) for citation in answer.citations)
+    sentences = tuple(part.strip() for part in re.split(r"(?<=[.!?])\s+", summary) if part.strip())
+    for sentence in sentences:
+        sentence_tokens = _tokens(sentence)
+        if not sentence_tokens:
+            continue
+        best_overlap = max(
+            (len(sentence_tokens & citation_tokens) / len(sentence_tokens) for citation_tokens in citation_token_sets),
+            default=0.0,
+        )
+        if best_overlap < 0.35:
+            return False
+    summary_numbers = set(re.findall(r"\d+(?:[.,]\d+)?", summary))
+    evidence_numbers = set(re.findall(r"\d+(?:[.,]\d+)?", evidence_text))
+    return summary_numbers <= evidence_numbers
 
 
 _health_lock = threading.Lock()
@@ -185,8 +231,7 @@ def local_llm_health(*, force: bool = False) -> dict[str, object]:
         if not force and _health_cache and now - _health_cache[0] < 10:
             return _health_cache[1]
         try:
-            available = LocalLLMClient(config).available()
-            result = {**base, "available": available}
+            result = {**base, **LocalLLMClient(config).probe()}
         except ValueError as exc:
             result = {**base, "available": False, "error": str(exc)}
         _health_cache = (now, result)

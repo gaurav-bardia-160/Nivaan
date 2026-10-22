@@ -110,6 +110,9 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
 
     route_result = route(routing_request)
     memory_turns = conversation_memory.recent(parsed_request.conversation_id)
+    effective_context_topic = parsed_request.context_topic
+    if not effective_context_topic and memory_turns and _is_follow_up_query(search_text):
+        effective_context_topic = memory_turns[-1].user_text
     context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
         parsed_request.conversation_id
     )
@@ -130,15 +133,17 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             if candidate:
                 entry = candidate
 
-    if entry is None and parsed_request.context_topic and _is_follow_up_query(search_text):
-        candidate, _ = find_entry_with_score(parsed_request.context_topic)
+    entry_coverage_text = search_text
+    if entry is None and effective_context_topic and _is_follow_up_query(search_text):
+        candidate, _ = find_entry_with_score(effective_context_topic)
         if candidate:
             entry = candidate
+            entry_coverage_text = f"{effective_context_topic} {search_text}"
 
     # Prefer the small, manually verified procedure library whenever it has a
     # match. The broader imported RAG corpus is explicitly unverified and must
     # not replace a trusted workflow with a lower-confidence candidate passage.
-    if entry is not None and _verified_entry_covers_request(entry.get("id", ""), search_text):
+    if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
         answer = explain_entry(entry, user_question=safe_text, masked_items=masked_items)
         if parsed_request.input_type == "document" and parsed_request.document_text:
             existing_titles = {warning.title for warning in answer.warnings}
@@ -155,8 +160,8 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     # that are not covered by a verified procedure. This preserves citations
     # without allowing unverified chunks to override higher-trust guidance.
     rag_query = search_text
-    if parsed_request.context_topic and _is_follow_up_query(search_text):
-        rag_query = f"{parsed_request.context_topic} {search_text}"
+    if effective_context_topic and _is_follow_up_query(search_text):
+        rag_query = f"{effective_context_topic} {search_text}"
     rag_result = retrieve_if_enabled(rag_query, top_k=3)
     if rag_result is not None and rag_result.hits:
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)

@@ -88,6 +88,51 @@ def test_local_llm_rejects_remote_endpoint_without_explicit_opt_in():
         LocalLLMClient(config)
 
 
+def test_local_llm_health_requires_the_configured_model(monkeypatch):
+    class FakeResponse:
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return {"models": [{"name": "another-model:latest", "model": "another-model:latest"}]}
+
+    monkeypatch.setattr(httpx, "get", lambda *args, **kwargs: FakeResponse())
+    config = LocalLLMConfig(
+        enabled=True,
+        base_url="http://127.0.0.1:11434",
+        model="qwen3.5:4b",
+        timeout_seconds=5,
+        allow_remote=False,
+    )
+
+    probe = LocalLLMClient(config).probe()
+
+    assert probe["server_available"] is True
+    assert probe["model_available"] is False
+    assert probe["available"] is False
+    assert probe["error"] == "configured_model_not_installed"
+
+
+def test_local_llm_health_accepts_latest_tag_alias(monkeypatch):
+    class FakeResponse:
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return {"models": [{"name": "qwen3.5:latest"}]}
+
+    monkeypatch.setattr(httpx, "get", lambda *args, **kwargs: FakeResponse())
+    config = LocalLLMConfig(
+        enabled=True,
+        base_url="http://127.0.0.1:11434",
+        model="qwen3.5",
+        timeout_seconds=5,
+        allow_remote=False,
+    )
+
+    assert LocalLLMClient(config).available() is True
+
+
 def test_local_llm_rewrites_only_summary_and_preserves_grounded_contract(monkeypatch):
     class FakeResponse:
         status_code = 200
@@ -98,7 +143,7 @@ def test_local_llm_rewrites_only_summary_and_preserves_grounded_contract(monkeyp
         def json(self):
             return {
                 "message": {
-                    "content": '{"summary":"Instant e-PAN is available through the Income Tax portal for eligible applicants using Aadhaar. Confirm eligibility on the official portal."}'
+                    "content": '{"summary":"Instant e-PAN is available through the Income Tax portal for eligible applicants using Aadhaar."}'
                 }
             }
 
@@ -129,6 +174,74 @@ def test_local_llm_failure_returns_exact_deterministic_answer(monkeypatch):
     original = _rag_answer()
 
     assert enhance_grounded_answer(original, question="How do I get e-PAN?") == original
+
+
+def test_local_llm_rejects_numbers_not_present_in_evidence(monkeypatch):
+    class FakeResponse:
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return {
+                "message": {
+                    "content": '{"summary":"Instant e-PAN is available through the Income Tax portal, but a new fee of 999 rupees applies."}'
+                }
+            }
+
+    monkeypatch.setattr(httpx, "post", lambda *args, **kwargs: FakeResponse())
+    config = LocalLLMConfig(
+        enabled=True,
+        base_url="http://127.0.0.1:11434",
+        model="qwen3.5:4b",
+        timeout_seconds=5,
+        allow_remote=False,
+    )
+
+    assert LocalLLMClient(config).rewrite_summary(question="How do I get e-PAN?", answer=_rag_answer()) is None
+
+
+def test_local_llm_rejects_an_unsupported_sentence_even_when_other_text_is_grounded(monkeypatch):
+    class FakeResponse:
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return {
+                "message": {
+                    "content": '{"summary":"Instant e-PAN is available through the Income Tax portal for eligible applicants using Aadhaar. Physical applications are always emailed automatically after payment."}'
+                }
+            }
+
+    monkeypatch.setattr(httpx, "post", lambda *args, **kwargs: FakeResponse())
+    config = LocalLLMConfig(
+        enabled=True,
+        base_url="http://127.0.0.1:11434",
+        model="qwen3.5:4b",
+        timeout_seconds=5,
+        allow_remote=False,
+    )
+
+    assert LocalLLMClient(config).rewrite_summary(question="How do I get e-PAN?", answer=_rag_answer()) is None
+
+
+def test_rag_follow_up_uses_previous_redacted_question_instead_of_wrong_verified_guide(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    monkeypatch.setenv("RAG_VECTOR_ENABLED", "false")
+    monkeypatch.setenv("LOCAL_LLM_ENABLED", "false")
+    conversation_memory.clear("rag-follow-up")
+
+    first = run(AskRequest(question="How can I download e-PAN?", conversation_id="rag-follow-up"))
+    second = run(
+        AskRequest(
+            question="What should I check before doing that?",
+            conversation_id="rag-follow-up",
+        )
+    )
+
+    assert first.citations
+    assert second.citations
+    assert second.entry_id is None
+    assert second.title.startswith("Relevant official material")
 
 
 def test_conversation_delete_endpoint_clears_backend_memory():
