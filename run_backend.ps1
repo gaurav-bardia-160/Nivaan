@@ -66,6 +66,14 @@ if ($LASTEXITCODE -ne 0) {
     }
 }
 
+if ($env:RAG_VECTOR_ENABLED -eq "true") {
+    Write-Host "[INFO] Checking local vector index readiness..." -ForegroundColor Yellow
+    & $pyCmd -m backend.offline.ensure_vector_db
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[WARNING] Vector index unavailable. Continuing with lexical RAG fallback." -ForegroundColor Yellow
+    }
+}
+
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host " Backend Server Running!" -ForegroundColor Green
 Write-Host " - API Root:      http://$HostAddress`:$Port/" -ForegroundColor Cyan

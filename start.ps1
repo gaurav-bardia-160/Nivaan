@@ -39,6 +39,12 @@ if ($LASTEXITCODE -ne 0) {
     }
 }
 
+Write-Host "[0/3] Checking local vector index readiness..." -ForegroundColor Yellow
+& $pyCmd -m backend.offline.ensure_vector_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[WARNING] Vector index unavailable. Continuing with lexical RAG fallback." -ForegroundColor Yellow
+}
+
 # 1. Start Frontend Server in background on port 5500
 Write-Host "[1/3] Starting Frontend static server on port 5500..." -ForegroundColor Yellow
 $frontendProcess = Start-Process -FilePath $pyCmd -ArgumentList "-m http.server 5500 --directory frontend" -PassThru -WindowStyle Hidden

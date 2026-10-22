@@ -48,6 +48,15 @@ GovBank Assistant is a grounded, privacy-aware RAG (Retrieval-Augmented Generati
 | **Windows** | Double-click `run_backend.bat` or run `.\run_backend.ps1` | Double-click `start.bat` or run `.\start.ps1` |
 | **macOS / Linux** | `./run_backend.sh` | `./start.sh` |
 
+The launchers validate the local vector index before starting. On a fresh clone,
+they build the 681-document index from the canonical safe manifest. If vector
+setup fails, the backend starts with deterministic lexical RAG instead of
+crashing. You can check readiness directly with:
+
+```bash
+python -m backend.offline.ensure_vector_db --check-only
+```
+
 ---
 
 ### Manual Launch

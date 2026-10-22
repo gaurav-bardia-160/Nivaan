@@ -54,6 +54,7 @@ def test_launchers_preserve_required_runtime_contracts():
         assert "rag_vector_enabled" in content
         assert "translation_enabled" in content
         assert "/api/health" in content
+        assert "backend.offline.ensure_vector_db" in content
 
 
 def test_windows_full_stack_launchers_do_not_require_python_launcher_alias():

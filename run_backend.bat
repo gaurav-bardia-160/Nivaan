@@ -74,6 +74,12 @@ if %errorlevel% neq 0 (
     )
 )
 
+if /I "%RAG_VECTOR_ENABLED%"=="true" (
+    echo [INFO] Checking local vector index readiness...
+    %PY_CMD% -m backend.offline.ensure_vector_db
+    if !errorlevel! neq 0 echo [WARNING] Vector index unavailable. Continuing with lexical RAG fallback.
+)
+
 echo ==========================================================
 echo  Backend Server Running!
 echo  - API Root:      http://%HOST%:%PORT%/

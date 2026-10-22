@@ -43,6 +43,11 @@ export RAG_ENABLED="true"
 export RAG_VECTOR_ENABLED="true"
 export TRANSLATION_ENABLED="true"
 
+echo -e "${YELLOW}[0/3] Checking local vector index readiness...${NC}"
+if ! $PY_CMD -m backend.offline.ensure_vector_db; then
+    echo -e "${YELLOW}[WARNING]${NC} Vector index is unavailable. Continuing with lexical RAG fallback."
+fi
+
 # 1. Start Frontend static server on port 5500 in the background
 echo -e "${YELLOW}[1/3] Starting Frontend static server on port 5500...${NC}"
 $PY_CMD -m http.server 5500 --directory frontend >/dev/null 2>&1 &

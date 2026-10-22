@@ -69,6 +69,13 @@ if ! $PY_CMD -c "import backend.main" >/dev/null 2>&1; then
     fi
 fi
 
+if [ "$RAG_VECTOR_ENABLED" = "true" ]; then
+    echo -e "${YELLOW}[INFO]${NC} Checking local vector index readiness..."
+    if ! $PY_CMD -m backend.offline.ensure_vector_db; then
+        echo -e "${YELLOW}[WARNING]${NC} Vector index is unavailable. Continuing with lexical RAG fallback."
+    fi
+fi
+
 echo -e "${CYAN}==========================================================${NC}"
 echo -e "${GREEN} Backend Server Running!${NC}"
 echo -e " - API Root:      ${CYAN}http://$HOST:$PORT/${NC}"

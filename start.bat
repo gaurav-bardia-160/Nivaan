@@ -43,6 +43,10 @@ if !errorlevel! neq 0 (
     if !errorlevel! neq 0 exit /b 1
 )
 
+echo [0/3] Checking local vector index readiness...
+%PY_CMD% -m backend.offline.ensure_vector_db
+if !errorlevel! neq 0 echo [WARNING] Vector index unavailable. Continuing with lexical RAG fallback.
+
 echo [1/3] Starting Frontend static server on port 5500...
 start "GovBank Frontend" /B %PY_CMD% -m http.server 5500 --directory frontend >nul 2>&1
 
