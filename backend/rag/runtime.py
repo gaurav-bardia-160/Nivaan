@@ -45,12 +45,24 @@ def vector_enabled() -> bool:
 
 @lru_cache(maxsize=2)
 def _get_retriever(use_vectors: bool) -> RagRetriever:
+    lexical_retriever = RagRetriever()
     if not use_vectors:
-        return RagRetriever()
-    store = QdrantLocalVectorStore(DEFAULT_VECTOR_PATH)
-    if not store.health()["ready"]:
-        return RagRetriever()
-    return RagRetriever(embedding_provider=FastEmbedProvider(), vector_store=store)
+        return lexical_retriever
+    try:
+        store = QdrantLocalVectorStore(DEFAULT_VECTOR_PATH)
+        health = store.health()
+        if not health.get("ready") or health.get("points") != len(lexical_retriever.documents):
+            store.close()
+            return lexical_retriever
+        return RagRetriever(
+            load_result=lexical_retriever.load_result,
+            embedding_provider=FastEmbedProvider(),
+            vector_store=store,
+        )
+    except (OSError, RuntimeError, ValueError):
+        # Local Qdrant uses an exclusive file lock and can also become stale after
+        # corpus updates. Lexical retrieval remains a safe, deterministic fallback.
+        return lexical_retriever
 
 
 def get_retriever() -> RagRetriever:

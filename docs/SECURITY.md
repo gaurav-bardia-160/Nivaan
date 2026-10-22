@@ -1,6 +1,6 @@
 # GovBank Assistant - Security Architecture & Threat Model
 
-**Version:** 0.4.0  
+**Version:** 0.5.0
 **Target Architecture:** Hardened civic assistance gateway
 
 ---

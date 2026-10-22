@@ -34,12 +34,15 @@ GovBank Assistant is designed with **Privacy-by-Design** and **Zero-Data-Retenti
 
 - Chat transcripts are stored purely in the user's local browser memory (`window.localStorage`).
 - Users can delete individual conversations or clear all chat history at any time using the "Delete" button in the sidebar.
+- The backend keeps only a bounded, process-local, redacted conversation context for follow-up resolution. It stores masked question text, answer topic, and verified entry ID for at most six turns, expires inactive sessions after 30 minutes by default, and never stores uploaded document contents.
+- Deleting a browser conversation calls the backend conversation-delete endpoint so both copies are cleared.
 - No user tracking cookies or third-party advertising SDKs are included.
 
 ---
 
 ## 3. Data Processing Boundary
 
-GovBank Assistant operates as a stateless procedural guidance engine:
+GovBank Assistant operates as a minimal-state procedural guidance engine:
 - User queries are mapped to verified civic guides or open government knowledge sources.
 - The assistant refuses out-of-scope personal inquiries and instructs users to confirm final filings on the official government portal (`india.gov.in`, `incometax.gov.in`, `passportindia.gov.in`, etc.).
+- Optional local-model enhancement connects only to a loopback Ollama-compatible endpoint by default. Remote model endpoints are rejected unless an operator explicitly enables them.

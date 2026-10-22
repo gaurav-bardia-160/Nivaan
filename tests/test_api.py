@@ -278,7 +278,7 @@ def test_health_endpoint():
     payload = response.json()
     assert payload["status"] == "ok"
     assert payload["service"] == "govbank-assistant"
-    assert payload["version"] == "0.4.0"
+    assert payload["version"] == "0.5.0"
     assert payload["knowledge_entries"] >= 10
     assert payload["unverified_entries"] == 0
     assert payload["capabilities_url"] == "/api/capabilities"
@@ -289,12 +289,19 @@ def test_capabilities_endpoint_reports_honest_limits():
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload["version"] == "0.4.0"
+    assert payload["version"] == "0.5.0"
     assert "text-based .pdf" in payload["supported_uploads"]
-    assert "images" in payload["unsupported_uploads"]
+    assert "ocr" in payload
+    if payload["ocr"]["enabled"]:
+        assert ".png" in payload["supported_uploads"]
+    else:
+        assert "images without Tesseract-OCR" in payload["unsupported_uploads"]
     assert "English answers only" in payload["answer_language_status"]
-    assert "Client-side masking is not implemented" in payload["privacy_boundary"]
+    assert "frontend masks" in payload["privacy_boundary"]
+    assert "backend masks" in payload["privacy_boundary"]
     assert "translation" in payload
+    assert "local_llm" in payload
+    assert "memory" in payload
     assert payload["translation"]["enabled"] is False
 
 

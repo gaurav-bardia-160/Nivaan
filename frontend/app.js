@@ -289,6 +289,10 @@ function deleteChat(chatId) {
     const idx = chats.findIndex(c => c.id === chatId);
     if (idx === -1) return;
     chats.splice(idx, 1);
+    if (isBackendLive) {
+        fetch(`${API_BASE}/api/conversations/${encodeURIComponent(chatId)}`, { method: "DELETE" })
+            .catch(() => {});
+    }
     if (activeChatId === chatId) {
         activeChatId = chats.length > 0 ? chats[0].id : null;
     }

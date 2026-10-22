@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 APP_NAME = "GovBank Assistant API"
-APP_VERSION = "0.4.0"
+APP_VERSION = "0.5.0"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 BACKEND_DIR = Path(__file__).resolve().parent
 DATA_DIR = BACKEND_DIR / "data"
@@ -29,8 +29,8 @@ CAPABILITIES = {
     "supported_languages": list(SUPPORTED_LANGUAGES),
     "answer_language_status": "English answers only by default. Hindi/Gujarati translation is available via TRANSLATION_ENABLED.",
     "supported_uploads": [".txt", ".text", ".md", ".csv", "text-based .pdf"],
-    "unsupported_uploads": ["scanned PDFs", "images", "encrypted PDFs"],
-    "privacy_boundary": "Sensitive values are masked server-side before retrieval and explanation. Client-side masking is not implemented yet in legacy clients, but now active in frontend app.",
+    "unsupported_uploads": ["encrypted PDFs"],
+    "privacy_boundary": "The current frontend masks supported sensitive identifiers before browser persistence, and the backend masks them again before retrieval, memory, translation, or local-model processing.",
     "knowledge_status": "Curated knowledge base with verified-first routing; unverified RAG corpus used as conservative fallback.",
 }
 

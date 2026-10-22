@@ -13,6 +13,8 @@ from collections import defaultdict
 
 from backend.config import APP_NAME, APP_VERSION, CAPABILITIES, CORS_ALLOW_ORIGINS
 from backend.modules.ocr import OCRExtractionError, extract_text_from_upload, _is_tesseract_available
+from backend.modules.llm import local_llm_health
+from backend.modules.memory import conversation_memory
 from backend.modules.retrieval import knowledge_stats
 from backend.pipeline import run
 from backend.rag.runtime import rag_health
@@ -89,7 +91,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ALLOW_ORIGINS,
     allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -118,6 +120,8 @@ def health() -> dict[str, object]:
         "unverified_entries": stats["unverified"],
         "capabilities_url": "/api/capabilities",
         "rag": rag_health(),
+        "local_llm": local_llm_health(),
+        "memory": conversation_memory.health(),
     }
 
 
@@ -126,7 +130,14 @@ def capabilities() -> dict[str, object]:
     from backend.modules.translator import is_translation_enabled
     stats = knowledge_stats()
     translation_on = is_translation_enabled()
+    ocr_on = _is_tesseract_available()
     base_caps = dict(CAPABILITIES)
+    base_caps["supported_uploads"] = list(base_caps["supported_uploads"])
+    base_caps["unsupported_uploads"] = list(base_caps["unsupported_uploads"])
+    if ocr_on:
+        base_caps["supported_uploads"].extend(["scanned .pdf", ".png", ".jpg", ".jpeg", ".webp"])
+    else:
+        base_caps["unsupported_uploads"].extend(["scanned PDFs", "images without Tesseract-OCR"])
     if translation_on:
         base_caps["answer_language_status"] = (
             "English answers only by default; automatic translation into Hindi and Gujarati is currently active."
@@ -143,6 +154,9 @@ def capabilities() -> dict[str, object]:
             "natural_phrase_extraction": True,
             "civic_glossary": True,
         },
+        "ocr": {"enabled": ocr_on, "engine": "tesseract" if ocr_on else None},
+        "local_llm": local_llm_health(),
+        "memory": conversation_memory.health(),
         **base_caps,
     }
 
@@ -165,7 +179,19 @@ def metrics() -> dict[str, object]:
             "rpm_limit": _RATE_LIMITER.max_requests,
         },
         "ocr_available": _is_tesseract_available(),
+        "local_llm": local_llm_health(),
+        "memory": conversation_memory.health(),
     }
+
+
+@app.delete("/api/conversations/{conversation_id}")
+def clear_conversation(conversation_id: str, req: Request) -> dict[str, object]:
+    _check_auth(req)
+    _check_rate_limit(req)
+    if not conversation_id or len(conversation_id) > 120:
+        raise HTTPException(status_code=422, detail="Invalid conversation id.")
+    conversation_memory.clear(conversation_id)
+    return {"status": "cleared", "conversation_id": conversation_id}
 
 
 @app.post("/api/ask", response_model=Answer)

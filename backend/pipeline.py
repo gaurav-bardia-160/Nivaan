@@ -5,6 +5,8 @@ from typing import Any
 from backend.modules.agent import route
 from backend.modules.explainer import explain_entry, explain_rag_result, not_found_answer
 from backend.modules.guardrails import find_flags, mask_text
+from backend.modules.llm import enhance_grounded_answer
+from backend.modules.memory import conversation_memory
 from backend.modules.retrieval import find_entry, find_entry_by_id, find_entry_with_score
 from backend.modules.translate_voice import apply_language_policy
 from backend.modules.translator import extract_language_and_clean_query
@@ -63,6 +65,16 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
     return True
 
 
+def _finalize_answer(answer: Answer, *, request: AskRequest, safe_question: str, target_lang: str) -> Answer:
+    translated = apply_language_policy(answer, target_lang, query_text=safe_question)
+    conversation_memory.remember(
+        request.conversation_id,
+        user_text=safe_question,
+        answer=translated,
+    )
+    return translated
+
+
 def run(request: AskRequest | dict[str, Any]) -> Answer:
     """Run the safe backend workflow for typed text and supported uploads.
 
@@ -97,6 +109,10 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     search_text = _request_text(routing_request) or safe_text
 
     route_result = route(routing_request)
+    memory_turns = conversation_memory.recent(parsed_request.conversation_id)
+    context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
+        parsed_request.conversation_id
+    )
 
     entry = None
     if route_result.matched_entry_id:
@@ -108,9 +124,9 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     # If no standalone entry matched (or entry matched incidentally while the user explicitly
     # used an anaphoric pronoun like 'for that' / 'for this' pointing to the previous topic),
     # resolve against previous_entry_id or context_topic.
-    if parsed_request.previous_entry_id and _is_follow_up_query(search_text):
+    if context_entry_id and _is_follow_up_query(search_text):
         if entry is None or _has_anaphoric_reference(search_text):
-            candidate = find_entry_by_id(parsed_request.previous_entry_id)
+            candidate = find_entry_by_id(context_entry_id)
             if candidate:
                 entry = candidate
 
@@ -128,7 +144,12 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             existing_titles = {warning.title for warning in answer.warnings}
             extra_warnings = [warning for warning in find_flags(masked_document.text) if warning.title not in existing_titles]
             answer = answer.model_copy(update={"warnings": [*answer.warnings, *extra_warnings]})
-        return apply_language_policy(answer, target_lang, query_text=safe_text)
+        return _finalize_answer(
+            answer,
+            request=parsed_request,
+            safe_question=masked_question.text or safe_text,
+            target_lang=target_lang,
+        )
 
     # Use RAG as a conservative fallback for supported PAN/Aadhaar requests
     # that are not covered by a verified procedure. This preserves citations
@@ -140,6 +161,11 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     if rag_result is not None and rag_result.hits:
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
         if rag_answer is not None:
+            rag_answer = enhance_grounded_answer(
+                rag_answer,
+                question=safe_text,
+                memory=memory_turns,
+            )
             if parsed_request.input_type == "document" and parsed_request.document_text:
                 existing_titles = {warning.title for warning in rag_answer.warnings}
                 extra_warnings = [
@@ -147,12 +173,27 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                     if warning.title not in existing_titles
                 ]
                 rag_answer = rag_answer.model_copy(update={"warnings": [*rag_answer.warnings, *extra_warnings]})
-            return apply_language_policy(rag_answer, target_lang, query_text=safe_text)
+            return _finalize_answer(
+                rag_answer,
+                request=parsed_request,
+                safe_question=masked_question.text or safe_text,
+                target_lang=target_lang,
+            )
 
     if route_result.needs_clarification and not route_result.matched_entry_id:
-        return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), target_lang, query_text=safe_text)
+        return _finalize_answer(
+            not_found_answer(safe_text, masked_items=masked_items),
+            request=parsed_request,
+            safe_question=masked_question.text or safe_text,
+            target_lang=target_lang,
+        )
 
-    return apply_language_policy(not_found_answer(safe_text, masked_items=masked_items), target_lang, query_text=safe_text)
+    return _finalize_answer(
+        not_found_answer(safe_text, masked_items=masked_items),
+        request=parsed_request,
+        safe_question=masked_question.text or safe_text,
+        target_lang=target_lang,
+    )
 
 
 __all__ = ["run"]

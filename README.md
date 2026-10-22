@@ -9,12 +9,14 @@ GovBank Assistant is a grounded, privacy-aware RAG (Retrieval-Augmented Generati
 ### 1. Hybrid Grounded Retrieval (Verified-First + RAG Fallback)
 - **Verified Knowledge Base:** Deterministic, human-checked procedure guides (e.g. Form 49A PAN application, Aadhaar enrolment, ITR filing, loan prepayment) are checked first and take absolute precedence over candidate passages.
 - **Hybrid RAG Fallback:** Lexical search (BM25) combined with dense multilingual vector search (FastEmbed `paraphrase-multilingual-MiniLM-L12-v2` + local Qdrant) via Reciprocal Rank Fusion (RRF).
-- **Strict Ingestion Allowlist:** Ingests exactly 632 safe canonical chunks from official portals (`incometax.gov.in`, `uidai.gov.in`, `tinpan.proteantech.in`), safely rejecting non-allowlisted and malformed sources.
+- **Strict Ingestion Allowlist:** Ingests exactly 681 safe canonical chunks across PAN, Aadhaar, and civic portals while rejecting non-allowlisted and malformed sources.
 - **Explicit Provenance:** Every response includes official source URLs, reporting dates, verification labels (`VERIFIED` vs `UNVERIFIED`), and step-by-step checklists.
 
 ### 2. Privacy-by-Design Guardrails
 - **Server-Side Masking:** Redacts Aadhaar numbers, PAN cards, phone numbers, email addresses, bank accounts, and IFSC codes before retrieval and model processing.
 - **Document Risk Flags:** Rule-based detection of deadlines, penalties, interest clauses, and forfeiture terms in uploaded agreements or notices.
+- **Redacted Backend Memory:** Bounded TTL/LRU memory retains only masked questions, answer topics, and verified entry IDs for follow-up resolution.
+- **Optional Local AI:** An Ollama-compatible model can rewrite already-grounded RAG summaries locally. Citations, warnings, confidence, and deterministic fallback remain code-controlled.
 
 ### 3. Regional Language Support (Hindi & Gujarati)
 - **Automatic Language Detection:** Recognizes native Indic scripts (Devanagari for Hindi, Gujarati script) and natural language instructions (e.g., *"in hindi"*, *"in gujarati"*, *"hindi me"*).
@@ -30,8 +32,8 @@ GovBank Assistant is a grounded, privacy-aware RAG (Retrieval-Augmented Generati
 
 ## Current Limitations
 
-- **Scanned PDF/Image OCR:** Text-based PDFs and `.txt` uploads are fully supported; scanned PDFs and images are rejected with clear 415 errors until OCR is integrated.
-- **Stateless Turn Context:** Turns are stored in the client session, but follow-up pronoun queries (e.g., *"What documents do I need for that?"*) currently require mentioning the subject.
+- **OCR Host Dependency:** Images and scanned PDFs work when Tesseract-OCR is installed. The API reports OCR availability and rejects unsupported hosts honestly.
+- **Process-Local Memory:** Follow-up memory is intentionally non-persistent and should be moved to a protected shared TTL store only for multi-worker deployments.
 - **Educational Prototype:** Sourced plain-language guidance helper; not a substitute for official portal submissions or legal/financial advice.
 
 ---
@@ -52,6 +54,20 @@ $env:RAG_ENABLED="true"; $env:RAG_VECTOR_ENABLED="true"; $env:TRANSLATION_ENABLE
 RAG_ENABLED=true RAG_VECTOR_ENABLED=true TRANSLATION_ENABLED=true python3 -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
 
+### Optional local Ollama answer enhancement
+
+```bash
+# Start Ollama and use any installed local chat model.
+ollama serve
+ollama pull qwen3.5:4b
+
+LOCAL_LLM_ENABLED=true LOCAL_LLM_MODEL=qwen3.5:4b \
+RAG_ENABLED=true RAG_VECTOR_ENABLED=true \
+python3 -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+The local model never replaces retrieval. It only rewrites a cited extractive summary, runs on a loopback URL by default, and falls back to the deterministic answer on timeout, invalid JSON, weak grounding, or server failure.
+
 ### 2. Frontend Interface
 
 Open `frontend/index.html` directly in any modern browser, or serve it via python:
@@ -70,7 +86,7 @@ To rebuild the unified Qdrant vector index from the canonical safe corpus:
 ```bash
 python -m backend.offline.build_vector_db
 ```
-*Note: Uses `backend/data/rag_manifest.json` by default to ensure only the 632 safe canonical records are indexed.*
+*Note: Uses `backend/data/rag_manifest.json` by default to ensure only the 681 safe canonical records are indexed.*
 
 ---
 
@@ -82,10 +98,7 @@ Run the full automated test suite (unit tests, API contracts, RAG loader, vector
 python -m pytest
 ```
 
-Expected result:
-```text
-======================= 93 passed =======================
-```
+Also run `python tests/eval_retrieval.py` to verify retrieval, refusal, privacy, context, and latency behavior.
 
 ---
 
@@ -108,9 +121,11 @@ govbank-assistant/
 │   │   ├── guardrails.py           # Regex PII masking and document risk flagging
 │   │   ├── retrieval.py            # Verified KB lookup and scoring
 │   │   ├── explainer.py            # Structured answer generation
+│   │   ├── llm.py                  # Optional local Ollama grounded summary enhancement
+│   │   ├── memory.py               # Bounded redacted conversation context
 │   │   ├── translator.py           # Language extraction, script detection, civic glossary
 │   │   ├── translate_voice.py      # Language policy handler
-│   │   └── ocr.py                  # Text and PDF extraction boundary
+│   │   └── ocr.py                  # Text, PDF, scanned PDF, and image OCR boundary
 │   ├── offline/
 │   │   ├── build_vector_db.py      # Unified vector DB generator using canonical safe loader
 │   │   └── data_builder.py         # Data chunking and draft builder
@@ -126,7 +141,7 @@ govbank-assistant/
 │   ├── index.html                  # Responsive chat interface
 │   ├── app.js                      # Chat controller, prompt editing, and localStorage persistence
 │   └── style.css                   # Custom styles, responsive layout, dark/light theme
-├── tests/                          # 93 automated pytest unit and integration tests
+├── tests/                          # Automated unit, integration, safety, and retrieval evaluation tests
 ├── COLLABORATOR_PROJECT_AUDIT_2026-10-19.md # Detailed collaborator technical audit report
 └── PROJECT_STATUS_REPORT.md        # Phased development status and technical roadmap
 ```
