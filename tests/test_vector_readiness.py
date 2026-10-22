@@ -28,6 +28,28 @@ def test_inspect_vector_index_reports_missing_index(tmp_path, monkeypatch):
     assert result["corpus_sha256"] == "abc123"
 
 
+def test_inspect_vector_index_rejects_missing_compatibility_metadata(tmp_path, monkeypatch):
+    class Report:
+        corpus_sha256 = "abc123"
+
+    class LoadResult:
+        documents = (object(),)
+        report = Report()
+
+    destination = tmp_path / "qdrant"
+    destination.mkdir()
+    (destination / "storage.sqlite").write_text("placeholder", encoding="utf-8")
+    monkeypatch.setattr(ensure_vector_db, "load_corpus", lambda _: LoadResult())
+
+    result = ensure_vector_db.inspect_vector_index(
+        dest_dir=destination,
+        manifest_path=tmp_path / "manifest.json",
+    )
+
+    assert result["ready"] is False
+    assert result["reason"] == "missing_metadata"
+
+
 def test_ensure_vector_index_reuses_complete_index(monkeypatch):
     ready = {
         "ready": True,

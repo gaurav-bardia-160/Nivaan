@@ -14,8 +14,9 @@ from pathlib import Path
 from typing import Any, Callable
 
 from backend.offline.build_vector_db import DEFAULT_COLLECTION, DEFAULT_VECTOR_DIR, build_unified_vector_db
+from backend.rag.embeddings import DEFAULT_MULTILINGUAL_MODEL
 from backend.rag.loader import DEFAULT_MANIFEST, load_corpus
-from backend.rag.vector_store import QdrantLocalVectorStore
+from backend.rag.vector_store import QdrantLocalVectorStore, read_index_metadata
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +26,7 @@ def inspect_vector_index(
     dest_dir: Path | str = DEFAULT_VECTOR_DIR,
     manifest_path: Path | str = DEFAULT_MANIFEST,
     collection_name: str = DEFAULT_COLLECTION,
+    model_name: str = DEFAULT_MULTILINGUAL_MODEL,
 ) -> dict[str, Any]:
     """Return whether the local index exactly covers the canonical corpus."""
     destination = Path(dest_dir).resolve()
@@ -40,6 +42,18 @@ def inspect_vector_index(
     if not destination.is_dir() or not any(destination.iterdir()):
         return {**base, "ready": False, "points": 0, "reason": "missing_index"}
 
+    metadata = read_index_metadata(destination)
+    if metadata is None:
+        return {**base, "ready": False, "points": 0, "reason": "missing_metadata"}
+    if metadata.get("corpus_sha256") != base["corpus_sha256"]:
+        return {**base, "ready": False, "points": 0, "reason": "corpus_hash_mismatch"}
+    if metadata.get("embedding_model") != model_name:
+        return {**base, "ready": False, "points": 0, "reason": "embedding_model_mismatch"}
+    if metadata.get("collection") != collection_name or metadata.get("documents") != expected_documents:
+        return {**base, "ready": False, "points": 0, "reason": "metadata_count_mismatch"}
+    if not isinstance(metadata.get("dimensions"), int) or int(metadata["dimensions"]) < 1:
+        return {**base, "ready": False, "points": 0, "reason": "invalid_dimensions"}
+
     store = None
     try:
         store = QdrantLocalVectorStore(destination, collection=collection_name)
@@ -50,6 +64,8 @@ def inspect_vector_index(
             **base,
             "ready": ready,
             "points": points,
+            "dimensions": metadata["dimensions"],
+            "embedding_model": metadata["embedding_model"],
             "reason": "ready" if ready else "document_count_mismatch",
         }
     except (OSError, RuntimeError, ValueError) as exc:
@@ -72,6 +88,7 @@ def ensure_vector_index(
         dest_dir=dest_dir,
         manifest_path=manifest_path,
         collection_name=collection_name,
+        model_name=DEFAULT_MULTILINGUAL_MODEL,
     )
     if before["ready"]:
         return {**before, "action": "reused"}
@@ -81,6 +98,7 @@ def ensure_vector_index(
         dest_dir=dest_dir,
         manifest_path=manifest_path,
         collection_name=collection_name,
+        model_name=DEFAULT_MULTILINGUAL_MODEL,
         batch_size=batch_size,
     )
     after = inspect_vector_index(

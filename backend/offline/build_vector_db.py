@@ -26,7 +26,7 @@ from backend.rag.embeddings import DEFAULT_MULTILINGUAL_MODEL, FastEmbedProvider
 from backend.rag.loader import DEFAULT_MANIFEST, load_corpus
 from backend.rag.models import RagDocument, SourceReference
 from backend.rag.retriever import document_text
-from backend.rag.vector_store import QdrantLocalVectorStore
+from backend.rag.vector_store import QdrantLocalVectorStore, write_index_metadata
 
 logger = logging.getLogger("build_vector_db")
 
@@ -236,10 +236,12 @@ def build_unified_vector_db(
     dest_path = Path(dest_dir).resolve()
     manifest_file = Path(manifest_path) if manifest_path else DEFAULT_MANIFEST
 
+    corpus_sha256 = ""
     if use_canonical_loader and manifest_file.is_file() and (manifest_path is not None or source_path == DEFAULT_REFINED_DIR.resolve()):
         logger.info("Loading canonical safe corpus via rag.loader: %s", manifest_file)
         load_result = load_corpus(manifest_file)
         documents = load_result.documents
+        corpus_sha256 = load_result.report.corpus_sha256
         logger.info(
             "Loaded %d safe canonical documents (rejected %d unsafe records, SHA: %s)",
             len(documents),
@@ -253,6 +255,13 @@ def build_unified_vector_db(
             raise RuntimeError(f"No valid refined records found in {source_path}")
 
         documents = records_to_rag_documents(records)
+        corpus_sha256 = hashlib.sha256(
+            json.dumps(
+                [(document.id, document.content_hash) for document in documents],
+                ensure_ascii=True,
+                sort_keys=True,
+            ).encode("utf-8")
+        ).hexdigest()
         logger.info("Loaded %d unique canonical documents", len(documents))
 
     category_counts: dict[str, int] = {}
@@ -283,6 +292,16 @@ def build_unified_vector_db(
 
     health = store.health()
     store.close()
+    metadata = {
+        "schema_version": 1,
+        "collection": collection_name,
+        "documents": len(documents),
+        "corpus_sha256": corpus_sha256,
+        "embedding_provider": provider.info.provider,
+        "embedding_model": provider.info.model,
+        "dimensions": provider.info.dimensions,
+    }
+    write_index_metadata(dest_path, metadata)
     logger.info("Vector database successfully built: %s", health)
 
     return {
@@ -293,6 +312,8 @@ def build_unified_vector_db(
         "database_path": str(dest_path),
         "categories": category_counts,
         "model": model_name,
+        "corpus_sha256": corpus_sha256,
+        "index_metadata": metadata,
         "vector_store_health": health,
     }
 

@@ -134,6 +134,10 @@ def test_build_unified_vector_db_end_to_end(tmp_path, monkeypatch):
     assert result["categories"]["aadhaar"] == 1
     assert result["vector_store_health"]["ready"] is True
     assert result["vector_store_health"]["points"] == 1
+    assert result["index_metadata"]["documents"] == 1
+    assert result["index_metadata"]["dimensions"] == 3
+    assert result["index_metadata"]["embedding_model"] == "fake"
+    assert (dest_dir / "govbank_index.json").is_file()
 
 
 def test_build_unified_vector_db_uses_canonical_loader(tmp_path, monkeypatch):
@@ -166,5 +170,6 @@ def test_build_unified_vector_db_uses_canonical_loader(tmp_path, monkeypatch):
     assert result["categories"]["pan"] == 242
     assert result["categories"]["civic"] == 49
     assert result["vector_store_health"]["points"] == 681
-
+    assert result["index_metadata"]["documents"] == 681
+    assert result["index_metadata"]["corpus_sha256"] == result["corpus_sha256"]
 

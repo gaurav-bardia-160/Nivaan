@@ -6,10 +6,10 @@ import re
 from functools import lru_cache
 
 from backend.config import DATA_DIR
-from backend.rag.embeddings import FastEmbedProvider
+from backend.rag.embeddings import DEFAULT_MULTILINGUAL_MODEL, FastEmbedProvider
 from backend.rag.models import RetrievalResult
 from backend.rag.retriever import RagRetriever
-from backend.rag.vector_store import QdrantLocalVectorStore
+from backend.rag.vector_store import QdrantLocalVectorStore, read_index_metadata
 
 _TRUE_VALUES = {"1", "true", "yes", "on"}
 DEFAULT_VECTOR_PATH = DATA_DIR / "vector_index" / "qdrant"
@@ -54,9 +54,23 @@ def _get_retriever(use_vectors: bool) -> RagRetriever:
         if not health.get("ready") or health.get("points") != len(lexical_retriever.documents):
             store.close()
             return lexical_retriever
+        metadata = read_index_metadata(DEFAULT_VECTOR_PATH)
+        report = lexical_retriever.load_result.report
+        if (
+            metadata is None
+            or metadata.get("corpus_sha256") != report.corpus_sha256
+            or metadata.get("embedding_model") != DEFAULT_MULTILINGUAL_MODEL
+            or metadata.get("documents") != len(lexical_retriever.documents)
+        ):
+            store.close()
+            return lexical_retriever
+        provider = FastEmbedProvider()
+        if metadata.get("dimensions") != provider.info.dimensions:
+            store.close()
+            return lexical_retriever
         return RagRetriever(
             load_result=lexical_retriever.load_result,
-            embedding_provider=FastEmbedProvider(),
+            embedding_provider=provider,
             vector_store=store,
         )
     except (OSError, RuntimeError, ValueError):

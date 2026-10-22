@@ -1,12 +1,33 @@
 """Vector-store contracts and a persistent local Qdrant adapter."""
 from __future__ import annotations
 
+import json
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol
 
 from backend.rag.models import RagDocument
+
+INDEX_METADATA_FILENAME = "govbank_index.json"
+
+
+def read_index_metadata(path: Path | str) -> dict[str, object] | None:
+    metadata_path = Path(path) / INDEX_METADATA_FILENAME
+    try:
+        value = json.loads(metadata_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        return None
+    return value if isinstance(value, dict) else None
+
+
+def write_index_metadata(path: Path | str, metadata: dict[str, object]) -> None:
+    destination = Path(path)
+    destination.mkdir(parents=True, exist_ok=True)
+    metadata_path = destination / INDEX_METADATA_FILENAME
+    temporary_path = destination / f".{INDEX_METADATA_FILENAME}.tmp"
+    temporary_path.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary_path.replace(metadata_path)
 
 
 @dataclass(frozen=True)
@@ -137,4 +158,6 @@ __all__ = [
     "VectorHit",
     "VectorStore",
     "VectorStoreUnavailable",
+    "read_index_metadata",
+    "write_index_metadata",
 ]
