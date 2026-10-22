@@ -186,6 +186,11 @@ function sanitizeAllChats(chatList) {
                         if (Array.isArray(cleanedAnswer.warnings)) {
                             cleanedAnswer.warnings = cleanedAnswer.warnings.filter(w => !isInternalWarning(w));
                         }
+                        if (cleanedAnswer.summary) {
+                            cleanedAnswer.summary = cleanedAnswer.summary
+                                .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
+                                .trim();
+                        }
                         return { ...m, answer: cleanedAnswer };
                     }
                 }
@@ -968,6 +973,22 @@ function appendAssistantResponse(answer, shouldScroll = true) {
         `;
     }
 
+    // Plain Language Summary (hidden when structured documents or steps exist)
+    let summaryHtml = "";
+    const hasStructuredContent = (answer.documents_needed && answer.documents_needed.length > 0) || (answer.steps && answer.steps.length > 0);
+    if (!hasStructuredContent && answer.summary) {
+        const cleanSummaryText = String(answer.summary)
+            .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
+            .trim();
+        if (cleanSummaryText) {
+            summaryHtml = `
+                <div class="response-summary">
+                    ${escapeHtml(cleanSummaryText)}
+                </div>
+            `;
+        }
+    }
+
     row.innerHTML = `
         <div class="message-avatar bot-avatar">🏛️</div>
         <div class="message-content">
@@ -983,10 +1004,8 @@ function appendAssistantResponse(answer, shouldScroll = true) {
                 <!-- Privacy Redaction Badge -->
                 ${maskedBanner}
 
-                <!-- Plain Language Summary -->
-                <div class="response-summary">
-                    ${escapeHtml(answer.summary)}
-                </div>
+                <!-- Plain Language Summary (hidden when structured documents or steps exist) -->
+                ${summaryHtml}
 
                 <!-- Documents Needed (Clean list) -->
                 ${docsHtml}

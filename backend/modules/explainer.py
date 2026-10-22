@@ -40,8 +40,7 @@ def explain_entry(
             "so re-check the official source before using it for a real task."
         )
 
-    if clean_question:
-        summary = f"For your question, '{clean_question}', this is the closest guide I found. {summary}"
+
 
     return Answer(
         entry_id=knowledge.id,
