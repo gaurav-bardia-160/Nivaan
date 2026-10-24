@@ -223,8 +223,8 @@ async def ask_file(
     file: UploadFile = File(...),
     question: str = Form("Explain this document"),
     language: str = Form("en"),
-    previous_entry_id: Optional[str] = Form(None),
-    context_topic: Optional[str] = Form(None),
+    previous_entry_id: str | None = Form(None),
+    context_topic: str | None = Form(None),
 ) -> Answer:
     """Accept a real uploaded supported file and process it without storing it.
 
