@@ -16,3 +16,5 @@ backend/data/raw/*
 !backend/data/raw/.gitkeep
 backend/data/vector_index/*
 !backend/data/vector_index/.gitkeep
+models/
+ollama/

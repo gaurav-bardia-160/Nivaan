@@ -17,6 +17,11 @@ MAX_CONVERSATION_ID_LENGTH = 120
 DEFAULT_DISCLAIMER = None
 
 import os
+from dotenv import load_dotenv
+
+# Load local environment variables from project directory
+load_dotenv(BACKEND_DIR / ".env")
+load_dotenv(PROJECT_ROOT / ".env")
 
 # Dynamic CORS configuration
 _cors_env = os.getenv("CORS_ORIGINS", "").strip()

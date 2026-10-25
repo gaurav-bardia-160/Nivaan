@@ -121,11 +121,12 @@ class LocalLLMClient:
             return None
 
         evidence = []
-        for index, citation in enumerate(answer.citations[:5], 1):
-            evidence.append(f"[{index}] {citation.title}\n{citation.excerpt}\nSource: {citation.url}")
+        for index, citation in enumerate(answer.citations[:2], 1):
+            excerpt = citation.excerpt[:220].strip()
+            evidence.append(f"[{index}] {citation.title}\n{excerpt}\nSource: {citation.url}")
         history = "\n".join(
             f"User: {turn.user_text}\nAssistant topic: {turn.answer_title}"
-            for turn in memory[-4:]
+            for turn in memory[-2:]
         ) or "No previous context."
         evidence_text = "\n\n".join(evidence)
 
@@ -139,7 +140,7 @@ class LocalLLMClient:
         )
         prompt = (
             f"Conversation context (already redacted):\n{history}\n\n"
-            f"Citizen question (already redacted):\n{question[:1200]}\n\n"
+            f"Citizen question (already redacted):\n{question[:400]}\n\n"
             f"Official-source evidence:\n{evidence_text}"
         )
         payload = {
@@ -151,7 +152,7 @@ class LocalLLMClient:
                 {"role": "system", "content": system},
                 {"role": "user", "content": prompt},
             ],
-            "options": {"temperature": 0, "num_predict": 350},
+            "options": {"temperature": 0, "num_predict": 120, "num_ctx": 1024, "num_thread": 4},
         }
         try:
             response = httpx.post(

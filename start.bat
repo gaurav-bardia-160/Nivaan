@@ -43,17 +43,25 @@ if !errorlevel! neq 0 (
     if !errorlevel! neq 0 exit /b 1
 )
 
-echo [0/3] Checking local vector index readiness...
+echo [0/4] Checking local vector index readiness...
 %PY_CMD% -m backend.offline.ensure_vector_db
 if !errorlevel! neq 0 echo [WARNING] Vector index unavailable. Continuing with lexical RAG fallback.
 
-echo [1/3] Starting Frontend static server on port 5500...
+netstat -ano | findstr 11434 >nul 2>&1
+if !errorlevel! neq 0 (
+    if exist "start_ollama.bat" (
+        echo [1/4] Starting Local Ollama AI Server...
+        start "GovBank Ollama" /B start_ollama.bat
+    )
+)
+
+echo [2/4] Starting Frontend static server on port 5500...
 start "GovBank Frontend" /B %PY_CMD% -m http.server 5500 --directory frontend >nul 2>&1
 
-echo [2/3] Opening Web App in default browser...
+echo [3/4] Opening Web App in default browser...
 start "" http://127.0.0.1:5500
 
-echo [3/3] Starting Backend API on http://127.0.0.1:8000 (Ctrl+C to stop)...
+echo [4/4] Starting Backend API on http://127.0.0.1:8000 (Ctrl+C to stop)...
 echo Swagger Docs: http://127.0.0.1:8000/docs
 echo Health Check: http://127.0.0.1:8000/api/health
 echo Metrics API:  http://127.0.0.1:8000/api/metrics
