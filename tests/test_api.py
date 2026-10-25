@@ -598,3 +598,14 @@ def test_api_key_auth_enforcement_when_configured(monkeypatch):
         json={"question": "apply pan card", "language": "en"},
     )
     assert auth_bearer.status_code == 200
+
+
+def test_ask_endpoint_returns_welcoming_answer_for_greetings():
+    for greeting in ("hi", "hello", "hey", "namaste", "good morning"):
+        response = client.post("/api/ask", json={"question": greeting, "language": "en"})
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["title"] == "Welcome to GovBank Assistant"
+        assert payload["confidence"] == "high"
+        assert "civic and banking assistant" in payload["summary"].lower()
+        assert len(payload["steps"]) >= 4
