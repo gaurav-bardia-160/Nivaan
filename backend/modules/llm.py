@@ -47,15 +47,15 @@ class LocalLLMConfig:
 
     @classmethod
     def from_env(cls) -> "LocalLLMConfig":
-        raw_timeout = os.getenv("LOCAL_LLM_TIMEOUT_SECONDS", "20")
+        raw_timeout = os.getenv("LOCAL_LLM_TIMEOUT_SECONDS", "90")
         try:
             timeout = float(raw_timeout)
         except ValueError:
-            timeout = 20.0
+            timeout = 90.0
         return cls(
             enabled=os.getenv("LOCAL_LLM_ENABLED", "false").strip().lower() in _TRUE_VALUES,
             base_url=os.getenv("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434").rstrip("/"),
-            model=os.getenv("LOCAL_LLM_MODEL", "qwen3.5:4b").strip() or "qwen3.5:4b",
+            model=os.getenv("LOCAL_LLM_MODEL", "qwen2.5:3b").strip() or "qwen2.5:3b",
             timeout_seconds=min(max(timeout, 1.0), 120.0),
             allow_remote=os.getenv("LOCAL_LLM_ALLOW_REMOTE", "false").strip().lower() in _TRUE_VALUES,
         )
