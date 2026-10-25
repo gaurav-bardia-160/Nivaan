@@ -211,6 +211,7 @@ def test_pipeline_refuses_unrelated_make_query_without_matching_passport():
 
 def test_live_rag_is_feature_flagged_and_returns_cited_candidate_evidence(monkeypatch):
     monkeypatch.setenv("RAG_ENABLED", "true")
+    monkeypatch.setenv("LOCAL_LLM_ENABLED", "false")
     response = client.post(
         "/api/ask",
         json={"input_type": "question", "question": "How can I download e-PAN?", "language": "en"},

@@ -131,12 +131,10 @@ class LocalLLMClient:
         evidence_text = "\n\n".join(evidence)
 
         system = (
-            "You are GovBank Assistant, a civic information explainer. Rewrite the answer as one clear, "
-            "concise paragraph using only the supplied evidence. Never invent fees, deadlines, eligibility, "
-            "documents, laws, or procedures. If evidence is incomplete, state that limitation. Do not give a "
-            "legal, tax, or financial verdict. When the evidence describes alternative routes, present them as "
-            "separate alternatives and never merge their prerequisites or steps. Preserve qualifications such as "
-            "'after logging in', 'if eligible', and 'for registered users'. Return JSON only with exactly one key: summary."
+            "You are GovBank Assistant, a civic information explainer. Rewrite the answer as 1 to 2 clear, "
+            "concise factual sentences using only the supplied evidence. State only facts directly mentioned "
+            "in the evidence without adding commentary, assumptions, or unmentioned conditions. "
+            "Return JSON only with exactly one key: summary."
         )
         prompt = (
             f"Conversation context (already redacted):\n{history}\n\n"
@@ -152,7 +150,7 @@ class LocalLLMClient:
                 {"role": "system", "content": system},
                 {"role": "user", "content": prompt},
             ],
-            "options": {"temperature": 0, "num_predict": 120, "num_ctx": 1024, "num_thread": 4},
+            "options": {"temperature": 0, "num_predict": 256, "num_ctx": 1024, "num_thread": 4},
         }
         try:
             response = httpx.post(
@@ -162,7 +160,11 @@ class LocalLLMClient:
             )
             response.raise_for_status()
             body = response.json()
-            content = body.get("message", {}).get("content", "")
+            content = body.get("message", {}).get("content", "").strip()
+            if content.startswith("```"):
+                content = re.sub(r"^```(?:json)?\s*", "", content)
+                content = re.sub(r"\s*```$", "", content)
+            content = re.sub(r"<think>.*?</think>", "", content, flags=re.DOTALL).strip()
             parsed = GroundedRewrite.model_validate(json.loads(content))
         except (httpx.HTTPError, OSError, ValueError, TypeError, json.JSONDecodeError, ValidationError):
             return None
@@ -184,12 +186,12 @@ def _is_grounded(summary: str, answer: Answer) -> bool:
     summary_tokens = _tokens(summary)
     if not summary_tokens:
         return False
-    evidence_text = " ".join(citation.excerpt for citation in answer.citations)
+    evidence_text = " ".join(f"{c.title} {c.excerpt} {c.url}" for c in answer.citations)
     evidence_tokens = _tokens(evidence_text)
     overlap = len(summary_tokens & evidence_tokens) / max(len(summary_tokens), 1)
     if overlap < 0.35:
         return False
-    citation_token_sets = tuple(_tokens(citation.excerpt) for citation in answer.citations)
+    citation_token_sets = tuple(_tokens(f"{c.title} {c.excerpt} {c.url}") for c in answer.citations)
     sentences = tuple(part.strip() for part in re.split(r"(?<=[.!?])\s+", summary) if part.strip())
     for sentence in sentences:
         sentence_tokens = _tokens(sentence)
