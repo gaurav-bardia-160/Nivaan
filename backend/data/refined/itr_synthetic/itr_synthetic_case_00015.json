@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00015",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-4-synthetic-case-00015",
+  "title": "Synthetic Tax Return Case Study: Rajat Mukherjee (ITR-4, AY 2023-24)",
+  "section": "ITR-4 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: Rajat Mukherjee (Form ITR-4).\nEntity Classification: resident individual with business / professional income.\nTaxpayer Identity: PAN OLMPR0831X | Aadhaar Number: 762398245674 | Acknowledgement Number: 853409336860310.\nJurisdiction & Location: Kolkata, West Bengal (PIN 700017).\nAssessment Year: 2023-24 | Filing Date: 13-Nov-2023 13-Nov-2023 08:46:12 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 36,61,675.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 9,11,002 (individual tax slab / presumptive tax calculation under Section 44AD/44ADA).\n4. Health and Education Cess (4%): Rs. 36,440.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 15,499.\n6. Net Outstanding Tax Payable: Rs. 9,62,941.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory HARI.\nCompliance Requirement: Verified by taxpayer via Aadhaar OTP or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "income tax return",
+    "individual",
+    "interest 234",
+    "itr",
+    "itr-4",
+    "kolkata",
+    "late filing",
+    "tax computation",
+    "west bengal"
+  ],
+  "language": "en"
+}

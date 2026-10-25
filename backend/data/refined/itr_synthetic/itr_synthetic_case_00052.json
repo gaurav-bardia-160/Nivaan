@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00052",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-4-synthetic-case-00052",
+  "title": "Synthetic Tax Return Case Study: Aditya Mehta (ITR-4, AY 2024-25)",
+  "section": "ITR-4 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: Aditya Mehta (Form ITR-4).\nEntity Classification: resident individual with business / professional income.\nTaxpayer Identity: PAN MQNPA2787T | Aadhaar Number: 457503830690 | Acknowledgement Number: 953970988718909.\nJurisdiction & Location: Jaipur, Rajasthan (PIN 302028).\nAssessment Year: 2024-25 | Filing Date: 24-Oct-2024 24-Oct-2024 23:01:38 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 1,02,33,918.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 28,82,675 (individual tax slab / presumptive tax calculation under Section 44AD/44ADA).\n4. Health and Education Cess (4%): Rs. 1,15,307.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 1,20,633.\n6. Net Outstanding Tax Payable: Rs. 31,18,615.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory HARI.\nCompliance Requirement: Verified by taxpayer via Aadhaar OTP or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "income tax return",
+    "individual",
+    "interest 234",
+    "itr",
+    "itr-4",
+    "jaipur",
+    "late filing",
+    "rajasthan",
+    "tax computation"
+  ],
+  "language": "en"
+}

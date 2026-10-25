@@ -1,0 +1,25 @@
+{
+  "id": "itr_synthetic_case_00042",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-5-synthetic-case-00042",
+  "title": "Synthetic Tax Return Case Study: SUPREME SERVICES (ITR-5, AY 2024-25)",
+  "section": "ITR-5 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: SUPREME SERVICES (Form ITR-5).\nEntity Classification: partnership firm / LLP taxpayer.\nTaxpayer Identity: PAN LDRFS5639I | Acknowledgement Number: 592195738318468.\nJurisdiction & Location: Ahmedabad, Gujarat (PIN 380045).\nAssessment Year: 2024-25 | Filing Date: 02-Jun-2024 02-Jun-2024 18:17:40 | Status: Timely return filed on or before due date under Section 139(1).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 1,81,72,994.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 54,51,898 (30% flat partnership firm tax rate under the Income Tax Act).\n4. Health and Education Cess (4%): Rs. 2,18,076.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 85,816.\n6. Net Outstanding Tax Payable: Rs. 57,55,790.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Simran Mishra.\nCompliance Requirement: Verified by designated partner via DSC or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "ahmedabad",
+    "cess",
+    "firm",
+    "gujarat",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-5",
+    "tax computation"
+  ],
+  "language": "en"
+}

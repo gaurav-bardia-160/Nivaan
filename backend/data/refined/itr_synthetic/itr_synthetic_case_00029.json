@@ -1,0 +1,25 @@
+{
+  "id": "itr_synthetic_case_00029",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-5-synthetic-case-00029",
+  "title": "Synthetic Tax Return Case Study: APEX SERVICES (ITR-5, AY 2022-23)",
+  "section": "ITR-5 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: APEX SERVICES (Form ITR-5).\nEntity Classification: partnership firm / LLP taxpayer.\nTaxpayer Identity: PAN HPNFA1671S | Acknowledgement Number: 191709067144799.\nJurisdiction & Location: Karnal, Haryana (PIN 132056).\nAssessment Year: 2022-23 | Filing Date: 15-Aug-2022 15-Aug-2022 13:17:37 | Status: Timely return filed on or before due date under Section 139(1).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 1,93,78,254.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 58,13,476 (30% flat partnership firm tax rate under the Income Tax Act).\n4. Health and Education Cess (4%): Rs. 2,32,539.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 2,00,874.\n6. Net Outstanding Tax Payable: Rs. 62,46,889.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Rashmi Shetty.\nCompliance Requirement: Verified by designated partner via DSC or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "cess",
+    "firm",
+    "haryana",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-5",
+    "karnal",
+    "tax computation"
+  ],
+  "language": "en"
+}

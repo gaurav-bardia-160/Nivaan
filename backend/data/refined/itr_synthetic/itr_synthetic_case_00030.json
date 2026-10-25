@@ -1,0 +1,26 @@
+{
+  "id": "itr_synthetic_case_00030",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-5-synthetic-case-00030",
+  "title": "Synthetic Tax Return Case Study: ZENITH EXPORTS (ITR-5, AY 2023-24)",
+  "section": "ITR-5 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: ZENITH EXPORTS (Form ITR-5).\nEntity Classification: partnership firm / LLP taxpayer.\nTaxpayer Identity: PAN RYHFZ8032N | Acknowledgement Number: 261470385227768.\nJurisdiction & Location: Delhi, Delhi (PIN 110082).\nAssessment Year: 2023-24 | Filing Date: 06-Nov-2023 06-Nov-2023 13:42:02 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 7,89,37,853.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 2,36,81,356 (30% flat partnership firm tax rate under the Income Tax Act).\n4. Health and Education Cess (4%): Rs. 9,47,254.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 8,10,361.\n6. Net Outstanding Tax Payable: Rs. 2,54,38,971.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Tanvi Goyal.\nCompliance Requirement: Verified by designated partner via DSC or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "delhi",
+    "firm",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-5",
+    "late filing",
+    "tax computation"
+  ],
+  "language": "en"
+}

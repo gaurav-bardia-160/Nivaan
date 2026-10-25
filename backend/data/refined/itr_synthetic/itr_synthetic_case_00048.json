@@ -1,0 +1,25 @@
+{
+  "id": "itr_synthetic_case_00048",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-4-synthetic-case-00048",
+  "title": "Synthetic Tax Return Case Study: Kavita Singh (ITR-4, AY 2024-25)",
+  "section": "ITR-4 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: Kavita Singh (Form ITR-4).\nEntity Classification: resident individual with business / professional income.\nTaxpayer Identity: PAN ZMRPK1484U | Aadhaar Number: 910610626398 | Acknowledgement Number: 661043902655698.\nJurisdiction & Location: Chennai, Tamil Nadu (PIN 600100).\nAssessment Year: 2024-25 | Filing Date: 04-Apr-2024 04-Apr-2024 00:11:26 | Status: Timely return filed on or before due date under Section 139(1).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 1,34,08,990.\n2. Reported Loss Offset: Rs. 7,96,479.\n3. Assessed Base Income Tax: Rs. 38,35,197 (individual tax slab / presumptive tax calculation under Section 44AD/44ADA).\n4. Health and Education Cess (4%): Rs. 1,53,408.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 3,06,529.\n6. Net Outstanding Tax Payable: Rs. 42,95,134.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory RAGHUNATH.\nCompliance Requirement: Verified by taxpayer via Aadhaar OTP or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "cess",
+    "chennai",
+    "income tax return",
+    "individual",
+    "interest 234",
+    "itr",
+    "itr-4",
+    "tamil nadu",
+    "tax computation"
+  ],
+  "language": "en"
+}

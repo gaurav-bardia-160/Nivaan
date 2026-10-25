@@ -1,0 +1,26 @@
+{
+  "id": "itr_synthetic_case_00100",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-4-synthetic-case-00100",
+  "title": "Synthetic Tax Return Case Study: Anand Joshi (ITR-4, AY 2024-25)",
+  "section": "ITR-4 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: Anand Joshi (Form ITR-4).\nEntity Classification: resident individual with business / professional income.\nTaxpayer Identity: PAN KZLPA8471H | Aadhaar Number: 793287093070 | Acknowledgement Number: 433448352080593.\nJurisdiction & Location: Delhi, Delhi (PIN 110062).\nAssessment Year: 2024-25 | Filing Date: 23-Nov-2024 23-Nov-2024 08:24:38 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 37,77,768.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 9,45,830 (individual tax slab / presumptive tax calculation under Section 44AD/44ADA).\n4. Health and Education Cess (4%): Rs. 37,833.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 49,581.\n6. Net Outstanding Tax Payable: Rs. 10,33,244.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory VISHNU.\nCompliance Requirement: Verified by taxpayer via Aadhaar OTP or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "delhi",
+    "income tax return",
+    "individual",
+    "interest 234",
+    "itr",
+    "itr-4",
+    "late filing",
+    "tax computation"
+  ],
+  "language": "en"
+}

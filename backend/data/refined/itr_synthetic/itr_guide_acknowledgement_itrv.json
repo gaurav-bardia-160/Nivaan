@@ -1,0 +1,23 @@
+{
+  "id": "itr_guide_acknowledgement_itrv",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-verify-itrv",
+  "title": "Income Tax Return Acknowledgement (ITR-V) & 15-Digit Tracking Number",
+  "section": "ITR Acknowledgement & Verification Window",
+  "text": "Upon submitting an Income Tax Return on the official e-filing portal (incometax.gov.in), the system generates an Income Tax Return Verification form known as ITR-V containing a unique 15-digit numeric Acknowledgement Number (e.g., 116297252425648). This acknowledgement acts as statutory proof of filing. Under revised Income Tax Department guidelines, every unverified return must be e-verified within 30 days of electronic transmission. If e-verification is completed within 30 days, the original filing date is treated as the legal filing date. If verification is delayed beyond 30 days, the return is treated as filed on the date of verification, attracting Section 234F late filing penalties and interest if the statutory due date has passed. Unverified returns are never processed for refunds or assessment.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "15 digit number",
+    "30 day window",
+    "acknowledgement number",
+    "e-filing",
+    "itr",
+    "itr-v",
+    "statutory verification"
+  ],
+  "language": "en"
+}

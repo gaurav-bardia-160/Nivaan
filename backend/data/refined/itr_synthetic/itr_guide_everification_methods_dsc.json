@@ -1,0 +1,23 @@
+{
+  "id": "itr_guide_everification_methods_dsc",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/everification-methods",
+  "title": "E-Verification Methods: Aadhaar OTP, Net Banking EVC, and Class 3 DSC",
+  "section": "ITR Electronic Verification Methods",
+  "text": "An e-filed Income Tax Return remains legally invalid until successfully verified. Taxpayers can choose from five official verification modes on the e-filing portal: 1. Aadhaar OTP (an OTP is sent to the mobile number registered in UIDAI records, valid for 10 minutes). 2. Electronic Verification Code (EVC) generated via pre-validated bank account or demat account with mobile number confirmation. 3. Net Banking authentication (logging into net banking and redirecting seamlessly to the e-filing portal). 4. Class 3 Digital Signature Certificate (DSC) using emSigner utility (mandatory for corporate returns under ITR-6, audited firms, and political parties). 5. Physical submission of signed ITR-V by speed post to CPC Bengaluru within 30 days.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.96,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "aadhaar otp",
+    "class 3 dsc",
+    "digital signature",
+    "e-verification",
+    "evc",
+    "itr-v",
+    "net banking"
+  ],
+  "language": "en"
+}

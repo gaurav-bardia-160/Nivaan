@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00068",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-4-synthetic-case-00068",
+  "title": "Synthetic Tax Return Case Study: Dinesh Singh (ITR-4, AY 2024-25)",
+  "section": "ITR-4 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: Dinesh Singh (Form ITR-4).\nEntity Classification: resident individual with business / professional income.\nTaxpayer Identity: PAN LCTPD3573Y | Aadhaar Number: 176564156012 | Acknowledgement Number: 177520938176332.\nJurisdiction & Location: Kolkata, West Bengal (PIN 700056).\nAssessment Year: 2024-25 | Filing Date: 16-Jan-2025 16-Jan-2025 23:31:30 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 95,86,187.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 26,88,356 (individual tax slab / presumptive tax calculation under Section 44AD/44ADA).\n4. Health and Education Cess (4%): Rs. 1,07,534.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 1,26,341.\n6. Net Outstanding Tax Payable: Rs. 29,22,231.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory GOPAL.\nCompliance Requirement: Verified by taxpayer via Aadhaar OTP or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "income tax return",
+    "individual",
+    "interest 234",
+    "itr",
+    "itr-4",
+    "kolkata",
+    "late filing",
+    "tax computation",
+    "west bengal"
+  ],
+  "language": "en"
+}

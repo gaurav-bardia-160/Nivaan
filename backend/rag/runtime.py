@@ -16,6 +16,13 @@ DEFAULT_VECTOR_PATH = DATA_DIR / "vector_index" / "qdrant"
 _CATEGORY_TERMS = {
     "pan": ("pan", "e-pan", "epan", "form 49a", "form 49aa", "पैन", "पॅन", "પૅન"),
     "aadhaar": ("aadhaar", "aadhar", "uidai", "e-aadhaar", "eaadhaar", "आधार", "આધાર"),
+    "tax": (
+        "tax", "itr", "itr-4", "itr-5", "itr-6", "sugam", "income tax", "income-tax", "incometax",
+        "presumptive", "44ad", "44ada", "44ae", "corporate tax", "company tax", "115baa",
+        "cess", "surcharge", "234a", "234b", "234c", "234f", "advance tax", "itrv", "itr-v",
+        "acknowledgement number", "belated", "assessment year", "ay", "financial year", "fy",
+        "tax refund", "refund", "synthetic", "कर", "आयकर", "ટેક્સ", "ઇન્કમટેક્સ",
+    ),
     "civic": (
         "passport", "efrro", "frro", "visa", "voter", "voters", "parivahan",
         "driving license", "driving licence", "driver license", "driver licence", "dl", "rc",

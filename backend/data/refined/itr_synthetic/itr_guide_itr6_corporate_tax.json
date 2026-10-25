@@ -1,0 +1,25 @@
+{
+  "id": "itr_guide_itr6_corporate_tax",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/company/itr-6",
+  "title": "Guide to Form ITR-6: Corporate Income Tax Return for Companies",
+  "section": "ITR-6 Corporate Filing & Concessional Regimes",
+  "text": "Form ITR-6 is the mandatory income tax return form for all domestic and foreign companies registered under the Companies Act, 2013, excluding companies claiming exemption under Section 11 for charitable or religious trusts (which file ITR-7). Filing Form ITR-6 must be completed electronically using a Class 3 Digital Signature Certificate (DSC) of the Managing Director or authorized Director. Under concessional tax regime Section 115BAA, domestic corporate income is taxed at a base rate of 22% (effective tax rate of 25.17% including flat 10% surcharge and 4% cess) provided no special deductions/holidays are claimed, and companies opting for Section 115BAA are exempt from Minimum Alternate Tax (MAT). Under regular tax provisions, base corporate tax is 25% for companies with turnover up to Rs. 400 Crores, and 30% for others, with MAT under Section 115JB assessed at 15% on book profits. Corporate tax returns require full balance sheet disclosures, profit & loss schedules, and statutory auditor reporting.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.97,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "115baa",
+    "company tax",
+    "corporate return",
+    "dsc",
+    "itr",
+    "itr-6",
+    "mat",
+    "minimum alternate tax",
+    "section 115jb"
+  ],
+  "language": "en"
+}

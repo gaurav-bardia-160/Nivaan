@@ -1,0 +1,22 @@
+{
+  "id": "itr_guide_section_234b_234c_advance_tax",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/interest-under-section-234b-234c",
+  "title": "Sections 234B & 234C Interest: Defaults and Deferments of Advance Tax",
+  "section": "Advance Tax Interest Schedules",
+  "text": "Sections 234B and 234C enforce timely compliance with advance tax obligations. Section 234B triggers if a taxpayer whose advance tax liability exceeds Rs. 10,000 either fails to pay any advance tax or pays less than 90% of the assessed tax before the close of the financial year. Simple interest at 1% per month is charged from April 1st of the assessment year until regular assessment or self-assessment date. Section 234C penalizes deferment or shortfalls in quarterly advance tax installments: 15% due by June 15, 45% by Sept 15, 75% by Dec 15, and 100% by March 15. Shortfall interest under 234C is assessed at 1% per month for three months on the deferred amounts across each quarter. Presumptive taxpayers under Section 44AD/44ADA pay their entire advance tax in one installment by March 15, escaping 234C quarterly penalties if paid in full.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "advance tax",
+    "advance tax installments",
+    "interest",
+    "quarterly tax",
+    "section 234b",
+    "section 234c"
+  ],
+  "language": "en"
+}

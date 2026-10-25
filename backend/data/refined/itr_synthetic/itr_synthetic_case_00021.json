@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00021",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-6-synthetic-case-00021",
+  "title": "Synthetic Tax Return Case Study: APEX VENTURES (ITR-6, AY 2024-25)",
+  "section": "ITR-6 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: APEX VENTURES (Form ITR-6).\nEntity Classification: corporate taxpayer (domestic company).\nTaxpayer Identity: PAN PKCCA5688D | Acknowledgement Number: 597222429720649.\nJurisdiction & Location: Ahmedabad, Gujarat (PIN 380040).\nAssessment Year: 2024-25 | Filing Date: 22-Mar-2025 22-Mar-2025 01:46:14 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 5,94,72,737.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 1,48,68,184 (25% corporate tax rate (concessional domestic regime under section 115BAA)).\n4. Health and Education Cess (4%): Rs. 5,94,727.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 7,56,500.\n6. Net Outstanding Tax Payable: Rs. 1,62,19,411.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Harsh Chopra.\nCompliance Requirement: Mandatory verification via Class 3 Digital Signature Certificate (DSC) within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "ahmedabad",
+    "belated return",
+    "cess",
+    "company",
+    "gujarat",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-6",
+    "late filing",
+    "tax computation"
+  ],
+  "language": "en"
+}

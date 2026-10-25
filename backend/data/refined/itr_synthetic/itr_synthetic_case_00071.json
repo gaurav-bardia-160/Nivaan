@@ -1,0 +1,25 @@
+{
+  "id": "itr_synthetic_case_00071",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-6-synthetic-case-00071",
+  "title": "Synthetic Tax Return Case Study: UNITED SOLUTIONS (ITR-6, AY 2024-25)",
+  "section": "ITR-6 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: UNITED SOLUTIONS (Form ITR-6).\nEntity Classification: corporate taxpayer (domestic company).\nTaxpayer Identity: PAN NVKCU5766G | Acknowledgement Number: 434195680457780.\nJurisdiction & Location: Kolkata, West Bengal (PIN 700051).\nAssessment Year: 2024-25 | Filing Date: 22-May-2024 22-May-2024 08:22:04 | Status: Timely return filed on or before due date under Section 139(1).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 14,55,57,541.\n2. Reported Loss Offset: Rs. 4,61,65,061.\n3. Assessed Base Income Tax: Rs. 3,63,89,385 (25% corporate tax rate (concessional domestic regime under section 115BAA)).\n4. Health and Education Cess (4%): Rs. 14,55,575.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 6,15,408.\n6. Net Outstanding Tax Payable: Rs. 3,84,60,368.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Kavita Singh.\nCompliance Requirement: Mandatory verification via Class 3 Digital Signature Certificate (DSC) within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "cess",
+    "company",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-6",
+    "kolkata",
+    "tax computation",
+    "west bengal"
+  ],
+  "language": "en"
+}

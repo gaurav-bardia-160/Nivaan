@@ -1,0 +1,25 @@
+{
+  "id": "itr_guide_itr4_presumptive_taxation",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/individual/itr-4",
+  "title": "Guide to Form ITR-4 (Sugam): Presumptive Taxation u/s 44AD, 44ADA, and 44AE",
+  "section": "ITR-4 Sugam Scheme & Eligibility",
+  "text": "Form ITR-4 (Sugam) is designed for resident individuals, Hindu Undivided Families (HUFs), and partnership firms (other than LLPs) opting for presumptive taxation under the Income Tax Act, 1961. Eligibility covers taxpayers having total taxable income up to Rs. 50 Lakhs. Under Section 44AD, eligible small businesses declare deemed profit calculated at minimum 8% of gross turnover for cash receipts, or 6% for receipts received through digital banking channels (account payee cheque, bank draft, ECS, UPI, or debit/credit card). Under Section 44ADA, specified professionals (doctors, lawyers, engineers, accountants, architects, IT professionals) declare presumptive net income at minimum 50% of gross receipts (threshold up to Rs. 75 Lakhs when digital receipts exceed 95%). Section 44AE applies to small goods carriage transporters owning up to 10 vehicles. Beneficiaries under presumptive taxation are completely exempt from maintaining detailed books of account under Section 44AA and tax audits under Section 44AB. Advance tax is payable in a single installment on or before March 15th.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.98,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "44ad",
+    "44ada",
+    "44ae",
+    "advance tax",
+    "itr",
+    "itr-4",
+    "presumptive taxation",
+    "sugam",
+    "tax audit exemption"
+  ],
+  "language": "en"
+}

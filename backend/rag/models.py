@@ -49,7 +49,7 @@ class DatasetSpec(BaseModel):
     id: str = Field(min_length=1, max_length=60, pattern=r"^[a-z][a-z0-9_-]*$")
     path: str = Field(min_length=1, max_length=512)
     category: str = Field(min_length=1, max_length=60, pattern=r"^[a-z][a-z0-9_-]*$")
-    allowed_hosts: list[StrictStr] = Field(min_length=1, max_length=50)
+    allowed_hosts: list[StrictStr] = Field(min_length=1, max_length=500)
 
     @field_validator("allowed_hosts")
     @classmethod

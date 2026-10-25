@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00069",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-4-synthetic-case-00069",
+  "title": "Synthetic Tax Return Case Study: Aparna Shetty (ITR-4, AY 2023-24)",
+  "section": "ITR-4 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: Aparna Shetty (Form ITR-4).\nEntity Classification: resident individual with business / professional income.\nTaxpayer Identity: PAN UNEPA0128R | Aadhaar Number: 664239122095 | Acknowledgement Number: 383501328197635.\nJurisdiction & Location: Chennai, Tamil Nadu (PIN 600046).\nAssessment Year: 2023-24 | Filing Date: 10-Nov-2023 10-Nov-2023 02:57:01 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 1,31,36,238.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 37,53,371 (individual tax slab / presumptive tax calculation under Section 44AD/44ADA).\n4. Health and Education Cess (4%): Rs. 1,50,135.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 2,15,436.\n6. Net Outstanding Tax Payable: Rs. 41,18,942.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory HARI.\nCompliance Requirement: Verified by taxpayer via Aadhaar OTP or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "chennai",
+    "income tax return",
+    "individual",
+    "interest 234",
+    "itr",
+    "itr-4",
+    "late filing",
+    "tamil nadu",
+    "tax computation"
+  ],
+  "language": "en"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "itr_synthetic_case_00095",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-5-synthetic-case-00095",
+  "title": "Synthetic Tax Return Case Study: HARMONY TECHNOLOGIES (ITR-5, AY 2022-23)",
+  "section": "ITR-5 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: HARMONY TECHNOLOGIES (Form ITR-5).\nEntity Classification: partnership firm / LLP taxpayer.\nTaxpayer Identity: PAN OKRFH0933E | Acknowledgement Number: 122994972258721.\nJurisdiction & Location: Kolkata, West Bengal (PIN 700052).\nAssessment Year: 2022-23 | Filing Date: 14-May-2022 14-May-2022 10:17:13 | Status: Timely return filed on or before due date under Section 139(1).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 81,79,138.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 24,53,741 (30% flat partnership firm tax rate under the Income Tax Act).\n4. Health and Education Cess (4%): Rs. 98,150.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 1,75,058.\n6. Net Outstanding Tax Payable: Rs. 27,26,949.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Tejas Sharma.\nCompliance Requirement: Verified by designated partner via DSC or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "cess",
+    "firm",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-5",
+    "kolkata",
+    "tax computation",
+    "west bengal"
+  ],
+  "language": "en"
+}

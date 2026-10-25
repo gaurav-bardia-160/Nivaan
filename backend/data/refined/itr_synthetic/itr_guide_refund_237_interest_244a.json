@@ -1,0 +1,23 @@
+{
+  "id": "itr_guide_refund_237_interest_244a",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/income-tax-refund",
+  "title": "Income Tax Refund Processing u/s 237 & Direct Credit Interest u/s 244A",
+  "section": "Tax Refund Processing & Section 244A",
+  "text": "If the total tax paid through TDS, TCS, advance tax, or self-assessment tax exceeds the net tax liability assessed by the Income Tax Department, the taxpayer is legally entitled to an income tax refund under Section 237. Centralized Processing Centre (CPC) Bengaluru processes returns under Section 143(1) and issues intimation confirming the exact refund amount. The refund is credited directly via NECS/RTGS into the taxpayer's pre-validated, PAN-linked bank account. Under Section 244A, if the refund exceeds 10% of total assessed tax, the department pays simple interest at 0.5% per month (6% per annum) calculated from April 1st of the assessment year until the refund issue date, provided the return was filed within statutory limits.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "cpc bengaluru",
+    "direct bank transfer",
+    "intimation 143(1)",
+    "refund",
+    "section 237",
+    "section 244a",
+    "tax refund interest"
+  ],
+  "language": "en"
+}

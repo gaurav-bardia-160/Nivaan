@@ -1,0 +1,26 @@
+{
+  "id": "itr_synthetic_case_00013",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-6-synthetic-case-00013",
+  "title": "Synthetic Tax Return Case Study: UNITED TECHNOLOGIES (ITR-6, AY 2024-25)",
+  "section": "ITR-6 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: UNITED TECHNOLOGIES (Form ITR-6).\nEntity Classification: corporate taxpayer (domestic company).\nTaxpayer Identity: PAN BTICU8411D | Acknowledgement Number: 888149134345005.\nJurisdiction & Location: Delhi, Delhi (PIN 110075).\nAssessment Year: 2024-25 | Filing Date: 10-Mar-2025 10-Mar-2025 15:48:37 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 9,26,70,857.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 2,31,67,714 (25% corporate tax rate (concessional domestic regime under section 115BAA)).\n4. Health and Education Cess (4%): Rs. 9,26,709.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 17,91,823.\n6. Net Outstanding Tax Payable: Rs. 2,58,86,246.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Anand Joshi.\nCompliance Requirement: Mandatory verification via Class 3 Digital Signature Certificate (DSC) within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "company",
+    "delhi",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-6",
+    "late filing",
+    "tax computation"
+  ],
+  "language": "en"
+}

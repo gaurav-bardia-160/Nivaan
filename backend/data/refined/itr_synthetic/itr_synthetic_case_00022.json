@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00022",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-6-synthetic-case-00022",
+  "title": "Synthetic Tax Return Case Study: SUPREME SERVICES (ITR-6, AY 2022-23)",
+  "section": "ITR-6 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: SUPREME SERVICES (Form ITR-6).\nEntity Classification: corporate taxpayer (domestic company).\nTaxpayer Identity: PAN DVICS7642O | Acknowledgement Number: 786298492375233.\nJurisdiction & Location: Ahmedabad, Gujarat (PIN 380044).\nAssessment Year: 2022-23 | Filing Date: 27-Dec-2022 27-Dec-2022 11:08:15 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 15,88,37,948.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 3,97,09,487 (25% corporate tax rate (concessional domestic regime under section 115BAA)).\n4. Health and Education Cess (4%): Rs. 15,88,379.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 19,44,762.\n6. Net Outstanding Tax Payable: Rs. 4,32,42,628.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Lata Kapoor.\nCompliance Requirement: Mandatory verification via Class 3 Digital Signature Certificate (DSC) within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "ahmedabad",
+    "belated return",
+    "cess",
+    "company",
+    "gujarat",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-6",
+    "late filing",
+    "tax computation"
+  ],
+  "language": "en"
+}

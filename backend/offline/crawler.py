@@ -33,7 +33,19 @@ DOMAIN_WHITELIST = {
     "myaadhaar.uidai.gov.in",
     "rbi.org.in",
     "incometax.gov.in",
-    "example.com" # For testing
+    "www.incometax.gov.in",
+    "tinpan.proteantech.in",
+    "onlineservices.proteantech.in",
+    "pan.utiitsl.com",
+    "www.pan.utiitsl.com",
+    "www.trackpan.utiitsl.com",
+    "passportindia.gov.in",
+    "www.passportindia.gov.in",
+    "parivahan.gov.in",
+    "epfindia.gov.in",
+    "sebi.gov.in",
+    "digilocker.gov.in",
+    "example.com",
 }
 
 # --- LOGGING SETUP ---

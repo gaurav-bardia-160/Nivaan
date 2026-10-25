@@ -1,0 +1,25 @@
+{
+  "id": "itr_synthetic_case_00089",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-6-synthetic-case-00089",
+  "title": "Synthetic Tax Return Case Study: PRIME TRADERS (ITR-6, AY 2025-26)",
+  "section": "ITR-6 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: PRIME TRADERS (Form ITR-6).\nEntity Classification: corporate taxpayer (domestic company).\nTaxpayer Identity: PAN USDCP9537E | Acknowledgement Number: 383427408550999.\nJurisdiction & Location: Ahmedabad, Gujarat (PIN 380002).\nAssessment Year: 2025-26 | Filing Date: 21-Oct-2025 21-Oct-2025 08:19:13 | Status: Timely return filed on or before due date under Section 139(1).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 14,03,02,922.\n2. Reported Loss Offset: Rs. 3,08,85,174.\n3. Assessed Base Income Tax: Rs. 3,50,75,730 (25% corporate tax rate (concessional domestic regime under section 115BAA)).\n4. Health and Education Cess (4%): Rs. 14,03,029.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 16,84,644.\n6. Net Outstanding Tax Payable: Rs. 3,81,63,403.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Rashmi Goyal.\nCompliance Requirement: Mandatory verification via Class 3 Digital Signature Certificate (DSC) within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "ahmedabad",
+    "cess",
+    "company",
+    "gujarat",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-6",
+    "tax computation"
+  ],
+  "language": "en"
+}

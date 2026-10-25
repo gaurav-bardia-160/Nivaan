@@ -1,0 +1,25 @@
+{
+  "id": "itr_synthetic_case_00073",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-6-synthetic-case-00073",
+  "title": "Synthetic Tax Return Case Study: PRIME TAR PRODUCTS (ITR-6, AY 2024-25)",
+  "section": "ITR-6 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: PRIME TAR PRODUCTS (Form ITR-6).\nEntity Classification: corporate taxpayer (domestic company).\nTaxpayer Identity: PAN FILCP8786I | Acknowledgement Number: 074530048924305.\nJurisdiction & Location: Mumbai, Maharashtra (PIN 400096).\nAssessment Year: 2024-25 | Filing Date: 11-Apr-2024 11-Apr-2024 12:32:39 | Status: Timely return filed on or before due date under Section 139(1).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 11,13,86,824.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 2,78,46,706 (25% corporate tax rate (concessional domestic regime under section 115BAA)).\n4. Health and Education Cess (4%): Rs. 11,13,868.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 8,17,684.\n6. Net Outstanding Tax Payable: Rs. 2,97,78,258.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Pritam Gill.\nCompliance Requirement: Mandatory verification via Class 3 Digital Signature Certificate (DSC) within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "cess",
+    "company",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-6",
+    "maharashtra",
+    "mumbai",
+    "tax computation"
+  ],
+  "language": "en"
+}

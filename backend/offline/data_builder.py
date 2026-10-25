@@ -47,7 +47,13 @@ def load_sources(path: Path = SOURCES_PATH) -> list[dict[str, Any]]:
         return []
     payload = json.loads(path.read_text(encoding="utf-8"))
     if isinstance(payload, dict):
-        sources = payload.get("sources", [])
+        if "sources" in payload:
+            sources = payload.get("sources", [])
+        else:
+            sources = []
+            for val in payload.values():
+                if isinstance(val, list):
+                    sources.extend(val)
     else:
         sources = payload
     return [source for source in sources if isinstance(source, dict)]

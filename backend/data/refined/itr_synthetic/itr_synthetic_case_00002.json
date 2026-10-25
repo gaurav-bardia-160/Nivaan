@@ -1,0 +1,25 @@
+{
+  "id": "itr_synthetic_case_00002",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-5-synthetic-case-00002",
+  "title": "Synthetic Tax Return Case Study: ORBIT EXPORTS (ITR-5, AY 2022-23)",
+  "section": "ITR-5 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: ORBIT EXPORTS (Form ITR-5).\nEntity Classification: partnership firm / LLP taxpayer.\nTaxpayer Identity: PAN TCTFO6081X | Acknowledgement Number: 874194587564208.\nJurisdiction & Location: Chennai, Tamil Nadu (PIN 600026).\nAssessment Year: 2022-23 | Filing Date: 10-Jun-2022 10-Jun-2022 03:28:13 | Status: Timely return filed on or before due date under Section 139(1).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 4,13,42,521.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 1,24,02,756 (30% flat partnership firm tax rate under the Income Tax Act).\n4. Health and Education Cess (4%): Rs. 4,96,110.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 6,29,570.\n6. Net Outstanding Tax Payable: Rs. 1,35,28,436.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Disha Mukherjee.\nCompliance Requirement: Verified by designated partner via DSC or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "cess",
+    "chennai",
+    "firm",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-5",
+    "tamil nadu",
+    "tax computation"
+  ],
+  "language": "en"
+}

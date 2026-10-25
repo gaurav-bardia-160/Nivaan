@@ -1,0 +1,26 @@
+{
+  "id": "itr_synthetic_case_00072",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-5-synthetic-case-00072",
+  "title": "Synthetic Tax Return Case Study: UNITED ENTERPRISES (ITR-5, AY 2025-26)",
+  "section": "ITR-5 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: UNITED ENTERPRISES (Form ITR-5).\nEntity Classification: partnership firm / LLP taxpayer.\nTaxpayer Identity: PAN WWBFU7460R | Acknowledgement Number: 075536020500947.\nJurisdiction & Location: Delhi, Delhi (PIN 110100).\nAssessment Year: 2025-26 | Filing Date: 09-Dec-2025 09-Dec-2025 13:16:30 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 1,97,00,647.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 59,10,194 (30% flat partnership firm tax rate under the Income Tax Act).\n4. Health and Education Cess (4%): Rs. 2,36,408.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 4,20,996.\n6. Net Outstanding Tax Payable: Rs. 65,67,598.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Dinesh Joshi.\nCompliance Requirement: Verified by designated partner via DSC or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "delhi",
+    "firm",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-5",
+    "late filing",
+    "tax computation"
+  ],
+  "language": "en"
+}

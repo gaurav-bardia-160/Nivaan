@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00066",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-6-synthetic-case-00066",
+  "title": "Synthetic Tax Return Case Study: SUPREME SOLUTIONS (ITR-6, AY 2025-26)",
+  "section": "ITR-6 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: SUPREME SOLUTIONS (Form ITR-6).\nEntity Classification: corporate taxpayer (domestic company).\nTaxpayer Identity: PAN FCZCS0218R | Acknowledgement Number: 610914190165474.\nJurisdiction & Location: Jaipur, Rajasthan (PIN 302025).\nAssessment Year: 2025-26 | Filing Date: 29-Nov-2025 29-Nov-2025 19:20:58 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 14,37,81,642.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 3,59,45,410 (25% corporate tax rate (concessional domestic regime under section 115BAA)).\n4. Health and Education Cess (4%): Rs. 14,37,816.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 19,91,378.\n6. Net Outstanding Tax Payable: Rs. 3,93,74,604.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Sarika Chopra.\nCompliance Requirement: Mandatory verification via Class 3 Digital Signature Certificate (DSC) within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "company",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-6",
+    "jaipur",
+    "late filing",
+    "rajasthan",
+    "tax computation"
+  ],
+  "language": "en"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "itr_guide_health_education_cess",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/tax-computation-cess",
+  "title": "Health and Education Cess (4%) & Surcharge Calculation Formula",
+  "section": "Cess & Surcharge Computation Rules",
+  "text": "Health and Education Cess is a mandatory statutory levy charged at the uniform rate of 4% on the aggregate amount of computed basic income tax plus applicable surcharge. It applies uniformly to all categories of taxpayers including individuals, HUFs, partnership firms, LLPs, and domestic/foreign corporations. The mathematical formula for tax calculation is: Total Assessed Tax = (Base Tax + Surcharge) * 1.04. For example, if computed income tax is Rs. 10,00,000 without surcharge, the 4% cess is Rs. 40,000, yielding a gross liability of Rs. 10,40,000. Under Section 40(a)(ii) of the Income Tax Act, as reaffirmed by Finance Act amendments, Health and Education Cess is not an allowable business expense and cannot be claimed as a tax deduction from business profits.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.95,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "4 percent cess",
+    "cess",
+    "health and education cess",
+    "section 40a",
+    "surcharge",
+    "tax calculation formula",
+    "tax computation"
+  ],
+  "language": "en"
+}

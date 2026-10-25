@@ -1,0 +1,25 @@
+{
+  "id": "itr_guide_itr5_partnership_firms",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/firm/itr-5",
+  "title": "Guide to Form ITR-5: Tax Return for Partnership Firms, LLPs, AOPs, and BOIs",
+  "section": "ITR-5 Partnership & LLP Filing Rules",
+  "text": "Form ITR-5 applies to partnership firms, Limited Liability Partnerships (LLPs), Association of Persons (AOP), Body of Individuals (BOI), Artificial Juridical Persons, and cooperative societies. Total taxable income of partnership firms and LLPs is taxed at a flat rate of 30% plus applicable surcharge (12% if total income exceeds Rs. 1 Crore) and mandatory 4% Health and Education Cess. Deductions for interest paid to partners (up to 12% simple interest per annum) and partner remuneration (salary, bonus, commission) are permissible subject to limits prescribed under Section 40(b) in accordance with the partnership deed. Alternate Minimum Tax (AMT) under Section 115JC applies at 18.5% of adjusted total income whenever regular tax liability falls below AMT. Tax audit under Section 44AB is mandatory if business turnover exceeds Rs. 1 Crore (or Rs. 10 Crores if cash transactions are within 5%). The return must be signed and verified by the managing partner or authorized designated partner using a Digital Signature Certificate (DSC) or EVC.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.96,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "amt",
+    "aop",
+    "flat tax 30 percent",
+    "itr",
+    "itr-5",
+    "llp",
+    "partner remuneration",
+    "partnership firm",
+    "section 40b"
+  ],
+  "language": "en"
+}

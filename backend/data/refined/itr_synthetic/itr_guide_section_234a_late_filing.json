@@ -1,0 +1,23 @@
+{
+  "id": "itr_guide_section_234a_late_filing",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/interest-under-section-234a",
+  "title": "Section 234A Interest: Mandatory Charge for Delay in Filing Income Tax Return",
+  "section": "Section 234A Interest Computation",
+  "text": "Section 234A of the Income Tax Act levies statutory interest on taxpayers who fail to submit their income tax returns on or before the statutory due date prescribed under Section 139(1) (July 31st for non-audit individuals/entities, October 31st for corporate and audit cases). Interest is charged at the rate of 1% per month or fraction of a month. The interest period commences on the day immediately following the statutory due date and terminates on the date of actual return submission. Interest is charged on the net tax payable after adjusting advance tax paid, TDS/TCS credits, and relief under Section 89/90/91. Even a single day of delay in a calendar month counts as a full month for the 1% charge.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.96,
+  "source_confidence": "official",
+  "verification_method": "official_statutory_curation",
+  "retrieval_tags": [
+    "1 percent per month",
+    "delay in filing",
+    "due date",
+    "interest",
+    "late return",
+    "section 234a",
+    "tax penalty"
+  ],
+  "language": "en"
+}

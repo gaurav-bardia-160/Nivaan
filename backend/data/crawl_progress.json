@@ -1,0 +1,1024 @@
+{
+  "processed_urls": {
+    "https://goidirectory.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='goidirectory.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='goidirectory.gov.in', port=443): Failed to resolve 'goidirectory.gov.in' ([Errno 11002] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://igod.gov.in": {
+      "status": "success",
+      "domain": "www.india.gov.in",
+      "pages_scraped": 4,
+      "chunks": 1
+    },
+    "https://india.gov.in": {
+      "status": "success",
+      "domain": "www.india.gov.in",
+      "pages_scraped": 5,
+      "chunks": 2
+    },
+    "https://digitalindia.gov.in": {
+      "status": "success",
+      "domain": "www.digitalindia.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://www.mygov.in": {
+      "status": "success",
+      "domain": "www.mygov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://pgportal.gov.in": {
+      "status": "success",
+      "domain": "pgportal.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://www.myscheme.gov.in": {
+      "status": "success",
+      "domain": "www.myscheme.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://email.gov.in": {
+      "status": "failed",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))",
+      "chunks": 0
+    },
+    "https://mail.gov.in": {
+      "status": "success",
+      "domain": "mail.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://pmgatishakti.gov.in": {
+      "status": "failed",
+      "error": "http_404",
+      "chunks": 0
+    },
+    "https://lgdirectory.gov.in": {
+      "status": "success",
+      "domain": "lgdirectory.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://districts.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='districts.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='districts.gov.in', port=443): Failed to resolve 'districts.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://saanjhi.gov.in": {
+      "status": "success",
+      "domain": "saanjhi.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://digilocker.gov.in": {
+      "status": "success",
+      "domain": "www.digilocker.gov.in",
+      "pages_scraped": 5,
+      "chunks": 1
+    },
+    "https://nkn.in": {
+      "status": "success",
+      "domain": "nkn.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://incometax.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='incometax.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='incometax.gov.in', port=443): Failed to resolve 'incometax.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://gst.gov.in": {
+      "status": "success",
+      "domain": "www.gst.gov.in",
+      "pages_scraped": 2,
+      "chunks": 1
+    },
+    "https://finmin.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='finmin.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='finmin.nic.in', port=443): Failed to resolve 'finmin.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://dea.gov.in": {
+      "status": "success",
+      "domain": "dea.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://sebi.gov.in": {
+      "status": "success",
+      "domain": "www.sebi.gov.in",
+      "pages_scraped": 5,
+      "chunks": 1
+    },
+    "https://scores.sebi.gov.in": {
+      "status": "success",
+      "domain": "scores.sebi.gov.in",
+      "pages_scraped": 3,
+      "chunks": 3
+    },
+    "https://rbi.org.in": {
+      "status": "success",
+      "domain": "rbi.org.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://eprocure.gov.in": {
+      "status": "success",
+      "domain": "eprocure.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://etenders.gov.in": {
+      "status": "success",
+      "domain": "etenders.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://tenders.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='tenders.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='tenders.gov.in', port=443): Failed to resolve 'tenders.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://pfms.nic.in": {
+      "status": "success",
+      "domain": "pfms.nic.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://praapti.in": {
+      "status": "success",
+      "domain": "praapti.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://nta.ac.in": {
+      "status": "success",
+      "domain": "nta.ac.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://results.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='results.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='results.gov.in', port=443) at 0x24e69182870>, 'Connection to results.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://swayam.gov.in": {
+      "status": "success",
+      "domain": "swayam.gov.in",
+      "pages_scraped": 4,
+      "chunks": 4
+    },
+    "https://diksha.gov.in": {
+      "status": "success",
+      "domain": "diksha.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://education.gov.in": {
+      "status": "success",
+      "domain": "www.education.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://aicte-india.org": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='aicte-india.org', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))",
+      "chunks": 0
+    },
+    "https://aiu.ac.in": {
+      "status": "success",
+      "domain": "aiu.ac.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://sci.gov.in": {
+      "status": "success",
+      "domain": "www.sci.gov.in",
+      "pages_scraped": 5,
+      "chunks": 2
+    },
+    "https://ecommitteesci.gov.in": {
+      "status": "success",
+      "domain": "ecommitteesci.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://filing.ecourts.gov.in": {
+      "status": "success",
+      "domain": "filing.ecourts.gov.in",
+      "pages_scraped": 1,
+      "chunks": 1
+    },
+    "https://eci.gov.in": {
+      "status": "success",
+      "domain": "www.eci.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://voters.eci.gov.in": {
+      "status": "success",
+      "domain": "voters.eci.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://nvsp.in": {
+      "status": "success",
+      "domain": "voters.eci.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://doj.gov.in": {
+      "status": "success",
+      "domain": "www.doj.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://uidai.gov.in": {
+      "status": "success",
+      "domain": "uidai.gov.in",
+      "pages_scraped": 5,
+      "chunks": 2
+    },
+    "https://serviceonline.gov.in/uidai": {
+      "status": "success",
+      "domain": "serviceonline.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://abdm.gov.in": {
+      "status": "success",
+      "domain": "abdm.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://pmkisan.gov.in": {
+      "status": "success",
+      "domain": "pmkisan.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://agmarknet.gov.in": {
+      "status": "success",
+      "domain": "agmarknet.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://cooperatives.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='cooperatives.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='cooperatives.gov.in', port=443) at 0x24e69797d70>, 'Connection to cooperatives.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://nadrsapps.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='nadrsapps.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='nadrsapps.gov.in', port=443): Failed to resolve 'nadrsapps.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://trackthemissingchild.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='trackthemissingchild.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='trackthemissingchild.gov.in', port=443): Failed to resolve 'trackthemissingchild.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://idrn.nidm.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='idrn.nidm.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='idrn.nidm.gov.in', port=443) at 0x24e69797740>, 'Connection to idrn.nidm.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://larr.dolr.gov.in": {
+      "status": "success",
+      "domain": "larr.dolr.gov.in",
+      "pages_scraped": 3,
+      "chunks": 3
+    },
+    "https://peso.gov.in": {
+      "status": "failed",
+      "error": "HTTPConnectionPool(host='peso.gov.in', port=80): Max retries exceeded with url: /web/ (Caused by ConnectTimeoutError(<HTTPConnection(host='peso.gov.in', port=80) at 0x24e659b1850>, 'Connection to peso.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://mea.gov.in": {
+      "status": "success",
+      "domain": "www.mea.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://indianvisaonline.gov.in": {
+      "status": "success",
+      "domain": "indianvisaonline.gov.in",
+      "pages_scraped": 4,
+      "chunks": 4
+    },
+    "https://indiancitizenshiponline.nic.in": {
+      "status": "success",
+      "domain": "indiancitizenshiponline.nic.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://indembassybern.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='indembassybern.gov.in', port=443): Read timed out. (read timeout=8)",
+      "chunks": 0
+    },
+    "https://eoitashkent.gov.in": {
+      "status": "success",
+      "domain": "eoitashkent.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://cgisaopaulo.gov.in": {
+      "status": "success",
+      "domain": "www.cgisaopaulo.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://indianembassybaku.gov.in": {
+      "status": "success",
+      "domain": "www.indianembassybaku.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://incredibleindia.org": {
+      "status": "success",
+      "domain": "www.incredibleindia.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://indiaperspectives.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='indiaperspectives.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))",
+      "chunks": 0
+    },
+    "https://mp.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='mp.gov.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: UNSAFE_LEGACY_RENEGOTIATION_DISABLED] unsafe legacy renegotiation disabled (_ssl.c:1000)')))",
+      "chunks": 0
+    },
+    "https://cmhelpline.mp.gov.in": {
+      "status": "success",
+      "domain": "cmhelpline.mp.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://mpedistrict.gov.in": {
+      "status": "success",
+      "domain": "mpedistrict.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://mponline.gov.in": {
+      "status": "success",
+      "domain": "mponline.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://samagra.gov.in": {
+      "status": "success",
+      "domain": "samagra.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://pensions.samagra.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='pensions.samagra.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='pensions.samagra.gov.in', port=443): Failed to resolve 'pensions.samagra.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://nfsa.samagra.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='nfsa.samagra.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='nfsa.samagra.gov.in', port=443) at 0x24e690b0350>, 'Connection to nfsa.samagra.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://vivah.samagra.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='vivah.samagra.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='vivah.samagra.gov.in', port=443): Failed to resolve 'vivah.samagra.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://sparsh.samagra.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='sparsh.samagra.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='sparsh.samagra.gov.in', port=443): Failed to resolve 'sparsh.samagra.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://praman.samagra.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='praman.samagra.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='praman.samagra.gov.in', port=443) at 0x24e697f1b50>, 'Connection to praman.samagra.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://bpl.samagra.gov.in": {
+      "status": "success",
+      "domain": "bpl.samagra.gov.in",
+      "pages_scraped": 2,
+      "chunks": 1
+    },
+    "https://landrecords.mp.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='landrecords.mp.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='landrecords.mp.gov.in', port=443) at 0x24e68c38890>, 'Connection to landrecords.mp.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://mptreasury.org": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='mptreasury.org', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='mptreasury.org', port=443) at 0x24e68c3bce0>, 'Connection to mptreasury.org timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://mptax.mp.gov.in": {
+      "status": "success",
+      "domain": "mptax.mp.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://educationportal.mp.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='educationportal.mp.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='educationportal.mp.gov.in', port=443) at 0x24e6572ec60>, 'Connection to educationportal.mp.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://peb.mp.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='peb.mp.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='peb.mp.gov.in', port=443): Failed to resolve 'peb.mp.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://mpeuparjan.nic.in": {
+      "status": "success",
+      "domain": "mpeuparjan.nic.in",
+      "pages_scraped": 1,
+      "chunks": 1
+    },
+    "https://mpsc.mp.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='mpsc.mp.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='mpsc.mp.nic.in', port=443): Failed to resolve 'mpsc.mp.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://ekhanij.mp.gov.in": {
+      "status": "success",
+      "domain": "ekhanij.mp.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://mptenders.gov.in": {
+      "status": "success",
+      "domain": "mptenders.gov.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://tourism.mp.gov.in": {
+      "status": "success",
+      "domain": "tourism.mp.gov.in",
+      "pages_scraped": 3,
+      "chunks": 1
+    },
+    "https://ceomadhyapradesh.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='ceomadhyapradesh.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='ceomadhyapradesh.nic.in', port=443): Failed to resolve 'ceomadhyapradesh.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='kar.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='kar.nic.in', port=443): Failed to resolve 'kar.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://kat.karnataka.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='kat.karnataka.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='kat.karnataka.gov.in', port=443): Failed to resolve 'kat.karnataka.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://finance.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='finance.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='finance.kar.nic.in', port=443): Failed to resolve 'finance.kar.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://vat.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='vat.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='vat.kar.nic.in', port=443): Failed to resolve 'vat.kar.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://ctax.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='ctax.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='ctax.kar.nic.in', port=443) at 0x24e68f3aed0>, 'Connection to ctax.kar.nic.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://karhfw.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='karhfw.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='karhfw.gov.in', port=443): Failed to resolve 'karhfw.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://labour.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='labour.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='labour.kar.nic.in', port=443) at 0x24e68f3bef0>, 'Connection to labour.kar.nic.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://aranya.gov.in": {
+      "status": "success",
+      "domain": "aranya.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://karnatakapubliclibrary.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='karnatakapubliclibrary.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='karnatakapubliclibrary.gov.in', port=443): Failed to resolve 'karnatakapubliclibrary.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://home.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='home.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='home.kar.nic.in', port=443) at 0x24e68f39610>, 'Connection to home.kar.nic.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://bangalorecustoms.gov.in": {
+      "status": "success",
+      "domain": "bangalorecustoms.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://raitamitra.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='raitamitra.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='raitamitra.kar.nic.in', port=443): Failed to resolve 'raitamitra.kar.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://krishimaratavahini.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='krishimaratavahini.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='krishimaratavahini.kar.nic.in', port=443): Failed to resolve 'krishimaratavahini.kar.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://ams.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='ams.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='ams.kar.nic.in', port=443) at 0x24e656f2f60>, 'Connection to ams.kar.nic.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://gstkarnataka.gov.in": {
+      "status": "success",
+      "domain": "gstkarnataka.gov.in",
+      "pages_scraped": 5,
+      "chunks": 3
+    },
+    "https://sahakara.kar.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='sahakara.kar.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='sahakara.kar.gov.in', port=443) at 0x24e69891550>, 'Connection to sahakara.kar.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://parisara.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='parisara.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='parisara.kar.nic.in', port=443) at 0x24e68f399a0>, 'Connection to parisara.kar.nic.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://karnatakaeducation.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='karnatakaeducation.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='karnatakaeducation.gov.in', port=443): Failed to resolve 'karnatakaeducation.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://karnregs.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='karnregs.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='karnregs.kar.nic.in', port=443) at 0x24e68f39ee0>, 'Connection to karnregs.kar.nic.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://planning.kar.nic.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='planning.kar.nic.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='planning.kar.nic.in', port=443): Failed to resolve 'planning.kar.nic.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://haryana.gov.in": {
+      "status": "success",
+      "domain": "www.haryana.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://haryanait.gov.in": {
+      "status": "success",
+      "domain": "haryanait.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://msme.haryana.gov.in": {
+      "status": "success",
+      "domain": "msme.haryana.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://revenueharyana.gov.in": {
+      "status": "success",
+      "domain": "revenueharyana.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://haryanahealth.gov.in": {
+      "status": "success",
+      "domain": "haryanahealth.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://secharyana.gov.in": {
+      "status": "success",
+      "domain": "secharyana.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://haryanasports.gov.in": {
+      "status": "success",
+      "domain": "haryanasports.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://finhry.gov.in": {
+      "status": "success",
+      "domain": "finhry.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://socialjusticehry.gov.in": {
+      "status": "success",
+      "domain": "socialjusticehry.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://wcdhry.gov.in": {
+      "status": "success",
+      "domain": "wcdhry.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://hryesi.gov.in": {
+      "status": "success",
+      "domain": "hryesi.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://hrtreasuries.gov.in": {
+      "status": "success",
+      "domain": "hrtreasuries.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://hareda.gov.in": {
+      "status": "success",
+      "domain": "hareda.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://haryanaforest.gov.in": {
+      "status": "success",
+      "domain": "haryanaforest.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://haryanafood.gov.in": {
+      "status": "success",
+      "domain": "haryanafood.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://haraviation.gov.in": {
+      "status": "success",
+      "domain": "haraviation.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://hartrans.gov.in": {
+      "status": "success",
+      "domain": "hartrans.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://haryanarural.gov.in": {
+      "status": "success",
+      "domain": "haryanarural.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://wildlife.haryana.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='wildlife.haryana.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='wildlife.haryana.gov.in', port=443): Failed to resolve 'wildlife.haryana.gov.in' ([Errno 11001] getaddrinfo failed)\"))",
+      "chunks": 0
+    },
+    "https://delhi.gov.in": {
+      "status": "success",
+      "domain": "delhi.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://gujaratindia.gov.in": {
+      "status": "success",
+      "domain": "gujaratindia.gov.in",
+      "pages_scraped": 2,
+      "chunks": 2
+    },
+    "https://digitalgujarat.gov.in": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='www.digitalgujarat.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.digitalgujarat.gov.in', port=443) at 0x24e697201d0>, 'Connection to www.digitalgujarat.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://elections.tn.gov.in": {
+      "status": "success",
+      "domain": "elections.tn.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://nagaland.gov.in": {
+      "status": "success",
+      "domain": "nagaland.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://kancheepuram.nic.in": {
+      "status": "success",
+      "domain": "kancheepuram.nic.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://southandaman.nic.in": {
+      "status": "success",
+      "domain": "southandaman.nic.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://patnahighcourt.gov.in": {
+      "status": "success",
+      "domain": "patnahighcourt.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://narmadapuram.nic.in": {
+      "status": "success",
+      "domain": "narmadapuram.nic.in",
+      "pages_scraped": 2,
+      "chunks": 2
+    },
+    "https://sehore.nic.in": {
+      "status": "success",
+      "domain": "sehore.nic.in",
+      "pages_scraped": 2,
+      "chunks": 2
+    },
+    "https://india.gov.in/": {
+      "status": "success",
+      "domain": "www.india.gov.in",
+      "pages_scraped": 5,
+      "chunks": 0
+    },
+    "https://www.india.gov.in/about-us": {
+      "status": "success",
+      "domain": "www.india.gov.in",
+      "pages_scraped": 3,
+      "chunks": 0
+    },
+    "https://www.digitalindia.gov.in/our-pillars/": {
+      "status": "success",
+      "domain": "www.digitalindia.gov.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://igod.gov.in/link_to_us": {
+      "status": "success",
+      "domain": "www.india.gov.in",
+      "pages_scraped": 4,
+      "chunks": 0
+    },
+    "http://digitalref.jdvu.ac.in/DIRECTORIES/Government_of_India_Web_Directory.pdf": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='digitalref.jdvu.ac.in', port=443): Max retries exceeded with url: / (Caused by NewConnectionError(\"HTTPSConnection(host='digitalref.jdvu.ac.in', port=443): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))",
+      "chunks": 0
+    },
+    "https://egovernance.vikaspedia.in/viewcontent/e-governance/national-e-governance-plan/web-di": {
+      "status": "success",
+      "domain": "egovernance.vikaspedia.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://geneki.in/blog/gigw-3-guide/": {
+      "status": "success",
+      "domain": "geneki.in",
+      "pages_scraped": 3,
+      "chunks": 3
+    },
+    "https://guidelines.india.gov.in/introduction/": {
+      "status": "success",
+      "domain": "guidelines.india.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://www.impriindia.com/insights/digital-governance-gigw-3-0/": {
+      "status": "success",
+      "domain": "www.impriindia.com",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://www.scribd.com/document/555585312/GIGW-2-0-Compendium": {
+      "status": "skipped",
+      "reason": "non_gov_reference"
+    },
+    "https://www.stqc.gov.in/sites/default/files/Guidelines%20for%20Indian%20Govt%20Websites%2": {
+      "status": "failed",
+      "error": "http_404",
+      "chunks": 0
+    },
+    "https://www.researchgate.net/publication/354106426_A_case_study_of_Web_Content_Accessi": {
+      "status": "skipped",
+      "reason": "non_gov_reference"
+    },
+    "https://cybersigmacs.com/knowledge-center/gigw-accessibility/": {
+      "status": "skipped",
+      "reason": "non_gov_reference"
+    },
+    "https://legaltax.in/blogs/government-website-development-guidelines/": {
+      "status": "success",
+      "domain": "legaltax.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://guidelines.india.gov.in/guidelines/": {
+      "status": "success",
+      "domain": "guidelines.india.gov.in",
+      "pages_scraped": 5,
+      "chunks": 1
+    },
+    "https://www.uxdt.nic.in/guidelines/technical-considerations/gigw-guidelines-for-indian-governme": {
+      "status": "success",
+      "domain": "www.uxdt.nic.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://www.india.gov.in/contact-us": {
+      "status": "success",
+      "domain": "www.india.gov.in",
+      "pages_scraped": 4,
+      "chunks": 0
+    },
+    "https://cdnbbsr.s3waas.gov.in/s3c92a10324374fac681719d63979d00fe/uploads/2023/12/20231": {
+      "status": "failed",
+      "error": "http_404",
+      "chunks": 0
+    },
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=GUIDLNVIEW01": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='www.cert-in.org.in', port=443): Read timed out. (read timeout=8)",
+      "chunks": 0
+    },
+    "https://guidelines.india.gov.in/security-guidelines-and-attributes/": {
+      "status": "success",
+      "domain": "guidelines.india.gov.in",
+      "pages_scraped": 5,
+      "chunks": 1
+    },
+    "https://www.cert-in.org.in/PDF/Desktop_security.pdf": {
+      "status": "success",
+      "domain": "www.cert-in.org.in",
+      "pages_scraped": 1,
+      "chunks": 0
+    },
+    "https://uprfsc.gov.in/PDF_files/Website_Security_Guidelines.pdf": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='uprfsc.gov.in', port=443): Read timed out.",
+      "chunks": 0
+    },
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-041": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='www.cert-in.org.in', port=443): Read timed out. (read timeout=8)",
+      "chunks": 0
+    },
+    "https://s3waas.gov.in/": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='s3waas.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='s3waas.gov.in', port=443) at 0x24e68c1b590>, 'Connection to s3waas.gov.in timed out. (connect timeout=8)'))",
+      "chunks": 0
+    },
+    "https://haryanait.gov.in/s3waas/": {
+      "status": "success",
+      "domain": "haryanait.gov.in",
+      "pages_scraped": 5,
+      "chunks": 2
+    },
+    "https://patnahighcourt.gov.in/getfile/NDE5Mg==-DNPthgT61tg=": {
+      "status": "success",
+      "domain": "patnahighcourt.gov.in",
+      "pages_scraped": 1,
+      "chunks": 1
+    },
+    "https://taxguru.in/goods-and-service-tax/hsn-sac-code-mandatory-invoice-form-gstr-1.html": {
+      "status": "success",
+      "domain": "taxguru.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://www.slideshare.net/slideshow/registration-of-taxpayer-on-e-filing-website-pdf/283804006": {
+      "status": "skipped",
+      "reason": "non_gov_reference"
+    },
+    "https://seconize.co/uncategorized/faqs-on-cybersecurity-and-cyber-resilience-framework/": {
+      "status": "success",
+      "domain": "seconize.co",
+      "pages_scraped": 4,
+      "chunks": 4
+    },
+    "https://www.dbonline.in/Investor-Charter/investor-charter.aspx": {
+      "status": "success",
+      "domain": "www.dbonline.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://www.slideshare.net/slideshow/sebi-250234249/250234249": {
+      "status": "skipped",
+      "reason": "non_gov_reference"
+    },
+    "https://sehore.nic.in/en/govt-website/": {
+      "status": "success",
+      "domain": "sehore.nic.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://nta.ac.in/": {
+      "status": "success",
+      "domain": "nta.ac.in",
+      "pages_scraped": 5,
+      "chunks": 0
+    },
+    "https://www.slideshare.net/slideshow/digital-empowermentpdf/258359041": {
+      "status": "skipped",
+      "reason": "non_gov_reference"
+    },
+    "https://www.indembassybern.gov.in/page/nift-admissions-2026/": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='www.indembassybern.gov.in', port=443): Read timed out. (read timeout=8)",
+      "chunks": 0
+    },
+    "https://www.india.gov.in/category/education-learning": {
+      "status": "success",
+      "domain": "www.india.gov.in",
+      "pages_scraped": 5,
+      "chunks": 1
+    },
+    "https://southandaman.nic.in/service/https-voters-eci-gov-in/": {
+      "status": "success",
+      "domain": "southandaman.nic.in",
+      "pages_scraped": 5,
+      "chunks": 3
+    },
+    "https://www.indembassybern.gov.in/page/voting/": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='www.indembassybern.gov.in', port=443): Read timed out. (read timeout=8)",
+      "chunks": 0
+    },
+    "https://www.cgisaopaulo.gov.in/Government-of-India-Links.php": {
+      "status": "success",
+      "domain": "www.cgisaopaulo.gov.in",
+      "pages_scraped": 5,
+      "chunks": 1
+    },
+    "https://eoitashkent.gov.in/rti/": {
+      "status": "success",
+      "domain": "eoitashkent.gov.in",
+      "pages_scraped": 5,
+      "chunks": 1
+    },
+    "https://www.indembassybern.gov.in/page/accessibility-statement/": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='www.indembassybern.gov.in', port=443): Read timed out. (read timeout=8)",
+      "chunks": 0
+    },
+    "https://www.indembassybern.gov.in/new/page/extension-of-visa-e-visa-and-waiver-of-overstay-p": {
+      "status": "failed",
+      "error": "HTTPSConnectionPool(host='indembassybern.gov.in', port=443): Read timed out. (read timeout=8)",
+      "chunks": 0
+    },
+    "https://narmadapuram.nic.in/en/government-directory/": {
+      "status": "success",
+      "domain": "narmadapuram.nic.in",
+      "pages_scraped": 5,
+      "chunks": 4
+    },
+    "https://govtwebdirectory.weebly.com/": {
+      "status": "skipped",
+      "reason": "non_gov_reference"
+    },
+    "https://communi.gujarat.gov.in/Home/UsefulLinks": {
+      "status": "success",
+      "domain": "communi.gujarat.gov.in",
+      "pages_scraped": 5,
+      "chunks": 5
+    },
+    "https://www.nagaland.gov.in/ministers": {
+      "status": "success",
+      "domain": "www.nagaland.gov.in",
+      "pages_scraped": 5,
+      "chunks": 3
+    },
+    "https://igod.gov.in/sg/DL/categories": {
+      "status": "success",
+      "domain": "www.india.gov.in",
+      "pages_scraped": 4,
+      "chunks": 0
+    },
+    "https://gujarat.s3waas.gov.in/": {
+      "status": "success",
+      "domain": "gujarat.s3waas.gov.in",
+      "pages_scraped": 1,
+      "chunks": 1
+    },
+    "https://kancheepuram.nic.in/": {
+      "status": "success",
+      "domain": "kancheepuram.nic.in",
+      "pages_scraped": 5,
+      "chunks": 0
+    }
+  },
+  "stats": {
+    "total": 0,
+    "success": 116,
+    "failed": 59,
+    "chunks": 332
+  }
+}

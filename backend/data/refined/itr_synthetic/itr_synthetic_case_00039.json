@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00039",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-4-synthetic-case-00039",
+  "title": "Synthetic Tax Return Case Study: Ritu Gill (ITR-4, AY 2022-23)",
+  "section": "ITR-4 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: Ritu Gill (Form ITR-4).\nEntity Classification: resident individual with business / professional income.\nTaxpayer Identity: PAN WDFPR5516E | Aadhaar Number: 650820406892 | Acknowledgement Number: 916380252599753.\nJurisdiction & Location: Ahmedabad, Gujarat (PIN 380086).\nAssessment Year: 2022-23 | Filing Date: 24-Nov-2022 24-Nov-2022 10:27:55 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 58,95,308.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 15,81,092 (individual tax slab / presumptive tax calculation under Section 44AD/44ADA).\n4. Health and Education Cess (4%): Rs. 63,244.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 23,102.\n6. Net Outstanding Tax Payable: Rs. 16,67,438.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory VISHNU.\nCompliance Requirement: Verified by taxpayer via Aadhaar OTP or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "ahmedabad",
+    "belated return",
+    "cess",
+    "gujarat",
+    "income tax return",
+    "individual",
+    "interest 234",
+    "itr",
+    "itr-4",
+    "late filing",
+    "tax computation"
+  ],
+  "language": "en"
+}

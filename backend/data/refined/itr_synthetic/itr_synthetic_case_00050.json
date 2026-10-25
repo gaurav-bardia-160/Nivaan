@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00050",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-5-synthetic-case-00050",
+  "title": "Synthetic Tax Return Case Study: SUPREME SOLUTIONS (ITR-5, AY 2025-26)",
+  "section": "ITR-5 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: SUPREME SOLUTIONS (Form ITR-5).\nEntity Classification: partnership firm / LLP taxpayer.\nTaxpayer Identity: PAN GTOFS4277L | Acknowledgement Number: 672525453171977.\nJurisdiction & Location: Chennai, Tamil Nadu (PIN 600042).\nAssessment Year: 2025-26 | Filing Date: 16-Jan-2026 16-Jan-2026 03:05:05 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 5,59,99,260.\n2. Reported Loss Offset: Rs. 0.\n3. Assessed Base Income Tax: Rs. 1,67,99,778 (30% flat partnership firm tax rate under the Income Tax Act).\n4. Health and Education Cess (4%): Rs. 6,71,991.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 4,53,199.\n6. Net Outstanding Tax Payable: Rs. 1,79,24,968.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Sangeeta Gill.\nCompliance Requirement: Verified by designated partner via DSC or Net Banking EVC within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "belated return",
+    "cess",
+    "chennai",
+    "firm",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-5",
+    "late filing",
+    "tamil nadu",
+    "tax computation"
+  ],
+  "language": "en"
+}

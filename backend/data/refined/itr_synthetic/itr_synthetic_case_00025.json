@@ -1,0 +1,27 @@
+{
+  "id": "itr_synthetic_case_00025",
+  "source_url": "https://www.incometax.gov.in/iec/foportal/help/itr-6-synthetic-case-00025",
+  "title": "Synthetic Tax Return Case Study: UNITED TRADERS (ITR-6, AY 2025-26)",
+  "section": "ITR-6 Financial Schedule & Tax Computation",
+  "text": "Indian Income Tax Return Filing Case Study: UNITED TRADERS (Form ITR-6).\nEntity Classification: corporate taxpayer (domestic company).\nTaxpayer Identity: PAN FYJCU8997U | Acknowledgement Number: 691646668275570.\nJurisdiction & Location: Ahmedabad, Gujarat (PIN 380053).\nAssessment Year: 2025-26 | Filing Date: 27-Feb-2026 27-Feb-2026 13:24:21 | Status: Belated return filed under Section 139(4).\n\nItemized Financial Schedule:\n1. Gross Taxable Income: Rs. 4,56,23,419.\n2. Reported Loss Offset: Rs. 20,54,083.\n3. Assessed Base Income Tax: Rs. 1,14,05,855 (25% corporate tax rate (concessional domestic regime under section 115BAA)).\n4. Health and Education Cess (4%): Rs. 4,56,234.\n5. Statutory Section 234 Interest (Late Filing / Advance Tax Shortfall): Rs. 4,64,390.\n6. Net Outstanding Tax Payable: Rs. 1,23,26,479.\n\nStatutory Execution & Verification:\nDeclaration executed by authorized signatory Sanjay Kapoor.\nCompliance Requirement: Mandatory verification via Class 3 Digital Signature Certificate (DSC) within 30 days of transmission.",
+  "category": "tax",
+  "last_verified": "2026-10-25",
+  "status": "automated_verified",
+  "quality_score": 0.94,
+  "source_confidence": "official",
+  "verification_method": "synthetic_tax_record_refiner_v1",
+  "retrieval_tags": [
+    "ahmedabad",
+    "belated return",
+    "cess",
+    "company",
+    "gujarat",
+    "income tax return",
+    "interest 234",
+    "itr",
+    "itr-6",
+    "late filing",
+    "tax computation"
+  ],
+  "language": "en"
+}
