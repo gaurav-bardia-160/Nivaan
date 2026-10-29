@@ -19,6 +19,7 @@ import httpx
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from backend.modules.memory import MemoryTurn
+from backend.modules.qa_check import run_qa_checks
 from backend.schemas import Answer, Step
 
 logger = logging.getLogger("local_llm")
@@ -184,7 +185,19 @@ class LocalLLMClient:
                 "maintain conversational continuity with the previous turns while adhering strictly to the official evidence. "
                 "Explain the exact procedure or required actions directly, helpfully, and conversationally. "
                 "Return JSON with keys: 'summary' (string), 'documents_needed' (list of specific required documents, or [] if none), "
-                "and 'steps' (list of 2-5 actionable objects with 'title' and 'detail', or [] if none)."
+                "and 'steps' (list of 2-5 actionable objects with 'title' and 'detail', or [] if none).\n\n"
+                "STRICT GROUNDING RULES (never violate these):\n"
+                "- Use ONLY terms, abbreviations, and labels that appear verbatim in the source text. "
+                "Do not invent or standardize abbreviations (e.g., do not write 'PoB' unless the source text uses that exact term). "
+                "If the source says 'date of birth proof,' use that phrase, not an invented acronym.\n"
+                "- Every fact in the answer must be traceable to a specific sentence in the source text. "
+                "If you cannot point to the sentence, do not include the fact.\n"
+                "- Do not upgrade an optional or implied action into a mandatory numbered step. "
+                "If the source does not explicitly sequence something as a required step, do not present it as 'Step N.'\n"
+                "- If the source text states something is free of cost, exempt, optional, or not required, "
+                "you MUST include that detail. Do not drop qualifying or exempting facts for brevity.\n"
+                "- List facts separately for special cases (children, exemptions, special categories) "
+                "rather than omitting them or folding them into the general procedure."
             )
             prompt = (
                 f"--- Conversation Context ---\n{history}\n\n"
@@ -453,7 +466,28 @@ def enhance_grounded_answer(
         if len(ai_steps) >= 2:
             updates["steps"] = ai_steps
 
-    return answer.model_copy(update=updates)
+    enhanced = answer.model_copy(update=updates)
+
+    # --- Post-generation QA check ---
+    # Build source text from the original answer evidence
+    source_parts = []
+    if answer.citations:
+        for c in answer.citations:
+            source_parts.append(f"{c.title} {c.excerpt} {c.url}")
+    else:
+        source_parts.append(f"{answer.title} {answer.summary}")
+        source_parts.append(" ".join(answer.documents_needed))
+        source_parts.append(" ".join(f"{s.title} {s.detail}" for s in answer.steps))
+    source_text = " ".join(source_parts)
+    qa_warnings = run_qa_checks(
+        answer_text=rewrite.summary,
+        source_text=source_text,
+        source_url=answer.source_url,
+    )
+    if qa_warnings:
+        logger.info("QA warnings for question '%s': %s", question[:60], qa_warnings)
+
+    return enhanced
 
 
 __all__ = [

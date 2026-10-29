@@ -207,7 +207,7 @@
     "id": "aadhaar_enrolment_basics",
     "title": "Aadhaar Enrolment Basics",
     "category": "general",
-    "summary": "Aadhaar is a 12-digit individual identification number issued by the UIDAI on behalf of the Government of India. This guide explains how to enrol for Aadhaar for the first time.",
+    "summary": "Aadhaar is a 12-digit individual identification number issued by the UIDAI on behalf of the Government of India. First-time enrolment is free of cost. Children under 5 are exempt from biometric capture (only a photograph is taken). This guide explains how to enrol for Aadhaar for the first time.",
     "keywords": [
       "aadhaar",
       "aadhar",
@@ -228,16 +228,12 @@
     "documents_needed": [
       "Proof of Identity (PoI)",
       "Proof of Address (PoA)",
-      "Proof of Date of Birth (PoB)"
+      "Proof of Date of Birth (date of birth proof)"
     ],
     "steps": [
       {
         "title": "Locate an Enrolment Center",
-        "detail": "Find the nearest Aadhaar Enrolment Center authorized by UIDAI."
-      },
-      {
-        "title": "Book an Appointment",
-        "detail": "You can book an appointment online to save time at the center."
+        "detail": "Find the nearest Aadhaar Enrolment Center authorized by UIDAI. You may optionally book an appointment online at the UIDAI portal to reduce waiting time, but walk-in enrolment is also available at most centers."
       },
       {
         "title": "Visit the Center",
@@ -245,7 +241,7 @@
       },
       {
         "title": "Provide Biometrics",
-        "detail": "Your fingerprints, iris scan, and photograph will be captured."
+        "detail": "Your fingerprints, iris scan, and photograph will be captured. Note: Children under 5 years of age are exempt from biometrics (only a photograph is taken). Biometrics are mandatory for all others."
       },
       {
         "title": "Collect Acknowledgment",
@@ -255,13 +251,18 @@
     "warnings": [
       {
         "title": "Free of Cost",
-        "message": "First-time Aadhaar enrolment is free of cost. Do not pay any fees.",
+        "message": "First-time Aadhaar enrolment is completely free of cost. Do not pay any fees at the enrolment center.",
         "severity": "warning"
+      },
+      {
+        "title": "Children Under 5 - Biometric Exemption",
+        "message": "Children below 5 years are exempt from biometric capture (fingerprints and iris scan). Only a facial photograph is taken. Aadhaar must be updated with biometrics when the child turns 5 and again at 15.",
+        "severity": "info"
       }
     ],
     "source": {
       "name": "UIDAI Official Portal",
-      "url": "https://myaadhaarbeta.uidai.gov.in/",
+      "url": "https://uidai.gov.in/",
       "last_verified": "2026-10-08"
     },
     "status": "verified"

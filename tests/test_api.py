@@ -1,3 +1,4 @@
+import json
 import os
 os.environ["LOCAL_LLM_ENABLED"] = "false"
 
@@ -613,3 +614,119 @@ def test_ask_endpoint_returns_welcoming_answer_for_greetings():
         assert payload["confidence"] == "high"
         assert len(payload["summary"]) > 20
         assert len(payload["steps"]) == 0
+
+
+
+# ===================================================================
+# Regression tests for accuracy audit fixes (Aadhaar enrolment case)
+# ===================================================================
+
+def test_aadhaar_entry_does_not_contain_pob_abbreviation():
+    """PoB is not standard UIDAI terminology; the entry should use 'date of birth proof'."""
+    response = client.post("/api/ask", json={"question": "how to apply for aadhaar", "language": "en"})
+    assert response.status_code == 200
+    payload = response.json()
+    # Check that invented "PoB" abbreviation is NOT used
+    full_text = json.dumps(payload).lower()
+    assert "(pob)" not in full_text, "Entry should not use invented abbreviation 'PoB'"
+    # Should use the correct terminology
+    assert "date of birth" in full_text or "dob" in full_text or "birth" in full_text
+
+
+def test_aadhaar_entry_mentions_free_of_cost():
+    """First-time Aadhaar enrolment is free — this must appear in the answer."""
+    response = client.post("/api/ask", json={"question": "aadhaar enrolment", "language": "en"})
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "free" in full_text, "Aadhaar enrolment answer must mention that first enrolment is free"
+
+
+def test_aadhaar_entry_mentions_children_biometric_exemption():
+    """Children under 5 are exempt from biometrics — this should be present."""
+    response = client.post("/api/ask", json={"question": "aadhaar enrolment basics", "language": "en"})
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "child" in full_text or "under 5" in full_text or "exempt" in full_text, \
+        "Aadhaar entry must mention children / biometric exemption"
+
+
+def test_aadhaar_source_url_is_not_beta():
+    """Source URL should be the canonical UIDAI portal, not a beta/staging version."""
+    response = client.post("/api/ask", json={"question": "how to get aadhaar card", "language": "en"})
+    assert response.status_code == 200
+    payload = response.json()
+    source_url = payload.get("source_url", "")
+    assert "beta" not in source_url.lower(), f"Source URL should not be beta: {source_url}"
+    assert "staging" not in source_url.lower(), f"Source URL should not be staging: {source_url}"
+    assert "test" not in source_url.lower() or "latest" in source_url.lower(), \
+        f"Source URL should not be a test URL: {source_url}"
+
+
+def test_qa_check_verify_against_source_catches_invented_abbreviations():
+    """The QA check module should flag abbreviations not present in source text."""
+    from backend.modules.qa_check import verify_against_source
+
+    source = "Proof of Identity and Proof of Address are required for Aadhaar enrolment."
+    answer_with_invented = "You need PoI, PoA, and PoB documents for Aadhaar enrolment."
+    
+    warnings = verify_against_source(answer_with_invented, source)
+    # PoB should be flagged since it's not in source
+    flagged_terms = " ".join(warnings).lower()
+    assert "pob" in flagged_terms, f"QA check should flag 'PoB' — got: {warnings}"
+
+
+def test_qa_check_flag_staging_urls():
+    """The QA check module should flag staging/beta URLs."""
+    from backend.modules.qa_check import flag_staging_urls
+
+    assert len(flag_staging_urls("https://myaadhaarbeta.uidai.gov.in/")) > 0
+    assert len(flag_staging_urls("https://staging.example.gov.in/")) > 0
+    assert len(flag_staging_urls("https://uidai.gov.in/")) == 0
+    assert len(flag_staging_urls("https://www.incometax.gov.in/")) == 0
+
+
+def test_qa_check_verify_clean_answer_passes():
+    """A clean answer with no invented terms should produce no warnings."""
+    from backend.modules.qa_check import verify_against_source
+
+    source = "Aadhaar is a 12-digit number issued by UIDAI. First enrolment is free."
+    answer = "Aadhaar is a 12-digit number from UIDAI. Your first enrolment is free."
+    
+    warnings = verify_against_source(answer, source)
+    # Only check for non-common abbreviation warnings
+    real_warnings = [w for w in warnings if "UIDAI" not in w and "Aadhaar" not in w]
+    assert len(real_warnings) == 0, f"Clean answer should not produce warnings: {real_warnings}"
+
+
+def test_verify_module_check_entry():
+    """The verify module should correctly check an entry."""
+    from backend.offline.verify import check_entry
+
+    good_entry = {
+        "id": "test_entry",
+        "title": "Test Entry",
+        "summary": "This is a test summary.",
+        "steps": [
+            {"title": "Step One", "detail": "Do the first thing."},
+            {"title": "Step Two", "detail": "Do the second thing."},
+        ],
+        "source": {"url": "https://uidai.gov.in/", "name": "UIDAI"},
+        "status": "verified",
+    }
+    result = check_entry(good_entry)
+    assert result["passed"], f"Good entry should pass: {result['checks']}"
+
+    bad_entry = {
+        "id": "test_bad",
+        "title": "Bad Entry",
+        "summary": "Summary",
+        "steps": [
+            {"title": "Required Step", "detail": "You can optionally do this."},
+        ],
+        "source": {"url": "https://beta.example.gov.in/", "name": "Beta"},
+        "status": "verified",
+    }
+    result_bad = check_entry(bad_entry)
+    assert not result_bad["passed"], f"Bad entry (beta URL + optional step) should fail: {result_bad['checks']}"
