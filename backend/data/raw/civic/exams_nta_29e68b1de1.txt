@@ -1,0 +1,10 @@
+URL: https://exams.nta.nic.in/about-nta/
+TITLE: About NTA | National Testing Agency | India
+FETCHED_AT: 2026-10-26
+---
+National Testing Agency (NTA) has been established as a premier, specialist, autonomous and self-sustained testing organization to conduct entrance examinations for admission/fellowship in higher educational institutions.
+To assess competence of candidates for admissions has always been a challenge in terms of matching with research based international standards, efficiency, transparency and error free delivery. The National Testing Agency is entrusted to address all such issues using best in every field, from test preparation, to test delivery and to test marking.
+VISION NTA
+The right candidates joining best institutions will give India her demographic dividend.
+MISSION
+To improve equity and quality in education by administering research based valid, reliable, efficient, transparent, fair and international level assessments. The best subject matter experts and IT delivery professionals will ensure that the current gaps in existing assessment systems are properly identified and bridged.

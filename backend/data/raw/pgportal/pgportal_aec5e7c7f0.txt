@@ -1,0 +1,21 @@
+URL: https://pgportal.gov.in/Home/AboutUs
+TITLE: About Us
+FETCHED_AT: 2026-10-28
+---
+About Us
+Director of Public Grievances, The Department of Administrative Reforms and Public Grievances. is the nodal agency to formulate policy guidelines for citizen-centric governance in the country. Redress of citizen's grievances, being one of the most important initiatives of the department, DAR&PG formulates public grievance redress mechanisms for effective and timely redress / settlement of citizen's grievances.
+The DAR&PG has been making endeavors to bring excellence in public service delivery and to redress grievances of citizens in a meaningful manner by effectively coordinating with different Ministries and Departments of the Government and trying to eliminate the causes of grievances.
+This is a Government of India Portal aimed at providing the citizens with a platform for redress of their grievances. If you have any grievance against any Government organization in the country, you may lodge your grievance here which will go to the Ministry/Department/State Government concerned for immediate redress.
+Department of Administrative Reforms and Public Grievances (DARPG) had signed a memorandum of understanding for developing Artificial Intelligence Machine Learning techniques apart from other New Generation technologies to analyse public grievances. The web portal of IGMS ( https://dashboard-pmopg.nic.in/igms2/sign-in) launched by DARPG in collaboration with IIT Kanpur helps implement Artificial Intelligence (AI) and Machine Learning (ML) techniques to conduct an exploratory and predictive analysis of public grievances received on the web-based Centralised Public Grievances Redress and Monitoring System.Other new generation technology of DARPG has launched for CPGRAMS are available in the portal : http://www.treedashboard.in
+Presently, in addition to flagging urgent grievances using Artificial Intelligence, the Intelligent Grievance Management System (IGMS) deployed by DARPG in CPGRAMS also functions as a module within CPGRAMS 7.0 and performs the following functions:
+- Automatically detects spam, bulk and repetitive grievances in real-time.
+- Automatically identifies the semantic gist of grievances by analyzing their text contents and pdf attachments
+- Automatically detects important clusters of topics,reflecting issues that multiple citizens are complaining about with respect to a department or a scheme
+- Enables spatiotemporal filtering of themes and topics being reflected in grievances, to facilitate identification of both policy-level and implementation-level root causes of grievance production
+Any query/comments/discrepancies may be communicated to Department of Administrative Reforms & Public Grievances as per the following Contact Address:
+Parthasarthy Bhaskar
+Director (PG)
+The Department of Administrative Reforms and Public Grievances., Sardar Patel Bhawan
+Parliament Street, New Delhi 110 001
+23440439
+This Site is Designed, Developed & Hosted by NIC. Content owned, maintained and updated by Department of Administrative Reforms & Public Grievances. While all efforts have been made to make this Website as authentic as possible, the Department of Administrative Reforms & Public Grievances or the National Informatics Centre will not be responsible for any loss to any person caused by any shortcoming, defect or inaccuracy in the information available on this Website.

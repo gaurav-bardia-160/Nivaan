@@ -1,0 +1,12 @@
+URL: https://guidelines.india.gov.in/about-gudapps/
+TITLE: About GuDApps | Guidelines for Indian Government Websites and apps (GIGW) | India
+FETCHED_AT: 2026-10-26
+---
+About GuDApps
+To provide a set of guidelines and best practices through a series of documents addressing different aspects of eGovernance solution development
+First and foremost is data quality. In view of the increasing reliance by Government on the data captured by eGovernance solutions for major policy decisions, it is imperative that sufficient attention is given to ensuring quality of data captured by these applications.
+Second is the authorized access to eGovernance applications and services. All eGovernance solutions need to put in place appropriate authentication mechanisms to ensure that only authorized users have access to systems and its data. Authentication requirements may vary depending on the criticality of applications.
+Third aspect of software development is building good, user-friendly and consistent user interfaces for data capture and presentation through reports.
+Last but not the least, developing applications in a faster and robust manner is critical. Software development frameworks play a crucial role in enabling faster delivery of robust eGovernance applications.
+Help in delivering quality solutions
+Expedite software development by providing ready-to-use solution for many commonly faced issues in the design and development of eGovernance solutions

@@ -1,0 +1,5 @@
+URL: https://www.digilocker.gov.in/about
+TITLE: About DigiLocker - National Digital Document Platform
+FETCHED_AT: 2026-10-28
+---
+DigiLocker is a flagship initiative of the Ministry of Electronics & IT (MeitY) under Digital India. DigiLocker's mandate is to enable trusted, citizen-controlled access to digital documents and to support their secure exchange across service-delivery ecosystems. Under Rule 9A of the Information Technology (Preservation and Retention of Information by Intermediaries Providing Digital Locker Facilities) Rules, 2016, issued documents available via DigiLocker are treated at par with original physical documents.

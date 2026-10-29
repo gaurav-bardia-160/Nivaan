@@ -1,0 +1,9 @@
+URL: https://idrn.nidm.gov.in/DataStatus/Index
+TITLE: India Disaster Resource Network
+FETCHED_AT: 2026-10-28
+---
+|  | Total number of record(new + edit/modify) |
+राष्ट्रीय आपदा प्रबंधन संस्थान
+NATIONAL INSTITUTE OF DISASTER MANAGEMENT
+Ministry of Home Affairs, Government Of India
+Visitor Counter:2684458

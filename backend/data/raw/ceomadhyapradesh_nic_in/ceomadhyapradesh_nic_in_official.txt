@@ -1,0 +1,6 @@
+URL: https://ceomadhyapradesh.nic.in
+DOMAIN: ceomadhyapradesh.nic.in
+TITLE: Chief Electoral Officer (CEO), Madhya Pradesh
+FETCHED_AT: 2026-10-28
+---
+The Chief Electoral Officer of Madhya Pradesh conducts Parliamentary and Assembly elections in Madhya Pradesh under the superintendence of the ECI. The portal provides draft and final electoral rolls, voter search by name or EPIC number, polling station maps, Model Code of Conduct monitoring, and district election officer directories.

@@ -1,0 +1,6 @@
+URL: https://eprocure.gov.in
+DOMAIN: eprocure.gov.in
+TITLE: Central Public Procurement Portal (CPPP)
+FETCHED_AT: 2026-10-28
+---
+The Central Public Procurement Portal (eprocure.gov.in / CPPP) is India's mandatory single-window platform for public tendering across all Union Ministries, Departments, Central Public Sector Enterprises (CPSEs), and autonomous bodies. It supports online vendor registration, tender download, digital signature (DSC) secured bid submission, online tender opening, technical evaluation, and financial award generation, ensuring complete transparency in public procurement.

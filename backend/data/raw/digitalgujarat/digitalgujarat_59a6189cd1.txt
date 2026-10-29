@@ -1,0 +1,8 @@
+URL: https://www.digitalgujarat.gov.in/LinkPages/AboutUs.aspx
+TITLE: Digital Gujarat
+FETCHED_AT: 2026-10-28
+---
+About Us
+Digital
+Gujarat
+Digital Gujarat is an e-governance platform by the Government of Gujarat, providing streamlined access to essential services like certificates, scholarships, and welfare schemes. It aims to bridge the digital divide and enhance transparency and efficiency in government services. With a user-friendly design, the portal brings services directly to citizens, eliminating the need for physical visits to offices. Digital Gujarat empowers residents to access and track government resources anytime, anywhere.

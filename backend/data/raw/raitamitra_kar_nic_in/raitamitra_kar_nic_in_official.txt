@@ -1,0 +1,6 @@
+URL: https://raitamitra.karnataka.gov.in
+DOMAIN: raitamitra.kar.nic.in
+TITLE: Raita Mitra - Agriculture Department Karnataka
+FETCHED_AT: 2026-10-28
+---
+Raita Mitra is the official agricultural extension portal of the Department of Agriculture, Government of Karnataka. It assists farmers with subsidized seeds and fertilizers distribution, soil health card testing, micro-irrigation subsidies (Drip/Sprinkler under PMKSY), custom hiring centres for farm equipment, and Krishi Sanjeevini mobile plant clinic diagnostic visits.

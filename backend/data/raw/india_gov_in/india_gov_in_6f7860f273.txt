@@ -1,0 +1,9 @@
+URL: https://www.india.gov.in/category/money-taxes
+TITLE: Money & Taxes | Category | National Portal of India
+FETCHED_AT: 2026-10-28
+---
+Money & Taxes
+The Money & Taxes section provides crucial information on banking, insurance, economic promotion, taxes, personal finance, investments, and regulations essential for India's economic growth. It details India's tax system, including GST, and initiatives for enhancing tax compliance and financial stability.
+Subcategories
+Banking & Insurance
+India's Banking and Insurance sector, pivotal to financial stability, drives economic growth with services like loans and risk management, benefiting industries like agriculture and manufacturing.

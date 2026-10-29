@@ -1,0 +1,11 @@
+URL: https://www.data.gov.in/about
+TITLE: About | Open Government Data (OGD) Platform India
+FETCHED_AT: 2026-10-26
+---
+- Home
+- About us
+This is the Open Government Data Platform designed, developed and hosted by the National Informatics Centre (NIC), a premier ICT organization of the Government of India under the aegis of the Ministry of Electronics & Information Technology.
+Objective
+The Objective of Open Government Data Platform India is to facilitate the access to Government owned shareable data and information in both human readable and machine readable forms in a proactive and periodically updatable manner, within the framework of various related policies, Acts and Rules of Government of India, thereby promoting wider accessibility and application of government owned data and unlocking the potential of data for national development.
+History
+Developed using Open Source Stack, the project is one of the initiatives under Pillar 6 (Information for All) of the Digital India initiative. The base Open Government Data Platform India is a joint initiative of Government of India and US Government. Open Government Data Platform India is also packaged as a product and made available in open source for implementation by countries globally.

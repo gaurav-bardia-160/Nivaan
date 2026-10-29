@@ -1,0 +1,6 @@
+URL: https://igod.gov.in
+DOMAIN: goidirectory.gov.in
+TITLE: Government of India Web Directory (IGOD)
+FETCHED_AT: 2026-10-28
+---
+The Government of India Web Directory (now Integrated Government Online Directory - IGOD at igod.gov.in) serves as the apex one-stop directory for all Indian government websites across the Union Government, State Governments, Union Territories, Judiciary, Apex Constitutional Bodies, and Legislature. Managed centrally by the National Informatics Centre (NIC) under the Ministry of Electronics & Information Technology (MeitY), it indexes over 10,000 public portals classified across 30 socio-economic sectors such as Agriculture, Education, Health, Commerce, Power, and Public Grievances. Citizens and organizations can search official portals, verify authentic .gov.in and .nic.in domains, and access RSS feeds.

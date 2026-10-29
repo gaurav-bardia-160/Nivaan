@@ -1,0 +1,29 @@
+URL: https://nagaland.gov.in/e-services
+TITLE: Government eServices | Nagaland State Portal
+
+| # | Name | Department | Link | 
+|---|---|---|---|
+| 1 | Online Electricity Bill Payment | Power | www.dopn.gov.in/ | 
+| 2 | Online Scholarship Portal | Government of Nagaland | scholarship.nagaland.gov.in | 
+| 3 | Online GPF Information System | Accountant General Nagaland | nlagpf.gov.in | 
+| 4 | Online ILP | Government of Nagaland | ilp.nagaland.gov.in | 
+| 5 | Online Birth Certificate | Government of Nagaland | services.nagaland.gov.in | 
+| 6 | Online Death Certificate | Government of Nagaland | services.nagaland.gov.in | 
+| 7 | Online Domicile Certificate | Government of Nagaland | services.nagaland.gov.in | 
+| 8 | Online State Scholarships | Government of Nagaland | scholarship.nagaland.gov.in | 
+| 9 | Online Schedule Tribe Certificate | Government of Nagaland | services.nagaland.gov.in | 
+| 10 | Online Pensions under Social Welfare Dept | Government of Nagaland | services.nagaland.gov.in | 
+| 11 | Online Admission for Class XI | Higher Education | education.nagaland.gov.in/online-admission-for-class-ix-in-ghss-nagaland-2021/ | 
+| 12 | Nagaland Joblinks | Labour and Employment | services.nagaland.gov.in | 
+| 13 | e-Way Bill | Department of Taxes | nagalandtax.nic.in/ | 
+| 14 | e-Registration | Department of Taxes | nagalandtax.nic.in/ | 
+| 15 | e-Payment | Department of Taxes | nagalandtax.nic.in/ | 
+| 16 | e-Challan | Department of Taxes | nagalandtax.nic.in/ | 
+| 17 | e-Road Permit | Department of Taxes | nagalandtax.nic.in/ | 
+| 18 | Nagaland e-Tenders | Government of Nagaland | nagalandtenders.gov.in/ | 
+| 19 | Application for NPSC (Government Jobs) | Personnel & Administrative Reforms | npsc.nagaland.gov.in | 
+| 20 | Private Employers Registration for JobLinks | Industries & Commerce | services.nagaland.gov.in | 
+| 21 | NBSE results | School Education | nbsenl.edu.in/ | 
+| 22 | RTI Appeals | Nagaland State Information Commission | services.nagaland.gov.in | 
+| 23 | RTI Complaints | Nagaland State Information Commission | services.nagaland.gov.in | 
+| 24 | Registration of Affidavits | Finance Department | services.nagaland.gov.in |

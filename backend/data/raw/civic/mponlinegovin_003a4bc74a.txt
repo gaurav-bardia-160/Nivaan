@@ -1,0 +1,15 @@
+URL: https://mponline.gov.in/portal/services/pancard/home.aspx
+TITLE: MP Online Services Portal - PanCard PanCard
+
+| ::Alert:: UTI is  upgrading the pan card form filling process under which from know on pan application will be filled with Aadhar authentication and you will be required to complete the pan application process in one go. UTI is  also working on providing you option of documents upload for application who's documents are being pending and amount has been deducted from your account. The new pan system will be smooth in the coming days.                 Permanent Account Number (PAN) was introduced 
+ 				by the Indian Income Tax Department in order to facilitate easy retrieval of information
+ 				 and matching information relating to an assessee's investment, payment of taxes, raising 
+ 				 of loans, assessment, tax demand, tax arrears etc.The Permanent Account Number (PAN) is unique,
+ 				  national, and permanent. It is unaffected by a change of address, even between states in India.
+ 				   As a universal identification key the PAN helps to monitor all financial transactions of high net
+ 				    worth individuals and thereby indirectly prevent tax evation. Pan Card is issued by the Indian 
+ 					Income Tax Department under the supervision of the Central Board for Direct Taxes (CBDT) and is 
+ 					almost equivalent to a national identification number. It also serves as an important ID proof. 
+ 					From 1 January 2005 it has been made mandatory to quote the Permanent Account Number (PAN) on challans
+ 					 for any payments due to Income Tax Department. It is also compulsory to quote PAN in all documents pertaining
+ 					  to most financial transactions. |  |

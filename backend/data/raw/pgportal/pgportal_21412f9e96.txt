@@ -1,0 +1,45 @@
+URL: https://pgportal.gov.in/Home/NodalPgOfficersState
+TITLE: List Of Nodal Public Grievance Officers
+FETCHED_AT: 2026-10-28
+---
+List Of Nodal Public Grievance Officers
+In Email, the words used in the square brackets may be replaced with the respective symbols.
+| S.No. | Ministry/Department/Organisation | Nodal Public Grievance Officer Name and Designation | Address | Phone No/Fax/Email |
+|---|---|---|---|---|
+| 1 | Andhra Pradesh | Chinna Rao CGO-CMO | Public Grievance Redressal Cell, CMO Block-01, Gro und Floor, A.P. State Secretariat, Velagapudi, Ama ravathi | 09154267973 pgrs-helpdesk[at]ap.gov[dot]in |
+| 2 | Arunachal Pradesh | Shri Mari Angu Joint Secretary | Civil Secretariat Block No. 04, Floor No. 05, Room No.08, Itanagar | 03602222222 mari.angu[at]gov[dot]in |
+| 3 | Assam | Shri Utpal Borah ACS State Nodal Officer | Joint Secretary to the Govt. of Assam, Administrat ive Reforms, Training, Pension and Public Grievanc es Department, Assam Secretariat | 03612237323 artassamdept[at]gmail[dot]com |
+| 4 | Bihar | Miss Vineeta DS | General Administration Department, Patna | 06122215409 publicgrievances-bih[at]gov[dot]in |
+| 5 | Chattisgarh | Shri HEMANT KUMAR PANDEY UNDER SECRETARY | Public Grievance Redressal Department, Mantralaya Mahanadi Bhavan Nava Raipur Atal nagar | 07712503279 pgc-gad.cg[at]gov[dot]in |
+| 6 | Goa | DIksha N Tari Under Secretary PG | 2nd Floor, Secretariat, Porvorim Goa | 08322419864 us-pgc.goa[at]nic[dot]in |
+| 7 | Gujarat | Shri Hareet Shukla Principal Secretary | General Administration Department Block No. 7/3, 3rd Floor, Sachivalaya, Gandhi Nagar | 07923255969 secartd[at]gujarat.gov[dot]in |
+| 8 | Haryana | Dr. Priyanka Soni IAS Nodal Officer CPGRAMS | Chandigarh | 01722740226 supdt.cpgrams22[at]gmail[dot]com |
+| 9 | Himachal Pradesh | Shainamol A Secretary - AR RPG Training and FA Ayush | Secretary RPG to the Govt. of HP. Shimla-2. | 01772620560 rpgsecy-hp[at]nic[dot]in |
+| 10 | Jharkhand | Md. Asif Hassan Joint Secretary | Personnel, Administrative Reforms and Rajhbhasha Department, Jharkhand, Ranchi | 18003456568 pgportal.jhr[at]gmail[dot]com |
+| 11 | Karnataka | Suma.S Under Secretary | Room 211, 2nd Floor, 3rd Gate, M S Building, Beng aluru, G RIEVANCE STATUS LINK https ipgrs.karnataka.gov.in | 08022032214 us2dpar-js[at]karnataka.gov[dot]in |
+| 12 | Kerala | Sajid M Under Secretary | Chief Minister s Computer Cell, 4th Floor, North Block, Government Secretariat, Thiruvananthapura m, Kerala | 04712703002 priority.cmo[at]kerala.gov[dot]in |
+| 13 | Madhya Pradesh | Sandeep Asthana Director CM Helpline | CM Helpline Office, Bhopal, M.P. | 07556680020 cmhelpline[at]mp.gov[dot]in |
+| 14 | Maharashtra | Mr. Ashok Ramchandra Redekar Deputy Secretary | General Administration Department ,3rd Floor, Mantralaya Mail Building, Mantralaya, Mumbai | 02222025101 ashok.redekar[at]nic[dot]in |
+| 15 | Manipur | K.H. Leiyaphy Rita Joint Secretary AR | Old Sectt., North Block, Imphal | 119402882539 leiyaphi.kh[at]gov[dot]in |
+| 16 | Meghalaya | Shri Cyril Diengdoh IAS Commissioner and Secretary Personnel and A.R. | Meghalaya Civil Sectt, Room 403, Additional Building, Shillong, Meghalaya | 03642500165 cyril.diengdoh[at]gov[dot]in |
+| 17 | Mizoram | Isaac C. Lalrempuia Nodal Officer Deptt. of Personnel and Administrative Reforms Good Governance Cell | Mizoram Secretariat, MINECO, Aizawl | 03892335713 ggcmiz[at]gmail[dot]com |
+| 18 | Nagaland | Shri. Imliakum Sanglir Under Secretary and State Nodal Officer | Office of the Chief Secretary, Nagaland Civil Secretariat, Kohima | 03700000000 mlee_akum[at]yahoo[dot]com |
+| 19 | NCT of Delhi | Sh. Upender Section Officer | Public Grievances CommissionM Block Vikas Bhawan I P EstateNew Delhi | 01123379900 paditi[at]gmail[dot]com |
+| 20 | Odisha | Deputy Secretary Deputy Secretary to Government | General Administration and Public Grievance Deptt., Odisha Sectt., Bhubaneshwar | 06742395760 gapgpublicgrievance[at]gmail[dot]com |
+| 21 | Punjab | IAS Additional Chief Secretary | Removal Of Grievances Punjab Civil Sectt-1 | 01722740611 grievanceredressal2[at]gmail[dot]com |
+| 22 | Rajasthan | Mr Jagdish Lal Meena Deputy Secretary | Room No. 8129, 1st floor, North Western Building, Secretariat Jaipur | 01412922825 DS.RPG[at]RAJASTHAN.GOV[dot]IN |
+| 23 | Sikkim | Shri. Santosh Pradhan Joint Secretary | Department of Personnel, Tashiling, Secretariat | 035922000000 gos.dopart[at]gmail[dot]com |
+| 24 | Tamil Nadu | T. Jeya Sheela B.E MBA Special Officer | Chief Ministers Special Cell, Fort St. George, Secretariat Chennai | 04425671012 cmcell[at]tn.gov[dot]in |
+| 25 | Telangana | J.ARUN KUMAR Additional Secretary to GAD | Dr. B.R. Ambedkar Telangana Secretariat | 04023452888 dysecy-pgr-gad[at]telangana.gov[dot]in |
+| 26 | Tripura | Smt. Debjani Deb TCS Gr-I Joint Secretary to the Govt. of Tripura | GAAR Department, Secretariat, New Capital Complex, Kunjaban, Agartala. | 03812416040 gaar.agt-tr[at]nic[dot]in |
+| 27 | Union Territory of Andaman & Nicobar | Smti. B Ganga Ratnam Assistant Secretary of A.R. Wing and Public Grievances | Public Grievance Cell A and N Administration, Secretariat, Sri Vijaya Puram | 03192232803 asar-trg[at]and.nic[dot]in |
+| 28 | Union Territory of Chandigarh | Ms. Radhika Singh Joint Secretary Home | Union Territory Secretariat, Deluxe Building, Sector-9 Chandigarh | 01722994555 jshhome-chd[at]chd.gov[dot]in |
+| 29 | Union Territory of Dadra & Nagar Haveli | Ms. Mahima Tomar Deputy Director-cum-Deputy Secretary | Department of Public Grievances, Secretariat, Vidyut Bhawan, Kachigam, Nani Daman | 02602230460 dshome-dd[at]ddd.gov[dot]in |
+| 30 | Union Territory of Daman & Diu | Ms. Mahima Tomar Deputy Director-cum-Deputy Secretary | Department of Public Grievances, Secretariat, Vidyut Bhawan, Kachigam, Nani Daman | 02602230460 dshome-dd[at]ddd.gov[dot]in |
+| 31 | Union Territory of Jammu and Kashmir | Azeeta Qureshi Under Secretary | H 8 Church Lane, Sonwar Srinagar | 01942483236 qureshi.azee[at]jk.gov[dot]in |
+| 32 | Union Territory of Ladakh | Dorjay Gailson JKAS Nodal Officer for CPGRMS | UT Secretariat Ladakh | 01982257561 gad.utladakh[at]ladakh.gov[dot]in |
+| 33 | Union Territory of Lakshadweep | Mukund Vallabh Joshi DANICS Director | Department of Planning, Statistics and TaxationSecretariat, UT of Lakshadweep,Kavaratti, Island | 04896262274 lak-adps[at]nic[dot]in |
+| 34 | Union Territory of Puducherry | Sivakumar S Under Secretary ARW | AR Wing,B Block, 2nd Floor, Chief Sectt., Goubert Avenue, Beach Road,Puducherry | 04132233361 usar[at]py.gov[dot]in |
+| 35 | Uttar Pradesh | Shri Bhaskar Chandra Kandpal Joint Secretary | Chief Minister Secretariat , Room No. 321, U.P. Secretariat, Lucknow | 05222226350 bhaskar.31532[at]gov[dot]in |
+| 36 | Uttarakhand | Tirath Pal Singh Additional Director | IT Park, Dehradun | 01352609532 cm_helpline[at]uk.gov[dot]in |
+| 37 | West Bengal | Shri Ajay Kumar Pal Special Secreta | Nabanna (7th Floor), 325, Sarat Chatterjee Road, Shibpur, Howrah - 711102 | 03322143655 jointsecretarypar[at]gmail[dot]com |

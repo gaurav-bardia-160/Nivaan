@@ -1,0 +1,15 @@
+URL: https://pmkisan.gov.in/Grievance.aspx
+TITLE: PM Kisan Samman Nidhi - Helpdesk - Query Form
+
+Department of Agriculture and Farmers Welfare
+Ministry of Agriculture and Farmers Welfare
+Government of India
+Note : Please use the Temporary ID in cases where the registration is new or pending for approval at any level.Click Here
+Grievance ID :
+Registration Number :
+Grievance Date :
+Category :
+Description :
+Status :
+Description : (Max. 500 Words)
+Upload Document : CustomValidator Preview Document

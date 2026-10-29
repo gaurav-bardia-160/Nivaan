@@ -1,0 +1,14 @@
+URL: https://samagra.gov.in/Citizen/Pages/AddNewFamilyRegistration.aspx
+TITLE: Samagra Portal (Core) - Subpage
+
+Please avoid clicking on "Back" or "Refresh" button, Your request is in progress कृपया " बेक " एवं "रिफ्रेश" बटन क्लिक न करें, आपका अनुरोध प्रक्रियाधीन है |
+एक समग्र आईडी होते हुए नवीन समग्र आईडी बनवाना नियम विरुध हैं|
+नवीन समग्र आईडी बनाने से पहले ये जांच लें, कि आपका समग्र पहले से बना हुआ तो नहीं हैं।
+नवीन समग्र बनाने के लिए आधार अनिवार्य हैं। समग्र में आधार ई- केवाईसी करने के 2 विकल्प उपलब्ध हैं ।
+1. आधार से प्राप्त मोबाईल पर ओटीपी द्वारा एवं 2. बायोमैट्रिक के माध्यम से।
+*
+Please select either Aadhaar or Virtual ID
+*
+*
+फिगर प्रिंट कैपचर करने हेतु कम्प्युटर मे INSTALLED बायोमेट्रिक मशीन का चयन करे /
+कम्प्युटर मे बायोमेट्रिक मशीन INSTALLED न होने पर बायोमेट्रिक मशीन INSTALLED करे

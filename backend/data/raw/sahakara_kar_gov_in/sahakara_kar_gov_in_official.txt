@@ -1,0 +1,6 @@
+URL: https://sahakara.karnataka.gov.in
+DOMAIN: sahakara.kar.gov.in
+TITLE: Department of Cooperation, Karnataka
+FETCHED_AT: 2026-10-28
+---
+Department of Cooperation, Government of Karnataka, governs primary agricultural credit societies (PACS), cooperative banks (DCCBs), housing societies, and urban credit cooperatives. The portal facilitates online society registration, statutory audit tracking, election management, and grievance redressal.

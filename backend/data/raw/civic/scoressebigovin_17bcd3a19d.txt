@@ -1,0 +1,121 @@
+URL: https://scores.sebi.gov.in/faqs
+TITLE: SEBI SCORES (Grievance Redressal System) - FAQS
+
+- Complaint not pertaining to investment in securities market
+- Anonymous Complaints
+- Incomplete or un-specific complaints
+- Allegations without supporting documents
+- Suggestions or seeking guidance/explanation
+- Not satisfied with trading price of the shares of the companies, may be taken up on MI Portal
+- Non-listing of shares of private offer, if there is any violation of securities laws may be taken up on MI Portal
+- Disputes arising out of private agreement with companies/intermediaries
+- Matter involving fake/forged documents
+- Complaints against the companies which are unlisted/delisted
+- Complaints on matters falling under the purview of other regulatory bodies viz. the Reserve Bank of India (RBI), the Insurance Regulatory and Development Authority of India (IRDAI), the Pension Funds Regulatory and Development Authority (PFRDA), Competition Commission of India (CCI), or under the purview of other ministries
+- Complaints about any unregistered/ un-regulated activity
+- Complaints relating to cases pending in a court or subject matter of quasi-judicial proceedings, disputes pending with Online Dispute Resolution mechanism under the aegis of Market Infrastructure Institutions [as per SEBI master circular SEBI/HO/OIAE/OIAE_IAD-1/P/CIR/2023/145 dated July 31, 2023]
+- Complaints which are in the nature of market intelligence i.e., information given to SEBI regarding violation of any of the provisions of the securities laws. Such complaints can be lodged on https://miportal.sebi.gov.in.
+- Complaints against companies on the Dissemination Board of Stock Exchange
+- Complaints against a liquidated company or a company under liquidation or a company under resolution under the relevant provisions of the Insolvency and Bankruptcy Code, 2016 (IBC)
+- Complaints against the companies where the name of company is struck off from Registrar of Companies (RoC) or a Vanishing Company as per list published by Ministry of Corporate Affairs (MCA)
+- As per the Section 125 of Companies Act, 2013 unclaimed dividends, shares in respect of which dividend has not been paid or claimed, matured debentures, sale proceeds of fractional shares arising out of the issuance of bonus shares, merger and amalgamation, redemption amount of preference shares, which are remaining unpaid or unclaimed for seven or more years are transferred to Investor Education and Protection Fund (IEPF) under Ministry of Corporate Affairs. Complainants can claim the above from IEPF Authority directly as the same is outside the purview of SEBI. Therefore, complaints pertaining to the claim of shares, unclaimed dividends, matured debentures, sale proceeds of fractional shares arising out of issuance of bonus shares, merger and amalgamation, unpaid or unclaimed redemption amount of preference shares, etc., that are transferred to IEPF cannot be dealt on SCORES
+- Complaints relating to freezing and unfreezing of PAN pursuant to enforcement actions. Such complaints can be lodged on https://secure.sebi.gov.in/
+- The relevant Regulators/Authorities for some of the grievances which are not dealt by SEBI are given below:
+| Grievances pertaining to | Regulators/Authorities | Website | 
+|---|---|---|
+| 1. Bank deposits with banks 2. Fixed Deposits with Non-Banking Financial Companies (NBFCs) and 3. Other matters pertaining to NBFCs Primary Dealers  | Reserve Bank of India (RBI)/ Banking Ombudsman | http://www.rbi.org.in https://bankingombudsman.rbi.org.in/ | 
+| 1. Deposits u/s 73 & 74 of Companies Act, 2013 2. Unlisted companies 3. Mismanagement of companies, financial performance of the company, Annual General Meeting, etc. 4. Nidhi Companies 5. Companies struck off from RoC 6. Vanishing Company. 7. All matters as delegated under overriding powers under Companies Act 2013 8. Sick companies or a company where a moratorium order is passed in winding up 9. Companies under liquidation | Ministry of Corporate Affairs(MCA)  | http://www.mca.gov.in  | 
+| Insurance Companies /Brokers/ Agents/products and Service | Insurance Regulatory and Development Authority of India (IRDAI) | http://www.irdaindia.org  | 
+| Pension funds | Pension Fund Regulatory and Development Authority (PFRDA) | http://www.pfrda.org.in | 
+| Monopoly and anti-competitive Practices | Competition Commission of India (CCI) | http://www.cci.gov.in | 
+| Housing Finance Companies | National Housing Bank (NHB) | www.nhb.org.in | 
+| Companies where insolvency proceedings has started | Insolvency And Bankruptcy Board Of India | http://www.ibbi.gov.in | 
+| Complaints against suspended companies | Respective Stock Exchange | www.bseindia.com www.nseindia.com www.msei.in | 
+- For lodging a complaint on SCORES, the following Know Your Customer (KYC) information has to be mandatorily provided by complainants: 
+  - Name
+  - Address
+  - E-mail Address
+  - PAN
+  - Mobile Number
+  - Date of Birth
+- If any of the above information is not provided by the complainant, the complainant shall not be able to lodge a complaint on SCORES.
+- Fetching Registration Details from the KYC Registration Agency (KRA) database. (or)
+- Filling the registration form
+- In securities market, PAN is a mandatory requirement for transacting and is the sole identifier that is used by SEBI registered intermediaries. However, SEBI has exempted certain groups of investors from the mandatory requirement of PAN for opening/operating Beneficial Owner (BO) accounts with depository participants including for trading in cash market and for investments in mutual funds upto a limit of ₹50,000/- per annum.
+- In such cases, KRAs issue PAN exempted KYC Registration Number (PEKRN) to the PAN exempted investors in order to align with the uniform KYC process in securities market and provide a unique identifier to such investors which includes the following: 
+  - where such transactions are undertaken on behalf of Central Government and/or State Government and by officials appointed by Courts e.g. Official liquidator, Court receiver, etc.
+  - UN entities/multilateral agencies exempt from paying tax/filing returns in India
+  - Investor residing in the state of Sikkim
+  - SIP of Mutual Funds up to ₹ 50,000 per annum.
+- Complainant can enter his/her PEKRN number instead of PAN while registering using the process detailed in point 9 above.
+- Complainant can sign in to their account using either of the following ways: 
+  - by entering User ID set by complainant while registering on SCORES
+  - by entering registered Mobile Number; or
+  - by entering registered E-mail ID.
+- Complainant have to enter the OTP sent to the Mobile Number/ E-mail ID as well as password to access the ‘Investor Dashboard’
+- Submission of the Complaint and handling of the Complaint by the Entity: 
+  - The Complaints lodged on SCORES against any Entity will be automatically forwarded to the concerned Entity through SCORES for resolution and submission of Action Taken Report (“ATR”). Entities shall resolve the Complaint and upload the ATR on SCORES within 21 calendar days of receipt of the Complaint. The ATR of the entity will be automatically routed to the complainant.
+  - The Complaint will also be simultaneously forwarded through SCORES to the relevant Designated Body. The Designated Body will have to ensure that the concerned Entity submits the ATR within the stipulated time of 21 calendar days.
+- First review of the Complaint: 
+  - If the complainant is not satisfied with the ATR submitted by the entity, the complainant can request for a review of the resolution provided by the entity within 15 calendar days from the date of the ATR. The complaint will be kept pending for 15 calendar days’ post submission of ATR awaiting review from the complainant, if any.
+  - In case the complainant has requested for a review of the resolution provided by the entity or the entity has not submitted the ATR within the stipulated time of 21 calendar days, the Designated Body will take up the first review with the concerned Entity, wherever required and submit the ATR to the complainant within 10 Calendar days.
+- Second Review of the Complaint: 
+  - If the complainant is not satisfied with the resolution provided during first level review by the Designated Body, the complainant can request for a review of the resolution provided by the Designated Body within 15 calendar days from the date of the ATR. The complaint will be kept pending for 15 calendar days awaiting review from the complainant, if any
+  - In case the complainant has requested for a review of the resolution provided by the Designated Body or the concerned Designated Body has not submitted the ATR within 10 calendar days, SEBI will take up the second review with the Designated Body or/and the concerned entity.
+- Complainant is satisfied with the resolution provided by the concerned Entity or the Designated Body (at first level review) and does not choose to review the complaint within the 15 calendar days from the date of receipt of ATR from the concerned Entity or the Designated Body in case of first level review.
+- SEBI Dealing Officer disposes the complaint post second level review on receipt of satisfactory ATR from concerned entity or/and Designated body or in cases where complainant raises issues, which require adjudication on any third party rights, on questions of law or fact or which is in the nature of a lis between parties.
+- Complainant opts to withdraw their complaint by opting for Online Dispute Resolution mechanism on smartodr.in.
+Complainant will also receive e-mail, SMS notifications on the registered e-mail ID and registered Mobile Number upon disposal of the complaint on SCORES.
+- Do not provide new facts and keep complaining on the same/ similar issues
+- Substantiate their allegations with documentary proofs
+- Avail Online Dispute Resolution mechanism
+- Accept SEBI’s lack of jurisdiction in contractual disputes, sub -judice matter etc.
+- Complainants can approach the Online Dispute Resolution mechanism (governed by SEBI Master Circular SEBI/HO/OIAE/OIAE_IAD-1/P/CIR/2023/145 for Online Dispute Resolution dated July 31, 2023) or other appropriate civil remedies at any point of time. In case the complainant opts for Online Dispute Resolution mechanism or other appropriate civil remedies while the complaint is pending on SCORES, the complaint shall be treated as disposed on SCORES.
+- b. Complainant can also visit their nearest Investor Service Centers (ISCs) of Stock Exchanges, in case he/she needs any assistance for availing the Online Dispute Resolution mechanism. The details of ISCs of NSE and BSE are available on their respective websites at https://www.bseindia.com/static/about/contact_us.aspx?expandable=5 and https://www.nseindia.com/contact/complainant-services-centre . The same is also available on SEBI investor website at https://investor.sebi.gov.in/iscs_contacts.html.
+- Lodging of complaints on SCORES
+- Knowing the status of complaint
+- Other matters related to complaints
+- All companies intending to get their securities listed on the recognized stock exchanges shall obtain SCORES authentication through the online mechanism available at the SCORES website www.scores.gov.in.
+- The companies shall be required to apply for the authentication through the online form available on the abovementioned SCORES website in accordance with the instruction document provided on the website.
+- Companies shall attach a declaration, with the online form, on the letter head of the company signed by the Compliance Officer, as under:
+- Companies intending to list on Main Board: A declaration that the Draft Red Herring Prospectus has been submitted to SEBI.
+- Companies intending to list on SME/Debt Platform of stock exchange: A declaration that an application to list its securities has been submitted with the stock exchange/in-principal approval to list its securities has been obtained from the stock exchange.
+- The SCORES credentials shall be sent to the e-mail ID of the Compliance Officer or the Dealing Officer as provided in the online form.
+- The procedure for generation of SCORES user ID and password is fully automated for all SEBI registered intermediaries and MIIs registered or recognised by SEBI after August 02, 2019. SCORES user ID and password details shall be sent through auto-generated e-mails, upon completion of process of online grant of registration by SEBI.
+- The SCORES user ID and password details shall be sent to the e-mail ID of the Contact Person or the Compliance Officer as provided in the online Registration Form (submitted through the SEBI Intermediaries Portal – https://siportal.sebi.gov.in).
+- Click on Sign in/ Sign up. Entities should sign in by entering the user ID.
+- The user ID will be verified through OTP verification of the registered e-mail ID of the entity.
+- Enter the password
+- Entities can access their ‘Entity Dashboard’ in which all the complaints lodged against the entity can be accessed.
+| Label | Meaning | 
+|---|---|
+| Pending Auto Assigned Complaints | The complaints lodged on SCORES are automatically assigned to the concerned Entities. All such complaints are available in this bucket. Entities are required to submit ATR to the complainant within 21 Calendar days. | 
+| Pending First level Review complaints | First Level review complaints forwarded by the Designated Bodies to resubmit the ATR. First level review complaints here include: a. In case complainant is not satisfied with the ATR submitted by the entity and has sought review of the resolution provided by entity (or) b. Entity fails to submit the ATR within 21 calendar days. | 
+| Pending SEBI Review complaints | Second Level review complaints forwarded by SEBI to resubmit the ATR. Second level review complaints here include: a. In case complainant is not satisfied with the ATR submitted by the Designated Body for first level review and has sought review of the resolution provided by the designated body (or) b. Designated Body fails to submit the (ATR) within 10 calendar days for first level review. | 
+| CPGRAMS complaints | Complaints received through Centralized Public Grievance Redress and Monitoring System (CPGRAMS) of Department of Administrative Reforms and Public Grievances. The ATR submitted in these complaints will be routed to SEBI. | 
+| CPGRAMS Appeals | Appeals against the closure of the complaints received through CPGRAMS by SEBI and forwarded by SEBI/ Designated Body for providing revised ATR. | 
+| Reports | Entities can generate their customized reports. | 
+| My Profile | Registration details of the Entity. | 
+- Complainant is satisfied with the resolution provided by the concerned Entity or the Designated Body (at first level review) and does not choose to review the complaint within the 15 calendar days’ period from the date of receipt of ATR from the concerned Entity or the Designated Body in case of first level review.
+- SEBI Dealing Officer disposes the complaint post second level review on receipt of satisfactory ATR from concerned entity or/and Designated body (or)
+- where complainant raises issues which require adjudication on any third party rights, on questions of law or fact or which is in the nature of a lis between parties.
+- Complainants opts for Online Dispute Resolution mechanism on smartodr.co.in or other appropriate civil remedies.
+Therefore, Designated Bodies may provide generic e-mail ID for taking SCORES authentication
+- Click on Sign in/ Sign up. Designated Bodies should sign in by entering the user ID
+- The user ID will be verified through OTP verification of the registered e-mail ID of the Designated Body.
+- Enter the password
+- Designated Bodies can access their ‘Designated Body Dashboard’ in which all the complaints can be accessed.
+| Label | Meaning | 
+|---|---|
+| Total Pending Complaints | All the complaints can be viewed in this dashboard. | 
+| Pending Complaints for Monitoring | Complaints that are auto assigned to the concerned entities. The role of Designated Body is to monitor timely submission of ATR by the concerned Entity. | 
+| Pending First Level Review complaints | First level review complaints include: a. In case complainant is not satisfied with the ATR submitted by the entity and has sought review of the resolution provided by entity (or); b. Entity fails to submit the ATR within 21 calendar days. | 
+| Pending SEBI Review Complaints | Second Level review complaints forwarded by SEBI to resubmit the ATR through SCORES. Second level review complaints here include: a. In case complainant is not satisfied with the ATR submitted by the Designated Body for first level review and has sought review of the resolution provided by the designated body (or) b. Designated Body fails to submit the ATR within 10 calendar days for first level review. | 
+| CPGRAMS complaints | Complaints received through Centralized Public Grievance Redress and Monitoring System (CPGRAMS) of Department of Administrative Reforms and Public Grievances The complaints are automatically routed to the concerned entity. Designated Bodies to ensure that the entities submit ATR within 21 calendar days. The ATR submitted by entity in these complaints will be routed to SEBI. In case the entity fails to submit the ATR within 21 Calendar Days, the complaint will be auto-escalated to the Designated Bodies. The Action Taken Report submitted by Designated Body in these complaints will be routed to SEBI. | 
+| CPGRAMS appeals | Appeals against the closure of the complaints received through CPGRAMS by SEBI and forwarded by SEBI for providing revised ATR. | 
+| Reports | Designated Body can generate their customized reports. | 
+| My profile | Registration details of the Designated Body. | 
+- Complainant is satisfied with the resolution provided by the concerned Entity or the Designated Body (at first level review).
+- Complainant does not choose to review the complaint within the 15 calendar days’ period from the date of receipt of ATR from the concerned Entity or the Designated Body in case of review.
+- SEBI Dealing Officer disposes of the complaint post second level review on receipt of satisfactory ATR from concerned entity or/and Designated body (or) in cases where complainant raises issues, which require adjudication on any third party rights, on questions of law or fact or which is in the nature of a lis between parties.
+- Complainant opts for Online Dispute Resolution mechanism on smartodr.co.in or other appropriate civil remedies.

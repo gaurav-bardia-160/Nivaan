@@ -1,0 +1,6 @@
+URL: https://mptenders.gov.in
+DOMAIN: mptenders.gov.in
+TITLE: Madhya Pradesh e-Procurement Portal (MP Tenders)
+FETCHED_AT: 2026-10-28
+---
+MP Tenders (mptenders.gov.in), developed on the NIC GePNIC framework, handles e-tendering for all Madhya Pradesh government departments, municipal corporations, and public undertakings. It supports digital vendor registration, secure tender download, two-stage bidding, electronic payment of EMD, and transparent tender awards for civil, electrical, and commercial works.

@@ -1,0 +1,6 @@
+URL: https://www.mea.gov.in/india-perspectives.htm
+DOMAIN: indiaperspectives.in
+TITLE: India Perspectives Magazine (MEA)
+FETCHED_AT: 2026-10-28
+---
+India Perspectives is the flagship public diplomacy magazine published by the Ministry of External Affairs (MEA), Government of India. Circulated globally in multiple languages, it showcases India's civilizational heritage, technological innovations, international relations, arts, cultural diversity, and global economic cooperation initiatives.

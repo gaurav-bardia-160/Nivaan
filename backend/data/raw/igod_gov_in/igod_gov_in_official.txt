@@ -1,0 +1,6 @@
+URL: https://igod.gov.in
+DOMAIN: igod.gov.in
+TITLE: Integrated Government Online Directory (IGOD)
+FETCHED_AT: 2026-10-28
+---
+Integrated Government Online Directory (IGOD) is the official single-window digital registry for authentic government web presence in India. Operating under MeitY and NIC, IGOD provides structured navigation to Union Ministries, Departments, Apex Bodies, State Portals, and Autonomous Institutions. The platform verifies adherence to Guidelines for Indian Government Websites (GIGW), ensuring citizen accessibility, bilingual availability, cybersecurity standards, and official metadata classification.

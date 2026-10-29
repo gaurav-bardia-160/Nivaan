@@ -16,7 +16,8 @@ EXACT_KEYWORD_BONUS = 80
 TOKEN_KEYWORD_BONUS = 28
 GENERIC_MATCH_TOKENS = {
     "application", "apply", "card", "document", "documents", "form", "new", "proof", "update",
-    "fee", "fees", "charge", "charges", "cost", "penalty", "make"
+    "fee", "fees", "charge", "charges", "cost", "penalty", "make",
+    "online", "portal", "website", "official", "service", "services", "center", "kendra", "procedure", "process"
 }
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "can", "could",
@@ -36,6 +37,8 @@ def _normalize(text: str) -> str:
     text = re.sub(r"\bpaspot\b", "passport", text)
     text = re.sub(r"\bpasport\b", "passport", text)
     text = re.sub(r"\bpasssport\b", "passport", text)
+    text = re.sub(r"\bvoterid\b", "voter id", text)
+    text = re.sub(r"\bvotercard\b", "voter card", text)
     text = re.sub(r"[^a-z0-9\s]", " ", text)
     tokens = [token for token in text.split() if token not in STOPWORDS]
     return " ".join(tokens)

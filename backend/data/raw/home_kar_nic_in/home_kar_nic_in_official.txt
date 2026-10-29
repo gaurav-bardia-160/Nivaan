@@ -1,0 +1,6 @@
+URL: https://home.karnataka.gov.in
+DOMAIN: home.kar.nic.in
+TITLE: Home Department, Government of Karnataka
+FETCHED_AT: 2026-10-28
+---
+Home Department, Government of Karnataka, supervises law enforcement, internal security, fire services, and prison administration. In coordination with Karnataka State Police (KSP), it delivers citizen services including online police verification for passports and employment, FIR search, lost report filing, tenant verification, and the 112 emergency response support system (ERSS).

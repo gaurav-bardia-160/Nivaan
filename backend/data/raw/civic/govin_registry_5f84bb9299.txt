@@ -1,0 +1,8 @@
+URL: https://registry.gov.in/serviceunavailable.php
+TITLE: GOV.IN Registry - Login
+
+Service Under Maintenance
+🛠️
+Service Temporarily Unavailable
+Service is not available due to maintenance activities. Inconveneinece caused is deeply regretted.
+Thank you for your cooperation.

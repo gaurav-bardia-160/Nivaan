@@ -1,0 +1,41 @@
+URL: https://apaar.education.gov.in/about
+TITLE: About | APAAR
+
+- Background
+The National Education Policy (NEP) of 2020, a transformative vision for the Indian education system, laid the foundation for several initiatives aimed at enhancing the learning experience for students. Among these initiatives, the National Credit and Qualifications Framework (NCrF) emerged as a key framework to facilitate seamless mobility and flexibility across educational levels.
+- Introduction
+In alignment with the NEP 2020 and the NCrF, the Automated Permanent Academic Account Registry (APAAR) ID is introduced as a pivotal component. The APAAR ID embodies the vision of "One Nation, One Student ID," ensuring a unified and accessible academic experience for students across India. The APAAR ID serves as a lifelong academic passport, consolidating all achievements and credentials of a student in one place.
+- Key Features of APAAR
+Lifelong Academic Identity
+    
+  - APAAR assigns a unique and permanent 12-digit ID to every student, offering a comprehensive record of their academic achievements, including degrees, scholarships, awards, and other credits.
+  - This identifier remains with the student throughout their educational career, fostering a seamless transition from one level of education to another.
+How APAAR Works
+    
+  - Schools: Record and manage students' academic data, achievements, and activities in APAAR.
+  - Higher Education Institutions (HEIs) and Skill Institutes: Access students' academic history and records for admission and recruitment purposes.
+  - Students: Digitally store and retrieve comprehensive academic records, achievements, and co-curricular accomplishments.
+  - HEIs/Skill Industries: Access and verify students’ complete academic data for admission or recruitment purposes.
+Benefits to Students
+    
+  - Unified Academic Identity: A single platform to consolidate and showcase academic records.
+  - Streamlining Student Records: Simplifying record-keeping for students, parents, and educators.
+  - Digital Repository: Securely storing academic data and achievements.
+  - Seamless Academic Mobility: Facilitating smooth transitions between educational levels.
+Data Security and Confidentiality
+    
+  - APAAR prioritizes data security and confidentiality, sharing information only with necessary government agencies for privacy and security.
+  - Consent-based document sharing ensures that students have control over the information shared through APAAR.
+Academic Progress Tracking
+    
+  - Students can effortlessly monitor their academic journey, enabling personalized study plans and real-time performance analytics.
+  - The system aids in skill gap analysis and provides industry-relevant content for upskilling programs.
+- APAAR Registration Process
+    
+    
+  - Step 1: Verification: Visit the school to verify demographic details
+  - Step 2: Parental Consent: Obtain parental consent if the student is a minor
+  - Step 3: Authentication: Authenticate identity through the school
+  - Step 4: ID Creation: Upon successful verification, the APAAR ID is created and added to DigiLocker for secure online access
+- Conclusion
+The APAAR initiative represents a transformative leap towards a more organized and accessible education system in the country. By providing a unique academic identity, streamlining records, ensuring data security, and fostering academic mobility, APAAR empowers students to navigate their educational journey with confidence and convenience. As we embrace this innovative approach to education, we anticipate positive outcomes for both students and the education system as a whole.

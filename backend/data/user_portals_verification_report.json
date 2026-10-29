@@ -1,0 +1,442 @@
+[
+  {
+    "index": 1,
+    "url": "https://mohua.gov.in",
+    "domain": "mohua.gov.in",
+    "name": "Ministry of Housing and Urban Affairs",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": true,
+    "ready": false
+  },
+  {
+    "index": 2,
+    "url": "https://commerce.nic.in",
+    "domain": "commerce.nic.in",
+    "name": "Department of Commerce",
+    "raw_count": 1,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 3,
+    "url": "https://moia.gov.in",
+    "domain": "moia.gov.in",
+    "name": "Ministry of Overseas Indian Affairs / MEA",
+    "raw_count": 1,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 4,
+    "url": "https://tourism.gov.in",
+    "domain": "tourism.gov.in",
+    "name": "Ministry of Tourism",
+    "raw_count": 3,
+    "refined_count": 0,
+    "in_manifest": true,
+    "ready": false
+  },
+  {
+    "index": 5,
+    "url": "https://cybercrime.gov.in",
+    "domain": "cybercrime.gov.in",
+    "name": "National Cyber Crime Reporting Portal",
+    "raw_count": 1,
+    "refined_count": 3,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 6,
+    "url": "https://mca.gov.in",
+    "domain": "mca.gov.in",
+    "name": "Ministry of Corporate Affairs",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 7,
+    "url": "https://apaar.education.gov.in",
+    "domain": "apaar.education.gov.in",
+    "name": "Automated Permanent Academic Account Registry (APAAR)",
+    "raw_count": 0,
+    "refined_count": 3,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 8,
+    "url": "https://bhimupi.org.in",
+    "domain": "bhimupi.org.in",
+    "name": "BHIM UPI Portal",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 9,
+    "url": "https://vikaspedia.in",
+    "domain": "vikaspedia.in",
+    "name": "Vikaspedia Multilingual Portal",
+    "raw_count": 3,
+    "refined_count": 1,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 10,
+    "url": "https://ndmis.mha.gov.in",
+    "domain": "ndmis.mha.gov.in",
+    "name": "National Disaster Management Info System",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": true,
+    "ready": false
+  },
+  {
+    "index": 11,
+    "url": "https://sparrow.eoffice.gov.in",
+    "domain": "sparrow.eoffice.gov.in",
+    "name": "SPARROW e-Office",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 12,
+    "url": "https://parichay.nic.in",
+    "domain": "parichay.nic.in",
+    "name": "Parichay Single Sign-On (SSO)",
+    "raw_count": 1,
+    "refined_count": 0,
+    "in_manifest": true,
+    "ready": false
+  },
+  {
+    "index": 13,
+    "url": "https://employmentnews.gov.in",
+    "domain": "employmentnews.gov.in",
+    "name": "Employment News Portal",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 14,
+    "url": "https://censusindia.gov.in",
+    "domain": "censusindia.gov.in",
+    "name": "Census of India",
+    "raw_count": 1,
+    "refined_count": 1,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 15,
+    "url": "https://stqc.gov.in",
+    "domain": "stqc.gov.in",
+    "name": "Standardisation Testing and Quality Certification (STQC)",
+    "raw_count": 0,
+    "refined_count": 5,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 16,
+    "url": "https://cert-in.org.in",
+    "domain": "cert-in.org.in",
+    "name": "Indian Computer Emergency Response Team (CERT-In)",
+    "raw_count": 2,
+    "refined_count": 3,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 17,
+    "url": "https://registry.gov.in",
+    "domain": "registry.gov.in",
+    "name": "Government of India Domain Registry",
+    "raw_count": 5,
+    "refined_count": 4,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 18,
+    "url": "https://negd.gov.in",
+    "domain": "negd.gov.in",
+    "name": "National e-Governance Division (NeGD)",
+    "raw_count": 5,
+    "refined_count": 5,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 19,
+    "url": "https://pib.gov.in",
+    "domain": "pib.gov.in",
+    "name": "Press Information Bureau (PIB)",
+    "raw_count": 5,
+    "refined_count": 4,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 20,
+    "url": "https://hargauseva.gov.in",
+    "domain": "hargauseva.gov.in",
+    "name": "Haryana Gau Seva Aayog",
+    "raw_count": 0,
+    "refined_count": 4,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 21,
+    "url": "https://esaharyana.gov.in",
+    "domain": "esaharyana.gov.in",
+    "name": "Economic & Statistical Analysis Haryana",
+    "raw_count": 0,
+    "refined_count": 4,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 22,
+    "url": "https://scertharyana.gov.in",
+    "domain": "scertharyana.gov.in",
+    "name": "State Council of Educational Research Haryana",
+    "raw_count": 0,
+    "refined_count": 5,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 23,
+    "url": "https://architecturehry.gov.in",
+    "domain": "architecturehry.gov.in",
+    "name": "Department of Architecture Haryana",
+    "raw_count": 0,
+    "refined_count": 4,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 24,
+    "url": "https://sfc.haryana.gov.in",
+    "domain": "sfc.haryana.gov.in",
+    "name": "State Finance Commission Haryana",
+    "raw_count": 0,
+    "refined_count": 3,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 25,
+    "url": "https://envis.haryana.gov.in",
+    "domain": "envis.haryana.gov.in",
+    "name": "ENVIS Centre Haryana",
+    "raw_count": 0,
+    "refined_count": 4,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 26,
+    "url": "https://agkar.cag.gov.in",
+    "domain": "agkar.cag.gov.in",
+    "name": "Accountant General Karnataka (CAG)",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 27,
+    "url": "https://cdarndblr.gov.in",
+    "domain": "cdarndblr.gov.in",
+    "name": "Controller of Defence Accounts R&D Bangalore",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 28,
+    "url": "https://ccakarnataka.gov.in",
+    "domain": "ccakarnataka.gov.in",
+    "name": "Controller of Communication Accounts Karnataka",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 29,
+    "url": "https://gokdom.kar.nic.in",
+    "domain": "gokdom.kar.nic.in",
+    "name": "Directorate of Minorities Karnataka",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 30,
+    "url": "https://ahvs.kar.nic.in",
+    "domain": "ahvs.kar.nic.in",
+    "name": "Animal Husbandry and Veterinary Services Karnataka",
+    "raw_count": 1,
+    "refined_count": 0,
+    "in_manifest": true,
+    "ready": false
+  },
+  {
+    "index": 31,
+    "url": "https://mpvidhansabha.nic.in",
+    "domain": "mpvidhansabha.nic.in",
+    "name": "Madhya Pradesh Vidhan Sabha",
+    "raw_count": 0,
+    "refined_count": 1,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 32,
+    "url": "https://scholarshipportal.mp.nic.in",
+    "domain": "scholarshipportal.mp.nic.in",
+    "name": "Madhya Pradesh Scholarship Portal",
+    "raw_count": 0,
+    "refined_count": 0,
+    "in_manifest": false,
+    "ready": false
+  },
+  {
+    "index": 33,
+    "url": "https://mphc.gov.in",
+    "domain": "mphc.gov.in",
+    "name": "High Court of Madhya Pradesh",
+    "raw_count": 1,
+    "refined_count": 5,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 34,
+    "url": "https://www.myscheme.gov.in",
+    "domain": "myscheme.gov.in",
+    "name": "myScheme National Platform",
+    "raw_count": 13,
+    "refined_count": 9,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 35,
+    "url": "https://www.india.gov.in",
+    "domain": "india.gov.in",
+    "name": "National Portal of India",
+    "raw_count": 43,
+    "refined_count": 14,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 36,
+    "url": "https://www.mea.gov.in",
+    "domain": "mea.gov.in",
+    "name": "Ministry of External Affairs",
+    "raw_count": 20,
+    "refined_count": 13,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 37,
+    "url": "https://data.gov.in",
+    "domain": "data.gov.in",
+    "name": "Open Government Data (OGD) Platform",
+    "raw_count": 5,
+    "refined_count": 5,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 38,
+    "url": "https://mpdistricts.nic.in",
+    "domain": "mpdistricts.nic.in",
+    "name": "Madhya Pradesh District Administration",
+    "raw_count": 1,
+    "refined_count": 1,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 39,
+    "url": "https://yoga.ayush.gov.in",
+    "domain": "yoga.ayush.gov.in",
+    "name": "Ministry of Ayush - Yoga Portal",
+    "raw_count": 1,
+    "refined_count": 1,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 40,
+    "url": "https://web.guidelines.gov.in",
+    "domain": "web.guidelines.gov.in",
+    "name": "Web Guidelines (GIGW Legacy)",
+    "raw_count": 11,
+    "refined_count": 0,
+    "in_manifest": true,
+    "ready": false
+  },
+  {
+    "index": 41,
+    "url": "https://guidelines.india.gov.in",
+    "domain": "guidelines.india.gov.in",
+    "name": "Guidelines for Indian Government Websites (GIGW 3.0)",
+    "raw_count": 19,
+    "refined_count": 16,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 42,
+    "url": "https://nift.ac.in",
+    "domain": "nift.ac.in",
+    "name": "National Institute of Fashion Technology",
+    "raw_count": 12,
+    "refined_count": 12,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 43,
+    "url": "https://exams.nta.nic.in",
+    "domain": "exams.nta.nic.in",
+    "name": "National Testing Agency (NTA Exams)",
+    "raw_count": 13,
+    "refined_count": 12,
+    "in_manifest": true,
+    "ready": true
+  },
+  {
+    "index": 44,
+    "url": "https://www.indembassysweden.gov.in",
+    "domain": "indembassysweden.gov.in",
+    "name": "Embassy of India, Sweden & Latvia",
+    "raw_count": 10,
+    "refined_count": 6,
+    "in_manifest": true,
+    "ready": true
+  }
+]

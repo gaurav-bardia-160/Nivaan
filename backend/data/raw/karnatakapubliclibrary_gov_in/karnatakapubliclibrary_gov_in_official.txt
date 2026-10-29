@@ -1,0 +1,6 @@
+URL: https://karnatakapubliclibrary.gov.in
+DOMAIN: karnatakapubliclibrary.gov.in
+TITLE: Department of Public Libraries, Government of Karnataka
+FETCHED_AT: 2026-10-28
+---
+Department of Public Libraries, Karnataka, manages the network of state central, district central, and taluk libraries. The digital portal allows citizens to access thousands of e-books, research journals, competitive exam preparation resources, and rare historical manuscripts in Kannada, English, and regional languages through a unified digital library membership.

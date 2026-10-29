@@ -1,0 +1,16 @@
+URL: https://apaar.education.gov.in/
+TITLE: APAAR
+
+APAAR empowers students to accumulate and store their academic accomplishments, facilitating seamless transitions between institutions for the pursuit of further education. The APAAR ID simplifies the processes of credit recognition and transfer right from the school level, thereby streamlining academic progression and recognition of prior learning.
+Are you a student? Be a part of the APAAR by creating your Unique ID
+Parents visit school to learn about APAAR ID
+Parents fill up consent form voluntarily for APAAR ID creation
+UDISE system generates APAAR ID against PEN ID of student
+APAAR ID is pushed into student's DigiLocker Account
+APAAR, which stands for Automated Permanent Academic Account Registry, is a specialized identification system designed for all students in India. This initiative is part of the 'One Nation, One Student ID' program launched by the government, aligning with the new National Education Policy of 2020.
+APAAR ensures accountability and transparency in education by tracking student progress and streamlining academic records. It enhances efficiency, removes duplicity, minimizes fraud, and includes co-curricular achievements for holistic student development. With multiple use cases, APAAR facilitates following;
+APAAR ID - a unique 12-digit code will help students to digitally store, manage, and access all their academic credits, including Score card, marksheets, gradesheet, degrees, diplomas, certificates & co-curricular accomplishments. This ID functions as a permanent digital identity for the student in the education ecosystem.
+Students need to follow these steps:
+Before generating an APAAR ID, the following prerequisites must be considered:
+The following student details are mandatory for APAAR ID creation:
+As soon as APAAR ID is generated, it is pushed into student's DigiLocker Account. Student can find virtual APAAR ID Card in Issued document section of DigiLocker. The status of APAAR ID generation can also be checked in the UDISE+ Portal under the APAAR Module, which displays a list of students along with their APAAR ID statuses. Students may request their school authority to check the status of their APAAR ID creation.

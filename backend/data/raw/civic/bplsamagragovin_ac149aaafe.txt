@@ -1,0 +1,13 @@
+URL: https://bpl.samagra.gov.in/Login/Public/slogin.aspx
+TITLE: Samagra State BPL Families Registration - State BPL Families Registration & Management System
+
+कृपया ध्यान दे की Portal में काम करने के बाद पेज के ऊपर दिया गया logout लिंक पर
+क्लिक कर के अपने कार्य को समाप्त करें , अगर आप logout नहीं करेंगे और browser को
+बंद करते है तो आप का लोगिन अस्थाई रूप से बंद कर दिए जायेगा
+कृपया आप अपना पासवर्ड हर महीने बदलते रहे ।
+आप अपना लॉगिन और पासवर्ड किसी को भी न दे ।
+Notice
+If you do not log out gracefully using the logout button and close the browser by
+clicking close/exit button, Your account will be locked temporarily
+Please Change Your Password frequently
+Never give/share your login and password with anyone else

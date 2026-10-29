@@ -1,0 +1,6 @@
+URL: https://negd.gov.in/our_projects/gov-inappstore/
+TITLE: National e-Governance Division (NeGD) - The Gov.in AppStore is an indigenous platform for hosting mobile applications that deliver public services to citizens.
+
+The Gov.in AppStore is an indigenous platform for hosting mobile applications that deliver public services to citizens. Developed to strengthen digital governance, it serves as a unified and trusted hub where citizens can easily discover and download verified applications offering essential services across sectors such as healthcare, education, finance, agriculture, and more, ensuring a secure and seamless digital experience.
+For developers, the Gov.in AppStore provides a robust and transparent framework to upload, host, and manage mobile applications. The platform ensures compliance with prescribed security and data privacy standards while fostering innovation by enabling government bodies and private developers to build and publish solutions that effectively address public needs.
+Download the Gov.inAppstore app

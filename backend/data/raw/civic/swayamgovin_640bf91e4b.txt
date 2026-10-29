@@ -1,0 +1,16 @@
+URL: https://swayam.gov.in/about_university
+TITLE: Study Webs of Active Learning (SWAYAM) - Framework for Universities to conduct Examinations for SWAYAM Courses, with FAQs
+
+The framework created to allow students to take exams from their own University
+To enhance flexibility in earning academic credits through the SWAYAM platform and make higher education more accessible, the UGC has introduced a new framework allowing universities to conduct examinations for SWAYAM courses.This initiative comes after a series of state-level awareness meetings held between October-November 2023 and April-May 2024, along with online discussions with Higher Education Institutions (HEIs) led by the UGC Chairman and Joint Secretary (TEL) from the Ministry of Education. These meetings reflected the increasing interest of universities in adopting SWAYAM courses for credit transfer and the need for a more flexible examination process.
+What is the change and how it helps the students? 
+Currently, end-term proctored examinations for SWAYAM courses are conducted by the National Testing Agency (NTA) and the National Programme on Technology Enhanced Learning (NPTEL). Under the new framework, students who have completed courses on SWAYAM will now have the option to take their SWAYAM exams at their own university. The framework also includes provisions for re-examinations, allowing students who did not pass or were unable to appear in SWAYAM exams to retake them in subsequent semesters. Universities that have adopted the UGC Credit Framework for Online Learning Courses through SWAYAM can now allow their students to take SWAYAM exams at their own institutions. This will make it easier for students to combine online learning with their regular academic programmes.
+What does it mean for institutions? 
+The UGC has earlier announced the Credit Framework for Online Learning Courses through the Study Webs of Active Learning for Young Aspiring Minds (SWAYAM) Regulations, 2021. This framework governs the adoption of SWAYAM courses, including the accumulation and transfer of credits. The new framework allows universities to conduct SWAYAM examination, who have already adopted the regulations. The UGC is providing two additional documents; the Steps for Adopting SWAYAM MOOC Courses and the University Dashboard User Guide to assist universities in registering on SWAYAM and integrating the courses into the academic records of students. Universities must appoint a Nodal Officer to manage registration, examination, and credit transfer processes for SWAYAM courses. In addition to the flexibility, the new initiative is expected to increase the number of students enrolling in SWAYAM courses.
+University Nodal Officer
+All universities shall appoint a Nodal Officer to coordinate with the SWAYAM Technical team in matters related to SWAYAM Courses including registration and credit transfer.
+The Nodal Officers are required to indicate their readiness by submitting their details, along with their appointment details in the University letterhead, in this form
+www.ugc.ac.in
+University Grants Commission (UGC) Bahadur Shah Zafar Marg, New Delhi-110002.
+| econtent.ugc@gmail.com
+| 011-23604165

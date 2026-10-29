@@ -1,0 +1,6 @@
+URL: https://educationportal.mp.gov.in
+DOMAIN: educationportal.mp.gov.in
+TITLE: Madhya Pradesh Education Portal (Shiksha Portal)
+FETCHED_AT: 2026-10-28
+---
+Madhya Pradesh Education Portal (Shiksha Portal), managed by the School Education Department of Madhya Pradesh, is a comprehensive education MIS. It tracks student enrollment, school profiles (DISE), scholarship disbursals across 30+ categories, free textbook distribution, teacher payroll, transfers, and board examination performance for state government schools.

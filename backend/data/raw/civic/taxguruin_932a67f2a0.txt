@@ -1,0 +1,64 @@
+URL: https://taxguru.in/goods-and-service-tax/hsn-sac-code-mandatory-invoice-form-gstr-1.html
+TITLE: HSN & SAC Code Mandatory in Invoice & Form GSTR-1
+
+HSN & SAC Code Are Mandatory In Invoice And Form GSTR-1 W.E.F.01.04.2021
+Brief Notes on mandatory mentioning of HSN & SAC Code in Invoice and Form GSTr-1 as per amendments to GST Law, 2017 w.e.f.01.04.2021.
+Dear Professional Colleagues, Good Day to you. I have gone through recent changes about mandatory to mention HSN & SAC Code in Tax Invoice and furnishing inward & outward details at box no 12 of GSTR-1 w.e.f.01.04.2021. Some of the professionals are having confusion about mentioning of HSN & SAC code in Tax Invoice and Furnishing inward & outward details in GSTR-1. How many Digit of HSN & SAC Codes are to mention in the Tax invoice & GSTR-1 of GST Law, 2017. Is there any threshold limit to mention HSN &SAC Codes for supply of Goods and Services from 01.04.2021? So, here with I am trying to clarify at my best of Knowledge. Please refer and provide your suggestions to my mail i.d. [email protected] or what’s app No.9848099490.
+As per the below mentioned notifications CBIC has clarified who are liable to mentioned HSN & SAC Code on Tax Invoice and Form GSTR-1 w.e.f..1.4.2021,
+| S.NO. | Notification No. | Year | Date of Issue. | 
+|---|---|---|---|
+| 1 | Notification No. 12/2027- Central Tax | 2017 | 28.06.2017 | 
+| 2 | Notification No. 78/2020- Central Tax | 2020 | 15.10.2020 | 
+| 3 | Notification No. 82/2020- Central Tax | 2020 | 10.11.2020 | 
+| 4 | Notification No. 90/2020- Central Tax | 2020 | 01.12.2020 | 
+| 5 | Notification No. 12/2021- Central Tax | 2021 | 01.05.2021 | 
+On the recommendations of the GST Council the Government of India , has given the above notification from time to time through CBIC. The CBIC has mentioned in such Notifications that they have bifurcated into 2 types taxpayers based on Aggregate Turnover of Previous Financial Year.
+As per Notification No.82/2020 dated.10-11-2020, In FORM GSTR-1, in the Instructions, after serial number 17, the following instruction shall be inserted, namely:- “18. It will be mandatory to specify the number of digits of HSN code for goods or services that a class of registered persons shall be required to mention as may be specified in the notification issued from time to time under proviso to rule 46 of the said rules.
+As per Notification No.12/2021 –Central Tax , dt.1.5.2021 CBIC has given notification for extension the date to furnish the details as per amendment to GSTR-1 for the month of 4/2021 till 26.05.2021.
+Catergory-1 “ The tax payers is having Aggregate Turnover is more than Rs.5 Cr in the previous Financial Year and
+Category -2” The tax payers is having Aggregate Turnover is below Rs.5 Cr in the previous Financial Year.
+Category-1: They have to mention HSN Code for supply of Goods to B2B ,B2C and unregistered dealers as below Table: (Aggregate Turnover More Than Rs.5 Cr in the previous Financial Year)
+A). Supply of Goods:
+| S.NO. | Supply of Goods to whom | Digits of HSN Code | 
+| 1 | Supply made to registered persons B2B | 6 | 
+| 2 | Supply of goods to Consumers or Composition dealers | 6 | 
+| 3 | Supply of Goods to Un – Registered Dealers | 6 | 
+B). Supply of Services:
+| S.NO. | Supply of Service to whom | Digits of SAC Code | 
+| 1 | Supply made to registered persons B2B | 6 | 
+| 2 | Supply to Consumers or Composition dealers B2C | 6 | 
+| 3 | Supply of Services to Un – Registered Dealers | 6 | 
+C). Supply of Specified Goods as per Notification No.90/2020 –Central Tax- Date.01.12.2020:
+| 1 | Specified Chemicals as per N.No.90/2020 | 8 Digits | 
+D). Supply of Goods and Services to Registered Person (Export):
+| S.No. | Supply of Goods and Services | HSN &SAC Codes | 
+| 1 | Supply of Goods | 8 | 
+| 2 | Supply of Services | 6 | 
+| 3 | Supply of Specified Chemical as per N.No.90/2020 | 8 | 
+Category-II: They have to mention HSN Code for supply of Goods to B2B ,B2C and unregistered dealers as below Table: (Aggregate Turnover Below Rs.5 Cr in the previous Financial Year).
+A). Supply of Goods:
+| S.NO. | Supply of Goods to whom | Digits of HSN Code | 
+| 1 | Supply made to registered persons B2B | 4 | 
+| 2 | Supply of goods to Consumers or Composition dealers B2C | Optional | 
+| 3 | Supply of Goods to Un – Registered Dealers | NIL | 
+B). Supply of Services:
+| S.NO. | Supply of Service to whom | Digits of SAC Code | 
+| 1 | Supply made to registered persons B2B | 4 | 
+| 2 | Supply to Consumers or Composition dealers B2C | Optional | 
+| 3 | Supply of Services to Un – Registered Dealers | NIL | 
+C). Supply of Specified Goods as per Notification No.90/2020 –Central Tax- Date.01.12.2020:
+| 1 | Specified Chemicals as per N.No.90/2020 | 8 Digits | 
+D). Supply of Goods and Services to Registered Person (Export):
+| S.No. | Supply of Goods and Services | HSN &SAC Codes | 
+| 1 | Supply of Goods | 8 | 
+| 2 | Supply of Services | 6 | 
+| 3 | Supply of Specified Chemical as per N.No.90/2020 | 8 | 
+How To Search an Appropriate HSN or SAC Code :
+> Step-1. Visit site https:///www.gst.gov.in/;
+> Step-2. Click on “Services” icon;
+> Step-3 . Further Click on “ User Services”’
+> Step-4. Select “ search HSN/ Service classification code’
+> Step- 5. On select HSN / Service Classification Code”. Two options HSN and Service Classification Code would be displayed. OR
+> GSTN has provided HSN & SAC Codes in Excel sheet in Common Portal from 12.6.2021.
+PENALTY CLAUSE:
+As per Section 125 if the tax payer is not follow the amendments , they are liable to pay PENALTY of Rs.25,000/0 under CGST and Rs.25,000/- under SGST and Rs.50,000/- under IGST for each mistake under CGST Act,2017.

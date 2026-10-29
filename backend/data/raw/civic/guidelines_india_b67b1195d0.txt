@@ -1,0 +1,83 @@
+URL: https://guidelines.india.gov.in/chief-information-officers-cios/
+TITLE: Chief Information Officers (CIOs) | Guidelines for Indian Government Websites and apps (GIGW) | India
+FETCHED_AT: 2026-10-26
+---
+| CIO Nominations |  |  |  |  |
+|---|---|---|---|---|
+| Serial Number | Ministry/Department | URL | Name | Designation |
+|---|---|---|---|---|
+| 1 | Department of Defence Research and Development | https://www.drdo.gov.in/ | Dr K Nageswara Rao | Director |
+| 2 | Ministry of Development of North Eastern Region | https://mdoner.gov.in/ | Shri Dharmvir Jha | Statistical Advisor |
+| 3 | Department of Fertilizers | https://fert.nic.in/ | Dr. Prathibha A | Economic Advisor |
+| 4 | Ministry of Tourism | https://tourism.gov.in/ | Shri M.R. Synrem | Joint Secretary |
+| 5 | Department of School Education and Literacy | https://dsel.education.gov.in/ | Ms. A. Srija | Economic Advisor, DoSEL |
+| 6 | Ministry of AYUSH | https://ayush.gov.in/ | Ms. Kavita Garg | Joint Secretary |
+| 7 | Department of Food and Public Distribution | https://dfpd.gov.in/ | Ms. Nandita Mishra | Sr. Economic Advisor |
+| 8 | Department of Investment and Public Asset Management | https://dipam.gov.in/ | Navin Agarwal | Joint Secretary |
+| 9 | Ministry of Home Affairs | https://mha.gov.in/ | Ms. Saheli Ghosh Roy | Joint Secretary |
+| 10 | Ministry of Skill Development and Entrepreneurship | https://www.msde.gov.in/ | Shri Shreeshail Malge | Joint Secretary |
+| 11 | Department of Animal Husbandry and Dairying | https://dahd.nic.in/ | Shri Jagat Hazarika | Adviser |
+| 12 | Department of Social Justice and Empowerment | https://socialjustice.gov.in/ | Radhika Chakravarthy | Joint Secretary |
+| 13 | Department of Economic Affairs | https://dea.gov.in/ | Sh. Baldeo Purushartha | Joint Secretary |
+| 14 | Ministry of Ports, Shipping and Waterways | https://shipmin.gov.in/ | Sh. Bhushan Kumar | Joint Secretary |
+| 15 | Department of Agriculture and Farmers Welfare | https://agriwelfare.gov.in/ | Sh. Muktanand Agrawal | Director |
+| 16 | Ministry of Coal | https://coal.nic.in/ | Sh. Sanjeev Kumar Kassi | Joint Secretary |
+| 17 | Department of Water Resources, River Development and Ganga Rejuvenation | https://jalshakti-dowr.gov.in/ | Sh. Subodh Yadav | Joint Secretary |
+| 18 | Department of Expenditure | https://doe.gov.in/ | Pradeep Kumar Singh | Joint Secretary |
+| 19 | Department of Pharmaceuticals | https://pharmaceuticals.gov.in/ | Shri Awadesh Kumar Choudhary | Sr. Economic Advisor |
+| 20 | Department of Chemicals and Petro-Chemicals | https://chemicals.gov.in/ | Shri Ganga Kumar | Deputy Director General |
+| 21 | Department of Public Enterprises | https://dpe.gov.in/ | Shri Lucas L. Kamsuan | Joint Secretary (Admin) |
+| 22 | Ministry of Housing and Urban Affairs | https://mohua.gov.in/ | Shri Rahul Kapoor | Joint Secretary |
+| 23 | Department of Rural Development | https://rural.gov.in/ | Shri Akhilesh Jha | CCA |
+| 24 | Department of Land Resources | https://dolr.gov.in/ | Shri Rajesh Bhatia | Deputy Director General (DDG) |
+| 25 | Ministry of Electronics and Information Technology | https://www.meity.gov.in/ | Shri Sanket S Bhondve | Joint Secretary |
+| 26 | Department of Scientific and Industrial Research | https://www.dsir.gov.in/ | Shri Surinderpal Singh | Joint Secretary |
+| 27 | Ministry of External Affairs | https://www.mea.gov.in/ | Randhir Jaiswal | Joint Secretary [XP] |
+| 28 | Department of Ex-Servicemen Welfare | https://www.desw.gov.in/ | Dr Pudi Hari Prasad | Joint Secretary |
+| 29 | Department of Drinking Water and Sanitation | https://jalshakti-ddws.gov.in/ | Shri Vikash Kumar Dubey | Deputy Director General |
+| 30 | Ministry of Statistics and Programme Implementation | https://www.mospi.gov.in/ | Shri Anindya Banerjee | Deputy Director General |
+| 31 | Department of Empowerment of Persons with Disabilities | https://depwd.gov.in/ | Sh. Rajeev Sharma | Joint Secretary |
+| 32 | Department of Defence | https://www.mod.gov.in/dod/ | Shri Manish Tripathi | Joint Secretary |
+| 34 | Department of Consumer Affairs | https://consumeraffairs.nic.in/ | Shri Bharat Harbanslal Khera | Additional Secretary |
+| 35 | Ministry of Earth Sciences | https://moes.gov.in/ | Dr. R.S. Maheskumar | Scientist G |
+| 36 | Department of Personnel and Training | https://dopt.gov.in/ | Shri S.D. Sharma | Joint Secretary |
+| 37 | Department of Space | https://www.isro.gov.in/ | Shri Rahul Sharma | Associate Director |
+| 38 | Ministry of Labour and Employment | https://labour.gov.in/ | Sh. Alok Chandra | Senior Advisor |
+| 39 | Department of Atomic Energy | https://dae.gov.in/ | Shri Phool Chand | Scientific Officer/ H & H Head |
+| 40 | Ministry of Information and Broadcasting | https://www.mib.gov.in/ | Shri Rabindra Kumar Jena | Senior Economic Advisor |
+| 41 | Ministry of Women and Child Development | https://wcd.nic.in/ | Dr. Preetam B. Yashvant | Joint Secretary |
+| 42 | Department of Agricultural Research and Education | https://dare.gov.in/ | Dr. Anjani Kumar Jha | Principal Scientist |
+| 43 | Ministry of Heavy Industries | https://heavyindustries.gov.in/ | Ms. Mukta Shekhar | Joint Secretary |
+| 44 | Department of Revenue | https://dor.gov.in/ | Shri Vinod Kumar | Dircctor(NC & Computer Cell) |
+| 45 | Department of Defence Production | https://www.ddpmod.gov.in/ | Shri Shalab Tyagi | Joint Secretary (P&C) |
+| 46 | Department of Science and Technology | https://dst.gov.in/ | Dr. Rabindra Kumar Panigraphy | Scientist E |
+| 47 | Ministry of Road Transport and Highways | https://morth.nic.in/ | Sh. Vinay Kumar | Joint Secretary |
+| 48 | Department of Posts | https://www.indiapost.gov.in/ | Dr. P. M. Saravanan | General Manager, CEPT |
+| 49 | Legislative Department | https://legislative.gov.in/ | Dr. Manoj Kumar | Additional Secretary |
+| 50 | President of India | https://presidentofindia.gov.in/ | Smt Swati Shahi | Director |
+| 51 | Department of Commerce | https://commerce.gov.in/ | Ms. Aishvarya Singh | Joint Secretary |
+| 52 | Prime Minister’s Office | https://pmindia.gov.in/ | Shri Amit Singh Negi | Additional Secretary |
+| 53 | Ministry of Culture | https://indiaculture.gov.in/ | Ms. Uma Nanduri | Joint Secretary |
+| 54 | NITI Aayog | https://niti.gov.in// | Shri Yugal Kishore Joshi | Lead |
+| 55 | Ministry of Parliamentary Affairs | https://mpa.gov.in/ | Dr. Satya Prakash | Additional Secretary |
+| 56 | Department of Telecommunications | https://dot.gov.in/ | Sh. Yashwant Kumar | Deputy Director General |
+| 57 | Department for Promotion of Industry and Internal Trade | https://dpiit.gov.in// | Shri Sanjiv | Joint Secretary |
+| 58 | Department of Justice | https://www.doj.gov.in/ | Shri Pravash Prashun Pandey | Joint Secretary |
+| 59 | Ministry of Steel | https://steel.gov.in/ | Shri Vinod Kumar Tripathi | Joint Secretary |
+| 60 | Department of Bio-Technology | https://dbtindia.gov.in/ | Shri Sankarsana Sahoo | Statistical Adviser |
+| 61 | Ministry of Petroleum and Natural Gas | https://mopng.gov.in/en/ | Shri Rohit Mathur | Joint Secretary |
+| 62 | Ministry of Panchayati Raj | https://panchayat.gov.in/ | Shri Vikas Anand | Joint Secretary |
+| 63 | Cabinet Secretariat | https://cabsec.gov.in/ | Shri Satendra Singh | Additional Secretary |
+| 64 | Ministry of Civil Aviation | https://civilaviation.gov.in/ | Shri Pramod Kumar Thakur | Deputy Director General |
+| 65 | Ministry of Micro, Small and Medium Enterprises | https://www.msme.gov.in/ | Shri P. Palanivel | Deputy Director General |
+| 66 | Department of Legal Affairs | https://legalaffairs.gov.in/ | Shri Avnit Singh Arora | Director(Arbitration) |
+| 67 | Ministry of Food Processing Industries | https://www.mofpi.gov.in// | Shri D. Praveen | Joint Secretary |
+| 68 | Ministry of New and Renewable Energy | https://mnre.gov.in/ | Dr. A.K. Tripathi | Scientist G |
+| 69 | Department of Higher Education | https://www.education.gov.in/higher_education/ | Ms. Navanita Gogoi | DDG (Statistics) |
+| 70 | Ministry of Mines | https://mines.gov.in/ | Smt.Farida M.Naik | Joint Secretary |
+| 71 | Department of Pension & Pensioners Welfare | https://doppw.gov.in/ | Shri Dhrubajyoti Sengupta | Joint Secretary |
+| 72 | Ministry of Power | https://powermin.gov.in/ | Dr. D. Sai Baba | Joint Secretary |
+| 73 | Department of Health and Family Welfare | https://mohfw.gov.in/ | Ms. Reena Ashish Das | Director |
+| 74 | Department of Health Research | https://dhr.gov.in/ | Ms. Anu Nagar | Joint Secretary |
+| 75 | Ministry of Corporate Affairs | https://www.mca.gov.in/ | Shri Sidhil Sasi | DDG |
+| 76 | Central Board of Indirect Taxes and Customs | https://www.cbic.gov.in/ https://atithi.cbic.gov.in/ https://taxinformation.cbic.gov.in/ | Shri Amitesh Bharat Singh | Pr. Additional Director General |

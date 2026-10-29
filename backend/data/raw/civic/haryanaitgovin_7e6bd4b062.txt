@@ -1,0 +1,13 @@
+URL: https://haryanait.gov.in/about-department/introduction/
+TITLE: Department Profile/ Introduction |  Department of Information Technology Electronics & Communication, Haryana | India
+
+Department Profile/ Introduction
+The Department of Information Technology, Electronics & Communication, Haryana (DITECH), headed by the Additional Chief Secretary (CRID), is the State’s nodal agency for driving the use of internet-based and digital technologies to make interactions between citizens, businesses and the Government simpler, more efficient and more transparent. It works to improve service delivery, reduce the cost to the exchequer, and enhance citizen participation in governance.
+DITECH conceptualises, designs and advances solutions that deliver world‑class IT capabilities across all Departments of the Government of Haryana. Leveraging strong technical and policy expertise, the Department steers the implementation of government‑wide IT policies and programmes, using data, analysis and collaborative engagement to improve the quality, reliability and reach of IT-enabled public services.
+Through close coordination of the DITECH leadership i.e. Director (IT)-cum-Special Secretary (IT), State Informatics Officer (SIO), Chief Information Technology Officer (CITO) and Director (Administration), the Department supports key decision-makers with guidance, technical inputs and standardized solutions to address both routine and complex technology challenges faced by State Departments.
+Positioned at the intersection of policy formulation and on‑ground execution, DITECH plays a central role in managing critical ICT domains, including:
+- Information security and cybersecurity for government systems
+- Statewide cellular and fibre‑based internet connectivity
+- Secure MPLS and point‑to‑point connectivity ensuring information integrity
+- Improved information access for citizens through robust e‑Services and m‑Services
+- IT infrastructure modernisation, including data centres, State and district‑level LANs, and video conferencing infrastructure.

@@ -1,0 +1,6 @@
+URL: https://eprocure.gov.in/epublish/app
+DOMAIN: tenders.gov.in
+TITLE: Government of India Tenders Portal
+FETCHED_AT: 2026-10-28
+---
+Government of India Tenders Portal (tenders.gov.in, transitioning to the CPPP e-Publishing System) provides centralized access to tender notices, tender documents, corrigenda, and contract award notifications issued by public bodies. Vendors can search active bids by organization, classification, tender value, sub-department, and geographical location.

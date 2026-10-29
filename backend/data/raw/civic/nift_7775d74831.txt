@@ -1,0 +1,25 @@
+URL: https://nift.ac.in/information-technology
+TITLE: Information Technology | National Institute of Fashion Technology
+FETCHED_AT: 2026-10-26
+---
+Department of Information Technology (DoIT)
+“The Department of Information Technology is the digital backbone of NIFT—connecting people, processes, campuses and technology to create an intelligent, secure and future-ready fashion education ecosystem.”
+The Department of Information Technology (IT) of the National Institute of Fashion Technology (NIFT) serves as the digital backbone of the Institute, enabling technology-driven transformation across academic, administrative and institutional functions. The Department plays a strategic role in automating business processes, developing and maintaining enterprise applications, supporting academic and administrative operations, and introducing emerging technologies for fashion education and capacity building.
+The IT ecosystem of NIFT is designed to connect people, processes, technology and knowledge across its campuses, enabling efficient service delivery, data-driven decision-making, and a digitally empowered learning environment.
+Key Roles and Functions
+1. Office Automation – Digital Document Filing System and HR Apps
+The Digital Document Filing System contributes significantly to the creation of a paperless and digitally enabled NIFT, while also providing a structured repository of institutional knowledge and records. The objective is to move HR operations from fragmented and paper-intensive processes towards an integrated, transparent and data-driven Human Resource Management environment.
+2. Campus Management Solution – Student Lifecycle Management
+The Campus Management Solution (CMS) homegrown software that caters to the entire academic lifecycle, which includes Student Lifecycle Management, Placement, Alumni, Semester Exchange and Financial Assistance. CMS is a major component of NIFT's digital ecosystem. It supports the management of the student lifecycle, beginning with admission and continuing through the student's academic journey until graduation and beyond.
+3. Enterprise Integration and Data Analytics
+The ERP unit also plays an important role in integrating information generated through different applications and converting institutional data into meaningful information.
+AI driven Business Intelligence tools used create useful dashboards for a. Institutional dashboards, b. Academic analytics, c. Student performance analysis, d. Faculty workload analysis, e. HR analytics, f. Campus-level performance monitoring.
+4. Emerging Technologies for Fashion Learning
+A particularly important role of the Department is to assist the academic to identify, evaluate and procure emerging technologies that can transform fashion education.
+The convergence of fashion, technology and digital transformation is creating new possibilities for design, product development, manufacturing, retail and fashion business. NIFT's IT ecosystem can therefore serve as an enabler for the adoption of these technologies within teaching, learning and research.
+5. Capacity Building
+A major responsibility of the Department is to build the digital capabilities of students, faculty and administrative staff. Technology adoption is successful only when users have the knowledge and confidence to use the technology effectively. The IT Department therefore supports continuous capacity building through: a. Faculty Development, b. Student Capacity Building, c. Administrative Capacity Building.
+6. Uniform IT Infrastructure and Cybersecurity Across Campuses
+The Department of Information Technology is responsible for establishing a common, standardised, secure and integrated IT infrastructure across all NIFT campuses. This includes reliable high-speed connectivity, standardised network and computing infrastructure, cloud and data services, common enterprise applications, centralised monitoring and robust cybersecurity mechanisms. A unified approach to firewalls, endpoint protection, access control, data backup, vulnerability management, security monitoring and cyber awareness will ensure consistent protection of institutional data and digital services.
+7. SAMARTH eGov Portal Implementation at NIFT
+The SAMARTH eGov portal is an e-governance and digital automation framework designed to support higher education institutions in streamlining and integrating their academic and administrative processes. At NIFT, implementation of SAMARTH can provide a common digital platform for process automation, workflow management, data management, reporting and institutional governance across campuses. Implementation process has been initiated and an expert team is working on the same.

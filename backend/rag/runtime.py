@@ -24,12 +24,19 @@ _CATEGORY_TERMS = {
         "tax refund", "refund", "synthetic", "कर", "आयकर", "ટેક્સ", "ઇન્કમટેક્સ",
     ),
     "civic": (
-        "passport", "efrro", "frro", "visa", "voter", "voters", "parivahan",
+        "passport", "pasport", "paspot", "passsport", "efrro", "frro", "visa", "voter", "voters", "voterid", "voter-id", "voter id", "votercard", "epic", "nvsp", "eci", "parivahan",
         "driving license", "driving licence", "driver license", "driver licence", "dl", "rc",
         "ration", "pds", "nfsa", "post office", "ippb", "epf", "epfo",
         "pension", "bhavishya", "pmkisan", "pm-kisan", "kisan", "rti", "pgportal",
         "grievance", "sebi", "rbi", "budget", "gazette", "judiciary", "court",
-        "digilocker", "udyam", "msme", "gst", "constitution", "marriage", "ews"
+        "digilocker", "udyam", "msme", "gst", "constitution", "marriage", "ews",
+        "scheme", "schemes", "yojana", "welfare", "subsidy", "portal", "government",
+        "kyc", "ovd", "bank", "banking", "account", "savings", "cyber", "cybercrime",
+        "fraud", "helpline", "1930", "scholarship", "apaar", "provident", "uan",
+        "census", "certificate", "stqc", "registry", "negd", "pib", "mphc", "high court",
+        "myscheme", "vikaspedia", "mea", "embassy", "sweden", "consular", "attestation",
+        "apostille", "data.gov.in", "ogd", "mpdistricts", "rcms", "khasra", "nakal",
+        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions"
     ),
 }
 _MULTILINGUAL_QUERY_HINTS = (
@@ -119,7 +126,8 @@ def retrieve_if_enabled(query: str, *, top_k: int = 3) -> RetrievalResult | None
     if category is None:
         return None
     expanded_query = expand_retrieval_query(query)
-    return get_retriever().search(expanded_query, category=category, top_k=top_k)
+    result = get_retriever().search(expanded_query, category=category, top_k=top_k)
+    return result if result.hits else None
 
 
 def rag_health() -> dict[str, object]:

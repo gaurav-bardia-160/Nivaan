@@ -1,0 +1,6 @@
+URL: https://saanjhi.gov.in
+DOMAIN: saanjhi.gov.in
+TITLE: Saansad Adarsh Gram Yojana (SAANJHI)
+FETCHED_AT: 2026-10-28
+---
+Saansad Adarsh Gram Yojana (SAANJHI) is a rural development programme operated by the Ministry of Rural Development. Under the scheme, Members of Parliament (MPs) adopt gram panchayats to develop them into model village ecosystems by converging existing government schemes. The saanjhi.gov.in portal provides village development plans, real-time infrastructure milestone tracking, demographic profiles, and public transparency dashboards.

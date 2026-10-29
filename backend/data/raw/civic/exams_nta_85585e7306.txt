@@ -1,0 +1,27 @@
+URL: https://exams.nta.nic.in/contact-us/
+TITLE: Contact Us | National Testing Agency | India
+FETCHED_AT: 2026-10-26
+---
+National Testing Agency
+Contact No. : 011-69227700, 011-40759000
+Helpdesk : For any transaction related queries/ inquiry, please contact at:
+| If Paying using Canara Bank |  |  |  |
+|---|---|---|---|
+| Level | Name | Email ID | Contact No. |
+|---|---|---|---|
+| 1 | Helpdesk | pgsupport[at]billdesk[dot]com/ dssronoida[at]canarabank[dot]com/ cb18688[at]canarabank[dot]com | (022)61060524/8700098336/7428206788/9535293631 |
+| 2 | Complaint Management Services | pgsupport[at]billdesk[dot]com/ dssronoida[at]canarabank[dot]com/ cb18688[at]canarabank[dot]com | (022)61060524/8700098336/7428206788/9535293631 |
+| 3 | Customer care | pgsupport[at]billdesk[dot]com/ dssronoida[at]canarabank[dot]com/ cb18688[at]canarabank[dot]com | (022)61060524/8700098336/7428206788/9535293631 |
+| 4 | Through SMS | — | (022)61060524/8700098336/7428206788/9535293631 |
+| If Paying using ICICI Bank |  |  |  |
+|---|---|---|---|
+| Level | Name | Email ID | Contact No. |
+|---|---|---|---|
+| 1 | Vikas Dwivedi | support[dot]nta[at]ingenico[dot]com | 9599533577 |
+| 2 | Rahul Gupta | rahul[dot]gupta24[at]icicibank[dot]com | 8197300404 |
+| If Paying using PAYTM |  |  |  |
+|---|---|---|---|
+| Level | Name | Email ID | Contact No. |
+|---|---|---|---|
+| 1 | Helpdesk | education[dot]support[at]paytm[dot]com | 0120 4789525 |
+| 2 | Helpdesk | education[dot]support[at]paytm[dot]com | 0120 4789526 |

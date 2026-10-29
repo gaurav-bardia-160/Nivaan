@@ -12,9 +12,6 @@ backend/.env.*
 .coverage
 uploads/
 private_documents/
-backend/data/raw/*
-!backend/data/raw/.gitkeep
-backend/data/vector_index/*
-!backend/data/vector_index/.gitkeep
+backend/data/vector_index/**/.lock
 models/
 ollama/

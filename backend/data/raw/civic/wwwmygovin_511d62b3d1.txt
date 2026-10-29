@@ -1,0 +1,20 @@
+URL: https://www.mygov.in/overview
+TITLE: MyGov: An Overview | MyGov
+
+The citizen-centric platform empowers people to connect with the Government & contribute towards good governance.
+MyGov has been established as Government of India’s Citizen Engagement Platform which collaborates with multiple Government bodies/ Ministries to engage with citizens for policy formulation and seeks the opinion of people on issues/ topics of public interest and welfare.
+Since its launch on 26th July 2014, MyGov has 64.60 million registered users as on 1 September 2026. Almost all Government Departments leverage MyGov platform for their citizen engagement activities, consultations for policy formulation and also to disseminate information to citizens for various Government schemes and programs. MyGov is amongst the most active profiles on Social Media – Twitter, Facebook, Instagram, YouTube & LinkedIn with the username @MyGovIndia. MyGov has a significant presence on several Indian social media platforms like Koo, Sharechat, Chingari, Roposo, Bolo Indya and Mitron. MyGov has adopted multiple engagement methodologies like discussions, tasks, polls, surveys, blogs, talks, pledges, quizzes and on-ground activities by innovatively using internet, mobile apps, IVRS, SMS and outbound dialling (OBD) technologies.
+MyGov has also launched State instances in 28 States/UTs, namely Himachal Pradesh, Haryana, Maharashtra, Madhya Pradesh, Arunachal Pradesh, Assam, Manipur, Tripura, Chhattisgarh, Jharkhand, Nagaland, Uttarakhand, Goa, Tamil Nadu, Uttar Pradesh, Jammu & Kashmir, karnataka, Gujarat, Dadra and Nagar Haveli & Daman and Diu, Mizoram, Rajasthan, Ladakh, Andaman & Nicobar Islands, Chandigarh, Odisha, Lakshadweep, Sikkim and Puducherry.
+MyGov is part of Digital India Corporation, a Section 8 company under Ministry of Electronics and IT, Government of India.
+MyGov has had significant success in terms of engaging with citizens. Logos and Tagline of key National Projects have been crowdsourced through MyGov. Few Notable crowdsourced initiatives are Logo for Swachh Bharat, Logo for National Education Policy, Logo for Digital India Campaign, etc. MyGov has time and again solicited inputs of draft policies from citizens; a few of those are National Education Policy, Data Centre Policy, Data Protection Policy, National Ports Policy, IIM Bill etc. MyGov has also been frequently soliciting ideas for Mann Ki Baat, Annual Budget, Pariksha Pe Charcha and many more such initiatives.
+To disseminate authentic, easy to understand and consistent information relating to COVID-19, MyGov has been supporting MoHFW for communications on social media. With an objective to drive behavioural change, fighting fake news and busting myths, MyGov created a dedicated portal for COVID-19-related information dissemination – https://www.mygov.in/covid-19. MyGov has also built a Chatbot on WhatsApp to disseminate information about COVID-19 and Vaccination through a Helpdesk number 9013151515.
+In compliance with the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, MyGov has notified the following officers as Chief Compliance Officer, Nodal Officer and Grievance Officer:
+| Officer | Name | Designation |  | 
+|---|---|---|---|
+| Chief Compliance Officer | Ajit Kumar | CEO MyGov | compliance[_]officer[at]mygov[dot]in | 
+| Nodal Officer | Shobhendra Bahadur | Director, MyGov | nodalofficer[at]mygov[dot]in | 
+| Grievance Officer | Grievance Officer | Grievance Officer, MyGov | grievance[at]mygov[dot]in | 
+Address for Communications
+MyGov, Digital India Corporation, Room 3015, Electronics Niketan 6 CGO Complex, Lodhi Road, New Delhi 110003
+Procedure for filing a Grievance under the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021
+Any complaint or grievance under the above-mentioned Rules should be filed with complete details, including URL, Screenshot and contact details of the complainant for MyGov to act within the timeframe prescribed under the Rules.

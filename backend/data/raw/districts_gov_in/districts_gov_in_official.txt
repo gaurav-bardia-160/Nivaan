@@ -1,0 +1,6 @@
+URL: https://www.india.gov.in/districts
+DOMAIN: districts.gov.in
+TITLE: Districts of India Portal
+FETCHED_AT: 2026-10-28
+---
+Districts of India Portal (districts.gov.in, unified under india.gov.in/districts) is the central directory of all 750+ administrative districts across 28 States and 8 Union Territories of India. Each district portal provides citizen services including revenue records, land title copies, domicile certificates, caste verification, ration card status, disaster management helplines, collectorate notices, and electoral rolls managed under the District Magistrate or Collector.

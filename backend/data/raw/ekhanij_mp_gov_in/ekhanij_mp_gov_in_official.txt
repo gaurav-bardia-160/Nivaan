@@ -1,0 +1,6 @@
+URL: https://ekhanij.mp.gov.in
+DOMAIN: ekhanij.mp.gov.in
+TITLE: MP e-Khanij Mineral Administration Portal
+FETCHED_AT: 2026-10-28
+---
+MP e-Khanij Portal is the official digital mining administration platform of the Mineral Resources Department, Government of Madhya Pradesh. It governs mining lease grants, electronic transit passes (e-TP), royalty calculations, weighbridge automation, mineral transport vehicle tracking, and illegal mining surveillance to ensure lawful extraction of major and minor minerals.

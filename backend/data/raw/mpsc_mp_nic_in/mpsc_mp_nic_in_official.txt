@@ -1,0 +1,6 @@
+URL: https://mppsc.mp.gov.in
+DOMAIN: mpsc.mp.nic.in
+TITLE: Madhya Pradesh Public Service Commission (MPPSC)
+FETCHED_AT: 2026-10-28
+---
+Madhya Pradesh Public Service Commission (MPPSC), established under Article 315 of the Constitution of India, conducts examinations and interviews for recruitment to Madhya Pradesh state civil services, police services (DSP), accounts services, and forest services. The official portal provides application forms, examination syllabi, previous papers, cut-off marks, and interview interview results.

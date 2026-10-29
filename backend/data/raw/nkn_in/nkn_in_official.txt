@@ -1,0 +1,6 @@
+URL: https://nkn.gov.in
+DOMAIN: nkn.in
+TITLE: National Knowledge Network (NKN)
+FETCHED_AT: 2026-10-28
+---
+National Knowledge Network (NKN) is India's multi-gigabit nationwide communications backbone connecting academic, scientific, and research institutions. Managed by the National Informatics Centre (NIC), NKN interconnects IITs, IISc, CSIR laboratories, agricultural universities, and supercomputing grids with high-speed, secure optical networks, enabling collaborative research, telemedicine, virtual classrooms, and large-scale scientific data sharing.

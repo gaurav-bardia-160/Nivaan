@@ -1,0 +1,6 @@
+URL: https://mpbhulekh.gov.in
+DOMAIN: landrecords.mp.gov.in
+TITLE: Madhya Pradesh Land Records (MP Bhulekh)
+FETCHED_AT: 2026-10-28
+---
+Madhya Pradesh Bhulekh (landrecords.mp.gov.in / mpbhulekh.gov.in), under the Revenue Department of Madhya Pradesh, provides computerized land ownership documents. Farmers and landholders can search and download certified copies of Khasra (plot record), Khatauni (record of rights - ROR), B1 Naksha (cadastral map), diverted land orders, and encumbrance certificates for agricultural and commercial parcels.

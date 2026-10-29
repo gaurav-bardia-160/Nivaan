@@ -1,0 +1,87 @@
+URL: https://lgdirectory.gov.in/globalviewBlockforcitizen.do
+TITLE: Local Government Directory (LGD) - Development Blocks
+
+Alert
+Menu
+Government of India
+|
+Ministry of Panchayati Raj
+Local Government Directory
+Facilitating Data Standardization, Data Sharing & Interoperability Among eGov Applications
+Accessibility options by UX4G
+Text To Speech
+Bigger Text
+Steps span tags will be dynamically added here
+Small Text
+Steps span tags will be dynamically added here
+Line Height
+Steps span tags will be dynamically added here
+Highlight Links
+Text Spacing
+Steps span tags will be dynamically added here
+Dyslexia Friendly
+Hide Images
+Cursor
+Light-Dark
+Invert Colors
+Reset Button
+copyright accessibility bar
+Reset All Settings
+Created by
+Accessibility Options
+Alert
+View Details
+Local Government Directory (LGD) Codes of Development Blocks
+Filter for Local Government Directory (LGD) Codes of Development Blocks
+Search By Name/Code
+Search By Hierarchy
+Development Block Code
+*
+OR
+Development Block Name (In English)
+*
+Select State
+*
+----------Select----------
+Andaman And Nicobar Islands
+Andhra Pradesh
+Arunachal Pradesh
+Assam
+Bihar
+Chandigarh
+Chhattisgarh
+Delhi
+Goa
+Gujarat
+Haryana
+Himachal Pradesh
+Jammu And Kashmir
+Jharkhand
+Karnataka
+Kerala
+Ladakh
+Lakshadweep
+Madhya Pradesh
+Maharashtra
+Manipur
+Meghalaya
+Mizoram
+Nagaland
+Odisha
+Puducherry
+Punjab
+Rajasthan
+Sikkim
+Tamil Nadu
+Telangana
+The Dadra And Nagar Haveli And Daman And Diu
+Tripura
+Uttarakhand
+Uttar Pradesh
+West Bengal
+Select District
+*
+All
+Audio Captcha
+Enter CAPTCHA image code as shown above
+*

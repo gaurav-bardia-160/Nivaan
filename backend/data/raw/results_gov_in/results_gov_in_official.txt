@@ -1,0 +1,6 @@
+URL: https://results.gov.in
+DOMAIN: results.gov.in
+TITLE: National Informatics Centre Examination Results Portal
+FETCHED_AT: 2026-10-28
+---
+National Informatics Centre Examination Results Portal (results.gov.in) is the unified government server providing speedy online publication of board and entrance examination scores. It delivers results for CBSE 10th & 12th board exams, national eligibility tests, university semester examinations, state board examinations, and staff recruitment screenings, complete with roll-number verification and authenticated digital marksheet links.

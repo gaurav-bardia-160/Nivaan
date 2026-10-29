@@ -1,0 +1,6 @@
+URL: https://esb.mp.gov.in
+DOMAIN: peb.mp.gov.in
+TITLE: MP Employees Selection Board (MP ESB / Vyapam)
+FETCHED_AT: 2026-10-28
+---
+Madhya Pradesh Employees Selection Board (MP ESB, formerly MP Professional Examination Board - PEB), conducts competitive examinations for recruitment to state government posts and professional course admissions (e.g. Police Constable, Patwari, Sub-Engineer, Teacher Eligibility Test - TET). The portal delivers exam notifications, admit cards, answer keys, objection tracking, and normalized merit lists.

@@ -1,0 +1,6 @@
+URL: https://doj.gov.in
+DOMAIN: doj.gov.in
+TITLE: Department of Justice (Ministry of Law and Justice)
+FETCHED_AT: 2026-10-28
+---
+The Department of Justice, Ministry of Law and Justice, oversees judicial administration, infrastructure funding, and legal aid. Key citizen initiatives include Tele-Law (connecting rural citizens to legal aid panel lawyers via Common Service Centres), Nyaya Bandhu (pro bono legal services app connecting eligible beneficiaries with advocates), Fast Track Special Courts (FTSCs), and the National e-Courts Mission Mode Project enabling online case tracking across 19,000+ district and subordinate courts.

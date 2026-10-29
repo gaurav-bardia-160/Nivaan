@@ -1,0 +1,6 @@
+URL: https://mpedistrict.gov.in
+DOMAIN: mpedistrict.gov.in
+TITLE: MP e-District Citizen Services Portal
+FETCHED_AT: 2026-10-28
+---
+MP e-District Portal, operated by the State Agency for Public Services (SAPS), Government of Madhya Pradesh, delivers citizen certificates under the MP Public Services Guarantee Act (Lok Seva Guarantee Adhiniyam). Citizens can apply online for Domicile (Mool Niwas Praman Patra), Caste (Jati Praman Patra), Income (Aay Praman Patra), and Land Valuation certificates with digitally signed verification and SMS status tracking.

@@ -1,0 +1,16 @@
+URL: https://revenueharyana.gov.in/Home/UserManual/
+TITLE: Revenue and Disaster Management Haryana - User Manual
+
+User Manual & SOP
+Official User Manuals and Standard Operating Procedures (SOPs) for Revenue Management System modules.
+| Sr. No. | User Manual | SOP | Date | Version | 
+|---|---|---|---|---|
+| 1 | User Registration — CitizenView User Manual | View SOP | 27-07-2026 | v1.0 | 
+| 2 | User Registration — Other UsersView User Manual | View SOP | 27-07-2026 | v1.0 | 
+| 3 | Aadhaar SeedingView User Manual | View SOP | 27-07-2026 | v1.0 | 
+| 4 | Certified CopiesView User Manual | View SOP | 27-07-2026 | v1.0 | 
+| 5 | DemarcationView User Manual | View SOP | 27-07-2026 | v1.0 | 
+| 6 | Loan EntryView User Manual | View SOP | 27-07-2026 | v1.0 | 
+| 7 | Block KhasraView User Manual | View SOP | 27-07-2026 | v1.0 | 
+| 8 | Unblock KhasraView User Manual | View SOP | 27-07-2026 | v1.0 | 
+| 9 | Collector-User ManualView User Manual | View SOP | 27-07-2026 | v1.0 |

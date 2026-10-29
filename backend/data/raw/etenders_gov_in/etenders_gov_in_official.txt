@@ -1,0 +1,6 @@
+URL: https://etenders.gov.in
+DOMAIN: etenders.gov.in
+TITLE: e-Procurement System of India (eTenders)
+FETCHED_AT: 2026-10-28
+---
+The eTenders portal (etenders.gov.in), developed on the NIC GePNIC (Government e-Procurement System of NIC) engine, manages high-value public procurement tenders for Central and State Government departments. It enforces strict CVC (Central Vigilance Commission) procurement guidelines, transparent comparative bidding, two-cover evaluation, and automated tender status notifications for registered contractors, suppliers, and MSME vendors.

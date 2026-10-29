@@ -1,0 +1,6 @@
+URL: https://kaverionline.karnataka.gov.in
+DOMAIN: karnregs.kar.nic.in
+TITLE: Kaveri Online Property Registration Karnataka
+FETCHED_AT: 2026-10-28
+---
+Department of Stamps and Registration, Government of Karnataka, operates the Kaveri Online Services portal (karnregs.kar.nic.in / kaverionline.karnataka.gov.in). Citizens can calculate stamp duty and registration fees, book sub-registrar appointment slots, apply for online Encumbrance Certificates (EC), and obtain certified copies of registered property sale deeds.

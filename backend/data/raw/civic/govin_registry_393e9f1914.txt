@@ -1,0 +1,7 @@
+URL: https://registry.gov.in/
+TITLE: Domain Registration
+
+For ease of user onboarding Gov.in Registry has now been integrated with NIC Single Sign-On Platform (Parichay). Now, users will be authenticated through Parichay(SSO)
+Announcement
+The Guidelines for domain registration has been revised; users are requested to check eligibility before registration.
+Please Note, GOV.IN Domain registry never sends any payment email for registration or renewal of "gov.in" domain.

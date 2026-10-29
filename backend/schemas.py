@@ -162,7 +162,7 @@ class Answer(BaseModel):
     documents_needed: List[str] = Field(default_factory=list, max_length=30)
     steps: List[Step] = Field(default_factory=list, max_length=20)
     warnings: List[Warning] = Field(default_factory=list, max_length=20)
-    source_url: HttpUrl
+    source_url: Optional[HttpUrl] = None
     last_verified: date
     confidence: Literal["low", "medium", "high"] = "medium"
     masked_items: List[MaskedItem] = Field(default_factory=list, max_length=30)

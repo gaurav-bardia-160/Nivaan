@@ -1,0 +1,178 @@
+URL: https://rbi.org.in/Scripts/CitiChart.aspx
+TITLE: Reserve Bank of India (RBI) - Citizen's Charter
+
+| Department     of Regulation (DoR) | 
+      | All India Financial Institutions (AIFIs) | 
+      | 29 | Permission to AIFIs for investing in Equity    Shareholding of a Company | 90 | PRAVAAH | 
+      | Asset Reconstruction Companies (ARCs) | 
+      | 30 | Permission    for shifting of registered office of ARC | 45 | PRAVAAH | 
+      | 31 | Application for grant of    Certificate of Registration (CoR) as ARC | 90 | PRAVAAH | 
+      | 32 | Application for prior approval of RBI for appointment,    re-appointment of Director / MD / CEO in ARC | 90 | PRAVAAH | 
+      | 33 | Approval for inclusion of    new sponsor, cessation of sponsor, aggregate transfer of 10% or more of the    total Paid-up Share Capital of the ARC by a sponsor during the period of five    years commencing from the date of the CoR. | 90 | PRAVAAH | 
+      | Co-operative    Banks | 
+      | 34 | Application for Appointment or Re-appointment of MD, WTD, CEO in    Co-operative Banks – Urban Co-operative Banks (UCBs), StCBs and DCCBs | 90 | PRAVAAH | 
+      | 35 | Application for issuance of authorisation in lieu of lost, misplaced or  soiled Bank License or Branch License | 90 | PRAVAAH | 
+      | Housing Finance Companies (HFCs) | 
+      | 36 | Application for prior permission of RBI for    appointment of Director in HFCs | 90 | PRAVAAH | 
+      | 37 | Approval for    change in shareholding or control of HFC | 90 | PRAVAAH | 
+      | 38 | Permission to HFCs for investing    or divesting Equity shareholding and retaining Equity Investments beyond    prescribed prudential limits | 90 | PRAVAAH | 
+      | 39 | Permission to    HFCs for undertaking various activities departmentally or expansion of the    scope of activities of their group entities | 90 | PRAVAAH | 
+      | Non-Banking Financial Companies    (NBFCs) | 
+      | 40 | Application by    existing NBFC-NDs for conversion of CoR from one category to another | 45 | PRAVAAH | 
+      | 41 | Application by NBFC-ICCs for    grant of additional Certificate of Registration (CoR) to carry out Factoring    Business | 45 | PRAVAAH | 
+      | 42 | Application for    recognition as Self-Regulatory Organisation (SRO) for Account Aggregator    ecosystem. | 45 | PRAVAAH | 
+      | 43 | Conversion of CoR of deposit    taking NBFC to non-deposit taking NBFC category | 45 | PRAVAAH | 
+      | 44 | Intimation upon shifting of registered office of NBFC | 45 | PRAVAAH | 
+      | 45 | Application for grant of CoR as    Core Investment Company (CIC) | 90 | PRAVAAH | 
+      | 46 | Application for grant of CoR as    NBFC | 90 | PRAVAAH | 
+      | 47 | Application for prior Permission    of RBI for Appointment of Director in an NBFC | 90 | PRAVAAH | 
+      | 48 | Approval for change    in shareholding or control of NBFC | 90 | PRAVAAH | 
+      | 49 | Approval to NBFCs for coupon    payment on regulatory capital instruments | 90 | PRAVAAH | 
+      | 50 | Approval to    NBFCs for redemption of or exercise of call option on capital instruments | 90 | PRAVAAH | 
+      | 51 | No Objection Certificate (NOC)    for amalgamation of an NBFC with other NBFCs or entities other than a Banking    Company | 90 | PRAVAAH | 
+      | 52 | Permission to    NBFCs for investing or divesting Equity Shareholding and retaining Equity    Investments beyond prescribed prudential limits | 90 | PRAVAAH | 
+      | 53 | Permission to NBFCs for    undertaking various activities departmentally or expansion of the scope of    activities of their group entities | 90 | PRAVAAH | 
+      | Non-Banking Financial    Companies, Payment System Providers and Payment System Participants | 
+      | 54 | Application for Aadhaar    Authentication License in terms of Section 11A of the PML Act, 2002 | 60 | PRAVAAH | 
+      | Non-Banking Financial    Company (NBFC) and Asset Reconstruction Company (ARC) | 
+      | 55 | NOC    for change in name of NBFC or ARC | 45 | PRAVAAH | 
+      | 56 | Request for CoR upon change of name of NBFC or ARC | 45 | PRAVAAH | 
+      | 57 | Request for duplicate CoR by    NBFC or ARC due to loss of original CoR | 45 | PRAVAAH | 
+      | 58 | Application for voluntary surrender of CoR by    NBFCs including HFCs for cancellation | 90 | PRAVAAH | 
+      | Regional Rural Banks (RRBs) | 
+      | 59 | Permission to RRBs for opening of Banking    Outlets or issue of License for Banking Outlets, Service Branches, Regional    Offices | 45 | PRAVAAH | 
+      | 60 | Permission to RRBs for    shifting of Banking Outlets outside the Revenue Centre | 45 | PRAVAAH | 
+      | Scheduled Commercial Banks (SCBs) | 
+      | 61 | Request letter for Credit Risk    Mitigation (CRM) amount under Section 11 (2) (b) of the Banking Regulation    Act, 1949 | 5 | PRAVAAH | 
+      | 62 | Request letter    for statutory amount under Section 11 (2) (b) of the Banking Regulation Act,    1949 | 5 | PRAVAAH | 
+      | 63 | Approval to banks for exercise of    call option on capital instruments | 15 | PRAVAAH | 
+      | 64 | Application for    authorisation for opening of Banking Outlets under approved Annual Banking    Outlet Expansion Plan | 30 | PRAVAAH | 
+      | 65 | Application for NOC for change in    name of banking company | 30 | PRAVAAH | 
+      | 66 | Approval of    Annual Banking Outlet Expansion Plan in respect of domestic SCBs excluding RRBs,    for which the general permission has been withdrawn and for Payment Banks and    Local Area Banks | 45 | PRAVAAH | 
+      | 67 | Application for Part-time Honorary Work of MD and CEO,  CEO in Private Sector Banks, including SFBs, PBs and LABs as well as Foreign  Banks, including Wholly Owned Subsidiaries of Foreign Banks operating in India | 45 | PRAVAAH | 
+      | 68 | Authorisation to SCBs for importing gold or silver under  Foreign Trade Policy | 60 | PRAVAAH | 
+      | 69 | Application for amendment in Articles of Association in  Private Sector Banks, including Small Finance Banks (SFBs), Payment Banks (PBs)  and Local Area Banks (LABs) | 90 | PRAVAAH | 
+      | 70 | Application for appointment or re-appointment of MD and  CEO, CEO, other Whole Time Directors, Part Time Chairman in Private Sector  Banks, including SFBs, PBs and LABs as well as Foreign Banks, including Wholly  Owned Subsidiaries (WOS) of Foreign Banks operating in India | 90 | PRAVAAH | 
+      | 71 | Application for Indian banks to set up an IBU at GIFT  City | 90 | PRAVAAH | 
+      | 72 | Application for Remuneration of MD and CEO, CEO, other  Whole Time Directors, Part Time Chairman in Private Sector Banks, including SFBs,  PBs and LABs as well as Foreign Banks, including Wholly Owned Subsidiaries of  Foreign Banks operating in India | 90 | PRAVAAH | 
+      | 73 | Application of Foreign Banks, operating in India in  branch mode, for opening Back Office or CPC, etc. | 90 | PRAVAAH | 
+      | 74 | Approval for acquisition of five per cent or more of the  Paid-up Share Capital or Voting Rights in a Banking Company | 90 | PRAVAAH | 
+      | 75 | Approval for amalgamation of a Banking Company with  another Banking Company | 90 | PRAVAAH | 
+      | 76 | NOC for    amalgamation of a Holding Company or an NBFC with a Banking Company | 90 | PRAVAAH | 
+      | 77 | Permission to SCBs for divesting    Equity Shareholding or retaining Equity Investments beyond prescribed    prudential limits in a Company | 90 | PRAVAAH | 
+      | 78 | Permission to    SCBs for expanding scope of activities of their group entities | 90 | PRAVAAH | 
+      | 79 | Permission to SCBs for granting    of unsecured advances to subsidiaries | 90 | PRAVAAH | 
+      | 80 | Permission to    SCBs for investing in equity shareholding of a company | 90 | PRAVAAH | 
+      | 81 | Permission to SCBs for    undertaking various activities departmentally | 90 | PRAVAAH | 
+      | 82 | Reporting of breach by SCBs in the investment limits  specified in the Master Direction on Undertaking of Financial Services, 2025 | 90 | PRAVAAH | 
+      | 83 | Application for    Foreign Banks desirous of establishing presence in India in Branch mode or    WOS mode | 270 | PRAVAAH | 
+      | 84 | Application for Foreign Banks    desirous of establishing presence in India through Representative Office | 270 | PRAVAAH | 
+      | 85 | Application for    Indian Banks desirous of opening offices outside India | 270 | PRAVAAH | 
+      | 86 | Application of Foreign Banks for    shifting of Branches | 270 | PRAVAAH | 
+      | 87 | Application of    Foreign Banks, operating in India in branch mode, for opening new place of    Business | 270 | PRAVAAH | 
+      | 88 | Application for License of Small    Finance Bank under the guidelines for on tap Licensing of Small Finance Banks    in the private sector | 270 | PRAVAAH | 
+      | 89 | Application for    License of Universal Bank under the guidelines for on tap Licensing of    Universal Banks in the private sector | 270 | PRAVAAH | 
+      | 90 | Application for voluntary transition of Small Finance Banks to    Universal Banks | 270 | PRAVAAH | 
+      | Scheduled Commercial Banks and Co-operative    Banks | 
+      | 91 | Approvals to banks for holding    non-banking assets beyond 7 and up to 12 years, in terms of Section 9 of    Banking Regulation Act, 1949 | 60 | PRAVAAH | 
+      | Scheduled Commercial Banks and Regional Rural    Banks | 
+      | 92 | Application for inclusion of    Universal Banks or Small Finance Banks or Payments Banks or Foreign Banks or    RRBs in the Second Schedule of RBI Act, 1934 | 45 | PRAVAAH | 
+      | Scheduled Commercial Banks, Regional Rural    Banks and Co-operative Banks | 
+      | 93 | Appropriation of Reserve -    Commercial Banks including RRBs, UCBs, StCBs and DCCBs | 45 | PRAVAAH | 
+      | 94 | Extension of    timeline for submission of Annual Financial Statement under Section 31 of B R    Act, 1949 | 45 | PRAVAAH | 
+      | 95 | Waiver of penalty on delayed or    non-submission of returns | 45 | PRAVAAH | 
+      | 96 | Waiver requests    from banks with respect to the penal interest levied on banks by RBI for    defaults in CRR and SLR maintenance | 60 | PRAVAAH | 
+      | Scheduled Commercial Banks, Regional Rural Banks, Co-operative Banks and Local Area Banks | 
+      | 97 | Permission to Scheduled Commercial Banks, Small Finance  Banks, Payment Banks, Local Area Banks, Regional Rural Banks, Urban  Co-operative Banks and Rural Co-operative Banks for launching Digital Banking  Channel | 90 | PRAVAAH | 
+      | State    and District Central Co-operative Banks and Regional Rural Banks | 
+      | 98 | Permission to StCBs or DCCBs    or RRBs for undertaking various activities departmentally | 90 | PRAVAAH | 
+      | State    and District Central Co-operative Banks | 
+      | 99 | Approval to StCBs and DCCBs for coupon payment on Perpetual Debt Instruments  (PDI) | 30 | PRAVAAH | 
+      | 100 | Approval to StCBs and DCCBs for issuance of    regulatory capital instruments – PNCPS, PDI, RNCPS, PCPS, LTSBs | 30 | PRAVAAH | 
+      | 101 | Approval to StCBs and DCCBs    for redemption or exercise of call option of regulatory capital instruments –    PNCPS, PDI, RNCPS, PCPS, LTSBs, LTDs | 30 | PRAVAAH | 
+      | 102 | Intimation by StCBs or DCCBs for offering Doorstep Banking Services | 30 | PRAVAAH | 
+      | 103 | Intimation by StCBs or DCCBs for Opening, Shifting, Closing of a Branch,  EC, Office, ATM or Splitting, Part Shifting of a Branch or Office | 30 | PRAVAAH | 
+      | 104 | Intimation by StCBs and DCCBs regarding compliance with Eligibility  Criteria for Business Authorisation – ECBA | 30 | PRAVAAH | 
+      | 105 | Application by StCBs and DCCBs for Extension or Curtailment in Area of  Operation after obtaining RCS approval | 90 | PRAVAAH | 
+      | 106 | Application by a StCB or DCCB for obtaining approval to change its Name | 90 | PRAVAAH | 
+      | 107 | Application by a StCB or DCCB for obtaining NOC to amend its byelaws | 90 | PRAVAAH | 
+      | 108 | Application by a StCB or DCCB for obtaining NOC to change its Name | 90 | PRAVAAH | 
+      | 109 | Application for Voluntary Amalgamation of StCBs and DCCBs | 90 | PRAVAAH | 
+      | 110 | Prior approval for shifting of offices, sale or surrendering of existing  premises or for acquisition of new premises on ownership or leased rental basis  by a StCB or DCCB that is not complying with provisions of Section 11-1 of the  Banking Regulation Act, 1949 – AACS | 90 | PRAVAAH | 
+      | 111 | Prior permission to StCBs or DCCBs for Allotment of Centres for opening  Branch, Extension Counters, Controlling Office, etc. under Annual Business Plan | 90 | PRAVAAH | 
+      | 112 | Prior permission to StCBs or DCCBs for shifting of Head Office | 90 | PRAVAAH | 
+      | 113 | Grant of Banking License to State Co-operative Banks (StCBs) and District  Central Co-operative Banks (DCCBs) | 240 | PRAVAAH | 
+      | State Co-operative Banks | 
+      | 114 | Application  by StCBs for inclusion in the Second Schedule of the RBI Act, 1934 | 240 | PRAVAAH | 
+         | Urban Co-operative Banks | 
+         | 115 | Approval to UCBs for coupon payment on Perpetual Debt  Instruments | 30 | PRAVAAH | 
+         | 116 | Intimation by UCBs for Opening, Shifting, Closing of a  Branch, EC, Office, ATM or Splitting, Part Shifting of a Branch or Office | 30 | PRAVAAH | 
+         | 117 | Intimation by UCBs regarding compliance with Eligibility  Criteria for Business Authorisation –ECBA | 30 | PRAVAAH | 
+         | 118 | Intimation by UCBs to the Reserve Bank for offering  Doorstep Banking Services | 30 | PRAVAAH | 
+         | 119 | NOC to UCBs for Open System Prepaid Payment Instrument  (PPIs) | 45 | PRAVAAH | 
+         | 120 | NOC to UCBs for Semi closed PPIs | 45 | PRAVAAH | 
+         | 121 | Application by UCBs for extension of Area of Operations  after obtaining CRCS or RCS approval | 90 | PRAVAAH | 
+         | 122 | Application by UCBs for obtaining approval to change its  Name | 90 | PRAVAAH | 
+         | 123 | Application by UCBs for obtaining NOC to amend its  byelaws | 90 | PRAVAAH | 
+         | 124 | Application by UCBs for obtaining NOC to change its Name | 90 | PRAVAAH | 
+         | 125 | Application from an UCB for voluntary amalgamation | 90 | PRAVAAH | 
+         | 126 | Approval to UCBs for deployment of Point of Sale (POS)  Terminal | 90 | PRAVAAH | 
+         | 127 | NOC to UCBs for extension in Area of Operation beyond  four districts and up to the whole state of Registration or for Multi-state or  Curtailment in Area of Operation | 90 | PRAVAAH | 
+         | 128 | Permission to scheduled UCBs for Online Trading facility | 90 | PRAVAAH | 
+         | 129 | Permission to UCBs for exercise of call option on Preference  Shares or Debt Capital Instruments | 90 | PRAVAAH | 
+         | 130 | Permission to UCBs for issuance of Debt Capital  Instruments - LTSB or PDI | 90 | PRAVAAH | 
+         | 131 | Permission to UCBs for issuance of Preference Shares | 90 | PRAVAAH | 
+         | 132 | Permission to UCBs for payment of dividend | 90 | PRAVAAH | 
+         | 133 | Prior approval for shifting of offices, sale or  surrendering of existing premises or for acquisition of new premises on  ownership or leased rental basis by a UCB that is not complying with provisions  of Section 11-1 of the Banking Regulation Act, 1949 – AACS | 90 | PRAVAAH | 
+         | 134 | Prior approval to UCBs for Appointment of Business  Correspondent or Business Facilitator | 90 | PRAVAAH | 
+         | 135 | Prior permission to UCBs for Allotment of Centres for  opening Branch, Extension Counters, Controlling Office etc. under Annual  Business Plan | 90 | PRAVAAH | 
+         | 136 | Prior permission to UCBs for shifting of Head Office | 90 | PRAVAAH | 
+         | 137 | Voluntary conversion of UCBs into Credit Societies | 90 | PRAVAAH | 
+         | 138 | Application by UCBs for inclusion in Second Schedule to  the RBI Act, 1934 | 240 | PRAVAAH | 
+         | 139 | Application for voluntary transition of Urban  Co-operative Banks to Small Finance Banks | 270 | PRAVAAH | 
+  
+    | Foreign     Exchange Department (FED) | 
+    | Authorised Dealer (AD) / Money Transfer Service    Scheme (MTSS) / Rupee Drawing Arrangement (RDA) / Authorised Banks | 
+    | 160 | Renewal of Authorisation as AD Category – III | 10 | PRAVAAH | 
+    | 161 | Renewal of Permission to act as Indian Agent under Money Transfer Service  Scheme | 10 | PRAVAAH | 
+    | 162 | Renewal of Authorisation as FFMC | 10 | PRAVAAH | 
+    | 163 | Renewal of Authorisation as AD Category – II | 10 | PRAVAAH | 
+    | 164 | Application for Authorisation as AD Category - I | 30 | PRAVAAH | 
+    | 165 | Application for Authorisation as AD Category – III | 30 | PRAVAAH | 
+    | 166 | Application for Authorisation as AD Category – II | 30 | PRAVAAH | 
+    | 167 | Approval for Change in Management or Control, or Ownership of more than 50  per cent | 30 | PRAVAAH | 
+    | 168 | Authorisation to Open & Maintain Non-Resident (External) [NRE] Accounts  by UCBs | 30 | PRAVAAH | 
+    | 169 | Permission to act as Indian Agent under Money Transfer Service Scheme | 30 | PRAVAAH | 
+    | 170 | Permission to enter into Rupee Drawing Arrangement with Non-Resident  Exchange House | 30 | PRAVAAH | 
+    | 171 | Appeal under Foreign Exchange Management - Authorised Persons -  Regulations, 2026 | 60 | PRAVAAH | 
+    | Compounding | 
+    | 172 | Compounding of    contraventions of FEMA, 1999 | 150 | PRAVAAH | 
+    | External Commercial Borrowing    (ECB) / Foreign Currency Convertible Bonds (FCCB) | 
+    | 173 | Trade credit under approval route | 7 | PRAVAAH | 
+    | 174 | Approval for deviation from the    extant framework for ECBs already availed under automatic route | 15 | PRAVAAH | 
+    | 175 | Approval to undertake borrowing or lending transaction under FEMA-Reg. 3 of  FEMA 3R | 40 | PRAVAAH | 
+    | 176 | Approval to undertake guarantee transaction under FEMA-Reg. 3 of FEMA 8 | 40 | PRAVAAH | 
+    | 177 | ECB – Under approval route | 40 | PRAVAAH | 
+    | Foreign Currency Accounts | 
+    | 178 | To open foreign currency    account in India | 7 | PRAVAAH | 
+    | 179 | To open foreign currency account outside    India | 7 | PRAVAAH | 
+    | 180 | To receive salary outside    India in foreign currency account | 7 | PRAVAAH | 
+    | 181 | To open Non-Resident Ordinary (NRO) account | 30 | PRAVAAH | 
+    | Foreign Investment | 
+    | 182 | References relating to reporting    received from AD branches / individuals / companies | 15 | PRAVAAH | 
+    | 183 | Foreign Direct    Investment (FDI): References / clarifications / approvals sought under extant    FDI Rules / Regulations (should be invariably routed through AD banks) | 20 | PRAVAAH | 
+    | General Purpose | 
+    | 184 | General    References related to acquisition, sale, etc. of immovable properties,    External Payments, Trade, EDPMS, IDPMS, Overseas Investment, Authorised    Persons, Liaison Office / Branch Office / Project Office, Foreign Investment    under NDI Rules, Non-Resident Foreign Currency Accounts, Borrowing / Lending    under FEMA 3R, Guarantees | 10 | PRAVAAH | 
+    | Indian Investment Abroad | 
+    | 185 | Prior Approval for Overseas Investment Transactions – not  covered under automatic route | 25 | PRAVAAH | 
+    | 186 | References on contraventions observed with respect to  Overseas Investment provisions under FEMA, 1999 | 30 | PRAVAAH | 
+    | Liaison Office (LO) / Branch Office (BO) /    Project Office (PO) | 
+    | 187 | Approval for establishing additional LO / BO in India | 30 | PRAVAAH | 
+    | 188 | Permission for establishment of new LO / BO / PO in India  under Approval Route | 30 | PRAVAAH | 
+    | Miscellaneous    External Payments | 
+    | 189 | Approvals given for proposals    regarding miscellaneous external payments of permissible Current and Capital    Account transactions | 20 | PRAVAAH | 
+    | Overseas Insurance | 
+    | 190 | Approvals to take insurance    policies from insurance companies in foreign countries | 10 | PRAVAAH | 
+    | Transfer / Acquisition of Immovable Property | 
+    | 191 | For transfer / acquisition of    immovable property under approval route in consultation with Government of    India. | 30 | PRAVAAH | 
+    | 192 | Permission for    acquisition / transfer of immovable property not covered under general    permission in terms of Foreign Exchange Management Act (FEMA), 1999 or the    rules / regulations made thereunder. | 30 | PRAVAAH |

@@ -1,0 +1,6 @@
+URL: https://kat.karnataka.gov.in
+DOMAIN: kat.karnataka.gov.in
+TITLE: Karnataka Appellate Tribunal (KAT)
+FETCHED_AT: 2026-10-28
+---
+Karnataka Appellate Tribunal (KAT) is the premier administrative tribunal hearing statutory appeals and revision petitions against decisions of revenue authorities, cooperative societies registrars, and commercial tax commissioners in Karnataka. The portal provides daily cause lists, case status, certified copy applications, and published tribunal orders.

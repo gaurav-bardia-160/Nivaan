@@ -1,0 +1,11 @@
+URL: https://idrn.nidm.gov.in/About/Index
+TITLE: India Disaster Resource Network
+FETCHED_AT: 2026-10-28
+---
+- IDRN Overview
+- IDRN is a nation-wide electronic inventory of resources that enlists equipment and human resources, collated from districts, states and national level line departments and agencies.
+- IDRN is a web based platform, for managing the inventory of equipment, skilled human resources and critical supplies for emergency response. Primary focus of IDRN portal is to enable the decision makers to find answers on availability of equipment and human resources required to combat any emergency situation. This database will also enable them to assess the level of preparedness for specific disasters.
+- HOW IDRN WORKS ?
+- The online inventory of resources is hosted in the National Informtics Centre (NIC), New Delhi. Only the authorized Government officers have the access to uploaded data in the portal and the district authorities are the officials for facilitating data collection and updation . Data is monitored and maintained at the central level by National Institute of Disaster Management (NIDM).Besides NIDM is responsible for the overall administration of the portal.
+- UPDATE DATA IN IDRN ?
+- District Collectors/Magistrate are the authorized officials to get the latest information about disaster management resources available with various line departments/agencies and uploaded in the portal, using services of District Informatics Officers.

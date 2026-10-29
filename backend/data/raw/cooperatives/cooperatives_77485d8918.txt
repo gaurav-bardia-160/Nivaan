@@ -1,0 +1,14 @@
+URL: https://cooperatives.gov.in/faq
+TITLE: NCD - FAQ
+FETCHED_AT: 2026-10-28
+---
+- State Nodal Officer
+- District Nodal Office
+- DEO
+- DCCB
+- StCB
+- SCARDB
+- PCARDB
+Functional: Cooperatives that are registered with the relevant authority, engage in business activities, and regularly provide statutory audits and annual reports.
+Non-functional: A cooperative society that is no longer active or operational, often due to financial difficulties, management issues, lack of member participation, or failure to achieve its objectives.
+Under Liquidation: A cooperative society in the process of being formally dissolved, with its assets being distributed. Liquidation typically occurs when a cooperative is financially insolvent or unable to meet its objectives.

@@ -1,0 +1,9 @@
+URL: https://cmhelpline.mp.gov.in/ScreenReaderDownload.aspx
+TITLE: CM Helpline MP - स्क्रीन रीडर
+
+The website complies with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 level AA. This will enable people with visual impairments access the website using assistive technologies, such as screen readers. Following table lists the information about different screen readers:
+Information related to the various screen readers
+| S.N. | Screen Reader | Website Link To Download | Free / Commercial | 
+|---|---|---|---|
+| 1. | JAWS | http://www.freedomscientific.com/Downloads/JAWS | Commercial | 
+| 2. | Non Visual Desktop Access (NVDA) | http://www.nvaccess.org/download | Free |

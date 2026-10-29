@@ -1,0 +1,6 @@
+URL: https://karnataka.gov.in
+DOMAIN: kar.nic.in
+TITLE: Karnataka State Centre - National Informatics Centre
+FETCHED_AT: 2026-10-28
+---
+NIC Karnataka State Centre (kar.nic.in) leads the architecture and deployment of mission-mode e-governance systems in Karnataka, including Bhoomi (land records), Kaveri (property registration), Khajane (treasury management), Seva Sindhu (citizen services), and Panchatantra (Gram Panchayat MIS), driving digital public services across the state.

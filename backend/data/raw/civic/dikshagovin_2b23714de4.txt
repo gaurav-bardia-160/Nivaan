@@ -1,0 +1,7 @@
+URL: https://diksha.gov.in/adult-education.html
+TITLE: Digital Infrastructure for Knowledge Sharing (DIKSHA) - Education For All To impart foundational literacy and numeracy, critical life skills for Citizens Learn More
+
+The National Education Policy (NEP) 2020 emphasizes that foundational literacy, education, and livelihood are basic rights for every citizen. Literacy opens doors to personal, civic, and economic opportunities, benefiting both individuals and society. High literacy rates are linked to economic growth. To align with NEP 2020, the Government of India launched the ULLAS - New India Literacy Programme (2022-2027), which focuses on foundational literacy, numeracy, and critical life skills like financial, legal, digital literacy, disaster management, and health awareness. This ULLAS program also includes vocational skills and basic education equivalency and continuing education as other five components. The goal is to target 5 crore non-literates over five years, with 1 crore learners per year for foundational literacy and numeracy.
+The Online Survey App enables a surveyor appointed/designated by the States/UTs officers to enter information about Non-literates of 15 years and above age group and volunteers while performing door to door survey in the society/vicinity.
+The app enables monitoring of learning centers which can be done by any authorized user.
+The administrators can use the solution to plan for the number of citizens to be taught during the fiscal year. The planning can be done from the National to the Gram Panchayat level.

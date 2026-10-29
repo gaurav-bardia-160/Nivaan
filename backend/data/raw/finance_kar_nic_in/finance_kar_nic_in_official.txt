@@ -1,0 +1,6 @@
+URL: https://finance.karnataka.gov.in
+DOMAIN: finance.kar.nic.in
+TITLE: Finance Department, Government of Karnataka
+FETCHED_AT: 2026-10-28
+---
+Finance Department, Government of Karnataka, manages the state's economic policy, public expenditure, annual budget presentation, and fiscal management. Through the Khajane-II integrated financial management system, it automates treasury bill clearances, government employee salaries, pension disbursements, and public debt management.

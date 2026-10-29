@@ -1,0 +1,6 @@
+URL: https://abdm.gov.in
+DOMAIN: abdm.gov.in
+TITLE: Ayushman Bharat Digital Mission (ABDM)
+FETCHED_AT: 2026-10-28
+---
+Ayushman Bharat Digital Mission (ABDM), steered by the National Health Authority (NHA), develops the digital backbone for India's integrated healthcare infrastructure. Through abdm.gov.in, citizens create a 14-digit Ayushman Bharat Health Account (ABHA) number and ABHA card, link digital health records from hospitals and diagnostics labs, grant consent for medical history access, and discover verified doctors via the Healthcare Professionals Registry (HPR) and Health Facility Registry (HFR).

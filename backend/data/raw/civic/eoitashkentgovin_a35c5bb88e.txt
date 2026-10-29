@@ -1,0 +1,15 @@
+URL: https://eoitashkent.gov.in/online-filing-tracking-commercial-quality-complaints-trade-disputes/
+TITLE: Tashkent Official Portal - Online Filing & Tracking Commercial Quality Complaints/ Trade Disputes
+
+Online Filing & Tracking Commercial Quality Complaints/ Trade Disputes
+Guidelines for the Complainants
+- Go to DGFT website www.dgft.gov.in > Quick Links > File Quality/ Trade Grievances > fill Online Application Form.
+(http://dgftebrc.nic.in:8090/TradeDispute/)
+- Upload documents related to the quality complaint/trade dispute, wherever required (maximum 5 MB size documents in pdf format).
+- Submit Online Application Form to the jurisdictional RA of DGFT / SEZ
+(this jurisdiction should be ascertained by the complainant, with respect to the Indian entity against whom the complaint is being made or with respect to the Indian complainant where the complaint is being filed against a foreign entity, as per Appendix of Handbook of Procedures
+(https://dgft.gov.in/sites/default/files/1A_0.pdf)).
+- On submission, a Unique Reference Number (URN) starting with ‘Q’ will be generated and sent to the email id of the complainant. Please make sure that the email id is functional as all future correspondence will be made on this id only.
+- The complainant, at a future date, can also provide additional material/ correspondence to the DGFT RA/ SEZ. While making any future correspondence with the DGFT RA/ SEZ to whom the Online Application has been submitted earlier, the URN must be quoted invariably in the subject header of the email.
+- A link ‘View Status’ is also available for the complainant to check current position of the complaint at
+http://dgftebrc.nic.in:8090/TradeDispute/status.

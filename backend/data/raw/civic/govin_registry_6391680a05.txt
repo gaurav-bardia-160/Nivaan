@@ -1,0 +1,12 @@
+URL: https://registry.gov.in/domainregister_procedure.php
+TITLE: GOV.IN Registry - Procedure
+
+- Home
+- Domain Registration Process
+- Determine, if desirous Department/Organisation qualifies to receive a domain name under GOV.IN by reviewing the guidelines.
+- Review the domain naming conventions and ensure that the desired domain name complies with the conventions.
+- Check availability for the desired domain name.
+- Register the Domain Name request using Online
+Registration Service.
+- Follow the instruction for generating and signing Authorization(Annexure-I) and Forwarding(Annexure-II) Letter online for registration of the domain.
+- User may refer Help Video for complete assistance.

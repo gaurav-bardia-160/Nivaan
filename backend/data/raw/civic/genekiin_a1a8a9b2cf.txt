@@ -1,0 +1,83 @@
+URL: https://geneki.in/blog/gigw-3-guide/
+TITLE: GIGW 3.0 checklist: what every Indian government website and app must get right | Geneki
+
+The short version
+- GIGW 3.0 is the rulebook for Indian government websites and, since 2023, government apps too.
+- Its heart is accessibility: everything should meet WCAG 2.1 level AA, so people with disabilities can use it.
+- It also covers content, languages, standard pages, security and hosting.
+- Sites can be certified by STQC. Planning for GIGW from the first wireframe is far cheaper than fixing things before an audit.
+What GIGW is
+GIGW stands for the Guidelines for Indian Government Websites. Think of it as the building code for government digital services: it sets the minimum standard every ministry, department, state government and public body should meet online.
+The latest version, GIGW 3.0, arrived in 2023. It was prepared by the National Informatics Centre under the Ministry of Electronics and Information Technology, with input from STQC (the government's testing and certification arm) and CERT-In (the national cybersecurity agency). Its new title, Guidelines for Indian Government Websites and Apps, tells you the biggest change: mobile apps are now covered too.
+Every guideline is marked MUST (compulsory), SHOULD (strongly advised) or MAY (optional). Start with the MUSTs.
+Who has to follow it
+If a website or app belongs to the government, GIGW applies. That includes central ministries and departments, state and union territory governments, district administrations, public sector undertakings, regulators and other public bodies.
+It matters just as much to the people who build these services. Agencies and IT vendors are increasingly asked to deliver GIGW compliance as part of the contract, so it is worth understanding before you bid, not after you win.
+Why it is not optional in spirit: the Rights of Persons with Disabilities Act, 2016 makes accessible information and technology a legal duty. GIGW is how government websites meet it in practice.
+Accessibility comes first
+India has tens of millions of people living with a disability, and many more who are elderly, on a cheap phone or a slow connection. A government website is often their only way to a service. That is why GIGW 3.0 is built on WCAG 2.1 level AA, the international standard for accessible websites.
+In everyday terms, that means:
+- Every image explains itselfMeaningful images have a short text description, so a screen reader can read it aloud.
+- Everything works without a mouseMenus, forms and pop-ups can all be used with a keyboard alone, with a clearly visible focus outline.
+- Text is easy to readNormal text has a colour contrast of at least 4.5 to 1 against its background, and pages still work when text is zoomed to 200%.
+- Media has wordsVideos have captions, and audio has a transcript.
+- Forms are forgivingEvery field has a label, and errors say what went wrong and how to fix it, not just "invalid input".
+- Screen readers make sense of itHeadings, landmarks and links are coded properly, so assistive technology can navigate the page.
+The cheapest way to get this right is to build it in from the start: an accessible design system, real content in the designs, and testing with a screen reader before launch, not after.
+The pages every site needs
+GIGW expects citizens to find the same basics on every government website, so they always know where to look. Make sure yours has:
+- A clear identity: the department's name, its parent ministry or state, and the national emblem or state logo used correctly.
+- About us, Contact us and a Feedback option.
+- Help and a Sitemap.
+- Policies: terms of use, privacy, copyright, hyperlinking and content archival.
+- An accessibility statement and, for screen reader users, guidance on how to use the site.
+- A "last updated" date and a named owner for each piece of content, so nothing goes stale.
+Central government sites are expected to offer content in Hindi and English, and many states add their own language too. Plan the translation workflow early, because it touches every page.
+Collecting personal data through forms? India's new privacy law applies to government services as well.
+Related guideYour customers' data now comes with rulesWhat India's DPDP Act asks of every business that collects personal data, and a 30-day plan to get ready.
+Security and hosting
+GIGW 3.0 includes a cybersecurity chapter written with CERT-In. It covers three areas: the web application itself, the mobile app, and the infrastructure it runs on.
+The practical expectations will be familiar to any good engineering team:
+- HTTPS everywhere, with properly configured certificates and security headers.
+- Protection against the common attacks listed by OWASP, such as injection and broken access control.
+- A security audit before launch and after major changes.
+- Hosting that follows recognised standards such as ISO 27001, with backups, monitoring and a plan for incidents.
+Common trap: third-party plugins and old content management systems. They are a frequent cause of failed audits, so keep the stack small and up to date.
+Apps are in scope too
+Version 3.0 brings mobile apps under the same roof. That means apps need the same care for accessibility as websites, with extra attention to things that only exist on phones: touch gestures that also have a simple alternative, buttons large enough to tap, support for the phone's own screen reader and text size settings, and secure storage of anything sensitive on the device.
+If you are planning an app, decide early whether a fast, accessible website would serve citizens just as well. One good service is easier to keep compliant than two.
+Getting certified
+STQC, a directorate under the Ministry of Electronics and Information Technology, runs a Website Quality Certification scheme that tests sites against GIGW. It has published updated application rules for GIGW 3.0, and they ask for an accessibility review report from an IAAP certified auditor before you apply. IAAP is the International Association of Accessibility Professionals.
+The simplest way to sail through is to treat certification as the last step of a project that was built for it, rather than a separate exercise at the end.
+A pre-launch checklist
+Before any government website or app goes live, walk through these ten questions:
+- Can every task be completed with a keyboard alone?
+- Does a screen reader announce headings, links, buttons and form errors sensibly?
+- Does all text meet the 4.5 to 1 contrast ratio, and does the page work at 200% zoom?
+- Do all meaningful images have text alternatives, and do videos have captions?
+- Are the standard pages (contact, feedback, help, sitemap, policies, accessibility statement) in place and linked from every page?
+- Is the content available in the required languages?
+- Is every page dated and owned by a named person?
+- Has a security audit been done, and have its findings been fixed?
+- Does the site load quickly on a basic phone over a slow connection?
+- Is there a plan, and a budget, for keeping all of this true after launch?
+Questions people ask
+Is GIGW mandatory?
+For government websites and apps in India, GIGW is the standard they are expected to meet, and departments increasingly ask for compliance in tenders. Within GIGW, each guideline is marked MUST, SHOULD or MAY, so not every line is compulsory.
+What is the difference between GIGW and WCAG?
+WCAG is the international standard for web accessibility. GIGW 3.0 builds on WCAG 2.1 level AA and adds India-specific requirements on content, languages, security, hosting and certification.
+Do government mobile apps need to follow GIGW?
+Yes. Version 3.0 is titled Guidelines for Indian Government Websites and Apps, and it adds detailed guidance for mobile apps, including touch gestures and accessibility.
+What is STQC website certification?
+STQC, a directorate under MeitY, runs a Website Quality Certification scheme that tests sites against GIGW. Its current rules ask for an accessibility review by an IAAP certified auditor as part of the application.
+Which accessibility level do government websites need?
+WCAG 2.1 level AA. In practice that means things like text alternatives for images, full keyboard use, a colour contrast of at least 4.5:1 for normal text, captions for videos and pages that work with screen readers.
+Building or upgrading a government portal?
+Geneki designs and builds citizen-facing websites and portals to GIGW 3.0 and WCAG 2.1 AA from day one, so certification is a formality, not a fire drill.
+Talk to us
+Sources
+- Guidelines for Indian Government Websites and Apps (GIGW) 3.0
+- GIGW 3.0: new features and roadmap
+- Website Quality Certification
+- What is GIGW 3.0
+This guide summarises GIGW 3.0 in general terms. Always check the latest official guidelines and certification rules before a launch or audit.

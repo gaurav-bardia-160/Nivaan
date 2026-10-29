@@ -1,0 +1,6 @@
+URL: https://dahd.nic.in
+DOMAIN: nadrsapps.gov.in
+TITLE: National Animal Disease Reporting System (NADRS)
+FETCHED_AT: 2026-10-28
+---
+National Animal Disease Reporting System (NADRS), operated under the Department of Animal Husbandry and Dairying (DAHD), Ministry of Fisheries, Animal Husbandry and Dairying, is an MIS application for computerized disease reporting from block veterinary dispensaries to national headquarters. It accelerates epidemic containment, vaccination campaigns, and animal health surveillance nationwide.

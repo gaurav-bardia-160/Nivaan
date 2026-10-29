@@ -1,0 +1,23 @@
+URL: https://www.mygov.in/simple-page/help
+TITLE: Help | MyGov
+
+Are you finding it difficult to access/navigate through the content/pages of this Portal? This section attempts to help you have a pleasant experience while browsing this Portal.
+Sections of this Portal
+The Do and Discuss section provides information about all the tasks and discussions group wise.
+File Format:
+Viewing Information in Various File Formats
+The information provided by this website is available in Portable Document Format (PDF), and also in HTML format. To view the information properly, your browser needs to have the required plug-ins or software. For example, the pdf reader software is required to view the pdf format document. In case your system does not have this software, you can download it from the Internet for free.
+| Document Type | Plug-in for Download | 
+|---|---|
+|  | Adobe Acrobat Reader Convert a PDF file online into HTML or text format | 
+|  | Word Viewer | 
+|  | Excel Viewer | 
+|  | PowerPoint Viewer | 
+|  | Windows Media Player | 
+Accessibility Help
+Use the accessibility options provided by this website to control the screen display. These options allow increasing the text size and changing the contrast scheme for clear visibility and better readability.
+Changing the Text Size
+Changing the size of the text refers to making the text appearing smaller or bigger from its standard size. There are three options provided to you to set the size of the text that affects the readability. These are:
+- Large: Displays information in the large font size.
+- Medium: Displays information in a standard font size, which is the default size.
+- Small: Displays information in the small font size.

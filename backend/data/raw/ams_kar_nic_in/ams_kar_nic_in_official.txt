@@ -1,0 +1,6 @@
+URL: https://karnataka.gov.in
+DOMAIN: ams.kar.nic.in
+TITLE: Asset Management System Karnataka
+FETCHED_AT: 2026-10-28
+---
+Asset Management System (AMS), Government of Karnataka, is an enterprise GIS-based portal for recording, managing, and maintaining public assets, government lands, civil infrastructure, and state-owned buildings, ensuring optimal utilization and protection of public property.

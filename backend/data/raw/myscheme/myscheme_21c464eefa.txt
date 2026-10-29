@@ -1,0 +1,17 @@
+URL: https://www.myscheme.gov.in/screen-reader
+TITLE: Screen Reader
+FETCHED_AT: 2026-10-28
+---
+Screen Reader
+- Home
+- Screen Reader
+myScheme complies with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 level AA. This will enable people with visual impairments access the platform using assistive technologies, such as screen readers. The information of the platform is accessible with different screen readers, such as JAWS.
+Information related to the various screen readers
+| Screen Reader | Website | Free / Commercial |
+|---|---|---|
+| Non Visual Desktop Access (NVDA) |  | Free |
+| System Access To Go |  | Free |
+| Hal |  | Commercial |
+| JAWS |  | Commercial |
+| Supernova |  | Commercial |
+| Window-Eyes |  | Commercial |

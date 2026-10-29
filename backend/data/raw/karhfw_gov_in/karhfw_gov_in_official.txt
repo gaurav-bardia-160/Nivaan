@@ -1,0 +1,6 @@
+URL: https://hfw.karnataka.gov.in
+DOMAIN: karhfw.gov.in
+TITLE: Health & Family Welfare Services Karnataka
+FETCHED_AT: 2026-10-28
+---
+Department of Health and Family Welfare Services, Government of Karnataka, delivers primary, secondary, and tertiary public healthcare services. It administers the Ayushman Bharat - Arogya Karnataka cashless health insurance scheme, maternal and child healthcare, immunization programs, blood bank directories, and state healthcare infrastructure.

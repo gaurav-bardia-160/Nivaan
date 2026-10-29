@@ -1,0 +1,10 @@
+URL: https://sehore.nic.in/en/citizen-services/
+TITLE: Website | District Sehore, Government of - Citizen Services
+
+CITIZEN SERVICES
+For good governance, e-District project has been envisaged by Government of Madhya Pradesh (GoMP) as automation of workflow and internal processes of District Administration with the possibility of seamless integration of various departments for providing services to the citizens.
+This project is of paramount importance to the district as it would help in creating an electronic workflow system for the district administration and help in providing efficient individual department services through Common Service Centers (CSCs), Lok Sewa Kendra, MP-Online kiosks and internet, which would be the primary front end channels as envisaged in the project.
+eDistrict Project is being implemented under the framework of Public Service Guarantee Act.
+Citizens can get services through online mpedistrict portal,
+Login on http://mpedistrict.gov.in to get online certificate –
+Filter Service category wise

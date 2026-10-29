@@ -1,0 +1,44 @@
+URL: https://guidelines.india.gov.in/scope-of-work/
+TITLE: Scope of Work | Guidelines for Indian Government Websites and apps (GIGW) | India
+FETCHED_AT: 2026-10-26
+---
+Scope of Work
+The scope of work includes development of a cloud-based accessibility reporting solution that will be offered as a service to government entities. Solution must include the front-end user interface that is accessible through a web/mobile app. The solution will have the following features:
+Deliverables for Stage 2 – Minimum Viable Product
+Functional Requirements
+- Ability to test for compliance with any specific level of WGAG 2.1 (level A, AA or AAA) (https://www.w3.org/TR/WCAG21) and should have option to pull a report for WCAG 2.0 or 2.1
+- Test complete website (by providing the top-level URL) or particular page (URL)
+- Report Non-Compliances (NCs) as Errors and Warnings (with screenshots if required) along with recommendations to fix the NCs
+- Feature to report about the inventory of media (images, audios, videos) and documents (pdf, etc.) on the website
+- Facility to securely store iterative versions of assessment reports
+Non-Functional Requirement
+- Microservice based architecture
+- Developed on open-source frameworks and technologies that are scalable, reliable and free from any third-party license
+- Provision to expose APIs for integration with other systems
+- Solution to use encrypted network communication
+- No external hardware dependency to run tests
+- Ability to add more standards in the future
+Deliverables for Final Stage – Functioning Product
+Functional Requirements
+- On page visualizations of accessibility features like headings, landmarks, alt attributes, links and form controls
+- Two User roles (Administrator and tester) for each website registered on the application –
+- Administrator can schedule testing at predefined frequency or date and automatically send report in Email in Excel/PDF format
+- Administrator can turn on/off specific checkpoint to be tested on a single page or on full website and mark any checkpoint(s) as high priority
+- Administrators can customize the compliance level to be tested (WCAG 2.1 level A, AA or AAA)
+- Overview dashboard for a particular website will be available to site administrators displaying the accessibility score, current count of errors and warnings, historical review etc
+- Tester can view reports and set the rectification status for each report
+- Testers can mark a NC as resolved for a particular report
+- SMS/e-mail alerts if NCs not rectified in a particular time
+- Super admin role to have access to a dashboard for all the websites/ applications/ apps registered on the solution along with drill down to each of the websites/ applications/ apps
+Non-Functional Requirement
+- Use of Machine Learning, Artificial Intelligence to simulate manual testing of websites
+- Fix all security related issues reported in the audit by Cert-IN empanelled agency (https://www.cert-in.org.in/PDF/Empanel_org_2020.pdf )
+- Solution frontend to be accessible on any device
+Mandatory Deliverables after Contract Signing
+Functional Requirements
+- Browser Extension: The solution should also have a module for browser extension for popular browsers (Chrome, Firefox, Edge, Safari) that can be installed on browsers and helps users to perform accessibility audit of the websites with requisite authentication
+- App-based interface
+- Public Dashboard displaying usage statistics of the solution
+Non-Functional Requirement
+- Deployment script to be made available for automatic deployment
+- Complete Documentation

@@ -1,0 +1,14 @@
+URL: https://guidelines.india.gov.in/faqs/
+TITLE: FAQs | Guidelines for Indian Government Websites and apps (GIGW) | India
+FETCHED_AT: 2026-10-26
+---
+FAQs
+| Queries | Responses |
+|---|---|
+| In Stage 2 i.e. while building the Minimum Viable Product (MVP), which of the aspects should be focused | Focus on Deliverables for Stage 2 Ensure maximum coverage & automation of accessibility test cases. The MVP should be able to demonstrate efficient detection & level of automation achieved w.r.t as many accessibility issues as possible. |
+| Is it necessary to register as a private limited company or LLP to qualify as a Startup? | Refer FAQs on https://www.startupindia.gov.in/ Other Startup Community / Resource(s): https://meitystartuphub.in/ |
+| Onboarding of government users to the Cloud based Web Accessibility Reporting solution: Profile & anticipated numbers of primary users Volume of Government websites to be assessed by the solution | The entire solution would be hosted on NIC National Cloud and accessed using particular URL(s). Government entities will onboard and register their websites (to be tested) on this portal by providing required details (URL of homepage, contact details, etc.). So the pace of growth is expected to be organic. |
+| Workflow of the Cloud based Web Accessibility Reporting solution: What is the frequency of assessing each website e.g., daily, weekly etc. ?  Configurability of assessments & reports e.g.,
+Top level /Specific URL(s) Assessment type/level – WCAG 2.0 A / AA / AAA / GIGW Settings for reports – Sharing, storing versions, etc | The Cloud Based Web Accessibility Reporting Solution will follow the broad workflow: Enable role based login for users e.g., Administrators, Developers, Testers, etc. of respective Govt websites. Administrators should be able to log in & configure the home page URL, type/level & frequency (e.g., one time, weekly, fortnightly, monthly, etc,) of accessibility tests for their respective websites. Developers & Testers should be able to log in & specify the action taken to remedy the NCs (Non Compliances) that are reported as an outcome of each run of the accessibility test. The accessibility test reports are to be stored, not the website pages/media For details, refer the indicative list of deliverables online, but not limited to the Scope of Work |
+| How will the Teams get access to the NIC Cloud ? | Overview to get access to NIC Cloud would be shared at an appropriate time, which will be applicable for the Teams progressing to the 3rd Stage i.e.Building a Functional Product. However it is advisable to keep a Cloud agnostic approach and do scalable & dynamic coding. |
+| Is there any study done on the efficacy of accessibility testing tools? | May refer the link https://accessibility.blog.gov.uk/2017/02/24/what-we-found-when-we-tested-tools-on-the-worlds-least-accessible-webpage/ |

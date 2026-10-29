@@ -1,0 +1,6 @@
+URL: https://eci.gov.in
+DOMAIN: eci.gov.in
+TITLE: Election Commission of India (ECI)
+FETCHED_AT: 2026-10-28
+---
+The Election Commission of India (ECI) is the autonomous constitutional authority responsible for administering union and state election processes in India. The official portal publishes election schedules, candidate affidavits, Model Code of Conduct guidelines, delimitation orders, voter turnout metrics, live counting updates, and electoral reform research. Citizens can view political party registrations, complaint redressal via cVIGIL, and legal notifications.

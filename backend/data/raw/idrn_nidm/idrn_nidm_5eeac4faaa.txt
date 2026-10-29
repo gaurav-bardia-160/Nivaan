@@ -1,0 +1,24 @@
+URL: https://idrn.nidm.gov.in/ItemDetails/Index
+TITLE: India Disaster Resource Network
+FETCHED_AT: 2026-10-28
+---
+| ITEM DETAILS (ACTIVITY - CATEGORY - ITEM) |
+|---|
+| Activity | Category | Item/Code | Item Shelf Life | Item Image |
+|---|---|---|---|---|
+| Search and Rescue | Cutters | Gas Cutters - 101 | 1 Year |  |
+| Search and Rescue | Cutters | Cold Cutters - 102 | 1 Year |  |
+| Search and Rescue | Cutters | Bolt cutters ( Shears ) - 103 | 1 Year |  |
+| Search and Rescue | Cutters | Electric Drill - 104 | 1 Year |  |
+| Search and Rescue | Cutters | Circular Saw with Diamond Blade(Electric) - 105 | 1 Year |  |
+| Search and Rescue | Cutters | Chipping Hammer - 106 | 1 Year |  |
+| Search and Rescue | Cutters | Chain Saw Diamond - 107 | 1 Year |  |
+| Search and Rescue | Cutters | Chain Saw Bullet - 108 | 1 Year |  |
+| Search and Rescue | Cutters | Pneumatic Chisel - 109 | 1 Year |  |
+| Search and Rescue | Cutters | Cutters Hydraulic - 110 | 1 Year |  |
+| Search and Rescue | Cutters | Cutters Battery - 111 | 1 Year |  |
+| Search and Rescue | Spreaders | Spreaders Hydraulic - 112 | 1 Year |  |
+| Search and Rescue | Spreaders | Spreaders Battery - 113 | 1 Year |  |
+| Search and Rescue | Lifting equipments | Air Lifting bags (Different capacity)/Tools - 114 | 1 Year |  |
+| Search and Rescue | Lifting equipments | Jack with 5 ton lift - 115 | 1 Year |  |
+| Showing 1 to 15 of 367 entries |  |

@@ -1,0 +1,13 @@
+URL: https://guidelines.india.gov.in/contact/
+TITLE: Contact | Guidelines for Indian Government Websites and apps (GIGW) | India
+FETCHED_AT: 2026-10-26
+---
+Contact
+Name: Sh. G. K. Gaur, DDG
+Email: gudapps[at]nic[dot]in
+Address: Project Group for Technical Advisory
+National Informatics Centre
+Ministry of Electronics & Information Technology
+“A” Block, CGO Complex,
+Lodhi Road, New Delhi 110 003
+India

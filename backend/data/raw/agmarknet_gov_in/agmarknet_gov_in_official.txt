@@ -1,0 +1,6 @@
+URL: https://agmarknet.gov.in
+DOMAIN: agmarknet.gov.in
+TITLE: Agricultural Marketing Information Network (AGMARKNET)
+FETCHED_AT: 2026-10-28
+---
+Agricultural Marketing Information Network (AGMARKNET) is a joint mission by the Directorate of Marketing & Inspection (DMI) and NIC under the Ministry of Agriculture & Farmers Welfare. The portal provides daily commodity prices, market arrivals, and trend analysis across more than 3,000 agricultural produce wholesale markets (APMC Mandis) throughout India, empowering farmers with real-time price discovery.

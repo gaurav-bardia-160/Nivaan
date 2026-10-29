@@ -1,0 +1,6 @@
+URL: https://pmgatishakti.gov.in
+DOMAIN: pmgatishakti.gov.in
+TITLE: PM GatiShakti National Master Plan
+FETCHED_AT: 2026-10-28
+---
+PM GatiShakti National Master Plan is India's transformational digital platform for multi-modal infrastructure connectivity, uniting 16 Union Ministries including Railways, Roads & Highways, Shipping, Telecom, and Power. Developed using BISAG-N (Bhaskaracharya National Institute for Space Applications and Geo-informatics) GIS spatial data, it provides dynamic 200+ layer spatial mapping for synchronised project planning, reducing logistics costs, minimizing clearances, and accelerating national infrastructure delivery across economic zones.

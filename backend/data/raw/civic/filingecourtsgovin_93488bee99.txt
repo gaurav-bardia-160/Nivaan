@@ -1,0 +1,107 @@
+URL: https://filing.ecourts.gov.in/pdedev/
+TITLE: eFiling Services | eFiling Login Form
+
+Your cases may take some time to refresh after being imported.
+Do you want to delete my cases ?
+DeleteCancel
+Future Prospects
+While determining the income, an addition of 50% of actual salary to the income of the deceased towards future prospects, where the deceased had a permanent job and was below the age of 40 years, should be made. The addition should be 30%, if the age of the deceased was 48 between 40 to 50 years. In case the deceased was between the age of 50 to 60 years, the addition should be 15%.
+Actual salary should be read as actual salary less tax. (iv) In case the deceased was self-employed or on a fixed salary, an addition of 40% of the established income should be the warrant where the deceased was below the age of 40 years. An addition of 25% where the deceased was between the age of 40 to 50 years and 10% where the deceased was between the age of 50 to 60 years should be regarded as the necessary method of computation. The established income means the income minus the tax component.
+Sr. No.
+Requirements
+Future Prospects
+1
+Employment type : Permanent (Age <40)
+Add 50% of Actual Salary
+2
+Employment type : Permanent (Age >=40 and <50)
+Add 30% of Actual Salary
+3
+Employment type : Permanent (Age >=50 and <60)
+Add 15% of Actual Salary
+4
+Employment type : Permanent (Age >=60)
+0
+5
+Employment type : Temporary/Fixed Income/Business (Age <40)
+Add 40% of Actual Income
+6
+Employment type : Temporary/Fixed Income/Business (Age >=40 and <50)
+Add 25% of Actual Salary
+7
+Employment type : Temporary/Fixed Income/Business (Age >=50 and <60)
+Add 10% of Actual Salary
+8
+Employment type : Temporary/Fixed Income/Business (Age >=60)
+0
+Deduction towards personal and living expenses
+Where the deceased was married, the deduction towards personal and
+living expenses of the deceased should be one-third (1/3rd) where
+the number of dependent family members is 2 to 3, one-fourth (1/4th)
+where the number of dependent family members is 4 to 6, and
+one-fifth (1/5th) where the number of dependent family members
+exceeds six.
+Where the deceased was a bachelor and the claimants are the parents,
+normally 50% is deducted as personal and living expenses ...
+e-Filing system is a complete end to end solution developed for online filing of plaints, written statements, replies and various applications related to cases. Both Civil and Criminal cases can be filed before any High Court or District Court of the country. It is designed in Bilingual (English and local language) to reach wider group covering advocates/litigants.
+e-Filing system provides several benefits
+Save time, money, travel of advocates and clients
+Obviate the need to physically visit the court
+Reduce the need of meetings between clients and advocates
+Automatic digitization of case records
+Positive impact on environment by reducing paper footprint
+e-Filing system enables electronic filing of legal papers. Using e-filing, cases (both civil and criminal) can be filed before the High Courts and District Courts that have adopted e-Filing systems.
+Introduction of e-Filing is aimed at promoting paperless filing and saving time and cost by adopting technological solutions to file cases before courts in India.
+* At least one of Mobile Number or Email is required
+Mobile Number
+OR
+Enter Email
+OTP
+Captcha
+Enable Javascript for audio controls
+Enter Captcha
+Logout From All Devices
+State:
+State
+User Type:
+User Type
+User Name:
+User Name
+Password:
+Show Password
+Captcha
+Enable Javascript for audio controls
+Enter Captcha
+Login
+Readymade Templates
+Enables creation of pleadings from the available several templates. It helps advocates to quickly draft the pleadings.
+Online Submission of Vakalat
+Enables online submission of Vakalat by the clients to the advocates and advocates further accepting it in the e-Filing software. This feature helps to authenticate and handshake advocates with the clients for exchanging information electronically.
+e-Signing
+Enables client to e-Sign the document uploaded by the advocate from the comfort of home or client's office. Multiple stakeholders can e-Sign a single document through their respective logins.
+Online Payment
+Enables online payment of court fee, judicial deposit, fine, etc by integrating respective state treasury payment gateway with the eFiling software. In addition, service of online payment for use of adhesive court fee stamp affixed on application is also provided through court fee wallet.
+Online Video Recording of Oath
+Enables online video recording of Oath once the documents are e-Signed by clients and verified by advocates.
+Application Filing
+Enables filing of several applications by the advocates for different cases simultaneously at any given point of time. Facility is also available to select cases and choose the application templates.
+Portfolio Management
+Enables management of new as well as existing cases through portfolio and case planner. The facilities to search cases, add events to the case calendar and add or delete cases from portfolio are provided. Cases can also be imported from or exported to eCourts services mobile app.
+My Partners
+Enables addition of colleagues, juniors as partners so that cases can also be assigned to them. This helps partner advocates to sign vakalat, pleadings and submit applications collectively.
+Dashboard
+Enables at-a-glance status of all the completed and pending activities related to cases in the portfolio along with the monthly calendar.
+Note
+Please read the following rules carefully before proceeding:
+Please select the appropriate State for registration as an
+Advocate, Litigant, or Clerk through
+Parichay / Meri Pehchaan. The selected State should be the
+same as the State selected on the eFiling login screen.
+The State selected in the eFiling Portal will be
+considered for your registration.
+If you are already registered on the eFiling Portal
+and log in through JanParichay, your existing
+eFiling login will be used.
+If you are not registered on the eFiling Portal and
+register through JanParichay, a new login will be
+created on the eFiling Portal.

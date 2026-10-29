@@ -1,0 +1,166 @@
+URL: https://guidelines.india.gov.in/security-guidelines-and-attributes/
+TITLE: 3. Security: Guidelines and Attributes | Guidelines for Indian Government Websites and apps (GIGW) | India
+
+GIGW 3.0
+Security
+Protecting web resources from unauthorised use, access, changes, destruction, or disruption is generally termed as “Website Security” or “Secured Website”. Sometimes web resources become unavailable due to denial-of-service attacks or display modified information on the webpages. Millions of passwords, email addresses and credit card details have been leaked into the public domain exposing web users to both personal embarrassment and financial risks. The purpose of Website Security is to prevent such risks.
+Website Security requires vigilance in all aspects starting from design, coding and implementation to testing and deployment. Organisations should implement appropriate security majors, defences and countermeasures to protect web resources against malfunctioning, phishing, cyber-crimes or cyberattacks to avoid data loss of the organisations or users.
+The government organisation will ensure and monitor that the host service provider and the developer adhere to the industry best security practices and guidelines such as ISO 27001, OWASP ASVS, OWASP Top 10 vulnerabilities and CIS benchmarks as per the prevailing security policy. Following guidelines are to secure web resources & associated infrastructure:
+5.3.1 Statement: Website, web application, web portal or mobile app have been Security Audited and an Audit Clearance certificate has been issued by NIC/ STQC/ STQC empanelled laboratory/CERT-In empanelled laboratory before hosting in production environment.
+Benefits : The goal of securing a website, web application, web portal or mobile app is to maintain the confidentiality, integrity and availability of information and services. This goal is accomplished through the implementation of best security practices in design, development and deployment. Attacks could cause both personal embarrassment and financial risks.
+Government organisation action: It should be ensured that the website, web application, web portal or mobile app don’t have any security risks as identified by the latest OWASP Top 10 vulnerability list. The design and development agency or the developers should follow industry best practices such as OWASP ASVS and OWASP MAVS.
+Developer Action : Securing critical web resources is more important than ever as the focus of attackers has steadily moved towards the application layer and they are exploiting the weaknesses in the code.
+-  Securing Code:
+  - Ensure that all Websites, Web Applications, Web Portals or Mobile Apps and their respective Content Management System (CMS), 3rd party plugins, codes, etc. are updated to the latest versions.
+Note: Every day, there are countless websites compromised due to outdated software. Potential hackers and bots are scanning sites to attack. Updates are vital to the health and security of the website. If the site’s software or applications are not up-to-date, the site is not secure. Take all software and plugin update requests seriously. Updates often contain security enhancements and vulnerability repairs. Check the site for updates or add an update notification plugin. Some platforms allow automatic updates, which is another option to ensure website security. The longer you wait, the less secure the site will be. Updating the website and its components should be top priority.
+  - All passwords, connection strings, tokens, keys, etc. should be encrypted with salted hash. There should not be any plain passwords stored in config files or source code or in a database.
+  - All exceptions should be handled appropriately. Custom error pages should be displayed for any errors/exceptions. At no point of time, a portion of source code should be displayed on the page in case of an error or exception.
+  - HTTP Response Headers should be obscured.
+  - Cookies should be secure and HTTP only.
+  - Configure captcha for login pages.
+  - Directory traversal should be disabled. In case of any specific attempt by a user to access a portion of the code by typing the URL path (ex: www.xxx.gov.in/js/custom.js) then the same should be redirected to a custom error page.
+  - All default user names and IIS/Apache pages (like admin, default.aspx, index.aspx, etc.) should be renamed. The access URL for the admin panel/CMS, should also be renamed.
+  - The Web Server processes should not be running under Administrator or Root user Account. A dedicated User account with limited privileges should be used for the Web Server Processes.
+Note: Not every webmaster knows which web server they use. If you are one of them, use a website scanner like SiteCheck to check the website. It scans for known malware, viruses, blacklisting status, website errors, and more. The more you know about the current state of website security, the better. It gives you time to fix it before any harm comes to it.
+  - If the web or mobile app is integrated with any 3rd party Applications or using any APIs for external communication, then ensure that all such communications are done through encrypted channels.
+  - Enforce strong password management policy, secure password recovery mechanisms and multi-factor authentication (MFA) for user login to website, web application or web portal infrastructure.
+  - Implement role-based access control and minimal privilege policy for users as per need from the system.
+  - Establish the secure coding practices document based on leading practices such as OWASP for code development. Below is an indicative checklist that can be considered for secure code development.
+    - Input Validation
+    - Authentication & Password Management
+    - Session Management
+    - Access Control
+    - Cryptographic Practices
+    - Error Handling & Logging
+    - Data Protection
+    - Communication Security
+    - System Configuration
+    - Database Security
+    - File Management
+    - Memory Management
+  - Implement logging functionality and periodically auditing the web logs for suspicious activity.
+  - Configure website, web application or web portal caching to optimize resource availability.
+  - Sanitise user input at both the client end and the server end with both syntactical as well as a semantic approach.
+  - The technology to be implemented should be chosen after careful consideration. Various client-side Active Content Technologies are available e.g., Java scripts etc. Each has its own strengths and weaknesses along with an associated risk.
+  - Disable the root user access to run the code on Linux/Unix hosts.
+  - Use explicit path names when invoking external programs and not rely on the PATH environment value.
+- Securing Databases: Database being the core of any application and/or organisation and is used to store large amounts of highly sensitive and personal information. Therefore, appropriate technical controls should be in place to safeguard the databases and information stored in them. The following are the guidelines for securing databases:
+  - Implement strong encryption and key management mechanism for the information both at rest and transit.
+  - Implement strong hashing and salting algorithms to store passwords in the database.
+  - Use secure credentials for database access. Remove or change all default database administrative passwords.
+  - Utilise strong passwords/phrases or implement multi-factor authentication.
+  - Disable unnecessary accounts such as orphaned accounts, unused accounts, generic and service accounts.
+  - Enable access to the database only from the Web Server on a whitelisted port and it should not be assigned publicly accessible IP.
+  - TLS should be enabled in databases for secure communications between web servers and databases.
+  - Create admin restrictions, such as by controlling privileged access on what users can do in a database.
+  - The application should use the lowest possible level of privilege when accessing the database.
+  - Turn on node checking to verify applications and users.
+  - Turn off all unnecessary database functionality (e.g., unnecessary stored procedures or services, utility packages, install only the minimum set of features and options required (surface area reduction)
+  - Enforce a strict access control policy and introduce role-based access control (RBAC) privileges.
+  - Enable audit trail logs on the database servers.
+  - Ensure appropriate logging and monitoring of database logs.
+  - Consider fine grained record/row level auditing based on the sensitivity of data.
+  - Implement a backup solution to store data and system configurations from the website, web application or web portal that should be backed up periodically.
+Note: One of the best methods to keep a site safe is to have a good backup solution. You should have more than one. Each is crucial to recovering a website after a major security incident occurs. There are several different solutions you can use to help recover damaged or lost files. Keep the website information off-site. Do not store the backups on the same server as of the website; they are as vulnerable to attacks too. Choose to keep the website backup on a home computer or hard drive. Find an off-site place to store the data and to protect it from hardware failures, hacks, and viruses. Another option is to back up the website in the cloud. It makes storing data easy and allows access to information from anywhere. Besides choosing where to back up the website, you must consider automating them. Use a solution where you can schedule the site backups. You also have to ensure the solution has a reliable recovery system. Be redundant in the backup process — backup the backups. By doing this, you can recover files from any point before the hack or virus occurs.
+  - Keep the backup media file in safe custody and access to it should be restricted and logged.
+  - Conduct periodic auditing of Web Application – at least once in a year or as and when any changes are done in the source code, whichever is earlier.
+  - Report any web application-related security incidents observed to NIC CERT & CERT-In immediately at Incident Response Help Desk:
+NIC-CERT : incident[at]nic-cert[dot]nic[dot]in
+CERT-In : incident[at]cert-in[dot]org[dot]in
+Toll free phone : CERT-In – +91-1800-11-4949
+Evaluator Action :
+5.3.2 Statement: Hosting Environment has been secured for ensuring confidentiality, integrity and availability (CIA).
+Benefits : The goal of securing a hosting environment is to maintain the confidentiality, integrity and availability of information resources leading to successful operations. This goal is accomplished through the implementation of security controls. Hosting service providers should follow industry best practices for securing the hosting environment. Attacks could cause both personal embarrassment and financial risks. Secure hosting as well as doing regular backups save the time and money put into the site.
+Government organisation action: Think of a website’s domain name as a street address. Now, think of the web host as the plot of “real estate” where the website exists online. As one would research a plot of land to build a house, it needs to examine potential web hosts to find the right one. Many hosts provide server security features that better protect a website and its data.
+-  There are certain mandatory aspects to check for when choosing a hosting service provider (HSP):
+  - Ensure the hosting of the web infrastructure within geographical boundaries of India.
+  - Department to ensure the HSP is providing DC, BCP and DR environments with state-of-the-art secure infrastructure configured in high availability (HA) mode for hosting the Websites, Web Applications, Web Portals or Mobile Apps and their respective Content Management System (CMS).
+  - Conduct periodic drills of disaster recovery environment – at least once in a year.
+  - HSP to ensure that the servers are protected against environmental, physical and cyber threats.
+  - Ensure the HSP has implemented all security controls of the Data Center including physical security and appropriate access control mechanisms.
+  - Servers, Network devices used to host the website should be hardened with latest security patches and periodic Vulnerability Assessment (VA) and Penetration Testing (PT) followed by corrective actions should be performed as per the security policy.
+  - Ensure the HSP of the hosting environment has deployed and configured a Web Application Firewall (WAF), which is hardened with latest security patches and is available for use by the department on demand.
+Note: It sits between the website server and the data connection. The purpose is to read every bit of data that passes through it to protect the site. Most WAFs are cloud-based and are a plug-and-play service. The cloud service is a gateway to all incoming traffic that blocks all hacking attempts. It also filters out other types of unwanted traffic, like spammers and malicious bots.
+  - Enable and maintain logs of the ICT infrastructure for a rolling period of 180 days as per CERT-In directions.
+  - Regularly monitor and conduct review of alerts and logs
+  - HSP should also ensure:
+    - Web host offer a Secure File Transfer Protocol (SFTP)
+    - FTP use by unknown users are disabled
+    - It uses a rootkit scanner
+  - HSP should ensure to secure the containerized environments, if applicable.
+Note: Containerized Workloads are much more complex than traditional workloads. Production environments deploy massive amounts of containers. Security experts and administrators need to secure more components in a containerized environment than they would in traditional deployments. Container security involves the implementation and maintenance of security controls that protect containers and the underlying infrastructure. Integrating security into the development pipeline can help ensure that all components are secured from the initial development phase and until the end of their lifecycle.
+- Following best practices should be used to protect the containerized environments:
+  - Each library and tool you pull into the image poses a potential threat. To mitigate these threats, you need to include the application within the container image. This should be a statically compiled binary that contains all required dependencies.
+  - Remove all components the application does not need. For example, remove the “sed” and “awk” binaries, which are present by default on any UNIX system. This can help you reduce the attack surface.
+  - If you are not creating the image from scratch, you should choose images that are trustworthy. Public image repositories, such as Docker Hub, can be used by anyone and may contain malware or misconfigurations.
+  - If you have a private registry, you need to establish access controls that define exactly who can access and publish images and who cannot perform these actions.
+  - Signatures help track images to the people who signed them. This makes it difficult to substitute the signed image for a compromised one. The Docker Content Trust mechanism provides information about signing images. You can also use Notary, an open-source tool that helps you sign and verify images.
+  - Vulnerability scanners are designed to identify known vulnerabilities. These tools can help you find critical vulnerabilities and detect critical threats. You can use scanners on a continuous basis to ensure that the registries do not contain critical vulnerabilities.
+  - Secure the target environment – You can do this by hardening the underlying host operating system. You can also establish firewall and VPC rules or create special accounts that limit access.
+  - Use an orchestration platform – These systems usually provide secure API endpoints as well as role-based access control (RBAC), which can help minimise the risk of unauthorised access.
+  - Use immutable deployments – This involves creating an instance image during the build steps. The deployment can then use this image to create new instances. To update the application, you need to create new images, spin up new instances, and then destroy the old ones.
+  - Create separate virtual networks for the containers – This introduces a level of isolation that can reduce the attack surface.
+  - Apply the principle of least privilege – Allow connectivity only between containers that truly need it.
+  - Expose only the ports that serve the application – Do not expose any other ports, except for SSH. Apply this principle to containers as well as the underlying machines.
+  - Use TLS to secure communication between services – This process encrypts traffic and ensures only authorised endpoints are allowed.
+  - Use the Docker Image policy plugin – This plugin is designed to prevent any process from pulling images that were not previously allow-listed.
+  - Enable TLS everywhere – You should enable TLS for all supported components to defend against traffic sniffing and authenticate identities at both ends of each connection.
+  - Use a service mesh architecture – Service meshes are networks of persistent encrypted connections between high-performance sidecar proxies. They provide traffic monitoring, management, and policy enforcement without affecting microservices.
+  - Use OPA – Open Policy Agent (OPA) enforces custom policies on a Kubernetes object without reconfiguring or recompiling the Kubernetes API server.
+  - Apply network policies – The default Kubernetes networking permits all traffic between pods, but you can restrict this with a network policy.
+  - Implement private networks – Deploy each Kubernetes worker and master node on a private subnet to secure the connections to corporate networks, make nodes unreachable from the public Internet, and minimise overall attack surface.
+  - Keep the etcd cluster separate – Use a firewall to protect the etcd cluster, which stores state and secret information and requires special protection compared to other Kubernetes components.
+  - Ensure the regular rotation of encryption keys – Regularly rotating encryption keys and certificates helps minimise the blast radius of an attack that compromises keys.
+  - Use static analysis for YAML – Statically analyse where pod security policies deny access to API servers. This should be part of the development workflow because it helps identify the organisation’s risk tolerance and compliance requirements.
+  - Manage secrets – Integrate clusters using a secret management system to ensure application pods automatically receive all secrets and passwords needed at runtime (based on the app roles associated with each pod).
+  - Check the code – Scan the code and use static analysis to ensure automation security. You must scan the source code for all application code in Kubernetes to identify vulnerabilities and hard-coded errors.
+  - Use RBAC policies based on the principle of least privilege – Role-based access control (RBAC) helps manage access policies at a granular level to protect resources. A centralised authentication and authorization system like SSO throughout the organisation makes onboarding and offboarding easier.
+&nsbp;
+Developer Action : Following activities are to be ensured by the Developer i.e., in this case it’s System Admin or DevOps:
+- Restrict the admin access and implement the principle of least privilege and disable unnecessary accounts and privileges.
+- Disable all unnecessary ports opened on the web server i.e., deny all access by default.
+- Remove default, temporary or guest accounts from the web server.
+- Change the default login credentials and implement strong password enforcement with password expiration policy on the web server.
+Note: With there being so many websites, databases, and programs needing passwords, it is hard to keep track. A lot of people end up using the same password in all places, to remember their login information. But this is a significant security mistake. Create a unique password for every new login request. Come up with complicated, random, and difficult to guess passwords. Then, store them outside the website directory. For example, you might use a 14-digit mixture of letters and numbers as a password. You could then store the password(s) in an offline file, a smartphone, or a different computer. When CMS requests to login you must choose a smart password. Refrain from using any personal information inside the password. Do not use birthday or pet’s name; make it completely unguessable. After three months or sooner, change the password to another one, then repeat. Smart passwords are long and should be at least twelve characters, every time. A password needs to be a combination of numbers and symbols. Make sure to alternate between uppercase and lowercase letters. Never use the same password twice or share it with others. If you are a business owner or CMS manager, ensure all employees change their passwords frequently.
+- Whitelist the application in use and disable the unused features or modules.
+- Use of Secure FTP (SFTP) to transfer files over an encrypted channel.
+- Disable Hypertext Transfer Protocol (HTTP) and enforce Hypertext Transfer Protocol Secure (HTTPS) & HTTP Strict Transport Security (HSTS). To keep a website safe, it needs a secure URL. If a user uses their private information to access a site, it should use HTTPS, not HTTP, to deliver it.
+Note: HTTPS (Hypertext Transfer Protocol Secure) is a protocol used to provide security over the Internet. HTTPS prevents interceptions and interruptions from occurring while the content is in transit. For you to create a secure online connection, a website also needs an SSL Certificate. If the website asks visitors to register, sign-up, or make a transaction of any kind, you need to encrypt the connection. SSL (Secure Sockets Layer) is another necessary site protocol. This transfers visitor’s personal information between the website and the database. SSL encrypts information to prevent it from others reading it while in transit. It denies those without proper authority the ability to access the data, as well. GlobalSign is an example of an SSL certificate that works with most websites.
+- Mandatorily use a valid SSL Certificate on all websites. The SSL Certificate should use at least 2048-bit SHA 256 encryption or higher.
+- Ensure that the SSL Certificate is valid and keep track of the certificate expiry date and take necessary action to renew/replace the certificate before expiry.
+- Configure the HTTP Service banner so that Web Server and Operating System type & version will not be disclosed.
+- The configuration files of the Web Server must be protected by the Web Server process. One can find them in the root web directory. Web server configuration files permit you to administer server rules. This includes directives to improve website security. There are different file types used with every server. Learn about the one you use.
+  - Apache web servers use the .htaccess file
+  - Nginx servers use nginx.conf
+  - Microsoft IIS servers use web.config
+- Open source/Freeware software should be used with due diligence.
+- Remove or disable all superfluous drivers, services and software.
+- Remove or replace obsolete software libraries.
+- Remove or replace outdated security level protocols.
+- Limit unauthorised or unauthenticated or administrative privilege user access to the system.
+Note: Initially, one may feel comfortable giving several high-level employees access to a website. Administrative privileges are given thinking those would be used carefully. Although this is the ideal situation, it is not always the case. Unfortunately, employees do not think about website security when logging into the Servers or the CMS. Instead, their thoughts are on the task at hand. If they make a mistake or overlook an issue, this can result in a significant security issue. It is vital to access employees before giving website access. Find out if they have experience using the CMS and if they know what to look for to avoid a security breach. Educate every CMS user about the importance of passwords and software updates. Tell them all the ways they can help maintain the website’s safety. To keep track of who has access to CMS and their administrative settings, make a record and update it often. Employees come and go. One of the best ways to prevent security issues is to have a physical record of who does what with the website. Be sensible when it comes to user access.
+- Implement encryption for the transmission of all sensitive information. This should include TLS for protecting the connection. Disable weak cyphers (SSLv2, SSlv3, 3DES, RC4, TLS v1.0, v1.1).
+- Periodically review logs for suspicious activity like authentication, user access activity & changes and privilege elevation & usage.
+- Implementation of network segmentation and segregation to limit the impact of network intrusion.
+- There should be no active concurrent sessions of the web server.
+- Ensure servers, frameworks and system components are running the latest approved version and have all patches issued for the version in use.
+- Isolate development environments from the production network and provide access only to authorised development and test groups.
+- Implement a software change control system to manage and record changes to the code both in development and production.
+- Establish practice of hardening web servers and conduct the periodic secure configuration review of the same.
+- The most common attacks against websites are entirely automated. What many attack bots rely on is for users to have their CMS settings on default. After choosing a CMS, change default settings immediately. Changes help prevent a large number of attacks from occurring. CMS settings can include adjusting control comments, user visibility, and permissions. A great example of a default setting change you should make is ‘file permissions.’ You can change the permissions to specify who can do what to a file. Each file has three permissions and a number that represents every permission:
+  - ‘Read‘ (4): View the file contents.
+  - ‘Write‘ (2): Change the file contents.
+  - ‘Execute‘ (1): Run the program file or script.
+  - To clarify, if you want to allow many permissions, add the numbers together. E.g., to allow read (4) and write (2), you set the user permission to (6.) Along with the default file permission settings, there are three user types:
+    - Owner – Often, the creator of the file, but ownership can be changed. Only one user can be the owner at a time.
+    - Group – Each file is assigned to a group. Users who are part of that specific group will gain access to the permissions of the group.
+    - Public – Everyone else.
+- Customise users and their permission settings. Do not keep the default settings as is, or you will run into website security issues at some point.
+Evaluator Action : The evaluator shall check that the website has a valid security audit certificate issued by NIC/STQC/Cert-IN empaneled laboratory fulfilling Cert-IN requirements.
+5.3.2 Statement: Website has the Security Policy, Privacy Policy and the Contingency Management Plan clearly defined policies and plans approved by the Department.
+Benefits : Having clearly defined policies helps ensure efficient management of the website and its content throughout the life cycle of the website.
+Department Action : Clearly define and approve the website related policies listed above. Web Information Manager must ensure their implementation throughout the website life cycle
+Developer Action : Citizen-facing policies like copyright policy, privacy policy and terms and conditions must be published on the website.
+Evaluator Action : The evaluator will:
+- Compare during the backend audit the policies given in WQM and those available at the website for consistency.
+- Check the implementation of these policies by examining the documented records generated by the implementation.

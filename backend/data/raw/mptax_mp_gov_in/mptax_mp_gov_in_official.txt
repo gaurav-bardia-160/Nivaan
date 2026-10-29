@@ -1,0 +1,6 @@
+URL: https://mptax.mp.gov.in
+DOMAIN: mptax.mp.gov.in
+TITLE: Commercial Tax Department, Madhya Pradesh
+FETCHED_AT: 2026-10-28
+---
+The Commercial Tax Department of Madhya Pradesh manages state revenue taxation including State Goods and Services Tax (SGST), Value Added Tax (VAT) on petroleum products, Professional Tax, and Entry Tax. The portal facilitates online tax return filing, electronic challan generation, tax dealer registration, assessments, and dispute appeals for commercial establishments.

@@ -1,0 +1,9 @@
+URL: https://ecommitteesci.gov.in/service/ecourts-services-portal/
+TITLE: ECOURTS SERVICES PORTAL | Official Website of e-Committee, Supreme Court of India | India
+
+ECOURTS SERVICES PORTAL
+A centralised gateway providing links to several initiatives and services provided under the eCourts project. It enables stakeholders such as citizens, litigants, lawyers, government and law enforcement agencies to access data and information relating to the judicial system of the country. The eCourts National portal works as an online repository of data providing a host of services and diverse information such as:
+- Cause list
+- Case Status: Case Status may be accessed across various search parameters such as case number, FIR Number, party name, advocate name, filing number, Act or case type
+- Daily orders and final judgments: Orders and final judgments can be similarly accessed through CNR number, Case Number, Court Number, Party Name and Order Date.
+Visit : http://services.ecourts.gov.in

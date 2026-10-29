@@ -1,0 +1,6 @@
+URL: https://trackthemissingchild.gov.in
+DOMAIN: trackthemissingchild.gov.in
+TITLE: TrackChild Portal (Ministry of Women and Child Development)
+FETCHED_AT: 2026-10-28
+---
+TrackChild is a national digital tracking system developed by the Ministry of Women and Child Development (MWCD) with NIC and police authorities. It maintains an online database of missing and found children, integrates with Child Care Institutions (CCIs), tracks Juvenile Justice board cases, and supports the Khoya-Paya citizen reporting platform for prompt recovery and rehabilitation.

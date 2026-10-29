@@ -1,0 +1,21 @@
+URL: https://pgportal.gov.in/Home/ContactUs
+TITLE: Contact Us
+FETCHED_AT: 2026-10-28
+---
+Contact Us
+Any Grievance sent by email will not be attended to / entertained. Please lodge your grievance on this portal.
+| Public Grievances Officers |  |  |  |  |  |
+|---|---|---|---|---|---|
+| S.No. | Name | Designation | Dealing with grievances related to | Phone Number | Fax Number |
+| 1 | PMO Helpdesk | PMO Helpdesk | Prime Minister Office | 23386447 |  |
+| 2 |  | Joint Secretary | Cabinet Secretariat | 23743139 |  |
+| 3 | Shri J.G. Subramanian | Deputy Secretary (Admn, Estt. & Transport) | President's Secretariat | -- |  |
+Director of Public Grievances, The Department of Administrative Reforms and Public Grievances.
+Sardendu Kr Pandey
+Director
+23401455
+Head of the Department, The Department of Administrative Reforms and Public Grievances.
+Nivedita Shukla Verma
+Secretary
+23742133
+For reporting/support on technical issues send email at : cpgrams-darpg[at]nic[dot]in

@@ -444,6 +444,10 @@ body {
     color: var(--warning);
     background-color: var(--warning-light);
 }
+.connection-badge.offline {
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.12);
+}
 
 .pill-btn {
     background-color: var(--bg-sidebar);
@@ -736,6 +740,57 @@ body {
 .confidence-medium { background-color: var(--warning-light); color: var(--warning); }
 .confidence-low { background-color: var(--danger-light); color: var(--danger); }
 
+.response-header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copy-response-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.copy-response-btn:hover {
+    color: var(--brand-blue);
+    border-color: var(--brand-blue);
+    background-color: var(--brand-light);
+}
+
+.copy-response-btn.copied {
+    color: #059669;
+    border-color: #10b981;
+    background-color: #ecfdf5;
+}
+
+[data-theme="dark"] .copy-response-btn {
+    color: var(--text-muted);
+    border-color: var(--border-light);
+    background: transparent;
+}
+
+[data-theme="dark"] .copy-response-btn:hover {
+    color: #60a5fa;
+    border-color: #3b82f6;
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+[data-theme="dark"] .copy-response-btn.copied {
+    color: #34d399;
+    border-color: #059669;
+    background-color: rgba(16, 185, 129, 0.15);
+}
+
 /* Privacy Redaction Alert */
 .privacy-alert {
     background-color: #fef3c7;
@@ -758,6 +813,7 @@ body {
     border-left: 3px solid var(--brand-blue);
     padding: 10px 14px;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    white-space: pre-line;
 }
 
 /* Section Title */

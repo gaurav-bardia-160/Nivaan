@@ -1,0 +1,60 @@
+URL: https://haryanait.gov.in/s3waas/
+TITLE: S3waas |  Department of Information Technology Electronics & Communication, Haryana | India
+
+S3waas
+S3WaaS (Secure, Scalable, and Accessible Websites as a Service) is a cloud-based platform designed to develop secure, scalable, and accessible websites for government organizations. It enables government entities to easily create, customize, and manage website content through a variety of standardized templates, thereby ensuring a strong and consistent online presence.
+The Government has developed 52 websites of Haryana for various Departments, Boards, and Corporations, along with 22 District websites, on the Secure, Scalable, and Sugamya Website as a Service (S3WaaS) platform of NIC.
+List of websites developed on the S3WaaS platform
+| Sr. No. | Department / Board | URL | 
+| 1 | Government of Haryana | haryana.gov.in | 
+| 2 | Electronics and Information Technology Department, Haryana | haryanait.gov.in | 
+| 3 | Directorate of Micro, Small and Medium Enterprises | msme.haryana.gov.in | 
+| 4 | Haryana Gau Seva Aayog | hargauseva.gov.in | 
+| 5 | Women and Child Development Department | wcdhry.gov.in | 
+| 6 | ESI Department | hryesi.gov.in | 
+| 7 | Department of Economic and Statistical Analysis | esaharyana.gov.in | 
+| 8 | State Council of Educational Research and Training | scertharyana.gov.in | 
+| 9 | Treasuries & Accounts Department | hrtreasuries.gov.in | 
+| 10 | Department of Architecture, Haryana | architecturehry.gov.in | 
+| 11 | Revenue and Disaster Management Department | revenueharyana.gov.in | 
+| 12 | Department of New and Renewable Energy, Haryana | hareda.gov.in | 
+| 13 | State Finance Commission | sfc.haryana.gov.in | 
+| 14 | ENVIS Hub, Environment and Climate Change Department, Haryana | envis.haryana.gov.in | 
+| 15 | School Education (Primary) | harprathmik.gov.in | 
+| 16 | School Education Department | schooleducationharyana.gov.in | 
+| 17 | State Vigilance Bureau | acb.haryana.gov.in | 
+| 18 | Supplies and Disposal Department | dsndharyana.gov.in | 
+| 19 | State Wetland Authority, Haryana | swa.haryana.gov.in | 
+| 20 | Haryana Forest Department | haryanaforest.gov.in | 
+| 21 | Environment and Climate Change Department, Haryana | hrccc.harenvironment.gov.in | 
+| 22 | Haryana State Biodiversity Board | sbb.haryanaforest.gov.in | 
+| 23 | Swarna Jayanti Environment Training Institute, Manesar, Gurugram | sjeti.haryana.gov.in | 
+| 24 | Social Justice and Empowerment Department | socialjusticehry.gov.in | 
+| 25 | Haryana Right to Service Commission | haryana-rtsc.gov.in | 
+| 26 | Food, Civil Supplies and Consumer Affairs Department, Haryana | haryanafood.gov.in | 
+| 27 | Raj Bhavan, Haryana | haryanarajbhavan.gov.in | 
+| 28 | Civil Aviation Department | haraviation.gov.in | 
+| 29 | Finance Department, Haryana | finhry.gov.in | 
+| 30 | Haryana Forest Development Corporation Limited | hfdc.gov.in | 
+| 31 | State Police Complaint Authority, Haryana | spcahry.nic.in | 
+| 32 | Haryana State Legal Services Authority | hslsa.gov.in | 
+| 33 | CAMPA, Haryana | campa.haryanaforest.gov.in | 
+| 34 | AB-HHPA State Health Authority | ayushmanbharat.haryana.gov.in | 
+| 35 | SEWA Department, Haryana | sewa.haryana.gov.in | 
+| 36 | Archives Department, Haryana | haryanaarchives.gov.in | 
+| 37 | Art and Cultural Affairs Department, Haryana | artandculturalaffairshry.gov.in | 
+| 38 | State Transport Department | hartrans.gov.in | 
+| 39 | State Election Commission, Haryana | secharyana.gov.in | 
+| 40 | Panchkula Metropolitan Development Authority | pmdahry.org.in | 
+| 41 | Haryana Parivar Suraksha Nyas | hpsn.finhry.gov.in | 
+| 42 | Haryana Airports Development Corporation Limited | hadc.org.in | 
+| 43 | Haryana State Seed Certification Agency | hssca.org.in | 
+| 44 | Prosecution Department, Haryana | prosecutionhry.gov.in | 
+| 45 | Health Department, Haryana | haryanahealth.gov.in | 
+| 46 | Rural Development Department, Haryana | haryanarural.gov.in | 
+| 47 | Divisional Commissioner, Hisar | commhsr.haryana.gov.in | 
+| 48 | SJHIFM, Haryana | sjhifm.finhry.gov.in | 
+| 49 | Quality Assurance Authority, Haryana | qaa.finhry.gov.in | 
+| 50 | Department of Sports, Haryana | haryanasports.gov.in | 
+| 51 | Haryana State Warehousing Corporation | hswc.org.in | 
+| 52 | Wildlife Department, Haryana | wildlife.haryana.gov.in |

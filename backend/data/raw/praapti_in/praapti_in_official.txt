@@ -1,0 +1,6 @@
+URL: https://praapti.in
+DOMAIN: praapti.in
+TITLE: PRAAPTI Portal - Power Procurement Transparency
+FETCHED_AT: 2026-10-28
+---
+PRAAPTI (Payment Ratification And Analysis in Power procurement for bringing Transparency in Invoicing of generators) is an official initiative by the Ministry of Power, Government of India. The platform captures invoicing data between power distribution companies (DISCOMs) and power generation companies (GENCOs), displaying nationwide overdue payments, dispute resolutions, and sector liquidity metrics to ensure financial discipline in India's power sector.

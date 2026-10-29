@@ -1,0 +1,6 @@
+URL: https://peso.gov.in
+DOMAIN: peso.gov.in
+TITLE: Petroleum and Explosives Safety Organization (PESO)
+FETCHED_AT: 2026-10-28
+---
+Petroleum and Explosives Safety Organization (PESO), under DPIIT, Ministry of Commerce and Industry, regulates the safety of manufacture, import, export, transport, storage, and usage of explosive substances, compressed gases, and petroleum in India. The portal supports online licensing (e-PESO), approval of pressure vessels, safety audits, and dangerous goods compliance certificates.

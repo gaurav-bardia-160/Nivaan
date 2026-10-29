@@ -1,0 +1,62 @@
+URL: https://sambal.mp.gov.in/Registration-Dashboard.aspx
+TITLE: जन कल्याण पोर्टल
+FETCHED_AT: 2026-10-28
+---
+Last Update -
+| क्रमांक | जिला | कुल आवेदन | जांच अधिकारी स्तर पर जांच हेतु लंबित | जांच अधिकारी द्वारा जांच पूर्ण | जांच अधिकारी द्वारा निरस्त आवेदन | पदाधिकारी स्तर पर सत्यपान पश्चात लंबित आवेदन | पदाभिहित अधिकारी द्वारा स्वीकृत आवेदन/ कुल पंजीयन | निरस्त आवेदन |
+|---|---|---|---|---|---|---|---|---|
+| 1 | AGAR MALWA |  |  |  |  |  |  |  |
+| 2 | ALIRAJPUR |  |  |  |  |  |  |  |
+| 3 | ANUPPUR |  |  |  |  |  |  |  |
+| 4 | ASHOKNAGAR |  |  |  |  |  |  |  |
+| 5 | BALAGHAT |  |  |  |  |  |  |  |
+| 6 | BARWANI |  |  |  |  |  |  |  |
+| 7 | BETUL |  |  |  |  |  |  |  |
+| 8 | BHIND |  |  |  |  |  |  |  |
+| 9 | BHOPAL |  |  |  |  |  |  |  |
+| 10 | BURHANPUR |  |  |  |  |  |  |  |
+| 11 | CHHATARPUR |  |  |  |  |  |  |  |
+| 12 | CHHINDWARA |  |  |  |  |  |  |  |
+| 13 | DAMOH |  |  |  |  |  |  |  |
+| 14 | DATIA |  |  |  |  |  |  |  |
+| 15 | DEWAS |  |  |  |  |  |  |  |
+| 16 | DHAR |  |  |  |  |  |  |  |
+| 17 | DINDORI |  |  |  |  |  |  |  |
+| 18 | GUNA |  |  |  |  |  |  |  |
+| 19 | GWALIOR |  |  |  |  |  |  |  |
+| 20 | HARDA |  |  |  |  |  |  |  |
+| 21 | INDORE |  |  |  |  |  |  |  |
+| 22 | JABALPUR |  |  |  |  |  |  |  |
+| 23 | JHABUA |  |  |  |  |  |  |  |
+| 24 | KATNI |  |  |  |  |  |  |  |
+| 25 | KHANDWA |  |  |  |  |  |  |  |
+| 26 | KHARGONE |  |  |  |  |  |  |  |
+| 27 | MAIHAR |  |  |  |  |  |  |  |
+| 28 | MANDLA |  |  |  |  |  |  |  |
+| 29 | MANDSAUR |  |  |  |  |  |  |  |
+| 30 | MAUGANJ |  |  |  |  |  |  |  |
+| 31 | MORENA |  |  |  |  |  |  |  |
+| 32 | NARMADAPURAM |  |  |  |  |  |  |  |
+| 33 | NARSINGHPUR |  |  |  |  |  |  |  |
+| 34 | NEEMUCH |  |  |  |  |  |  |  |
+| 35 | NIWARI |  |  |  |  |  |  |  |
+| 36 | PANDHURNA |  |  |  |  |  |  |  |
+| 37 | PANNA |  |  |  |  |  |  |  |
+| 38 | RAISEN |  |  |  |  |  |  |  |
+| 39 | RAJGARH |  |  |  |  |  |  |  |
+| 40 | RATLAM |  |  |  |  |  |  |  |
+| 41 | REWA |  |  |  |  |  |  |  |
+| 42 | SAGAR |  |  |  |  |  |  |  |
+| 43 | SATNA |  |  |  |  |  |  |  |
+| 44 | SEHORE |  |  |  |  |  |  |  |
+| 45 | SEONI |  |  |  |  |  |  |  |
+| 46 | SHAHDOL |  |  |  |  |  |  |  |
+| 47 | SHAJAPUR |  |  |  |  |  |  |  |
+| 48 | SHEOPUR |  |  |  |  |  |  |  |
+| 49 | SHIVPURI |  |  |  |  |  |  |  |
+| 50 | SIDHI |  |  |  |  |  |  |  |
+| 51 | SINGROULI |  |  |  |  |  |  |  |
+| 52 | TIKAMGARH |  |  |  |  |  |  |  |
+| 53 | UJJAIN |  |  |  |  |  |  |  |
+| 54 | UMARIA |  |  |  |  |  |  |  |
+| 55 | VIDISHA |  |  |  |  |  |  |  |

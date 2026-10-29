@@ -1,0 +1,9 @@
+URL: https://samagra.gov.in/Citizen/MaritalStatusCorrection/MaritalStatusCorrectionRequest.aspx
+TITLE: Samagra Portal (Core) - Subpage
+
+Please avoid clicking on "Back" or "Refresh" button, Your request is in progress कृपया " बेक " एवं "रिफ्रेश" बटन क्लिक न करें, आपका अनुरोध प्रक्रियाधीन है |
+Please avoid clicking on "Back" or "Refresh" button, Your request is in progress
+कृपया "बेक" एवं "रिफ्रेश" बटन क्लिक न करें, आपका अनुरोध प्रक्रियाधीन है |
+Marital Status Correction Request of samagra Member ID '' has been successfully submitted and your request has been sent to Localbody for recommendation. Your request ID is ''. - samagra
+आपके द्वारा किया गया समग्र मेम्बर आईडी '' के वैवाहिक स्थिति सुधार का अनुरोध सफलतापूर्वक दर्ज किया जा चुका है और आपके अनुरोध को स्थानीय निकाय पर अनुशंसा के लिए भेज दिया गया है, आपका अनुरोध आईडी '' है| - समग्र
+Click here to download your receipt

@@ -1,0 +1,54 @@
+URL: https://rbi.org.in/
+TITLE: Home | Official website of Reserve Bank of India
+
+1. Current Rates
+Policy Rates
+| Policy Repo Rate | : 5.50% | 
+|---|---|
+| Standing Deposit Facility Rate | : 5.25% | 
+| Marginal Standing Facility Rate | : 5.75% | 
+| Bank Rate | : 5.75% | 
+| Fixed Reverse Repo Rate | : 3.35% | 
+Reserve Ratios
+| CRR | : 3.00% | 
+|---|---|
+| SLR | : 18.00% | 
+Exchange Rates
+| INR / 1 USD | : 94.9432 | 
+|---|---|
+| INR / 1 GBP | : 127.1286 | 
+| INR / 1 EUR | : 106.4547 | 
+| INR / 100 JPY | : 60.4900 | 
+| INR / 1 AED | : 25.8501 | 
+| INR / 10000 IDR | : 52.5178 | 
+Lending / Deposit Rates
+| Base Rate | : 8.40% - 10.00% | 
+|---|---|
+| MCLR (Overnight) | : 7.80% - 8.00% | 
+| Savings Deposit Rate | : 2.50% | 
+| Term Deposit Rate > 1 Year | : 6.00% - 6.75% | 
+Market Trends
+Money Market
+| Call Rates | : 4.85% - 5.85% * | 
+|---|---|
+                * as on  October 22, 2026
+            
+Government Securities Market
+| 6.20% GS 2029 | : 6.9816% # | 
+|---|---|
+| 6.36% GS 2031 | : 7.2088% # | 
+| 6.94% GS 2036 | : 7.4600% # | 
+| 7.06% GS 2041 | : 7.5956% # | 
+| 7.63% GS 2056 | : 7.8325% # | 
+| 91 day T-bills | : -%* | 
+| 182 day T-bills | : -%* | 
+| 364 day T-bills | : -%* | 
+                * cut-off at the last auction
+            
+                # as on  October 22, 2026 
+            
+Capital Market
+| S&P BSE Sensex | : 73249.39 * | 
+|---|---|
+| Nifty 50 | : 22687.65 * | 
+                * as on  October 22, 2026

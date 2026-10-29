@@ -1,0 +1,6 @@
+URL: https://voters.eci.gov.in
+DOMAIN: nvsp.in
+TITLE: National Voter Service Portal (NVSP - Migrated)
+FETCHED_AT: 2026-10-28
+---
+National Voter Service Portal (nvsp.in) has officially migrated to the modernized portal voters.eci.gov.in under the Election Commission of India. It handles nationwide voter list searches by name or EPIC number, polling station officer contact info, online electoral roll corrections, deletion objections (Form 7), and migrant voter registration across all Assembly and Parliamentary constituencies.

@@ -1,0 +1,6 @@
+URL: https://schooleducation.karnataka.gov.in
+DOMAIN: karnatakaeducation.gov.in
+TITLE: Department of School Education Karnataka (SATS)
+FETCHED_AT: 2026-10-28
+---
+Department of School Education and Literacy, Karnataka, administers school education policies, curriculum, and examinations (KSEAB). Through the Student Achievement Tracking System (SATS), every student in Karnataka is assigned a unique enrollment number tracking academic progress, attendance, mid-day meal benefits, and scholarship distributions.

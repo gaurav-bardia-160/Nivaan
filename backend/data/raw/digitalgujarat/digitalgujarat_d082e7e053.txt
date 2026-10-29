@@ -1,0 +1,65 @@
+URL: https://www.digitalgujarat.gov.in/Services/NesdaServices.aspx
+TITLE: Digital Gujarat
+FETCHED_AT: 2026-10-28
+---
+Department :
+--Select Department--
+AMDAVAD MUNICIPAL CORPORATION
+BHAVNAGAR MUNICIPAL CORPORATION
+Department of Agriculture, Farmers Welfare and Co-operation
+Department of Science and Technology
+Education Department
+ENERGY and PETRO CHEMICALS DEPARTMENT
+Energy and Petrochemicals Department
+Finance Department
+Food, Civil Supplies and Consumer Affairs Department
+Forest and Environment Department
+GANDHINAGAR MUNICIPAL CORPORATION
+GENERAL ADMINISTRATION DEPARTMENT
+General Administration Departmet
+Health and Family Welfare Department
+Home Department
+Industries and Mines Department
+Information and Broadcasting Dpt
+JAMNAGAR MUNICIPAL CORPORATION
+JUNAGADH MUNICIPAL CORPORATION
+Labour ,Employment and Training Department
+Labour, Skill Development and Employment Department
+Narmada Water Supply and Water Resources Department
+Panchayat, Rural Housing and Rural Development Department
+Port and Transport Department
+PORTS and Transport DEPARTMENT
+RAJKOT MUNICIPAL CORPORATION
+Revenue Department
+Social Justice and Empowerment
+Social Justice and Empowerment Department
+Sport ,youth and cultural activities Department
+SURAT MUNICIPAL CORPORATION
+Tribal Development Department
+URBAN DEVELOPEMNT and URBAN HOUSING DEPARTMENT
+Urban Development and Urban Housing Department
+VADODARA MUNICIPAL CORPORATION
+WOMEN AND CHILD DEVELOPMENT DEPARTMENT
+| No | Service Name | Description | Department | Service URL |
+|---|---|---|---|---|
+| 1 | CCRS - Comrehansive Complaint Redressel System | It can be accessed through mentioned URL of AMC web site and fill the required details to Register a complaint and can view complaint status. It is an open service for citizens and password is not required. | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 2 | Donation | It can be accessed through mentioned URL of AMC web site. One can donate volunarily for anumber of causes. It is an open service for citizens | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 3 | Hall Availability Checking and Booking | It can be accessed through mentioned URL of AMC web site. Availability for different categories of AMC Halls can be checked as well as booking and payment can beavailed. It is an open service for citizens | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 4 | Kankaria Lake, Sabarmati River Front Ticket | It can be accessed through mentioned URL of AMC web site. Online ticket can bebooked. It is an open service for citizens | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 5 | Online Hayati for Pensioners | It can be accessed through mentioned URL of AMC web site. This is an online eKYC service for AMC Pensioners. | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 6 | OnlineApplication for Property Tax | It can be accessed through mentioned URL of AMC web site. The applicant can apply for diffrent kind services, changes for property tax. It is an open service for citizens and password is not required. | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 7 | Pet Dog Registration | It can be accessed through mentioned URL of AMC web site. Owner of the Pets can be registered through this link. It is an open service for citizens | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 8 | Professional Tax | It can be accessed through mentioned URL of AMC web site. Payment for both PEC and PRC can bedone. And Form 5 entry is also available. It is an open service for citizens | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 9 | Property Tax Payment | It can be accessed through mentioned URL of AMC web site with Tenament No of the Property, followed by selecting payment option. The link also showthedues and paid details. It is an open service for citizens and password is not required. | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 10 | Search and issuance of Birth & Death registration Certificate | It can be accessed through mentioned URL of AMC web site. One can search with required details and download the certificate. It is an open service for citizens | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 11 | Self Assessment of Property Tax | It can be accessed through mentioned URL of AMC web site. One can get an estmation of his/her property tax by filling the required details of the property. It is an open service for citizens | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 12 | TDO Fees | It can be accessed through mentioned URL of AMC web site. Payment for different TDO services can be paid. It is an open service for citizens and password is not required. | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 13 | Veer Savarkar Sports Complex Registration | It can be accessed through mentioned URL of AMC web site. Online registration with Back Office cheking and approval. It is an open service for citizens | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 14 | Vehicle Tax (Dealer Module) | It can be accessed through mentioned URL of AMC web site. This moduleis for dealers to register and payment of VehilceTax. It is a password based service for dealers only. | AMDAVAD MUNICIPAL CORPORATION | Click here |
+| 15 | Birth/Death Certificate (Before 2020)Print Certificate | Print online birth/death certificate in English/Gujarati. | BHAVNAGAR MUNICIPAL CORPORATION | Click here |
+| 16 | Complaint Redressal & Monitoring System (CRMS) | Citizen login for online complain registration and status | BHAVNAGAR MUNICIPAL CORPORATION | Click here |
+| 17 | Mariage Registration-Online Payment & Print Chalan | Online payment of fees for marriage registration certificate | BHAVNAGAR MUNICIPAL CORPORATION | Click here |
+| 18 | Mariage Registration-Online Registration | New registration of marriage certificate | BHAVNAGAR MUNICIPAL CORPORATION | Click here |
+| 19 | Mariage Registration-Re-print Certificate | Print marriage registration certificate | BHAVNAGAR MUNICIPAL CORPORATION | Click here |
+| 20 | Mariage Registration-Re-print online payment receipt & Pre filled form | Reprint of online payment receipt and application form | BHAVNAGAR MUNICIPAL CORPORATION | Click here |
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | ... | Last |

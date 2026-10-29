@@ -1,0 +1,17 @@
+URL: https://guidelines.india.gov.in/evaluation-process/
+TITLE: Evaluation Process | Guidelines for Indian Government Websites and apps (GIGW) | India
+
+Evaluation Process
+Step I : First Level Eligibility Check by Organizing Team
+- Assess compliance with Eligibility Criteria of participating Teams
+- Assess quality and completeness of the responses provided in the respective nomination forms
+Step II: Assessment & Screening by the Selection Panel
+- Conduct Detailed Assessment of submitted ideas through a presentation session for shortlisting 5 teams for moving to minimum viable product building stage
+- Contact SPOC for seeking additional information/artefacts from the shortlisted nominations
+Step III: Shortlisting Entries for Final Stage by the Selection Panel
+Conduct presentation and review minimum viable product submitted by all the 5 teams. Score Submitted Ideas on each Evaluation Parameter, for identifying top 2 teams for building fully functioning products.
+Step IV: Evaluation of Entries by the Grand Jury
+Conduct presentation and demonstration for 2 teams to review the fully functioning product built by them and select the winner
+Step V: Contract Signing and Customization
+- Team Leaders from the winning team will sign the contract with NIC/MeitY.
+- Winning team will complete the MeitY specific customizations, documentation and tool optimization

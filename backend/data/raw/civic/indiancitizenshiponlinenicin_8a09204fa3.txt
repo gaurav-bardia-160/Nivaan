@@ -1,0 +1,17 @@
+URL: https://indiancitizenshiponline.nic.in/Resumption
+TITLE: Indian Citizenship Online - Declaration of Intention to Resume Indian Citizenship Under Section 8(2) of the Act made by a person
+
+Declaration of Intention to Resume Indian Citizenship Under Section 8(2) of the Act made by a person
+                                
+                                    RESUMPTION OF INDIAN CITIZENSHIP
+                                
+                            
+List of documents to be uploaded
+- Passport copy of applicant (Please upload both front page and bio page of the passport)
+- Proof of renunciation of Indian Citizenship of parent(s) or renunciation of Indian Citizenship certificate of parent(s).
+| Image Uploading Criteria | Document Uploading Criteria | 
+| 1. Needs to upload applicant passport size photograph. | 1. Needs to upload (a) Indian Passport including expired ones (Please upload both front page and bio page of the passport (b) Proof of renunciation of Indian Citizenship of parent(s) or renunciation of Indian Citizenship certificate of parent(s) | 
+| 2. Image Dimension of Photograph should be 100(Width) * 120(Hight) Pixel only. | 2. Please Scan the above documents and save in PDF format. | 
+| 3. Ensure that the size of the scanned image are not more than 20kb. | 3. Each Document can contain multiple pages. | 
+| 4. Uploading image should be in jpg format only. | 4. Each PDF Document should not exceed size more than 1024kb(1MB). | 
+| 5. Use the Microsoft picture manager for resizing the image |  |

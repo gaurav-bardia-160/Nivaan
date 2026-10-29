@@ -1,0 +1,42 @@
+URL: https://www.data.gov.in/faqs
+TITLE: FAQs | Open Government Data (OGD) Platform India
+FETCHED_AT: 2026-10-26
+---
+Ministry of Electronics and Information Technology
+Choose your theme
+Select default-theme
+Select blue-theme
+Select yellow-theme
+Select green-theme
+Facebook
+Twitter
+RSS
+Accessibility Dropdown
+A
+A
+A
+A
+Open Government Data Portal India
+Search Datasets Here
+Search
+Notifications
+0
+0 New
+Notification
+All(0)
+Unread(0)
+No Notification
+No records found
+View All
+Login | Register
+Dashboard
+User
+HOME
+CATALOG
+APIs
+SECTOR
+CHIEF DATA OFFICER
+METRICS
+Home
+FAQs
+List of Frequently Asked Questions (FAQs) to help users better understand OGD Platform. Please check this section to see if your question has already been dealt with.

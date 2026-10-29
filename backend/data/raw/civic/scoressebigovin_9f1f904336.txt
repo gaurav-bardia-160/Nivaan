@@ -1,0 +1,18 @@
+URL: https://scores.sebi.gov.in/entity-status
+TITLE: Entity Status - scores.sebi.gov.in
+
+Entity Status
+There will be occasions when you have a complaint against a listed company/ intermediary registered with SEBI. In the event of such complaint you should first...
+There will be occasions when you have a complaint against a listed company/ intermediary registered with SEBI. In the event of such complaint you should fir
+Search Entity Details
+- Company Name
+- Company Status
+- State of Company
+- Company E-mail id
+- Mobile
+- Exchange Status
+Disclaimer
+The above information is provided based on the data collected from the Stock Exchanges or from the website of Ministry of Company affairs as a service to investors.SEBI will not be responsible for any loss to any person/entity caused by any short-coming,defect or inaccuracy inadvertently or otherwise crept in the SEBI's web site.Any discrepancy may be brought to the notice of SEBI at sebi[at]sebi[dot]gov[dot]in.Asterisk(*) indicates non-authenticated company
+This link shall take you to a page/website outside this website https://scores.sebi.gov.in
+For any query regarding the contents of the linked page/website, please contact the webmaster of the concerned website.
+Click here to continue

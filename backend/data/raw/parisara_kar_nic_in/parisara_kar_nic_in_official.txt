@@ -1,0 +1,6 @@
+URL: https://kspcb.karnataka.gov.in
+DOMAIN: parisara.kar.nic.in
+TITLE: Karnataka State Pollution Control Board (KSPCB)
+FETCHED_AT: 2026-10-28
+---
+Karnataka State Pollution Control Board (KSPCB) implements environmental protection statutes across Karnataka. Through its online consent management system (OCMMS / Parisara), industrial units apply for Consent for Establishment (CFE) and Consent for Operation (CFO), submit environmental statements, and monitor air and water quality compliance.

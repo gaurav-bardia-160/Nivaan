@@ -1,0 +1,27 @@
+URL: https://www.myscheme.gov.in/faqs
+TITLE: Frequently Asked Questions
+FETCHED_AT: 2026-10-26
+---
+Frequently Asked Questions
+- Home
+- Frequently Asked Questions
+What is myScheme, and how is it different from other government portals?
+How will myScheme help common citizens?
+How does myScheme work?
+What is the procedure for knowing the right scheme on the myScheme platform?
+What information about a particular scheme can I find on myScheme?
+What are the broad categories under which schemes are available on myScheme?
+Does the myScheme platform provide multilingual support?
+Does the myScheme platform showcase both Central and State/UT-specific schemes?
+I could not find a specific scheme on the myScheme platform. What should I do?
+I found some errors in the content of the schemes in the Marathi language. What should I do?
+I want to explore schemes under which scholarships are provided to students. Is this possible through myScheme?
+I want to apply for a specific scheme and would like to know the documents required for application. Can I find this information on myScheme?
+Can I apply for schemes through myScheme?
+To explore schemes best suited to a user, what details need to be provided in the "Personalised Search" feature of myScheme?
+What is the "Check Eligibility Questionnaire" feature?
+Does myScheme have a chatbot facility, and how does it help citizens?
+What are the key features of the AI Chatbot on myScheme?
+How can I provide my feedback regarding the content of the schemes?
+How can a user sign up or sign in on myScheme?
+How can I search a scheme on the myScheme platform?

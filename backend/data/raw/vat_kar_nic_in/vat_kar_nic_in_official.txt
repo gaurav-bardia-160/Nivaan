@@ -1,0 +1,6 @@
+URL: https://gstkarnataka.gov.in
+DOMAIN: vat.kar.nic.in
+TITLE: Value Added Tax / Commercial Taxes Karnataka
+FETCHED_AT: 2026-10-28
+---
+Commercial Taxes Department of Karnataka (formerly vat.kar.nic.in, now integrated with gstkarnataka.gov.in) administers state taxes, including Karnataka Goods and Services Tax (KGST), Profession Tax (KPT), and non-GST commodity taxes. The portal provides online registration, tax return submissions, electronic payment facilities, and tax clearance certifications.

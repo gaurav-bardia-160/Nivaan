@@ -1,0 +1,13 @@
+URL: https://scores.sebi.gov.in/
+TITLE: Home - scores.sebi.gov.in
+
+Scores Home
+Any Grievance sent through email to any of the SEBI e-mail addresses will not be attended to / entertained. Please lodge your grievance through this portal only.
+How SCORES Works
+-  1Register on Scores Fetch details from KYC Registration Agency or fill the Registration Form
+-  2Lodge Complaint Select appropriate category of complaint, Nature of Complaint and Name of the SEBI regulated Entity (i.e. Listed Company/ Registered Intermediaries/ Market Infrastructure Institutions)
+-  3Track Status Track the status of complaint. Please note that automatic reminders are sent to entities for timely resolution of complaint.
+-  4Seek Review Two level review system- Seek Review of your complaint within 15 days from date of receipt of ATR from the Entity for First Level Review and 15 days of receipt from Designated Body for Second Level Review
+-  5Provide Feedback Provide Feedback on the redressal process and quality of disposal of complaint within 15 days of closure of complaint in order to improve the SCORES system
+About SCORES
+“SCORES is an online grievance redressal facilitation platform provided by SEBI. Complainants can lodge grievances pertaining to securities market against SEBI regulated entities like listed companies, Registered Intermediaries and Market Infrastructure Institutions. Investors shall first take up their grievances for redressal with the entity concerned, through their designated persons/officials who handle issues relating to compliance and redressal of investor grievances. To know more about SCORES you may refer to FAQs or circular SEBI/HO/OIAE/IGRD/CIR/P/2023/156 dated September 20, 2023 on Redressal of investor grievances through the SEBI Complaint Redressal (SCORES) Platform and linking it to Online Dispute Resolution platform at <u> <a href = "https://www.sebi.gov.in/legal/circulars/sep-2023/redressal-of-investor-grievances-through-the-sebi-complaint-redressal-scores-platform-and-linking-it-to-online-dispute-resolution-platform_77159.html" target="_blank" aria-label='Redressal of investor grievances through the SEBI complaint Redressal(SCORES)'>Redressal of investor grievances</a> </u> or any other circular issued in this regard from time to time.”

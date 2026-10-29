@@ -1,0 +1,23 @@
+URL: https://guidelines.india.gov.in/rules-guidelines/
+TITLE: Rules and Guidelines | Guidelines for Indian Government Websites and apps (GIGW) | India
+FETCHED_AT: 2026-10-26
+---
+Rules and Guidelines
+- All participants and team have to be eligible (See Eligibility Criteria) to participate
+- If individuals are associated with any company, they must appraise their employer(s) about their participation, & the registration of the new entity. Furthermore, they will have to provide an NOC from their company stating that the respective company will have no right on the Prize Money and/or IPR
+- During the Innovation Challenge, the Team Leader shall be considered as the Single Point of Contact (SPOC) for all engagements & communication by the Organizing Team. Furthermore, the Team Leader cannot be changed during the Innovation Challenge/li>
+- The Team Leader and Participants will be required to use their Email ID and Mobile number for the purpose of Team Registration and Account Creation for participating in the Challenge.
+- All communication between the Innovation Challenge Organizing Team and Team Leader shall happen via the registered Email ID only. This will be the only form of communication and any other forms of communication will not be entertained
+- The teams shall not display any existing solution or collaborate with companies that have existing solutions. Such entries, if identified shall be liable for disqualification
+- Teams shall maintain detailed documentation of their Idea, Prototype and Solution at all stages of the Innovation Challenge for reference and record purpose. The Innovation Challenge Organizing Team reserves the right to review these documents any time during the program/li>
+- Any changes in Approach to the shortlisted Ideas during functional tool & functioning product stages of the Innovation Challenge will need to be formally communicated to & will undergo deliberation by the Innovation Challenge Organizing Team
+- Teams are allowed removal/voluntary withdrawal of team members, only once, during the program before prototype stage. Any such step will have to be disclosed to the Innovation Challenge Organising Team for approval. No other form of team modification will be entertained
+- The funding under Innovation Challenge shall be consumed for development of the solution only. The Teams will be required to provide Fund Utilization Certificate before the Next Stage on the date decided & communicated by the Innovation Challenge Organizing Team
+- The solution should not violate/breach/copy any idea/concept/ product already copyrighted, patented or existing in this segment of the market
+- Anyone found to be non-compliant, may get their participation cancelled. Innovation Challenge Grand Jury will take the final call in case of any unforeseen situation
+- For any dispute redressal, Secretary, MeitY’s decision will be final on the matter
+- NIC, MeitY, GoI will have no financial liability other than the prize money as indicated in Stages towards any license for the solution and will hold the perpetual license of the solution for production and DR
+- However, the winning entity and runner up would be free to market the solution to any entity outside Union/State/UT Government Organizations of India
+- In case of merger/takeover of the company the terms of use by NIC, MeitY, GoI would remain valid
+- In case the start-up closes the complete source code and knowledge transfer will be provided to NIC
+Intellectual Property Rights

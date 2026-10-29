@@ -1,0 +1,20 @@
+URL: https://nkn.gov.in/about/
+TITLE: About | About Us | National Knowledge Network
+FETCHED_AT: 2026-10-28
+---
+About
+Overview
+National Knowledge Network (NKN) provides secure and reliable connectivity to education facilities, R&D Institutions, Indian mission critical agencies and government deployments. NKN is India’s REN (Research & Education Network), where NKN provides multi-gigabit connectivity connecting central & state universities, research Institutions of DAE, DRDO, ICAR, ICMR, etc., libraries, laboratories, healthcare institutions, judicial institutions, agricultural institutions, etc. across the nation bring about a paradigm shift in knowledge ecosystem of India.
+Vision
+NKN is a state-of-the-art Pan-India network and is a revolutionary step towards creating a knowledge society without boundaries. It will provide unprecedented benefits to the knowledge community and mankind at large. Using NKN, all vibrant institutions with vision and passion will be able to transcend space and time limitations in accessing information and knowledge and derive the associated benefits for themselves and for the society. It will facilitate the development of India's information infrastructure, stimulate research, and create next generation applications and services.
+Mission
+NKN is designed to provide high availability, Quality of Service, security and reliability. The purpose of NKN goes to the very core of the country’s quest for building quality institutions with requisite research facilities and to create a pool of highly trained professionals. The participating institutions at the edge would seamlessly connect to NKN at gigabit speed. NKN shall be a critical information infrastructure for India to evolve as a knowledge society. NKN is a significant step which will enable scientists, researchers and students from across the country to work together for advancing human development in critical and emerging areas.
+Goal
+In March 2010, the Cabinet Committee on Infrastructure (CCI) approved the establishment of the National Knowledge Network (NKN) to be implemented by NIC over a period of 10 years. Establishing NKN is a significant step towards ushering in a knowledge revolution in the country with connectivity to 1800+ institutions. NKN is intended to connect all the knowledge and research institutions in the country using high bandwidth / low latency network.
+NKN has been established keeping the following features in mind:
+- Establishing a high-speed backbone connectivity which will enable knowledge and information sharing
+- Enabling collaborative research, development and Innovation
+- Facilitating advanced distance education in specialized fields such as engineering, science, medicine etc.
+- Facilitating an ultra-high speed backbone for e-Governance
+- Facilitating integration of different sectoral networks in the field of research, education, health, commerce and governance.
+- Link to Global Networks to collaborate with the research communities across the globe.

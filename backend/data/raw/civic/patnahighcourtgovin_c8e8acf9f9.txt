@@ -1,0 +1,24 @@
+URL: https://patnahighcourt.gov.in/erti/
+TITLE: Patna High Court - RTI Online Portal
+
+For the purpose of online filing of the RTI application, this Web Portal can be used by Indian citizens to file RTI application online and also to make payment of RTI fee online. First appeal can also be filed online.
+An applicant who desires to obtain any information under the RTI Act can make a request through this Web Portal to the Patna High Court.
+On clicking at "Submit Request", the applicant has to fill the required details on the page that will appear. The fields marked * are mandatory while the others are optional.
+The text of the application may be written at the prescribed column.
+At present, the text of an application that can be uploaded at the prescribed column is confined to 500 words only. Only alphabets A-Z a-z number 0-9 and special characters , . - _ ( ) / @ : & ? \ % are allowed in Text for RTI Request application.
+In case an application contains more than 500 words, it can be uploaded as an attachment by using column "Supporting document". Do not upload Aadhar Card or PAN Card or any other personal Identification (Except BPL Card). PDF file name should not have any blank spaces.
+After filling the first page, the applicant has to click on "Make Payment" to make payment of the prescribed fee as per the mode available.
+Fee for making an RTI application is Rs.10/- (Rupees Ten only) as prescribed in Patna High Court RTI Rules as amended up to date.
+After making payment, an application can be submitted.
+On final submission of an application and RTI fee, a unique registration number would be issued, which may be referred by the applicant for any references in future. After submission of online application, an Acknowledgment will be sent to the applicant on his/ her E-mail Id only on Court's working day (till office hour) and the date of acknowledgment shall be treated as the date of receipt of RTI application or First Appeal.
+After making payment, if the applicant didn’t receive the payment reference number then applicant is advised to wait for the 24-72 working hours as payment reference number will be generated after reconciliation.
+Please do not make additional attempt to make payment again if the registration number is not generated within 24-72 hours. kindly visit the RTI web portal of the Patna High Court and view the status report of your application.
+No RTI fee is required to be paid by any citizen who is below poverty line as per Patna High Court RTI Rules, 2005 as amended up to date. However, the applicant must attach a copy of the certificate issued by the appropriate government in this regard, along with the application.
+In case additional fee is required representing the cost for providing information, the PIO would intimate the applicant online and through E- mail. This intimation can be seen by the applicant through Status Report or through his/ her sms alert.
+For making an appeal to the First Appellate Authority, the applicant has to click at "Submit First Appeal" and fill up the page that will appear.
+The registration number of original application has to be used for reference.
+As per RTI Act, no fee is prescribed for filing the First appeal.
+The applicant/the appellant must provide his/her mobile number to receive SMS alert.
+Status of the RTI application/first appeal filed online can be seen by the applicant/appellant by clicking at "View Status".
+All the requirements for filing an RTI application and first appeal as well as other provisions regarding time limit, exemptions etc., as provided in the RTI Act, 2005 will continue to apply.
+For any other query relating to your RTI application. kindly send and e-mail to helprtionline-phc@gov.in with transaction/ registration details.

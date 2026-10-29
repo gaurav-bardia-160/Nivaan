@@ -1,0 +1,6 @@
+URL: https://voters.eci.gov.in
+DOMAIN: voters.eci.gov.in
+TITLE: ECI National Voters' Services Portal
+FETCHED_AT: 2026-10-28
+---
+The National Voters' Services Portal (voters.eci.gov.in) is the unified digital citizen interface for all electoral services in India. Citizens can register as new voters (Form 6), apply as overseas electors (Form 6A), link Aadhaar with voter record (Form 6B), request corrections in name/photo/address or replacement EPIC card (Form 8), track application status, and download digital e-EPIC cards with secure QR codes for identification at polling booths.

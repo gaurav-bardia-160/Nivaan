@@ -2,6 +2,8 @@
 setlocal
 cd /d "%~dp0"
 set OLLAMA_MODELS=%~dp0models
+set OLLAMA_HOST=127.0.0.1:11434
+set OLLAMA_NO_CLOUD=1
 if not exist "%~dp0models" mkdir "%~dp0models"
 
 set OLLAMA_EXE=%~dp0ollama\ollama.exe

@@ -1,0 +1,21 @@
+URL: https://guidelines.india.gov.in/participation-process-flow/
+TITLE: Participation Process Flow | Guidelines for Indian Government Websites and apps (GIGW) | India
+
+Participation Process Flow
+Program Launch and Registration
+The Program commences on 23rd September 2021. The Teams can register until 18th October 2021. To encourage participation from across academia and industry, participating teams are not mandatorily required to be a registered Indian Start-up/Company to apply for the challenge. However, the 5 teams shortlisted at Stage-1 will be required to register themselves as Indian Start-up/Company and submit the proof of having applied at the submission stage of Prototype. It’s expected that by the time of selection at the Final stage, the necessary registration process will be completed to facilitate signing of the contract for deployment of the solution for use by the Government.
+Participation in the Ideation Stage
+- Step-A: Team leader will have to individually Sign-Up and apply for the challenge online at https://web.guidelines.gov.in
+- Step-B: After the initial Sign-Up, the Team Leader has to add all Team Members and Company details, if any. (Click Here to View “Sample Registration Form” – PDF, 100 KB)
+- Step-C: Step-C: Team Leader will have to fill the submission form (Click Here to View “Sample Submission of Idea form” – PDF, 234 KB), which may include the upload of Documents, Videos, etc.
+Participation in the Minimum Viable Product Stage
+- Team Leaders and team members of the Top 5 shortlisted teams will receive an email confirming their selection to the minimum viable product Stage and instructions to submit requisite details.
+- Team Leaders will have to create an account on Open Forge and upload Documents & Source Code on Open Forge.
+- Team Leader is now supposed to submit the link for their Open Forge documents on the minimum viable product Stage Form.
+Participation in Functional Product Stage
+- Team Leaders and team members of the Top 2 shortlisted teams from the minimum viable product Stage will receive an email confirming their selection to the fully functioning product stage and instructions to submit requisite details (viz. Presentation Copy, Demo URL, Video, etc. and Company Registration Details) along with the date of presentation to the Grand Jury.
+- The teams shall develop the complete application and deploy on NIC’s Cloud Environment for final evaluation.
+- Security audit of the solutions will be conducted, and the teams would have to fix the security issues and get the solution certified. The cost of certification will be borne by NIC, MeitY
+Contract Signing
+- Team Leaders from the winning team will sign the contract with NIC/ MeitY.
+- Winning team will complete the MeitY specific customizations, documentation and tool optimization

@@ -1,0 +1,375 @@
+URL: https://guidelines.india.gov.in/accessibility-guidelines-and-attributes/
+TITLE: 2. Accessibility: Guidelines and Attributes | Guidelines for Indian Government Websites and apps (GIGW) | India
+FETCHED_AT: 2026-10-26
+---
+GIGW 3.0
+5.2 Accessibility
+The Success criteria under this section have been adopted from W3C Web content accessibility guidelines (https://www.w3.org/TR/WCAG21/). Developers are advised to refer to the W3C website for the complete description and techniques to meet the success criteria.
+5.2.1 Statement: All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below:
+- Controls, Input: If non-text content is a control or accepts user input, then it has a name that describes its purpose (Refer to Success Criterion 4.1.2 for additional requirements for controls and content that accepts user input);
+- Time-Based Media: If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content (Refer to Guideline 1.2 for additional requirements for media);
+- Test: If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content;
+- Sensory: If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content;
+- CAPTCHA: If the purpose of non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities; and
+- Decoration, Formatting, Invisible: If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.
+Benefit: Conformity makes information conveyed by non-text content accessible through the use of a text alternative. For example, a person who cannot see a picture can have the text alternative read aloud using synthesised speech. A person who cannot hear an audio file can have the text alternative displayed so that he or she can read it.
+Government organisation action: A meaningful explanatory text equivalent must be specified for images and other non-text content. The description should summarise the content or purpose of the image. For example, to use the description ‘Picture’ to explain a graphic does not serve any purpose.
+Developer action:For images text equivalent can be provided by using the ALT attribute. The ALT text for an image is displayed before the image is fully downloaded. It is the main source of image information for users of text-only browsers, users of browsers with graphics turned off and users who are sight impaired. The following situations are exceptions:
+- If the non-text content is a control or accepts input e.g., a submit button then it must have a name describing the purpose of the control;
+- If the non-text content is time-based media (audio/video) then the text equivalent provides a descriptive identification of the same;
+- If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content;
+- If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content;
+- CAPTCHA: If the purpose of non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities; and
+- If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology (by using blank alt attribute).
+Reference: WCAG 2.1 – 1.1.1
+Evaluator action: The evaluator will test it manually and by using the accessibility extension to browser/ accessibility plug-in/web accessibility tool to check the conformity of this checkpoint.
+5.2.2 Statement: For pre-recorded audio-only and pre-recorded video-only media, the following are true, except when the audio or video is a media alternative for text and is clearly labelled as such:
+- Pre-recorded Audio-only: An alternative for time-based media is provided that presents equivalent information for pre-recorded audio-only content; and
+- Pre-recorded Video-only: Either an alternative for time-based media or an audio track is provided that presents equivalent information for pre-recorded video-only content.
+Benefit: The intent of this Success Criterion is to make information conveyed by pre-recorded audio-only and pre-recorded video-only content available to all users. Alternatives for time-based media that are text based make information accessible because text can be rendered through any sensory modality (for example, visual, auditory or tactile) to match the needs of the user.
+Government organisation action: Create the alternate for time-based media, i.e, transcript in case audio only and transcript or audio track in case of video only content. Captions are not needed when the synchronised media is, itself, an alternate presentation of information that is also presented via text on the Web page
+Developer action: Make provision to provide alternatives for time-based media.
+Reference: WCAG 2.1 – 1.2.1
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.3 Statement: Captions are provided for all pre-recorded audio content in synchronised media, except when the media is a media alternative for text and is clearly labelled as such.
+Benefit: This enables people who are deaf or hard of hearing to watch synchronised media presentations.
+Government organisation action: The government organisations must create captions to provide the part of the content available via the audio track. Captions not only include dialogue but identify who is speaking and include non-speech information conveyed through sound, including meaningful sound effects.
+Developer action: Ensure that the captions are available with audio content.
+Reference: WCAG 2.1 – 1.2.2
+Evaluator action: The evaluator will test the it manually to check the conformity of this checkpoint.
+5.2.4 Statement: An alternative for time-based media or audio description of the pre-recorded video content is provided for synchronised media, except when the media is a media alternative for text and is clearly labelled as such.
+Benefit: provides people who are blind or visually impaired access to the visual information in a synchronised media presentation
+Government organisation action: The government organisations must provide audio description of the video content. The audio description augments the audio portion of the presentation with the information needed when the video portion is not available. Alternatively, all of the information in the synchronised media (both visual and auditory) may be provided in text form. If all of the information in the video track is already provided in the audio track, no audio description is necessary.
+Developer action: Developer must provide provision for publishing the alternative for time-based media or audio description of the pre-recorded video content
+Reference: WCAG 2.1 – 1.2.3
+Evaluator action: The evaluator will test the it manually to check the conformity of this checkpoint.
+5.2.5 Statement: Captions are provided for all live audio content in synchronised media.
+Benefits: Enables people who are deaf or hard of hearing to watch real-time presentations.
+Government organisation action: The government organisation must provide captions for live audio content.
+Developer action: Provide provision to publish captions
+Reference: WCAG 2.1 – 1.2.4
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.6 Statement: Audio description is provided for all pre-recorded video content in synchronised media.
+Benefits: Provides people who are blind or visually impaired access to the visual information in a synchronised media presentation. During existing pauses in dialogue, audio description provides information about actions, characters, scene changes and on-screen text that are important and are not described or spoken in the main soundtrack.
+Government organisation action: Provide Audio description of pre-recorded video content
+Developer action: Provide provision to publish audio description
+Reference: WCAG 2.1 – 1.2.5
+Evaluator action: The evaluator will test it manually a check the conformity of this checkpoint.
+5.2.7 Statement: Information, structure and relationships conveyed through presentation can be programmatically determined or are available in text.
+Benefits: Sighted users perceive structure and relationships through various visual cues present on a page (page headings are in a larger and bold font; list items are preceded by a bullet; form fields may be positioned as groups that share text labels; a different background colour may be used to indicate related items and so on). However, visually challenged users cannot take advantage of these cues. It must be ensured that these information and relationships are preserved even when the presentation format changes. (For example, when the content is read by a screen reader or CSS is turned off or replaced).
+Government organisation action: None.
+Developer action: Developers must ensure that information and relationships that are implied by visual or auditory formatting are preserved when the presentation format changes. For example, when the content is read by a screen reader or when a user style sheet is substituted for the style sheet provided by the author. For example, a form contains several required fields. The labels for the required fields are displayed in red. In addition, at the end of each label is an asterisk character (*). The instructions for completing the form indicate that "all required fields are displayed in red and marked with an asterisk *", followed by an example.
+Reference: WCAG 2.1 – 1.3.1
+Evaluator action: The evaluator will test it manually and by using the accessibility extension to browser/accessibility plug-in/web accessibility tool/assistive technology to check the conformity of this checkpoint.
+5.2.8 Statement: When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.
+Benefits: This helps people who rely on assistive technologies like screen readers because the meaning evident in the sequencing of the information in the visual presentation will be the same when the content is presented in spoken form. This also preserves the meaning of the page when the CSS is turned off or not supported.
+Government organisation action: None.
+Developer action: Provide a meaningful reading sequence.
+Note: Developers must keep in mind that a sequence is meaningful if change of order shall impact its meaning. Two independent content items like two separate articles in a page may be placed in any sequence without affecting the meaning. Similarly, the navigation block and the content area may be placed in any sequence without affecting their meaning. HTML text is always a meaningful sequence. Tables and ordered lists are meaningful sequences, but unordered lists are not. It must be clear that providing a particular linear order is only required where it affects meaning There may be more than one order that is "correct" and only one correct order needs to be provided.
+Reference: WCAG 2.1 – 1.3.2
+Evaluator action: The evaluator will test it manually and by using the accessibility extension to browser/accessibility plug-in/web accessibility tool/assistive technology to check the conformity of this checkpoint.
+5.2.9 Statement: Instructions provided for understanding and operating content do not rely solely on sensory characteristics of components such as shape, colour, size, visual location, orientation, or sound.
+Benefit: Many users including the visually challenged cannot perceive shape, size or use information about location or orientation. For such users the content that relies on knowledge of the shape or position of objects becomes inaccessible (for example, “round button” or “button to the right”).
+Government organisation action: None.
+Developer action: Provide additional information in content that relies solely on sensory characteristics of components such as shape, size, visual location, orientation, or sound. This can be done by providing textual identification of items that otherwise rely only on sensory information to be understood; for example, a round button is provided on a form to submit the form and move onto the next step. The button is labelled with the text "go." The instructions state, "to submit the form press the round button labelled go”. This includes both shape and textual information to locate the button.
+Reference: WCAG 2.1 – 1.3.3
+Evaluator action: The evaluator will test it manually and by using the assistive technology to check the conformity of this checkpoint.
+5.2.10 Statement: Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential.
+Benefit: This Success Criterion requires content to display in the orientation preferred by the user and not restrict the orientation. This improves accessibility for users who rely on a specific orientation and promotes flexibility in technology design.
+Users with dexterity impairments, who have a mounted device will be able to use the content in their fixed orientation.
+Users with low vision will be able to view content in the orientation that works best for them, for example to increase the text size by viewing content in landscape.
+Government organisation action: None.
+Developer action: Developers must ensure that content displays in the orientation (portrait or landscape) preferred by the user. Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential. Examples of situations where a specific display orientation is essential could be a:
+- Banking app that requires the device to be in landscape mode to capture an image of a check easily and accurately for deposit; and
+- Piano app that requires the device to be in landscape mode to allow room for enough of the piano keys to be functionally usable. Since a piano app is emulating a physical piano keyboard that needs to retain relative physical characteristics between keys, either too few keys would be available, or the keys would be much too narrow.
+Reference: WCAG 2.1 -1.3.4
+Evaluator action: The evaluator will test it manually and by using the accessibility extension to browser/accessibility plug-in/web accessibility tool/assistive technology to check the conformity of this checkpoint.
+5.2.11 Statement: The purpose of each input field collecting information about the user can be programmatically determined when:
+- The input field serves a purpose identified in the Input Purposes for User Interface Components section; and
+- The content is implemented using technologies with support for identifying the expected meaning for form input data. For example, a contact form auto-fills in the fields for name, street, post code, city, telephone number and email address from autofill values stored in the user’s browser. Assistive technology can offer a customised way of identifying particular input fields, for example drawing on a set of symbols / icons that is familiar to the user, to communicate the purpose of the fields visually.
+Reference: WCAG 2.1-1.3.5
+Evaluator action: The evaluator will test it manually and by using the Accessibility extension to browser/accessibility plug-in/web accessibility tool/assistive technology to check the conformity of this checkpoint.
+5.2.12 Statement: Colour is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.
+Benefit: Conformity to this guidelines benefits user who have difficulty perceiving colour e.g. People with partial sight or older users who do not see colour well. If a page has information that is conveyed by colour differences like: “required fields are red”, “error is shown in red” and “January sales are in red, July are in blue” then these users may not be able to access such information.
+Government organisation action: None.
+Developer action: Developers must ensure that when colour differences are used to convey information, such as required form fields, the information conveyed by the colour differences are also conveyed explicitly in text. Developers must provide a redundant visual cue for users who may not be able to discern a difference in text colour e.g., formatting for links on a page includes presenting them both in a different colour than the other text on the page underlining them to make the links identifiable even without colour vision.
+Reference: WCAG 2.1 – 1.4.1
+Evaluator action: The evaluator will test it manually and by using the Accessibility extension to browser/accessibility plug-in/web accessibility tool/assistive technology to check the conformity of this checkpoint.
+5.2.13 Statement: If any audio on a Web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume level.
+Benefits: The ability for individuals who use screen reading software to turn off background sound provides numerous benefits. It ensures that the screen reader’s speech output can be heard clearly without interference from other audio, which is especially important for those who are hard of hearing or have hearing impairments. Additionally, it benefits individuals who struggle to focus on visual content when audio is playing. This simple feature allows for a more accessible and inclusive experience for all users.
+Government organisation action: None.
+Developer action: Ensure that the sound that plays automatically when a page load stops within 3 seconds or provide a control at the beginning of the page to turn the sound off
+Reference: WCAG 2.1 – 1.4.2
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.14 Statement: The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following:
+- Large Text: (18 pt. or 14 pt. bold) Large-scale text and images of large-scale text have a contrast ratio of at least 3:1;
+- Incidental: Text or images of text that are part of an inactive user interface component, that are pure decoration, that are not visible to anyone, or that are part of a picture that contains significant other visual content, have no contrast requirement; and
+- Logotypes: Text that is part of a logo or brand name has no contrast requirement.
+Benefits: The contrast ratios are that they improve the readability and accessibility of text for a wider range of users, including those with visual impairments or colour deficiencies. By providing a minimum luminance contrast ratio between text and its background, text is more visible and legible, which can improve user experience and overall inclusivity.
+Government organisation action: None.
+Developer action: Developers must Ensure that a contrast ratio of at least 4.5:1 exists between text (and images of text) and background behind the text. It must be checked by the use of contrast checking tools. Alternatively, they can provide a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast
+Reference: WCAG 2.1 – 1.4.3
+Evaluator action: The evaluator will test it to see whether ‘high contrast mode’ is available and by using the accessibility extension to browser/accessibility plug-in/web accessibility tool to check the conformity of this checkpoint.
+5.2.15 Statement: Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.
+Benefits: It helps people with mild visual disabilities by allowing them to scale visually rendered text and text-based controls on a web page, without requiring the use of assistive technology. It ensures that the author creates web content that does not prevent user agents from scaling content effectively. By supporting text scaling, people with low vision can increase the size of text to a readable level, improving their ability to access and read web content.
+Government organisation action: None.
+Developer action: Developer must create Web content that does not prevent the user agent (e.g., browser) from scaling the content effectively. Ensuring that text containers resize when the text resizes and using measurements that are relative to other measurements in the content. Alternatively, developers may provide controls on the Web page that allow users to incrementally change the size of all text on the page up to 200 percent.
+Reference: WCAG 2.1 – 1.4.4
+Evaluator action: The evaluator will test it manually and by using the Accessibility extension to browser/accessibility plug-in/web accessibility tool to check the conformity of this checkpoint.
+5.2.16 Statement: If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text except for the following:
+- Customizable: The image of text can be visually customised to the user’s requirements;
+- Essential: A particular presentation of text is essential to the information being conveyed; and
+- Use of images for representing text should be limited.
+Benefit: Though images add life to a website, they also increase downloading time. Images should only be used when it adds value to the content. Images should not be used to present text as those using text-only browsers shall not be able to access the information thus rendering the website inaccessible to many. Therefore, text must be used to convey information rather than images of text except for the cases given above. The use of text, rather than images of text, should be considered for page headings and website navigation items.
+Government organisation action: Perform OCR on a scanned PDF document to capture actual text
+Developer action: CSS properties like font-family, text-align, font-size etc. can be used to style text and avoid the need for text in images.
+Reference: WCAG 2 1 – 1.4.5
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.17 Statement: Content can be presented without loss of information or functionality and without requiring scrolling in two dimensions for:
+- Vertical scrolling content at a width equivalent to 320 CSS pixels;
+- Horizontal scrolling content at a height equivalent to 256 CSS pixels; and
+- Except for parts of the content which require a two-dimensional layout for usage or meaning.
+Benefits: Benefits especially to those with small screens such as mobile devices or limited screen resolutions. It ensures that content is presented in a way that is easily accessible without the need for excessive scrolling or complex navigation.
+Government organisation action: None.
+Developer action: Use responsive web design approach by using CSS media queries, grid or flexbox to present content without introducing a horizontal scroll bar at a width equivalent to 320 CSS pixels, or a vertical scroll bar at a height equivalent to 256 CSS pixels for text intended to scroll horizontally.
+Reference: WCAG 2.1-1.4.10
+Evaluator action: The evaluator will test it manually and by using the web accessibility tool to check the conformity of this checkpoint.
+5.2.18 Statement: The visual presentation of the following has a contrast ratio of at least 3:1 against adjacent colour(s):
+- User Interface Components: Visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author;
+- Graphical Objects: Parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.
+Benefits: This benefits people with low vision or other visual impairments who may have difficulty perceiving low contrast controls and graphics and helps them better understand the content or functionality of the webpage without the need for contrast-enhancing assistive technology.
+Government organisation action: None.
+Developer action: Providing a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast
+Reference: WCAG 2.1- 1.4.11
+Evaluator action: The evaluator will test it manually and by using the accessibility extension to browser/accessibility plug-in/web accessibility tool to check the conformity of this checkpoint.
+5.2.19 Statement: In content implemented using markup languages that support the following text style properties, no loss of content or functionality occurs by setting all of the following and by changing no other style property:
+- Line height (line spacing) to at least 1.5 times the font size;
+- Spacing following paragraphs to at least 2 times the font size;
+- Letter spacing (tracking) to at least 0.12 times the font size;
+- Word spacing to at least 0.16 times the font size; and
+- Exception: Human languages and scripts that do not make use of one or more of these text style properties in written text can conform using only the properties that exist for that combination of language and script.
+Benefits: People with visual and cognitive disabilities can adjust text spacing to improve their reading experience without losing any content or functionality. By setting a minimum baseline for text styling adaptability, users can increase the spacing between lines, words, letters and paragraphs to effectively read text and other style preferences can be set. This can benefit people with low vision, dyslexia and cognitive disabilities who may require increased space between text to read or discern sections and call out boxes. Overall, this aims to improve accessibility and usability for a wider range of users.
+Government organisation action: None.
+Developer action: Ensure that content has the ability to be set to the above metrics without loss of content or functionality in case the user prefers to override the spacing provided by the developer
+Reference: WCAG 2.1- 1.4.12
+Evaluator action: The evaluator will test it manually and by using the accessibility extension to browser/accessibility plug-in/web accessibility tool/assistive technology to check the conformity of this checkpoint.
+5.2.20 Statement: Where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true:
+- Dismissible: A mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus unless the additional content communicates an input error or does not obscure or replace other content;
+- Hover-able: If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing; and
+- Persistent: The additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid.
+Benefits: This benefits users with low vision, cognitive disabilities, low pointer accuracy and those who use magnification or larger mouse cursors by providing a way to view content without reducing their desired magnification or increasing the risk of triggering additional content accidentally.
+Government organisation action: None.
+Developer action: Ensure that content has the ability to be set to the above metrics without loss of content or functionality in case the user prefers to override the spacing provided by the developer
+Reference: WCAG 2.1-1.4.13
+Evaluator action: The evaluator will test it manually and by using the accessibility extension to browser/accessibility plug-in/web accessibility tool/assistive technology to check the conformity of this checkpoint.
+5.2.21 Statement: All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user’s movement and not just the endpoints.
+Benefits: By ensuring that content is operable through a keyboard or keyboard interface, this Success Criterion benefits people who are blind, people with low vision and individuals with hand tremors or other conditions that make using a mouse difficult. It also enables the use of operating system keyboard accessibility features, such as modifier key locking, which can further improve the accessibility of the content.
+Government organisation action: None.
+Developer action: Developers must Identify all functionality on the content and check that all functionalities can be accessed using only the keyboard or keyboard interface. It is important to consider functions performed using both the mouse and the keyboard together. Examples of functionality include the use of physical controls such as links, menus, buttons, checkboxes, radio buttons and form fields as well as the use of features like drag and drop, selecting text, resizing regions or bringing up context menus. This does not necessarily mean that each of the individual controls can be used from the keyboard as long as there are multiple methods to perform the same function available on the page. Developers must consider how users will discover any keyboard equivalents which are available in such a case.
+Reference: WCAG 2.1 – 2.1.1
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.22 Statement: If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away.
+Benefits: Whenever a web page is rendered using plug-ins or embedded applications, it is possible that functionality of the Web page restricts the keyboard focus to a subsection of the content, unless the user knows how to leave that state and “un-trap” the focus. This situation may affect navigation for people who rely on a keyboard or keyboard interface to use the Web, including visually challenged and people with physical disabilities.
+Government organisation action: None.
+Developer action: Developers must ensure that if focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface and, if it is not possible the user is advised of the method for moving focus away
+Reference: WCAG 2.1 – 2.1.2
+Evaluator action: The evaluator will test it manually and by using assistive technology to check the conformity of this checkpoint.
+5.2.23 Statement: If a keyboard shortcut is implemented in content using only letter (including upper- and lower-case letters), punctuation, number, or symbol characters, then at least one of the following is true:
+- Turn off: A mechanism is available to turn the shortcut off;
+- Remap: A mechanism is available to remap the shortcut to include one or more non-printable keyboard keys (e.g., Ctrl, Alt); and
+- Active only on focus: The keyboard shortcut for a user interface component is only active when that component has focus.
+Benefits: Benefits speech users who can avoid firing batches of single-key shortcuts at once and make full use of programs that offer single-key shortcuts to keyboard users. It also benefits keyboard-only users who have dexterity challenges and may accidentally hit keys, as they can turn off or modify problematic single character shortcuts.
+Government organisation action: None.
+Developer action: In case a developer has provided shortcuts in their applications to allow for faster user interaction which involve only character keys (letters, numbers, punctuation or symbol characters) without modifiers provision must be given to allow users to turn off or reconfigure shortcuts that are made up of only character keys. If the keyboard shortcut is only active when a particular user interface component has focus, then override mechanism is not required.
+Reference: WCAG 2.1 – 2.1.4
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.24 Statement: For each time limit that is set by the content, at least one of the following is true:
+- Turn off: The user is allowed to turn off the time limit before encountering it; or
+- Adjust: The user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or
+- Extend: The user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, "press the spacebar") and the user is allowed to extend the time limit at least ten times; or
+- Real-time Exception: The time limit is a required part of a real-time event (for example, an auction) and no alternative to the time limit is possible; or
+- Essential Exception: The time limit is essential and extending it would invalidate the activity; or
+- 20 Hour Exception: The time limit is longer than 20 hours.
+Benefits: In situations where web functions are time-dependent, (for example, filling out an online form) it will be difficult for people with disabilities such as blindness, low vision, dexterity impairments and cognitive limitations to perform the required functions before a time limit occurs. This may render the service inaccessible to them. For individuals who are deaf and communicate in sign language, having control over time limits is important when using a sign-language interpreter. Providing additional time to pause content can be helpful for those with reading and cognitive disabilities to better comprehend information.
+Government organisation action: None.
+Developer action: Developers must ensure that people with disabilities such as blindness, low vision, dexterity impairments and cognitive limitations are given adequate time to perform the functions that are time dependent whenever possible. The user must be allowed to turn off the time limit, adjust the default setting before encountering it or is warned before time expires and given the option to extend the time limit with a simple action (for example, “press the spacebar”).
+Reference: WCAG 2.1 – 2.2.1
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.25 Statement: For moving, blinking, scrolling, or auto-updating information, all of the following are true:
+- Moving, blinking, scrolling: For any moving, blinking or scrolling information that (1) starts automatically, (2) lasts more than five seconds and (3) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it unless the movement, blinking, or scrolling is part of an activity where it is essential; and
+- Auto-updating: For any auto-updating information that (1) starts automatically and (2) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it or to control the frequency of the update unless the auto-updating is part of an activity where it is essential.
+Benefits: Avoiding content that flashes can prevent triggering seizures in people with photosensitive epilepsy.
+Government organisation action: None.
+Developer action: Allow the content to be paused and restarted from where it was paused or Use script to scroll content and provide a mechanism to pause it or Create content that blinks for less than 5 seconds
+Reference: WCAG 2.1 – 2.2.2
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.26 Statement: Web pages do not contain anything that flashes more than three times in any one second period, or the flash is below the general flash and red flash thresholds.
+Benefits: Certain special effects such as blinking, or flashing have been reported to cause epileptic seizures. It is also seen that people are more sensitive to red flashing than other colours. Web pages must not contain anything that flashes more than three times in any one second period. It must also be checked that the Light/Dark status at the end of the 1- second period is the same as at the start
+Government organisation action: None.
+Developer action: Ensure that no component of the content flashes more than three times in any 1-second period or keep the flashing area small enough reference
+Reference: WCAG 2.1 – 2.3.1
+Evaluator action: The evaluator will test it manually and by using web accessibility tool to check the conformity of this checkpoint.
+5.2.27 Statement: A mechanism is available to bypass blocks of content that are repeated on multiple Web pages.
+Benefits: Web pages and applications often have content that is repeated on other pages or screens (for example navigation links, heading graphics, banner frames etc). A sighted user can ignore the repeated material by focusing on the main content area, but it is not possible for a person using a screen reader as the content is read sequentially.
+Government organisation action: None.
+Developer action: Developers must provide a mechanism to bypass blocks of content that are repeated on multiple Web pages. This may be done by:
+- providing a link at the top of each page that goes directly to the main content area.
+- providing a link at the beginning of the content block to go to the end of the block
+- providing links at the top of each page that go to each area of content.
+- Controls and programmatic focus can also be used to bypass blocks of content.
+Reference: WCAG 2.1 – 2.4.1
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.5.28 Statement: Web pages/app screens have titles that describe topic or purpose.
+Benefit: This facilitates an easy and unambiguous identification of the webpage & also helps in a more relevant and visible presence in the search engine results. Further, it is important since the screen readers used by the visually impaired users first read the title of the page and in case the title is not explanatory enough, it may confuse or mislead them.
+Government organisation action: The government organisation must ensure that title is complete with the topic of the page. For the top-level page i.e., homepage/homescreen the name of the country must be included, for instance, instead of the title being just Ministry of Health and Family Welfare, it should state, Ministry of Health & Family Welfare, Government of India. Alternatively, in case of a State ‘Department of Health, Government of Karnataka, India’ Government Department, it should state ‘Department of Health, Government of Karnataka, India’.
+Developer action: there are scenarios when the Web page has a title, but the title does not identify the contents or purpose of the Web page. This may be caused because—
+- Authoring tool default page titles, such as: "Enter the title of the HTML document here," "Untitled document" or "No title";
+- Empty text in title;
+- Filler or placeholder text; and
+- A website generated using templates includes the same title for each page.
+The developer should ensure that the above does not affect the page title.
+Reference: WCAG 2.1 – 2.4.2
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.29 Statement: If a Web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability.
+Benefits: When users navigate sequentially through content, they should encounter information in an order that is consistent with the meaning of the content and can be operated from the keyboard. Hence if a Web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components must receive focus in an order that preserves meaning and operability.
+Government organisation action: Ensure correct reading order in PDF documents by structuring the document correctly in the authoring tool used to create the document before conversion to tagged PDF. Pages with complex layouts with graphics, tables, footnotes, sidebars, form fields and other elements may not convert to tagged PDF in the correct reading order. These inconsistencies must then be corrected with repair tools such as Acrobat.
+Developer action: Ensure that interactive elements on a webpage receive focus in an order that follows sequences and relationships in the content. When designing the content, the interactive elements such as links and form controls must be placed in the content so that the default tab order follows the sequences and relationships in the content. Correct tab and reading order must also be ensured in PDF documents by using a tool for authoring PDF.
+Reference: WCAG 2.1 – 2.4.3
+Evaluator action: The evaluator will test it manually and by using the assistive technology to check the conformity of this checkpoint.
+5.2.30 Statement: The purpose of each link can be determined from the link text alone or from the link text together with its programmatically determined link context, except where the purpose of the link would be ambiguous to users in general.
+Benefit: This helps users understand the purpose of each link so they can decide whether they want to follow the link. Assistive technology has the ability to provide users with a list of links that are on the Web page. Link text that is as meaningful as possible will aid users who want to choose from this list of links. Meaningful link text also helps those who wish to tab from link to link. Meaningful links help users choose which links to follow without requiring complicated strategies to understand the page.
+Government organisation action: None.
+Developer action: Developer must ensure that the text of, or associated with, the link describes the purpose of the link. In cases where the link takes one to a document or a web application, the name of the document or web application would be sufficient to describe the purpose of the link however it is not mandatory to use the name of the document or web application; other things may also describe the purpose of the link.
+Reference: WCAG 2.1 – 2.4.4
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.31 Statement: More than one way is available to locate a web page within a set of web pages except where the web page is the result of, or a step in, a process.
+Benefits: Providing multiple navigation options can help people find information faster, particularly those with visual or cognitive impairments. For instance, a person with a visual impairment may prefer using a search feature instead of scrolling through a large navigation bar with a screen reader. Similarly, a person with cognitive limitations may find a site map or table of contents more useful than a hierarchical navigation scheme.
+Government organisation action: None.
+Developer action: Developers must include either a “Search” box or a link to a “Search” page from every page of the website. The search box or link must be titled “Search”, as it is a standard term understood by web surfers worldwide. As per internationally accepted Usability principles, search boxes are most effective when placed in the same position on all pages (usually within the upper third part of the webpage). Additionally, a sitemap or a link to all the pages of the website from the homepage/homescreen or a table of contents must be provided
+Reference: WCAG 2.1 – 2.4.5
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.32 Statement: Headings and labels describe topic or purpose.
+Benefit: It is imperative that the information and services on the website/app are well organised and categorised into relevant modules/sections and sub-sections so that any information can be located conveniently and is not buried deep inside Webpages. These sections or categories may be identified with headings or labels. Headings and Labels wherever used must correctly describe the topic or purpose of content.
+Government organisation action: None.
+Developer action: Developers must specify headings using HTML heading tags (H1 to H6) with proper hierarchy. When headings are clear and descriptive, users can find the information they seek more easily and they can understand the relationships between different parts of the content more easily. Developers must also provide descriptive labels to help users identify specific components within the content. Labels and headings do not need to be lengthy. A single word may suffice if it provides an appropriate cue to finding and navigating content.
+Reference: WCAG 2.1 – 2.4.6
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.33 Statement: Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible.
+Benefit: This helps the user know which element among the multiple elements present in the page has focus. For e.g., in case of a button a visual change in the button (e.g., colour, size) can indicate that the focus is on the button.
+Government organisation action: None.
+Developer action: When standard controls are used the users are informed of the focus location in a standard, predictable way. Visual appearance may also be enhanced via style sheets to provide visual feedback when an interactive element has focus or when a user hovers over it using a pointing device.
+Reference: WCAG 2.1 – 2.4.7
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.34 Statement: All functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.
+Benefit: This is particularly beneficial for those with cognitive or learning disabilities who may not understand custom gesture interactions. The benefits of providing alternative means for operating touchscreen or mouse-based content, particularly for users who may have physical, cognitive, or learning disabilities that these users can still effectively interact with the content. This can help to ensure that digital experiences are more inclusive and accessible for all users.
+Government organisation action:
+Developer action: Developer must provide controls to achieve the same result as path based or multipoint gestures
+Reference: WCAG 2.1-2.5.1
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+- No Down-Event: The down-event of the pointer is not used to execute any part of the function;
+- Abort or Undo: Completion of the function is on the up-event and a mechanism is available to abort the function before completion or to undo the function after completion;
+- Up Reversal: The up-event reverses any outcome of the preceding down-event;
+- Essential: Completing the function on the down-event is essential.
+- Supported Interface: The motion is used to operate functionality through an accessibility supported interface;
+- Essential: The motion is essential for the function and doing so would invalidate the activity;
+- Functionality that can be operated by device motion or user motion must also be operable by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when:
+- Supported Interface: The motion is used to operate functionality through an accessibility supported interface;
+- Essential: The motion is essential for the function and doing so would invalidate the activity.
+- Submissions are reversible;
+- Data entered by the user is checked for input errors and the user is provided with an opportunity to correct them; and
+- A mechanism is available for reviewing, confirming, and correcting information before finalising the submission.
+5.2.35 Statement: For functionality that can be operated using a single pointer, at least one of the following is true:
+Benefits: This will help users to prevent accidental or erroneous pointer input by allowing them to cancel pointer operations. The preferred method for cancellation is the up-event, which occurs when a touchscreen or mouse pointer is released. This will benefit all users by reducing the chance of accidental activation and ensuring a means of undoing or aborting an action is available.
+Government organisation action: None.
+Developer action: Incorporate pointer cancellation by making activation occur on the up-event. This can be done by using the default behaviour of controls and not override that behaviour with an explicit down-event trigger. The up-event is the default behaviour for almost all controls and any programming or markup language. Also, for drag and drop events it must be ensured that users who use a path-based drag-and-drop action to move an item from the initial location to a drop target can abort the action after picking up the target. This can be done either by releasing the item outside a drop area, or by moving the item back to its original position in a separate action that undoes the first action e.g., a website shows a file directory. Files can be picked up and moved over a trash can icon. When the picked-up file is released outside this target, it reverts to the old position.
+Reference: WCAG 2.1- 2.5.2
+Evaluator action: The evaluator will test the website manually to check the conformity of this checkpoint.
+5.2.36 Statement: For user interface components with labels that include text or images of text, the name contains the text that is presented visually.
+Benefits: This will allow users with disabilities to interact with the components using speech recognition or text-to-speech technologies more easily and with greater predictability. It is important to determine which text on the screen should be considered a label for any given control and to bias towards treating only the adjacent text as a label. The benefits of implementing this Success Criterion include more efficient navigation for speech-input users and a better experience for text-to-speech users.
+Government organisation action: None.
+Developer action: Ensure that the words and characters in the visible label of a control match or are contained within the programmatic name, also known as the Accessible Name.
+Reference: WCAG 2.1- 2.5.3
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.37 Statement: Functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when:
+Benefits: This will help users with disabilities who may not be able to use device sensors or perform certain movements, as well as users who are unable to move their devices. By providing alternative methods of operating all functionality, this success criterion ensures that everyone can access and use web content.
+Government organisation action: None.
+Developer action: In Devices that have sensors that can act as inputs, (such as accelerometer and gyroscope sensors on a phone or tablet device) and allow the user to control something by simply changing the orientation or moving the device in particular ways the functionality offered through motion must also be available by another mechanism. The user must also have the ability to turn off motion actuation to prevent accidental triggering of functions due to tremors or other motor impairments.
+Reference: WCAG 2.1- 2.5.4
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.38 Statement: The default human language of each Web page can be programmatically determined.
+Benefits: This ensures that users with disabilities, who rely on assistive technologies to access the content, can understand it better. It benefits people who have difficulty reading written material or recognizing characters and alphabets, those with certain cognitive or learning disabilities who use text-to-speech software and those who rely on captions for synchronised media.
+Government organisation action: None.
+Developer action: Default language of the page must be indicated programmatically by the use of the lang attribute. In PDF document default language can be set using the Lang entry in the document catalogue. Specifying the default language in the HTTP header in relevant situations can be considered.
+Reference: WCAG 2.1 – 3.1.1
+5.2.39 Statement: The human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, words of indeterminate language and words or phrases that have become part of the vernacular of the immediately surrounding text.
+Benefits: This will help people who have difficulty reading, recognizing characters and alphabets, decoding words and understanding phrases, as well as people with certain cognitive, language and learning disabilities who use text-to-speech software.
+Government organisation action
+Developer action: If there are any changes in the default language of the document, either in the document’s text or any text equivalents (e.g., captions), they also be clearly identified using the lang attribute. The language for a passage or phrase can be specified with the Lang entry in PDF documents.
+Reference: WCAG 2.1 – 3.1.2
+Evaluator action: The evaluator will test it manually and by using the Accessibility extension to browser/ Accessibility plug-in/Web Accessibility tool/ Assistive Technology to check the conformity of this checkpoint.
+5.2.40 Statement: When any user interface component receives focus, it does not initiate a change of context.
+Benefits: This aims to prevent unexpected context changes that can be especially problematic for people with visual disabilities, cognitive limitations and motor impairments. By ensuring that focus changes are predictable and consistent, this improves the usability and accessibility of web content.
+Government organisation action: None.
+Developer action: Ensure that all changes of context are triggered only by a specific action on the part of the user. Further, that action is the one that usually causes changes in context, such as clicking on a link or pressing a submit button. Actions that simply move the focus to an element must not cause a change of context.
+Reference: WCAG 2.1 – 3.2.1
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.41 Statement: Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behaviour before using the component.
+Benefits: It helps users with visual and cognitive disabilities by providing additional cues to detect changes of context, reducing the chances of disorientation and enhancing their ability to use the content. Users who are unable to detect changes of context are less likely to become disoriented while navigating a site, making the content more accessible to a wider range of users.
+Government organisation action: None.
+Developer action: Provide a submit button to initiate a change of context or if change in context occurs provide information to users about what will happen when a change to a form control results in a change of context
+Reference: WCAG 2.1 – 3.2.2
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.42 Statement: Navigational mechanisms that are repeated on multiple Web pages within a set of Web pages occur in the same relative order each time they are repeated, unless a change is initiated by the user.
+Benefits: This is particularly helpful for individuals with low vision who use screen magnification or visual cues to navigate the website. Ensuring that repeated components occur in the same order on each page of a website helps users with cognitive limitations, intellectual disabilities and those who are blind to become comfortable with the website’s structure and easily find what they are looking for.
+Government organisation action: None.
+Developer action: Ensure presenting components that are repeated in web pages in the same relative order each time they appear. Other components can be inserted between them, but their relative order is not changed. Similarly in navigational components links or programmatic references must be presented inside a navigational component in the same relative order each time the navigational component is repeated. Other links can be removed or inserted between the existing ones, for example to allow navigation inside a subsection of a set of Web pages, but the relative order is not changed.
+Reference: WCAG 2.1 – 3.2.3
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.43 Statement: Components that have the same functionality within a set of Web pages are identified consistently.
+Benefits: This will help people who use screen readers to navigate and operate a website more easily, as they rely on their familiarity with functions that may appear on different pages. It also benefits people with cognitive limitations and those who have difficulty reading or detecting text alternatives. Consistent labelling and text alternatives enable people to find desired functions on other pages if they are present, interact with non-text content in a consistent way and have a more predictable and consistent experience while navigating a website.
+Government organisation action: None.
+Developer action: Apply consistent labels on user interface components (i.e., elements, links, JavaScript objects, etc.) that have the same function e.g., A Web page has a form field at the top of the page labelled "Search". On the bottom of the page is another form field which provides the same function. It is also labelled "Search."
+Reference: WCAG 2.1 – 3.2.4
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.44 Statement: If an input error is automatically detected, the item that is in error is identified and the error is described to the user in text.
+Benefits: This helps users, including those who are blind or have cognitive or learning disabilities, to understand that an error has occurred and how to correct it. By providing text-based error messages, users who cannot perceive visual cues, such as colour or icons, are also able to understand the error message. This improves the accessibility of web forms and makes them more usable for a wider range of users.
+Government organisation action: None.
+Developer action: Error must be identified to the user in text. It is perfectly acceptable to indicate the error in other ways such as image, colour etc, in addition to the text description.
+Reference: WCAG 2.1 – 3.3.1
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.45 Statement: Labels or instructions are provided when content requires user input.
+Benefits: This benefits user, especially those with disabilities, by providing clear and unambiguous instructions that help them enter information correctly and avoid incomplete or incorrect form submissions. The goal is to provide enough information for users to accomplish tasks without undue confusion or navigation, without cluttering the page with unnecessary information.
+Government organisation action: None.
+Developer action: Developers must present instructions or labels that identify the controls in a form so that users know what input data is expected. In the case of radio buttons, checkboxes, combo boxes, or similar controls that provide users with options, each option must have an appropriate label. Instructions or labels may also specify data formats for data entry fields, especially if they are out of the customary formats or if there are specific rules for correct input. Developers may also make such instructions available to users only when the individual control has focus, especially when instructions are long and verbose.
+Reference: WCAG 2.1 – 3.3.2
+Evaluator action: The evaluator will test it manually and by using the Accessibility extension to browser/ Accessibility plug-in/Web Accessibility tool to check the conformity of this checkpoint.
+5.2.46 Statement: If an input error is automatically detected and suggestions for correction are known, then the suggestions are provided to the user, unless it would jeopardise the security or purpose of the content.
+Benefits: This will help users with disabilities to understand how to correct errors and fill in forms successfully. Providing information about how to correct input errors can benefit users with learning disabilities, visual impairments and motion impairments by making it easier for them to understand the nature of the error and how to correct it and reducing the number of times they need to change an input value. This improves the overall accessibility and usability of it or application for a wider range of users.
+Government organisation action: None.
+Developer action: Provide text descriptions to identify required fields that were not completed while submitting a form or provide the correct format if the values entered in a field have an incorrect format.
+Reference: WCAG 2.1 – 3.3.3
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.47 Statement: For webpages that cause legal commitments or financial transactions for the user to occur, that modify or delete user-controllable data in data storage systems, or that submit user test responses, at least one of the following is true:
+Benefits: This benefits users with disabilities who may be more likely to make mistakes due to reading or motor impairments and helps prevent costly errors that could result in financial loss or data loss. By providing safeguards to avoid serious consequences, this success criterion improves the accessibility and usability of it or application for all users, not just those with disabilities.
+Government organisation action: None.
+Developer action: Provide safeguards as above to avoid serious consequences resulting from mistakes helps users with all disabilities who may be more likely to make mistakes.
+Reference: WCAG 2.1 – 3.3.4
+Evaluator action: The evaluator will test it manually to check the conformity of this checkpoint.
+5.2.48 Statement: In content implemented using markup languages, elements have complete start and end tags, elements are nested according to their specifications, elements do not contain duplicate attributes and any IDs are unique, except where the specifications allow these features.
+Benefits: This will help prevent different user agents from rendering the content differently or being unable to parse it, which can lead to accessibility issues for users with disabilities. By requiring that web content be correctly structured, with complete start and end tags and proper nesting, this helps ensure that assistive technologies can parse the content accurately and without crashing, which improves the accessibility and usability of the website or application for all users.
+Government organisation action: None.
+Developer action: Developers must validate the markup to ensure that it is as per the standards
+Reference: WCAG 2.1 – 4.1.1
+Evaluator action: The evaluator will test it manually and by using the Accessibility extension to browser/ Accessibility plug-in/Web Accessibility tool to check the conformity of this checkpoint.
+5.2.49 Statement: For all user interface components (including but not limited to form elements, links and components generated by scripts), the name and role can be programmatically determined; states, properties and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies.
+Benefits: This ensures that user interface controls in web content can be accurately interpreted and controlled by assistive technologies. By providing role, state and value information for all user interface components, people with disabilities who use assistive technology such as screen readers or speech recognition software can more easily access and navigate web content. This can improve their overall user experience and help them more fully participate in online activities.
+Government organisation action: None.
+Developer action: Developers who develop or script their own user interface components must provide role, state and value information on all such components
+Reference: WCAG 2.1 – 4.1.2
+Evaluator action: The evaluator will test it manually and by using the Accessibility extension to browser/ Accessibility plug-in/Web Accessibility tool/ Assistive Technology to check the conformity of this checkpoint.
+5.2.50 Statement: In content implemented using markup languages, status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.
+Benefits: It benefits blind and low vision users of assistive technologies by enabling compatibility with screen readers and may also benefit users with cognitive disabilities. Properly assigning roles or properties to status messages allows for possible future uses and personalization opportunities, while also providing additional information to users without affecting their current point of regard. Additionally, assistive technologies may choose to delay, suppress, or transform such messages based on the user’s preferences.
+Government organisation action: None.
+Developer action: The status message provides information to the user on the success or results of an action, on the waiting state of an application, on the progress of a process, or on the existence of errors; the message is not delivered via a change in context.
+Reference: WCAG 2.1– 4.1.3
+Evaluator action: The evaluator will test it manually and by using the Accessibility extension to browser/ Accessibility plug-in/Web Accessibility tool/ Assistive Technology to check the conformity of this checkpoint.

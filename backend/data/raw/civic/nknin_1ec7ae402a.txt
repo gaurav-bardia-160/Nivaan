@@ -1,0 +1,19 @@
+URL: https://nkn.gov.in/service/network-services/
+TITLE: Network Services | Services | National Knowledge Network
+
+Network Services
+Network Oriented Services
+Generic Services
+Internet, Intranet, Network Management Views, e-Mail, Messaging Gateways, Caching Gateways, Web Hosting, Voice over IP, Multipoint Control Unit (MCU) Services, Video Portals, SMS Gateway, Co- Location Services, Video Streaming etc.
+Special Services
+Virtual Private Network Stitching Services [VPN@L2 (Virtual Private Wire Service / Virtual Private LAN Service), VPN@L3] etc.
+Bandwidth Monitoring Service
+The service allows user to perform bidirectional bandwidth tests between your desktop computer and the server located at NKN Point of Presence (PoP). This service also determines the bandwidth available in the NKN super core network by performing bandwidth test on NKN super core links. The setup comprises of seven bandwidth monitoring servers which are located at NKN super core PoPs (Delhi, Hyderabad, Bangalore, Chennai, Kolkata, Mumbai and Guwahati).
+DNS Services
+DNS Cache Servers: NKN runs DNS cache servers for the members connected to NKN. The server IP is 14.139.5.5 and this is an anycast service. There are multiple of them running from various places in the NKN. These DNS IP could be used by any NKN user in case they need to use a DNS cache server.f
+DNS Zone Server: NKN offers its members a facility where in the members can use the DNS ZONE server from NKN cloud. The DNS servers support DNS protocol and also DNSSEC protocol. Any NKN member could ask for this facility. For instance if you are running a DNS for a ZONE called ABCD.AC.IN or ABCD.RES.IN or any other, then you could off load the DNS service to NKN Cloud and be free from the hassles of running a DNS server 24X7.
+Documents: Guidelines NKN DNS Entry
+Mail Services
+MX Service: MX is mail gateway required to receive mail for a particular domain. This service allows NKN users to have their MX located at NKN cloud and get all the emails scanned at NKN cloud before receiving.
+Relay Service: NKN also offers “Mail Relay” services. This service is primarily used by applications configured in Data Centres and institutions that are configured for sending mails as part of the feedback process or for intimation to users.
+If a institute wishes to avail this service thereby not exposing their SMTP port to the internet, they can do so. The institute needs to ensure that the application that is configured to send mails is security audited. This is necessary as a hacker can exploit an application thereby using it to send unwanted mail traffic outside NKN. The unwanted traffic could carry mails that are infected with virus/worms and as a result the IP of the relay gateway will get blacklisted in the internet.

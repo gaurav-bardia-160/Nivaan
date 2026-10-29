@@ -1,0 +1,11 @@
+URL: https://stqc.gov.in/en/about-electronics-testing
+TITLE: Standardisation Testing and Quality Certification Directorate (STQC) - About Electronics testing
+
+The testing of various products and systems to assure quality, safety, and security is a measurement assurance practice, to verify compliance with the international and national specifications.
+Keeping in view the need, STQC has established independent third-party testing laboratories to provide assistance to industry and other organizations in this area. The testing of electronics and electrical and software components, modules, products, subsystems, and integrated systems can be undertaken by STQC laboratories. The partial specification, full specification testing, and developmental assistance testing services are carried out as per the requirement of user/customer/manufacturer at STQC laboratories.
+The STQC testing services to industry and organizations are offered in the following domains :
+Electronics and Electrical Testing
+There are 4 regional laboratories i.e ERTLs and 10 state-level laboratories i.e ETDCs. The STQC laboratories are equipped with the state of the art testing facilities. These laboratories offer testing services for assurance of compliance with technical specifications (national and international).
+These electronics and electrical testing services are provided by STQC laboratories ERTL(North) Delhi, ERTL(East) Kolkata, ERTL(West) Mumbai, ERTL(South), Thiruvananthapuram, ETDC Bangaluru, ETDC Chennai, ETDC Hyderabad, ETDC Pune, ETDC Goa, ETDC Jaipur, ETDC Mohali, ETDC Solan, ETDC Guwahati, and ETDC Agartala.
+All software testing and assessment services are provided by STQC IT centres located at Delhi, Kolkata, Bangaluru, Thiruvananthapuram, Chennai, Hyderabad, Pune, Jaipur, Mohali, Mumbai and Guwahati .
+STQC laboratories have a well-established quality system complying with ISO/IEC 17025 and are accredited by NABL (National Accreditation Board for Laboratories).

@@ -1,0 +1,6 @@
+URL: https://finmin.gov.in
+DOMAIN: finmin.nic.in
+TITLE: Ministry of Finance (FinMin)
+FETCHED_AT: 2026-10-28
+---
+The Ministry of Finance is the apex union ministry responsible for India's macroeconomic management, taxation, financial legislation, financial institutions, capital markets, and union budget preparation. It comprises six departments: Economic Affairs, Expenditure, Revenue, Financial Services, Public Enterprises, and Investment & Public Asset Management (DIPAM). The official portal provides budget documents, economic surveys, tax notifications, and banking directives.

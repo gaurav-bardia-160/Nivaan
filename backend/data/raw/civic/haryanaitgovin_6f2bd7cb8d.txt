@@ -1,0 +1,40 @@
+URL: https://haryanait.gov.in/about-department/vision-mission/
+TITLE: Vision & Mission |  Department of Information Technology Electronics & Communication, Haryana | India
+
+Vision & Mission
+VISION
+The Government of Haryana recognizes the important role of Information and Communication Technologies (ICT) in delivery of citizen services and governance processes in an efficient and transparent manner.
+To facilitate planning, designing, implementing and managing a wide range of IT initiatives at department/ organization levels, the State Government of Haryana has aligned its vision to focus on Digital India Program’s three important Vision areas/ Objectives and nine pillars:
+Objectives
+- Digital Infrastructure as a Utility to Every Citizen
+- Governance & Services on Demand
+- Digital Empowerment of Citizens
+Nine Pillars of Digital India Program:
+- Broadband Highways 
+  - SWAN, NOFN, NKN, Rural/Urban Wi-Fi, Cloud Computing, NII (National Information Infra)
+- Universal Access to Mobile Connectivity – NOFN, CCIP Policy
+  - NOFN, CCIP Policy
+- Public Internet Access Programme
+  - CSC, Post Office, Mass IT Literacy NOFN
+- e-Governance – Reforming Government through Technology 
+  - e-Office, ERP, HRMS, IVRS, Aadhaar based e-KYC Services, IT Cadre
+- E-Kranti – Electronic delivery of services 
+  - 250+ e-Services (G2C, B2C, B2B, G2B, etc), Poerals, Apps (Portals, Mobile), ISMO
+- Information for All 
+  - MyGov Haryana, e-Services, State Portals, Websites, Cyber Security Policy etc.
+- Electronics Manufacturing 
+  - Incubation Centres, IoT, STPI, IIIT, ITIR etc.
+- IT for Jobs
+  - NDLM, Digital Literacy, Skill Development, Rural BPO, IT / ESDM/ Start-up Policy etc.
+- Early Harvest Programmes
+  - RAS, Digital Locker, e-Sign, IVRS etc.
+MISSION
+To promote e-Governance for empowering citizens, promoting the inclusive and sustainable growth of the Electronics, IT & ITeS industries, enhancing State Government of Haryana’s role in Internet Governance, adopting a multipronged approach that includes development of human resources, promoting R&D and innovation, enhancing efficiency through digital services and ensuring a secure cyber space.
+The mission of the State is:
+- e-Government: To position Haryana as the preferred IT/ITES investment destination in India.
+- e-Industry: Promotion of electronics hardware manufacturing and IT-ITeS industry
+- e-Innovation / R&D: Implementation of R&D Framework – Enabling creation of Innovation/ R&D Infrastructure in emerging areas of ICT&E/Establishment of mechanism for R&D translation
+- e-Learning: Providing support for development of e-Skills and Knowledge network
+- e-Security: Securing State’s cyber space
+- e-Inclusion: Promoting the use of ICT for more inclusive growth
+- Internet Governance: Enhancing State’s role in Global Platforms of Internet Governance.

@@ -1,0 +1,9 @@
+{
+  "collection": "govbank_chunks",
+  "corpus_sha256": "a1078aec135e6d5939cb72add609a1dee667b8511b09e1c246887b62e737569e",
+  "dimensions": 384,
+  "documents": 1326,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "embedding_provider": "fastembed",
+  "schema_version": 1
+}

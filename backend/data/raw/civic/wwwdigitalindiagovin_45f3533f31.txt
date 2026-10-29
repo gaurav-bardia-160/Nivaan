@@ -1,0 +1,78 @@
+URL: https://www.digitalindia.gov.in/our-pillars/
+TITLE: Our Pillars - Digital India | Leading the transformation in India for ease of living and digital economy | MeitY, Government of India
+
+01Broadband Highways
+- Broadband for all (Rural) 250 thousand village Panchayats will be covered by December 2016. DoT will be the Nodal Department and the project cost is estimated to be approximately Rs. 32,000 Cr
+- Broadband for all (Urban) Virtual Network Operators would be leveraged for service delivery and communication infrastructure in new urban development and buildings would be mandated
+- National Information Infrastructure (NII) National Information Infrastructure would integrate networks like SWAN, NKN, and NOFN along with cloud-enabled National and State Data Centres. It will also have provision for horizontal connectivity to 100, 50, 20, and 5 government offices/ service outlets at state, district, block, and panchayat levels respectively.
+02Universal Access to Mobile Connectivity
+This pillar focuses on network penetration and filling the gaps in connectivity/network coverage in the country.
+Around 55,669 villages in India do not have mobile coverage yet. As part of the comprehensive development plan for the North East, work has been initiated to provide mobile coverage to such villages in the North East.
+Mobile coverage to remaining uncovered villages would be provided in a phased manner. [Nodal department: DoT]
+03Public Internet Access Programme
+The two components of the Public Internet Access Programme are Common Service Centres (CSCs) and Post Offices as multi-service centers.
+CSCs would be strengthened and their number would be increased from approximately 1,37,000 operational at present to 2,50,000 i.e. one CSC for each Gram Panchayat.
+CSCs would be made viable and multifunctional delivery points of government and business services. [Nodal department: DeitY]
+A total of 1,50,000 post offices are proposed to be converted into multi-service centers. [Nodal department: Department of Posts]
+04e-Governance: Reforming Government through Technology
+Processes and forms should be simplified and integrated; just the minimum and necessary information should be collected.
+Application submission and tracking should be electronic/online.
+Online repositories for various certificates, educational degrees, identity documents, etc. should be mandated so that citizens are not required to submit these documents in physical form.
+Integration of services and platforms such as Aadhaar of UIDAI, PayGov India payment gateway, Mobile Seva platform and sharing of data through open application programming interfaces (APIs), and middleware such as national and state service delivery gateways should be mandated to facilitate integrated and interoperable service delivery to citizens and businesses.
+05e-Kranti - Electronic Delivery of Services
+Technology for Education (e-Education)
+All schools will be connected with broadband.
+Technology for Security
+Mobile-based emergency services and disaster-related services would be provided to citizens on real real-time basis to take precautionary measures well in time and minimize loss of lives and properties.
+Technology for Health (e-Healthcare)
+e-Healthcare would cover online medical consultation, online medical records, online medicine supply, pan-India exchange for patient information, etc.
+Technology for Financial Inclusion
+Financial inclusion shall be strengthened using mobile banking, micro-ATM programs, and CSCs/post offices.
+Technology for Farmers
+This would facilitate farmers to get real-time price information, online ordering of inputs, and online cash, loan, and relief payment with mobile banking.
+Technology for Justice
+The Interoperable Criminal Justice System (ICJS) shall be strengthened by leveraging several related initiatives/applications such as e-courts, e-Police, e-prisons, and e-Prosecution.
+Technology for Planning
+A national GIS mission mode project would be implemented to facilitate GIS-based decision-making for project planning, conceptualization, design, and development.
+06Information for All
+Open Data platform and online hosting of information & documents would facilitate open and easy access to information for citizens.
+The government shall proactively engage through social media and web-based platforms to inform citizens. MyGov.in has already been launched as a medium to exchange ideas/ suggestions with the Government. It will facilitate 2-way communication between citizens and government.
+Online messaging to citizens on special occasions/programs would be facilitated through emails and SMS.
+The above would largely utilize existing infrastructure and would need limited additional resources.
+07Electronics Manufacturing
+Target NET ZERO Imports is a striking demonstration of intent.
+This ambitious goal requires coordinated action on many fronts
+- Taxation, incentives
+- Economies of scale, eliminate cost disadvantages
+- Focus areas – Big Ticket Items FABS, Fab-less design, Set top boxes, VSATs, Mobiles, Consumer & Medical Electronics, Smart Energy meters, Smart cards, micro-ATMs
+- Incubators, clusters
+- Skill development
+- Government procurement
+08IT for Jobs
+- Under the first component, the target is to train one crore students from smaller towns & villages for IT sector jobs over 5 years.
+- The second component focuses on setting up Business Process Outsourcing services (BPOs) in every northeastern state to facilitate ICT- enabled growth in these states.
+- Under the third component, the focus is on training three lakh service delivery agents as part of skill development to run viable businesses delivering IT services.
+- The fourth component focuses on training of five lakh strong rural workforce for the Telecom Service Providers (TSPs) to cater to their own needs.
+09Early Harvest Programmes
+IT Platform for Messages
+A Mass Messaging Application has been developed by DeitY that will cover elected representatives and all Government employees. 1.36 Cr mobiles and 22 Lakh emails are part of the database.
+Government Greetings to be e-Greetings
+A basket of e-Greetings templates has been made available. Crowdsourcing of e-greetings through the MyGov platform has been ensured. The e-Greetings portal has been made live on 14th August 2014.
+Biometric Attendance
+It will cover all central Govt. Offices in Delhi are already operational in DeitY and have been initiated in the Department of Urban Development. On-boarding has also started in other departments.
+Wi-Fi in All Universities
+All universities on the National Knowledge Network (NKN) shall be covered under this scheme. The Ministry of HRD is the nodal ministry for implementing this scheme.
+Secure Email within the Government
+Email would be the primary mode of communication.
+Phase-I upgrade for 10 lakh employees has been completed. In Phase II, infrastructure would be further upgraded to cover 50 lakh employees by March 2015 for Rs 98 Cr. DeitY is the nodal department for this scheme.
+Standardize Government Email Design
+Standardized templates for Government email are under preparation and will be ready by October 2014. This would be implemented by DeitY.
+Public Wi-Fi hotspots
+Cities with a population of over 1 million and tourist centers would be provided with public wi-fi hotspots to promote digital cities. The scheme would be implemented by DoT and MoUD.
+School Books to be eBooks
+All books shall be converted into eBooks. Min. of HRD/ DeitY would be the nodal agencies for this scheme.
+SMS-based weather information, disaster alerts
+SMS-based weather information and disaster alerts would be provided. DeitY’s Mobile Seva Platform is already ready and available for this purpose. MoES (IMD) / MHA (NDMA) would be the nodal organizations for implementing this scheme.
+National Portal for Lost & Found Children
+This would facilitate real-time information gathering and sharing on the lost and found children and would go a long way to check crime and improve timely response.
+DeitY/ DoWCD would be the nodal departments for this project.

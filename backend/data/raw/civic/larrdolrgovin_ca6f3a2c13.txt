@@ -1,0 +1,42 @@
+URL: https://larr.dolr.gov.in/faces/common/faq.xhtml
+TITLE: FAQ : LARR
+
+Frequently Asked Questions
+Ranking of States/UTs for land acquisition projects under the RFCTLARR Act, registration and data entry.
+1Which office is implementing Ranking of States/ UTs for land acquisition projects under RFCTLARR Act
+Department of Land Resources (DoLR), Ministry of Rural Development
+2Under which statute (central Act), the details of Land Acquisition Projects for Ranking of States/ UTs, is being done?
+The Right to Fair Compensation and Transparency in Land Acquisition, Rehabilitation and Resettlement Act, 2013 (RFCTLARR Act 2013)
+3Land acquisition projects, starting from which date, are eligible for computing Ranking of States/UTs?
+DoLR has been entrusted with responsibility of ranking of States /UTs on Land Acquisition for projects under the RFCTLARR Act 2013 from 1st January 2014 onwards
+4What is criterion for assigning marks for Ranking of States/ UTs for land acquisition projects?
+5Ranking is determined by total marks attained for all projects in a State/UT or average marks attained per project?
+Ranking will be automatically determined by software, based on Average marks per projects
+6What is the URL of the Land Acquisition Compensation Rehabilitation Resettlement Information System?
+7What is the registration process of users in the MIS?
+By clicking the 'Registration' link, available in top-right corner of Home page of https://larr.dolr.gov.in/ portal, the concerned official may fill and submit online forms for getting a user-account. This step will generate User-Id / Password and a Reference number. The details with so generated User-Ids and Reference numbers may then be forwarded by State-level user (nodal officer) for activating.
+8What data is to be entered reported?
+9What is to be mandatorily mentioned to identify a User’s account?
+To identify a user-account, User-ID should be mentioned in all communication.
+10Whom we have to contact for clarification on issues related to registration process?
+At the portal, a ‘Contact Us’ page is provided and it lists email address and phone numbers of all concerned officials.
+11The projects will be entered at State level or District Level?
+Projects are supposed to be entered / reported by District-level accounts; though data-reporting from State-level account may also be provided on demand.
+12Is it necessary that all the projects are to be entered by a single user?
+No. It is better that all projects of a district are reported by single District-level user-account; but different projects may be divided and assigned to different user-accounts of same district for the purpose of reporting
+13How edit/ correct/ update entries of a project?
+Reported data is, presently, allowed to be updated or corrected as desired by the reporting officer.
+14Whom/ how to request addition of a Project Category or Sub-category?
+If a new or additional Category or Sub-category of project is desired, same may be requested by email.
+15Can multiple user in a district use to enter the data of project in MIS?
+Yes, But there are chances of repletion of the project in MIS.
+16Are mega projects like MGNEREGA included in the Ranking?
+If Land Acquition is done under RFCTLAAR Act 2013 for the MGNEREGA, it will be included in Ranking.
+17Is there any option to delete or edit project ?
+At present there is no option to delete or edit the project. However to rectify the error request has to made to NIC for further help.
+18Is there the ranking of States/UT are transparent?
+Yes, It is completely transparent and full proof. It is generated automatically through the MIS. No Manual calculation/interface of the Department is involved.
+19Is there any discrimination on the basis of the cost of the projects?
+Cost of the project has no weightage in the present ranking system.
+20If project SIA exempted, How marks are assigned to the project?
+In case project is SIA exempted the marks assigned for SIA are proportionally allocated /added to the marks allocated for filling completion of the pro

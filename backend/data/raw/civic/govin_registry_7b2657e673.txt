@@ -1,0 +1,9 @@
+URL: https://registry.gov.in/domainrenewal_procedure.php
+TITLE: GOV.IN Registry - Procedure
+
+- Home
+- Domain Renewal Process
+- The domain renewal process has been replaced with contact update (administrative and organizational contact) at the interval of every six months.
+- No domain-related activity will be permitted on https://registry.gov.in. in case contact(s) is not updated within the given timeframe.
+- Kindly note, the registered email id will be used to log in to the registry portal to manage the domain.
+- User may refer Help Video for contact update.

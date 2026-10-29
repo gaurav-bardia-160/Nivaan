@@ -1,0 +1,103 @@
+URL: https://www.dbonline.in/Investor-Charter/investor-charter.aspx
+TITLE: Online Stock Trading DB International Stock Brokers Ltd
+
+To follow highest standards of ethics and compliances while facilitating the trading by clients in securities in a fair and transparent manner, so as to contribute in creation of wealth for investors.
+|  | Activitiy | Expected Timelines | 
+| 1 | KYC entered into KRA System and CKYCR | 3 working days of account opening | 
+| 2 | Client Onboarding | Immediate, but not later than one week | 
+| 3 | Order execution | Immediate on receipt of order, but not later than the same day | 
+| 4 | Allocation of Unique Client Code | Before trading | 
+| 5 | Copy of duly completed Client Registration Documents to clients | 7 days from the date of upload of Unique Client Code to the Exchange by the trading member | 
+| 6 | Issuance of contract notes | 24 hours of execution of trades | 
+| 7 | Collection of upfront margin from client | Before initiation of trade | 
+| 8 | Issuance of intimations regarding other margin due payments | At the end of the T day | 
+| 9 | Settlement of client funds | First Friday/Saturday of the month / quarter as per Exchange preannounced schedule. | 
+| 10 | ‘Statement of Accounts’ for Funds, Securities and Commodities | Monthly basis | 
+| 11 | Issuance of retention statement of funds/commodities | 5 days from the date of settlement | 
+| 12 | Issuance of Annual Global Statement | 30 days from the end of the financial year | 
+| 13 | Investor grievances redressal | 21 calendar days from the receipt of the complaint | 
+|  | DOs | DON'Ts | 
+| 1 | Read all documents and conditions being agreed before signing the account opening form. | Do not deal with unregistered stock broker. | 
+| 2 | Receive a copy of KYC, copy of account opening documents and Unique Client Code. | Do not forget to strike off blanks in your account opening and KYC. | 
+| 3 | Read the product / operational framework / timelines related to various Trading and Clearing & Settlement processes. | Do not submit an incomplete account opening and KYC form. | 
+| 4 | Receive all information about brokerage, fees and other charges levied. | Do not forget to inform any change in information linked to trading account and obtain confirmation of updation in the system. | 
+| 5 | Register your mobile number and email ID in your trading, demat and bank accounts to get regular alerts on your transactions. | Do not transfer funds, for the purposes of trading to anyone other than a stock broker. No payment should be made in name of employee of stock broker. | 
+| 6 | If executed, receive a copy of Demat Debit and Pledge Instruction (DDPI) However, DDPI is not a mandatory requirement as per SEBI / Stock Exchanges. Before granting DDPI, carefully examine the scope and implications of powers being granted. | Do not ignore any emails / SMSs received with regards to trades done, from the Stock Exchange and raise a concern, if discrepancy is observed. | 
+| 7 | Receive contract notes for trades executed, showing transaction price, brokerage, GST and STT etc. as applicable, separately, within 24 hours of execution of trades. | Do not opt for digital contracts, if not familiar with computers. | 
+| 8 | Receive funds and securities/ commodities on time, as prescribed by SEBI or exchange from time to time. | Do not share trading password. | 
+| 9 | Verify details of trades, contract notes and statement of account and approach relevant authority for any discrepancies. Verify trade details on the Exchange websites from the trade verification facility provided by the Exchanges. | Do not fall prey to fixed / guaranteed returns schemes. | 
+| 10 | Receive statement of accounts periodically. If opted for running account settlement, account has to be settled by the stock broker as per the option given by the client (Monthly or Quarterly). | Do not fall prey to fraudsters sending emails and SMSs luring to trade in stocks / securities promising huge profits. | 
+| 11 | In case of any grievances, approach stock broker or Stock Exchange or SEBI for getting the same resolved within prescribed timelines. | Do not follow herd mentality for investments. Seek expert and professional advice for your investments. | 
+| 12 | Retain documents for trading activity as it helps in resolving disputes, if they arise. |  | 
+| Sr. No. | Description | Action | 
+|---|---|---|
+| 1 | Investor Complaint/ Grievances | Investor can lodge complaint/grievance against stock broker in the following ways: | 
+| 2 | Online Dispute Resolution (ODR) platform for online Conciliation and Arbitration | If the Investor is not satisfied with the resolution provided by DP or other Market Participants, then the Investor has the option to file the complaint/ grievance on SMARTODR platform for its resolution through by online conciliation or arbitration.smartodr.in/login | 
+| 3 | Steps to be followed in ODR for Review, Conciliation and Arbitration |  | 
+Towards making Indian Securities Market - Transparent, Efficient, & Investor friendly by providing safe, reliable, transparent and trusted record keeping platform for investors to hold and transfer securities in dematerialized form.
+A Depository is an organization which holds securities of investors in electronic form. Depositories provide services to various market participants - Exchanges, Clearing Corporations, Depository Participants (DPs), Issuers and Investors in both primary as well as secondary markets. The depository carries out its activities through its agents which are known as Depository Participants (DP). Details available on the link https://www.cdslindia.com/eservices/DP/DPlist
+(1) Basic Services
+| Sr. No. | Brief about the Activity / Service | Expected Timelines for processing by the DP after receipt of proper documents | 
+|---|---|---|
+| 1 | Dematerialization of securities | 7 Days | 
+| 2 | Rematerialization of securities | 7 Days | 
+| 3 | Mutual Fund Conversion / Destatementization | 5 Days | 
+| 4 | Re-conversion / Restatementisation of Mutual fund units | 7 Days | 
+| 5 | Transmission of securities | 7 Days | 
+| 6 | Registering pledge request | 15 Days | 
+| 7 | Closure of demat account | 2 Days | 
+| 8 | Settlement Instruction | For T+1 day settlements, Participants shall accept instructions from the Clients, in physical form up to 4 p.m. (in case of electronic instructions up to 6.00 p.m.) on T day for pay-in of securities. For T+0 day settlements, Participants shall accept EPI instructions from the clients, till 11:00 AM on T day. Note: ‘T’ refers ‘Trade Day’ | 
+(2) Depositories provide special services like pledge, hypothecation, internet based services etc. in addition to their core services and these include
+| Sr. No. | Type of Activity /Service | Brief about the Activity / Service | 
+|---|---|---|
+| 1 | Value added services | Depositories also provide value added services such as | 
+| 2 | Consolidated Account statement (CAS) | CAS is issued 10 days from the end of the month (if there were transactions in the previous month) or half yearly (if no transactions). | 
+| 3 | Digitalization of services provided by the depositories | Depositories offer below technology solutions and e-facilities to their demat account holders through DPs: | 
+(1) The Process of investor grievance redressal
+| Sr. No. | Description | Action | 
+|---|---|---|
+| 1 | Investor Complaint/ Grievances | Investor can lodge complaint/ grievance against the Depository/DP in the following ways:
+ 										
+ 
+                                           
+                                             
+                                             b. Offline mode Physical letter or email to complaints@cdslindia.com The complaints/ grievances lodged directly with the Depository shall be resolved within 21 days. | 
+| 2 | Online Dispute Resolution (ODR) platform for online Conciliation and Arbitration | If the Investor is not satisfied with the resolution provided by DP or other Market Participants, then the Investor has the option to file the complaint/ grievance on SMARTODR platform for its resolution through by online conciliation or arbitration.smartodr.in/login | 
+| 3 | Steps to be followed in ODR for Review, Conciliation and Arbitration |  | 
+| 4 | Person with Disabilities (PwDs) | Persons with Disabilities (PwDs), may lodge complaints/grievances against the Depository Participant (DP) through the following mechanisms: | 
+| Sr. No. | Type of special circumstances | Timelines for the Activity/ Service | 
+|---|---|---|
+| 1 |  | Client will have a right to transfer all its securities to any other Participant of its choice without any charges for the transfer within 30 days from the date of intimation by way of letter/email. | 
+| Sr. No. | Guidance | 
+|---|---|
+| 1 | Always deal with a SEBI registered Depository Participant for opening a demat account. | 
+| 2 | Read all the documents carefully before signing them. | 
+| 3 | Before granting Power of attorney to operate your demat account to an intermediary like Stock Broker, Portfolio Management Services (PMS) etc., carefully examine the scope and implications of powers being granted. | 
+| 4 | Always make payments to registered intermediary using banking channels. No payment should be made in name of employee of intermediary. | 
+| 5 | Accept the Delivery Instruction Slip (DIS) book from your DP only (pre- printed with a serial number along with your Client ID) and keep it in safe custody and do not sign or issue blank or partially filled DIS slips. Always mention the details like ISIN, number of securities accurately. In case of any queries, please contact your DP or broker and it should be signed by all demat account holders. Strike out any blank space on the slip and Cancellations or corrections on the DIS should be initialed or signed by all the account holder(s). Do not leave your instruction slip book with anyone else. Do not sign blank DIS as it is equivalent to a bearer cheque. | 
+| 6 | Inform any change in your Personal Information (for example address or Bank Account details, email ID, Mobile number) linked to your demat account in the prescribed format and obtain confirmation of updation in system | 
+| 7 | Mention your Mobile Number and email ID in account opening form to receive SMS alerts and regular updates directly from depository. | 
+| 8 | Always ensure that the mobile number and email ID linked to your demat account are the same as provided at the time of account opening/updation. | 
+| 9 | Do not share password of your online trading and demat account with anyone. | 
+| 10 | Do not share One Time Password (OTP) received from banks, brokers, etc. These are meant to be used by you only. | 
+| 11 | Do not share login credentials of e-facilities provided by the depositories such as e-DIS/demat gateway, SPEED-e/easiest etc. with anyone else. | 
+| 12 | Demat is mandatory for any transfer of securities of Listed public limited companies. | 
+| 13 | If you have any grievance in respect of your demat account, please write to designated email IDs of depositories or you may lodge the same with SEBI online at https://scores.sebi.gov.in. | 
+| 14 | Keep a record of documents signed, DIS issued and account statements received. | 
+| 15 | As Investors you are required to verify the transaction statement carefully for all debits and credits in your account. In case of any unauthorized debit or credit, inform the DP or your respective Depository. | 
+| 16 | Appoint a nominee to facilitate your heirs in obtaining the securities in your demat account, on completion of the necessary procedures. | 
+| 17 | Register for Depository's internet based facility or download mobile app of the depository to monitor your holdings. | 
+| 18 | Ensure that, both, your holding and transaction statements are received periodically as instructed to your DP. You are entitled to receive a transaction statement every month if you have any transactions. | 
+| 19 | Do not follow herd mentality for investments. Seek expert and professional advice for your investments. | 
+| 20 | Beware of assured/fixed returns. | 
+(a) render the best possible advice to the clients having regard to the client’s needs and the environments and his own professional skills;
+(b) ensure that all professional dealings are effected in a prompt, effective and efficient manner;
+(c) inquiries from investors are adequately dealt with;
+(d) grievances of investors are redressed without any delay.
+Invest with knowledge and safety.
+Every investor should be able to invest in right investment products based on their needs, manage and monitor them to meet their goals, access reports and enjoy financial wellness.
+• To distribute research reports and recommendations to the clients without discrimination.
+In case of any grievance / complaint, an investor should approach the concerned research analyst and shall ensure that the grievance is resolved within 30 days.
+If the investor’s complaint is not redressed satisfactorily, one may lodge a complaint with SEBI on SEBI’s SCORES portal which is a centralized web based complaints redressal system. SEBI takes up the complaints registered via SCORES with the concerned intermediary for timely redressal SCORES facilitates tracking the status of the complaint
+With regard to physical complaints, investors may send their complaints to: Office of Investor Assistance and Education, Securities and Exchange Board of India, SEBI Bhavan. Plot No. C4-A, ‘G’ Block, Bandra-Kurla Complex, Bandra (E), Mumbai - 400 051.
+(https:www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=14

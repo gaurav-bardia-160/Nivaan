@@ -1,0 +1,11 @@
+URL: https://narmadapuram.nic.in/en/departments-scheme-information/
+TITLE: Departments scheme information | District Narmadapuram, Government of Madhyapradesh | India
+
+| S. No. | Department Name | Scheme Information | 
+|---|---|---|
+| 1. | Social Justice and Disabled Welfare | Social Justice and Disabled Welfare | 
+| 2. | Public Service Management | Public Service Management | 
+| 3. | APRMS (Annual Property Return Management System) | http://os.mp.nic.in/aprms/ | 
+| 4. | eUttar (Vidhan Sabha Question Reply Management System) | http://mpsc.mp.nic.in/euttar/default.htm | 
+| 5. | E-Uparjan (Wheat, Paddy & Maize) | http://mpeuparjan.nic.in | 
+| 6. | E-Crops Insurance | http://mpsc.mp.nic.in/cropsagr/default.aspx |

@@ -1,0 +1,82 @@
+URL: https://geneki.in/blog/dpdp-act-guide/
+TITLE: government website and app - Related guideYour customers' data now comes with rulesWhat India's DPDP Act asks of every business that collects personal data, and a 30-day plan to get ready.
+
+The short version
+- It covers almost every business that handles personal data of people in India, whether it is collected online or on paper and typed in later.
+- You need to tell people clearly what you collect and why, get real consent, keep the data safe, and give people a way to ask questions or have it deleted.
+- Most of the rules start on 13 May 2027. That sounds far away, but fixing forms, systems and habits takes months.
+- Penalties can reach ₹250 crore, so this is worth getting right.
+The law in one minute
+Think about the last time you gave a shop your phone number for a bill, or signed up for an app with your email. Until now, what happened to that information afterwards was mostly up to the business.
+The Digital Personal Data Protection Act, 2023 (people shorten it to the DPDP Act) changes that. It gives every person in India a say over their own information, and it gives businesses clear rules about how to collect, use, protect and delete it. The detailed rules that explain how it works in practice, the DPDP Rules, 2025, were published on 13 November 2025.
+The law uses two terms you will see everywhere. A Data Principal is simply the person the data is about: your customer, student, patient or employee. A Data Fiduciary is the business that decides why and how that data is used: you. In this guide we will just say "customers" and "your business".
+Does it apply to your business?
+Almost certainly, yes. If you collect personal data in digital form, or collect it on paper and later type it into a computer, the law applies. Size does not matter. A coaching centre in Lucknow with a registration form is covered, and so is a national bank.
+It also applies to businesses outside India if they offer goods or services to people here. So a foreign app that sells to Indian users is covered too.
+There are only a few narrow exceptions. Data you keep for purely personal or household reasons is out, and so is data that a person has deliberately made public themselves.
+Easy to miss: your own employees' details count as personal data too. So do the names and numbers in your WhatsApp Business chats, your CRM and the spreadsheet your sales team shares.
+The dates that matter
+The law is switching on in stages, so businesses have time to prepare. Here is where things stand.
+- August 2023The DPDP Act is passed by Parliament.
+- 13 November 2025The DPDP Rules are published, and the Data Protection Board of India (the body that handles complaints and penalties) is set up.
+- 13 November 2026Consent managers can start registering. These are companies that will let people give, review and withdraw consent across many businesses from one place.
+- 13 May 2027Most of the duties in this guide begin: notices, consent, security, breach reporting, deletion, children's data and customer rights.
+Keep an eye on this: in January 2026 the government proposed shortening the 18-month runway to 12 months. As of October 2026 no change has been officially notified, so 13 May 2027 still stands. Plan as if it could come sooner.
+What you need to do
+Strip away the legal language and the law asks for eight sensible things. Most good businesses already do some of them.
+- Tell people clearlyBefore you collect anything, show a short, plain notice: what you are collecting, why, and how they can change their mind or complain. It has to stand on its own, not be buried in your terms and conditions. People can also ask to read it in English or any of the 22 languages in the Constitution's Eighth Schedule.
+- Ask properlyConsent has to be a real, clear "yes" for a specific purpose. No pre-ticked boxes, and no "by using this site you agree". Withdrawing consent must be as easy as giving it.
+- Collect only what you needIf a delivery address is enough, do not ask for a date of birth. Use the data only for the purpose you told people about.
+- Keep it safeThe rules list sensible basics: encryption or masking, controlled access, activity logs, and backups. Logs must be kept for at least one year so problems can be traced.
+- Own up to leaksIf data is exposed, tell the affected people promptly and in plain language, and tell the Data Protection Board without delay, with a full report within 72 hours.
+- Delete it when you are doneOnce the purpose is over, or someone withdraws consent, the data should go. Large e-commerce, gaming and social media platforms must also clear out accounts that have been inactive for a long time, after giving the person 48 hours' warning.
+- Take extra care with childrenAnyone under 18 counts as a child. You need verifiable consent from a parent or guardian, and you cannot track children's behaviour or show them targeted ads.
+- Give people someone to talk toPublish a contact for privacy questions and answer complaints within 90 days at the latest.
+Some businesses will be named Significant Data Fiduciaries because of how much or how sensitive their data is. They have extra homework, including a yearly data protection impact assessment and a yearly audit. If that might be you, it is worth getting proper legal advice early.
+What your customers can ask for
+The flip side of your duties is a set of rights for every customer. Expect people to use them, and make it easy.
+- Access: a summary of what data you hold about them and what you do with it.
+- Correction: fixing, completing or updating details that are wrong or out of date.
+- Erasure: deleting their data once it is no longer needed for the purpose they agreed to.
+- Complaints: a clear way to raise a grievance with you, and then with the Data Protection Board if they are not satisfied.
+- Nomination: naming someone who can act for them if they pass away or are unable to.
+A simple shared inbox, a short reply template and someone responsible for it will cover most small businesses.
+What happens if you get it wrong
+The Data Protection Board can fine businesses that break the rules. These are maximum amounts. The Board looks at how serious the problem was, how many people it affected, and what you did to fix it.
+| What went wrong | Fine of up to | 
+|---|---|
+| Not taking reasonable steps to keep data safe | ₹250 crore | 
+| Not reporting a data breach | ₹200 crore | 
+| Breaking the rules on children's data | ₹200 crore | 
+| Significant Data Fiduciaries skipping their extra duties | ₹150 crore | 
+For most small businesses the bigger risk is not the fine but the trust. A leak that ends up on the news, or a customer who cannot get a straight answer, costs more than any penalty.
+A simple 30-day starting plan
+You do not need to do everything at once. One focused month gets most businesses most of the way.
+Week 1: Find your data
+Make a simple spreadsheet. For every place you collect or store personal data (website forms, billing, WhatsApp, CRM, HR files), write down what you collect, why, where it lives and who can see it. Most teams are surprised by what turns up.
+Week 2: Fix your forms and notices
+Rewrite your privacy notice in plain language. Remove fields you do not need. Make every consent checkbox unticked by default, and add an easy way to withdraw.
+Week 3: Lock the doors
+Turn on two-step login everywhere, remove access for people who no longer need it, switch on encryption and backups, and make sure your systems keep activity logs.
+Week 4: Plan for requests and problems
+Set up a privacy contact and inbox, write reply templates for access, correction and deletion requests, decide how long you keep each kind of data, and agree who does what if there is a breach.
+Questions people ask
+Does the DPDP Act apply to small businesses?
+Yes. There is no size threshold. If you collect personal data digitally, or on paper and later digitise it, the Act applies, whether you are a two-person shop or a large company.
+When does the DPDP Act come into force?
+In stages. The Rules were notified on 13 November 2025 and the Data Protection Board was set up then. Consent managers can register from 13 November 2026, and most business duties start on 13 May 2027.
+What is the maximum penalty under the DPDP Act?
+Up to ₹250 crore for failing to take reasonable security safeguards. Not reporting a breach, or breaking the rules on children's data, can each cost up to ₹200 crore.
+Do I need consent to use my employees' data?
+Not always. The Act lists some legitimate uses that do not need consent, including certain employment purposes. You still have to keep the data safe and use it only for what is needed.
+What is a consent manager?
+A company registered with the Data Protection Board that lets people give, review and withdraw their consent across many businesses from one place. Registration opens on 13 November 2026.
+Want a second pair of eyes?
+Geneki builds websites and portals with privacy designed in from the start. Tell us about your website or app and we will show you what needs to change before May 2027.
+Talk to us
+Sources
+- Digital Personal Data Protection Act, 2023 and Rules, 2025
+- Government notifies DPDP Rules
+- DPDP Rules, 2025: compliance timeline (as at September 2026)
+- DPDP Rules 2025 timeline
+This guide explains the law in general terms to help you get started. It is not legal advice, and the rules may change. For decisions about your own business, speak to a qualified lawyer.

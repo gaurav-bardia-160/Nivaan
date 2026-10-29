@@ -1,0 +1,17 @@
+URL: https://guidelines.india.gov.in/
+TITLE: Guidelines for Indian Government Websites and apps (GIGW) | India
+FETCHED_AT: 2026-10-26
+---
+Support
+SERVICE
+Contact
+webguidelines[at]nic[dot]in
+Guidelines for Development of Applications (GudApps)
+To provide a set of guidelines and best practices through a series of documents addressing different aspects of eGovernance solution development
+GIGW Compliance & Certification Handbook
+As the world adopts the Internet media for delivery of information and services, it becomes necessary to establish standards that serve as a frame.
+Creating Accessible Word and Libre document
+Guidelines to create accessible PDFs from MS Word Doc and
+Libre Office Doc to ensure PDFs are accessible to individuals with disabilities.
+Get Certified
+STQC offers Certified Quality Website (CQW) certification for GIGW compliant websites

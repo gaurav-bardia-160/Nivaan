@@ -1,0 +1,5 @@
+URL: https://exams.nta.nic.in/about-nic/
+TITLE: About NIC | National Testing Agency | India
+FETCHED_AT: 2026-10-26
+---
+National Informatics Centre (NIC), established in 1976 has rich experience in providing ICT and e-Governance support to the Government for the last 4 decades. It has emerged as a promoter of digital opportunities for sustainable development. NIC spearheaded the usage of Information Technology systems and services for enhancing the productivity, efficiency, and effectiveness of social and public administration by facilitating electronic delivery of services to the government (G2G), business (G2B), citizen (G2C) and government employee (G2E). Through the nationwide network across all 37 States/ UTs and 720+ Districts, NIC is steadfast towards the development of smart digital infrastructure for empowering citizen-based services.

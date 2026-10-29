@@ -1,0 +1,6 @@
+URL: https://pfms.nic.in
+DOMAIN: pfms.nic.in
+TITLE: Public Financial Management System (PFMS)
+FETCHED_AT: 2026-10-28
+---
+Public Financial Management System (PFMS), administered by the Controller General of Accounts (CGA), Department of Expenditure, Ministry of Finance, is the digital backbone for fund tracking and Direct Benefit Transfer (DBT) payments in India. PFMS connects over 250 banks, State treasuries, and implementing agencies, allowing citizens to check DBT payment status, scholarship credits, PM-KISAN disbursements, and government subsidy remittances via their bank account or Aadhaar number.

@@ -1,0 +1,12 @@
+URL: https://nkn.gov.in/service/services/
+TITLE: Services | Services | National Knowledge Network
+
+Services
+Services
+Services
+NKN is steadily evolving as the National Education Research Network (NREN) of India. The project has already made significant progress by connecting over 1800+ institutes in the network. NKN is now being looked at as the harbinger of change in our knowledge society. This also brings the responsibility to continuously provide the much required impetus to R&D initiatives related to networking technology.
+NKN understands the requirement of R&D initiatives without a profit motive and therefore took a step forward in facilitation of this cause. The team comprising zealous engineers and networking experts have worked over the past few years to develop the first set of NKN products and services.
+NKN Network is Designed with the Aim of Providing
+- Highest level of availability with robust and reliable connectivity.
+- Highest level of scalability to match future unknown demands.
+- Best bandwidth capacity, with NLDs providing 10 Gbps links featuring self-healing capabilities.

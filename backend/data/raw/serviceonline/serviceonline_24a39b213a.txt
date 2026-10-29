@@ -1,0 +1,48 @@
+URL: https://serviceonline.gov.in/getListOnClickSeviceCatWise.html;jsessionid=BCF580F67B5A9D7B02645AA98AF14F5C
+TITLE: Service List
+FETCHED_AT: 2026-10-28
+---
+Ministry of Electronics & Information Technology, Government of India
+A Block, CGO Complex, Lodhi Road, New Delhi-110 003.
+support[dot]serviceplus[at]gmail[dot]com
+https://serviceonline.gov.in
+Operationalization of this agreement is subject to existing laws and legal processes of the respective Government, and nothing contained in this agreement is in derogation of Government's right to comply with law enforcement requests or requirements relating to your use of this Web Site or information provided to or gathered by this site with respect to such use. You agree that Government may provide details of your use of the Web Site to regulators or police or to any other third party, or in order to resolve disputes or complaints which relate to the Web Site, at Government's complete discretion.
+This agreement is made between: respective service owner department of the respective government who has configured the serviceGovernment ("Us") and The User ("You"), the individual, whose details are set out in the Portal User Creation page.
+You can reach us on the contact details given in the 'Contacts' link given in the login page.
+Your obligations
+Introduction
+ServicePlus is committed to complying with the Digital Personal Data Protection Bill 2023 and safeguarding the personal data processed on its Low Code No Code platform. This policy outlines the responsibilities of ServicePlus, the Instance Owner, Service Definers, Department Admins and the workflow players in ensuring adherence to the DPDP Bill 2023.
+These measures aim to establish a robust framework within ServicePlus to protect personal data while optimizing its functionalities.
+ServicePlus Responsibilities
+ServicePlus acknowledges its responsibility for modules such as user creation, Aadhaar data handling, and other common functionalities. In compliance with the DPDP Bill 2023, ServicePlus will:
+- Implement robust security measures to protect personal data collected through modules such as user creation, Aadhaar data handling, and other common functionalities against unauthorized access, disclosure, alteration, or destruction.
+- Regularly update and maintain security protocols to align with the evolving standards outlined in the DPDP Bill 2023.
+- Conduct periodic assessments and audits to ensure compliance with data protection regulations.
+- Provide necessary training and guidelines to Service Definers, Department Admins, and Workflow Players on data protection best practices.
+Service Definer and Department Admin Responsibilities
+In scenarios related to service data defined by Service Definers and managed by Department Admins:
+Service Definers are responsible for:
+- Ensuring that services created on ServicePlus comply with the DPDP Bill 2023.
+- Implementing appropriate measures within their service modules to protect personal data at the front end.
+- Conducting necessary assessments to identify and mitigate potential data protection risks within their defined services.
+Department Admins are responsible for:
+- Overseeing service-related data within their respective departments.
+- Collaborating with Service Definers to ensure compliance with the DPDP Bill 2023.
+- Enforcing data protection measures within their department's services and workflows.
+Data Protection Measures
+ServicePlus Framework must adhere to the following measures to protect personal data:
+1. Data Minimization: Limit the collection and processing of personal data to only what is essential for user authentication and authorization purposes within ServicePlus.
+2. Security Protocols: Implement robust encryption, stringent access controls, and authentication mechanisms to fortify the protection of personal data stored or transmitted through ServicePlus. This measure is limited to the pre-identified data sets collected/facilitated by the ServicePlus framework.
+3. User Consent: Prioritize obtaining explicit and informed consent from users before gathering or processing any personal information necessary for user authentication or authorization.
+4. Data Integrity: Maintain the accuracy, relevance, and completeness of personal data stored on the ServicePlus platform during user account creation and subsequent usage.
+5. Incident Response: Develop and enact comprehensive procedures to swiftly address, manage, and report any data breaches or security incidents that may occur within the ServicePlus infrastructure.
+1. Data Minimization: Service Definers and Department Admins should limit the collection and processing of personal data to only what is essential for efficient application processing.
+2. User Consent: Prioritize seeking explicit consent from users before collecting or processing their personal information, ensuring compliance with the Digital Personal Data Protection Bill.
+3. Data Integrity: Maintain a strict protocol to ensure the accuracy, relevance, and completeness of the personal data collected and stored within ServicePlus.
+4. Masked Document Collection: If documents containing personal data are required for application processing, ensure that such documents are gathered and stored in a masked or encrypted form. This precaution aims to prevent the inadvertent disclosure of personal data when accessed by the workflow player.
+Compliance and Enforcement
+Failure to comply with the DPDP Bill 2023 by ServicePlus, Service Definers, Department Admins or Workflow Players may result in disciplinary actions, including but not limited to, suspension of service, termination of access, or legal consequences as per applicable laws and regulations.
+Review and Updates
+This policy will be subject to periodic reviews and updates to align with changes in the DPDP Bill 2023 or any other relevant data protection legislation. ServicePlus will communicate any amendments to all stakeholders.
+By adhering to this policy, ServicePlus aims to create a secure and compliant environment for handling personal data in line with the DPDP Bill 2023.
+This policy is effective from the date of publication.
