@@ -172,6 +172,7 @@ class Answer(BaseModel):
         default=None,
         max_length=500,
     )
+    rl_arm: Optional[str] = Field(default=None, max_length=80)
 
     @field_validator("entry_id", mode="before")
     @classmethod
@@ -204,6 +205,20 @@ class Answer(BaseModel):
         return [_clean_text(item) if isinstance(item, str) else item for item in value if not isinstance(item, str) or _clean_text(item)]
 
 
+class FeedbackRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    conversation_id: Optional[str] = Field(default=None, max_length=MAX_CONVERSATION_ID_LENGTH)
+    query: str = Field(min_length=1, max_length=MAX_QUESTION_LENGTH)
+    answer_title: str = Field(min_length=1, max_length=180)
+    feedback_type: Literal["thumbs_up", "thumbs_down", "click_citation", "copy_steps", "corrective_follow_up"]
+    rating: Optional[int] = Field(default=None, ge=-1, le=1)
+    comment: Optional[str] = Field(default=None, max_length=500)
+    reward: Optional[float] = None
+    answer_summary: Optional[str] = Field(default=None, max_length=3000)
+    url: Optional[str] = Field(default=None, max_length=500)
+
+
 __all__ = [
     "AskRequest",
     "Answer",
@@ -213,4 +228,5 @@ __all__ = [
     "KnowledgeEntry",
     "SourceInfo",
     "Citation",
+    "FeedbackRequest",
 ]

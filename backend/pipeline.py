@@ -4,6 +4,7 @@ import re
 from typing import Any
 
 from backend.modules.agent import route
+from backend.modules.bandit_policy import bandit_policy
 from backend.modules.explainer import explain_entry, explain_rag_result, greeting_answer, not_found_answer
 from backend.modules.guardrails import find_flags, mask_text
 from backend.modules.llm import enhance_grounded_answer
@@ -158,8 +159,10 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
     return True
 
 
-def _finalize_answer(answer: Answer, *, request: AskRequest, safe_question: str, target_lang: str) -> Answer:
+def _finalize_answer(answer: Answer, *, request: AskRequest, safe_question: str, target_lang: str, rl_arm: str | None = None) -> Answer:
     translated = apply_language_policy(answer, target_lang, query_text=safe_question)
+    if rl_arm:
+        translated = translated.model_copy(update={"rl_arm": rl_arm})
     conversation_memory.remember(
         request.conversation_id,
         user_text=safe_question,
@@ -204,6 +207,11 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     )
     search_text = _request_text(routing_request) or safe_text
 
+    # Reinforcement Learning: Select optimal retrieval and LLM hyperparameters via LinUCB Contextual Bandit
+    is_followup = _is_follow_up_query(search_text)
+    bandit_action = bandit_policy.select_action(search_text, is_followup=is_followup)
+    bandit_policy.record_action(parsed_request.conversation_id, search_text, bandit_action)
+
     if (
         parsed_request.input_type == "question"
         and not parsed_request.document_text
@@ -214,12 +222,14 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             base_greeting,
             question=safe_text,
             memory=conversation_memory.recent(parsed_request.conversation_id),
+            temperature=bandit_action.temperature,
         )
         return _finalize_answer(
             greeting,
             request=parsed_request,
             safe_question=masked_question.text or safe_text,
             target_lang=target_lang,
+            rl_arm=bandit_action.name,
         )
 
     route_result = route(routing_request)
@@ -277,12 +287,14 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 doc_answer,
                 question=safe_text,
                 memory=memory_turns,
+                temperature=bandit_action.temperature,
             )
             return _finalize_answer(
                 doc_answer,
                 request=parsed_request,
                 safe_question=masked_question.text or safe_text,
                 target_lang=target_lang,
+                rl_arm=bandit_action.name,
             )
 
     # 2. Verified Guide Path: Fact-checked official procedures (Passport, PAN, Biometrics, Voter ID, ITR, EPF)
@@ -292,19 +304,21 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             answer,
             question=safe_text,
             memory=memory_turns,
+            temperature=bandit_action.temperature,
         )
         return _finalize_answer(
             answer,
             request=parsed_request,
             safe_question=masked_question.text or safe_text,
             target_lang=target_lang,
+            rl_arm=bandit_action.name,
         )
 
-    # 3. Pure RAG Search Path: Retrieve official evidence across the 1,212 document corpus
+    # 3. Pure RAG Search Path: Retrieve official evidence across the canonical corpus with bandit top_k
     rag_query = search_text
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
         rag_query = f"{effective_context_topic} {search_text}"
-    rag_result = retrieve_if_enabled(rag_query, top_k=3)
+    rag_result = retrieve_if_enabled(rag_query, top_k=bandit_action.top_k)
     if rag_result is not None and rag_result.hits:
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
         if rag_answer is not None:
@@ -312,12 +326,14 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 rag_answer,
                 question=safe_text,
                 memory=memory_turns,
+                temperature=bandit_action.temperature,
             )
             return _finalize_answer(
                 rag_answer,
                 request=parsed_request,
                 safe_question=masked_question.text or safe_text,
                 target_lang=target_lang,
+                rl_arm=bandit_action.name,
             )
 
     if route_result.needs_clarification and not route_result.matched_entry_id:
@@ -326,6 +342,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             request=parsed_request,
             safe_question=masked_question.text or safe_text,
             target_lang=target_lang,
+            rl_arm=bandit_action.name,
         )
 
     return _finalize_answer(
@@ -333,6 +350,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
         request=parsed_request,
         safe_question=masked_question.text or safe_text,
         target_lang=target_lang,
+        rl_arm=bandit_action.name,
     )
 
 

@@ -722,11 +722,35 @@ body {
     border-bottom: 1px solid var(--border-light);
     padding-bottom: 12px;
 }
+.response-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
 .response-title {
     font-size: 18px;
     font-weight: 700;
     color: var(--text-primary);
     line-height: 1.3;
+}
+.rl-arm-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #4f46e5;
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    padding: 2px 7px;
+    border-radius: 9999px;
+}
+[data-theme="dark"] .rl-arm-pill {
+    color: #a5b4fc;
+    background: rgba(79, 70, 229, 0.15);
+    border-color: rgba(99, 102, 241, 0.3);
 }
 .response-confidence {
     font-size: 11px;
@@ -744,6 +768,52 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+}
+.feedback-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+.feedback-btn:hover {
+    border-color: var(--brand-blue);
+    background-color: var(--brand-light);
+}
+.feedback-btn.active-positive {
+    color: #059669;
+    border-color: #10b981;
+    background-color: #ecfdf5;
+}
+.feedback-btn.active-negative {
+    color: #dc2626;
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+[data-theme="dark"] .feedback-btn {
+    color: var(--text-muted);
+    border-color: var(--border-light);
+    background: transparent;
+}
+[data-theme="dark"] .feedback-btn:hover {
+    border-color: #3b82f6;
+    background-color: rgba(59, 130, 246, 0.15);
+}
+[data-theme="dark"] .feedback-btn.active-positive {
+    color: #34d399;
+    border-color: #059669;
+    background-color: rgba(16, 185, 129, 0.15);
+}
+[data-theme="dark"] .feedback-btn.active-negative {
+    color: #f87171;
+    border-color: #dc2626;
+    background-color: rgba(239, 68, 68, 0.15);
 }
 
 .copy-response-btn {

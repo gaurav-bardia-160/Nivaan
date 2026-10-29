@@ -932,7 +932,7 @@ function appendAssistantResponse(answer, shouldScroll = true) {
     let sourcesHtml = "";
     if (sourcesList.length > 0) {
         const sourceTags = sourcesList.map((src, idx) => `
-            <a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer" class="source-tag-pill" title="${escapeHtml(src.title)} - ${escapeHtml(src.url)}">
+            <a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer" class="source-tag-pill" title="${escapeHtml(src.title)} - ${escapeHtml(src.url)}" onclick="trackCitationClick(this, '${escapeHtml(src.url)}')">
                 <span class="source-tag-index">[${idx + 1}]</span>
                 <span class="source-tag-text">${escapeHtml(src.title)}</span>
                 <span class="source-tag-domain">${escapeHtml(src.domain)}</span>
@@ -1014,11 +1014,16 @@ function appendAssistantResponse(answer, shouldScroll = true) {
             <div class="assistant-response">
                 <!-- Header -->
                 <div class="response-header">
-                    <h3 class="response-title">${escapeHtml(answer.title)}</h3>
+                    <div class="response-title-group">
+                        <h3 class="response-title">${escapeHtml(answer.title)}</h3>
+                        ${answer.rl_arm ? `<span class="rl-arm-pill" title="RL LinUCB Arm: ${escapeHtml(answer.rl_arm)}">⚡ ${escapeHtml(answer.rl_arm.replace(/_/g, ' '))}</span>` : ""}
+                    </div>
                     <div class="response-header-actions">
                         <span class="response-confidence confidence-${answer.confidence || 'high'}">
                             ● ${answer.confidence ? answer.confidence.toUpperCase() : 'VERIFIED'}
                         </span>
+                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate">👍</button>
+                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate">👎</button>
                         <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard">
                             <span class="copy-icon">📋</span> Copy
                         </button>
@@ -1077,6 +1082,9 @@ window.copyResponseText = function(btn) {
             const originalHtml = btn.innerHTML;
             btn.innerHTML = `<span class="copy-icon">✓</span> Copied!`;
             btn.classList.add("copied");
+            if (typeof window.sendFeedback === "function") {
+                window.sendFeedback(btn, "copy_steps", 0);
+            }
             setTimeout(() => {
                 btn.innerHTML = originalHtml;
                 btn.classList.remove("copied");
@@ -1084,6 +1092,64 @@ window.copyResponseText = function(btn) {
         }).catch(err => {
             console.error("Failed to copy:", err);
         });
+    }
+};
+
+// --- REINFORCEMENT LEARNING FEEDBACK HANDLERS ---
+window.sendFeedback = async function(el, feedbackType, rating = null) {
+    const card = el ? el.closest(".assistant-response") : null;
+    const container = card ? card.closest(".message-row") : null;
+    const title = card?.querySelector(".response-title")?.textContent.trim() || "Civic Guide";
+    const summary = card?.querySelector(".response-summary")?.textContent.trim() || "";
+    
+    // Find matching user question from previous message bubble
+    let userQuery = title;
+    if (container) {
+        let prev = container.previousElementSibling;
+        while (prev) {
+            const userTextEl = prev.querySelector(".user-message-text");
+            if (userTextEl) {
+                userQuery = userTextEl.textContent.trim();
+                break;
+            }
+            prev = prev.previousElementSibling;
+        }
+    }
+
+    const numericRating = rating !== null ? rating : (feedbackType === "thumbs_up" ? 1 : feedbackType === "thumbs_down" ? -1 : 0);
+
+    // Immediate button reaction
+    if (el && feedbackType === "thumbs_up") {
+        el.classList.add("active-positive");
+        el.nextElementSibling?.classList.remove("active-negative");
+    } else if (el && feedbackType === "thumbs_down") {
+        el.classList.add("active-negative");
+        el.previousElementSibling?.classList.remove("active-positive");
+    }
+
+    const payload = {
+        conversation_id: activeChatId,
+        query: userQuery,
+        answer_title: title,
+        answer_summary: summary,
+        feedback_type: feedbackType,
+        rating: numericRating,
+    };
+
+    try {
+        await fetch(`${API_BASE}/api/feedback`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+    } catch (e) {
+        console.debug("Telemetry error:", e);
+    }
+};
+
+window.trackCitationClick = function(el, url) {
+    if (typeof window.sendFeedback === "function") {
+        window.sendFeedback(el, "click_citation", 0);
     }
 };
 

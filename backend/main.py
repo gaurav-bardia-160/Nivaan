@@ -26,6 +26,8 @@ from collections import defaultdict
 
 from backend.config import APP_NAME, APP_VERSION, CAPABILITIES, CORS_ALLOW_ORIGINS
 
+from backend.modules.bandit_policy import bandit_policy
+from backend.modules.reward import reward_engine
 from backend.modules.ocr import OCRExtractionError, extract_text_from_upload, _is_tesseract_available
 
 from backend.modules.llm import local_llm_health
@@ -38,7 +40,7 @@ from backend.pipeline import run
 
 from backend.rag.runtime import rag_health
 
-from backend.schemas import Answer, AskRequest
+from backend.schemas import Answer, AskRequest, FeedbackRequest
 
 
 
@@ -259,6 +261,10 @@ def health() -> dict[str, object]:
         "local_llm": local_llm_health(),
 
         "memory": conversation_memory.health(),
+        "rl": {
+            "bandit": bandit_policy.get_stats(),
+            "rewards": reward_engine.get_stats(),
+        },
 
     }
 
@@ -329,6 +335,10 @@ def capabilities() -> dict[str, object]:
         "local_llm": local_llm_health(),
 
         "memory": conversation_memory.health(),
+        "rl": {
+            "bandit": bandit_policy.get_stats(),
+            "rewards": reward_engine.get_stats(),
+        },
 
         **base_caps,
 
@@ -377,6 +387,10 @@ def metrics() -> dict[str, object]:
         "local_llm": local_llm_health(),
 
         "memory": conversation_memory.health(),
+        "rl": {
+            "bandit": bandit_policy.get_stats(),
+            "rewards": reward_engine.get_stats(),
+        },
 
     }
 
@@ -541,6 +555,48 @@ async def ask_file(
 
 
 
+
+
+@app.post("/api/feedback")
+def submit_feedback(feedback: FeedbackRequest, req: Request) -> dict[str, object]:
+    """Capture citizen feedback and update online Contextual Bandit and reward models."""
+    _check_auth(req)
+    _check_rate_limit(req)
+
+    # 1. Retrieve or infer the bandit action taken for this query
+    action = bandit_policy.get_action(feedback.conversation_id, feedback.query)
+    if not action:
+        action = bandit_policy.select_action(feedback.query)
+
+    # 2. Compute multi-criteria reward score
+    breakdown = reward_engine.compute_reward(
+        query=feedback.query,
+        feedback=feedback,
+    )
+
+    # 3. Update the LinUCB online policy weights
+    bandit_policy.update(action, breakdown.total_reward)
+
+    # 4. Log telemetry record for offline DPO preference dataset curation
+    reward_engine.log_feedback(feedback, breakdown)
+
+    return {
+        "status": "success",
+        "reward": breakdown.total_reward,
+        "breakdown": breakdown.to_dict(),
+        "applied_arm": action.name,
+    }
+
+
+@app.get("/api/rl-status")
+def get_rl_status(req: Request) -> dict[str, object]:
+    """Inspect real-time Reinforcement Learning metrics, bandit arms, and reward statistics."""
+    _check_auth(req)
+    return {
+        "status": "healthy",
+        "bandit": bandit_policy.get_stats(),
+        "rewards": reward_engine.get_stats(),
+    }
 
 
 __all__ = ["app"]

@@ -137,6 +137,7 @@ class LocalLLMClient:
         question: str,
         answer: Answer,
         memory: tuple[MemoryTurn, ...] = (),
+        temperature: float | None = None,
     ) -> GroundedRewrite | None:
         if not self.config.enabled:
             return None
@@ -199,7 +200,7 @@ class LocalLLMClient:
                 {"role": "user", "content": prompt},
             ],
             "options": {
-                "temperature": 0.2 if is_greeting else 0.1,
+                "temperature": temperature if temperature is not None else (0.2 if is_greeting else 0.1),
                 "num_predict": self.config.num_predict,
                 "num_ctx": self.config.num_ctx,
                 "num_thread": 6,
@@ -398,10 +399,16 @@ def enhance_grounded_answer(
     *,
     question: str,
     memory: tuple[MemoryTurn, ...] = (),
+    temperature: float | None = None,
 ) -> Answer:
     """Return a locally synthesized dynamic answer or the exact deterministic answer on failure."""
     try:
-        rewrite = LocalLLMClient().synthesize_grounded_answer(question=question, answer=answer, memory=memory)
+        rewrite = LocalLLMClient().synthesize_grounded_answer(
+            question=question,
+            answer=answer,
+            memory=memory,
+            temperature=temperature,
+        )
     except ValueError:
         rewrite = None
     if not rewrite:
