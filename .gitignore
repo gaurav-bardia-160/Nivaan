@@ -13,5 +13,7 @@ backend/.env.*
 uploads/
 private_documents/
 backend/data/vector_index/**/.lock
+backend/data/conversations/*
+!backend/data/conversations/.gitkeep
 models/
 ollama/

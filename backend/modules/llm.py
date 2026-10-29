@@ -1,12 +1,13 @@
 """Privacy-preserving Ollama-compatible grounded answer enhancement.
 
 The local model is optional and disabled by default. It can rewrite an already-grounded
-extractive summary for readability, but it cannot replace citations, steps, warnings,
-source metadata, or confidence. Any error returns the deterministic answer unchanged.
+extractive summary for readability, but every sentence must stay tethered to the retrieved
+facts and cannot introduce new external claims, URLs, or unsupported steps.
 """
 from __future__ import annotations
 
 import json
+import logging
 import os
 import re
 import threading
@@ -20,6 +21,8 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_valida
 from backend.modules.memory import MemoryTurn
 from backend.schemas import Answer, Step
 
+logger = logging.getLogger("local_llm")
+
 _TRUE_VALUES = {"1", "true", "yes", "on"}
 _LOCAL_HOSTS = {"localhost", "127.0.0.1", "::1"}
 
@@ -27,7 +30,7 @@ _LOCAL_HOSTS = {"localhost", "127.0.0.1", "::1"}
 class GroundedRewrite(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
-    summary: str = Field(min_length=20, max_length=1200)
+    summary: str = Field(min_length=20, max_length=2400)
     documents_needed: list[str] = Field(default_factory=list)
     steps: list[dict[str, str]] = Field(default_factory=list)
 
@@ -46,6 +49,8 @@ class LocalLLMConfig:
     model: str
     timeout_seconds: float
     allow_remote: bool
+    num_ctx: int = 8192
+    num_predict: int = 768
 
     @classmethod
     def from_env(cls) -> "LocalLLMConfig":
@@ -54,12 +59,25 @@ class LocalLLMConfig:
             timeout = float(raw_timeout)
         except ValueError:
             timeout = 90.0
+
+        try:
+            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "8192"))
+        except ValueError:
+            num_ctx = 8192
+
+        try:
+            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "768"))
+        except ValueError:
+            num_predict = 768
+
         return cls(
             enabled=os.getenv("LOCAL_LLM_ENABLED", "false").strip().lower() in _TRUE_VALUES,
             base_url=os.getenv("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434").rstrip("/"),
             model=os.getenv("LOCAL_LLM_MODEL", "qwen2.5:3b").strip() or "qwen2.5:3b",
             timeout_seconds=min(max(timeout, 1.0), 120.0),
             allow_remote=os.getenv("LOCAL_LLM_ALLOW_REMOTE", "false").strip().lower() in _TRUE_VALUES,
+            num_ctx=min(max(num_ctx, 1024), 32768),
+            num_predict=min(max(num_predict, 64), 2048),
         )
 
     def validate_privacy_boundary(self) -> None:
@@ -125,19 +143,24 @@ class LocalLLMClient:
 
         evidence = []
         if answer.citations:
-            for index, citation in enumerate(answer.citations[:2], 1):
-                excerpt = citation.excerpt[:250].strip()
+            for index, citation in enumerate(answer.citations[:3], 1):
+                excerpt = citation.excerpt[:400].strip()
                 evidence.append(f"[{index}] {citation.title}\n{excerpt}\nSource: {citation.url}")
         elif answer.summary or answer.steps:
-            steps_text = " ".join(f"{s.title}: {s.detail}" for s in answer.steps[:3])
+            steps_text = " ".join(f"{s.title}: {s.detail}" for s in answer.steps[:4])
             docs_text = ", ".join(answer.documents_needed) if answer.documents_needed else "None"
             evidence.append(f"[1] {answer.title}\n{answer.summary}\nDocuments: {docs_text}\n{steps_text}\nSource: {answer.source_url}")
         else:
             return None
-        history = "\n".join(
-            f"User: {turn.user_text}\nAssistant topic: {turn.answer_title}"
-            for turn in memory[-2:]
-        ) or "No previous context."
+
+        # Build multi-turn conversational dialogue from up to the last 10 turns
+        dialogue_turns = []
+        for turn in memory[-10:]:
+            dialogue_turns.append(f"Citizen: {turn.user_text}")
+            asst = getattr(turn, "assistant_text", None) or turn.answer_title
+            if asst:
+                dialogue_turns.append(f"GovBank Assistant: {asst}")
+        history = "\n".join(dialogue_turns) or "No previous context."
         evidence_text = "\n\n".join(evidence)
 
         is_greeting = "welcome" in answer.title.lower() or (not answer.steps and not answer.citations)
@@ -145,26 +168,29 @@ class LocalLLMClient:
             system = (
                 "You are GovBank Assistant, a friendly and intelligent AI civic assistant for India. "
                 "Respond warmly, naturally, and conversationally to the citizen's greeting in 1 to 2 sentences. "
-                "Mention that they can ask about official procedures (like PAN, Passport, Aadhaar, Voter ID, ITR, EPF) "
+                "Mention that they can ask about official procedures (like PAN, Passport, Aadhaar, Voter ID, ITR, EPF, State Services) "
                 "or upload a document to review. Do not invent numbered steps. "
                 "Return JSON with key 'summary' (e.g. {\"summary\": \"...\"})."
             )
-            prompt = f"Citizen greeting: {question[:200]}"
+            prompt = f"Citizen greeting: {question[:300]}"
         else:
             system = (
-                "You are GovBank Assistant, an AI civic guide helping Indian citizens. "
-                "Carefully think and answer the citizen's question naturally, clearly, and conversationally "
-                "in 2 to 3 sentences using only the official evidence provided. "
-                "Explain the exact procedure or required actions directly and helpfully. "
-                "Do not recite robotic phrases, meta-commentary, or canned templates. "
+                "You are GovBank Assistant, an intelligent, conversational AI civic guide for Indian citizens. "
+                "Carefully analyze the citizen's question and any previous conversation history and official evidence. "
+                "If the citizen asks a follow-up or asks to clarify previously mentioned details (e.g. documents, rules, fees, address changes), "
+                "maintain conversational continuity with the previous turns while adhering strictly to the official evidence. "
+                "Explain the exact procedure or required actions directly, helpfully, and conversationally. "
                 "Return JSON with keys: 'summary' (string), 'documents_needed' (list of specific required documents, or [] if none), "
-                "and 'steps' (list of 2-4 actionable objects with 'title' and 'detail', or [] if none)."
+                "and 'steps' (list of 2-5 actionable objects with 'title' and 'detail', or [] if none)."
             )
             prompt = (
-                f"Conversation context (already redacted):\n{history}\n\n"
-                f"Citizen question (already redacted):\n{question[:400]}\n\n"
-                f"Official-source evidence:\n{evidence_text}"
+                f"--- Conversation Context ---\n{history}\n\n"
+                f"--- Citizen Question ---\n{question[:800]}\n\n"
+                f"--- Official Government Evidence ---\n{evidence_text}\n\n"
+                "Instructions: Answer the citizen's question helpfully using the official evidence and conversation context above. "
+                "If this is a follow-up, refer back to the context smoothly."
             )
+
         payload = {
             "model": self.config.model,
             "stream": False,
@@ -172,7 +198,12 @@ class LocalLLMClient:
                 {"role": "system", "content": system},
                 {"role": "user", "content": prompt},
             ],
-            "options": {"temperature": 0.2 if is_greeting else 0.1, "num_predict": 120, "num_ctx": 1024, "num_thread": 6},
+            "options": {
+                "temperature": 0.2 if is_greeting else 0.1,
+                "num_predict": self.config.num_predict,
+                "num_ctx": self.config.num_ctx,
+                "num_thread": 6,
+            },
         }
         try:
             response = httpx.post(
@@ -226,7 +257,8 @@ class LocalLLMClient:
                 "documents_needed": docs_candidate,
                 "steps": steps_candidate,
             })
-        except (httpx.HTTPError, OSError, ValueError, TypeError, ValidationError):
+        except (httpx.HTTPError, OSError, ValueError, TypeError, ValidationError) as e:
+            logger.debug("Local LLM answer generation failed: %s", e)
             return None
 
         if not _is_grounded(parsed.summary, answer):
@@ -274,7 +306,7 @@ def _is_grounded(summary: str, answer: Answer) -> bool:
 
     evidence_tokens = _tokens(evidence_text)
     overlap = len(summary_tokens & evidence_tokens) / max(len(summary_tokens), 1)
-    if overlap < 0.15:
+    if overlap < 0.12:
         return False
 
     summary_urls = set(re.findall(r"https?://[^\s)\]]+", summary.lower()))
@@ -291,7 +323,7 @@ def _is_grounded(summary: str, answer: Answer) -> bool:
             (len(s_tokens & c_tokens) / len(s_tokens) for c_tokens in citation_token_sets),
             default=0.0,
         )
-        if best_overlap < 0.15:
+        if best_overlap < 0.12:
             return False
 
     summary_numbers = set(re.findall(r"\b\d+(?:[.,]\d+)?\b", summary)) - {str(i) for i in range(1, 11)}
@@ -325,6 +357,8 @@ def local_llm_health(*, force: bool = False) -> dict[str, object]:
         "model": config.model,
         "base_url": config.base_url,
         "privacy_mode": "local_only" if not config.allow_remote else "remote_explicitly_allowed",
+        "num_ctx": config.num_ctx,
+        "num_predict": config.num_predict,
     }
     if not config.enabled:
         return {**base, "available": False}

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from backend.modules.agent import route
@@ -179,6 +180,9 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     - Never guesses outside the local knowledge base.
     """
     parsed_request = request if isinstance(request, AskRequest) else AskRequest(**request)
+    if parsed_request.conversation_id and getattr(parsed_request, "history", None):
+        conversation_memory.sync_history(parsed_request.conversation_id, parsed_request.history)
+
     masked_question = mask_text(parsed_request.question)
     masked_document = mask_text(parsed_request.document_text)
     masked_items = list({item.item_type: item for item in [*masked_question.masked_items, *masked_document.masked_items]}.values())
@@ -219,10 +223,17 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
         )
 
     route_result = route(routing_request)
-    memory_turns = conversation_memory.recent(parsed_request.conversation_id)
+    memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=10)
     effective_context_topic = parsed_request.context_topic
-    if not effective_context_topic and memory_turns and _is_follow_up_query(search_text):
-        effective_context_topic = memory_turns[-1].user_text
+    if not effective_context_topic and memory_turns:
+        for mt in reversed(memory_turns):
+            t = mt.answer_title or ""
+            if t and "welcome" not in t.lower() and "not found" not in t.lower():
+                clean_t = re.sub(r"^(Relevant official material:\s*)", "", t).strip()
+                effective_context_topic = clean_t
+                break
+        if not effective_context_topic and memory_turns and _is_follow_up_query(search_text):
+            effective_context_topic = memory_turns[-1].user_text
     context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
         parsed_request.conversation_id
     )
@@ -291,7 +302,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
 
     # 3. Pure RAG Search Path: Retrieve official evidence across the 1,212 document corpus
     rag_query = search_text
-    if effective_context_topic and _is_follow_up_query(search_text):
+    if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
         rag_query = f"{effective_context_topic} {search_text}"
     rag_result = retrieve_if_enabled(rag_query, top_k=3)
     if rag_result is not None and rag_result.hits:

@@ -463,6 +463,8 @@ async def ask_file(
 
     language: str = Form("en"),
 
+    conversation_id: str | None = Form(None),
+
     previous_entry_id: str | None = Form(None),
 
     context_topic: str | None = Form(None),
@@ -502,6 +504,8 @@ async def ask_file(
             document_text=extracted.text,
 
             language=language,
+
+            conversation_id=conversation_id,
 
             previous_entry_id=previous_entry_id,
 

@@ -78,6 +78,7 @@ class AskRequest(BaseModel):
     previous_entry_id: Optional[str] = Field(default=None, max_length=80)
     context_topic: Optional[str] = Field(default=None, max_length=120)
     file_attached: bool = False
+    history: Optional[List[dict]] = Field(default=None)
 
     @field_validator("question", "document_text", "conversation_id", "previous_entry_id", "context_topic", mode="before")
     @classmethod

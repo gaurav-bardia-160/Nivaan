@@ -558,6 +558,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                 const formData = new FormData();
                 formData.append("file", currentAttachment.fileRef);
                 formData.append("question", userText || "Explain this document");
+                if (chatObj && chatObj.id) formData.append("conversation_id", chatObj.id);
                 if (previousEntryId) formData.append("previous_entry_id", previousEntryId);
                 if (contextTopic) formData.append("context_topic", contextTopic);
 
@@ -602,6 +603,31 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                 };
                 if (previousEntryId) payload.previous_entry_id = previousEntryId;
                 if (contextTopic) payload.context_topic = contextTopic;
+
+                if (chatObj && Array.isArray(chatObj.messages) && chatObj.messages.length > 0) {
+                    payload.history = chatObj.messages
+                        .slice(-10)
+                        .filter(m => m && (m.text || m.answer))
+                        .map(m => {
+                            let content = m.text || "";
+                            let title = null;
+                            let entryId = null;
+                            if (m.answer) {
+                                title = m.answer.title || null;
+                                entryId = m.answer.entry_id || null;
+                                const summary = m.answer.summary || "";
+                                const docs = (m.answer.documents_needed || []).join(", ");
+                                const steps = (m.answer.steps || []).map(s => `${s.title}: ${s.detail || ""}`.trim()).join("; ");
+                                content = [summary, docs ? `Documents: ${docs}` : "", steps].filter(Boolean).join("\n");
+                            }
+                            return {
+                                role: m.role || "user",
+                                content: content.slice(0, 1000),
+                                title: title,
+                                entry_id: entryId
+                            };
+                        });
+                }
 
                 if (hasReadableDocumentText) {
                     payload.document_text = currentAttachment.textContent.trim();
