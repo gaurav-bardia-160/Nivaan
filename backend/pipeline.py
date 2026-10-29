@@ -148,11 +148,11 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
         kisan_tokens = ("kisan", "pmkisan", "farmer", "agriculture", "crop", "landholding")
         if not any(token in lowered for token in kisan_tokens):
             return False
-    if entry_id == "loan_agreement_review":
+    if entry_id in ("loan_agreement_review", "loan_agreement_explainer"):
         loan_tokens = ("loan", "emi", "borrower", "lender", "foreclosure", "prepayment")
         if not any(token in lowered for token in loan_tokens):
             return False
-    if entry_id == "consumer_complaint_basics":
+    if entry_id in ("consumer_complaint_basics", "consumer_court_complaint"):
         consumer_tokens = ("consumer", "edaakhil", "defective", "unfair trade", "deficiency")
         if not any(token in lowered for token in consumer_tokens):
             return False

@@ -11,6 +11,7 @@ echo.
 rem Close launcher windows first
 taskkill /F /FI "WINDOWTITLE eq GovBank Assistant - Launcher*" >nul 2>&1
 taskkill /F /FI "WINDOWTITLE eq GovBank Assistant - Frontend Server*" >nul 2>&1
+taskkill /F /FI "WINDOWTITLE eq GovBank Assistant - Backend Server*" >nul 2>&1
 taskkill /F /FI "WINDOWTITLE eq GovBank Assistant - Ollama AI Daemon*" >nul 2>&1
 
 rem --- 1. Terminate FastAPI Backend Server (Port 8000) ---
@@ -47,9 +48,11 @@ taskkill /F /T /IM ollama.exe >nul 2>&1
 if !errorlevel! equ 0 set "FOUND_OLLAMA=1"
 taskkill /F /T /IM ollama_llama_server.exe >nul 2>&1
 if !errorlevel! equ 0 set "FOUND_OLLAMA=1"
+taskkill /F /T /IM llama-server.exe >nul 2>&1
+if !errorlevel! equ 0 set "FOUND_OLLAMA=1"
 
 rem Guarantee all Ollama instances are killed
-powershell -NoProfile -Command "Get-Process *ollama* -ErrorAction SilentlyContinue | Stop-Process -Force" >nul 2>&1
+powershell -NoProfile -Command "Get-Process *ollama*, *llama* -ErrorAction SilentlyContinue | Stop-Process -Force" >nul 2>&1
 
 if !FOUND_OLLAMA! equ 1 (
     echo [INFO] Ollama AI server terminated. RAM and GPU VRAM released.

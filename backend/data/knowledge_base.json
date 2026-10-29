@@ -1,1 +1,671 @@
-﻿[]
+[
+  {
+    "id": "pan_card_new",
+    "title": "Apply for a new PAN card",
+    "category": "general",
+    "summary": "A PAN card is used for tax and many financial records in India. This guide explains the basic application flow and the points a user should confirm on the official PAN portal before submitting.",
+    "keywords": [
+      "pan",
+      "pan card",
+      "permanent account number",
+      "form 49a",
+      "new pan",
+      "apply pan",
+      "pan application",
+      "nsdl",
+      "protean",
+      "utiitsl"
+    ],
+    "documents_needed": [
+      "Proof of identity",
+      "Proof of address",
+      "Date of birth proof",
+      "Recent photograph if required by the selected application flow"
+    ],
+    "steps": [
+      {
+        "title": "Open an official PAN application portal",
+        "detail": "Use the official Protean/NSDL or UTIITSL PAN service. Avoid agent websites unless you deliberately choose paid help."
+      },
+      {
+        "title": "Choose the correct application type",
+        "detail": "Select the option for a new PAN and the applicant category that matches the user, such as individual Indian citizen."
+      },
+      {
+        "title": "Enter details consistently",
+        "detail": "Names, date of birth, and address should match the supporting documents. Mismatches can cause rejection or delay."
+      },
+      {
+        "title": "Submit identity and address documents",
+        "detail": "Upload or provide documents using the method supported by the official portal. Keep scans clear and readable."
+      },
+      {
+        "title": "Pay only through the official payment flow",
+        "detail": "Check the current official fee on the portal before payment because fees and delivery options can change."
+      },
+      {
+        "title": "Save the acknowledgement",
+        "detail": "Keep the acknowledgement number or receipt so the application can be tracked later."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Confirm the latest official form and fee",
+        "message": "PAN application forms, portals, and fees can change. Confirm the latest requirement on the official portal before submitting.",
+        "severity": "warning"
+      },
+      {
+        "title": "Avoid sharing real ID data in the demo",
+        "message": "During project development, use only fake examples. Do not upload real PAN, Aadhaar, address, or bank details.",
+        "severity": "critical"
+      }
+    ],
+    "source": {
+      "name": "Official PAN application portals",
+      "url": "https://www.onlineservices.nsdl.com/",
+      "last_verified": "2026-10-03"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "itr_filing_basics",
+    "title": "File your Income Tax Return (ITR) - basics",
+    "category": "tax",
+    "summary": "Income Tax Return filing is done through the Income Tax Department e-filing portal. This guide explains the basic user flow and reminds users to confirm the current assessment year, form, deadline, and e-verification rules on the official portal.",
+    "keywords": [
+      "itr",
+      "income tax return",
+      "tax return",
+      "file itr",
+      "itr filing",
+      "form 16",
+      "assessment year",
+      "e verify",
+      "e verification",
+      "234f",
+      "late fee"
+    ],
+    "documents_needed": [
+      "PAN card",
+      "Aadhaar number if applicable",
+      "Form 16 for salaried users if available",
+      "Bank account details for refund",
+      "Investment and deduction proofs if claiming deductions"
+    ],
+    "steps": [
+      {
+        "title": "Open the Income Tax e-filing portal",
+        "detail": "Use the official Income Tax Department portal and sign in with the correct taxpayer account."
+      },
+      {
+        "title": "Choose the correct assessment year and form",
+        "detail": "The form depends on the user's income type and situation. A salaried person may often use ITR-1, but this must be confirmed."
+      },
+      {
+        "title": "Review pre-filled information",
+        "detail": "Check income, tax deducted, bank details, and deductions. Do not assume pre-filled data is always complete."
+      },
+      {
+        "title": "Submit and e-verify",
+        "detail": "Submission is not the end of the process. The return must also be verified using an allowed method."
+      },
+      {
+        "title": "Save acknowledgement",
+        "detail": "Download the acknowledgement or ITR-V and keep it for records."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Deadline changes must be checked live",
+        "message": "Filing deadlines can be extended or changed. Confirm the current deadline on the official Income Tax portal before relying on any date.",
+        "severity": "critical"
+      },
+      {
+        "title": "E-verification is required",
+        "message": "If a filed return is not verified within the required time, it may not be treated as valid. Confirm the current rule on the official portal.",
+        "severity": "critical"
+      }
+    ],
+    "source": {
+      "name": "Income Tax Department e-filing portal",
+      "url": "https://www.incometax.gov.in/",
+      "last_verified": "2026-10-03"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "loan_agreement_explainer",
+    "title": "Understand a loan agreement",
+    "category": "banking",
+    "summary": "A loan agreement explains the borrower, lender, amount, interest rate, repayment schedule, fees, default consequences, and complaint process. This guide helps users identify clauses worth checking before signing or asking a bank officer.",
+    "keywords": [
+      "loan",
+      "loan agreement",
+      "emi",
+      "interest rate",
+      "late payment",
+      "penalty",
+      "penal charges",
+      "prepayment",
+      "foreclosure",
+      "processing fee",
+      "hidden charges",
+      "grievance"
+    ],
+    "documents_needed": [],
+    "steps": [
+      {
+        "title": "Check amount, tenure, and interest type",
+        "detail": "Confirm the principal amount, loan duration, and whether the rate is fixed, floating, or mixed."
+      },
+      {
+        "title": "Read the EMI schedule",
+        "detail": "Confirm the EMI amount, due date, number of instalments, and total repayment amount."
+      },
+      {
+        "title": "Find penalty and default clauses",
+        "detail": "Look for late payment charges, penal charges, and consequences of default. Ask the lender to explain exact amounts and triggers."
+      },
+      {
+        "title": "Check prepayment and foreclosure terms",
+        "detail": "Some loans have restrictions or charges for early repayment. Rules differ by loan type, lender type, and rate type."
+      },
+      {
+        "title": "List all fees and add-ons",
+        "detail": "Processing fees, documentation charges, insurance, and other add-ons should be clear before signing."
+      },
+      {
+        "title": "Find the complaint process",
+        "detail": "The agreement or lender website should explain how to raise complaints and escalate unresolved issues."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Late payment and penal charges",
+        "message": "Penalty terms can significantly increase cost. Ask when the charge applies, how it is calculated, and whether taxes or extra charges apply.",
+        "severity": "warning"
+      },
+      {
+        "title": "Prepayment and foreclosure conditions",
+        "message": "Do not assume early repayment is free. Check the exact clause and ask the lender how it applies to this loan type.",
+        "severity": "warning"
+      },
+      {
+        "title": "Bundled products",
+        "message": "If insurance or other products are bundled with the loan, ask whether they are optional and how they affect total cost.",
+        "severity": "info"
+      }
+    ],
+    "source": {
+      "name": "Reserve Bank of India consumer and fair practices materials",
+      "url": "https://www.rbi.org.in/",
+      "last_verified": "2026-10-03"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "aadhaar_enrolment_basics",
+    "title": "Aadhaar Enrolment Basics",
+    "category": "general",
+    "summary": "Aadhaar is a 12-digit individual identification number issued by the UIDAI on behalf of the Government of India. This guide explains how to enrol for Aadhaar for the first time.",
+    "keywords": [
+      "aadhaar",
+      "aadhar",
+      "apply aadhaar",
+      "apply aadhar",
+      "aadhaar card",
+      "aadhar card",
+      "new aadhaar",
+      "new aadhar",
+      "apply for aadhaar",
+      "apply for aadhar",
+      "uidai",
+      "enrolment",
+      "identity proof",
+      "address proof",
+      "biometrics"
+    ],
+    "documents_needed": [
+      "Proof of Identity (PoI)",
+      "Proof of Address (PoA)",
+      "Proof of Date of Birth (PoB)"
+    ],
+    "steps": [
+      {
+        "title": "Locate an Enrolment Center",
+        "detail": "Find the nearest Aadhaar Enrolment Center authorized by UIDAI."
+      },
+      {
+        "title": "Book an Appointment",
+        "detail": "You can book an appointment online to save time at the center."
+      },
+      {
+        "title": "Visit the Center",
+        "detail": "Go to the center with your original supporting documents."
+      },
+      {
+        "title": "Provide Biometrics",
+        "detail": "Your fingerprints, iris scan, and photograph will be captured."
+      },
+      {
+        "title": "Collect Acknowledgment",
+        "detail": "Keep the enrolment slip containing the Enrolment ID (EID) to track status."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Free of Cost",
+        "message": "First-time Aadhaar enrolment is free of cost. Do not pay any fees.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "UIDAI Official Portal",
+      "url": "https://myaadhaarbeta.uidai.gov.in/",
+      "last_verified": "2026-10-08"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "link_pan_aadhaar",
+    "title": "Link PAN with Aadhaar",
+    "category": "tax",
+    "summary": "The government mandates linking your PAN with Aadhaar. Failure to link makes the PAN inoperative, restricting financial transactions.",
+    "keywords": [
+      "link pan",
+      "aadhaar link",
+      "pan aadhaar",
+      "inoperative pan",
+      "income tax",
+      "penalty"
+    ],
+    "documents_needed": [
+      "PAN Card",
+      "Aadhaar Card",
+      "Registered Mobile Number"
+    ],
+    "steps": [
+      {
+        "title": "Visit the Income Tax e-Filing Portal",
+        "detail": "Go to the official e-filing portal and find the 'Link Aadhaar' option."
+      },
+      {
+        "title": "Enter Details",
+        "detail": "Provide your PAN, Aadhaar number, and Name as per Aadhaar."
+      },
+      {
+        "title": "Pay Penalty if Applicable",
+        "detail": "If linking after the deadline, a late fee may apply. Pay it via the e-Pay Tax functionality."
+      },
+      {
+        "title": "Verify via OTP",
+        "detail": "Enter the OTP received on your Aadhaar-linked mobile number to complete the request."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Inoperative PAN Consequences",
+        "message": "An inoperative PAN prevents filing ITR, opens you to higher TDS, and restricts bank accounts.",
+        "severity": "critical"
+      }
+    ],
+    "source": {
+      "name": "Income Tax Department",
+      "url": "https://www.incometax.gov.in/",
+      "last_verified": "2026-10-08"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "pf_withdrawal_process",
+    "title": "EPF Withdrawal Process",
+    "category": "scheme",
+    "summary": "The Employees' Provident Fund (EPF) allows partial or full withdrawal under specific conditions such as unemployment, medical emergencies, or retirement.",
+    "keywords": [
+      "epf",
+      "pf",
+      "provident fund",
+      "epfo",
+      "pf withdrawal",
+      "claim form 31",
+      "form 19",
+      "form 10c",
+      "uan"
+    ],
+    "documents_needed": [
+      "UAN (Universal Account Number)",
+      "Aadhaar linked to UAN",
+      "Bank Account linked to UAN"
+    ],
+    "steps": [
+      {
+        "title": "Activate UAN",
+        "detail": "Ensure your UAN is activated and your KYC details (Aadhaar, PAN, Bank) are verified."
+      },
+      {
+        "title": "Log in to Member Portal",
+        "detail": "Visit the EPFO unified member portal and sign in with UAN and password."
+      },
+      {
+        "title": "Select Claim Form",
+        "detail": "Go to Online Services and choose 'Claim (Form-31, 19, 10C & 10D)'."
+      },
+      {
+        "title": "Verify Bank Account",
+        "detail": "Enter the last 4 digits of your registered bank account to verify."
+      },
+      {
+        "title": "Submit Request",
+        "detail": "Choose the type of withdrawal, upload a scanned cheque if required, and submit with Aadhaar OTP."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Tax Implications",
+        "message": "Withdrawing EPF before 5 years of continuous service may attract TDS.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "EPFO Member Portal",
+      "url": "https://unifiedportal-mem.epfindia.gov.in/",
+      "last_verified": "2026-10-08"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "file_police_fir",
+    "title": "Filing a First Information Report (FIR)",
+    "category": "legal",
+    "summary": "An FIR is a written document prepared by the police when they receive information about the commission of a cognizable offence.",
+    "keywords": [
+      "fir",
+      "police",
+      "complaint",
+      "cognizable offence",
+      "criminal case",
+      "zero fir"
+    ],
+    "documents_needed": [
+      "Written complaint",
+      "Any evidence (optional)",
+      "Identity proof (optional)"
+    ],
+    "steps": [
+      {
+        "title": "Visit the Police Station",
+        "detail": "Go to the police station having jurisdiction over the area where the crime occurred."
+      },
+      {
+        "title": "Narrate the Incident",
+        "detail": "Provide details of the incident orally or submit a written complaint."
+      },
+      {
+        "title": "Sign the FIR",
+        "detail": "The police will write down oral information. Read it carefully and sign it."
+      },
+      {
+        "title": "Get a Copy",
+        "detail": "You have the right to get a copy of the FIR free of cost."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Zero FIR",
+        "message": "If you are away from the jurisdiction, you can file a 'Zero FIR' at any police station, which will later be transferred to the correct one.",
+        "severity": "info"
+      },
+      {
+        "title": "False Information",
+        "message": "Providing false information to the police is a punishable offence.",
+        "severity": "critical"
+      }
+    ],
+    "source": {
+      "name": "National Crime Records Bureau",
+      "url": "https://ncrb.gov.in/",
+      "last_verified": "2026-10-08"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "open_savings_account",
+    "title": "Opening a Savings Bank Account",
+    "category": "banking",
+    "summary": "A savings account keeps your money safe while earning modest interest. RBI mandates banks to follow KYC norms for all new accounts.",
+    "keywords": [
+      "savings account",
+      "bank account",
+      "kyc",
+      "minimum balance",
+      "atm",
+      "debit card"
+    ],
+    "documents_needed": [
+      "Valid KYC Document (Aadhaar, Passport, Voter ID, etc.)",
+      "PAN Card",
+      "Recent Photographs"
+    ],
+    "steps": [
+      {
+        "title": "Choose a Bank",
+        "detail": "Select a bank based on interest rates, minimum balance requirements, and branch proximity."
+      },
+      {
+        "title": "Fill the Application Form",
+        "detail": "Visit the branch or apply online through the bank's portal."
+      },
+      {
+        "title": "Submit KYC Documents",
+        "detail": "Provide Proof of Identity and Proof of Address. Video KYC is also available for many banks."
+      },
+      {
+        "title": "Make Initial Deposit",
+        "detail": "Deposit the required minimum balance amount if applicable."
+      },
+      {
+        "title": "Collect Starter Kit",
+        "detail": "Receive your passbook, cheque book, and debit card."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Minimum Balance Penalties",
+        "message": "Be aware of the Minimum Average Balance (MAB) requirements. Failing to maintain it can result in monthly penalties.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "Reserve Bank of India (RBI)",
+      "url": "https://www.rbi.org.in/",
+      "last_verified": "2026-10-08"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "pm_kisan_scheme",
+    "title": "PM Kisan Samman Nidhi Yojana",
+    "category": "scheme",
+    "summary": "PM-KISAN provides income support of Rs. 6,000 per year to landholding farmer families across the country.",
+    "keywords": [
+      "pm kisan",
+      "farmer",
+      "agriculture",
+      "financial aid",
+      "pm-kisan",
+      "samman nidhi"
+    ],
+    "documents_needed": [
+      "Aadhaar Card",
+      "Land holding papers",
+      "Bank Account Details"
+    ],
+    "steps": [
+      {
+        "title": "Check Eligibility",
+        "detail": "Ensure you own cultivable land and do not fall under the exclusion categories (e.g., taxpayers, professionals)."
+      },
+      {
+        "title": "Visit PM Kisan Portal",
+        "detail": "Go to the official PM-KISAN portal (pmkisan.gov.in)."
+      },
+      {
+        "title": "New Farmer Registration",
+        "detail": "Click on 'New Farmer Registration' under the Farmers Corner."
+      },
+      {
+        "title": "Enter Details",
+        "detail": "Provide Aadhaar, select your state, and fill out the registration form with land and bank details."
+      },
+      {
+        "title": "Complete e-KYC",
+        "detail": "e-KYC is mandatory for registered farmers to receive instalments."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Recovery of Funds",
+        "message": "If an ineligible person claims the benefit, the government can initiate recovery proceedings.",
+        "severity": "critical"
+      }
+    ],
+    "source": {
+      "name": "PM-KISAN Official Portal",
+      "url": "https://pmkisan.gov.in/",
+      "last_verified": "2026-10-08"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "consumer_court_complaint",
+    "title": "Filing a Consumer Court Complaint",
+    "category": "legal",
+    "summary": "If you have purchased a product or service with defects or deficiencies, you can file a complaint with the Consumer Disputes Redressal Commission.",
+    "keywords": [
+      "consumer court",
+      "consumer forum",
+      "edaakhil",
+      "defective product",
+      "deficiency in service",
+      "consumer protection",
+      "ncdrc"
+    ],
+    "documents_needed": [
+      "Invoice or Receipt",
+      "Warranty Card",
+      "Proof of communication with seller",
+      "Written complaint"
+    ],
+    "steps": [
+      {
+        "title": "Send a Legal Notice",
+        "detail": "Before filing, send a formal notice to the seller giving them a chance to resolve the issue."
+      },
+      {
+        "title": "Draft the Complaint",
+        "detail": "Prepare a formal complaint stating the facts, defect, and relief sought."
+      },
+      {
+        "title": "Choose the Correct Forum",
+        "detail": "File at District, State, or National level depending on the value of goods/services."
+      },
+      {
+        "title": "Pay the Fee",
+        "detail": "Pay the nominal court fee via a demand draft or online payment."
+      },
+      {
+        "title": "File Online via e-Daakhil",
+        "detail": "You can file the complaint electronically through the e-Daakhil portal."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Time Limit",
+        "message": "A consumer complaint must be filed within 2 years from the date the cause of action arose.",
+        "severity": "critical"
+      }
+    ],
+    "source": {
+      "name": "National Consumer Disputes Redressal Commission",
+      "url": "http://ncdrc.nic.in/",
+      "last_verified": "2026-10-08"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "passport_application_new",
+    "title": "Apply for an Indian Passport (Fresh/Re-issue)",
+    "category": "general",
+    "summary": "Apply for a fresh Indian passport or re-issue of an existing passport online through the official Passport Seva portal (passportindia.gov.in) under the Ministry of External Affairs. The process involves online registration, filling Form No. 1, paying the fee, scheduling an appointment at a Passport Seva Kendra (PSK) or Post Office PSK (POPSK), biometric capture, document verification, and police verification before final dispatch.",
+    "keywords": [
+      "passport",
+      "paspot",
+      "pasport",
+      "passsport",
+      "apply passport",
+      "new passport",
+      "fresh passport",
+      "make passport",
+      "how to make passport",
+      "how to make paspot",
+      "passport online",
+      "passport seva",
+      "psk",
+      "popsk",
+      "tatkaal passport",
+      "passport application"
+    ],
+    "documents_needed": [
+      "Proof of Date of Birth (Birth Certificate, School Leaving Certificate, Aadhaar Card, or PAN Card)",
+      "Proof of Present Address (Aadhaar Card, Water/Electricity Bill, Bank Passbook with Photo, or Rent Agreement)",
+      "Proof of Identity with Photo (Aadhaar Card, Voter ID, or PAN Card)",
+      "Standard Annexure E declaration (for adult fresh passport applicants)",
+      "Non-ECR Proof (10th standard matriculation certificate or higher educational degree, if applicable)"
+    ],
+    "steps": [
+      {
+        "title": "Register on the Passport Seva Online Portal",
+        "detail": "Visit the official portal at passportindia.gov.in and click 'New User Registration'. Select your jurisdictional Passport Office and provide your basic details."
+      },
+      {
+        "title": "Fill out the Passport Application Form",
+        "detail": "Login with your registered ID, click 'Apply for Fresh Passport/Re-issue of Passport', choose Normal or Tatkaal scheme, select a 36 or 60 page booklet, and complete the form accurately."
+      },
+      {
+        "title": "Pay Application Fee and Schedule Appointment",
+        "detail": "Go to 'View Saved/Submitted Applications' and click 'Pay and Schedule Appointment'. Pay online (₹1,500 for normal adult 36-page passport) and select your preferred PSK/POPSK and appointment slot."
+      },
+      {
+        "title": "Visit PSK / POPSK for Biometrics and Document Verification",
+        "detail": "Arrive on the scheduled date with original documents, self-attested photocopies, and application receipt. Complete photograph, fingerprint capture, and document checking."
+      },
+      {
+        "title": "Complete Police Verification and Receive Passport",
+        "detail": "After your appointment, local police will verify your residential address. Once cleared, your passport is printed and delivered to your doorstep via India Post Speed Post."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Beware of Fraudulent Third-Party Websites",
+        "message": "Only apply through the official government portal www.passportindia.gov.in. Avoid fake intermediary sites charging extra fees.",
+        "severity": "critical"
+      },
+      {
+        "title": "Carry All Original Documents to PSK",
+        "message": "You must bring original documents corresponding to every uploaded copy. Missing originals will lead to appointment cancellation and rescheduling.",
+        "severity": "warning"
+      },
+      {
+        "title": "Ensure Present Residential Address is Accurate",
+        "message": "Police verification is strictly carried out at the current address entered in the application. Concealing residential history can lead to penalties under the Passports Act.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "Ministry of External Affairs - Passport Seva Portal",
+      "url": "https://www.passportindia.gov.in/",
+      "last_verified": "2026-10-01"
+    },
+    "status": "verified"
+  }
+]

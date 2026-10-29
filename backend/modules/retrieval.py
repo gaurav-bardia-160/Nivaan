@@ -52,7 +52,7 @@ def _tokens(text: str) -> set[str]:
 @lru_cache(maxsize=1)
 def _load_entries() -> list[dict[str, Any]]:
     try:
-        with DATA_PATH.open("r", encoding="utf-8") as handle:
+        with DATA_PATH.open("r", encoding="utf-8-sig") as handle:
             data = json.load(handle)
     except (FileNotFoundError, json.JSONDecodeError):
         return []

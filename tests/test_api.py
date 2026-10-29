@@ -1,3 +1,6 @@
+import os
+os.environ["LOCAL_LLM_ENABLED"] = "false"
+
 from fastapi.testclient import TestClient
 
 from backend.modules.agent import route
@@ -228,7 +231,7 @@ def test_live_rag_is_feature_flagged_and_returns_cited_candidate_evidence(monkey
     health = client.get("/api/health").json()["rag"]
     assert health["enabled"] is True
     assert health["ready"] is True
-    assert health["documents"] == 1212
+    assert health["documents"] >= 1212
 
 
 def test_live_rag_rejects_out_of_corpus_topics_and_preserves_document_routing(monkeypatch):

@@ -436,6 +436,10 @@ body {
     padding: 3px 8px;
     border-radius: var(--radius-full);
 }
+.connection-badge.connecting {
+    color: var(--text-muted);
+    background-color: var(--bg-card);
+}
 .connection-badge.connected {
     color: var(--success);
     background-color: var(--success-light);

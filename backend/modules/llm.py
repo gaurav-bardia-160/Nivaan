@@ -25,6 +25,8 @@ logger = logging.getLogger("local_llm")
 
 _TRUE_VALUES = {"1", "true", "yes", "on"}
 _LOCAL_HOSTS = {"localhost", "127.0.0.1", "::1"}
+_is_generating = False
+_is_generating_lock = threading.Lock()
 
 
 class GroundedRewrite(BaseModel):
@@ -49,8 +51,8 @@ class LocalLLMConfig:
     model: str
     timeout_seconds: float
     allow_remote: bool
-    num_ctx: int = 8192
-    num_predict: int = 768
+    num_ctx: int = 3072
+    num_predict: int = 384
 
     @classmethod
     def from_env(cls) -> "LocalLLMConfig":
@@ -61,14 +63,14 @@ class LocalLLMConfig:
             timeout = 90.0
 
         try:
-            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "8192"))
+            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "3072"))
         except ValueError:
-            num_ctx = 8192
+            num_ctx = 3072
 
         try:
-            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "768"))
+            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "384"))
         except ValueError:
-            num_predict = 768
+            num_predict = 384
 
         return cls(
             enabled=os.getenv("LOCAL_LLM_ENABLED", "false").strip().lower() in _TRUE_VALUES,
@@ -192,6 +194,10 @@ class LocalLLMClient:
                 "If this is a follow-up, refer back to the context smoothly."
             )
 
+        # Allocate threads safely (leave 1 thread free for OS and Uvicorn on 2-core/4-thread CPUs)
+        avail_cpus = os.cpu_count() or 4
+        optimal_threads = max(1, min(avail_cpus, 3))
+
         payload = {
             "model": self.config.model,
             "stream": False,
@@ -203,9 +209,12 @@ class LocalLLMClient:
                 "temperature": temperature if temperature is not None else (0.2 if is_greeting else 0.1),
                 "num_predict": self.config.num_predict,
                 "num_ctx": self.config.num_ctx,
-                "num_thread": 6,
+                "num_thread": optimal_threads,
             },
         }
+        global _is_generating
+        with _is_generating_lock:
+            _is_generating = True
         try:
             response = httpx.post(
                 f"{self.config.base_url}/api/chat",
@@ -258,9 +267,12 @@ class LocalLLMClient:
                 "documents_needed": docs_candidate,
                 "steps": steps_candidate,
             })
-        except (httpx.HTTPError, OSError, ValueError, TypeError, ValidationError) as e:
+        except Exception as e:
             logger.debug("Local LLM answer generation failed: %s", e)
             return None
+        finally:
+            with _is_generating_lock:
+                _is_generating = False
 
         if not _is_grounded(parsed.summary, answer):
             return None
@@ -366,14 +378,25 @@ def local_llm_health(*, force: bool = False) -> dict[str, object]:
 
     now = time.time()
     with _health_lock:
-        if not force and _health_cache and now - _health_cache[0] < 10:
+        # If inference is actively generating, Ollama is alive and busy; return cached healthy status
+        if _is_generating and _health_cache and _health_cache[1].get("available"):
+            return _health_cache[1]
+        # Reuse cache for 30s to prevent opening redundant sockets every 4 seconds
+        if not force and _health_cache and now - _health_cache[0] < 30:
             return _health_cache[1]
         try:
             result = {**base, **LocalLLMClient(config).probe()}
-        except ValueError as exc:
+            # If probe temporarily failed while under heavy CPU load, don't flap if previously healthy
+            if not result.get("available") and _health_cache and _health_cache[1].get("available"):
+                return _health_cache[1]
+            _health_cache = (now, result)
+            return result
+        except Exception as exc:
+            if _health_cache and _health_cache[1].get("available"):
+                return _health_cache[1]
             result = {**base, "available": False, "error": str(exc)}
-        _health_cache = (now, result)
-        return result
+            _health_cache = (now, result)
+            return result
 
 
 def _extract_dynamic_steps_from_summary(summary: str) -> list[Step]:
@@ -409,7 +432,7 @@ def enhance_grounded_answer(
             memory=memory,
             temperature=temperature,
         )
-    except ValueError:
+    except Exception:
         rewrite = None
     if not rewrite:
         return answer

@@ -235,37 +235,17 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 
 @app.get("/api/health")
-
 def health() -> dict[str, object]:
-
     stats = knowledge_stats()
-
     return {
-
         "status": "ok",
-
         "service": "govbank-assistant",
-
         "version": APP_VERSION,
-
         "knowledge_entries": stats["total"],
-
         "verified_entries": stats["verified"],
-
         "unverified_entries": stats["unverified"],
-
         "capabilities_url": "/api/capabilities",
-
         "rag": rag_health(),
-
-        "local_llm": local_llm_health(),
-
-        "memory": conversation_memory.health(),
-        "rl": {
-            "bandit": bandit_policy.get_stats(),
-            "rewards": reward_engine.get_stats(),
-        },
-
     }
 
 

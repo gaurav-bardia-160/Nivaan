@@ -49,6 +49,40 @@ class RewardEngine:
         self.feedback_file = feedback_file
         self.feedback_file.parent.mkdir(parents=True, exist_ok=True)
         self._lock = threading.Lock()
+        self._counts = {
+            "total_feedbacks": 0,
+            "thumbs_up": 0,
+            "thumbs_down": 0,
+            "citation_clicks": 0,
+            "copy_events": 0,
+            "rewards": [],
+        }
+        self._init_counts()
+
+    def _init_counts(self) -> None:
+        if not self.feedback_file.is_file():
+            return
+        try:
+            with self.feedback_file.open("r", encoding="utf-8") as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    data = json.loads(line)
+                    self._counts["total_feedbacks"] += 1
+                    ftype = data.get("feedback_type")
+                    if ftype == "thumbs_up":
+                        self._counts["thumbs_up"] += 1
+                    elif ftype == "thumbs_down":
+                        self._counts["thumbs_down"] += 1
+                    elif ftype == "click_citation":
+                        self._counts["citation_clicks"] += 1
+                    elif ftype == "copy_steps":
+                        self._counts["copy_events"] += 1
+                    r_val = data.get("reward", {}).get("total_reward")
+                    if r_val is not None:
+                        self._counts["rewards"].append(float(r_val))
+        except Exception:
+            pass
 
     def evaluate_grounding(self, summary: str, evidence_text: str) -> float:
         if not summary or not evidence_text:
@@ -168,57 +202,30 @@ class RewardEngine:
         with self._lock:
             with self.feedback_file.open("a", encoding="utf-8") as f:
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")
+            self._counts["total_feedbacks"] += 1
+            if feedback.feedback_type == "thumbs_up":
+                self._counts["thumbs_up"] += 1
+            elif feedback.feedback_type == "thumbs_down":
+                self._counts["thumbs_down"] += 1
+            elif feedback.feedback_type == "click_citation":
+                self._counts["citation_clicks"] += 1
+            elif feedback.feedback_type == "copy_steps":
+                self._counts["copy_events"] += 1
+            tot = reward_breakdown.total_reward if reward_breakdown else (feedback.reward or 0.0)
+            self._counts["rewards"].append(float(tot))
 
     def get_stats(self) -> dict[str, object]:
-        if not self.feedback_file.is_file():
+        with self._lock:
+            rewards = self._counts["rewards"]
+            avg_reward = round(sum(rewards) / len(rewards), 3) if rewards else 0.0
             return {
-                "total_feedbacks": 0,
-                "thumbs_up": 0,
-                "thumbs_down": 0,
-                "citation_clicks": 0,
-                "copy_events": 0,
-                "average_reward": 0.0,
+                "total_feedbacks": self._counts["total_feedbacks"],
+                "thumbs_up": self._counts["thumbs_up"],
+                "thumbs_down": self._counts["thumbs_down"],
+                "citation_clicks": self._counts["citation_clicks"],
+                "copy_events": self._counts["copy_events"],
+                "average_reward": avg_reward,
             }
-
-        total = 0
-        thumbs_up = 0
-        thumbs_down = 0
-        citation_clicks = 0
-        copy_events = 0
-        rewards = []
-
-        with self.feedback_file.open("r", encoding="utf-8") as f:
-            for line in f:
-                if not line.strip():
-                    continue
-                try:
-                    data = json.loads(line)
-                    total += 1
-                    ftype = data.get("feedback_type")
-                    if ftype == "thumbs_up":
-                        thumbs_up += 1
-                    elif ftype == "thumbs_down":
-                        thumbs_down += 1
-                    elif ftype == "click_citation":
-                        citation_clicks += 1
-                    elif ftype == "copy_steps":
-                        copy_events += 1
-
-                    r_val = data.get("reward", {}).get("total_reward")
-                    if r_val is not None:
-                        rewards.append(float(r_val))
-                except Exception:
-                    pass
-
-        avg_reward = round(sum(rewards) / len(rewards), 3) if rewards else 0.0
-        return {
-            "total_feedbacks": total,
-            "thumbs_up": thumbs_up,
-            "thumbs_down": thumbs_down,
-            "citation_clicks": citation_clicks,
-            "copy_events": copy_events,
-            "average_reward": avg_reward,
-        }
 
 
 reward_engine = RewardEngine()

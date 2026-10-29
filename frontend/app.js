@@ -41,7 +41,7 @@ const suggestionCards = document.querySelectorAll(".suggestion-card");
 // --- INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
     checkBackendHealth();
-    setInterval(checkBackendHealth, 4000);
+    setInterval(checkBackendHealth, 8000);
     setupEventListeners();
     loadChatsFromStorage();
     renderHistoryList();
@@ -438,31 +438,44 @@ function clearAttachment() {
 }
 
 // --- BACKEND HEALTH CHECK ---
+let consecutiveFailedPings = 0;
+let isQueryInProgress = false;
+
 function setBackendOnlineStatus(isOnline) {
     isBackendLive = !!isOnline;
     if (backendBadge) {
         backendBadge.className = isOnline ? "connection-badge connected" : "connection-badge offline";
         backendBadge.textContent = isOnline ? "● Online" : "● Offline";
+        backendBadge.title = isOnline ? "Backend API is online and healthy (http://127.0.0.1:8000)" : "Backend API is offline. Run start.bat to launch the backend server.";
     }
 }
 
 async function checkBackendHealth() {
     try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
         const res = await fetch(`${API_BASE}/api/health`, { signal: controller.signal });
         clearTimeout(timeoutId);
         if (res.ok) {
             const data = await res.json().catch(() => null);
             if (data && (data.status === "ok" || data.status === "healthy" || data.service === "govbank-assistant")) {
+                consecutiveFailedPings = 0;
                 setBackendOnlineStatus(true);
                 return;
             }
         }
     } catch (e) {
-        // Backend offline or timed out
+        // Backend ping failed or aborted
     }
-    setBackendOnlineStatus(false);
+    // If a request is actively processing, backend is working, so avoid false offline flickering
+    if (isQueryInProgress) {
+        return;
+    }
+    consecutiveFailedPings++;
+    // Only mark offline if 3 consecutive health checks fail
+    if (consecutiveFailedPings >= 3) {
+        setBackendOnlineStatus(false);
+    }
 }
 
 // --- USER SUBMISSION ---
@@ -1468,6 +1481,7 @@ async function getLocalFallbackAnswer(text, file) {
 
 // --- UTILITIES ---
 function setLoading(loading) {
+    isQueryInProgress = !!loading;
     if (!sendBtn) return;
     sendBtn.disabled = loading;
     if (sendSpinner) sendSpinner.style.display = loading ? "inline-block" : "none";
