@@ -1,0 +1,18 @@
+About EPFiGMS
+For all news and updates on EPF, please subscribe our YouTube channel (youtube.com/socialepfo ), Pension Payment Enquiry ( mis.epfindia.gov.in/PensionPaymentEnquiry ), Twitter ( x.com/officialepfo ), Instagram ( instagram.com/officialepfo ) and Facebook ( facebook.com/socialepfo ).
+EPFiGMS is a customised portal of EPFO with an aim to redress grievances for the services provided by EPFO. Grievances can be lodged at any place and will land in concerned office to which the grievances pertain. Grievances can be sent to Head office at New Delhi or to the field offices now 135 across the country.
+The revamped EPFiGMS is available with several advanced features, most important being:-
+- Grievance can be lodged by PF member, EPS Pensioner, Employer and Others
+- OTP verification
+- Online lodging of grievance/complaint based on UAN
+- UAN integrated with master data base of EPFO resulting in identification of EPF office for redress of grievance
+- Grievance can be lodged for multiple PF numbers available in UAN
+- PPO number validation/integration (for EPS pensioners) with centralised data base of EPFO
+- Facility to send reminder for pending grievance
+- View current status of grievance
+- Facility to provide feedback on redress of grievance
+- Comprehensive categorization for identifying the grievance prone areas
+- Facility to upload more than one grievance document
+- "EPFiGMS is available in UMANG. Please lodge your grievances using UMANG Mobile Application and select EPFO Services"
+Further, once a grievance is registered, system generates a unique registration number and auto generates acknowledgement through SMS & email. There is ease of registration of grievance and faster redressal after revamp. The interface is now bilingual.
+"EPFO is working hard to improve the service delivery. Kindly give your valuable feedback with respect to registering your grievance on the EPFiGMS Portal and your feedback regarding your satisfaction with respect to resolution of your grievance".

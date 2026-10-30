@@ -51,7 +51,16 @@ _FOLLOW_UP_INTENTS = {
     "escalation", "complaint", "deducted", "deduct", "money", "srn", "arn", "adverse", "reversal",
     # Hindi/Gujarati intents
     "dastavej", "kagaj", "paisa", "shulk", "samay", "kya", "kaise",
-    "atki", "atke", "radd", "khata", "shikayat",
+    "atki", "atke", "radd", "khata", "shikayat", "kat", "kata", "kaat",
+}
+
+_TROUBLESHOOTING_TOKENS = {
+    "failed", "fail", "failure", "fails", "stuck", "pending", "rejected", "rejection", "error",
+    "cancelled", "cancel", "mismatch", "refund", "reissue", "delay", "delayed", "delays",
+    "issue", "problem", "dispute", "ombudsman", "grievance", "escalate", "escalation",
+    "deducted", "deduct", "debited", "debit", "srn", "arn", "adverse", "reversal",
+    "exhausted", "limit", "crossed", "unpaid", "unvalidated", "correction", "defective",
+    "tat", "overdue", "exceeded", "atki", "atke", "radd", "shikayat", "kat", "kata", "kaat",
 }
 
 
@@ -72,9 +81,9 @@ _STANDALONE_TOPIC_TERMS = {
     "ration", "pds", "nfsa",
     "kisan", "pmkisan", "pm-kisan",
     "apaar", "digilocker", "udyam", "msme", "gst",
-    "fir", "police", "complaint", "consumer court",
+    "fir", "police fir", "police complaint", "consumer court",
     "cybercrime", "1930",
-    "account", "savings account", "bank account", "fixed deposit",
+    "savings account", "bank account", "fixed deposit",
     # Hindi/Gujarati terms
     "आधार", "આધાર", "पैन", "પૅન", "पासपोर्ट", "પાસપોર્ટ", "मतदाता", "ચૂંટણી", "ટેક્સ", "कर", "आयकर",
 }
@@ -100,15 +109,54 @@ def _is_follow_up_query(text: str) -> bool:
     has_pronoun = bool(tokens & _FOLLOW_UP_MARKERS)
     if has_pronoun:
         return True
+
+    # Check for troubleshooting / error tokens: citizens often describe procedural failures in full sentences
+    has_troubleshooting = bool(tokens & _TROUBLESHOOTING_TOKENS)
+    if has_troubleshooting and len(tokens) <= 35:
+        if not _has_standalone_topic(text) or any(t in text.lower() for t in ("verification", "validation", "deducted", "debited", "srn", "failed", "pending", "rejection", "mismatch", "refund", "limit")):
+            return True
+
     if _has_standalone_topic(text):
         return False
+
     entry, score = find_entry_with_score(text)
-    if entry is not None and score >= 55:
+    if entry is not None and score >= 55 and _verified_entry_covers_request(entry.get("id", ""), text):
         return False
+
     has_intent = bool(tokens & _FOLLOW_UP_INTENTS)
-    if has_intent and len(tokens) <= 8:
+    if has_intent and len(tokens) <= 20:
         return True
     return False
+
+
+def reformulate_follow_up_query(
+    search_text: str,
+    context_topic: str | None,
+    previous_entry_title: str | None = None,
+) -> str:
+    """Reformulate pronoun-heavy, ambiguous, or error follow-up queries using prior context."""
+    topic = (context_topic or previous_entry_title or "").strip()
+    if not topic:
+        return search_text
+
+    clean_topic = re.sub(r"^(Relevant official material:\s*)", "", topic).strip()
+    lowered_search = search_text.lower()
+    lowered_topic = clean_topic.lower()
+
+    topic_words = set(re.findall(r"\b[a-z0-9_-]+\b", lowered_topic)) - {"the", "a", "an", "for", "to", "in", "of", "and"}
+    search_words = set(re.findall(r"\b[a-z0-9_-]+\b", lowered_search))
+    if len(topic_words & search_words) >= 2:
+        return search_text
+
+    tokens = {t.lower().strip("?,.!:;'\"") for t in search_text.split()}
+    is_trouble = bool(tokens & _TROUBLESHOOTING_TOKENS)
+    has_pronoun = bool(tokens & _FOLLOW_UP_MARKERS)
+    has_intent = bool(tokens & _FOLLOW_UP_INTENTS)
+
+    if is_trouble or has_pronoun or has_intent or len(tokens) <= 6:
+        return f"{clean_topic} {search_text}"
+
+    return search_text
 
 
 def _request_text(request: AskRequest) -> str:
@@ -161,6 +209,30 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
     if entry_id in ("consumer_complaint_basics", "consumer_court_complaint"):
         consumer_tokens = ("consumer", "edaakhil", "defective", "unfair trade", "deficiency")
         if not any(token in lowered for token in consumer_tokens):
+            return False
+    if entry_id == "aadhaar_pvc_payment_failed":
+        trouble_tokens = ("failed", "deducted", "deduct", "debit", "debited", "srn", "stuck", "cut", "kata", "error", "money", "refund", "pending", "paisa", "transaction", "reversal")
+        if not any(token in lowered for token in trouble_tokens):
+            return False
+    if entry_id == "itr_bank_validation_failed":
+        trouble_tokens = ("validation", "failed", "unpaid", "reissue", "refund", "mismatch", "ifsc", "re-issue", "reject", "rejected")
+        if not any(token in lowered for token in trouble_tokens):
+            return False
+    if entry_id == "passport_police_verification_delayed":
+        trouble_tokens = ("police", "verification", "delay", "delayed", "pending", "adverse", "days", "tat", "clearance")
+        if not any(token in lowered for token in trouble_tokens):
+            return False
+    if entry_id == "epf_joint_declaration_correction":
+        trouble_tokens = ("joint declaration", "correction", "mismatch", "wrong", "exit", "father", "employer", "rejected", "claim")
+        if not any(token in lowered for token in trouble_tokens):
+            return False
+    if entry_id == "rbi_failed_upi_atm_penalty":
+        trouble_tokens = ("failed", "fail", "deducted", "debit", "debited", "reversal", "penalty", "100", "tat", "dispute", "ombudsman", "stuck")
+        if not any(token in lowered for token in trouble_tokens):
+            return False
+    if entry_id == "aadhaar_cross_limit_exception":
+        trouble_tokens = ("limit", "exhausted", "cross", "exception", "third time", "twice", "maximum", "cannot update", "blocked", "rejected")
+        if not any(token in lowered for token in trouble_tokens):
             return False
     return True
 
@@ -238,7 +310,6 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             rl_arm=bandit_action.name,
         )
 
-    route_result = route(routing_request)
     memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=25)
     effective_context_topic = parsed_request.context_topic
     if not effective_context_topic and memory_turns:
@@ -250,6 +321,15 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 break
         if not effective_context_topic and memory_turns and _is_follow_up_query(search_text):
             effective_context_topic = memory_turns[-1].user_text
+
+    # Multi-turn conversational context expansion & query reformulation:
+    if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
+        reformulated_text = reformulate_follow_up_query(search_text, effective_context_topic)
+        if reformulated_text != search_text:
+            search_text = reformulated_text
+            routing_request = routing_request.model_copy(update={"question": search_text})
+
+    route_result = route(routing_request)
     context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
         parsed_request.conversation_id
     )

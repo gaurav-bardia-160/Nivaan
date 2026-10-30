@@ -4,13 +4,19 @@
       "source_id": "itr_refund_reissue_manual",
       "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/refund-reissue-UM",
       "topic": "Bank account validation failure & Refund Unpaid resolution",
-      "content_type": "user_manual"
+      "content_type": "user_manual",
+      "raw_path": "backend/data/raw/itr_refund_reissue_manual_2026-10-30.txt",
+      "hash": "d8ac6db1270d2b5a7e7c468b4493567b956e7846a2cc7ba60fd5b064b0ab1761",
+      "last_crawled": "2026-10-30"
     },
     {
       "source_id": "itr_condonation_delay_manual",
       "source_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-raise-e-filing-service-requests",
       "topic": "Condonation of delay for expired ITR-V e-verification beyond 30 days",
-      "content_type": "user_manual"
+      "content_type": "user_manual",
+      "raw_path": "backend/data/raw/itr_condonation_delay_manual_2026-10-30.txt",
+      "hash": "9e18e52ae0eb151a1dc66abc2ea2f93c10051bc45e38e5f82b3f8d514cefb927",
+      "last_crawled": "2026-10-30"
     },
     {
       "source_id": "itr_defective_return_manual",
@@ -24,19 +30,28 @@
       "source_id": "rbi_failed_transaction_tat",
       "source_url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11693&Mode=0",
       "topic": "UPI, ATM and IMPS transaction failure auto-reversal timeline and Rs 100 per day penalty",
-      "content_type": "circular"
+      "content_type": "circular",
+      "raw_path": "backend/data/raw/rbi_failed_transaction_tat_2026-10-30.txt",
+      "hash": "ee73a1cc80224da8f4fdc0eb594c25da74799556a3473bd7334f13e8c0d059cb",
+      "last_crawled": "2026-10-30"
     },
     {
       "source_id": "rbi_prepayment_penalty_ban",
       "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=10541",
       "topic": "Master Directions prohibiting foreclosure and prepayment penalties on floating-rate individual loans",
-      "content_type": "circular"
+      "content_type": "circular",
+      "raw_path": "backend/data/raw/rbi_prepayment_penalty_ban_2026-10-30.txt",
+      "hash": "a6714f64d5724044601aecbaf0fbe05daae13456283042cbaa4007dc27710f58",
+      "last_crawled": "2026-10-30"
     },
     {
       "source_id": "rbi_integrated_ombudsman",
       "source_url": "https://cms.rbi.org.in",
       "topic": "RBI Banking Ombudsman grievance escalation criteria after 30 days of bank inaction",
-      "content_type": "portal_page"
+      "content_type": "portal_page",
+      "raw_path": "backend/data/raw/rbi_integrated_ombudsman_2026-10-30.txt",
+      "hash": "4c279538c0d0ccc30c7f524a72f972073cd5f86709af1903a24e048a3fa86d62",
+      "last_crawled": "2026-10-30"
     }
   ],
   "epf": [
@@ -50,7 +65,10 @@
       "source_id": "epfo_epfigms_portal",
       "source_url": "https://epfigms.gov.in",
       "topic": "EPFiGMS grievance escalation for stuck Form 19, 31, 10C claims and employer non-cooperation",
-      "content_type": "portal_page"
+      "content_type": "portal_page",
+      "raw_path": "backend/data/raw/epfo_epfigms_portal_2026-10-30.txt",
+      "hash": "56ab1e213105fe1520a20b0975470f4d911dd003339a7cc02b29b5550a4c46d1",
+      "last_crawled": "2026-10-30"
     }
   ],
   "identity": [
@@ -82,7 +100,10 @@
       "source_id": "eci_voter_portal_faq",
       "source_url": "https://voters.eci.gov.in/faq",
       "topic": "EPIC download failure, Form 8 correction rejections and overseas voter rules",
-      "content_type": "faq"
+      "content_type": "faq",
+      "raw_path": "backend/data/raw/eci_voter_portal_faq_2026-10-30.txt",
+      "hash": "09cf30c138289112be3ac5c5a9e0894fde217dbab24e866f101fbe1bd4c65520",
+      "last_crawled": "2026-10-30"
     }
   ],
   "consumer": [
@@ -90,7 +111,10 @@
       "source_id": "pgportal_cpgrams_faq",
       "source_url": "https://pgportal.gov.in/Home/Faq",
       "topic": "CPGRAMS central grievance registration, tracking and Appellate Authority escalation",
-      "content_type": "faq"
+      "content_type": "faq",
+      "raw_path": "backend/data/raw/pgportal_cpgrams_faq_2026-10-30.txt",
+      "hash": "b30166f745b01a030c617d66a39d4e88ed8632c4050e21ea5f983db1c07c44bf",
+      "last_crawled": "2026-10-30"
     },
     {
       "source_id": "ncdrc_edaakhil_guidelines",
@@ -103,9 +127,9 @@
     {
       "source_id": "aadhaar_portal_overview",
       "source_url": "https://uidai.gov.in/",
-      "raw_path": "backend/data/raw/aadhaar_portal_overview_2026-10-08.txt",
-      "hash": "6a05edcd20844ee95e9ce3384c835009c83e1a084fc340b03b60d09377a5dee2",
-      "last_crawled": "2026-10-08"
+      "raw_path": "backend/data/raw/aadhaar_portal_overview_2026-10-30.txt",
+      "hash": "91e819f601297731cdc3f799f3f91a31b0e44cf9da2fe5a8f9dbc2c621746220",
+      "last_crawled": "2026-10-30"
     }
   ]
 }

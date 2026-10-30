@@ -548,6 +548,28 @@
         "idrn.nidm.gov.in",
         "www.idrn.nidm.gov.in"
       ]
+    },
+    {
+      "id": "troubleshooting",
+      "path": "refined/troubleshooting/troubleshooting_chunks_clean.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "cms.rbi.org.in",
+        "epfigms.gov.in",
+        "epfindia.gov.in",
+        "incometax.gov.in",
+        "ncdrc.nic.in",
+        "passportindia.gov.in",
+        "pgportal.gov.in",
+        "rbi.org.in",
+        "uidai.gov.in",
+        "voters.eci.gov.in",
+        "www.epfindia.gov.in",
+        "www.incometax.gov.in",
+        "www.passportindia.gov.in",
+        "www.rbi.org.in",
+        "www.uidai.gov.in"
+      ]
     }
   ]
 }

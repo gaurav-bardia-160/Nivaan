@@ -81,12 +81,29 @@ class RagRetriever:
                 signals["vector_score"] = hit.score
                 signals["vector_rrf"] = 1 / (self.config.rrf_k + rank)
 
+        _TROUBLE_TOKENS = {
+            "failed", "fail", "failure", "fails", "stuck", "pending", "rejected", "rejection", "error",
+            "cancelled", "cancel", "mismatch", "refund", "reissue", "delay", "delayed", "delays",
+            "issue", "problem", "dispute", "ombudsman", "grievance", "escalate", "escalation",
+            "deducted", "deduct", "debited", "debit", "srn", "arn", "adverse", "reversal",
+            "exhausted", "limit", "crossed", "unpaid", "unvalidated", "correction", "defective",
+            "tat", "overdue", "exceeded", "atki", "atke", "radd", "shikayat", "kat", "kata", "kaat",
+        }
+        is_trouble_query = bool(q_terms & _TROUBLE_TOKENS)
+
         fused: list[RetrievalHit] = []
         for document_id, signals in candidates.items():
             document = self.documents_by_id[document_id]
-            metadata_overlap = len(q_terms & set(document.tags)) / max(len(q_terms), 1)
+            doc_tags = set(document.tags)
+            metadata_overlap = len(q_terms & doc_tags) / max(len(q_terms), 1)
             signals["tag_overlap"] = metadata_overlap
             score = signals.get("lexical_rrf", 0.0) + signals.get("vector_rrf", 0.0) + min(metadata_overlap, 1.0) * 0.01
+
+            # Troubleshooting boost: prioritize authoritative SOP & escalation guidelines when user reports a failure
+            if is_trouble_query and any(tag in doc_tags for tag in ("troubleshooting", "escalation", "sop", "manual")):
+                score += 0.05
+                signals["troubleshooting_boost"] = 0.05
+
             fused.append(
                 RetrievalHit(
                     document=document,

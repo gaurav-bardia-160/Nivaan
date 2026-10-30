@@ -1,0 +1,60 @@
+1. Overview
+The Service Request facility is available to registered users on the e-Filing portal. With this facility, you can raise a request for the following services:
+- Refund reissue (In case of failure of refund issued)
+- Condonation of delay due to late submission of ITR-V (If you submit the ITR-V after 120 / 30 days of filing the ITR)
+- Condonation request for filing ITR after getting time-barred (If you fail to file your ITR before the last date)
+Important Note:
+Please note vide Notification No. 5/2022 dated 29.07.2022, w.e.f. 01/08/2022 the time-limit for e-verification or submission of ITR-V shall be 30 days from the date of filing the return of income.
+However, where the return is filed on or before 31.07.2022 the earlier time limit of 120 days would continue to apply.
+2. Prerequisites for availing this service
+- Registered user on the e-Filing portal with valid user ID and password
+- Validated and EVC enabled Bank account in e-Filing to generate EVC through Bank Account
+- Validated and EVC enabled Demat account in e-Filing to generate EVC through Demat Account
+- PAN linked with Bank Account to Generate EVC through Net Banking
+Additionally, refer to the below table for prerequisites for each request type:
+| Request Type | Prerequisite | 
+| For Refund Reissue request |  | 
+| For submitting condonation request for delay in submission of ITR-V |  | 
+| For submitting condonation request for filing ITR after time barring date |  | 
+3. Step-by-Step Guide
+3.1. Refund Reissue Request
+Step 1: Log in to the e-Filing portal using your user ID and password.
+Step 2: On your Dashboard, click Services > Refund Reissue.
+Step 3: On the Refund Reissue page, the details and status of refund reissue requests you have raised is displayed. To create a new request for refund reissue, click Create Refund Reissue Request.
+Step 4: On the Create Refund Reissue Request page, select the record for which you want to submit request of refund reissue and click Continue.
+Step 5: On the Select a Bank Account page, select the bank account where you would like to receive the refund and click Proceed to Verification.
+Note: 
+- You can directly proceed to verification if the selected bank account is already validated.
+- If your selected bank account is not validated, you can pre-validate the bank account online through the e-Filing portal.
+- You can validate it offline through the ECS Mandate Form. Follow the steps below to validate your bank account offline: 
+	
+  - Download ECS mandate form.
+  - Take print out of the form and fill the necessary details.
+  - Get the form signed with bank seal from official Bank.
+  - Upload the scanned copy of signed form.
+- You can choose to validate the bank account again by clicking Revalidate.
+Step 6: After successful verification of the bank details, select your preferred option on the e-Verify page.
+Note: Refer to the How to e-Verify user manual to learn more.
+After successful e-Verification, a success message along with a Transaction ID will be displayed. Please keep a note of the Transaction ID for future reference. You will also receive a confirmation message on the email ID and mobile number registered with e-Filing portal.
+Note: If you click View Refund Reissue Request, you will be taken to the View refund reissue request page where you can also view the status of the submitted requests.
+3.2. Condonation Request for delay in verification of your ITR
+Step 1: Log in to the e-Filing portal using your user ID and password.
+Step 2: On your Dashboard, click Services > Condonation Request.
+Step 3: On the Condonation Request page, select Delay in submission of ITR-V option and click Continue.
+Note: Select Delay in submission of ITR-V in case you have not e-Verified your ITR within 120 / 30 days of filing.
+Step 4: On the Delay in submission of ITR-V page, click Create Condonation Request. 
+Step 5: On the Select ITR page, select the record for which you want to raise a condonation request for delay in ITR-V submission and click Continue.
+Step 6: On the Provide reason for delay page, select the reason of your delay and click Submit.
+A success message along with a Transaction ID is displayed. Please keep a note of the Transaction ID for future reference. You will also receive a confirmation message on the email ID and mobile number registered with e-Filing portal.
+3.3. Condonation Request for filing ITR after time-barred
+Step 1: Log in to the e-Filing portal using your user ID and password.
+Step 2: On your Dashboard, click Services > Condonation Request.
+Step 3: On the Condonation Request page, select Allow ITR filing after time-barred option and click Continue.
+Step 4: On the Filing after time-barred [u/s 119(2)(b)] page, click Create Condonation Request.
+Step 5: On Enter Details & Upload ITR page, enter the following details and click Submit:
+- Select the Request Category, Assessment Year, ITR, Claim Value, Filing Type, Reason for Delay & ITR Type from the options
+- Upload your ITR (PDF / XLS) for which you want to submit condonation of delay request by clicking Upload ITR option (The maximum size should be 5 MB)
+- Upload supporting documents (PDF /XLS) for which you want to submit condonation of delay request by clicking Upload documents option and select the Document Description (Maximum 5 files can be uploaded each of which should not be more than 5 MB)
+Step 6: After successful submission, select your preferred option on the e-Verify page.
+Note: Refer to the How to e-Verify user manual to learn more.
+After successful e-Verification, a success message along with a Transaction ID is displayed. Please keep a note of the Transaction ID for future reference. You will also receive a confirmation message on the email ID registered with e-Filing portal.

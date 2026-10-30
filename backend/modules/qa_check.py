@@ -56,11 +56,12 @@ def flag_staging_urls(source_url: str) -> list[str]:
     if not source_url:
         return warnings
 
-    url_lower = source_url.lower()
+    url_str = str(source_url)
+    url_lower = url_str.lower()
     for indicator in _STAGING_INDICATORS:
         if indicator in url_lower:
             warnings.append(
-                f"Source URL '{source_url}' contains '{indicator}' — "
+                f"Source URL '{url_str}' contains '{indicator}' — "
                 f"this may be a staging/non-production URL. Verify it's the canonical public page."
             )
             break  # One warning per URL is enough

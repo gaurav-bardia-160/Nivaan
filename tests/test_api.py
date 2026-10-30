@@ -784,3 +784,40 @@ def test_troubleshoot_passport_police_verification_delayed():
     payload = response.json()
     full_text = json.dumps(payload).lower()
     assert "21" in full_text and ("police" in full_text or "rpo" in full_text)
+
+
+def test_multi_turn_troubleshooting_query_reformulation():
+    """Verify follow-up error query expands with context and matches diagnostic guide."""
+    conv_id = "test_conv_trouble_reformulation"
+    r1 = client.post("/api/ask", json={"question": "How to apply for fresh passport?", "conversation_id": conv_id})
+    assert r1.status_code == 200
+
+    r2 = client.post("/api/ask", json={"question": "Police verification is pending past 21 days", "conversation_id": conv_id})
+    assert r2.status_code == 200
+    p2 = r2.json()
+    full_text = json.dumps(p2).lower()
+    assert "21" in full_text and ("police" in full_text or "rpo" in full_text)
+
+
+def test_multi_turn_aadhaar_pvc_deducted_followup():
+    """Verify payment deduction follow-up expands with Aadhaar context."""
+    conv_id = "test_conv_trouble_pvc"
+    r1 = client.post("/api/ask", json={"question": "How do I order an Aadhaar PVC card?", "conversation_id": conv_id})
+    assert r1.status_code == 200
+
+    r2 = client.post("/api/ask", json={"question": "Money was deducted from UPI but no SRN was generated.", "conversation_id": conv_id})
+    assert r2.status_code == 200
+    p2 = r2.json()
+    full_text = json.dumps(p2).lower()
+    assert "srn" in full_text and ("1947" in full_text or "reconciliation" in full_text or "refund" in full_text)
+
+
+def test_rag_troubleshooting_boost_ranking():
+    """Verify RAG retrieval prioritizes troubleshooting SOPs and applies boost."""
+    from backend.rag.retriever import RagRetriever
+    retriever = RagRetriever()
+    result = retriever.search("UPI failed money deducted Rs 100 penalty")
+    assert len(result.hits) > 0
+    top_hit = result.hits[0]
+    assert "troubleshooting_boost" in top_hit.signals
+    assert "11693" in top_hit.document.sources[0].source_url or "tat" in top_hit.document.sources[0].title.lower()
