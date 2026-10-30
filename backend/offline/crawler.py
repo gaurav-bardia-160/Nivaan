@@ -43,8 +43,14 @@ DOMAIN_WHITELIST = {
     "www.passportindia.gov.in",
     "parivahan.gov.in",
     "epfindia.gov.in",
+    "www.epfindia.gov.in",
+    "epfigms.gov.in",
     "sebi.gov.in",
     "digilocker.gov.in",
+    "pgportal.gov.in",
+    "ncdrc.nic.in",
+    "voters.eci.gov.in",
+    "eci.gov.in",
     "example.com",
 }
 

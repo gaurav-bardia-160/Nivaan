@@ -197,7 +197,11 @@ class LocalLLMClient:
                 "- If the source text states something is free of cost, exempt, optional, or not required, "
                 "you MUST include that detail. Do not drop qualifying or exempting facts for brevity.\n"
                 "- List facts separately for special cases (children, exemptions, special categories) "
-                "rather than omitting them or folding them into the general procedure."
+                "rather than omitting them or folding them into the general procedure.\n"
+                "- When the citizen reports an error, rejection, stuck status, transaction failure, or processing delay:\n"
+                "  1. Explain the specific Root Cause from the official evidence.\n"
+                "  2. Give the exact Direct Resolution steps (forms, portal path, correction procedure).\n"
+                "  3. State the statutory Turnaround Time (TAT) and the official Escalation Desk (Ombudsman, EPFiGMS, CPGRAMS, or helpline) if unresolved."
             )
             prompt = (
                 f"--- Conversation Context ---\n{history}\n\n"

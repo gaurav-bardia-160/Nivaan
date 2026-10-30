@@ -44,8 +44,14 @@ _FOLLOW_UP_INTENTS = {
     "time", "days", "duration", "tat", "deadline", "long", "when",
     "status", "track", "tracking", "check", "verify",
     "eligibility", "eligible", "criteria", "who can",
+    # Troubleshooting, error, exception & failure intents
+    "failed", "fail", "failure", "stuck", "pending", "rejected", "rejection", "error",
+    "cancelled", "cancel", "mismatch", "refund", "reissue", "delay", "delayed",
+    "not working", "issue", "problem", "dispute", "ombudsman", "grievance", "escalate",
+    "escalation", "complaint", "deducted", "deduct", "money", "srn", "arn", "adverse", "reversal",
     # Hindi/Gujarati intents
     "dastavej", "kagaj", "paisa", "shulk", "samay", "kya", "kaise",
+    "atki", "atke", "radd", "khata", "shikayat",
 }
 
 

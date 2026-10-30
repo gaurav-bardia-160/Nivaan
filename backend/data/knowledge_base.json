@@ -668,5 +668,302 @@
       "last_verified": "2026-10-01"
     },
     "status": "verified"
+  },
+  {
+    "id": "aadhaar_pvc_payment_failed",
+    "title": "Aadhaar PVC Card Payment Deducted but SRN Not Generated",
+    "category": "general",
+    "summary": "If ₹50 was debited from your bank account or UPI (Google Pay, PhonePe, Paytm) for an Aadhaar PVC card but no Service Request Number (SRN) or receipt was generated, UIDAI's payment gateway reconciliation takes 24 to 48 hours. If the order is not created, the bank automatically refunds the amount.",
+    "keywords": [
+      "aadhaar pvc payment deducted",
+      "money deducted no srn",
+      "aadhaar pvc transaction failed",
+      "pvc card payment stuck",
+      "srn not generated",
+      "50 rupees deducted"
+    ],
+    "documents_needed": [
+      "Bank account statement or UPI transaction screenshot showing UTR number",
+      "12-digit Aadhaar Number"
+    ],
+    "steps": [
+      {
+        "title": "Wait for the 24-48 Hour Reconciliation Window",
+        "detail": "Payment gateways communicate status asynchronously. In many cases, the order updates retroactively within 24 to 48 hours."
+      },
+      {
+        "title": "Check Status Online at myAadhaar Portal",
+        "detail": "Visit myaadhaar.uidai.gov.in, log in with your Aadhaar and OTP, and check the 'Requests' section at the bottom of the dashboard to see if an SRN was assigned."
+      },
+      {
+        "title": "Bank Auto-Reversal Timeline",
+        "detail": "If the portal did not register the SRN, the amount will be refunded by your bank/payment aggregator back to the source account within 5 to 7 business days."
+      },
+      {
+        "title": "Contact UIDAI Helpdesk if Refund Fails",
+        "detail": "If the refund does not arrive within 7 days, dial UIDAI toll-free helpline at 1947 or email helpdesk@uidai.gov.in with your 12-digit bank UTR reference number."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Do Not Double-Pay Immediately",
+        "message": "Avoid repeatedly attempting payments within the first 2 hours to prevent multiple deductions.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "UIDAI Official Support Guidelines",
+      "url": "https://uidai.gov.in/",
+      "last_verified": "2026-10-30"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "itr_bank_validation_failed",
+    "title": "Income Tax Bank Account Validation Failed & Refund Unpaid Fix",
+    "category": "tax",
+    "summary": "When an Income Tax refund fails with 'Refund Unpaid' or bank account status shows 'Validation Failed', it is usually due to a name mismatch, merged bank IFSC code changes, or unlinked PAN in core banking.",
+    "keywords": [
+      "refund unpaid",
+      "bank account validation failed",
+      "income tax bank validation",
+      "itr refund failed",
+      "re-validate bank account",
+      "refund reissue request"
+    ],
+    "documents_needed": [
+      "Latest Bank Passbook or Statement showing correct current IFSC",
+      "PAN Card",
+      "Valid Mobile Number linked with Bank Account"
+    ],
+    "steps": [
+      {
+        "title": "Check Failure Reason in Profile",
+        "detail": "Log in to incometax.gov.in, navigate to Profile > My Bank Account, and click on the red exclamation mark next to the failed bank account to read the exact error."
+      },
+      {
+        "title": "Update Merged Bank IFSC Code",
+        "detail": "If your bank underwent a merger (e.g. Syndicate Bank to Canara Bank, Allahabad Bank to Indian Bank), remove the old bank account and re-add it with the new IFSC."
+      },
+      {
+        "title": "Ensure Core Banking Demographic Match",
+        "detail": "Ensure your name in your bank account matches your PAN card letter-for-letter and that your PAN is actively seeded with the bank branch."
+      },
+      {
+        "title": "Submit Refund Reissue Request",
+        "detail": "Once your bank account status shows green 'Validated' and 'Nominated for Refund', go to Services > Refund Reissue > Create Refund Reissue Request to release the pending refund."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Refund Will Not Be Processed to Unvalidated Accounts",
+        "message": "Income tax refunds can only be credited to pre-validated bank accounts where PAN-bank name matching is verified.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "Income Tax Department e-Filing Helpdesk Manual",
+      "url": "https://www.incometax.gov.in/",
+      "last_verified": "2026-10-30"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "passport_police_verification_delayed",
+    "title": "Passport Police Verification Delayed Past 21 Days or Adverse Report",
+    "category": "general",
+    "summary": "Under the Ministry of External Affairs Citizen Charter, the standard turnaround time for police verification is 21 calendar days. If verification is stuck beyond 21 days or marked 'Adverse', follow these resolution steps.",
+    "keywords": [
+      "police verification pending",
+      "passport police verification delay",
+      "adverse police report",
+      "police verification past 21 days",
+      "sp office passport",
+      "lib office"
+    ],
+    "documents_needed": [
+      "Passport Application Receipt (ARN slip) with 15-digit File Number",
+      "Original current address proof (Aadhaar, utility bill, or registered rent agreement)",
+      "Photo ID proof"
+    ],
+    "steps": [
+      {
+        "title": "Track File Number Online",
+        "detail": "Visit passportindia.gov.in, click 'Track Application Status', select Passport, and enter your 15-digit File Number and Date of Birth to check the current stage."
+      },
+      {
+        "title": "Visit Local Police Station or LIB Office",
+        "detail": "If status remains 'Pending' past 21 days, visit the assigned police station or the District Police Headquarters (Local Intelligence Branch / Special Branch) with your documents."
+      },
+      {
+        "title": "Respond Promptly to Adverse Notice",
+        "detail": "If the report was marked 'Adverse' (such as applicant not found at residence during visit), the Regional Passport Office will send an inquiry letter. Submit a formal clarification within 30 days."
+      },
+      {
+        "title": "Book an RPO Inquiry Appointment",
+        "detail": "If unassisted, log in to the Passport Seva portal, book an 'Enquiry Appointment' at your jurisdictional Regional Passport Office (RPO), and meet the Passport Officer in person."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Do Not Pay Bribes for Verification",
+        "message": "Police verification is an official statutory duty. Never pay unauthorized fees to visiting verification officers; escalate any misconduct to the SP/DCP office.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "Passport Seva Project - Ministry of External Affairs",
+      "url": "https://www.passportindia.gov.in/",
+      "last_verified": "2026-10-30"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "epf_joint_declaration_correction",
+    "title": "EPF Joint Declaration SOP for Name, Father's Name, and Exit Date Correction",
+    "category": "scheme",
+    "summary": "Under EPFO's Joint Declaration Standard Operating Procedure (SOP), demographic and service discrepancies (Member Name, Father's Name, Date of Joining, Date of Exit) can be corrected online through the Member Portal with employer digital signature.",
+    "keywords": [
+      "epf joint declaration",
+      "epf name correction",
+      "date of exit epf",
+      "father name wrong epf",
+      "epf claim rejected name mismatch",
+      "joint declaration sop"
+    ],
+    "documents_needed": [
+      "Aadhaar Card (mandatory)",
+      "Passport, PAN Card, or Birth Certificate (as secondary proof)",
+      "Employer Appointment Letter or Relieving Letter (for date of joining/exit errors)"
+    ],
+    "steps": [
+      {
+        "title": "Log in to Member Unified Portal",
+        "detail": "Visit unifiedportal-mem.epfindia.gov.in, log in with your UAN and password, and navigate to Manage > Joint Declaration."
+      },
+      {
+        "title": "Select Member ID & Fill Correct Details",
+        "detail": "Choose the establishment member ID. Enter the correct detail (Name, DOB, Gender, Father Name, Date of Joining, or Date of Exit) exactly as per Aadhaar."
+      },
+      {
+        "title": "Upload Required Supporting Proofs",
+        "detail": "Upload PDF copies of supporting documents as specified under EPFO's Joint Declaration SOP Table A."
+      },
+      {
+        "title": "Employer Approval & EPFO Verification",
+        "detail": "Submit the request. Your employer must review and digitally sign the request via their Employer Portal, after which the EPFO Field Office processes the change."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Employer Digital Signature Mandatory",
+        "message": "Online Joint Declaration requests cannot proceed without your employer's DSC approval on the EPFO portal.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "EPFO Joint Declaration Standard Operating Procedure",
+      "url": "https://www.epfindia.gov.in/",
+      "last_verified": "2026-10-30"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "rbi_failed_upi_atm_penalty",
+    "title": "Failed ATM, UPI & IMPS Transactions: Auto-Reversal TAT and ₹100/Day Penalty",
+    "category": "banking",
+    "summary": "Under RBI Master Circular DPSS.CO.PD No.629/02.01.014/2019-20 (Harmonisation of Turnaround Time - TAT), banks must auto-reverse failed digital transactions within statutory timelines or pay ₹100 per day compensation directly to the citizen.",
+    "keywords": [
+      "upi failed money deducted",
+      "atm failed money deducted",
+      "rbi 100 rupees penalty failed transaction",
+      "tat auto reversal",
+      "failed transaction complaint",
+      "banking ombudsman"
+    ],
+    "documents_needed": [
+      "Bank statement showing the debit",
+      "Transaction reference number (UPI UTR, ATM receipt, or IMPS reference)"
+    ],
+    "steps": [
+      {
+        "title": "Check Statutory Turnaround Time (TAT)",
+        "detail": "ATM cash withdrawal failure auto-reversal deadline is T + 5 calendar days. UPI and IMPS transfer failure deadline is T + 1 calendar day."
+      },
+      {
+        "title": "Statutory ₹100/Day Penalty Compensation",
+        "detail": "If the bank fails to reverse the debited amount within the prescribed TAT, the bank is legally obligated to credit ₹100 per day of delay to your account automatically."
+      },
+      {
+        "title": "Lodge Complaint with Your Bank",
+        "detail": "If the auto-reversal does not happen within TAT, lodge a complaint with your bank's customer care or net banking grievance portal and save the ticket number."
+      },
+      {
+        "title": "Escalate to RBI Banking Ombudsman",
+        "detail": "If the bank does not resolve the issue or pay compensation within 30 days, file an online complaint at the RBI Complaint Management System (cms.rbi.org.in)."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Keep UTR / Transaction Reference Safe",
+        "message": "Do not delete SMS or transaction receipts; the unique transaction reference is required for Ombudsman claims.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "Reserve Bank of India - Master Direction on Harmonisation of TAT",
+      "url": "https://www.rbi.org.in/",
+      "last_verified": "2026-10-30"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "aadhaar_cross_limit_exception",
+    "title": "Aadhaar Cross-Limit Update Exception Appeal (Name, DOB, Gender Limits Exhausted)",
+    "category": "general",
+    "summary": "UIDAI enforces lifetime update limits: Name (twice), Gender (once), Date of Birth (once for +/- 3 years range). If exhausted, changes can only be approved through the Regional Office exception workflow with a Gazette Notification or Municipal Birth Certificate.",
+    "keywords": [
+      "aadhaar limit exhausted",
+      "aadhaar dob limit crossed",
+      "aadhaar name limit crossed",
+      "cross limit update aadhaar",
+      "uidai regional office approval"
+    ],
+    "documents_needed": [
+      "Municipal Birth Certificate (mandatory for Date of Birth cross-limit)",
+      "Central or State Gazette Notification (mandatory for Name cross-limit beyond 2 times)",
+      "14-digit Enrolment ID (EID) update slip from Aadhaar Seva Kendra"
+    ],
+    "steps": [
+      {
+        "title": "Visit Aadhaar Seva Kendra for Initial Enrolment",
+        "detail": "Visit an authorized Aadhaar center, submit the update request, pay ₹50, and obtain the 14-digit EID slip (the portal will reject it initially due to cross-limit)."
+      },
+      {
+        "title": "Obtain Mandatory Statutory Documents",
+        "detail": "For DOB cross-limit, obtain an official Municipal Birth Certificate. For Name cross-limit, publish a name change notice in the official Government Gazette."
+      },
+      {
+        "title": "Draft Exception Request Letter",
+        "detail": "Write a formal letter to the UIDAI Regional Office explaining the genuine reason for exceeding the limit, quoting your 12-digit Aadhaar and 14-digit EID numbers."
+      },
+      {
+        "title": "Submit to UIDAI Regional Office for Approval",
+        "detail": "Email or submit the documents to your jurisdictional UIDAI Regional Office. After verification, the Regional Office approves the cross-limit request on the backend."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Affidavits Not Accepted for Cross-Limit",
+        "message": "Notarized affidavits are strictly not accepted for cross-limit updates; only Gazette notifications or Municipal Birth Certificates are valid.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "UIDAI Standard Operating Procedure for Cross-Limit Updates",
+      "url": "https://uidai.gov.in/",
+      "last_verified": "2026-10-30"
+    },
+    "status": "verified"
   }
 ]

@@ -730,3 +730,57 @@ def test_verify_module_check_entry():
     }
     result_bad = check_entry(bad_entry)
     assert not result_bad["passed"], f"Bad entry (beta URL + optional step) should fail: {result_bad['checks']}"
+
+
+# ===================================================================
+# Troubleshooting Edge-Case & Follow-Up Resolution Tests
+# ===================================================================
+
+def test_troubleshoot_aadhaar_pvc_payment_deducted_no_srn():
+    """When a user reports money debited for PVC without SRN, provide the diagnostic resolution."""
+    response = client.post("/api/ask", json={
+        "question": "money deducted for aadhaar pvc but no srn generated",
+        "language": "en"
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["confidence"] in ("high", "medium")
+    assert "pvc" in payload["title"].lower() or "srn" in payload["title"].lower()
+    full_text = json.dumps(payload).lower()
+    assert "reconciliation" in full_text or "refund" in full_text or "1947" in full_text
+
+
+def test_troubleshoot_itr_bank_validation_failed():
+    """When bank validation fails or refund is unpaid, provide the IFSC/reissue resolution."""
+    response = client.post("/api/ask", json={
+        "question": "income tax refund unpaid bank account validation failed",
+        "language": "en"
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "refund reissue" in full_text or "validation" in full_text or "ifsc" in full_text
+
+
+def test_troubleshoot_failed_upi_transaction_penalty():
+    """Verify RBI auto-reversal TAT and Rs 100/day compensation resolution."""
+    response = client.post("/api/ask", json={
+        "question": "upi failed money deducted auto reversal penalty",
+        "language": "en"
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "100" in full_text and ("ombudsman" in full_text or "tat" in full_text)
+
+
+def test_troubleshoot_passport_police_verification_delayed():
+    """Verify police verification pending beyond 21 days resolution."""
+    response = client.post("/api/ask", json={
+        "question": "passport police verification pending past 21 days",
+        "language": "en"
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "21" in full_text and ("police" in full_text or "rpo" in full_text)

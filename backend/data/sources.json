@@ -1,8 +1,104 @@
 {
-  "tax": [],
-  "banking": [],
-  "schemes": [],
-  "legal": [],
+  "tax": [
+    {
+      "source_id": "itr_refund_reissue_manual",
+      "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/refund-reissue-UM",
+      "topic": "Bank account validation failure & Refund Unpaid resolution",
+      "content_type": "user_manual"
+    },
+    {
+      "source_id": "itr_condonation_delay_manual",
+      "source_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-raise-e-filing-service-requests",
+      "topic": "Condonation of delay for expired ITR-V e-verification beyond 30 days",
+      "content_type": "user_manual"
+    },
+    {
+      "source_id": "itr_defective_return_manual",
+      "source_url": "https://www.incometax.gov.in/iec/foportal/help/defective-return-user-manual",
+      "topic": "Section 139(9) Defective Return notice response steps within 15 days",
+      "content_type": "user_manual"
+    }
+  ],
+  "banking": [
+    {
+      "source_id": "rbi_failed_transaction_tat",
+      "source_url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11693&Mode=0",
+      "topic": "UPI, ATM and IMPS transaction failure auto-reversal timeline and Rs 100 per day penalty",
+      "content_type": "circular"
+    },
+    {
+      "source_id": "rbi_prepayment_penalty_ban",
+      "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=10541",
+      "topic": "Master Directions prohibiting foreclosure and prepayment penalties on floating-rate individual loans",
+      "content_type": "circular"
+    },
+    {
+      "source_id": "rbi_integrated_ombudsman",
+      "source_url": "https://cms.rbi.org.in",
+      "topic": "RBI Banking Ombudsman grievance escalation criteria after 30 days of bank inaction",
+      "content_type": "portal_page"
+    }
+  ],
+  "epf": [
+    {
+      "source_id": "epfo_joint_declaration_sop",
+      "source_url": "https://www.epfindia.gov.in/site_docs/PDFs/Circulars/Y2023-2024/Joint_Declaration_SOP.pdf",
+      "topic": "Joint Declaration SOP for correcting member name, father name, date of joining and date of exit",
+      "content_type": "sop_pdf"
+    },
+    {
+      "source_id": "epfo_epfigms_portal",
+      "source_url": "https://epfigms.gov.in",
+      "topic": "EPFiGMS grievance escalation for stuck Form 19, 31, 10C claims and employer non-cooperation",
+      "content_type": "portal_page"
+    }
+  ],
+  "identity": [
+    {
+      "source_id": "uidai_cross_limit_sop",
+      "source_url": "https://uidai.gov.in/images/SOP_28102020.pdf",
+      "topic": "UIDAI exception handling for update limits on Name, Date of Birth, and Gender",
+      "content_type": "sop_pdf"
+    },
+    {
+      "source_id": "uidai_biometric_lock_unlock",
+      "source_url": "https://uidai.gov.in/en/my-aadhaar/about-your-aadhaar/aadhaar-features/biometric-lock-unlock.html",
+      "topic": "Biometric Error 330, resident authentication failure and locking/unlocking biometric data",
+      "content_type": "faq"
+    },
+    {
+      "source_id": "passport_police_verification_faq",
+      "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/faqPoliceVerification",
+      "topic": "Police verification delay exceeding 21 days, Adverse reports, and clearance steps",
+      "content_type": "faq"
+    },
+    {
+      "source_id": "passport_citizen_charter_tat",
+      "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/citizenCharter",
+      "topic": "Ministry of External Affairs Passport Seva Citizen Charter on TAT and clarification workflows",
+      "content_type": "citizen_charter"
+    },
+    {
+      "source_id": "eci_voter_portal_faq",
+      "source_url": "https://voters.eci.gov.in/faq",
+      "topic": "EPIC download failure, Form 8 correction rejections and overseas voter rules",
+      "content_type": "faq"
+    }
+  ],
+  "consumer": [
+    {
+      "source_id": "pgportal_cpgrams_faq",
+      "source_url": "https://pgportal.gov.in/Home/Faq",
+      "topic": "CPGRAMS central grievance registration, tracking and Appellate Authority escalation",
+      "content_type": "faq"
+    },
+    {
+      "source_id": "ncdrc_edaakhil_guidelines",
+      "source_url": "http://ncdrc.nic.in/e-daakhil.html",
+      "topic": "e-Daakhil online consumer court complaint filing and tiered commission jurisdiction",
+      "content_type": "practice_direction"
+    }
+  ],
   "government": [
     {
       "source_id": "aadhaar_portal_overview",
