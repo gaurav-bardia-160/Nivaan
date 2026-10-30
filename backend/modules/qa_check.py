@@ -26,12 +26,13 @@ def verify_against_source(answer_text: str, source_text: str) -> list[str]:
     if not answer_text or not source_text:
         return warnings
 
-    # 1. Extract capitalized abbreviations (2-5 letters) from the answer
-    abbreviations = set(re.findall(r'\b[A-Z][a-zA-Z]{1,4}\b', answer_text))
+    # 1. Extract capitalized abbreviations (acronyms of 2-5 letters like PoB, UIDAI, PAN, EPFO)
+    # Match all-caps (e.g. UIDAI, PAN, IFSC) or camel-case acronyms (e.g. PoB, PoA, PoI)
+    abbreviations = set(re.findall(r'\b[A-Z]{2,5}\b|\b[A-Z][a-z][A-Z]\b', answer_text))
     # Exclude very common ones that aren't domain-specific
     common_abbrs = {
-        "The", "You", "Your", "This", "That", "Step", "Note", "From", "With",
-        "Also", "Each", "Once", "JSON", "None", "True", "False", "India",
+        "THE", "YOU", "YOUR", "THIS", "THAT", "STEP", "NOTE", "FROM", "WITH",
+        "ALSO", "EACH", "ONCE", "JSON", "NONE", "TRUE", "FALSE", "INDIA",
     }
     for abbr in abbreviations - common_abbrs:
         if abbr not in source_text:

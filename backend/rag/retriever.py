@@ -58,7 +58,7 @@ class RagRetriever:
         if category:
             allowed = {
                 idx for idx, doc in enumerate(self.documents)
-                if doc.category == category or any(tag in doc.tags for tag in ("troubleshooting", "escalation", "sop", "manual"))
+                if doc.category == category
             }
 
         lexical_hits = self.index.search(clean_query, top_k=self.config.lexical_top_k, allowed_indices=allowed)

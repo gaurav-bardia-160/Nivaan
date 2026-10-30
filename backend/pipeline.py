@@ -3,9 +3,17 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from backend.config import DEFAULT_DISCLAIMER
 from backend.modules.agent import route
 from backend.modules.bandit_policy import bandit_policy
-from backend.modules.explainer import explain_entry, explain_rag_result, greeting_answer, not_found_answer
+from backend.modules.explainer import (
+    NOT_FOUND_LAST_VERIFIED,
+    NOT_FOUND_SOURCE_URL,
+    explain_entry,
+    explain_rag_result,
+    greeting_answer,
+    not_found_answer,
+)
 from backend.modules.guardrails import find_flags, mask_text
 from backend.modules.llm import enhance_grounded_answer
 from backend.modules.memory import conversation_memory
@@ -13,7 +21,7 @@ from backend.modules.retrieval import find_entry, find_entry_by_id, find_entry_w
 from backend.modules.translate_voice import apply_language_policy
 from backend.modules.translator import extract_language_and_clean_query
 from backend.rag.runtime import retrieve_if_enabled
-from backend.schemas import Answer, AskRequest
+from backend.schemas import Answer, AskRequest, Warning
 
 
 
@@ -231,26 +239,38 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
         if not any(token in lowered for token in consumer_tokens):
             return False
     if entry_id == "aadhaar_pvc_payment_failed":
+        if not any(token in lowered for token in ("aadhaar", "aadhar", "pvc", "uidai")):
+            return False
         trouble_tokens = ("failed", "deducted", "deduct", "debit", "debited", "srn", "stuck", "cut", "kata", "error", "money", "refund", "pending", "paisa", "transaction", "reversal")
         if not any(token in lowered for token in trouble_tokens):
             return False
     if entry_id == "itr_bank_validation_failed":
+        if not any(token in lowered for token in ("bank", "itr", "tax", "incometax", "account", "ifsc", "refund")):
+            return False
         trouble_tokens = ("validation", "failed", "unpaid", "reissue", "refund", "mismatch", "ifsc", "re-issue", "reject", "rejected")
         if not any(token in lowered for token in trouble_tokens):
             return False
     if entry_id == "passport_police_verification_delayed":
+        if not any(token in lowered for token in ("passport", "paspot", "pasport")):
+            return False
         trouble_tokens = ("police", "verification", "delay", "delayed", "pending", "adverse", "days", "tat", "clearance")
         if not any(token in lowered for token in trouble_tokens):
             return False
     if entry_id == "epf_joint_declaration_correction":
+        if not any(token in lowered for token in ("epf", "epfo", "pf", "uan")):
+            return False
         trouble_tokens = ("joint declaration", "correction", "mismatch", "wrong", "exit", "father", "employer", "rejected", "claim")
         if not any(token in lowered for token in trouble_tokens):
             return False
     if entry_id == "rbi_failed_upi_atm_penalty":
+        if not any(token in lowered for token in ("upi", "atm", "rbi", "penalty", "compensation", "cash")):
+            return False
         trouble_tokens = ("failed", "fail", "deducted", "debit", "debited", "reversal", "penalty", "100", "tat", "dispute", "ombudsman", "stuck")
         if not any(token in lowered for token in trouble_tokens):
             return False
     if entry_id == "aadhaar_cross_limit_exception":
+        if not any(token in lowered for token in ("aadhaar", "aadhar", "uidai")):
+            return False
         trouble_tokens = ("limit", "exhausted", "cross", "exception", "third time", "twice", "maximum", "cannot update", "blocked", "rejected")
         if not any(token in lowered for token in trouble_tokens):
             return False
@@ -388,7 +408,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             doc_answer = explain_entry(entry, user_question=safe_text, masked_items=masked_items)
             existing_titles = {warning.title for warning in doc_answer.warnings}
             extra_warnings = [warning for warning in find_flags(masked_document.text) if warning.title not in existing_titles]
-            doc_answer = doc_answer.model_copy(update={"warnings": [*doc_answer.warnings, *extra_warnings]})
+            doc_answer = doc_answer.model_copy(update={"warnings": [*doc_answer.warnings, *extra_warnings], "citations": []})
             doc_answer = enhance_grounded_answer(
                 doc_answer,
                 question=safe_text,
@@ -403,24 +423,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 rl_arm=bandit_action.name,
             )
 
-    # 2. Verified Guide Path: Fact-checked official procedures (Passport, PAN, Biometrics, Voter ID, ITR, EPF)
-    if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
-        answer = explain_entry(entry, user_question=safe_text, masked_items=masked_items)
-        answer = enhance_grounded_answer(
-            answer,
-            question=safe_text,
-            memory=memory_turns,
-            temperature=bandit_action.temperature,
-        )
-        return _finalize_answer(
-            answer,
-            request=parsed_request,
-            safe_question=masked_question.text or safe_text,
-            target_lang=target_lang,
-            rl_arm=bandit_action.name,
-        )
-
-    # 3. Pure RAG Search Path: Retrieve official evidence across the canonical corpus with bandit top_k
+    # 2. Pure Dynamic RAG Search Path: Retrieve official evidence across canonical 1,353 corpus documents
     rag_query = search_text
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
         rag_query = f"{effective_context_topic} {search_text}"
@@ -428,6 +431,22 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     if rag_result is not None and rag_result.hits:
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
         if rag_answer is not None:
+            # If the user asked a supported general procedure query covering a verified catalog topic,
+            # bind canonical metadata (entry_id, canonical title, official portal), while keeping all content dynamically synthesized
+            if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
+                verified_warnings = [
+                    w if isinstance(w, Warning) else Warning(**w)
+                    for w in entry.get("warnings", [])
+                ]
+                rag_answer = rag_answer.model_copy(update={
+                    "entry_id": entry.get("id"),
+                    "title": entry.get("title", rag_answer.title),
+                    "confidence": "medium" if entry.get("status") == "verified" else rag_answer.confidence,
+                    "source_url": entry.get("source", {}).get("url") or rag_answer.source_url,
+                    "documents_needed": entry.get("documents_needed") or rag_answer.documents_needed,
+                    "warnings": verified_warnings if verified_warnings else rag_answer.warnings,
+                })
+            # Dynamically synthesize grounded summary, actionable steps, and documents needed using LLM
             rag_answer = enhance_grounded_answer(
                 rag_answer,
                 question=safe_text,
@@ -442,9 +461,18 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 rl_arm=bandit_action.name,
             )
 
-    if route_result.needs_clarification and not route_result.matched_entry_id:
+    # 3. Fallback when RAG is disabled via feature flag but verified entry covers request
+    if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
+        answer = explain_entry(entry, user_question=safe_text, masked_items=masked_items)
+        answer = answer.model_copy(update={"citations": []})
+        answer = enhance_grounded_answer(
+            answer,
+            question=safe_text,
+            memory=memory_turns,
+            temperature=bandit_action.temperature,
+        )
         return _finalize_answer(
-            not_found_answer(safe_text, masked_items=masked_items),
+            answer,
             request=parsed_request,
             safe_question=masked_question.text or safe_text,
             target_lang=target_lang,

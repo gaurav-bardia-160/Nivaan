@@ -15,7 +15,11 @@ _TRUE_VALUES = {"1", "true", "yes", "on"}
 DEFAULT_VECTOR_PATH = DATA_DIR / "vector_index" / "qdrant"
 _CATEGORY_TERMS = {
     "pan": ("pan", "e-pan", "epan", "form 49a", "form 49aa", "पैन", "पॅन", "પૅન"),
-    "aadhaar": ("aadhaar", "aadhar", "uidai", "e-aadhaar", "eaadhaar", "आधार", "આધાર"),
+    "aadhaar": (
+        "aadhaar", "aadhar", "uidai", "e-aadhaar", "eaadhaar", "आधार", "આધાર",
+        "biometric", "biometrics", "fingerprint", "iris", "error 330", "330", "mbu",
+        "baal aadhaar", "myaadhaar", "pvc card", "enrolment", "enrollment",
+    ),
     "tax": (
         "tax", "itr", "itr-4", "itr-5", "itr-6", "sugam", "income tax", "income-tax", "incometax",
         "presumptive", "44ad", "44ada", "44ae", "corporate tax", "company tax", "115baa",
@@ -26,7 +30,7 @@ _CATEGORY_TERMS = {
     "civic": (
         "passport", "pasport", "paspot", "passsport", "efrro", "frro", "visa", "voter", "voters", "voterid", "voter-id", "voter id", "votercard", "epic", "nvsp", "eci", "parivahan",
         "driving license", "driving licence", "driver license", "driver licence", "dl", "rc",
-        "ration", "pds", "nfsa", "post office", "ippb", "epf", "epfo",
+        "ration", "pds", "nfsa", "post office", "ippb", "epf", "epfo", "pf", "provident", "uan", "provident fund",
         "pension", "bhavishya", "pmkisan", "pm-kisan", "kisan", "rti", "pgportal",
         "grievance", "sebi", "rbi", "budget", "gazette", "judiciary", "court",
         "digilocker", "udyam", "msme", "gst", "constitution", "marriage", "ews",
@@ -36,7 +40,7 @@ _CATEGORY_TERMS = {
         "census", "certificate", "stqc", "registry", "negd", "pib", "mphc", "high court",
         "myscheme", "vikaspedia", "mea", "embassy", "sweden", "consular", "attestation",
         "apostille", "data.gov.in", "ogd", "mpdistricts", "rcms", "khasra", "nakal",
-        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions", "nalsa", "legal aid", "edaakhil", "e-daakhil", "consumer court", "credit card", "cibil", "experian", "crif", "unsolicited", "foreclosure", "prepayment", "mbu", "baal aadhaar", "fvr", "blo", "aero", "ero", "joint declaration"
+        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions", "nalsa", "legal aid", "edaakhil", "e-daakhil", "consumer court", "consumer", "complaint", "fir", "police", "ncrb", "police station", "credit card", "cibil", "experian", "crif", "unsolicited", "foreclosure", "prepayment", "fvr", "blo", "aero", "ero", "joint declaration"
     ),
 }
 _MULTILINGUAL_QUERY_HINTS = (

@@ -550,8 +550,39 @@
       ]
     },
     {
-      "id": "troubleshooting",
-      "path": "refined/troubleshooting/troubleshooting_chunks_clean.jsonl",
+      "id": "troubleshooting_aadhaar",
+      "path": "refined/troubleshooting/troubleshooting_aadhaar.jsonl",
+      "category": "aadhaar",
+      "allowed_hosts": [
+        "myaadhaar.uidai.gov.in",
+        "uidai.gov.in",
+        "www.uidai.gov.in"
+      ]
+    },
+    {
+      "id": "troubleshooting_tax",
+      "path": "refined/troubleshooting/troubleshooting_tax.jsonl",
+      "category": "tax",
+      "allowed_hosts": [
+        "incometax.gov.in",
+        "www.incometax.gov.in"
+      ]
+    },
+    {
+      "id": "troubleshooting_pan",
+      "path": "refined/troubleshooting/troubleshooting_pan.jsonl",
+      "category": "pan",
+      "allowed_hosts": [
+        "pan.utiitsl.com",
+        "proteantech.in",
+        "tinpan.proteantech.in",
+        "utiitsl.com",
+        "www.pan.utiitsl.com"
+      ]
+    },
+    {
+      "id": "troubleshooting_civic",
+      "path": "refined/troubleshooting/troubleshooting_civic.jsonl",
       "category": "civic",
       "allowed_hosts": [
         "cms.rbi.org.in",
@@ -559,27 +590,19 @@
         "edaakhil.nic.in",
         "epfigms.gov.in",
         "epfindia.gov.in",
-        "incometax.gov.in",
         "m.rbi.org.in",
-        "myaadhaar.uidai.gov.in",
         "nalsa.gov.in",
         "ncdrc.nic.in",
-        "pan.utiitsl.com",
         "passportindia.gov.in",
         "pgportal.gov.in",
         "pmvbry-cdn.epfindia.gov.in",
         "pmvbry.epfindia.gov.in",
         "rbi.org.in",
         "sikkim.nalsa.gov.in",
-        "tinpan.proteantech.in",
-        "uidai.gov.in",
         "voters.eci.gov.in",
         "www.epfindia.gov.in",
-        "www.incometax.gov.in",
-        "www.pan.utiitsl.com",
         "www.passportindia.gov.in",
-        "www.rbi.org.in",
-        "www.uidai.gov.in"
+        "www.rbi.org.in"
       ]
     }
   ]

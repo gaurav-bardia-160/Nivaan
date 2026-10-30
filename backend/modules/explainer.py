@@ -274,8 +274,8 @@ def explain_rag_result(
 
     # Prioritize the most descriptive, informational passage for the primary step
 
-    scored_hits.sort(key=lambda x: x[0], reverse=True)
-    first = scored_hits[0][1]
+    # Preserve top retrieval ranking
+    first = citations[0]
 
     question = " ".join(user_question.split())[:240]
     excerpt_clean = first.excerpt.strip()
@@ -285,7 +285,7 @@ def explain_rag_result(
     )
 
     dynamic_steps: list[Step] = []
-    for idx, (score, c) in enumerate(scored_hits[:2], 1):
+    for idx, c in enumerate(citations[:2], 1):
         clean_name = re.sub(r"[|\-].*$", "", c.title).strip() or f"Official guideline {idx}"
         dynamic_steps.append(Step(title=f"Review {clean_name}"[:80], detail=c.excerpt[:280].strip()))
     dynamic_steps.append(

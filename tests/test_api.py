@@ -564,20 +564,21 @@ def test_rate_limiter_throttles_excessive_requests(monkeypatch):
     _RATE_LIMITER.max_requests = 2
     _RATE_LIMITER._requests.clear()
 
-    # Requests 1 and 2 should pass
-    r1 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
-    assert r1.status_code == 200
-    r2 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
-    assert r2.status_code == 200
+    try:
+        # Requests 1 and 2 should pass
+        r1 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
+        assert r1.status_code == 200
+        r2 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
+        assert r2.status_code == 200
 
-    # Request 3 should be throttled
-    r3 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
-    assert r3.status_code == 429
-    assert "Too Many Requests" in r3.json()["detail"]
-
-    # Reset limiter for subsequent tests
-    _RATE_LIMITER.max_requests = 120
-    _RATE_LIMITER._requests.clear()
+        # Request 3 should be throttled
+        r3 = client.post("/api/ask", json={"question": "apply pan card", "language": "en"})
+        assert r3.status_code == 429
+        assert "Too Many Requests" in r3.json()["detail"]
+    finally:
+        # Reset limiter for subsequent tests
+        _RATE_LIMITER.max_requests = 120
+        _RATE_LIMITER._requests.clear()
 
 
 def test_api_key_auth_enforcement_when_configured(monkeypatch):

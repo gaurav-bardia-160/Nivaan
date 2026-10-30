@@ -165,12 +165,12 @@ def test_build_unified_vector_db_uses_canonical_loader(tmp_path, monkeypatch):
     )
 
     assert result["status"] == "success"
-    assert result["total_documents"] == 1212  # Must be 681, rejecting the 15 unsafe records
-    assert result["categories"]["aadhaar"] == 390
-    assert result["categories"]["pan"] == 242
-    assert result["categories"]["civic"] == 470
-    assert result["categories"]["tax"] == 110
-    assert result["vector_store_health"]["points"] == 1212
-    assert result["index_metadata"]["documents"] == 1212
+    assert result["total_documents"] == 1353
+    assert result["categories"]["aadhaar"] == 396
+    assert result["categories"]["pan"] == 244
+    assert result["categories"]["civic"] == 599
+    assert result["categories"]["tax"] == 114
+    assert result["vector_store_health"]["points"] == 1353
+    assert result["index_metadata"]["documents"] == 1353
     assert result["index_metadata"]["corpus_sha256"] == result["corpus_sha256"]
 
