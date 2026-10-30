@@ -52,8 +52,8 @@ class LocalLLMConfig:
     model: str
     timeout_seconds: float
     allow_remote: bool
-    num_ctx: int = 3072
-    num_predict: int = 384
+    num_ctx: int = 6144
+    num_predict: int = 512
 
     @classmethod
     def from_env(cls) -> "LocalLLMConfig":
@@ -64,12 +64,12 @@ class LocalLLMConfig:
             timeout = 90.0
 
         try:
-            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "3072"))
+            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "6144"))
         except ValueError:
             num_ctx = 3072
 
         try:
-            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "384"))
+            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "512"))
         except ValueError:
             num_predict = 384
 
@@ -159,7 +159,7 @@ class LocalLLMClient:
 
         # Build multi-turn conversational dialogue from up to the last 10 turns
         dialogue_turns = []
-        for turn in memory[-10:]:
+        for turn in memory[-25:]:
             dialogue_turns.append(f"Citizen: {turn.user_text}")
             asst = getattr(turn, "assistant_text", None) or turn.answer_title
             if asst:
@@ -201,7 +201,7 @@ class LocalLLMClient:
             )
             prompt = (
                 f"--- Conversation Context ---\n{history}\n\n"
-                f"--- Citizen Question ---\n{question[:800]}\n\n"
+                f"--- Citizen Question ---\n{question[:1200]}\n\n"
                 f"--- Official Government Evidence ---\n{evidence_text}\n\n"
                 "Instructions: Answer the citizen's question helpfully using the official evidence and conversation context above. "
                 "If this is a follow-up, refer back to the context smoothly."

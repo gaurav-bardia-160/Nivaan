@@ -619,7 +619,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
 
                 if (chatObj && Array.isArray(chatObj.messages) && chatObj.messages.length > 0) {
                     payload.history = chatObj.messages
-                        .slice(-10)
+                        .slice(-30)
                         .filter(m => m && (m.text || m.answer))
                         .map(m => {
                             let content = m.text || "";

@@ -233,7 +233,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
         )
 
     route_result = route(routing_request)
-    memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=10)
+    memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=25)
     effective_context_topic = parsed_request.context_topic
     if not effective_context_topic and memory_turns:
         for mt in reversed(memory_turns):

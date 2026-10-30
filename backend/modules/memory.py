@@ -74,7 +74,7 @@ class ConversationMemory:
         self,
         *,
         max_conversations: int = 2000,
-        max_turns: int = 30,
+        max_turns: int = 50,
         ttl_seconds: int = 86400,
         storage_dir: Path | None = CONVERSATIONS_DIR,
     ):
@@ -195,7 +195,7 @@ class ConversationMemory:
             self._save_to_disk(conversation_id, conversation)
             self._prune(now)
 
-    def recent(self, conversation_id: str | None, *, limit: int = 10) -> tuple[MemoryTurn, ...]:
+    def recent(self, conversation_id: str | None, *, limit: int = 25) -> tuple[MemoryTurn, ...]:
         if not conversation_id or limit < 1:
             return ()
         now = time.time()
@@ -310,7 +310,7 @@ def _positive_env(name: str, default: int) -> int:
 
 conversation_memory = ConversationMemory(
     max_conversations=_positive_env("MEMORY_MAX_CONVERSATIONS", 2000),
-    max_turns=_positive_env("MEMORY_MAX_TURNS", 30),
+    max_turns=_positive_env("MEMORY_MAX_TURNS", 50),
     ttl_seconds=_positive_env("MEMORY_TTL_SECONDS", 86400),
 )
 
