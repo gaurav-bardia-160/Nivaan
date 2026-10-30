@@ -52,24 +52,24 @@ class LocalLLMConfig:
     model: str
     timeout_seconds: float
     allow_remote: bool
-    num_ctx: int = 6144
-    num_predict: int = 512
+    num_ctx: int = 4096
+    num_predict: int = 384
 
     @classmethod
     def from_env(cls) -> "LocalLLMConfig":
-        raw_timeout = os.getenv("LOCAL_LLM_TIMEOUT_SECONDS", "90")
+        raw_timeout = os.getenv("LOCAL_LLM_TIMEOUT_SECONDS", "180")
         try:
             timeout = float(raw_timeout)
         except ValueError:
             timeout = 90.0
 
         try:
-            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "6144"))
+            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "4096"))
         except ValueError:
             num_ctx = 3072
 
         try:
-            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "512"))
+            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "384"))
         except ValueError:
             num_predict = 384
 
@@ -77,7 +77,7 @@ class LocalLLMConfig:
             enabled=os.getenv("LOCAL_LLM_ENABLED", "false").strip().lower() in _TRUE_VALUES,
             base_url=os.getenv("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434").rstrip("/"),
             model=os.getenv("LOCAL_LLM_MODEL", "qwen2.5:3b").strip() or "qwen2.5:3b",
-            timeout_seconds=min(max(timeout, 1.0), 120.0),
+            timeout_seconds=min(max(timeout, 1.0), 180.0),
             allow_remote=os.getenv("LOCAL_LLM_ALLOW_REMOTE", "false").strip().lower() in _TRUE_VALUES,
             num_ctx=min(max(num_ctx, 1024), 32768),
             num_predict=min(max(num_predict, 64), 2048),
