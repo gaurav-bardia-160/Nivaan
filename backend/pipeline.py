@@ -195,7 +195,23 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
         if not any(token in lowered for token in voter_tokens):
             return False
     if entry_id == "aadhaar_enrolment_basics":
-        out_of_scope = ("photo", "photograph", "picture", "mobile", "phone", "email", "address", "update", "correction", "change")
+        out_of_scope = ("photo", "photograph", "picture", "mobile", "phone", "email", "address", "update", "correction", "change", "baal", "mbu", "biometric update")
+        if any(intent in lowered for intent in out_of_scope):
+            return False
+    if entry_id in ("itr_filing_basics", "file_itr_basics"):
+        out_of_scope = ("defective", "139(9)", "139", "condonation", "119", "refund unpaid", "bank validation", "reissue", "notice")
+        if any(intent in lowered for intent in out_of_scope):
+            return False
+    if entry_id == "epf_withdrawal_basics":
+        out_of_scope = ("joint declaration", "closed company", "closed establishment", "untraceable", "cheque", "passbook", "name not printed", "stamp")
+        if any(intent in lowered for intent in out_of_scope):
+            return False
+    if entry_id == "savings_account_kyc":
+        out_of_scope = ("unsolicited", "cibil", "experian", "crif", "credit report", "credit card", "tat", "reversal")
+        if any(intent in lowered for intent in out_of_scope):
+            return False
+    if entry_id == "loan_agreement_explainer":
+        out_of_scope = ("unsolicited", "cibil", "experian", "crif", "credit report", "credit card")
         if any(intent in lowered for intent in out_of_scope):
             return False
     if entry_id == "aadhaar_photo_biometric_update":

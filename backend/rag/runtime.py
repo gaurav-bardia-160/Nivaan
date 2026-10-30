@@ -21,7 +21,7 @@ _CATEGORY_TERMS = {
         "presumptive", "44ad", "44ada", "44ae", "corporate tax", "company tax", "115baa",
         "cess", "surcharge", "234a", "234b", "234c", "234f", "advance tax", "itrv", "itr-v",
         "acknowledgement number", "belated", "assessment year", "ay", "financial year", "fy",
-        "tax refund", "refund", "synthetic", "कर", "आयकर", "ટેક્સ", "ઇન્કમટેક્સ",
+        "tax refund", "refund", "synthetic", "139", "119", "defective", "defective return", "revised return", "refund reissue", "refund unpaid", "कर", "आयकर", "ટેક્સ", "ઇન્કમટેક્સ",
     ),
     "civic": (
         "passport", "pasport", "paspot", "passsport", "efrro", "frro", "visa", "voter", "voters", "voterid", "voter-id", "voter id", "votercard", "epic", "nvsp", "eci", "parivahan",
@@ -36,7 +36,7 @@ _CATEGORY_TERMS = {
         "census", "certificate", "stqc", "registry", "negd", "pib", "mphc", "high court",
         "myscheme", "vikaspedia", "mea", "embassy", "sweden", "consular", "attestation",
         "apostille", "data.gov.in", "ogd", "mpdistricts", "rcms", "khasra", "nakal",
-        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions"
+        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions", "nalsa", "legal aid", "edaakhil", "e-daakhil", "consumer court", "credit card", "cibil", "experian", "crif", "unsolicited", "foreclosure", "prepayment", "mbu", "baal aadhaar", "fvr", "blo", "aero", "ero", "joint declaration"
     ),
 }
 _MULTILINGUAL_QUERY_HINTS = (
@@ -124,7 +124,12 @@ def retrieve_if_enabled(query: str, *, top_k: int = 3) -> RetrievalResult | None
         return None
     category = supported_category(query)
     if category is None:
-        return None
+        lowered = query.lower()
+        trouble_words = {"failed", "delay", "rejected", "error", "mismatch", "penalty", "stuck", "pending", "notice", "defective", "refund", "deducted", "tat", "unsolicited", "foreclosure"}
+        if any(w in lowered for w in trouble_words):
+            category = "civic"
+        else:
+            return None
     expanded_query = expand_retrieval_query(query)
     result = get_retriever().search(expanded_query, category=category, top_k=top_k)
     return result if result.hits else None
