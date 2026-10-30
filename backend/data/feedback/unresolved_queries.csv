@@ -1,0 +1,37 @@
+timestamp,conversation_id,query,domain,top_score,reason
+2026-10-30T20:02:17.384052+00:00,test_audit_log_001,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:02:49.950423+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:02:50.028269+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:02:50.148687+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:02:50.459878+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:02:50.634533+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:02:50.867742+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:03:35.321843+00:00,test_moon_123,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:04:37.661754+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:04:37.711878+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:04:37.805563+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:04:38.018202+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:04:38.177222+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:04:38.420275+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:04:41.528217+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:05:15.251060+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:05:15.299192+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:05:15.407264+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:05:15.736497+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:05:15.924416+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:05:16.172706+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:05:19.322996+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:05:32.158616+00:00,anonymous,How can I withdraw my PF money online?,unknown,0.0164,low_retrieval_confidence
+2026-10-30T20:05:32.916940+00:00,anonymous,Steps to file an FIR at the police station.,unknown,0.0164,low_retrieval_confidence
+2026-10-30T20:05:32.960976+00:00,anonymous,How do I open a savings bank account?,unknown,0.0164,low_retrieval_confidence
+2026-10-30T20:05:33.004108+00:00,anonymous,How to register for PM Kisan Samman Nidhi Yojana?,unknown,0.0164,low_retrieval_confidence
+2026-10-30T20:05:33.061975+00:00,anonymous,I want to file a complaint in consumer court against a seller.,unknown,0.0164,low_retrieval_confidence
+2026-10-30T20:05:33.103929+00:00,anonymous,how to make paspot,unknown,0.0164,low_retrieval_confidence
+2026-10-30T20:06:18.637010+00:00,anonymous,apply for aadhar card in hindi,unknown,0.0164,low_retrieval_confidence
+2026-10-30T20:10:04.395444+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:10:04.804312+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:10:06.406195+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:10:12.435779+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:10:21.225303+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:10:25.111774+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-10-30T20:10:45.999567+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match

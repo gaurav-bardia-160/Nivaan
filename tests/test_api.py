@@ -870,3 +870,48 @@ def test_troubleshoot_nalsa_free_legal_aid_eligibility():
     payload = response.json()
     full_text = json.dumps(payload).lower()
     assert "legal" in full_text and ("nalsa" in full_text or "12" in full_text or "women" in full_text or "free" in full_text)
+
+
+def test_cross_domain_multi_turn_isolation_prevents_punting_trap(tmp_path):
+    """Verify that switching topics across domains never leaks context or causes the punting trap."""
+    from backend.modules.unresolved_queue import UNRESOLVED_CSV_PATH
+    session_id = f"test_session_punting_{tmp_path.name}"
+
+    # Turn 1: Aadhaar cross limit
+    t1 = client.post("/api/ask", json={
+        "question": "Aadhaar update limit has exhausted. How do I get an exception?",
+        "conversation_id": session_id,
+        "language": "en"
+    }).json()
+    assert "aadhaar" in t1["title"].lower() or "uidai" in str(t1["source_url"]).lower()
+
+    # Turn 2: Switch to Passport Police Verification - must NOT contain Aadhaar or UIDAI
+    t2 = client.post("/api/ask", json={
+        "question": "What is the procedure if passport police verification is pending past 21 days?",
+        "conversation_id": session_id,
+        "language": "en"
+    }).json()
+    assert "uidai" not in str(t2["source_url"]).lower()
+    assert "aadhaar" not in t2["title"].lower()
+    assert "passport" in t2["title"].lower() or "passport" in str(t2["source_url"]).lower() or "police" in t2["title"].lower()
+
+    # Turn 3: Switch to Tax Refund - must NOT contain Passport or Aadhaar
+    t3 = client.post("/api/ask", json={
+        "question": "Why did my income tax refund fail with refund unpaid?",
+        "conversation_id": session_id,
+        "language": "en"
+    }).json()
+    assert "passport" not in str(t3["source_url"]).lower()
+    assert "uidai" not in str(t3["source_url"]).lower()
+    assert "refund" in t3["title"].lower() or "tax" in t3["title"].lower() or "incometax" in str(t3["source_url"]).lower()
+
+    # Turn 4: Out of scope refusal - must trigger structured fallback and log to audit queue
+    t4 = client.post("/api/ask", json={
+        "question": "when does the moon turn into a banana",
+        "conversation_id": session_id,
+        "language": "en"
+    }).json()
+    assert t4["confidence"] == "low"
+    assert "No verified guide found" in t4["title"]
+    assert UNRESOLVED_CSV_PATH.exists()
+

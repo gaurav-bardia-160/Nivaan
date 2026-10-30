@@ -40,7 +40,7 @@ _CATEGORY_TERMS = {
         "census", "certificate", "stqc", "registry", "negd", "pib", "mphc", "high court",
         "myscheme", "vikaspedia", "mea", "embassy", "sweden", "consular", "attestation",
         "apostille", "data.gov.in", "ogd", "mpdistricts", "rcms", "khasra", "nakal",
-        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions", "nalsa", "legal aid", "edaakhil", "e-daakhil", "consumer court", "consumer", "complaint", "fir", "police", "ncrb", "police station", "credit card", "cibil", "experian", "crif", "unsolicited", "foreclosure", "prepayment", "fvr", "blo", "aero", "ero", "joint declaration"
+        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions", "nalsa", "legal aid", "edaakhil", "e-daakhil", "consumer court", "consumer", "complaint", "fir", "police", "ncrb", "police station", "credit card", "cibil", "experian", "crif", "unsolicited", "foreclosure", "prepayment", "fvr", "blo", "aero", "ero", "joint declaration", "upi", "atm", "imps", "auto-reversal", "auto reversal", "compensation", "reversal", "nach", "mandate", "banking ombudsman"
     ),
 }
 _MULTILINGUAL_QUERY_HINTS = (

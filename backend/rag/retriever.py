@@ -106,8 +106,18 @@ class RagRetriever:
             signals["tag_overlap"] = metadata_overlap
             score = signals.get("lexical_rrf", 0.0) + signals.get("vector_rrf", 0.0) + min(metadata_overlap, 1.0) * 0.01
 
+            # Exact statutory & error code boost: ensures statutory sections & error codes surface to rank 1
+            lowered_doc = (document.text + " " + " ".join(document.tags)).lower()
+            _EXACT_CODES = ("330", "119(2)(b)", "119", "139(9)", "139", "44ad", "44ada", "44ae", "234f", "form 16", "26as", "ais", "tis", "form 19", "form 10c", "form 49a", "joint declaration", "edaakhil", "cibil")
+            for code in _EXACT_CODES:
+                if code in clean_query.lower() and code in lowered_doc:
+                    score += 0.08
+                    signals["exact_statutory_boost"] = 0.08
+                    break
+
             # Troubleshooting boost: prioritize authoritative SOP & escalation guidelines when user reports a failure
-            if is_trouble_query and any(tag in doc_tags for tag in ("troubleshooting", "escalation", "sop", "manual")):
+            # Strictly scoped to the query's matching domain category to prevent cross-domain leakage
+            if is_trouble_query and (category is None or document.category == category) and any(tag in doc_tags for tag in ("troubleshooting", "escalation", "sop", "manual")):
                 score += 0.05
                 signals["troubleshooting_boost"] = 0.05
 

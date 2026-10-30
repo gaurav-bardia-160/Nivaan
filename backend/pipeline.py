@@ -6,6 +6,7 @@ from typing import Any
 from backend.config import DEFAULT_DISCLAIMER
 from backend.modules.agent import route
 from backend.modules.bandit_policy import bandit_policy
+from backend.modules.unresolved_queue import log_unresolved_query
 from backend.modules.explainer import (
     NOT_FOUND_LAST_VERIFIED,
     NOT_FOUND_SOURCE_URL,
@@ -49,7 +50,7 @@ _FOLLOW_UP_INTENTS = {
     "document", "documents", "doc", "docs", "proof", "proofs", "paper", "papers", "paperwork",
     "step", "steps", "procedure", "process", "apply", "requirement", "requirements",
     "fee", "fees", "cost", "charge", "charges", "price", "penalty", "free", "pay",
-    "time", "days", "duration", "tat", "deadline", "long", "when",
+    "time", "days", "duration", "tat", "deadline", "how long",
     "status", "track", "tracking", "check", "verify",
     "eligibility", "eligible", "criteria", "who can",
     # Troubleshooting, error, exception & failure intents
@@ -95,7 +96,7 @@ _STANDALONE_TOPIC_TERMS = {
     "apaar", "digilocker", "udyam", "msme", "gst",
     "fir", "police fir", "police complaint", "consumer court",
     "cybercrime", "1930",
-    "savings account", "bank account", "fixed deposit",
+    "savings account", "bank account", "fixed deposit", "rbi", "loan", "foreclosure", "cibil", "atm", "cibil", "experian", "crif", "edaakhil", "nalsa",
     # Hindi/Gujarati terms
     "आधार", "આધાર", "पैन", "પૅન", "पासपोर्ट", "પાસપોર્ટ", "मतदाता", "ચૂંટણી", "ટેક્સ", "कर", "आयकर",
 }
@@ -109,7 +110,7 @@ def _has_standalone_topic(text: str) -> bool:
     for phrase in (
         "income tax", "driving license", "driving licence", "ration card",
         "savings account", "bank account", "consumer court", "pm kisan",
-        "police fir", "pan card", "voter id", "aadhar card", "aadhaar card",
+        "police fir", "pan card", "voter id", "aadhar card", "aadhaar card", "police verification", "joint declaration", "cross limit", "auto reversal", "credit card", "legal aid", "upi transaction", "upi payment failed", "failed upi", "upi compensation", "rbi compensation",
     ):
         if phrase in lowered:
             return True
@@ -123,13 +124,14 @@ def _is_follow_up_query(text: str) -> bool:
         return True
 
     # Check for troubleshooting / error tokens: citizens often describe procedural failures in full sentences
-    has_troubleshooting = bool(tokens & _TROUBLESHOOTING_TOKENS)
-    if has_troubleshooting and len(tokens) <= 35:
-        if not _has_standalone_topic(text) or any(t in text.lower() for t in ("verification", "validation", "deducted", "debited", "srn", "failed", "pending", "rejection", "mismatch", "refund", "limit")):
-            return True
-
+    # If the user explicitly mentions a standalone civic topic, it has its own domain/procedure.
+    # It must NOT be treated as a follow-up to a different domain from a previous turn.
     if _has_standalone_topic(text):
         return False
+
+    has_troubleshooting = bool(tokens & _TROUBLESHOOTING_TOKENS)
+    if has_troubleshooting and len(tokens) <= 35:
+        return True
 
     entry, score = find_entry_with_score(text)
     if entry is not None and score >= 55 and _verified_entry_covers_request(entry.get("id", ""), text):
@@ -352,7 +354,12 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
 
     memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=25)
     effective_context_topic = parsed_request.context_topic
-    if not effective_context_topic and memory_turns:
+
+    # Domain boundary protection: if current query introduces a standalone topic,
+    # reset any inherited context topic to eliminate cross-domain bleed (the "punting trap")
+    if _has_standalone_topic(search_text):
+        effective_context_topic = None
+    elif not effective_context_topic and memory_turns:
         for mt in reversed(memory_turns):
             t = mt.answer_title or ""
             if t and "welcome" not in t.lower() and "not found" not in t.lower():
@@ -428,7 +435,26 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
         rag_query = f"{effective_context_topic} {search_text}"
     rag_result = retrieve_if_enabled(rag_query, top_k=bandit_action.top_k)
+    MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
+
     if rag_result is not None and rag_result.hits:
+        top_hit = rag_result.hits[0]
+        # Strict Grounding Gate: If top chunk is below confidence threshold, refuse to guess
+        if top_hit.score < MIN_RRF_CONFIDENCE_THRESHOLD:
+            log_unresolved_query(
+                safe_text,
+                reason="low_retrieval_confidence",
+                domain=supported_category(search_text) if 'supported_category' in globals() else None,
+                top_score=top_hit.score,
+                conversation_id=parsed_request.conversation_id,
+            )
+            return _finalize_answer(
+                not_found_answer(safe_text, masked_items=masked_items),
+                request=parsed_request,
+                safe_question=masked_question.text or safe_text,
+                target_lang=target_lang,
+                rl_arm=bandit_action.name,
+            )
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
         if rag_answer is not None:
             # If the user asked a supported general procedure query covering a verified catalog topic,
@@ -479,6 +505,13 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             rl_arm=bandit_action.name,
         )
 
+    log_unresolved_query(
+        safe_text,
+        reason="no_verified_guide_or_rag_match",
+        domain=None,
+        top_score=0.0,
+        conversation_id=parsed_request.conversation_id,
+    )
     return _finalize_answer(
         not_found_answer(safe_text, masked_items=masked_items),
         request=parsed_request,
