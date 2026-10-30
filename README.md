@@ -130,7 +130,7 @@ Also run `python tests/eval_retrieval.py` to verify retrieval, refusal, privacy,
 ## Project Structure
 
 ```text
-govbank-assistant/
+Nivaan/
 ├── run_backend.bat                 # Windows one-click backend runner (CMD/Explorer)
 ├── run_backend.ps1                 # Windows PowerShell backend runner
 ├── run_backend.sh                  # macOS / Linux backend runner
