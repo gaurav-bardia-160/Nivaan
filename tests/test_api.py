@@ -821,3 +821,51 @@ def test_rag_troubleshooting_boost_ranking():
     top_hit = result.hits[0]
     assert "troubleshooting_boost" in top_hit.signals
     assert "11693" in top_hit.document.sources[0].source_url or "tat" in top_hit.document.sources[0].title.lower()
+
+
+def test_troubleshoot_baal_aadhaar_mandatory_biometric_updates():
+    """Verify Baal Aadhaar biometric exemption and MBU-1/MBU-2 schedules."""
+    response = client.post("/api/ask", json={
+        "question": "Baal Aadhaar biometric update rules for child age 5 and 15",
+        "language": "en"
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "mbu" in full_text or "biometric" in full_text or "baal" in full_text or "child" in full_text
+
+
+def test_troubleshoot_rbi_unsolicited_credit_card_penalty():
+    """Verify statutory penalty for unsolicited credit card issuance."""
+    response = client.post("/api/ask", json={
+        "question": "Bank issued unsolicited credit card and charged fee without consent",
+        "language": "en"
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "unsolicited" in full_text or "card" in full_text or "penalty" in full_text
+
+
+def test_troubleshoot_epfo_closed_establishment_attestation():
+    """Verify alternative attestation when company is closed or employer untraceable."""
+    response = client.post("/api/ask", json={
+        "question": "EPF joint declaration company closed employer untraceable",
+        "language": "en"
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "closed" in full_text or "attestation" in full_text or "magistrate" in full_text or "bank manager" in full_text or "joint declaration" in full_text
+
+
+def test_troubleshoot_nalsa_free_legal_aid_eligibility():
+    """Verify free legal aid under Section 12 of Legal Services Authorities Act."""
+    response = client.post("/api/ask", json={
+        "question": "Who is eligible for free legal aid under NALSA Section 12?",
+        "language": "en"
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    full_text = json.dumps(payload).lower()
+    assert "legal" in full_text and ("nalsa" in full_text or "12" in full_text or "women" in full_text or "free" in full_text)

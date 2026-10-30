@@ -61,6 +61,10 @@ _TROUBLESHOOTING_TOKENS = {
     "deducted", "deduct", "debited", "debit", "srn", "arn", "adverse", "reversal",
     "exhausted", "limit", "crossed", "unpaid", "unvalidated", "correction", "defective",
     "tat", "overdue", "exceeded", "atki", "atke", "radd", "shikayat", "kat", "kata", "kaat",
+    "unsolicited", "foreclosure", "prepayment", "cibil", "experian", "crif",
+    "joint declaration", "cheque", "passbook", "fvr", "blo", "aero", "ero",
+    "nalsa", "edaakhil", "dcdrc", "scdrc", "ncdrc", "mbu", "baal aadhaar",
+    "condonation", "119", "139", "330",
 }
 
 
