@@ -282,7 +282,7 @@ def test_health_endpoint():
     assert response.status_code == 200
     payload = response.json()
     assert payload["status"] == "ok"
-    assert payload["service"] == "govbank-assistant"
+    assert payload["service"] == "nivaan"
     assert payload["version"] == "0.5.0"
     assert payload["knowledge_entries"] >= 10
     assert payload["unverified_entries"] == 0
@@ -610,7 +610,7 @@ def test_ask_endpoint_returns_welcoming_answer_for_greetings():
         response = client.post("/api/ask", json={"question": greeting, "language": "en"})
         assert response.status_code == 200
         payload = response.json()
-        assert payload["title"] == "Welcome to GovBank Assistant"
+        assert payload["title"] == "Welcome to Nivaan"
         assert payload["confidence"] == "high"
         assert len(payload["summary"]) > 20
         assert len(payload["steps"]) == 0

@@ -18,7 +18,7 @@ if not exist "%OLLAMA_EXE%" (
 )
 
 echo ========================================================
-echo  Starting Ollama Local AI Server for GovBank Assistant
+echo  Starting Ollama Local AI Server for Nivaan
 echo  Binary: %OLLAMA_EXE%
 echo  Models Directory: %OLLAMA_MODELS%
 echo ========================================================

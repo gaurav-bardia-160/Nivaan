@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GovBank Assistant - Minimalist Chatbot Interface
+   Nivaan - Civic & Banking AI Guide Interface
    Inspired by modern LLM interfaces (clean, spacious, citizen-friendly)
    ========================================================================== */
 
@@ -404,6 +404,15 @@ body {
 }
 .sidebar-toggle:hover {
     background-color: var(--bg-sidebar);
+}
+
+
+.brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
 }
 
 .header-brand {

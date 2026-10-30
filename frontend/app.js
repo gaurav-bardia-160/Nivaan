@@ -1,12 +1,12 @@
 /**
- * GovBank Assistant - Minimal Chatbot Controller
+ * Nivaan - Civic & Banking AI Guide Controller
  * Handles conversation flow, camera/file upload, PII masking, structured checklist rendering,
  * editable user prompts, and multi-turn persistent chat history in localStorage.
  */
 
 const API_BASE = "http://127.0.0.1:8000";
-const STORAGE_KEY = "govbank_chats_v1";
-const ACTIVE_CHAT_KEY = "govbank_active_chat_id";
+const STORAGE_KEY = "nivaan_chats_v1";
+const ACTIVE_CHAT_KEY = "nivaan_active_chat_id";
 
 let isBackendLive = false;
 let chats = []; // Array of chat session objects
@@ -69,18 +69,18 @@ function setupEventListeners() {
     // Theme Toggle
     const themeToggleBtn = document.getElementById("themeToggleBtn");
     if (themeToggleBtn) {
-        if (localStorage.getItem("govbank-theme") === "dark") {
+        if (localStorage.getItem("nivaan-theme") === "dark") {
             document.documentElement.setAttribute("data-theme", "dark");
             themeToggleBtn.innerHTML = "☀️ Light";
         }
         themeToggleBtn.addEventListener("click", () => {
             if (document.documentElement.getAttribute("data-theme") === "dark") {
                 document.documentElement.setAttribute("data-theme", "light");
-                localStorage.setItem("govbank-theme", "light");
+                localStorage.setItem("nivaan-theme", "light");
                 themeToggleBtn.innerHTML = "🌙 Dark";
             } else {
                 document.documentElement.setAttribute("data-theme", "dark");
-                localStorage.setItem("govbank-theme", "dark");
+                localStorage.setItem("nivaan-theme", "dark");
                 themeToggleBtn.innerHTML = "☀️ Light";
             }
         });
@@ -201,7 +201,7 @@ function sanitizeAllChats(chatList) {
 // --- STORAGE & PERSISTENCE ---
 function loadChatsFromStorage() {
     try {
-        const raw = localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("govbank_chats_v1");
         let parsed = raw ? JSON.parse(raw) : [];
         if (!Array.isArray(parsed)) parsed = [];
         // Purge empty chats with no messages
@@ -458,7 +458,7 @@ async function checkBackendHealth() {
         clearTimeout(timeoutId);
         if (res.ok) {
             const data = await res.json().catch(() => null);
-            if (data && (data.status === "ok" || data.status === "healthy" || data.service === "govbank-assistant")) {
+            if (data && (data.status === "ok" || data.status === "healthy" || data.service === "nivaan" || data.service === "govbank-assistant")) {
                 consecutiveFailedPings = 0;
                 setBackendOnlineStatus(true);
                 return;

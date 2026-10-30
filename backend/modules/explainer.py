@@ -388,9 +388,9 @@ def not_found_answer(user_question: str, masked_items: list[MaskedItem] | None =
 
 def greeting_answer(user_question: str, masked_items: list[MaskedItem] | None = None) -> Answer:
     return Answer(
-        title="Welcome to GovBank Assistant",
+        title="Welcome to Nivaan",
         summary=(
-            "Hello! I am your AI civic and banking assistant. How can I help you today? "
+            "Hello! I am Nivaan, your AI civic and banking assistant. How can I help you today? "
             "You can ask me about official Indian government procedures (such as PAN card, Passport, Aadhaar, Voter ID, ITR, or EPF) "
             "or upload/paste document text to review legal notices and loan agreements."
         ),

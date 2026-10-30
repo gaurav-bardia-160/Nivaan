@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-APP_NAME = "GovBank Assistant API"
+APP_NAME = "Nivaan API"
 APP_VERSION = "0.5.0"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 BACKEND_DIR = Path(__file__).resolve().parent

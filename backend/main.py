@@ -222,7 +222,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
             "error": "invalid_request",
 
-            "message": "The request did not match the GovBank Assistant API contract.",
+            "message": "The request did not match the Nivaan API contract.",
 
             "details": jsonable_encoder(exc.errors()),
 
@@ -239,7 +239,7 @@ def health() -> dict[str, object]:
     stats = knowledge_stats()
     return {
         "status": "ok",
-        "service": "govbank-assistant",
+        "service": "nivaan",
         "version": APP_VERSION,
         "knowledge_entries": stats["total"],
         "verified_entries": stats["verified"],
@@ -288,7 +288,7 @@ def capabilities() -> dict[str, object]:
 
     return {
 
-        "service": "govbank-assistant",
+        "service": "nivaan",
 
         "version": APP_VERSION,
 

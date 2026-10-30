@@ -1,14 +1,18 @@
 @echo off
 setlocal enabledelayedexpansion
-title GovBank Assistant - Shutdown
+title Nivaan - Shutdown
 cd /d "%~dp0"
 
 echo =====================================================================
-echo    GovBank Assistant - Stopping Backend, Ollama LLM, and Frontend
+echo    Nivaan - Stopping Backend, Ollama LLM, and Frontend
 echo =====================================================================
 echo.
 
 rem Close launcher windows first
+taskkill /F /FI "WINDOWTITLE eq Nivaan - Launcher*" >nul 2>&1
+taskkill /F /FI "WINDOWTITLE eq Nivaan - Frontend Server*" >nul 2>&1
+taskkill /F /FI "WINDOWTITLE eq Nivaan - Backend Server*" >nul 2>&1
+taskkill /F /FI "WINDOWTITLE eq Nivaan - Ollama AI Daemon*" >nul 2>&1
 taskkill /F /FI "WINDOWTITLE eq GovBank Assistant - Launcher*" >nul 2>&1
 taskkill /F /FI "WINDOWTITLE eq GovBank Assistant - Frontend Server*" >nul 2>&1
 taskkill /F /FI "WINDOWTITLE eq GovBank Assistant - Backend Server*" >nul 2>&1

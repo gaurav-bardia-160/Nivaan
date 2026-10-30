@@ -25,7 +25,7 @@ NEEDS_REVERIFICATION_PATH = DATA_DIR / "needs_reverification.txt"
 
 FIXED_DELAY_SECONDS = 2
 MIN_TEXT_LENGTH = 50
-USER_AGENT = "GovBankAssistant-Bot/1.0 (Educational Project)"
+USER_AGENT = "Nivaan-Bot/1.0 (Educational Project)"
 
 # Domain Whitelist - Only allow official domains
 DOMAIN_WHITELIST = {

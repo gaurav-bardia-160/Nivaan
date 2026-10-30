@@ -163,14 +163,14 @@ class LocalLLMClient:
             dialogue_turns.append(f"Citizen: {turn.user_text}")
             asst = getattr(turn, "assistant_text", None) or turn.answer_title
             if asst:
-                dialogue_turns.append(f"GovBank Assistant: {asst}")
+                dialogue_turns.append(f"Nivaan: {asst}")
         history = "\n".join(dialogue_turns) or "No previous context."
         evidence_text = "\n\n".join(evidence)
 
         is_greeting = "welcome" in answer.title.lower() or (not answer.steps and not answer.citations)
         if is_greeting:
             system = (
-                "You are GovBank Assistant, a friendly and intelligent AI civic assistant for India. "
+                "You are Nivaan, a friendly and intelligent AI civic assistant for India. "
                 "Respond warmly, naturally, and conversationally to the citizen's greeting in 1 to 2 sentences. "
                 "Mention that they can ask about official procedures (like PAN, Passport, Aadhaar, Voter ID, ITR, EPF, State Services) "
                 "or upload a document to review. Do not invent numbered steps. "
@@ -179,7 +179,7 @@ class LocalLLMClient:
             prompt = f"Citizen greeting: {question[:300]}"
         else:
             system = (
-                "You are GovBank Assistant, an intelligent, conversational AI civic guide for Indian citizens. "
+                "You are Nivaan, an intelligent, conversational AI civic guide for Indian citizens. "
                 "Carefully analyze the citizen's question and any previous conversation history and official evidence. "
                 "If the citizen asks a follow-up or asks to clarify previously mentioned details (e.g. documents, rules, fees, address changes), "
                 "maintain conversational continuity with the previous turns while adhering strictly to the official evidence. "

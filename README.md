@@ -1,6 +1,10 @@
-# GovBank Assistant
+# Nivaan
 
-GovBank Assistant is a grounded, privacy-aware RAG (Retrieval-Augmented Generation) assistant that helps citizens understand Indian government, banking, tax, and legal procedures in plain language. Designed for the IBCP AI Conclave 2026, it addresses the communication gap between official institutions and citizens by prioritizing verified procedures, masking personal identifiers before retrieval, citing official sources, translating answers into regional languages (Hindi & Gujarati), and refusing to invent facts on unsupported queries.
+<p align="center">
+  <img src="logo.png" width="140" alt="Nivaan Logo" style="border-radius: 24px;" />
+</p>
+
+**Nivaan** is a grounded, privacy-aware RAG (Retrieval-Augmented Generation) assistant that helps citizens understand Indian government, banking, tax, and legal procedures in plain language. Designed for the IBCP AI Conclave 2026, it addresses the communication gap between official institutions and citizens by prioritizing verified procedures, masking personal identifiers before retrieval, citing official sources, translating answers into regional languages (Hindi & Gujarati), and refusing to invent facts on unsupported queries.
 
 ---
 

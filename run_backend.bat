@@ -1,12 +1,12 @@
 @echo off
 setlocal enabledelayedexpansion
-title GovBank Assistant - Backend Server
+title Nivaan - Backend Server
 
 :: Ensure we run in the repository root directory
 cd /d "%~dp0"
 
 echo ==========================================================
-echo  GovBank Assistant - Starting Backend API Server (Windows)
+echo  Nivaan - Starting Backend API Server (Windows)
 echo ==========================================================
 echo.
 
