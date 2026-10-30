@@ -21,7 +21,7 @@ _CATEGORY_TERMS = {
         "baal aadhaar", "myaadhaar", "pvc card", "enrolment", "enrollment",
     ),
     "tax": (
-        "tax", "itr", "itr-4", "itr-5", "itr-6", "sugam", "income tax", "income-tax", "incometax",
+        "tax", "itr", "itr-1", "itr-2", "itr-3", "itr-4", "itr-5", "itr-6", "sahaj", "sugam", "file itr", "form 16", "26as", "ais", "tis", "income tax", "income-tax", "incometax",
         "presumptive", "44ad", "44ada", "44ae", "corporate tax", "company tax", "115baa",
         "cess", "surcharge", "234a", "234b", "234c", "234f", "advance tax", "itrv", "itr-v",
         "acknowledgement number", "belated", "assessment year", "ay", "financial year", "fy",

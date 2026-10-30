@@ -251,6 +251,7 @@ class LocalLLMClient:
                 "If the source says 'date of birth proof,' use that phrase, not an invented acronym.\n"
                 "- Every fact in the answer must be traceable to a specific sentence in the source text. "
                 "If you cannot point to the sentence, do not include the fact.\n"
+                "- When a citizen asks a general procedure question (such as 'how to file ITR' or 'file income tax return'), ALWAYS default to the standard individual citizen taxpayer workflow: Form ITR-1 (Sahaj) for salaried taxpayers, Form ITR-2 for capital gains, Form 26AS/AIS verification, and instant e-verification via Aadhaar OTP or NetBanking. NEVER assume a corporate entity or default to Form ITR-6 or Class 3 DSC unless the user explicitly specifies a company or corporate entity.\n"
                 "- Do not upgrade an optional or implied action into a mandatory numbered step. "
                 "If the source does not explicitly sequence something as a required step, do not present it as 'Step N.'\n"
                 "- If the source text states something is free of cost, exempt, optional, or not required, "
