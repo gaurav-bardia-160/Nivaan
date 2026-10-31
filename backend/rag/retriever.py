@@ -121,6 +121,43 @@ class RagRetriever:
                 score += 0.05
                 signals["troubleshooting_boost"] = 0.05
 
+            # Symptom-level cross-matching & anti-contamination suppression
+            _SYMPTOM_CLUSTERS = (
+                {
+                    "name": "bank_validation",
+                    "match": ("bank validation", "validation failed", "refund unpaid", "unvalidated", "re-validate", "pre-validation"),
+                    "boost_terms": ("bank account pre-validation", "refund unpaid", "refund reissue"),
+                    "conflicts": ("139(9)", "defective return", "119(2)(b)", "condonation"),
+                },
+                {
+                    "name": "defective_return",
+                    "match": ("defective return", "139(9)", "defective notice"),
+                    "boost_terms": ("139(9)", "defective return", "defective notice"),
+                    "conflicts": ("bank validation", "validation failed", "refund unpaid"),
+                },
+                {
+                    "name": "aadhaar_pvc_payment",
+                    "match": ("pvc", "payment deducted", "no srn", "srn not generated", "auto-reversal"),
+                    "boost_terms": ("pvc card payment", "srn", "reconciliation"),
+                    "conflicts": ("cross limit", "exception handling", "gazette notification", "regional office"),
+                },
+                {
+                    "name": "aadhaar_cross_limit",
+                    "match": ("cross limit", "limit exhausted", "exception handling", "gazette"),
+                    "boost_terms": ("cross limit", "exception handling", "demographic exception"),
+                    "conflicts": ("pvc", "srn not generated", "auto-reversal"),
+                },
+            )
+            lowered_q = clean_query.lower()
+            for sc in _SYMPTOM_CLUSTERS:
+                if any(m in lowered_q for m in sc["match"]):
+                    if any(bt in lowered_doc for bt in sc["boost_terms"]):
+                        score += 0.08
+                        signals["symptom_boost"] = 0.08
+                    if any(c in lowered_doc for c in sc["conflicts"]):
+                        score -= 0.15
+                        signals["contamination_penalty"] = -0.15
+
             fused.append(
                 RetrievalHit(
                     document=document,

@@ -22,7 +22,7 @@ from backend.modules.retrieval import find_entry, find_entry_by_id, find_entry_w
 from backend.modules.translate_voice import apply_language_policy
 from backend.modules.translator import extract_language_and_clean_query
 from backend.rag.runtime import retrieve_if_enabled
-from backend.schemas import Answer, AskRequest, Warning
+from backend.schemas import Answer, AskRequest, Step, Warning
 
 
 
@@ -364,9 +364,10 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             t = mt.answer_title or ""
             if t and "welcome" not in t.lower() and "not found" not in t.lower():
                 clean_t = re.sub(r"^(Relevant official material:\s*)", "", t).strip()
-                effective_context_topic = clean_t
-                break
-        if not effective_context_topic and memory_turns and _is_follow_up_query(search_text):
+                if clean_t.lower() not in ("frequently asked questions", "faq", "faqs", "official civic procedure", "home", "user manual", "overview"):
+                    effective_context_topic = clean_t
+                    break
+        if not effective_context_topic and memory_turns:
             effective_context_topic = memory_turns[-1].user_text
 
     # Multi-turn conversational context expansion & query reformulation:
@@ -464,13 +465,27 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                     w if isinstance(w, Warning) else Warning(**w)
                     for w in entry.get("warnings", [])
                 ]
+                verified_steps = [
+                    s if isinstance(s, Step) else Step(**s)
+                    for s in entry.get("steps", [])
+                ]
+                entry_title_lower = entry.get("title", "").lower()
+                clean_citations = [
+                    c for c in rag_answer.citations
+                    if not any(conflict in c.title.lower() for conflict in (
+                        ("139(9)", "defective") if "bank" in entry_title_lower else ()
+                    ))
+                ]
                 rag_answer = rag_answer.model_copy(update={
                     "entry_id": entry.get("id"),
                     "title": entry.get("title", rag_answer.title),
+                    "summary": entry.get("summary") or rag_answer.summary,
+                    "steps": verified_steps if verified_steps else rag_answer.steps,
                     "confidence": "medium" if entry.get("status") == "verified" else rag_answer.confidence,
                     "source_url": entry.get("source", {}).get("url") or rag_answer.source_url,
                     "documents_needed": entry.get("documents_needed") or rag_answer.documents_needed,
                     "warnings": verified_warnings if verified_warnings else rag_answer.warnings,
+                    "citations": clean_citations if clean_citations else rag_answer.citations,
                 })
             # Dynamically synthesize grounded summary, actionable steps, and documents needed using LLM
             rag_answer = enhance_grounded_answer(

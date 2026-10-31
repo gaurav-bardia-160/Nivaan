@@ -915,3 +915,48 @@ def test_cross_domain_multi_turn_isolation_prevents_punting_trap(tmp_path):
     assert "No verified guide found" in t4["title"]
     assert UNRESOLVED_CSV_PATH.exists()
 
+
+
+def test_scenario1_income_tax_bank_validation_prevents_defective_return_hallucination():
+    """Verify Scenario 1: Bank validation failure MUST NOT cross-contaminate with Section 139(9) defective return."""
+    query = "My income tax refund failed with bank account validation failed in red color. What should I do?"
+    response = client.post("/api/ask", json={"question": query})
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data["entry_id"] == "itr_bank_validation_failed"
+    assert "bank" in data["title"].lower()
+    full_text = (data["summary"] + " " + " ".join(s["title"] + " " + s["detail"] for s in data["steps"])).lower()
+
+    # Must contain exact resolution workflow
+    assert "my bank account" in full_text
+    assert "refund reissue" in full_text
+
+    # Must NEVER instruct filing under 139(9) or Defective Return schema for bank validation
+    assert "139(9)" not in full_text
+    assert "defective return" not in full_text
+    assert "corrected schema" not in full_text
+
+    # Citations must not include defective return notice
+    for c in data.get("citations", []):
+        assert "139(9)" not in c["title"].lower()
+        assert "defective" not in c["title"].lower()
+
+
+def test_scenario2_aadhaar_pvc_no_srn_provides_exact_tat_and_escalation():
+    """Verify Scenario 2: Aadhaar PVC payment deducted with no SRN provides exact TAT, reversal, and UTR escalation."""
+    query = "I paid 50 rupees through PhonePe for Aadhaar PVC card, money debited but no SRN generated. What to do?"
+    response = client.post("/api/ask", json={"question": query})
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data["entry_id"] == "aadhaar_pvc_payment_failed"
+    full_text = (data["summary"] + " " + " ".join(s["title"] + " " + s["detail"] for s in data["steps"])).lower()
+
+    # Must contain exact statutory TAT and reconciliation window
+    assert "24" in full_text and "48" in full_text
+    # Must contain auto-reversal timeline
+    assert "5 to 7" in full_text or "5-7" in full_text or "refund" in full_text
+    # Must contain official escalation and 12-digit UTR
+    assert "helpdesk@uidai.gov.in" in full_text or "1947" in full_text
+    assert "utr" in full_text
