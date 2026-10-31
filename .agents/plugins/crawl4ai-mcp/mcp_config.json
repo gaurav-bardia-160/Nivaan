@@ -2,7 +2,7 @@
   "mcpServers": {
     "crawl4ai": {
       "command": "C:\\Users\\gaura\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
-      "args": ["C:\\Users\\gaura\\Documents\\Nivaan\\.agents\\plugins\\crawl4ai-mcp\\server.py"]
+      "args": ["C:\\Users\\gaura\\Documents\\nivaan\\.agents\\plugins\\crawl4ai-mcp\\server.py"]
     }
   }
 }
