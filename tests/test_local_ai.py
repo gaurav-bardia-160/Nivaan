@@ -255,3 +255,23 @@ def test_conversation_delete_endpoint_clears_backend_memory():
     assert response.status_code == 200
     assert response.json()["status"] == "cleared"
     assert conversation_memory.recent("delete-me") == ()
+
+
+def test_local_llm_only_disables_gemini_and_enables_local_config(monkeypatch):
+    monkeypatch.setenv("LOCAL_LLM_ONLY", "true")
+    monkeypatch.setenv("GEMINI_API_KEY", "dummy_cloud_key")
+    monkeypatch.setenv("GOOGLE_API_KEY", "dummy_google_key")
+
+    from backend.modules.llm import GeminiLLMClient, LocalLLMConfig, local_llm_health
+
+    client = GeminiLLMClient()
+    assert client.available() is False
+    assert client.api_key is None
+
+    config = LocalLLMConfig.from_env()
+    assert config.enabled is True
+
+    health = local_llm_health(force=True)
+    assert health["gemini_available"] is False
+    assert health["active_engine"] == "ollama_local"
+    assert health["provider"] == "ollama_compatible"

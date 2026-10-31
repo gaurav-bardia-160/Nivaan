@@ -73,8 +73,11 @@ class LocalLLMConfig:
         except ValueError:
             num_predict = 384
 
+        local_only = os.getenv("LOCAL_LLM_ONLY", "false").strip().lower() in _TRUE_VALUES
+        enabled = local_only or (os.getenv("LOCAL_LLM_ENABLED", "false").strip().lower() in _TRUE_VALUES)
+
         return cls(
-            enabled=os.getenv("LOCAL_LLM_ENABLED", "false").strip().lower() in _TRUE_VALUES,
+            enabled=enabled,
             base_url=os.getenv("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434").rstrip("/"),
             model=os.getenv("LOCAL_LLM_MODEL", "qwen2.5:3b").strip() or "qwen2.5:3b",
             timeout_seconds=min(max(timeout, 1.0), 180.0),
@@ -106,10 +109,15 @@ class GeminiLLMClient:
     """High-accuracy cloud inference client via Google Gemini API."""
 
     def __init__(self, api_key: str | None = None, model: str | None = None):
-        self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+        if os.getenv("LOCAL_LLM_ONLY", "false").strip().lower() in _TRUE_VALUES:
+            self.api_key = None
+        else:
+            self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
         self.model = model or os.getenv("GEMINI_MODEL", "gemini-flash-lite-latest")
 
     def available(self) -> bool:
+        if os.getenv("LOCAL_LLM_ONLY", "false").strip().lower() in _TRUE_VALUES:
+            return False
         return bool(self.api_key and str(self.api_key).strip())
 
     def synthesize(self, *, system: str, prompt: str, temperature: float = 0.1) -> GroundedRewrite | None:
