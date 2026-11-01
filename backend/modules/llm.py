@@ -30,6 +30,15 @@ _is_generating = False
 _is_generating_lock = threading.Lock()
 
 
+def _is_direct_or_binary_question(query: str) -> bool:
+    if not query:
+        return False
+    lowered = query.strip().lower()
+    return any(lowered.startswith(p) for p in (
+        "can i", "can we", "can a", "should i", "should we", "do i need", "does it",
+        "will it", "is it", "is there", "are we", "am i", "whether", "do we need"
+    ))
+
 class GroundedRewrite(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
@@ -222,8 +231,8 @@ class LocalLLMClient:
                 for idx, c in enumerate(answer.citations[:2], 1):
                     evidence.append(f"[Supporting Source {idx}] {c.title}\n{c.excerpt[:350].strip()}\nSource: {c.url}")
         elif answer.citations:
-            for index, citation in enumerate(answer.citations[:3], 1):
-                excerpt = citation.excerpt[:400].strip()
+            for index, citation in enumerate(answer.citations[:2], 1):
+                excerpt = citation.excerpt[:350].strip()
                 evidence.append(f"[{index}] {citation.title}\n{excerpt}\nSource: {citation.url}")
         elif answer.summary or answer.steps:
             steps_text = " ".join(f"{s.title}: {s.detail}" for s in answer.steps[:4])
@@ -253,33 +262,40 @@ class LocalLLMClient:
             )
             prompt = f"Citizen greeting: {question[:300]}"
         else:
-            system = (
+            system_base = (
                 "You are Nivaan, an intelligent, conversational AI civic guide for Indian citizens. "
-                "Carefully analyze the citizen's question and any previous conversation history and official evidence. "
-                "If the citizen asks a follow-up or asks to clarify previously mentioned details, "
-                "maintain conversational continuity with the previous turns while adhering strictly to the official evidence. "
+                "Carefully analyze the citizen's question and official evidence. "
                 "Explain the exact procedure or required actions directly, helpfully, and conversationally. "
-                "Return JSON with keys: 'summary' (string), 'documents_needed' (list of specific required documents, or [] if none), "
-                "and 'steps' (list of 2-5 actionable objects with 'title' and 'detail', or [] if none).\n\n"
-                "STRICT GROUNDING & CHUNK-SYMPTOM MAPPING RULES (Never violate these):\n"
-                "- CHUNK-SYMPTOM MAPPING: Identify the citizen's exact error state or symptom (e.g. 'Bank Account Validation Failed / Refund Unpaid' vs. 'Section 139(9) Defective Return', or 'PVC Payment Deducted No SRN' vs. 'Biometric Update Rejection'). "
-                "ONLY synthesize resolution steps and procedures from the evidence that explicitly matches this symptom. IGNORE and DISCARD any other text describing unrelated sections, different error codes, or different procedures.\n"
-                "- STRICT ZERO CROSS-CONTAMINATION: Never blend, merge, or cross-contaminate resolution steps from different error types into one answer (e.g., NEVER advise uploading a Section 139(9) defective return schema to solve a Bank Account pre-validation failure; NEVER apply an Aadhaar exception SOP to an Income Tax or banking problem).\n"
-                "- ZERO REPETITION: State each fact cleanly once. Never repeat identical sentences or phrases across summary and steps.\n"
-                "- ZERO VAGUE PUNTS: Never say 'contact customer care'. Always specify: "
-                "1. The exact official escalation desk (e.g. email helpdesk@uidai.gov.in, call toll-free 1947, or log ticket on CPGRAMS/EPFiGMS). "
-                "2. The exact reference identifier the citizen must quote (e.g. 12-digit UPI UTR number, 14-digit EID, or Acknowledgement Number). "
-                "3. The statutory Turnaround Time (TAT) and auto-reversal window (e.g. 24-48 hours gateway reconciliation, 5-7 business days bank refund).\n"
-                "- FORMAT ENFORCEMENT FOR TROUBLESHOOTING & EXCEPTIONS: "
-                "For errors, rejections, stuck statuses, or payment issues, format the summary with clear structured sections: "
-                "Root Cause: [Why it broke based on official evidence]. "
-                "Immediate Action: [Exact portal path, buttons to click, and forms to submit]. "
-                "Escalation/TAT: [Statutory turnaround time, auto-reversal window, and escalation desk with reference ID].\n"
-                "- Use ONLY terms, abbreviations, and labels that appear verbatim in the source text.\n"
-                "- Every fact in the answer must be traceable to a specific sentence in the source text.\n"
-                "- When a citizen asks a general procedure question (such as 'how to file ITR'), default to standard individual citizen workflow (ITR-1/ITR-2, Aadhaar OTP).\n"
-                "- If source states free, exempt, or optional, include it."
+                "Return JSON with keys: 'summary' (string), 'documents_needed' (list, or [] if none), and 'steps' (list with 'title' and 'detail', or [] if none).\n\n"
+                "STRICT GROUNDING & REASONING RULES:\n"
+                "- CONTEXT-RELEVANCE GATE: If the official evidence does NOT address the scenario, output: {\"summary\": \"The verified knowledge base does not contain the specific procedure for this issue.\", \"documents_needed\": [], \"steps\": []}.\n"
+                "- DIRECT FIRST-SENTENCE: Answer the user's explicit question directly in the very first sentence. For binary/jurisdictional questions ('Can I...', 'Should I...', 'Will it...'), answer 'Yes' or 'No' with statutory reason, and return 'steps': [] and 'documents_needed': []. Only include 'steps' when asked how to perform a multi-step action.\n"
+                "- ZERO VAGUE PUNTS: Always specify exact official portals, forms, and escalation desks. Never say 'contact customer care'.\n"
+                "- ZERO CROSS-CONTAMINATION: Never blend unrelated error codes or procedures.\n"
+                "- ZERO EXTERNAL COMMERCIAL ENTITIES: Never reference commercial services (e.g. legaltax.in); cite only official .gov.in or .nic.in portals."
             )
+
+            domain_rules = []
+            lowered_q = question.lower()
+            if any(k in lowered_q for k in ("139(9)", "139(5)", "defective", "revised return")):
+                domain_rules.append("SECTION 139(9) TRAP: If asked about filing a Revised Return (139(5)) for a 139(9) Defective Notice, state in the first sentence: 'No, you should NOT file a Revised Return under Section 139(5). A revised return does NOT cure a Section 139(9) defect notice and will cause the return to be declared invalid ab initio.' Direct responding via e-File > e-Proceedings > Defective Notice within 15 days. Never cite synthetic case studies.")
+            elif any(k in lowered_q for k in ("consumer", "edaakhil", "district court", "represent myself", "lawyer")):
+                domain_rules.append("CONSUMER COURT: If asked about self-representation or lawyer, answer: 'Yes, you can represent yourself in consumer court without hiring an advocate/lawyer under the Consumer Protection Act, 2019 via e-Daakhil (edaakhil.nic.in).' If asked about jurisdiction, state: 'Yes, claims up to 50 lakh lie before the District Commission (DCDRC).'")
+            elif any(k in lowered_q for k in ("nalsa", "legal aid")):
+                domain_rules.append("FREE LEGAL AID: Free legal aid is available under Section 12 of the Legal Services Authorities Act, 1987 (nalsa.gov.in, DLSA, helpline 15100).")
+            elif any(k in lowered_q for k in ("blo", "voter", "epic", "e-epic")):
+                domain_rules.append("VOTER ID: Direct tracking on voters.eci.gov.in using Form 6/8 Reference Number, contacting BLO via 'Know Your Polling Station & Officer', or escalating via NGRS (voters.eci.gov.in) / helpline 1950.")
+            elif any(k in lowered_q for k in ("credit card", "unsolicited")):
+                domain_rules.append("CREDIT CARD: RBI Master Direction: Unsolicited cards must be cancelled without fee with 2x penalty. Disputed charges go to issuer's grievance desk, then RBI Ombudsman (cms.rbi.org.in / 14448).")
+            elif any(k in lowered_q for k in ("pvc", "srn")):
+                domain_rules.append("AADHAAR PVC: State 24-48h gateway reconciliation window, 5-7 business days bank auto-reversal, and UIDAI escalation via helpdesk@uidai.gov.in with 12-digit UTR.")
+            elif any(k in lowered_q for k in ("bank validation", "refund unpaid")):
+                domain_rules.append("BANK VALIDATION: Resolution path is Profile > My Bank Account to re-validate IFSC, followed by Services > Refund Reissue Request. Never advise filing a defective return schema.")
+
+            if domain_rules:
+                system = system_base + "\nSPECIFIC STATUTORY RULE:\n" + "\n".join(domain_rules)
+            else:
+                system = system_base
             prompt = (
                 f"--- Conversation Context ---\n{history}\n\n"
                 f"--- Citizen Question ---\n{question[:1200]}\n\n"
@@ -304,9 +320,12 @@ class LocalLLMClient:
 
         # 2. Local Fallback Path: Ollama on CPU
 
-        # Allocate threads safely (leave 1 thread free for OS and Uvicorn on 2-core/4-thread CPUs)
+        # Optimize CPU inference: allocate threads and cap context/predict for direct answers
         avail_cpus = os.cpu_count() or 4
-        optimal_threads = max(1, min(avail_cpus, 3))
+        optimal_threads = min(avail_cpus, 4)
+        is_direct_q = _is_direct_or_binary_question(question)
+        predict_limit = min(self.config.num_predict, 180) if is_direct_q else self.config.num_predict
+        ctx_limit = min(self.config.num_ctx, 2048)
 
         payload = {
             "model": self.config.model,
@@ -317,8 +336,8 @@ class LocalLLMClient:
             ],
             "options": {
                 "temperature": temperature if temperature is not None else (0.2 if is_greeting else 0.1),
-                "num_predict": self.config.num_predict,
-                "num_ctx": self.config.num_ctx,
+                "num_predict": predict_limit,
+                "num_ctx": ctx_limit,
                 "num_thread": optimal_threads,
             },
         }
@@ -372,10 +391,14 @@ class LocalLLMClient:
             if not summary_candidate:
                 return None
 
+            is_refusal = (
+                "does not contain the specific procedure for this issue" in summary_candidate.lower()
+                or "verified knowledge base does not contain" in summary_candidate.lower()
+            )
             parsed = GroundedRewrite.model_validate({
                 "summary": summary_candidate,
-                "documents_needed": docs_candidate,
-                "steps": steps_candidate,
+                "documents_needed": [] if is_refusal else docs_candidate,
+                "steps": [] if is_refusal else steps_candidate,
             })
         except Exception as e:
             logger.debug("Local LLM answer generation failed: %s", e)
@@ -383,6 +406,9 @@ class LocalLLMClient:
         finally:
             with _is_generating_lock:
                 _is_generating = False
+
+        if is_refusal:
+            return parsed
 
         if not _is_grounded(parsed.summary, answer):
             return None
@@ -557,9 +583,21 @@ def enhance_grounded_answer(
     if not rewrite:
         return answer
 
+    is_refusal = (
+        "does not contain the specific procedure for this issue" in rewrite.summary.lower()
+        or "verified knowledge base does not contain" in rewrite.summary.lower()
+    )
+    if is_refusal:
+        from backend.modules.explainer import not_found_answer
+        return not_found_answer(question)
+
+    is_direct_q = _is_direct_or_binary_question(question)
     updates: dict[str, object] = {"summary": rewrite.summary}
-    if rewrite.documents_needed and len(rewrite.documents_needed) > 0:
+    if is_direct_q and not rewrite.documents_needed:
+        updates["documents_needed"] = []
+    elif rewrite.documents_needed and len(rewrite.documents_needed) > 0:
         updates["documents_needed"] = rewrite.documents_needed
+
     if rewrite.steps and len(rewrite.steps) >= 2:
         new_steps = [
             Step(title=s["title"][:80], detail=s["detail"])
@@ -568,6 +606,8 @@ def enhance_grounded_answer(
         ]
         if len(new_steps) >= 2:
             updates["steps"] = new_steps
+    elif is_direct_q:
+        updates["steps"] = []
     elif answer.citations and len(answer.steps) <= 3 and any("review" in s.title.lower() or "read" in s.title.lower() for s in answer.steps):
         ai_steps = _extract_dynamic_steps_from_summary(rewrite.summary)
         if len(ai_steps) >= 2:

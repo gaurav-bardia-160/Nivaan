@@ -51,7 +51,9 @@ DOMAIN_WHITELIST = {
     "ncdrc.nic.in",
     "voters.eci.gov.in",
     "eci.gov.in",
-    "example.com",
+    "nalsa.gov.in",
+    "edaakhil.nic.in",
+    "ecommitteesci.gov.in",
 }
 
 # --- LOGGING SETUP ---
@@ -66,12 +68,15 @@ logger = logging.getLogger(__name__)
 _robots_cache = {}
 
 def can_fetch(url: str) -> bool:
+    import re
     parsed = urlparse(url)
-    domain = parsed.netloc
+    domain = (parsed.netloc or "").lower().split(":")[0]
     
-    # 1. Whitelist Check
-    if not any(domain == whitelisted or domain.endswith("." + whitelisted) for whitelisted in DOMAIN_WHITELIST):
-        logger.warning(f"Domain {domain} is not in the whitelist. Skipping.")
+    # 1. Strict Government and Whitelist Check (*.gov.in, *.nic.in or authorized statutory domains)
+    is_gov = bool(re.search(r'\.(gov\.in|nic\.in)$', domain))
+    is_whitelisted = any(domain == whitelisted or domain.endswith("." + whitelisted) for whitelisted in DOMAIN_WHITELIST)
+    if not (is_gov or is_whitelisted):
+        logger.warning(f"Domain {domain} does not match strict government allowlist (*.gov.in, *.nic.in). Skipping.")
         return False
 
     # 2. Robots.txt Check

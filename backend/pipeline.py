@@ -237,8 +237,14 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
         if not any(token in lowered for token in loan_tokens):
             return False
     if entry_id in ("consumer_complaint_basics", "consumer_court_complaint"):
-        consumer_tokens = ("consumer", "edaakhil", "defective", "unfair trade", "deficiency")
-        if not any(token in lowered for token in consumer_tokens):
+        if any(token in lowered for token in ("tax", "itr", "return", "139")):
+            return False
+        # Specific jurisdictional or self-representation questions must be answered dynamically by statutory RAG
+        specific_legal_intents = ("represent myself", "represent himself", "without a lawyer", "hire a lawyer", "need a lawyer", "district court", "district commission", "pecuniary", "jurisdiction", "50 lakh", "limit")
+        if any(intent in lowered for intent in specific_legal_intents):
+            return False
+        consumer_tokens = ("consumer", "edaakhil", "unfair trade", "deficiency", "dcdrc", "district commission")
+        if not any(token in lowered for token in consumer_tokens) and not ("defective" in lowered and any(t in lowered for t in ("goods", "product", "item", "service", "phone", "appliance"))):
             return False
     if entry_id == "aadhaar_pvc_payment_failed":
         if not any(token in lowered for token in ("aadhaar", "aadhar", "pvc", "uidai")):

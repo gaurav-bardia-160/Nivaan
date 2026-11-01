@@ -1,6 +1,7 @@
 """Hybrid lexical and vector retrieval over the canonical corpus."""
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 
 from backend.rag.bm25 import BM25Index, tokenize
@@ -101,6 +102,12 @@ class RagRetriever:
         fused: list[RetrievalHit] = []
         for document_id, signals in candidates.items():
             document = self.documents_by_id[document_id]
+            # Commercial entity rejection (strictly eliminate commercial poisoning like legaltax.in)
+            if any(
+                any(c in (s.source_url or "").lower() for c in ("legaltax.in", "taxguru.in", "impriindia.com", "dbonline.in", "seconize.co"))
+                for s in document.sources
+            ):
+                continue
             doc_tags = set(document.tags)
             metadata_overlap = len(q_terms & doc_tags) / max(len(q_terms), 1)
             signals["tag_overlap"] = metadata_overlap
@@ -108,12 +115,23 @@ class RagRetriever:
 
             # Exact statutory & error code boost: ensures statutory sections & error codes surface to rank 1
             lowered_doc = (document.text + " " + " ".join(document.tags)).lower()
-            _EXACT_CODES = ("330", "119(2)(b)", "119", "139(9)", "139", "44ad", "44ada", "44ae", "234f", "form 16", "26as", "ais", "tis", "form 19", "form 10c", "form 49a", "joint declaration", "edaakhil", "cibil")
+            _EXACT_CODES = (
+                "blo", "e-epic", "epic", "form 8", "form 6", "form 7", "ngrs", "voter mitra",
+                "139(9)", "139(5)", "139(4)", "119(2)(b)", "119", "234f", "44ad", "44ada",
+                "cibil", "experian", "crif", "unsolicited card", "card conduct",
+                "edaakhil", "e-daakhil", "dcdrc", "scdrc", "ncdrc", "nalsa",
+                "330", "error 330", "form 19", "form 10c", "form 49a", "joint declaration"
+            )
             for code in _EXACT_CODES:
-                if code in clean_query.lower() and code in lowered_doc:
-                    score += 0.08
-                    signals["exact_statutory_boost"] = 0.08
+                if re.search(rf"(?<!\w){re.escape(code)}(?!\w)", clean_query.lower()) and re.search(rf"(?<!\w){re.escape(code)}(?!\w)", lowered_doc):
+                    score += 0.12
+                    signals["exact_statutory_boost"] = 0.12
                     break
+
+            # Synthetic Case Study suppression: citizen procedural queries must never be polluted with fictional case studies
+            if "synthetic" in lowered_doc and "synthetic" not in clean_query.lower() and "case study" not in clean_query.lower():
+                score -= 0.30
+                signals["synthetic_penalty"] = -0.30
 
             # Troubleshooting boost: prioritize authoritative SOP & escalation guidelines when user reports a failure
             # Strictly scoped to the query's matching domain category to prevent cross-domain leakage
@@ -131,9 +149,33 @@ class RagRetriever:
                 },
                 {
                     "name": "defective_return",
-                    "match": ("defective return", "139(9)", "defective notice"),
-                    "boost_terms": ("139(9)", "defective return", "defective notice"),
-                    "conflicts": ("bank validation", "validation failed", "refund unpaid"),
+                    "match": ("defective return", "139(9)", "defective notice", "139(5)", "revised return"),
+                    "boost_terms": ("defective return notice rectification", "cpc 2.0", "e-proceedings", "139(9)"),
+                    "conflicts": ("bank validation", "validation failed", "refund unpaid", "itr-4", "itr-6", "itr-5", "synthetic case study", "apex tar", "zenith"),
+                },
+                {
+                    "name": "voter_blo_epic",
+                    "match": ("blo", "epic", "e-epic", "voter id", "voter application", "form 8", "ngrs", "voters.eci"),
+                    "boost_terms": ("eci voter services", "form 8", "field verification", "blo", "ngrs", "voter mitra"),
+                    "conflicts": ("epfigms", "passbook", "cheque", "pf", "aadhaar", "pan", "tax"),
+                },
+                {
+                    "name": "credit_card_dispute",
+                    "match": ("credit card", "card fee", "card charges", "unsolicited card", "card dispute", "arbitrary limit"),
+                    "boost_terms": ("card conduct", "unsolicited cards", "arbitrary limit", "cms.rbi.org.in", "integrated ombudsman"),
+                    "conflicts": ("foreclosure charges and prepayment penalties on home loans", "housing finance", "tax", "itr"),
+                },
+                {
+                    "name": "consumer_court_jurisdiction",
+                    "match": ("consumer court", "edaakhil", "represent myself", "district court", "district commission", "lawyer"),
+                    "boost_terms": ("edaakhil", "consumer protection act 2019", "three-tier statutory pecuniary jurisdiction", "represent themselves in person", "district commission (dcdrc)"),
+                    "conflicts": ("mobile esewa vans", "cyber security", "scertharyana"),
+                },
+                {
+                    "name": "nalsa_legal_aid",
+                    "match": ("nalsa", "free legal aid", "legal aid", "legal services authority", "section 12"),
+                    "boost_terms": ("nalsa free legal aid framework", "section 12 categorical", "state income caps", "15100"),
+                    "conflicts": ("consumer protection act", "epfo", "cyber security", "mobile esewa vans"),
                 },
                 {
                     "name": "aadhaar_pvc_payment",

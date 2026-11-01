@@ -17,12 +17,13 @@ TOKEN_KEYWORD_BONUS = 28
 GENERIC_MATCH_TOKENS = {
     "application", "apply", "card", "document", "documents", "form", "new", "proof", "update",
     "fee", "fees", "charge", "charges", "cost", "penalty", "make",
-    "online", "portal", "website", "official", "service", "services", "center", "kendra", "procedure", "process"
+    "online", "portal", "website", "official", "service", "services", "center", "kendra", "procedure", "process",
+    "generated", "generating", "generate", "download", "status", "issue", "number",
 }
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "can", "could",
     "did", "do", "does", "for", "from", "have", "how", "i", "if", "in", "into",
-    "what",
+    "what", "not", "no", "never",
     "is", "it", "its", "may", "my", "of", "on", "or", "should", "that", "the", "their",
     "them", "then", "there", "these", "they", "this", "those", "to", "use", "when",
     "where", "which", "who", "why", "will", "with", "would", "you", "your"
@@ -114,6 +115,26 @@ def _keyword_match_score(normalized_query: str, query_tokens: set[str], entry: d
 
 
 def _score_entry(normalized_query: str, query_tokens: set[str], entry: dict[str, Any]) -> float:
+    lowered_q = normalized_query.lower()
+    entry_id = str(entry.get("id", "")).lower()
+
+    # Cross-domain hard isolation: prevent semantic bleed from dominant clusters
+    _DOMAIN_CONFLICTS = (
+        ({"voter", "epic", "blo", "nvsp", "eci", "electoral", "voting"}, ("pan_", "aadhaar_", "itr_", "loan_", "rbi_", "pf_")),
+        ({"credit card", "cibil", "experian", "crif", "foreclosure"}, ("itr_", "pan_", "aadhaar_")),
+        ({"tax", "itr", "139 9", "139 5", "139", "defective return", "defective notice", "income tax", "234f"}, ("aadhaar_", "passport_", "consumer_", "epf_")),
+        ({"aadhaar", "aadhar", "uidai"}, ("itr_", "passport_", "pan_card", "consumer_")),
+        ({"passport", "psk"}, ("aadhaar_", "itr_", "pan_card", "consumer_")),
+    )
+    for conflict_terms, blocked_prefixes in _DOMAIN_CONFLICTS:
+        if any(term in lowered_q for term in conflict_terms):
+            if any(entry_id.startswith(p) for p in blocked_prefixes):
+                return 0.0
+
+    if any(k in lowered_q for k in ("139 9", "139(9)", "defective", "condonation", "119")):
+        if entry_id in ("itr_filing_basics", "file_itr_basics"):
+            return 0.0
+
     title_norm = _normalize(str(entry.get("title", "")))
     summary_norm = _normalize(str(entry.get("summary", "")))
     search_norm = _normalize(_entry_search_text(entry))

@@ -69,7 +69,7 @@ def _get_retriever(use_vectors: bool) -> RagRetriever:
     try:
         store = QdrantLocalVectorStore(DEFAULT_VECTOR_PATH)
         health = store.health()
-        if not health.get("ready") or health.get("points") != len(lexical_retriever.documents):
+        if not health.get("ready") or health.get("points") < len(lexical_retriever.documents):
             store.close()
             return lexical_retriever
         metadata = read_index_metadata(DEFAULT_VECTOR_PATH)
@@ -104,6 +104,16 @@ def get_retriever() -> RagRetriever:
 
 def supported_category(query: str) -> str | None:
     lowered = query.lower()
+    # Explicit domain priority: isolate civic/election/banking/consumer/legal aid sub-domains
+    _CIVIC_STRONG_TERMS = (
+        "voter", "voters", "epic", "e-epic", "blo", "nvsp", "eci", "form 8", "form 6", "form 7", "electoral",
+        "credit card", "cibil", "experian", "crif", "foreclosure", "prepayment", "rbi", "unsolicited", "card conduct",
+        "edaakhil", "e-daakhil", "consumer court", "dcdrc", "scdrc", "ncdrc", "nalsa", "legal aid", "district court",
+        "passport", "psk", "police verification", "epf", "epfo", "joint declaration", "uan", "fir",
+    )
+    if any(re.search(rf"(?<!\w){re.escape(t)}(?!\w)", lowered) for t in _CIVIC_STRONG_TERMS):
+        return "civic"
+
     for category, terms in _CATEGORY_TERMS.items():
         if any(re.search(rf"(?<!\w){re.escape(term)}(?!\w)", lowered) for term in terms):
             return category

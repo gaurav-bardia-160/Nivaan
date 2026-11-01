@@ -123,6 +123,40 @@ def explain_entry(
 
 
 import re
+from urllib.parse import urlparse
+
+OFFICIAL_DOMAINS = {
+    "uidai.gov.in", "myaadhaar.uidai.gov.in", "rbi.org.in", "incometax.gov.in",
+    "www.incometax.gov.in", "tinpan.proteantech.in", "onlineservices.proteantech.in",
+    "pan.utiitsl.com", "www.pan.utiitsl.com", "www.trackpan.utiitsl.com",
+    "passportindia.gov.in", "www.passportindia.gov.in", "parivahan.gov.in",
+    "epfindia.gov.in", "www.epfindia.gov.in", "epfigms.gov.in", "sebi.gov.in",
+    "digilocker.gov.in", "pgportal.gov.in", "ncdrc.nic.in", "voters.eci.gov.in",
+    "eci.gov.in", "nalsa.gov.in", "edaakhil.nic.in", "ecommitteesci.gov.in",
+}
+
+
+def is_allowed_official_source(url: str) -> bool:
+    if not url:
+        return False
+    lowered = url.lower()
+    if any(c in lowered for c in ("legaltax.in", "taxguru.in", "cleartax.in", "indiafilings.com", "impriindia.com", "dbonline.in", "seconize.co")):
+        return False
+    parsed = urlparse(url)
+    domain = (parsed.netloc or "").lower().split(":")[0]
+    is_gov = bool(re.search(r"\.(gov\.in|nic\.in)$", domain))
+    is_whitelisted = any(domain == whitelisted or domain.endswith("." + whitelisted) for whitelisted in OFFICIAL_DOMAINS)
+    return is_gov or is_whitelisted
+
+
+def _is_direct_or_binary_question(query: str) -> bool:
+    if not query:
+        return False
+    lowered = query.strip().lower()
+    return any(lowered.startswith(p) for p in (
+        "can i", "can we", "can a", "should i", "should we", "do i need", "does it",
+        "will it", "is it", "is there", "are we", "am i", "whether", "do we need"
+    ))
 
 
 
@@ -228,6 +262,10 @@ def explain_rag_result(
 
         for source in hit.document.sources:
 
+            if not is_allowed_official_source(source.source_url):
+
+                continue
+
             if source.source_url in seen_urls:
 
                 continue
@@ -285,15 +323,16 @@ def explain_rag_result(
     )
 
     dynamic_steps: list[Step] = []
-    for idx, c in enumerate(citations[:2], 1):
-        clean_name = re.sub(r"[|\-].*$", "", c.title).strip() or f"Official guideline {idx}"
-        dynamic_steps.append(Step(title=f"Review {clean_name}"[:80], detail=c.excerpt[:280].strip()))
-    dynamic_steps.append(
-        Step(
-            title="Verify Official Portal and Apply",
-            detail=f"Visit {first.url} to review current deadlines, official eligibility, and submit applications directly.",
+    if not _is_direct_or_binary_question(user_question):
+        for idx, c in enumerate(citations[:2], 1):
+            clean_name = re.sub(r"[|\-].*$", "", c.title).strip() or f"Official guideline {idx}"
+            dynamic_steps.append(Step(title=f"Review {clean_name}"[:80], detail=c.excerpt[:280].strip()))
+        dynamic_steps.append(
+            Step(
+                title="Verify Official Portal and Apply",
+                detail=f"Visit {first.url} to review current deadlines, official eligibility, and submit applications directly.",
+            )
         )
-    )
 
     return Answer(
         title=f"Relevant official material: {first.title}"[:180],
