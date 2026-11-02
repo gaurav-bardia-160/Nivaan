@@ -30,7 +30,13 @@ from backend.config import APP_NAME, APP_VERSION, CAPABILITIES, CORS_ALLOW_ORIGI
 
 from backend.modules.bandit_policy import bandit_policy
 from backend.modules.reward import reward_engine
-from backend.modules.ocr import OCRExtractionError, extract_text_from_upload, _is_tesseract_available
+from backend.modules.ocr import (
+    OCRExtractionError,
+    extract_text_from_upload,
+    _is_tesseract_available,
+    is_ocr_available,
+    get_ocr_engine_name,
+)
 
 from backend.modules.llm import local_llm_health
 
@@ -264,7 +270,8 @@ def capabilities() -> dict[str, object]:
 
     translation_on = is_translation_enabled()
 
-    ocr_on = _is_tesseract_available()
+    ocr_on = is_ocr_available()
+    engine_name = get_ocr_engine_name()
 
     base_caps = dict(CAPABILITIES)
 
@@ -274,7 +281,7 @@ def capabilities() -> dict[str, object]:
 
     if ocr_on:
 
-        base_caps["supported_uploads"].extend(["scanned .pdf", ".png", ".jpg", ".jpeg", ".webp"])
+        base_caps["supported_uploads"].extend(["scanned .pdf", ".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tiff"])
 
     else:
 
@@ -312,7 +319,7 @@ def capabilities() -> dict[str, object]:
 
         },
 
-        "ocr": {"enabled": ocr_on, "engine": "tesseract" if ocr_on else None},
+        "ocr": {"enabled": ocr_on, "engine": engine_name if ocr_on else None},
 
         "local_llm": local_llm_health(),
 

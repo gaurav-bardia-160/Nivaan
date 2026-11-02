@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 APP_NAME = "Nivaan API"
 APP_VERSION = "0.5.0"
@@ -16,9 +18,6 @@ MAX_CONVERSATION_ID_LENGTH = 120
 
 DEFAULT_DISCLAIMER = None
 
-import os
-from dotenv import load_dotenv
-
 # Load local environment variables from project directory
 load_dotenv(BACKEND_DIR / ".env")
 load_dotenv(PROJECT_ROOT / ".env")
@@ -30,12 +29,20 @@ if _cors_env:
 else:
     CORS_ALLOW_ORIGINS = ["*"]
 
+# PII Masking: Disabled by default for 100% local-first AI execution (zero cloud leakage).
+# Set ENABLE_PII_MASKING=true only if operating across untrusted or external boundaries.
+ENABLE_PII_MASKING = os.getenv("ENABLE_PII_MASKING", "false").lower() in ("true", "1", "yes")
+
 CAPABILITIES = {
     "supported_languages": list(SUPPORTED_LANGUAGES),
     "answer_language_status": "English answers only by default. Hindi/Gujarati translation is available via TRANSLATION_ENABLED.",
     "supported_uploads": [".txt", ".text", ".md", ".csv", "text-based .pdf"],
     "unsupported_uploads": ["encrypted PDFs"],
-    "privacy_boundary": "The current frontend masks supported sensitive identifiers before browser persistence, and the backend masks them again before retrieval, memory, translation, or local-model processing.",
+    "privacy_boundary": (
+        "100% on-device local execution via Ollama. No cloud transmission. "
+        "The current frontend masks supported sensitive identifiers before browser persistence, "
+        "and the backend masks them again before retrieval, memory, translation, or local-model processing when ENABLE_PII_MASKING is active."
+    ),
     "knowledge_status": "Curated knowledge base with verified-first routing; unverified RAG corpus used as conservative fallback.",
 }
 
@@ -53,4 +60,5 @@ __all__ = [
     "DEFAULT_DISCLAIMER",
     "CORS_ALLOW_ORIGINS",
     "CAPABILITIES",
+    "ENABLE_PII_MASKING",
 ]

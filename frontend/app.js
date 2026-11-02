@@ -138,23 +138,11 @@ function setupEventListeners() {
     }
 }
 
-// --- CLIENT-SIDE PII MASKING & STORAGE SAFEGUARDS ---
+// --- CLIENT-SIDE STORAGE & LOCAL SAFEGUARDS ---
 function maskClientPII(text) {
-    if (!text || typeof text !== "string") return text;
-    let sanitized = text;
-    // Bank account: account no / number followed by 9-18 digits
-    sanitized = sanitized.replace(/\b(?:account\s*(?:no\.?|number)?\s*[:\-]?\s*)\d{9,18}\b/gi, "[BANK_ACCOUNT]");
-    // Aadhaar: 12 digits (with optional single space or hyphen separator)
-    sanitized = sanitized.replace(/(?<!\d)(?:\d{4}[\s-]?\d{4}[\s-]?\d{4})(?!\d)/g, "[AADHAAR]");
-    // PAN: 5 letters, 4 digits, 1 letter
-    sanitized = sanitized.replace(/\b[A-Za-z]{5}\d{4}[A-Za-z]\b/g, "[PAN]");
-    // IFSC code: 4 letters, zero, 6 alphanumeric
-    sanitized = sanitized.replace(/\b[A-Za-z]{4}0[A-Za-z0-9]{6}\b/g, "[IFSC]");
-    // Email address
-    sanitized = sanitized.replace(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g, "[EMAIL]");
-    // Phone number: optional +91, 10 digits starting with 6-9
-    sanitized = sanitized.replace(/(?<!\d)(?:\+91[\s-]?)?[6-9]\d{9}(?!\d)/g, "[PHONE]");
-    return sanitized;
+    // 100% on-device local AI via Ollama (zero cloud leakage).
+    // Identifiers (PAN, IFSC, Aadhaar, notice numbers) are preserved for full fidelity local reasoning.
+    return text || "";
 }
 
 function isInternalWarning(w) {

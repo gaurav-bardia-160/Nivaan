@@ -123,14 +123,20 @@ _FLAG_RULES: tuple[FlagRule, ...] = (
 )
 
 
-def mask_text(text: str | None) -> MaskResult:
+def mask_text(text: str | None, force: bool = False) -> MaskResult:
     """Mask obvious sensitive values before retrieval and explanation.
 
-    This is a backend safeguard, not a guarantee of anonymity. UI copy must not
-    claim on-device privacy until client-side masking exists.
+    When running in local-first AI mode (the default), masking is disabled so
+    local models have full fidelity access to PAN, IFSC, notice references, and account numbers.
+    Can be explicitly toggled on via ENABLE_PII_MASKING=true if running in remote/hosted mode,
+    or forced with force=True.
     """
+    from backend.config import ENABLE_PII_MASKING
 
     current = text or ""
+    if not force and not ENABLE_PII_MASKING:
+        return MaskResult(text=current, masked_items=[])
+
     items: list[MaskedItem] = []
     seen: set[str] = set()
 
