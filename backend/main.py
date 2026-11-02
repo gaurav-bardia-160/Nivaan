@@ -8,13 +8,15 @@ from fastapi.exceptions import RequestValidationError
 
 from fastapi.middleware.cors import CORSMiddleware
 
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 
 from fastapi.encoders import jsonable_encoder
 
 from pydantic import ValidationError
 
 
+
+import json
 
 import os
 
@@ -36,7 +38,7 @@ from backend.modules.memory import conversation_memory
 
 from backend.modules.retrieval import knowledge_stats
 
-from backend.pipeline import run
+from backend.pipeline import run, run_stream
 
 from backend.rag.runtime import rag_health
 
@@ -440,6 +442,36 @@ def ask(request: AskRequest, req: Request) -> Answer:
         _METRICS["failed_requests"] += 1
 
         raise HTTPException(status_code=500, detail="The assistant could not process this request safely.") from exc
+
+
+@app.post("/api/ask/stream")
+def ask_stream(request: AskRequest, req: Request):
+    _check_auth(req)
+    _check_rate_limit(req)
+    _METRICS["total_requests"] += 1
+
+    def event_generator():
+        try:
+            for item in run_stream(request):
+                event_name = item.get("event", "message")
+                data_str = json.dumps(item.get("data", {}))
+                yield f"event: {event_name}\ndata: {data_str}\n\n"
+            _METRICS["successful_requests"] += 1
+        except Exception as e:
+            import traceback; traceback.print_exc()
+            _METRICS["failed_requests"] += 1
+            err_data = json.dumps({"message": f"An error occurred during streaming generation: {str(e)}"})
+            yield f"event: error\ndata: {err_data}\n\n"
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
+    )
 
 
 

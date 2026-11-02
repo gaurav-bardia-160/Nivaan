@@ -612,103 +612,211 @@ function appendThinkingBubble() {
 // --- QUERY EXECUTION ---
 async function executeQuery(userText, currentAttachment, chatObj) {
     let answer = null;
-    const thinkingObj = appendThinkingBubble();
+    let thinkingObj = appendThinkingBubble();
+    let streamRendered = false;
 
     try {
-            const hasReadableDocumentText = !!(currentAttachment && currentAttachment.textContent && currentAttachment.textContent.trim());
+        const hasReadableDocumentText = !!(currentAttachment && currentAttachment.textContent && currentAttachment.textContent.trim());
 
-            if (currentAttachment && !hasReadableDocumentText && currentAttachment.fileRef) {
-                let previousEntryId = null;
-                let contextTopic = null;
-                if (chatObj && Array.isArray(chatObj.messages)) {
-                    for (let i = chatObj.messages.length - 1; i >= 0; i--) {
-                        const m = chatObj.messages[i];
-                        if (m.role === "assistant" && m.answer) {
-                            if (m.answer.entry_id) previousEntryId = m.answer.entry_id;
-                            if (m.answer.title && m.answer.title !== "No verified guide found") contextTopic = m.answer.title;
-                            break;
-                        }
+        if (currentAttachment && !hasReadableDocumentText && currentAttachment.fileRef) {
+            let previousEntryId = null;
+            let contextTopic = null;
+            if (chatObj && Array.isArray(chatObj.messages)) {
+                for (let i = chatObj.messages.length - 1; i >= 0; i--) {
+                    const m = chatObj.messages[i];
+                    if (m.role === "assistant" && m.answer) {
+                        if (m.answer.entry_id) previousEntryId = m.answer.entry_id;
+                        if (m.answer.title && m.answer.title !== "No verified guide found") contextTopic = m.answer.title;
+                        break;
                     }
                 }
+            }
 
-                const formData = new FormData();
-                formData.append("file", currentAttachment.fileRef);
-                formData.append("question", userText || "Explain this document");
-                if (chatObj && chatObj.id) formData.append("conversation_id", chatObj.id);
-                if (previousEntryId) formData.append("previous_entry_id", previousEntryId);
-                if (contextTopic) formData.append("context_topic", contextTopic);
+            const formData = new FormData();
+            formData.append("file", currentAttachment.fileRef);
+            formData.append("question", userText || "Explain this document");
+            if (chatObj && chatObj.id) formData.append("conversation_id", chatObj.id);
+            if (previousEntryId) formData.append("previous_entry_id", previousEntryId);
+            if (contextTopic) formData.append("context_topic", contextTopic);
 
-                const uploadResponse = await fetch(`${API_BASE}/api/ask-file`, {
+            const uploadResponse = await fetch(`${API_BASE}/api/ask-file`, {
+                method: "POST",
+                body: formData
+            });
+
+            if (uploadResponse.ok) {
+                answer = await uploadResponse.json();
+            } else {
+                const uploadError = await safeReadJson(uploadResponse);
+                answer = createSystemNotice(
+                    "This file cannot be processed yet",
+                    uploadError?.detail || uploadError?.message || "Only readable text files are supported right now. PDF/image OCR is planned next."
+                );
+            }
+        } else {
+            let previousEntryId = null;
+            let contextTopic = null;
+            if (chatObj && Array.isArray(chatObj.messages)) {
+                for (let i = chatObj.messages.length - 1; i >= 0; i--) {
+                    const m = chatObj.messages[i];
+                    if (m.role === "assistant" && m.answer) {
+                        if (m.answer.entry_id) {
+                            previousEntryId = m.answer.entry_id;
+                        }
+                        if (m.answer.title && m.answer.title !== "No verified guide found") {
+                            contextTopic = m.answer.title;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            const isDocument = hasReadableDocumentText;
+            const payload = {
+                input_type: isDocument ? "document" : "question",
+                question: userText,
+                conversation_id: chatObj ? chatObj.id : "conv_default",
+                file_attached: false
+            };
+            if (previousEntryId) payload.previous_entry_id = previousEntryId;
+            if (contextTopic) payload.context_topic = contextTopic;
+
+            if (chatObj && Array.isArray(chatObj.messages) && chatObj.messages.length > 0) {
+                payload.history = chatObj.messages
+                    .slice(-30)
+                    .filter(m => m && (m.text || m.answer))
+                    .map(m => {
+                        let content = m.text || "";
+                        let title = null;
+                        let entryId = null;
+                        if (m.answer) {
+                            title = m.answer.title || null;
+                            entryId = m.answer.entry_id || null;
+                            const summary = m.answer.summary || "";
+                            const docs = (m.answer.documents_needed || []).join(", ");
+                            const steps = (m.answer.steps || []).map(s => `${s.title}: ${s.detail || ""}`.trim()).join("; ");
+                            content = [summary, docs ? `Documents: ${docs}` : "", steps].filter(Boolean).join("\n");
+                        }
+                        return {
+                            role: m.role || "user",
+                            content: content.slice(0, 1000),
+                            title: title,
+                            entry_id: entryId
+                        };
+                    });
+            }
+
+            if (hasReadableDocumentText) {
+                payload.document_text = currentAttachment.textContent.trim();
+            }
+
+            // Real-Time Server-Sent Events (SSE) Streaming
+            let streamSuccess = false;
+            let liveCard = null;
+            let accumulatedTokens = "";
+
+            try {
+                const streamResponse = await fetch(`${API_BASE}/api/ask/stream`, {
                     method: "POST",
-                    body: formData
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
                 });
 
-                if (uploadResponse.ok) {
-                    answer = await uploadResponse.json();
-                } else {
-                    const uploadError = await safeReadJson(uploadResponse);
-                    answer = createSystemNotice(
-                        "This file cannot be processed yet",
-                        uploadError?.detail || uploadError?.message || "Only readable text files are supported right now. PDF/image OCR is planned next."
-                    );
-                }
-            } else {
-                let previousEntryId = null;
-                let contextTopic = null;
-                if (chatObj && Array.isArray(chatObj.messages)) {
-                    for (let i = chatObj.messages.length - 1; i >= 0; i--) {
-                        const m = chatObj.messages[i];
-                        if (m.role === "assistant" && m.answer) {
-                            if (m.answer.entry_id) {
-                                previousEntryId = m.answer.entry_id;
+                if (streamResponse.ok && streamResponse.body) {
+                    setBackendOnlineStatus(true);
+                    const reader = streamResponse.body.getReader();
+                    const decoder = new TextDecoder("utf-8");
+                    let streamBuffer = "";
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        streamBuffer += decoder.decode(value, { stream: true });
+                        const parts = streamBuffer.split("\n\n");
+                        streamBuffer = parts.pop();
+
+                        for (const part of parts) {
+                            if (!part.trim()) continue;
+                            let eventType = "message";
+                            let dataStr = "";
+                            const lines = part.split("\n");
+                            for (const line of lines) {
+                                if (line.startsWith("event:")) {
+                                    eventType = line.slice(6).trim();
+                                } else if (line.startsWith("data:")) {
+                                    dataStr = line.slice(5).trim();
+                                }
                             }
-                            if (m.answer.title && m.answer.title !== "No verified guide found") {
-                                contextTopic = m.answer.title;
+                            let data = null;
+                            try {
+                                data = JSON.parse(dataStr);
+                            } catch (e) {
+                                continue;
                             }
-                            break;
+
+                            if (eventType === "status" && data && data.message) {
+                                const statusEl = document.getElementById("thinkingStatusText");
+                                if (statusEl) statusEl.textContent = data.message;
+                            } else if (eventType === "meta" && data) {
+                                if (thinkingObj) {
+                                    thinkingObj.stop();
+                                    thinkingObj.row.remove();
+                                    thinkingObj = null;
+                                }
+                                if (!liveCard) {
+                                    liveCard = createLiveAssistantRow(data);
+                                    messagesContainer.appendChild(liveCard.row);
+                                    scrollToBottom();
+                                } else {
+                                    liveCard.updateMeta(data);
+                                }
+                            } else if (eventType === "token" && data && data.delta) {
+                                if (thinkingObj) {
+                                    thinkingObj.stop();
+                                    thinkingObj.row.remove();
+                                    thinkingObj = null;
+                                }
+                                if (!liveCard) {
+                                    liveCard = createLiveAssistantRow({ title: "Civic & Banking Guide", confidence: "verified" });
+                                    messagesContainer.appendChild(liveCard.row);
+                                }
+                                accumulatedTokens += data.delta;
+                                liveCard.updateTyping(accumulatedTokens);
+                                scrollToBottom();
+                            } else if (eventType === "done" && data && data.answer) {
+                                answer = data.answer;
+                                streamSuccess = true;
+                            }
                         }
                     }
+
+                    if (liveCard && answer) {
+                        liveCard.finalize(answer);
+                        streamSuccess = true;
+                        streamRendered = true;
+                    } else if (liveCard && accumulatedTokens) {
+                        answer = {
+                            title: "Civic & Banking Guide",
+                            summary: accumulatedTokens,
+                            confidence: "verified",
+                            documents_needed: [],
+                            steps: [],
+                            warnings: [],
+                            source_url: "https://www.india.gov.in/",
+                            last_verified: new Date().toISOString().slice(0, 10),
+                            citations: []
+                        };
+                        liveCard.finalize(answer);
+                        streamSuccess = true;
+                        streamRendered = true;
+                    }
                 }
+            } catch (streamErr) {
+                console.warn("Real-time stream error, falling back to sync endpoint:", streamErr);
+            }
 
-                const isDocument = hasReadableDocumentText;
-                const payload = {
-                    input_type: isDocument ? "document" : "question",
-                    question: userText,
-                    conversation_id: chatObj ? chatObj.id : "conv_default",
-                    file_attached: false
-                };
-                if (previousEntryId) payload.previous_entry_id = previousEntryId;
-                if (contextTopic) payload.context_topic = contextTopic;
-
-                if (chatObj && Array.isArray(chatObj.messages) && chatObj.messages.length > 0) {
-                    payload.history = chatObj.messages
-                        .slice(-30)
-                        .filter(m => m && (m.text || m.answer))
-                        .map(m => {
-                            let content = m.text || "";
-                            let title = null;
-                            let entryId = null;
-                            if (m.answer) {
-                                title = m.answer.title || null;
-                                entryId = m.answer.entry_id || null;
-                                const summary = m.answer.summary || "";
-                                const docs = (m.answer.documents_needed || []).join(", ");
-                                const steps = (m.answer.steps || []).map(s => `${s.title}: ${s.detail || ""}`.trim()).join("; ");
-                                content = [summary, docs ? `Documents: ${docs}` : "", steps].filter(Boolean).join("\n");
-                            }
-                            return {
-                                role: m.role || "user",
-                                content: content.slice(0, 1000),
-                                title: title,
-                                entry_id: entryId
-                            };
-                        });
-                }
-
-                if (hasReadableDocumentText) {
-                    payload.document_text = currentAttachment.textContent.trim();
-                }
-
+            // Fallback to sync endpoint if stream did not complete
+            if (!streamSuccess) {
                 const response = await fetch(`${API_BASE}/api/ask`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -726,6 +834,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                     );
                 }
             }
+        }
     } catch (err) {
         console.warn("Backend connection error:", err);
         setBackendOnlineStatus(false);
@@ -737,6 +846,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
         if (thinkingObj) {
             thinkingObj.stop();
             thinkingObj.row.remove();
+            thinkingObj = null;
         }
     }
 
@@ -748,7 +858,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
     }
 
     const targetChat = (chatObj && chats.find(c => c.id === chatObj.id)) || getActiveChat() || chatObj;
-    if (targetChat) {
+    if (targetChat && answer) {
         const cleanedForStorage = { ...answer };
         delete cleanedForStorage.disclaimer;
         cleanedForStorage.warnings = [];
@@ -761,7 +871,10 @@ async function executeQuery(userText, currentAttachment, chatObj) {
         saveChatsToStorage();
     }
 
-    appendAssistantResponse(answer, true, true);
+    // Only append statically if the real-time stream hasn't already rendered it live
+    if (!streamRendered) {
+        appendAssistantResponse(answer, true, false);
+    }
 }
 
 // --- EDITABLE MESSAGE PROMPTS ---
@@ -903,27 +1016,21 @@ async function safeReadJson(response) {
     }
 }
 
-// --- APPEND ASSISTANT RESPONSE CARD ---
-function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
-    const row = document.createElement("div");
-    row.className = "message-row";
-
-    // 1. Masked items banner
-    let maskedBanner = "";
-    if (answer.masked_items && answer.masked_items.length > 0) {
-        const maskedDetails = answer.masked_items.map(m => {
-            const label = m.item_type || "item";
-            return m.count ? `${m.count} ${label}` : `${label} as ${m.replacement || "[masked]"}`;
-        }).join(", ");
-        maskedBanner = `
-            <div class="privacy-alert">
-                <span>🛡️</span>
-                <span><strong>Protected Sensitive Data:</strong> Redacted ${maskedDetails} before processing.</span>
-            </div>
-        `;
+// --- SOURCE DOMAIN FORMATTER ---
+function formatSourceDomain(urlStr) {
+    try {
+        const u = new URL(urlStr);
+        return u.hostname.replace(/^www\./, "");
+    } catch (e) {
+        return "Official Portal";
     }
+}
 
-    // 2. Documents required (Clean list - no checkboxes)
+// --- RENDER POST-SUMMARY SECTIONS (DOCUMENTS, STEPS, SOURCES) ---
+function renderPostSummarySections(answer) {
+    if (!answer) return "";
+
+    // 1. Documents required (Clean list - no checkboxes)
     let docsHtml = "";
     if (answer.documents_needed && answer.documents_needed.length > 0) {
         const docItems = answer.documents_needed.map(doc => `
@@ -943,7 +1050,7 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
         `;
     }
 
-    // 3. Step-by-Step Procedure (Clean numbered process - no checkboxes)
+    // 2. Step-by-Step Procedure (Clean numbered process - no checkboxes)
     let stepsHtml = "";
     if (answer.steps && answer.steps.length > 0) {
         const stepItems = answer.steps.map((st, idx) => {
@@ -971,21 +1078,19 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
         `;
     }
 
-    // 4. Warnings & Red Flags (Completely removed per user request)
-    let warningsHtml = "";
+    // 3. Disclaimer Notice
+    let disclaimerHtml = "";
+    if (answer.disclaimer) {
+        disclaimerHtml = `
+            <div class="disclaimer-text">
+                ⚖️ <strong>Official Notice:</strong> ${escapeHtml(answer.disclaimer)}
+            </div>
+        `;
+    }
 
-    // 5. Gather and format tagged source links at the end
+    // 4. Gather and format tagged source links at the end
     const sourcesList = [];
     const seenUrls = new Set();
-
-    function formatSourceDomain(urlStr) {
-        try {
-            const u = new URL(urlStr);
-            return u.hostname.replace(/^www\./, "");
-        } catch (e) {
-            return "Official Portal";
-        }
-    }
 
     if (answer.source_url) {
         const urlStr = String(answer.source_url).trim();
@@ -1071,7 +1176,113 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
         `;
     }
 
-    // Plain Language Summary
+    return docsHtml + stepsHtml + disclaimerHtml + sourcesHtml;
+}
+
+// --- CREATE LIVE ASSISTANT CARD FOR SERVER-SENT EVENTS ---
+function createLiveAssistantRow(meta) {
+    const row = document.createElement("div");
+    row.className = "message-row";
+
+    let maskedBanner = "";
+    if (meta && meta.masked_items && meta.masked_items.length > 0) {
+        const maskedDetails = meta.masked_items.map(m => {
+            const label = m.item_type || "item";
+            return m.count ? `${m.count} ${label}` : `${label} as ${m.replacement || "[masked]"}`;
+        }).join(", ");
+        maskedBanner = `
+            <div class="privacy-alert">
+                <span>🛡️</span>
+                <span><strong>Protected Sensitive Data:</strong> Redacted ${maskedDetails} before processing.</span>
+            </div>
+        `;
+    }
+
+    row.innerHTML = `
+        <div class="message-avatar bot-avatar">🏛️</div>
+        <div class="message-content">
+            <div class="assistant-response">
+                <div class="response-header">
+                    <div class="response-title-group">
+                        <h3 class="response-title">${escapeHtml((meta && meta.title) || "Civic & Banking Guide")}</h3>
+                        ${(meta && meta.rl_arm) ? `<span class="rl-arm-pill" title="RL LinUCB Arm: ${escapeHtml(meta.rl_arm)}">⚡ ${escapeHtml(meta.rl_arm.replace(/_/g, ' '))}</span>` : ""}
+                    </div>
+                    <div class="response-header-actions">
+                        <span class="response-confidence confidence-${(meta && meta.confidence) || 'verified'}">
+                            ● ${(meta && meta.confidence ? meta.confidence.toUpperCase() : 'VERIFIED')}
+                        </span>
+                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate">👍</button>
+                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate">👎</button>
+                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard">
+                            <span class="copy-icon">📋</span> Copy
+                        </button>
+                    </div>
+                </div>
+
+                ${maskedBanner}
+
+                <div class="response-summary">
+                    <span class="typing-text"></span><span class="typing-cursor">▌</span>
+                </div>
+
+                <div class="post-summary-sections" style="display: none;"></div>
+            </div>
+        </div>
+    `;
+
+    const typingTextEl = row.querySelector(".typing-text");
+    const cursorEl = row.querySelector(".typing-cursor");
+    const postSectionsEl = row.querySelector(".post-summary-sections");
+    const titleEl = row.querySelector(".response-title");
+
+    return {
+        row,
+        updateTyping: (text) => {
+            if (typingTextEl) typingTextEl.textContent = text;
+        },
+        updateMeta: (newMeta) => {
+            if (newMeta && newMeta.title && titleEl) titleEl.textContent = newMeta.title;
+        },
+        finalize: (answer) => {
+            if (cursorEl) cursorEl.remove();
+            if (typingTextEl) {
+                const cleanText = ((answer && answer.summary) || typingTextEl.textContent || "")
+                    .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
+                    .trim();
+                typingTextEl.innerHTML = formatMarkdownMini(cleanText);
+            }
+            if (postSectionsEl && answer) {
+                postSectionsEl.innerHTML = renderPostSummarySections(answer);
+                postSectionsEl.style.display = "flex";
+                postSectionsEl.classList.add("section-fade-in");
+            }
+            if (titleEl && answer && answer.title) {
+                titleEl.textContent = answer.title;
+            }
+            scrollToBottom();
+        }
+    };
+}
+
+// --- APPEND ASSISTANT RESPONSE CARD (FOR HISTORICAL CHATS OR SYNC FALLBACK) ---
+function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
+    const row = document.createElement("div");
+    row.className = "message-row";
+
+    let maskedBanner = "";
+    if (answer.masked_items && answer.masked_items.length > 0) {
+        const maskedDetails = answer.masked_items.map(m => {
+            const label = m.item_type || "item";
+            return m.count ? `${m.count} ${label}` : `${label} as ${m.replacement || "[masked]"}`;
+        }).join(", ");
+        maskedBanner = `
+            <div class="privacy-alert">
+                <span>🛡️</span>
+                <span><strong>Protected Sensitive Data:</strong> Redacted ${maskedDetails} before processing.</span>
+            </div>
+        `;
+    }
+
     const cleanSummaryText = answer.summary ? String(answer.summary)
         .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
         .trim() : "";
@@ -1093,16 +1304,7 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
         }
     }
 
-    // Disclaimer Notice
-    let disclaimerHtml = "";
-    if (answer.disclaimer) {
-        disclaimerHtml = `
-            <div class="disclaimer-text">
-                ⚖️ <strong>Official Notice:</strong> ${escapeHtml(answer.disclaimer)}
-            </div>
-        `;
-    }
-
+    const sectionsHtml = renderPostSummarySections(answer);
     const postSectionsDisplay = (isLive && cleanSummaryText) ? 'style="display: none;"' : '';
     const postSectionsClass = (isLive && cleanSummaryText) ? 'post-summary-sections' : 'post-summary-sections section-fade-in';
 
@@ -1135,17 +1337,7 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
                 ${summaryHtml}
 
                 <div class="${postSectionsClass}" ${postSectionsDisplay}>
-                    <!-- Documents Needed -->
-                    ${docsHtml}
-
-                    <!-- Steps -->
-                    ${stepsHtml}
-
-                    <!-- Official Notice / Disclaimer -->
-                    ${disclaimerHtml}
-
-                    <!-- Tagged Sources & References at End -->
-                    ${sourcesHtml}
+                    ${sectionsHtml}
                 </div>
             </div>
         </div>
@@ -1154,7 +1346,7 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
     messagesContainer.appendChild(row);
     if (shouldScroll) scrollToBottom();
 
-    // Word-by-word streaming typewriter animation
+    // Word-by-word streaming typewriter animation (only when isLive is requested without SSE)
     if (isLive && cleanSummaryText) {
         const typingTextEl = row.querySelector(".typing-text");
         const cursorEl = row.querySelector(".typing-cursor");

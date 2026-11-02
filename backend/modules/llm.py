@@ -12,6 +12,7 @@ import os
 import re
 import threading
 import time
+from collections.abc import Generator
 from dataclasses import dataclass
 from urllib.parse import urlparse
 
@@ -52,6 +53,84 @@ class GroundedRewrite(BaseModel):
         if not isinstance(value, str):
             return value
         return " ".join(value.strip().split())
+
+
+class SummaryStreamFilter:
+    """Streams the summary string tokens in real-time from either JSON or raw model outputs."""
+
+    def __init__(self):
+        self.buffer = ""
+        self.mode = "detecting"
+        self.full_raw_text = ""
+        self.accumulated_summary = ""
+        self.in_escape = False
+
+    def feed(self, chunk: str) -> list[str]:
+        self.full_raw_text += chunk
+        tokens_to_yield = []
+        if self.mode == "done_streaming":
+            return tokens_to_yield
+
+        if self.mode == "detecting":
+            self.buffer += chunk
+            stripped = self.buffer.lstrip()
+            if stripped.startswith("{") or stripped.startswith("`"):
+                m = re.search(r'"summary"\s*:\s*"', self.buffer)
+                if m:
+                    self.mode = "streaming_json"
+                    after_quote = self.buffer[m.end():]
+                    self.buffer = ""
+                    chunk = after_quote
+                elif len(stripped) > 120 and "summary" not in stripped:
+                    self.mode = "streaming_raw"
+                    tokens_to_yield.append(self.buffer)
+                    self.accumulated_summary += self.buffer
+                    self.buffer = ""
+                    return tokens_to_yield
+                else:
+                    return tokens_to_yield
+            elif len(stripped) >= 15:
+                self.mode = "streaming_raw"
+                tokens_to_yield.append(self.buffer)
+                self.accumulated_summary += self.buffer
+                self.buffer = ""
+                return tokens_to_yield
+            else:
+                return tokens_to_yield
+
+        if self.mode == "streaming_raw":
+            tokens_to_yield.append(chunk)
+            self.accumulated_summary += chunk
+            return tokens_to_yield
+
+        if self.mode == "streaming_json":
+            current_token = []
+            for ch in chunk:
+                if self.in_escape:
+                    self.in_escape = False
+                    if ch == "n":
+                        current_token.append("\n")
+                    elif ch == "t":
+                        current_token.append("\t")
+                    elif ch == '"':
+                        current_token.append('"')
+                    elif ch == '\\':
+                        current_token.append('\\')
+                    else:
+                        current_token.append(ch)
+                elif ch == '\\':
+                    self.in_escape = True
+                elif ch == '"':
+                    self.mode = "done_streaming"
+                    break
+                else:
+                    current_token.append(ch)
+            if current_token:
+                emitted = "".join(current_token)
+                tokens_to_yield.append(emitted)
+                self.accumulated_summary += emitted
+
+        return tokens_to_yield
 
 
 @dataclass(frozen=True)
@@ -167,6 +246,97 @@ class GeminiLLMClient:
         return None
 
 
+def _build_llm_prompt(
+    question: str,
+    answer: Answer,
+    memory: tuple[MemoryTurn, ...] = (),
+) -> tuple[str, str, bool]:
+    evidence = []
+    if answer.entry_id and answer.steps:
+        # Primary anchor: canonical verified procedure and audited steps
+        steps_text = " ".join(f"{s.title}: {s.detail}" for s in answer.steps[:4])
+        docs_text = ", ".join(answer.documents_needed) if answer.documents_needed else "None"
+        evidence.append(f"[Primary Verified Procedure] {answer.title}\nSummary: {answer.summary}\nProcedural Steps: {steps_text}\nDocuments Needed: {docs_text}\nOfficial Portal: {answer.source_url}")
+        if answer.citations:
+            for idx, c in enumerate(answer.citations[:2], 1):
+                evidence.append(f"[Supporting Source {idx}] {c.title}\n{c.excerpt[:350].strip()}\nSource: {c.url}")
+    elif answer.citations:
+        for index, citation in enumerate(answer.citations[:2], 1):
+            excerpt = citation.excerpt[:350].strip()
+            evidence.append(f"[{index}] {citation.title}\n{excerpt}\nSource: {citation.url}")
+    elif answer.summary or answer.steps:
+        steps_text = " ".join(f"{s.title}: {s.detail}" for s in answer.steps[:4])
+        docs_text = ", ".join(answer.documents_needed) if answer.documents_needed else "None"
+        evidence.append(f"[1] {answer.title}\n{answer.summary}\nDocuments: {docs_text}\n{steps_text}\nSource: {answer.source_url}")
+    else:
+        return "", "", False
+
+    # Build multi-turn conversational dialogue from up to the last 25 turns
+    dialogue_turns = []
+    for turn in memory[-25:]:
+        dialogue_turns.append(f"Citizen: {turn.user_text}")
+        asst = getattr(turn, "assistant_text", None) or turn.answer_title
+        if asst:
+            dialogue_turns.append(f"Nivaan: {asst}")
+    history = "\n".join(dialogue_turns) or "No previous context."
+    evidence_text = "\n\n".join(evidence)
+
+    is_greeting = "welcome" in answer.title.lower() or (not answer.steps and not answer.citations)
+    if is_greeting:
+        system = (
+            "You are Nivaan, a friendly and intelligent AI civic assistant for India. "
+            "Respond warmly, naturally, and conversationally to the citizen's greeting in 1 to 2 sentences. "
+            "Mention that they can ask about official procedures (like PAN, Passport, Aadhaar, Voter ID, ITR, EPF, State Services) "
+            "or upload a document to review. Do not invent numbered steps. "
+            "Return JSON with key 'summary' (e.g. {\"summary\": \"...\"})."
+        )
+        prompt = f"Citizen greeting: {question[:300]}"
+    else:
+        system_base = (
+            "You are Nivaan, an intelligent, conversational AI civic guide for Indian citizens. "
+            "Carefully analyze the citizen's question and official evidence. "
+            "Explain the exact procedure or required actions directly, helpfully, and conversationally. "
+            "Return JSON with keys: 'summary' (string), 'documents_needed' (list, or [] if none), and 'steps' (list with 'title' and 'detail', or [] if none).\n\n"
+            "STRICT GROUNDING & REASONING RULES:\n"
+            "- CONTEXT-RELEVANCE GATE: If the official evidence does NOT address the scenario, output: {\"summary\": \"The verified knowledge base does not contain the specific procedure for this issue.\", \"documents_needed\": [], \"steps\": []}.\n"
+            "- DIRECT FIRST-SENTENCE: Answer the user's explicit question directly in the very first sentence. For binary/jurisdictional questions ('Can I...', 'Should I...', 'Will it...'), answer 'Yes' or 'No' with statutory reason, and return 'steps': [] and 'documents_needed': []. Only include 'steps' when asked how to perform a multi-step action.\n"
+            "- ZERO VAGUE PUNTS: Always specify exact official portals, forms, and escalation desks. Never say 'contact customer care'.\n"
+            "- ZERO CROSS-CONTAMINATION: Never blend unrelated error codes or procedures.\n"
+            "- ZERO EXTERNAL COMMERCIAL ENTITIES: Never reference commercial services (e.g. legaltax.in); cite only official .gov.in or .nic.in portals."
+        )
+
+        domain_rules = []
+        lowered_q = question.lower()
+        if any(k in lowered_q for k in ("139(9)", "139(5)", "defective", "revised return")):
+            domain_rules.append("SECTION 139(9) TRAP: If asked about filing a Revised Return (139(5)) for a 139(9) Defective Notice, state in the first sentence: 'No, you should NOT file a Revised Return under Section 139(5). A revised return does NOT cure a Section 139(9) defect notice and will cause the return to be declared invalid ab initio.' Direct responding via e-File > e-Proceedings > Defective Notice within 15 days. Never cite synthetic case studies.")
+        elif any(k in lowered_q for k in ("consumer", "edaakhil", "district court", "represent myself", "lawyer")):
+            domain_rules.append("CONSUMER COURT: If asked about self-representation or lawyer, answer: 'Yes, you can represent yourself in consumer court without hiring an advocate/lawyer under the Consumer Protection Act, 2019 via e-Daakhil (edaakhil.nic.in).' If asked about jurisdiction, state: 'Yes, claims up to 50 lakh lie before the District Commission (DCDRC).'")
+        elif any(k in lowered_q for k in ("nalsa", "legal aid")):
+            domain_rules.append("FREE LEGAL AID: Free legal aid is available under Section 12 of the Legal Services Authorities Act, 1987 (nalsa.gov.in, DLSA, helpline 15100).")
+        elif any(k in lowered_q for k in ("blo", "voter", "epic", "e-epic")):
+            domain_rules.append("VOTER ID: Direct tracking on voters.eci.gov.in using Form 6/8 Reference Number, contacting BLO via 'Know Your Polling Station & Officer', or escalating via NGRS (voters.eci.gov.in) / helpline 1950.")
+        elif any(k in lowered_q for k in ("credit card", "unsolicited")):
+            domain_rules.append("CREDIT CARD: RBI Master Direction: Unsolicited cards must be cancelled without fee with 2x penalty. Disputed charges go to issuer's grievance desk, then RBI Ombudsman (cms.rbi.org.in / 14448).")
+        elif any(k in lowered_q for k in ("pvc", "srn")):
+            domain_rules.append("AADHAAR PVC: State 24-48h gateway reconciliation window, 5-7 business days bank auto-reversal, and UIDAI escalation via helpdesk@uidai.gov.in with 12-digit UTR.")
+        elif any(k in lowered_q for k in ("bank validation", "refund unpaid")):
+            domain_rules.append("BANK VALIDATION: Resolution path is Profile > My Bank Account to re-validate IFSC, followed by Services > Refund Reissue Request. Never advise filing a defective return schema.")
+
+        if domain_rules:
+            system = system_base + "\nSPECIFIC STATUTORY RULE:\n" + "\n".join(domain_rules)
+        else:
+            system = system_base
+        prompt = (
+            f"--- Conversation Context ---\n{history}\n\n"
+            f"--- Citizen Question ---\n{question[:1200]}\n\n"
+            f"--- Official Government Evidence ---\n{evidence_text}\n\n"
+            "Instructions: Answer the citizen's question helpfully using the official evidence and conversation context above. "
+            "If this is a follow-up, refer back to the context smoothly."
+        )
+
+    return system, prompt, is_greeting
+
+
 class LocalLLMClient:
     def __init__(self, config: LocalLLMConfig | None = None):
         self.config = config or LocalLLMConfig.from_env()
@@ -221,88 +391,9 @@ class LocalLLMClient:
         if not self.config.enabled:
             return None
 
-        evidence = []
-        if answer.entry_id and answer.steps:
-            # Primary anchor: canonical verified procedure and audited steps
-            steps_text = " ".join(f"{s.title}: {s.detail}" for s in answer.steps[:4])
-            docs_text = ", ".join(answer.documents_needed) if answer.documents_needed else "None"
-            evidence.append(f"[Primary Verified Procedure] {answer.title}\nSummary: {answer.summary}\nProcedural Steps: {steps_text}\nDocuments Needed: {docs_text}\nOfficial Portal: {answer.source_url}")
-            if answer.citations:
-                for idx, c in enumerate(answer.citations[:2], 1):
-                    evidence.append(f"[Supporting Source {idx}] {c.title}\n{c.excerpt[:350].strip()}\nSource: {c.url}")
-        elif answer.citations:
-            for index, citation in enumerate(answer.citations[:2], 1):
-                excerpt = citation.excerpt[:350].strip()
-                evidence.append(f"[{index}] {citation.title}\n{excerpt}\nSource: {citation.url}")
-        elif answer.summary or answer.steps:
-            steps_text = " ".join(f"{s.title}: {s.detail}" for s in answer.steps[:4])
-            docs_text = ", ".join(answer.documents_needed) if answer.documents_needed else "None"
-            evidence.append(f"[1] {answer.title}\n{answer.summary}\nDocuments: {docs_text}\n{steps_text}\nSource: {answer.source_url}")
-        else:
+        system, prompt, is_greeting = _build_llm_prompt(question, answer, memory)
+        if not system or not prompt:
             return None
-
-        # Build multi-turn conversational dialogue from up to the last 10 turns
-        dialogue_turns = []
-        for turn in memory[-25:]:
-            dialogue_turns.append(f"Citizen: {turn.user_text}")
-            asst = getattr(turn, "assistant_text", None) or turn.answer_title
-            if asst:
-                dialogue_turns.append(f"Nivaan: {asst}")
-        history = "\n".join(dialogue_turns) or "No previous context."
-        evidence_text = "\n\n".join(evidence)
-
-        is_greeting = "welcome" in answer.title.lower() or (not answer.steps and not answer.citations)
-        if is_greeting:
-            system = (
-                "You are Nivaan, a friendly and intelligent AI civic assistant for India. "
-                "Respond warmly, naturally, and conversationally to the citizen's greeting in 1 to 2 sentences. "
-                "Mention that they can ask about official procedures (like PAN, Passport, Aadhaar, Voter ID, ITR, EPF, State Services) "
-                "or upload a document to review. Do not invent numbered steps. "
-                "Return JSON with key 'summary' (e.g. {\"summary\": \"...\"})."
-            )
-            prompt = f"Citizen greeting: {question[:300]}"
-        else:
-            system_base = (
-                "You are Nivaan, an intelligent, conversational AI civic guide for Indian citizens. "
-                "Carefully analyze the citizen's question and official evidence. "
-                "Explain the exact procedure or required actions directly, helpfully, and conversationally. "
-                "Return JSON with keys: 'summary' (string), 'documents_needed' (list, or [] if none), and 'steps' (list with 'title' and 'detail', or [] if none).\n\n"
-                "STRICT GROUNDING & REASONING RULES:\n"
-                "- CONTEXT-RELEVANCE GATE: If the official evidence does NOT address the scenario, output: {\"summary\": \"The verified knowledge base does not contain the specific procedure for this issue.\", \"documents_needed\": [], \"steps\": []}.\n"
-                "- DIRECT FIRST-SENTENCE: Answer the user's explicit question directly in the very first sentence. For binary/jurisdictional questions ('Can I...', 'Should I...', 'Will it...'), answer 'Yes' or 'No' with statutory reason, and return 'steps': [] and 'documents_needed': []. Only include 'steps' when asked how to perform a multi-step action.\n"
-                "- ZERO VAGUE PUNTS: Always specify exact official portals, forms, and escalation desks. Never say 'contact customer care'.\n"
-                "- ZERO CROSS-CONTAMINATION: Never blend unrelated error codes or procedures.\n"
-                "- ZERO EXTERNAL COMMERCIAL ENTITIES: Never reference commercial services (e.g. legaltax.in); cite only official .gov.in or .nic.in portals."
-            )
-
-            domain_rules = []
-            lowered_q = question.lower()
-            if any(k in lowered_q for k in ("139(9)", "139(5)", "defective", "revised return")):
-                domain_rules.append("SECTION 139(9) TRAP: If asked about filing a Revised Return (139(5)) for a 139(9) Defective Notice, state in the first sentence: 'No, you should NOT file a Revised Return under Section 139(5). A revised return does NOT cure a Section 139(9) defect notice and will cause the return to be declared invalid ab initio.' Direct responding via e-File > e-Proceedings > Defective Notice within 15 days. Never cite synthetic case studies.")
-            elif any(k in lowered_q for k in ("consumer", "edaakhil", "district court", "represent myself", "lawyer")):
-                domain_rules.append("CONSUMER COURT: If asked about self-representation or lawyer, answer: 'Yes, you can represent yourself in consumer court without hiring an advocate/lawyer under the Consumer Protection Act, 2019 via e-Daakhil (edaakhil.nic.in).' If asked about jurisdiction, state: 'Yes, claims up to 50 lakh lie before the District Commission (DCDRC).'")
-            elif any(k in lowered_q for k in ("nalsa", "legal aid")):
-                domain_rules.append("FREE LEGAL AID: Free legal aid is available under Section 12 of the Legal Services Authorities Act, 1987 (nalsa.gov.in, DLSA, helpline 15100).")
-            elif any(k in lowered_q for k in ("blo", "voter", "epic", "e-epic")):
-                domain_rules.append("VOTER ID: Direct tracking on voters.eci.gov.in using Form 6/8 Reference Number, contacting BLO via 'Know Your Polling Station & Officer', or escalating via NGRS (voters.eci.gov.in) / helpline 1950.")
-            elif any(k in lowered_q for k in ("credit card", "unsolicited")):
-                domain_rules.append("CREDIT CARD: RBI Master Direction: Unsolicited cards must be cancelled without fee with 2x penalty. Disputed charges go to issuer's grievance desk, then RBI Ombudsman (cms.rbi.org.in / 14448).")
-            elif any(k in lowered_q for k in ("pvc", "srn")):
-                domain_rules.append("AADHAAR PVC: State 24-48h gateway reconciliation window, 5-7 business days bank auto-reversal, and UIDAI escalation via helpdesk@uidai.gov.in with 12-digit UTR.")
-            elif any(k in lowered_q for k in ("bank validation", "refund unpaid")):
-                domain_rules.append("BANK VALIDATION: Resolution path is Profile > My Bank Account to re-validate IFSC, followed by Services > Refund Reissue Request. Never advise filing a defective return schema.")
-
-            if domain_rules:
-                system = system_base + "\nSPECIFIC STATUTORY RULE:\n" + "\n".join(domain_rules)
-            else:
-                system = system_base
-            prompt = (
-                f"--- Conversation Context ---\n{history}\n\n"
-                f"--- Citizen Question ---\n{question[:1200]}\n\n"
-                f"--- Official Government Evidence ---\n{evidence_text}\n\n"
-                "Instructions: Answer the citizen's question helpfully using the official evidence and conversation context above. "
-                "If this is a follow-up, refer back to the context smoothly."
-            )
 
         # 1. Accelerated Cloud Inference: Try Gemini first if API key is present for sub-3s high-accuracy response
         gemini = GeminiLLMClient()
@@ -413,6 +504,130 @@ class LocalLLMClient:
         if not _is_grounded(parsed.summary, answer):
             return None
         return parsed
+
+    def stream_grounded_answer(
+        self,
+        *,
+        question: str,
+        answer: Answer,
+        memory: tuple[MemoryTurn, ...] = (),
+        temperature: float | None = None,
+    ) -> Generator[tuple[str, object], None, None]:
+        """Streams plain summary text tokens in real time, then yields the final validated GroundedRewrite or None."""
+        if not self.config.enabled:
+            return
+
+        system, prompt, is_greeting = _build_llm_prompt(question, answer, memory)
+        if not system or not prompt:
+            return
+
+        avail_cpus = os.cpu_count() or 4
+        optimal_threads = min(avail_cpus, 4)
+        is_direct_q = _is_direct_or_binary_question(question)
+        predict_limit = min(self.config.num_predict, 180) if is_direct_q else self.config.num_predict
+        ctx_limit = min(self.config.num_ctx, 2048)
+
+        payload = {
+            "model": self.config.model,
+            "stream": True,
+            "messages": [
+                {"role": "system", "content": system},
+                {"role": "user", "content": prompt},
+            ],
+            "options": {
+                "temperature": temperature if temperature is not None else (0.2 if is_greeting else 0.1),
+                "num_predict": predict_limit,
+                "num_ctx": ctx_limit,
+                "num_thread": optimal_threads,
+            },
+        }
+
+        stream_filter = SummaryStreamFilter()
+        global _is_generating
+        with _is_generating_lock:
+            _is_generating = True
+        try:
+            with httpx.Client(timeout=self.config.timeout_seconds) as client:
+                with client.stream("POST", f"{self.config.base_url}/api/chat", json=payload) as response:
+                    response.raise_for_status()
+                    for line in response.iter_lines():
+                        if not line:
+                            continue
+                        try:
+                            chunk_data = json.loads(line)
+                        except Exception:
+                            continue
+                        content_chunk = chunk_data.get("message", {}).get("content", "")
+                        if content_chunk:
+                            tokens = stream_filter.feed(content_chunk)
+                            for t in tokens:
+                                yield ("token", t)
+                        if chunk_data.get("done"):
+                            break
+        except Exception as e:
+            logger.debug("Local LLM streaming error: %s", e)
+        finally:
+            with _is_generating_lock:
+                _is_generating = False
+
+        # Parse the complete rewrite
+        raw_content = stream_filter.full_raw_text.strip()
+        raw_content = re.sub(r"<think>.*?</think>", "", raw_content, flags=re.DOTALL).strip()
+        if raw_content.startswith("```"):
+            raw_content = re.sub(r"^```(?:json)?\s*", "", raw_content)
+            raw_content = re.sub(r"\s*```$", "", raw_content)
+        raw_content = raw_content.strip()
+
+        summary_candidate = None
+        docs_candidate = []
+        steps_candidate = []
+        try:
+            data = json.loads(raw_content)
+            if isinstance(data, dict):
+                if "summary" in data:
+                    summary_candidate = str(data["summary"]).strip()
+                if "documents_needed" in data and isinstance(data["documents_needed"], list):
+                    docs_candidate = [str(d).strip() for d in data["documents_needed"] if str(d).strip()]
+                if "steps" in data and isinstance(data["steps"], list):
+                    steps_candidate = [
+                        {"title": str(s.get("title", "")).strip(), "detail": str(s.get("detail", "")).strip()}
+                        for s in data["steps"]
+                        if isinstance(s, dict) and s.get("title") and s.get("detail")
+                    ]
+        except (json.JSONDecodeError, ValueError):
+            pass
+
+        if not summary_candidate:
+            match = re.search(r'\{\s*"summary"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"\s*\}', raw_content)
+            if match:
+                try:
+                    summary_candidate = match.group(1).encode().decode("unicode_escape", errors="ignore").strip()
+                except Exception:
+                    summary_candidate = match.group(1).strip()
+            elif raw_content and not raw_content.startswith("{"):
+                summary_candidate = raw_content.strip()
+
+        if not summary_candidate and stream_filter.accumulated_summary:
+            summary_candidate = stream_filter.accumulated_summary.strip()
+
+        if summary_candidate:
+            is_refusal = (
+                "does not contain the specific procedure for this issue" in summary_candidate.lower()
+                or "verified knowledge base does not contain" in summary_candidate.lower()
+            )
+            try:
+                parsed = GroundedRewrite.model_validate({
+                    "summary": summary_candidate,
+                    "documents_needed": [] if is_refusal else docs_candidate,
+                    "steps": [] if is_refusal else steps_candidate,
+                })
+                if is_refusal or _is_grounded(parsed.summary, answer):
+                    yield ("final", parsed)
+                    return
+            except Exception:
+                pass
+
+        yield ("final", None)
 
     def rewrite_summary(
         self,
@@ -561,25 +776,12 @@ def _extract_dynamic_steps_from_summary(summary: str) -> list[Step]:
     return steps
 
 
-def enhance_grounded_answer(
+def apply_rewrite_to_answer(
     answer: Answer,
-    *,
+    rewrite: GroundedRewrite | None,
     question: str,
-    memory: tuple[MemoryTurn, ...] = (),
-    temperature: float | None = None,
 ) -> Answer:
-    """Return a locally synthesized dynamic answer or the exact deterministic answer on failure."""
-    if os.getenv("PYTEST_CURRENT_TEST") and not os.getenv("TEST_LIVE_LLM"):
-        return answer
-    try:
-        rewrite = LocalLLMClient().synthesize_grounded_answer(
-            question=question,
-            answer=answer,
-            memory=memory,
-            temperature=temperature,
-        )
-    except Exception:
-        rewrite = None
+    """Applies a GroundedRewrite to the Answer schema with direct-question and QA checks."""
     if not rewrite:
         return answer
 
@@ -616,7 +818,6 @@ def enhance_grounded_answer(
     enhanced = answer.model_copy(update=updates)
 
     # --- Post-generation QA check ---
-    # Build source text from the original answer evidence
     source_parts = []
     if answer.citations:
         for c in answer.citations:
@@ -637,10 +838,34 @@ def enhance_grounded_answer(
     return enhanced
 
 
+def enhance_grounded_answer(
+    answer: Answer,
+    *,
+    question: str,
+    memory: tuple[MemoryTurn, ...] = (),
+    temperature: float | None = None,
+) -> Answer:
+    """Return a locally synthesized dynamic answer or the exact deterministic answer on failure."""
+    if os.getenv("PYTEST_CURRENT_TEST") and not os.getenv("TEST_LIVE_LLM"):
+        return answer
+    try:
+        rewrite = LocalLLMClient().synthesize_grounded_answer(
+            question=question,
+            answer=answer,
+            memory=memory,
+            temperature=temperature,
+        )
+    except Exception:
+        rewrite = None
+    return apply_rewrite_to_answer(answer, rewrite, question)
+
+
 __all__ = [
     "GroundedRewrite",
     "LocalLLMClient",
     "LocalLLMConfig",
+    "SummaryStreamFilter",
+    "apply_rewrite_to_answer",
     "enhance_grounded_answer",
     "local_llm_enabled",
     "local_llm_health",
