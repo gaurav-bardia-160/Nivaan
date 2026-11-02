@@ -25,7 +25,7 @@ _CATEGORY_TERMS = {
         "presumptive", "44ad", "44ada", "44ae", "corporate tax", "company tax", "115baa",
         "cess", "surcharge", "234a", "234b", "234c", "234f", "advance tax", "itrv", "itr-v",
         "acknowledgement number", "belated", "assessment year", "ay", "financial year", "fy",
-        "tax refund", "refund", "synthetic", "139", "119", "defective", "defective return", "revised return", "refund reissue", "refund unpaid", "कर", "आयकर", "ટેક્સ", "ઇન્કમટેક્સ",
+        "tax refund", "income tax refund", "synthetic", "139", "119", "defective", "defective return", "revised return", "refund reissue", "refund unpaid", "कर", "आयकर", "ટેક્સ", "ઇન્કમટેક્સ",
     ),
     "civic": (
         "passport", "pasport", "paspot", "passsport", "efrro", "frro", "visa", "voter", "voters", "voterid", "voter-id", "voter id", "votercard", "epic", "nvsp", "eci", "parivahan",
@@ -104,12 +104,21 @@ def get_retriever() -> RagRetriever:
 
 def supported_category(query: str) -> str | None:
     lowered = query.lower()
+    _UNSUPPORTED_NON_CIVIC_TERMS = (
+        "cake", "bake", "baking", "recipe", "cook", "cooking", "chocolate",
+        "movie", "song", "songs", "lyrics", "cricket", "football", "weather", "joke", "jokes",
+    )
+    if any(re.search(rf"(?<!\w){re.escape(term)}(?!\w)", lowered) for term in _UNSUPPORTED_NON_CIVIC_TERMS):
+        return None
+
     # Explicit domain priority: isolate civic/election/banking/consumer/legal aid sub-domains
     _CIVIC_STRONG_TERMS = (
         "voter", "voters", "epic", "e-epic", "blo", "nvsp", "eci", "form 8", "form 6", "form 7", "electoral",
         "credit card", "cibil", "experian", "crif", "foreclosure", "prepayment", "rbi", "unsolicited", "card conduct",
         "edaakhil", "e-daakhil", "consumer court", "dcdrc", "scdrc", "ncdrc", "nalsa", "legal aid", "district court",
         "passport", "psk", "police verification", "epf", "epfo", "joint declaration", "uan", "fir",
+        "fastag", "toll", "nhai", "ihmcl", "parivahan", "vahan", "sarathi", "chassis", "challan", "echallan",
+        "cbse", "marksheet", "digilocker",
     )
     if any(re.search(rf"(?<!\w){re.escape(t)}(?!\w)", lowered) for t in _CIVIC_STRONG_TERMS):
         return "civic"
@@ -133,10 +142,23 @@ def expand_retrieval_query(query: str) -> str:
     return normalized
 
 
-def retrieve_if_enabled(query: str, *, top_k: int = 3) -> RetrievalResult | None:
+def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) -> RetrievalResult | None:
+    _UNSUPPORTED = ("cake", "bake", "baking", "recipe", "cook", "cooking", "chocolate", "movie", "song", "cricket", "football", "weather")
+    if any(re.search(rf"(?<!\w){re.escape(t)}(?!\w)", query.lower()) for t in _UNSUPPORTED):
+        return None
     if not rag_enabled():
         return None
-    category = supported_category(query)
+    category = None
+    if domain is not None:
+        from backend.modules.domain_router import Domain
+        if domain in (Domain.TRANSPORT, "transport", Domain.EDUCATION, "education", Domain.BANKING, "banking", Domain.LEGAL_CONSUMER, "legal_consumer", Domain.AGRICULTURE, "agriculture", Domain.GENERAL_CIVIC, "civic"):
+            category = "civic"
+        elif domain in (Domain.TAXATION, "tax", "taxation"):
+            category = "tax"
+        elif domain in (Domain.IDENTITY, "identity"):
+            category = "aadhaar" if any(w in query.lower() for w in ("aadhaar", "aadhar", "uidai")) else "civic"
+    if category is None:
+        category = supported_category(query)
     if category is None:
         lowered = query.lower()
         trouble_words = {"failed", "delay", "rejected", "error", "mismatch", "penalty", "stuck", "pending", "notice", "defective", "refund", "deducted", "tat", "unsolicited", "foreclosure"}
@@ -145,7 +167,7 @@ def retrieve_if_enabled(query: str, *, top_k: int = 3) -> RetrievalResult | None
         else:
             return None
     expanded_query = expand_retrieval_query(query)
-    result = get_retriever().search(expanded_query, category=category, top_k=top_k)
+    result = get_retriever().search(expanded_query, category=category, domain=domain, top_k=top_k)
     return result if result.hits else None
 
 

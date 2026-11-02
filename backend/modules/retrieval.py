@@ -8,6 +8,7 @@ from typing import Any, Optional
 from rapidfuzz import fuzz
 
 from backend.config import KNOWLEDGE_BASE_PATH
+from backend.modules.domain_router import Domain, classify_domain, entry_matches_domain
 from backend.schemas import KnowledgeEntry
 
 DATA_PATH = KNOWLEDGE_BASE_PATH
@@ -118,8 +119,15 @@ def _score_entry(normalized_query: str, query_tokens: set[str], entry: dict[str,
     lowered_q = normalized_query.lower()
     entry_id = str(entry.get("id", "")).lower()
 
+    # Pre-retrieval Hard Domain Routing: reject entries outside the query's domain
+    query_domain = classify_domain(normalized_query)
+    if not entry_matches_domain(entry_id, entry.get("category"), query_domain):
+        return 0.0
+
     # Cross-domain hard isolation: prevent semantic bleed from dominant clusters
     _DOMAIN_CONFLICTS = (
+        ({"fastag", "toll", "nhai", "ihmcl", "parivahan", "vahan", "sarathi", "rc", "chassis"}, ("itr_", "pan_", "aadhaar_", "pm_kisan", "passport_", "pf_", "epf_")),
+        ({"cbse", "marksheet", "degree", "roll number"}, ("itr_", "pan_", "aadhaar_", "pm_kisan", "passport_", "pf_", "epf_", "loan_")),
         ({"voter", "epic", "blo", "nvsp", "eci", "electoral", "voting"}, ("pan_", "aadhaar_", "itr_", "loan_", "rbi_", "pf_")),
         ({"credit card", "cibil", "experian", "crif", "foreclosure"}, ("itr_", "pan_", "aadhaar_")),
         ({"tax", "itr", "139 9", "139 5", "139", "defective return", "defective notice", "income tax", "234f"}, ("aadhaar_", "passport_", "consumer_", "epf_")),
@@ -201,17 +209,21 @@ def find_entry_by_id(entry_id: str) -> Optional[dict[str, Any]]:
 
 
 def knowledge_stats() -> dict[str, int]:
+    """Return verified and unverified counts for honesty disclosures."""
     entries = _load_entries()
     verified = sum(1 for entry in entries if entry.get("status") == "verified")
-    unverified = sum(1 for entry in entries if entry.get("status") == "unverified")
-    return {"total": len(entries), "verified": verified, "unverified": unverified}
+    return {
+        "total": len(entries),
+        "verified": verified,
+        "unverified": len(entries) - verified,
+    }
 
 
 __all__ = [
+    "DATA_PATH",
+    "MATCH_THRESHOLD",
     "find_entry",
-    "find_entry_with_score",
     "find_entry_by_id",
+    "find_entry_with_score",
     "knowledge_stats",
-    "_load_entries",
-    "_normalize",
 ]

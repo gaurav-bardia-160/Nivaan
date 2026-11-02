@@ -965,5 +965,166 @@
       "last_verified": "2026-10-30"
     },
     "status": "verified"
+  },
+  {
+    "id": "fastag_toll_dispute_refund",
+    "title": "FASTag Toll Dispute, Double Deduction & Incorrect Fee Refund",
+    "category": "general",
+    "summary": "FASTag incorrect toll deductions, double charges at NHAI toll plazas, or deductions when toll was paid by cash must be raised directly through the NHAI/IHMCL 1033 helpline or the FASTag issuing bank portal. Under NPCI and IHMCL dispute settlement rules, wrong deductions must be refunded to the user's FASTag wallet/account within 7 to 15 business days after toll plaza transaction log verification.",
+    "keywords": [
+      "fastag",
+      "fastag refund",
+      "fastag toll refund",
+      "toll dispute",
+      "double deduction",
+      "nhai",
+      "ihmcl",
+      "1033",
+      "toll plaza deduction",
+      "wrong toll deduction"
+    ],
+    "documents_needed": [
+      "FASTag Wallet ID / Tag ID / Registered Mobile Number",
+      "Vehicle Registration Number (VRN)",
+      "Toll deduction SMS / transaction receipt containing Date, Time, and Plaza Lane ID",
+      "Cash receipt (if toll was paid in cash after tag deduction)"
+    ],
+    "steps": [
+      {
+        "title": "Call NHAI Toll Free Helpline 1033",
+        "detail": "Dial 1033 (available 24x7) immediately to register a toll dispute ticket with NHAI/IHMCL, quoting the toll plaza name, lane number, and deduction time."
+      },
+      {
+        "title": "Raise Chargeback Dispute with Issuing Bank",
+        "detail": "Log in to the FASTag issuer bank portal/app (e.g., ICICI, SBI, HDFC, IDFC, Paytm Payments Bank) and raise a transaction dispute/chargeback selecting 'Incorrect Toll Deduction' or 'Double Charge'."
+      },
+      {
+        "title": "Plaza Video and Lane Log Verification",
+        "detail": "The issuing bank routes the dispute to the Acquiring Bank and Toll Concessionaire to verify toll plaza CCTV footage and lane sensor logs against your vehicle registration."
+      },
+      {
+        "title": "Auto-Reversal within 7-15 Working Days",
+        "detail": "Upon confirmation that deduction was erroneous, the funds are credited directly back to the linked FASTag wallet or bank account."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Dispute Filing Window",
+        "message": "FASTag toll disputes should be filed within 30 days of the transaction date to ensure plaza lane CCTV logs are available for verification.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "Indian Highway Management Company Limited (IHMCL) / NHAI FASTag Dispute Redressal",
+      "url": "https://ihmcl.co.in/",
+      "last_verified": "2026-11-01"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "parivahan_vahan_rc_correction",
+    "title": "Parivahan VAHAN Registration Certificate (RC) Chassis / Engine Number Correction & Traffic Fine Dispute",
+    "category": "general",
+    "summary": "Vehicle Registration Certificate (RC) clerical errors in chassis number, engine number, or vehicle model must be rectified through the Parivahan VAHAN citizen portal or at the jurisdictional RTO using physical pencil print verification. If an incorrect traffic e-challan has been issued due to chassis or registration plate confusion, it must be contested on the Parivahan echallan grievance portal before payment.",
+    "keywords": [
+      "parivahan",
+      "vahan",
+      "rc correction",
+      "chassis number mismatch",
+      "engine number error",
+      "rto rc alteration",
+      "echallan dispute",
+      "wrong traffic fine",
+      "parivahan echallan"
+    ],
+    "documents_needed": [
+      "Original Vehicle Registration Certificate (RC)",
+      "Chassis Pencil Print on plain paper (taken directly from the vehicle chassis plate)",
+      "Vehicle Sale Invoice / Form 21 / Form 22 from vehicle manufacturer/dealer",
+      "Valid Vehicle Insurance Certificate and Pollution Under Control (PUC) Certificate",
+      "Owner Identity and Address Proof (Aadhaar, Voter ID, or DL)"
+    ],
+    "steps": [
+      {
+        "title": "Initiate RC Alteration on Parivahan VAHAN Portal",
+        "detail": "Visit parivahan.gov.in -> Vehicle Related Services -> Select State & RTO -> Apply for Alteration of Vehicle Details / RC Correction."
+      },
+      {
+        "title": "Take Physical Pencil Print of Chassis Number",
+        "detail": "Trace the physical chassis number stamped onto the vehicle chassis frame onto plain white paper using a graphite pencil."
+      },
+      {
+        "title": "Submit Physical Inspection at RTO",
+        "detail": "Book an appointment and present the vehicle before the Motor Vehicle Inspector (MVI) along with Form 21/22 and pencil print to endorse the correction."
+      },
+      {
+        "title": "Dispute Wrong Traffic Police Fines on eChallan Portal",
+        "detail": "For fines issued to your vehicle erroneously, visit echallan.parivahan.gov.in -> Complaint / Grievance -> submit vehicle proof, chassis photo, and explanation to request challan cancellation."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "Do Not Pay Erroneous e-Challans Before Dispute Resolution",
+        "message": "Paying a contested traffic challan is treated as an admission of violation and makes refund through Virtual Traffic Court difficult.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "Ministry of Road Transport and Highways (MoRTH) - Parivahan VAHAN Citizen Services",
+      "url": "https://parivahan.gov.in/",
+      "last_verified": "2026-11-01"
+    },
+    "status": "verified"
+  },
+  {
+    "id": "digilocker_cbse_name_mismatch",
+    "title": "DigiLocker CBSE Marksheet / Certificate Fetch Failure (Name Mismatch with Aadhaar)",
+    "category": "general",
+    "summary": "DigiLocker requires an exact character-by-character match between the citizen's Aadhaar profile (name and date of birth) and the CBSE board database records. If your name spelling, initials, or spacing in DigiLocker/Aadhaar differs from your CBSE Class X or XII admit card/certificate, DigiLocker will fail to fetch the document. The solution requires updating Aadhaar demographic details or filing a name correction with CBSE through your school.",
+    "keywords": [
+      "digilocker",
+      "cbse",
+      "marksheet fetch failed",
+      "digilocker name mismatch",
+      "cbse marksheet digilocker",
+      "aadhaar name mismatch cbse",
+      "digilocker certificate error"
+    ],
+    "documents_needed": [
+      "CBSE Class X or XII Admit Card / Original Passing Certificate",
+      "Aadhaar Card (demographic details must match CBSE spelling)",
+      "CBSE Roll Number, School Code, Center Code, and Passing Year"
+    ],
+    "steps": [
+      {
+        "title": "Compare Aadhaar Name Spelling Against CBSE Certificate",
+        "detail": "Check whether your Aadhaar card has initials, expanded names, or surname ordering that differs from the exact name printed on your CBSE Class X/XII certificate."
+      },
+      {
+        "title": "Update Aadhaar Demographic Details on myAadhaar",
+        "detail": "If CBSE certificate name is the authoritative legal spelling, update your name on myaadhaar.uidai.gov.in or at an Aadhaar Seva Kendra submitting your Class X certificate as POI."
+      },
+      {
+        "title": "Sync Updated Aadhaar Profile in DigiLocker",
+        "detail": "After Aadhaar update is approved, log out of DigiLocker and log in again to sync your updated name and demographic profile."
+      },
+      {
+        "title": "Fetch CBSE Marksheet Using Roll Number and Year",
+        "detail": "Navigate to DigiLocker -> Central Board of Secondary Education -> Class X/XII Marksheet -> Enter Roll Number and Year -> Pull Document. The document is verified and issued instantly."
+      }
+    ],
+    "warnings": [
+      {
+        "title": "School Route for CBSE Record Alteration",
+        "message": "If the error originated in CBSE's database rather than Aadhaar, name correction must be forwarded through the school principal to the CBSE Regional Office within statutory timeframes.",
+        "severity": "warning"
+      }
+    ],
+    "source": {
+      "name": "DigiLocker National e-Governance Division (NeGD) & CBSE Digital Academic Repository",
+      "url": "https://www.digilocker.gov.in/",
+      "last_verified": "2026-11-01"
+    },
+    "status": "verified"
   }
 ]

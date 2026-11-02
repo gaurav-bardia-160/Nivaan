@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from backend.modules.domain_router import Domain, classify_domain, get_allowed_rag_categories
 from backend.rag.bm25 import BM25Index, tokenize
 from backend.rag.embeddings import EmbeddingProvider
 from backend.rag.loader import load_corpus
@@ -47,7 +48,14 @@ class RagRetriever:
         self.embedding_provider = embedding_provider
         self.vector_store = vector_store
 
-    def search(self, query: str, *, category: str | None = None, top_k: int | None = None) -> RetrievalResult:
+    def search(
+        self,
+        query: str,
+        *,
+        category: str | None = None,
+        domain: Domain | str | None = None,
+        top_k: int | None = None,
+    ) -> RetrievalResult:
         clean_query = " ".join((query or "").split())
         requested_top_k = self.config.final_top_k if top_k is None else top_k
         if requested_top_k < 1:
@@ -55,17 +63,35 @@ class RagRetriever:
         if not clean_query:
             return RetrievalResult(query=clean_query, hits=(), status="empty_query", searched_documents=0)
 
-        allowed = None
+        # 1. Hard Domain Routing & Category Filtering
+        resolved_domain: Domain = Domain.UNKNOWN
+        if domain is not None:
+            if isinstance(domain, Domain):
+                resolved_domain = domain
+            else:
+                try:
+                    resolved_domain = Domain(str(domain))
+                except ValueError:
+                    resolved_domain = classify_domain(clean_query)
+        else:
+            resolved_domain = classify_domain(clean_query)
+
+        allowed_categories = get_allowed_rag_categories(resolved_domain)
         if category:
-            allowed = {
+            allowed_categories = {category} if allowed_categories is None else (allowed_categories & {category})
+
+        allowed_indices = None
+        if allowed_categories is not None:
+            allowed_indices = {
                 idx for idx, doc in enumerate(self.documents)
-                if doc.category == category
+                if doc.category in allowed_categories
             }
 
-        lexical_hits = self.index.search(clean_query, top_k=self.config.lexical_top_k, allowed_indices=allowed)
+        lexical_hits = self.index.search(clean_query, top_k=self.config.lexical_top_k, allowed_indices=allowed_indices)
         candidates: dict[str, dict[str, float]] = {}
         lexical_ranks: dict[str, int] = {}
         q_terms = set(tokenize(clean_query))
+
         for rank, hit in enumerate(lexical_hits, 1):
             document = self.documents[hit.index]
             lexical_ranks[document.id] = rank
@@ -73,13 +99,19 @@ class RagRetriever:
             signals["bm25_score"] = hit.score
             signals["lexical_rrf"] = 1 / (self.config.rrf_k + rank)
 
+        # 2. Vector Search with Category Filtering
         if self.embedding_provider is not None and self.vector_store is not None:
             query_vector = self.embedding_provider.embed_texts((clean_query,))[0]
+            vector_category = next(iter(allowed_categories)) if (allowed_categories and len(allowed_categories) == 1) else category
             for rank, hit in enumerate(
-                self.vector_store.search(query_vector, top_k=self.config.vector_top_k, category=category),
+                self.vector_store.search(query_vector, top_k=self.config.vector_top_k, category=vector_category),
                 1,
             ):
                 if hit.document_id not in self.documents_by_id:
+                    continue
+                document = self.documents_by_id[hit.document_id]
+                # Enforce domain namespace: discard vectors outside allowed categories
+                if allowed_categories is not None and document.category not in allowed_categories:
                     continue
                 signals = candidates.setdefault(hit.document_id, {})
                 signals["vector_score"] = hit.score
@@ -99,6 +131,13 @@ class RagRetriever:
         }
         is_trouble_query = bool(q_terms & _TROUBLE_TOKENS)
 
+        # 3. Exact Domain Entities for Keyword Hijacking Suppression
+        _PRIMARY_DOMAIN_ENTITIES = {
+            "fastag", "nhai", "ihmcl", "vahan", "sarathi", "parivahan", "rc", "chassis", "challan", "echallan",
+            "cbse", "marksheet", "digilocker", "pmkisan"
+        }
+        query_entities = {t for t in q_terms if t in _PRIMARY_DOMAIN_ENTITIES}
+
         fused: list[RetrievalHit] = []
         for document_id, signals in candidates.items():
             document = self.documents_by_id[document_id]
@@ -113,8 +152,20 @@ class RagRetriever:
             signals["tag_overlap"] = metadata_overlap
             score = signals.get("lexical_rrf", 0.0) + signals.get("vector_rrf", 0.0) + min(metadata_overlap, 1.0) * 0.01
 
-            # Exact statutory & error code boost: ensures statutory sections & error codes surface to rank 1
             lowered_doc = (document.text + " " + " ".join(document.tags)).lower()
+
+            # Anti-Keyword-Hijacking: if user specified key domain entities (FASTag, NHAI, CBSE, etc.)
+            # penalize candidate chunks that lack the exact entity, preventing generic "refund" hijacking
+            if query_entities:
+                has_entity = any(re.search(rf"\b{re.escape(ent)}\b", lowered_doc) for ent in query_entities)
+                if not has_entity:
+                    score -= 0.60
+                    signals["entity_mismatch_penalty"] = -0.60
+                else:
+                    score += 0.25
+                    signals["exact_acronym_boost"] = 0.25
+
+            # Exact statutory & error code boost: ensures statutory sections & error codes surface to rank 1
             _EXACT_CODES = (
                 "blo", "e-epic", "epic", "form 8", "form 6", "form 7", "ngrs", "voter mitra",
                 "139(9)", "139(5)", "139(4)", "119(2)(b)", "119", "234f", "44ad", "44ada",
@@ -128,14 +179,13 @@ class RagRetriever:
                     signals["exact_statutory_boost"] = 0.12
                     break
 
-            # Synthetic Case Study suppression: citizen procedural queries must never be polluted with fictional case studies
+            # Synthetic Case Study suppression
             if "synthetic" in lowered_doc and "synthetic" not in clean_query.lower() and "case study" not in clean_query.lower():
                 score -= 0.30
                 signals["synthetic_penalty"] = -0.30
 
-            # Troubleshooting boost: prioritize authoritative SOP & escalation guidelines when user reports a failure
-            # Strictly scoped to the query's matching domain category to prevent cross-domain leakage
-            if is_trouble_query and (category is None or document.category == category) and any(tag in doc_tags for tag in ("troubleshooting", "escalation", "sop", "manual")):
+            # Troubleshooting boost: strictly scoped to the query's matching category
+            if is_trouble_query and (allowed_categories is None or document.category in allowed_categories) and any(tag in doc_tags for tag in ("troubleshooting", "escalation", "sop", "manual")):
                 score += 0.05
                 signals["troubleshooting_boost"] = 0.05
 
@@ -216,12 +266,12 @@ class RagRetriever:
             query=clean_query,
             hits=final,
             status=f"supported_{mode}" if final else "insufficient",
-            searched_documents=len(allowed) if allowed is not None else len(self.documents),
+            searched_documents=len(allowed_indices) if allowed_indices is not None else len(self.documents),
         )
 
 
-def search(query: str, *, category: str | None = None, top_k: int = 8) -> RetrievalResult:
-    return RagRetriever().search(query, category=category, top_k=top_k)
+def search(query: str, *, category: str | None = None, domain: Domain | str | None = None, top_k: int = 8) -> RetrievalResult:
+    return RagRetriever().search(query, category=category, domain=domain, top_k=top_k)
 
 
 __all__ = ["RagRetriever", "RetrieverConfig", "document_text", "search"]

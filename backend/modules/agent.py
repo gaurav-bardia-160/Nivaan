@@ -3,10 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal
 
+from backend.modules.domain_router import Domain, classify_domain
 from backend.modules.retrieval import find_entry
 from backend.schemas import AskRequest
 
-Category = Literal["tax", "banking", "scheme", "legal", "general", "unknown"]
+Category = Literal["tax", "banking", "scheme", "legal", "general", "transport", "education", "unknown"]
 RoutePath = Literal["question", "document"]
 
 
@@ -20,6 +21,8 @@ class RouteResult:
 
 
 _CATEGORY_KEYWORDS: dict[Category, tuple[str, ...]] = {
+    "transport": ("fastag", "toll", "nhai", "ihmcl", "parivahan", "vahan", "sarathi", "rc", "chassis", "challan", "echallan", "dl", "driving license"),
+    "education": ("cbse", "marksheet", "board exam", "roll number", "degree", "passing certificate", "migration certificate"),
     "tax": ("itr", "income tax", "form 16", "tax return", "assessment year", "pan"),
     "banking": ("bank", "loan", "emi", "interest", "kyc", "account", "rbi", "penalty", "prepayment"),
     "legal": ("legal notice", "agreement", "contract", "court", "lawyer", "clause", "respond within"),
@@ -37,12 +40,20 @@ def route(request: AskRequest) -> RouteResult:
     """
 
     text = _combined_text(request)
-    category = _keyword_category(text)
+    domain = classify_domain(request.question, request.document_text)
+
+    if domain == Domain.TRANSPORT:
+        category: Category = "transport"
+    elif domain == Domain.EDUCATION:
+        category = "education"
+    else:
+        category = _keyword_category(text)
+
     entry = find_entry(text)
     matched_entry_id = entry["id"] if entry else None
 
     if entry and category == "unknown":
-        category = entry.get("category", "unknown")
+        category = entry.get("category", "unknown")  # type: ignore[assignment]
 
     if request.input_type == "document" and not request.document_text and request.file_attached:
         return RouteResult(
@@ -82,7 +93,7 @@ def _keyword_category(text: str) -> Category:
     for category, keywords in _CATEGORY_KEYWORDS.items():
         scores[category] = sum(1 for keyword in keywords if keyword in lowered)
 
-    best_category = max(scores, key=scores.get)
+    best_category = max(scores, key=scores.get)  # type: ignore[arg-type]
     if scores[best_category] == 0:
         return "unknown"
     return best_category

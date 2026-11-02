@@ -8,7 +8,17 @@ from dataclasses import dataclass
 from typing import Iterable
 
 TOKEN_RE = re.compile(r"[\w\u0900-\u097F]+", re.UNICODE)
-IMPORTANT_TERMS = {"pan", "aadhaar", "uidai", "epan", "e", "itr", "vid", "pvc", "kyc", "49a", "49aa"}
+IMPORTANT_TERMS = {
+    # Identity
+    "pan", "aadhaar", "uidai", "epan", "e", "itr", "vid", "pvc", "kyc", "49a", "49aa",
+    "digilocker", "epic", "eci", "nvsp", "passport", "psk",
+    # Transport
+    "fastag", "nhai", "ihmcl", "vahan", "sarathi", "parivahan", "rc", "chassis", "challan", "echallan", "dl", "rto",
+    # Education
+    "cbse", "marksheet", "nios", "icse",
+    # Banking, Schemes & Consumer
+    "rbi", "kcc", "fir", "edaakhil", "dcdrc", "ncdrc", "nalsa", "uan", "epfo", "epf"
+}
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "can", "do", "for", "from",
     "how", "i", "in", "is", "it", "me", "my", "of", "on", "or", "the", "this",
@@ -23,7 +33,7 @@ def tokenize(text: str) -> tuple[str, ...]:
         if token == "e" or token in STOPWORDS and token not in IMPORTANT_TERMS:
             continue
         expanded.append(token)
-        if token.startswith("e") and len(token) > 1 and token[1:] in {"pan", "aadhaar"}:
+        if token.startswith("e") and len(token) > 1 and token[1:] in {"pan", "aadhaar", "challan", "epic"}:
             expanded.append(token[1:])
     return tuple(expanded)
 
@@ -48,23 +58,26 @@ class BM25Index:
         count = len(self.docs)
         self.idf = {term: math.log(1 + (count - freq + 0.5) / (freq + 0.5)) for term, freq in df.items()}
 
-    def search(self, query: str, *, top_k: int = 20, allowed_indices: set[int] | None = None) -> tuple[BM25Hit, ...]:
-        terms = tokenize(query)
-        if not terms or not self.docs or top_k < 1:
+    def search(self, query: str, *, top_k: int = 10, allowed_indices: set[int] | None = None) -> tuple[BM25Hit, ...]:
+        q_terms = [t for t in tokenize(query) if t in self.idf]
+        if not q_terms:
             return ()
-        candidates = allowed_indices if allowed_indices is not None else set(range(len(self.docs)))
-        scores: list[BM25Hit] = []
+        candidates = range(len(self.docs)) if allowed_indices is None else allowed_indices
+        hits: list[BM25Hit] = []
         for idx in candidates:
             score = 0.0
-            freqs = self.term_freqs[idx]
+            tf = self.term_freqs[idx]
             doc_len = self.lengths[idx]
-            for term in terms:
-                tf = freqs.get(term, 0)
-                if not tf:
+            denom_const = self.k1 * (1 - self.b + self.b * (doc_len / self.avg_len if self.avg_len else 1))
+            for term in q_terms:
+                freq = tf.get(term, 0)
+                if not freq:
                     continue
-                denom = tf + self.k1 * (1 - self.b + self.b * doc_len / (self.avg_len or 1))
-                score += self.idf.get(term, 0.0) * (tf * (self.k1 + 1)) / denom
+                score += self.idf[term] * (freq * (self.k1 + 1)) / (freq + denom_const)
             if score > 0:
-                scores.append(BM25Hit(idx, score))
-        scores.sort(key=lambda hit: (-hit.score, hit.index))
-        return tuple(scores[:top_k])
+                hits.append(BM25Hit(index=idx, score=score))
+        hits.sort(key=lambda h: -h.score)
+        return tuple(hits[:top_k])
+
+
+__all__ = ["BM25Hit", "BM25Index", "tokenize"]

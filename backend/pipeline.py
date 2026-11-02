@@ -7,6 +7,7 @@ from typing import Any
 from backend.config import DEFAULT_DISCLAIMER
 from backend.modules.agent import route
 from backend.modules.bandit_policy import bandit_policy
+from backend.modules.domain_router import Domain, classify_domain, entry_matches_domain
 from backend.modules.unresolved_queue import log_unresolved_query
 from backend.modules.explainer import (
     NOT_FOUND_LAST_VERIFIED,
@@ -94,6 +95,7 @@ _STANDALONE_TOPIC_TERMS = {
     "aadhaar", "aadhar", "adhar", "uidai", "eaadhaar", "biometric", "biometrics",
     "voter", "voters", "voterid", "voter-id", "epic", "nvsp", "eci",
     "dl", "rc", "driving", "licence", "license", "parivahan", "rto",
+    "fastag", "toll", "nhai", "ihmcl", "vahan", "sarathi", "chassis", "challan", "echallan", "cbse", "marksheet",
     "tax", "itr", "itr-4", "itr-1", "itr-v", "income tax", "incometax",
     "pf", "epf", "epfo", "uan", "provident",
     "ration", "pds", "nfsa",
@@ -109,6 +111,13 @@ _STANDALONE_TOPIC_TERMS = {
 
 def _has_standalone_topic(text: str) -> bool:
     lowered = text.lower()
+    _UNSUPPORTED_NON_CIVIC_TERMS = {
+        "cake", "bake", "baking", "recipe", "cook", "cooking", "chocolate",
+        "movie", "song", "songs", "lyrics", "cricket", "football", "weather", "joke", "jokes",
+    }
+    lowered_tokens = set(re.findall(r"\b[a-z0-9_-]+\b", lowered))
+    if lowered_tokens & _UNSUPPORTED_NON_CIVIC_TERMS:
+        return False
     tokens = {t.strip("?,.!:;'\"") for t in lowered.split()}
     if tokens & _STANDALONE_TOPIC_TERMS:
         return True
@@ -116,6 +125,7 @@ def _has_standalone_topic(text: str) -> bool:
         "income tax", "driving license", "driving licence", "ration card",
         "savings account", "bank account", "consumer court", "pm kisan",
         "police fir", "pan card", "voter id", "aadhar card", "aadhaar card", "police verification", "joint declaration", "cross limit", "auto reversal", "credit card", "legal aid", "upi transaction", "upi payment failed", "failed upi", "upi compensation", "rbi compensation",
+        "fastag", "toll refund", "nhai", "ihmcl", "vahan", "chassis mismatch", "chassis number", "rc correction", "digilocker", "cbse marksheet",
     ):
         if phrase in lowered:
             return True
@@ -186,7 +196,17 @@ def _request_text(request: AskRequest) -> str:
 def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
     """Reject broad router matches when the verified guide does not cover the requested subtask."""
     import re
+    query_domain = classify_domain(text)
+    if not entry_matches_domain(entry_id, None, query_domain):
+        return False
     lowered = text.lower()
+    _UNSUPPORTED_NON_CIVIC_TERMS = {
+        "cake", "bake", "baking", "recipe", "cook", "cooking", "chocolate",
+        "movie", "song", "songs", "lyrics", "cricket", "football", "weather", "joke", "jokes",
+    }
+    lowered_tokens = set(re.findall(r"\b[a-z0-9_-]+\b", lowered))
+    if lowered_tokens & _UNSUPPORTED_NON_CIVIC_TERMS:
+        return False
     if entry_id == "pan_card_new":
         lowered_tokens = set(re.findall(r"\b[a-z0-9_-]+\b", lowered))
         if not (lowered_tokens & {"pan", "pancard", "epan"} or "form 49a" in lowered or "form 49aa" in lowered or "पैन" in lowered or "પૅન" in lowered):
@@ -214,6 +234,9 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
         if any(intent in lowered for intent in out_of_scope):
             return False
     if entry_id in ("itr_filing_basics", "file_itr_basics"):
+        tax_tokens = ("itr", "tax", "incometax", "income tax", "tax return", "form 16", "ay", "assessment year")
+        if not any(token in lowered for token in tax_tokens):
+            return False
         out_of_scope = ("defective", "139(9)", "139", "condonation", "119", "refund unpaid", "bank validation", "reissue", "notice")
         if any(intent in lowered for intent in out_of_scope):
             return False
@@ -258,7 +281,7 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
         if not any(token in lowered for token in trouble_tokens):
             return False
     if entry_id == "itr_bank_validation_failed":
-        if not any(token in lowered for token in ("bank", "itr", "tax", "incometax", "account", "ifsc", "refund")):
+        if not any(token in lowered for token in ("itr", "incometax", "income tax", "tax return", "form 16")) and not ("tax" in lowered and "refund" in lowered):
             return False
         trouble_tokens = ("validation", "failed", "unpaid", "reissue", "refund", "mismatch", "ifsc", "re-issue", "reject", "rejected")
         if not any(token in lowered for token in trouble_tokens):
@@ -286,6 +309,15 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
             return False
         trouble_tokens = ("limit", "exhausted", "cross", "exception", "third time", "twice", "maximum", "cannot update", "blocked", "rejected")
         if not any(token in lowered for token in trouble_tokens):
+            return False
+    if entry_id == "fastag_toll_dispute_refund":
+        if not any(token in lowered for token in ("fastag", "toll", "nhai", "ihmcl", "plaza")):
+            return False
+    if entry_id == "parivahan_vahan_rc_correction":
+        if not any(token in lowered for token in ("rc", "vahan", "parivahan", "chassis", "challan", "echallan", "rto")):
+            return False
+    if entry_id == "digilocker_cbse_name_mismatch":
+        if not any(token in lowered for token in ("cbse", "digilocker", "marksheet")):
             return False
     return True
 
@@ -337,6 +369,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
         }
     )
     search_text = _request_text(routing_request) or safe_text
+    query_domain = classify_domain(search_text, safe_request.document_text)
 
     # Reinforcement Learning: Select optimal retrieval and LLM hyperparameters via LinUCB Contextual Bandit
     is_followup = _is_follow_up_query(search_text)
@@ -365,12 +398,23 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
 
     memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=25)
     effective_context_topic = parsed_request.context_topic
+    context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
+        parsed_request.conversation_id
+    )
 
-    # Domain boundary protection: if current query introduces a standalone topic,
-    # reset any inherited context topic to eliminate cross-domain bleed (the "punting trap")
+    # Domain boundary protection: if current query introduces a standalone topic or switches domain,
+    # reset any inherited context topic to eliminate cross-domain bleed (the "punting trap" & template paralysis)
     if _has_standalone_topic(search_text):
         effective_context_topic = None
-    elif not effective_context_topic and memory_turns:
+        context_entry_id = None
+    elif memory_turns:
+        prev_text = memory_turns[-1].user_text or ""
+        prev_domain = classify_domain(prev_text)
+        if query_domain != Domain.UNKNOWN and prev_domain != Domain.UNKNOWN and query_domain != prev_domain:
+            effective_context_topic = None
+            context_entry_id = None
+
+    if not effective_context_topic and memory_turns and context_entry_id:
         for mt in reversed(memory_turns):
             t = mt.answer_title or ""
             if t and "welcome" not in t.lower() and "not found" not in t.lower():
@@ -378,7 +422,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 if clean_t.lower() not in ("frequently asked questions", "faq", "faqs", "official civic procedure", "home", "user manual", "overview"):
                     effective_context_topic = clean_t
                     break
-        if not effective_context_topic and memory_turns:
+        if not effective_context_topic and memory_turns and context_entry_id:
             effective_context_topic = memory_turns[-1].user_text
 
     # Multi-turn conversational context expansion & query reformulation:
@@ -389,9 +433,6 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             routing_request = routing_request.model_copy(update={"question": search_text})
 
     route_result = route(routing_request)
-    context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
-        parsed_request.conversation_id
-    )
 
     entry = None
     if route_result.matched_entry_id:
@@ -446,7 +487,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     rag_query = search_text
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
         rag_query = f"{effective_context_topic} {search_text}"
-    rag_result = retrieve_if_enabled(rag_query, top_k=bandit_action.top_k)
+    rag_result = retrieve_if_enabled(rag_query, domain=query_domain, top_k=bandit_action.top_k)
     MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
 
     if rag_result is not None and rag_result.hits:
@@ -582,6 +623,7 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
         }
     )
     search_text = _request_text(routing_request) or safe_text
+    query_domain = classify_domain(search_text, safe_request.document_text)
 
     is_followup = _is_follow_up_query(search_text)
     bandit_action = bandit_policy.select_action(search_text, is_followup=is_followup)
@@ -641,10 +683,21 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
 
     memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=25)
     effective_context_topic = parsed_request.context_topic
+    context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
+        parsed_request.conversation_id
+    )
 
     if _has_standalone_topic(search_text):
         effective_context_topic = None
-    elif not effective_context_topic and memory_turns:
+        context_entry_id = None
+    elif memory_turns:
+        prev_text = memory_turns[-1].user_text or ""
+        prev_domain = classify_domain(prev_text)
+        if query_domain != Domain.UNKNOWN and prev_domain != Domain.UNKNOWN and query_domain != prev_domain:
+            effective_context_topic = None
+            context_entry_id = None
+
+    if not effective_context_topic and memory_turns and context_entry_id:
         for mt in reversed(memory_turns):
             t = mt.answer_title or ""
             if t and "welcome" not in t.lower() and "not found" not in t.lower():
@@ -652,7 +705,7 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
                 if clean_t.lower() not in ("frequently asked questions", "faq", "faqs", "official civic procedure", "home", "user manual", "overview"):
                     effective_context_topic = clean_t
                     break
-        if not effective_context_topic and memory_turns:
+        if not effective_context_topic and memory_turns and context_entry_id:
             effective_context_topic = memory_turns[-1].user_text
 
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
@@ -662,9 +715,6 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
             routing_request = routing_request.model_copy(update={"question": search_text})
 
     route_result = route(routing_request)
-    context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
-        parsed_request.conversation_id
-    )
 
     entry = None
     if route_result.matched_entry_id:
@@ -747,7 +797,7 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
     rag_query = search_text
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
         rag_query = f"{effective_context_topic} {search_text}"
-    rag_result = retrieve_if_enabled(rag_query, top_k=bandit_action.top_k)
+    rag_result = retrieve_if_enabled(rag_query, domain=query_domain, top_k=bandit_action.top_k)
     MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
 
     if rag_result is not None and rag_result.hits:
