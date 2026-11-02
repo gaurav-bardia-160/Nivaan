@@ -194,10 +194,109 @@
     background-color: #374151;
 }
 
+/* ==========================================================================
+   ATTRACTIVE MODERN CUSTOM SCROLLBARS (LIGHT & DARK THEMES)
+   ========================================================================== */
+/* Standard modern Firefox scrollbar rules */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.45) transparent;
+}
+
+[data-theme="dark"] * {
+    scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}
+
+/* WebKit & Chromium (Chrome, Edge, Safari, Opera) sleek floating scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.38);
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.7);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--brand-blue);
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* Dark mode overrides for WebKit scrollbars */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.24);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.5);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:active {
+    background: var(--brand-blue);
+}
+
+/* Specific sleekness for main messages feed and chat history */
+.messages-container::-webkit-scrollbar,
+.chat-history-section::-webkit-scrollbar {
+    width: 7px;
+}
+
+.messages-container::-webkit-scrollbar-thumb,
+.chat-history-section::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3);
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover,
+.chat-history-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.65);
+}
+
+[data-theme="dark"] .messages-container::-webkit-scrollbar-thumb,
+[data-theme="dark"] .chat-history-section::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.2);
+}
+
+[data-theme="dark"] .messages-container::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] .chat-history-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.45);
+}
+
+/* Ultra-thin scrollbar for multiline chat textarea */
+.chat-input::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chat-input::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.25);
+    border-radius: var(--radius-full);
+}
+
+.chat-input::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.5);
 }
 
 body {
