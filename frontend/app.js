@@ -385,9 +385,9 @@ function loadActiveChatMessages() {
                 appendUserBubble(msg.text, msg.file, msg.id, false);
             } else if (msg.role === "assistant") {
                 if (msg.answer) {
-                    appendAssistantResponse(msg.answer, false);
+                    appendAssistantResponse(msg.answer, false, false);
                 } else if (msg.text) {
-                    appendAssistantResponse(createSystemNotice("Response", msg.text), false);
+                    appendAssistantResponse(createSystemNotice("Response", msg.text), false, false);
                 }
             }
         } catch (err) {
@@ -547,9 +547,72 @@ async function sendMessage(userText, fileObj = null) {
     setLoading(false);
 }
 
+// --- MARKDOWN FORMATTING & STREAMING HELPERS ---
+function formatMarkdownMini(text) {
+    if (!text) return "";
+    let safe = escapeHtml(text);
+    safe = safe.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    safe = safe.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
+    safe = safe.replace(/(?:^|\n)[ \t]*[-*][ \t]+([^\n]+)/g, "\n• $1");
+    return safe;
+}
+
+function appendThinkingBubble() {
+    const row = document.createElement("div");
+    row.className = "message-row assistant-thinking-row";
+    row.id = "thinkingBubbleRow";
+
+    row.innerHTML = `
+        <div class="message-avatar bot-avatar">🏛️</div>
+        <div class="message-content">
+            <div class="thinking-card">
+                <div class="thinking-header">
+                    <span class="thinking-spinner"></span>
+                    <span class="thinking-status-text" id="thinkingStatusText">Searching official portals & statutory guidelines...</span>
+                </div>
+                <div class="thinking-progress-bar">
+                    <div class="thinking-progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    messagesContainer.appendChild(row);
+    scrollToBottom();
+
+    const statuses = [
+        "🔍 Searching verified official government portals...",
+        "📑 Retrieving relevant regulatory clauses & statutory forms...",
+        "🏛️ Formulating authoritative step-by-step guidance...",
+        "⚖️ Validating rules against official circulars..."
+    ];
+    let idx = 0;
+    const statusTextEl = row.querySelector("#thinkingStatusText");
+    const intervalId = setInterval(() => {
+        idx = (idx + 1) % statuses.length;
+        if (statusTextEl) {
+            statusTextEl.style.opacity = "0";
+            setTimeout(() => {
+                if (statusTextEl) {
+                    statusTextEl.textContent = statuses[idx];
+                    statusTextEl.style.opacity = "1";
+                }
+            }, 200);
+        }
+    }, 3000);
+
+    return {
+        row,
+        stop: () => {
+            clearInterval(intervalId);
+        }
+    };
+}
+
 // --- QUERY EXECUTION ---
 async function executeQuery(userText, currentAttachment, chatObj) {
     let answer = null;
+    const thinkingObj = appendThinkingBubble();
 
     try {
             const hasReadableDocumentText = !!(currentAttachment && currentAttachment.textContent && currentAttachment.textContent.trim());
@@ -670,6 +733,11 @@ async function executeQuery(userText, currentAttachment, chatObj) {
             "Backend Offline",
             "Cannot connect to the backend server at http://127.0.0.1:8000. Please ensure the backend is running and try again."
         );
+    } finally {
+        if (thinkingObj) {
+            thinkingObj.stop();
+            thinkingObj.row.remove();
+        }
     }
 
     if (!answer) {
@@ -693,7 +761,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
         saveChatsToStorage();
     }
 
-    appendAssistantResponse(answer, true);
+    appendAssistantResponse(answer, true, true);
 }
 
 // --- EDITABLE MESSAGE PROMPTS ---
@@ -836,7 +904,7 @@ async function safeReadJson(response) {
 }
 
 // --- APPEND ASSISTANT RESPONSE CARD ---
-function appendAssistantResponse(answer, shouldScroll = true) {
+function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
     const row = document.createElement("div");
     row.className = "message-row";
 
@@ -1003,16 +1071,23 @@ function appendAssistantResponse(answer, shouldScroll = true) {
         `;
     }
 
-    // Plain Language Summary - Always show the natural language explanation
+    // Plain Language Summary
+    const cleanSummaryText = answer.summary ? String(answer.summary)
+        .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
+        .trim() : "";
+
     let summaryHtml = "";
-    if (answer.summary) {
-        const cleanSummaryText = String(answer.summary)
-            .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
-            .trim();
-        if (cleanSummaryText) {
+    if (cleanSummaryText) {
+        if (isLive) {
+            summaryHtml = `
+                <div class="response-summary" title="Click card to display full answer immediately">
+                    <span class="typing-text"></span><span class="typing-cursor">▌</span>
+                </div>
+            `;
+        } else {
             summaryHtml = `
                 <div class="response-summary">
-                    ${escapeHtml(cleanSummaryText)}
+                    <span class="typing-text">${formatMarkdownMini(cleanSummaryText)}</span>
                 </div>
             `;
         }
@@ -1027,6 +1102,9 @@ function appendAssistantResponse(answer, shouldScroll = true) {
             </div>
         `;
     }
+
+    const postSectionsDisplay = (isLive && cleanSummaryText) ? 'style="display: none;"' : '';
+    const postSectionsClass = (isLive && cleanSummaryText) ? 'post-summary-sections' : 'post-summary-sections section-fade-in';
 
     row.innerHTML = `
         <div class="message-avatar bot-avatar">🏛️</div>
@@ -1056,23 +1134,68 @@ function appendAssistantResponse(answer, shouldScroll = true) {
                 <!-- Plain Language Summary -->
                 ${summaryHtml}
 
-                <!-- Documents Needed (Clean list) -->
-                ${docsHtml}
+                <div class="${postSectionsClass}" ${postSectionsDisplay}>
+                    <!-- Documents Needed -->
+                    ${docsHtml}
 
-                <!-- Steps (Clean procedure) -->
-                ${stepsHtml}
+                    <!-- Steps -->
+                    ${stepsHtml}
 
-                <!-- Official Notice / Disclaimer -->
-                ${disclaimerHtml}
+                    <!-- Official Notice / Disclaimer -->
+                    ${disclaimerHtml}
 
-                <!-- Tagged Sources & References at End -->
-                ${sourcesHtml}
+                    <!-- Tagged Sources & References at End -->
+                    ${sourcesHtml}
+                </div>
             </div>
         </div>
     `;
 
     messagesContainer.appendChild(row);
     if (shouldScroll) scrollToBottom();
+
+    // Word-by-word streaming typewriter animation
+    if (isLive && cleanSummaryText) {
+        const typingTextEl = row.querySelector(".typing-text");
+        const cursorEl = row.querySelector(".typing-cursor");
+        const postSectionsEl = row.querySelector(".post-summary-sections");
+        const card = row.querySelector(".assistant-response");
+
+        const words = cleanSummaryText.split(/(\s+)/);
+        let wordIdx = 0;
+        let currentDisplay = "";
+        let isDone = false;
+
+        const completeTyping = () => {
+            if (isDone) return;
+            isDone = true;
+            clearInterval(typeInterval);
+            if (typingTextEl) typingTextEl.innerHTML = formatMarkdownMini(cleanSummaryText);
+            if (cursorEl) cursorEl.remove();
+            if (postSectionsEl) {
+                postSectionsEl.style.display = "flex";
+                postSectionsEl.classList.add("section-fade-in");
+            }
+            if (shouldScroll) scrollToBottom();
+        };
+
+        if (card) {
+            card.addEventListener("click", completeTyping, { once: true });
+        }
+
+        const typeInterval = setInterval(() => {
+            if (wordIdx < words.length) {
+                currentDisplay += words[wordIdx];
+                if (typingTextEl) typingTextEl.textContent = currentDisplay;
+                wordIdx++;
+                if (wordIdx % 4 === 0 && shouldScroll) {
+                    scrollToBottom();
+                }
+            } else {
+                completeTyping();
+            }
+        }, 22);
+    }
 }
 
 
@@ -1080,6 +1203,10 @@ function appendAssistantResponse(answer, shouldScroll = true) {
 window.copyResponseText = function(btn) {
     const card = btn.closest(".assistant-response");
     if (!card) return;
+    const cursor = card.querySelector(".typing-cursor");
+    if (cursor) {
+        card.click(); // Instantly finishes typewriter so full text is copied
+    }
     const title = card.querySelector(".response-title")?.textContent.trim() || "";
     const summary = card.querySelector(".response-summary")?.textContent.trim() || "";
     const docs = Array.from(card.querySelectorAll(".clean-doc-text")).map(d => "• " + d.textContent.trim()).join("\n");
