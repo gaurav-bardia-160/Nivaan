@@ -98,7 +98,10 @@ def _search_duckduckgo_html(query: str, *, max_results: int, timeout: float) -> 
         logger.warning("DuckDuckGo search failed: %s", exc)
         return []
 
-    soup = BeautifulSoup(html, "lxml")
+    try:
+        soup = BeautifulSoup(html, "lxml")
+    except Exception:
+        soup = BeautifulSoup(html, "html.parser")
     results: list[WebSearchResult] = []
 
     # DDG HTML result structure: div.result > h2.result__title > a.result__a

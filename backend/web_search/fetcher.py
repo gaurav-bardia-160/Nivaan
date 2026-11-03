@@ -117,7 +117,10 @@ def _extract_text(html: str, *, max_chars: int = 8000) -> str:
     try:
         soup = BeautifulSoup(html, "lxml")
     except Exception:
-        return ""
+        try:
+            soup = BeautifulSoup(html, "html.parser")
+        except Exception:
+            return ""
 
     # Remove HTML comments
     for comment in soup.find_all(string=lambda text: isinstance(text, Comment)):

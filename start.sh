@@ -19,13 +19,17 @@ echo -e "${CYAN}==========================================================${NC}"
 
 # Detect Python
 PY_CMD=""
-if command -v python3 >/dev/null 2>&1; then
+if [ -n "$PYTHON" ]; then
+    PY_CMD="$PYTHON"
+elif command -v python3.11 >/dev/null 2>&1; then
+    PY_CMD="python3.11"
+elif command -v python3 >/dev/null 2>&1; then
     PY_CMD="python3"
 elif command -v python >/dev/null 2>&1; then
     PY_CMD="python"
 else
-    echo -e "${RED}[ERROR] Python 3 was not found in system PATH.${NC}"
-    echo "Please install Python 3.10+ using Homebrew: brew install python"
+    echo -e "${RED}[ERROR] Python was not found in system PATH.${NC}"
+    echo "Please install Python 3.11+ using Homebrew: brew install python@3.11"
     exit 1
 fi
 

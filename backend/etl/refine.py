@@ -80,7 +80,10 @@ def _extract_text_from_html(html_bytes: bytes, encoding: str = "utf-8") -> str:
     try:
         soup = BeautifulSoup(html, "lxml")
     except Exception:
-        return ""
+        try:
+            soup = BeautifulSoup(html, "html.parser")
+        except Exception:
+            return ""
 
     # Remove comments and noisy tags
     for comment in soup.find_all(string=lambda t: isinstance(t, Comment)):

@@ -10,15 +10,24 @@ Write-Host "==========================================================" -Foregro
 Write-Host ""
 
 $pyCmd = $null
-if (Get-Command py -ErrorAction SilentlyContinue) {
-    $pyCmd = "py"
+if ($env:PYTHON) {
+    $pyCmd = $env:PYTHON
+} elseif (Get-Command py -ErrorAction SilentlyContinue) {
+    $has311 = & py -3.11 -c "import sys; print(sys.version_info.major)" 2>$null
+    if ($has311 -eq "3") {
+        $pyCmd = "py -3.11"
+    } else {
+        $pyCmd = "py"
+    }
+} elseif (Get-Command python3.11 -ErrorAction SilentlyContinue) {
+    $pyCmd = "python3.11"
 } elseif (Get-Command python -ErrorAction SilentlyContinue) {
     $pyCmd = "python"
 } elseif (Get-Command python3 -ErrorAction SilentlyContinue) {
     $pyCmd = "python3"
 } else {
     Write-Host "[ERROR] Python was not found in your system PATH." -ForegroundColor Red
-    Write-Host "Please install Python 3.10+ from https://www.python.org/" -ForegroundColor Yellow
+    Write-Host "Please install Python 3.11+ from https://www.python.org/" -ForegroundColor Yellow
     exit 1
 }
 

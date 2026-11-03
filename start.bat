@@ -19,45 +19,39 @@ echo.
 
 
 rem --- 1. Detect Python executable ---
-
 set "PY_CMD="
-
-where py >nul 2>nul
-
-if !errorlevel! equ 0 (
-
-    set "PY_CMD=py"
-
+if not "%PYTHON%"=="" (
+    set "PY_CMD=%PYTHON%"
 ) else (
-
-    where python >nul 2>nul
-
+    py -3.11 --version >nul 2>nul
     if !errorlevel! equ 0 (
-
-        set "PY_CMD=python"
-
+        set "PY_CMD=py -3.11"
     ) else (
-
-        where python3 >nul 2>nul
-
-        if !errorlevel! equ 0 set "PY_CMD=python3"
-
+        where py >nul 2>nul
+        if !errorlevel! equ 0 (
+            set "PY_CMD=py"
+        ) else (
+            where python3.11 >nul 2>nul
+            if !errorlevel! equ 0 (
+                set "PY_CMD=python3.11"
+            ) else (
+                where python >nul 2>nul
+                if !errorlevel! equ 0 (
+                    set "PY_CMD=python"
+                ) else (
+                    where python3 >nul 2>nul
+                    if !errorlevel! equ 0 set "PY_CMD=python3"
+                )
+            )
+        )
     )
-
 )
 
-
-
 if "%PY_CMD%"=="" (
-
-    echo [ERROR] Python 3.10+ was not found in your system PATH.
-
-    echo Please install Python from https://www.python.org/
-
+    echo [ERROR] Python 3.11+ was not found in your system PATH.
+    echo Please install Python 3.11+ from https://www.python.org/
     pause
-
     exit /b 1
-
 )
 
 

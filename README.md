@@ -45,6 +45,11 @@
 
 ## Running Locally
 
+### System Requirements & Compatibility
+
+- **Python**: Python 3.11+ (Python 3.11 and 3.12 are fully verified and supported in CI).
+- **Auto-Detection**: Launcher scripts automatically detect Python 3.11 (py -3.11 / python3.11) or respect a custom PYTHON environment variable.
+
 ### One-Click Launch Scripts
 
 | Platform | Backend Only | Full-Stack (Backend + Frontend + Browser) |
