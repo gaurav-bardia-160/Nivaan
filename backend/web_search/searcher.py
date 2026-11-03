@@ -175,7 +175,20 @@ def prioritize_deep_links(results: list[WebSearchResult]) -> list[WebSearchResul
         try:
             parsed = urlparse(url)
             path = parsed.path.strip("/")
-            return not path or path in ("en", "hi", "home", "index.html", "index.php", "default.aspx")
+            shallow_exact = (
+                "", "en", "hi", "gu", "home", "index.html", "index.php", "default.aspx",
+                "parivahan", "vahan", "sarathi", "foportal", "portal", "main", "welcome",
+            )
+            if not path or path in shallow_exact:
+                return True
+            lowered_path = path.lower()
+            if any(term in lowered_path for term in ("/login", "/signin", "/auth", "login.", "signin.", "usermgmt")):
+                return True
+            parts = [p for p in path.split("/") if p and p not in ("en", "hi", "gu", "index.php", "index.html")]
+            # Single-segment directory paths without deep ID or extension (e.g. /parivahan/ or /parivahan/index.html)
+            if len(parts) <= 1 and not any(parts[0].endswith(ext) for ext in (".pdf", ".html", ".xhtml", ".aspx", ".php") if not parts[0].startswith(("index", "login", "default"))):
+                return True
+            return False
         except Exception:
             return False
 

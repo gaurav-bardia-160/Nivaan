@@ -176,6 +176,17 @@ _NAVIGATION_NOISE_PHRASES = (
     "all rights reserved",
     "site map",
     "feedback",
+    "what's new",
+    "latest updates",
+    "read more",
+    "press release",
+    "achievements",
+    "no front page content has been created yet",
+    "follow the user guide",
+    "state of the art dashboard",
+    "showcasing our achievements",
+    "products & services",
+    "advisory / achievments",
 )
 
 
@@ -188,16 +199,17 @@ def is_navigation_or_boilerplate_text(text: str) -> bool:
     step_verbs = (
         "visit ", "enter ", "click ", "select ", "submit ", "apply ", "login ",
         "register ", "dial ", "call ", "upload ", "download ", "verify ", "pay ", "fill ",
+        "correct", "update", "form",
     )
-    has_step_indicators = bool(re.search(r"\b(step\s*\d+|[a-g][\.\)])\b", lowered))
+    has_step_indicators = bool(re.search(r"\b(?:step\s*\d+|steps|[a-g][\.\)])\b", lowered))
     verb_count = sum(1 for v in step_verbs if v in lowered)
 
-    # If it has explicit step markers or multiple actionable verbs, it's procedural payload
-    if has_step_indicators or verb_count >= 3:
-        return False
-
     noise_count = sum(1 for p in _NAVIGATION_NOISE_PHRASES if p in lowered)
-    if noise_count >= 1 and verb_count <= 1:
+    # If the text has noise/landing phrases and lacks explicit numbered/lettered steps
+    if noise_count >= 1 and not has_step_indicators and verb_count <= 2:
+        return True
+
+    if noise_count >= 2:
         return True
 
     return False

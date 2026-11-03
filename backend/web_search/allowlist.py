@@ -55,12 +55,59 @@ _ALLOWLIST_SITE_QUERY = " ".join(f"site:{d}" for d in CIVIC_ALLOWLIST_DOMAINS[:1
 
 import re
 
+
+def extract_search_keywords(user_query: str) -> str:
+    """Extract high-signal civic search terms from conversational citizen questions."""
+    clean_query = user_query.strip()
+    # Split into clauses to isolate the problem/question clause from conversational preamble
+    clauses = re.split(r"[.?!;]|\b(?:but|however|although)\b", clean_query, flags=re.I)
+    target_clause = clean_query
+    for c in reversed(clauses):
+        c_clean = c.strip()
+        if len(c_clean) > 10 and any(term in c_clean.lower() for term in (
+            "how", "what", "where", "fix", "correct", "update", "apply", "change",
+            "error", "mismatch", "failed", "download", "status", "refund", "card", "portal", "rc"
+        )):
+            target_clause = c_clean
+            break
+
+    # Strip conversational filler phrases
+    filler_patterns = (
+        r"\b(?:can you please|could you please|please tell me|tell me|i want to know|how do i|how can i|how to|what is the procedure to|what is the process to|let me know)\b",
+        r"\b(?:permanently|kindly|urgently|help me with|facing an issue with|there is an error with|showing error|error on|problem with)\b",
+        r"\b(?:so it shows in my app|in my app|on portal|on website|in portal|so that)\b",
+    )
+    simplified = target_clause
+    for pat in filler_patterns:
+        simplified = re.sub(pat, " ", simplified, flags=re.I)
+
+    words = re.findall(r"\b[A-Za-z0-9_-]+\b", simplified)
+    stop_words = {
+        "a", "an", "the", "in", "on", "at", "to", "for", "of", "with", "by", "from",
+        "is", "are", "was", "were", "be", "been", "being", "have", "has", "had",
+        "do", "does", "did", "and", "but", "or", "so", "if", "then", "this", "that",
+        "these", "those", "my", "your", "his", "her", "its", "our", "their", "me", "him", "us", "them",
+        "it", "i", "you", "we", "they", "after", "before", "while", "during", "seeing", "let", "go"
+    }
+    meaningful = [w for w in words if w.lower() not in stop_words]
+
+    # Ensure critical civic domain acronyms/keywords from the full prompt are always preserved
+    lowered_full = clean_query.lower()
+    for entity in ("parivahan", "vahan", "sarathi", "rc", "chassis", "fastag", "ihmcl", "aadhaar", "pan", "epfo", "cbse", "passport"):
+        if entity in lowered_full and not any(w.lower() == entity for w in meaningful):
+            meaningful.append(entity)
+
+    if len(meaningful) >= 2:
+        return " ".join(meaningful[:8])
+    return re.sub(r"[?!.,'\"]+", " ", clean_query).strip()[:80]
+
+
 def build_allowlist_query(user_query: str, domain: Domain) -> str:
     """Build a search query with targeted official domain constraints."""
-    clean_query = user_query.strip()
+    clean_query = extract_search_keywords(user_query)
     clean_query = re.sub(r"[?!.,'\"]+", " ", clean_query)
     clean_query = " ".join(clean_query.split())
-    lowered = clean_query.lower()
+    lowered = user_query.lower()
 
     # Prioritize specific official service portals if explicitly mentioned in query
     if "digilocker" in lowered:

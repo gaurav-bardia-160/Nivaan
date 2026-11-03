@@ -116,9 +116,11 @@ def _extract_extractive_answer(page_text: str, query: str) -> tuple[str, list[di
             s.lower().startswith(v) for v in step_verbs
         )
         if is_step and len(s) > 15 and s not in [st["detail"] for st in steps]:
-            clean_title = re.sub(r"^[a-z0-9][\.\)]\s+", "", s, flags=re.I).strip()
-            title = " ".join(clean_title.split()[:7])
-            steps.append({"title": title[:80], "detail": s[:300]})
+            clean_text = re.sub(r"^[a-z0-9][\.\)]\s+", "", s, flags=re.I).strip()
+            clean_text = re.sub(r"\s+[b-z0-9][\.\)]\s*$", "", clean_text, flags=re.I).strip()
+            clean_title = " ".join(clean_text.split()[:7])
+            clean_title = re.sub(r"\s+[b-z0-9][\.\)]\s*$", "", clean_title, flags=re.I).strip()
+            steps.append({"title": clean_title[:80], "detail": clean_text[:300]})
             if len(steps) >= 5:
                 break
 
@@ -130,6 +132,16 @@ def _extract_extractive_answer(page_text: str, query: str) -> tuple[str, list[di
             if len(docs) >= 3:
                 break
 
+    # Filter out news ticker items ending in "Read More" or starting with "News:" or "Notification"
+    clean_best = []
+    for s in best_sentences:
+        if re.search(r"\bread more\b", s, re.I):
+            continue
+        if s.lower().startswith(("news:", "jhansi news", "notification", "advisory")):
+            continue
+        clean_best.append(s)
+    best_sentences = clean_best
+
     if is_navigation_or_boilerplate_text(page_text):
         return DISCRIMINATOR_FAILURE_PHRASE, [], []
 
@@ -137,8 +149,18 @@ def _extract_extractive_answer(page_text: str, query: str) -> tuple[str, list[di
     summary = re.sub(r"^(?:and|or|but|then|also)\s+", "", summary.strip(), flags=re.I)
     if summary:
         summary = summary[0].upper() + summary[1:]
+
     if not steps and not best_sentences:
         return DISCRIMINATOR_FAILURE_PHRASE, [], []
+
+    # If no steps were extracted and the summary lacks topical overlap with the question, reject
+    query_key_terms = set(re.findall(r"\b\w{3,}\b", query.lower())) - {
+        "how", "the", "for", "what", "can", "you", "tell", "show", "help", "with", "from", "portal", "website", "online", "official",
+    }
+    summary_words = set(re.findall(r"\b\w{3,}\b", summary.lower()))
+    if not steps and not (query_key_terms & summary_words):
+        return DISCRIMINATOR_FAILURE_PHRASE, [], []
+
     return summary[:600], steps, docs
 
 
@@ -292,8 +314,15 @@ def synthesize_from_web(
     if raw_response:
         summary, steps_data, docs = _parse_llm_response(raw_response)
 
+    refusal_phrases = (
+        "does not contain", "could not find", "cannot find", "no specific instructions",
+        "not found", "does not provide", "not mention", "no information", "not explicitly mention",
+        "unable to find", "failed to extract", "no front page content", "read more",
+    )
+    has_refusal = any(rp in (summary or "").lower() for rp in refusal_phrases)
+
     # Check if LLM explicitly rejected the content via the discriminator rule:
-    llm_rejected = DISCRIMINATOR_FAILURE_PHRASE.lower() in (summary or "").lower()
+    llm_rejected = DISCRIMINATOR_FAILURE_PHRASE.lower() in (summary or "").lower() or has_refusal
 
     if llm_rejected:
         summary = DISCRIMINATOR_FAILURE_PHRASE
@@ -308,9 +337,17 @@ def synthesize_from_web(
         if not docs and ext_docs:
             docs = ext_docs
 
+    query_key_terms = set(re.findall(r"\b\w{3,}\b", query.lower())) - {
+        "how", "the", "for", "what", "can", "you", "tell", "show", "help", "with", "from", "portal", "website", "online", "official",
+    }
+    summary_words = set(re.findall(r"\b\w{3,}\b", (summary or "").lower()))
+    has_topical_overlap = bool(query_key_terms & summary_words)
+
     is_rejected = (
         DISCRIMINATOR_FAILURE_PHRASE.lower() in (summary or "").lower()
-        or (not steps_data and ("could not find" in (summary or "").lower() or len(summary or "") < 40))
+        or any(rp in (summary or "").lower() for rp in refusal_phrases)
+        or (not steps_data and not has_topical_overlap)
+        or (not steps_data and len(summary or "") < 50)
     )
 
     if is_rejected:

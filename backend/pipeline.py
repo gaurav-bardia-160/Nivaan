@@ -515,7 +515,14 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                     safe_text, page_text, res.url,
                     memory=memory_turns,
                 )
-                is_rejected = DISCRIMINATOR_FAILURE_PHRASE.lower() in web_answer.summary.lower()
+                is_rejected = (
+                    DISCRIMINATOR_FAILURE_PHRASE.lower() in web_answer.summary.lower()
+                    or any(rp in web_answer.summary.lower() for rp in (
+                        "does not contain", "could not find", "cannot find", "no specific instructions",
+                        "not found", "does not provide", "not mention", "no information", "unable to find",
+                        "failed to extract", "read more",
+                    ))
+                )
                 if is_rejected:
                     if fallback_candidate is None:
                         fallback_candidate = web_answer
@@ -882,7 +889,14 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
                     safe_text, page_text, res.url,
                     memory=memory_turns,
                 )
-                is_rejected = DISCRIMINATOR_FAILURE_PHRASE.lower() in web_answer.summary.lower()
+                is_rejected = (
+                    DISCRIMINATOR_FAILURE_PHRASE.lower() in web_answer.summary.lower()
+                    or any(rp in web_answer.summary.lower() for rp in (
+                        "does not contain", "could not find", "cannot find", "no specific instructions",
+                        "not found", "does not provide", "not mention", "no information", "unable to find",
+                        "failed to extract", "read more",
+                    ))
+                )
                 if is_rejected:
                     if fallback_candidate is None:
                         fallback_candidate = web_answer
