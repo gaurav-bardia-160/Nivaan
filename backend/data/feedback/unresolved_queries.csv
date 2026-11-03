@@ -104,3 +104,18 @@ timestamp,conversation_id,query,domain,top_score,reason
 2026-11-03T03:07:52.222555+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
 2026-11-03T03:07:53.331917+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
 2026-11-03T03:08:02.247717+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:19:17.810541+00:00,test-ws-trigger,How to fix RC chassis mismatch at Parivahan?,unknown,-0.5336,low_retrieval_confidence
+2026-11-03T13:21:10.278443+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:21:10.431406+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:21:10.618172+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:21:14.571552+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:21:20.313795+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:21:20.684489+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:21:25.046727+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:54:00.814087+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:54:01.147818+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:54:01.465614+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:54:04.724803+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:54:08.268777+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:54:08.574783+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T13:54:11.770712+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
