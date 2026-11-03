@@ -13,7 +13,6 @@ SOURCES_PATH = DATA_DIR / "sources.json"
 RAW_DIR = DATA_DIR / "raw"
 REFINED_DIR = DATA_DIR / "refined"
 STRUCTURED_DIR = DATA_DIR / "structured"
-KNOWLEDGE_BASE_PATH = DATA_DIR / "knowledge_base.json"
 
 
 @dataclass(frozen=True)
@@ -206,11 +205,6 @@ def load_verified_entries(input_dir: Path = STRUCTURED_DIR) -> list[dict[str, An
     return entries
 
 
-def build_knowledge_base(entries: list[dict[str, Any]] | None = None, output_path: Path = KNOWLEDGE_BASE_PATH) -> Path:
-    selected = entries if entries is not None else load_verified_entries()
-    output_path.write_text(json.dumps(selected, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    return output_path
-
 
 def run_offline_build() -> dict[str, int]:
     sources = load_sources()
@@ -219,7 +213,6 @@ def run_offline_build() -> dict[str, int]:
     drafts = structure_chunks(chunks)
     written = write_drafts(drafts)
     verified = load_verified_entries()
-    build_knowledge_base(verified)
     return {
         "sources": len(sources),
         "documents": len(documents),
@@ -232,7 +225,6 @@ def run_offline_build() -> dict[str, int]:
 __all__ = [
     "CleanChunk",
     "SourceDocument",
-    "build_knowledge_base",
     "clean_and_chunk",
     "clean_text",
     "crawl_sources",

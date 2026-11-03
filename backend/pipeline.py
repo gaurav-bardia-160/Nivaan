@@ -4,7 +4,7 @@ import re
 from collections.abc import Generator
 from typing import Any
 
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 from backend.config import DEFAULT_DISCLAIMER, WEB_SEARCH_ENABLED, WEB_SEARCH_CONFIDENCE_THRESHOLD
 from backend.modules.agent import route
@@ -466,24 +466,57 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
 
     # 1. Document Analysis Path: For uploaded or pasted agreements/notices, analyze document text directly
     if parsed_request.input_type == "document" and parsed_request.document_text:
-        if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
-            doc_answer = explain_entry(entry, user_question=safe_text, masked_items=masked_items)
-            existing_titles = {warning.title for warning in doc_answer.warnings}
-            extra_warnings = [warning for warning in find_flags(masked_document.text) if warning.title not in existing_titles]
-            doc_answer = doc_answer.model_copy(update={"warnings": [*doc_answer.warnings, *extra_warnings], "citations": []})
-            doc_answer = enhance_grounded_answer(
-                doc_answer,
-                question=safe_text,
-                memory=memory_turns,
-                temperature=bandit_action.temperature,
-            )
-            return _finalize_answer(
-                doc_answer,
-                request=parsed_request,
-                safe_question=masked_question.text or safe_text,
-                target_lang=target_lang,
-                rl_arm=bandit_action.name,
-            )
+        doc_flags = find_flags(masked_document.text)
+        lowered_doc = (safe_text + " " + masked_document.text).lower()
+        if any(term in lowered_doc for term in ("loan", "emi", "borrower", "lender", "prepayment", "penalty", "foreclosure")):
+            doc_title = "Understand a loan agreement"
+            doc_summary = "This document contains loan agreement terms. Review detected clauses, interest conditions, and penalty terms below."
+            doc_steps = [
+                Step(title="Check Interest and Late Payment Penalties", detail="Review penal interest rates, late fee calculation methods, and grace periods."),
+                Step(title="Verify Prepayment and Foreclosure Terms", detail="Examine whether foreclosure charges or prepayment penalties are applied under RBI directives."),
+                Step(title="Monitor Deadlines and Dispute Windows", detail="Ensure any required response or payment is completed before the specified deadline."),
+            ]
+        elif any(term in lowered_doc for term in ("notice", "court", "138", "advocate", "legal", "respond within")):
+            doc_title = "Explain this legal notice"
+            doc_summary = "This document appears to be a formal legal notice. Review statutory response deadlines and consult legal aid."
+            doc_steps = [
+                Step(title="Verify Response Deadline", detail="Note the exact response window (e.g. 15 or 30 days) to prevent adverse proceedings."),
+                Step(title="Seek Legal Counsel", detail="Consult an advocate or District Legal Services Authority (DLSA) to draft an official response."),
+            ]
+        else:
+            doc_title = "Document Review & Risk Flag Analysis"
+            doc_summary = "Document text analyzed for civic and legal clauses, deadlines, and risk flags."
+            doc_steps = [
+                Step(title="Review Flagged Clauses", detail="Inspect highlighted clauses, conditions, and statutory obligations."),
+            ]
+
+        doc_answer = Answer(
+            entry_id=None,
+            title=doc_title,
+            summary=doc_summary,
+            documents_needed=[],
+            steps=doc_steps,
+            warnings=doc_flags,
+            source_url="https://rbi.org.in" if "loan" in lowered_doc else "https://nalsa.gov.in",
+            last_verified=date.today(),
+            confidence="medium",
+            masked_items=masked_items or [],
+            citations=[],
+            disclaimer=DEFAULT_DISCLAIMER,
+        )
+        doc_answer = enhance_grounded_answer(
+            doc_answer,
+            question=safe_text,
+            memory=memory_turns,
+            temperature=bandit_action.temperature,
+        )
+        return _finalize_answer(
+            doc_answer,
+            request=parsed_request,
+            safe_question=masked_question.text or safe_text,
+            target_lang=target_lang,
+            rl_arm=bandit_action.name,
+        )
 
     # 2. Pure Dynamic RAG Search Path: Retrieve official evidence across canonical 1,353 corpus documents
     rag_query = search_text
@@ -572,38 +605,6 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             )
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
         if rag_answer is not None:
-            # If the user asked a supported general procedure query covering a verified catalog topic,
-            # bind canonical metadata (entry_id, canonical title, official portal), while keeping all content dynamically synthesized
-            if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
-                verified_warnings = [
-                    w if isinstance(w, Warning) else Warning(**w)
-                    for w in entry.get("warnings", [])
-                ]
-                verified_steps = [
-                    s if isinstance(s, Step) else Step(**s)
-                    for s in entry.get("steps", [])
-                ]
-                entry_title_lower = entry.get("title", "").lower()
-                clean_citations = [
-                    c for c in rag_answer.citations
-                    if not any(conflict in c.title.lower() for conflict in (
-                        ("139(9)", "defective") if "bank" in entry_title_lower else ()
-                    ))
-                ]
-                from backend.web_search.confidence import compute_rag_confidence
-                score_conf = compute_rag_confidence(rag_result)
-                dynamic_conf = "high" if score_conf >= 0.75 else ("medium" if score_conf >= 0.35 else "low")
-                rag_answer = rag_answer.model_copy(update={
-                    "entry_id": entry.get("id"),
-                    "title": entry.get("title", rag_answer.title),
-                    "summary": entry.get("summary") or rag_answer.summary,
-                    "steps": verified_steps if verified_steps else rag_answer.steps,
-                    "confidence": "medium" if entry.get("status") == "verified" else dynamic_conf,
-                    "source_url": entry.get("source", {}).get("url") or rag_answer.source_url,
-                    "documents_needed": entry.get("documents_needed") or rag_answer.documents_needed,
-                    "warnings": verified_warnings if verified_warnings else rag_answer.warnings,
-                    "citations": clean_citations if clean_citations else rag_answer.citations,
-                })
             # Dynamically synthesize grounded summary, actionable steps, and documents needed using LLM
             rag_answer = enhance_grounded_answer(
                 rag_answer,
@@ -618,24 +619,6 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 target_lang=target_lang,
                 rl_arm=bandit_action.name,
             )
-
-    # 3. Fallback when RAG is disabled via feature flag but verified entry covers request
-    if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
-        answer = explain_entry(entry, user_question=safe_text, masked_items=masked_items)
-        answer = answer.model_copy(update={"citations": []})
-        answer = enhance_grounded_answer(
-            answer,
-            question=safe_text,
-            memory=memory_turns,
-            temperature=bandit_action.temperature,
-        )
-        return _finalize_answer(
-            answer,
-            request=parsed_request,
-            safe_question=masked_question.text or safe_text,
-            target_lang=target_lang,
-            rl_arm=bandit_action.name,
-        )
 
     log_unresolved_query(
         safe_text,

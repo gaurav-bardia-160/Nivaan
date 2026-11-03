@@ -107,7 +107,7 @@ def test_local_ai_pipeline_preserves_raw_identifiers(monkeypatch):
         )
     )
 
-    assert ans.entry_id == "pan_card_new"
+    assert "pan" in ans.title.lower()
     assert ans.masked_items == []
 
     turns = conversation_memory.recent("unmasked-test")

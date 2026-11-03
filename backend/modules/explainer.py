@@ -314,19 +314,45 @@ def explain_rag_result(
 
     # Preserve top retrieval ranking
     first = citations[0]
+    top_hit_text = result.hits[0].document.text
 
-    question = " ".join(user_question.split())[:240]
-    excerpt_clean = first.excerpt.strip()
+    # 1. Summary: Extract introductory diagnostic / explanatory paragraph
+    intro_match = re.split(r"(?:\n\n|\bDirect Resolution Steps:|\bStatutory Harmonised Turnaround Times:)", top_hit_text)
+    intro_text = intro_match[0].strip() if intro_match else top_hit_text[:480].strip()
+    if len(intro_text) > 480:
+        intro_text = intro_text[:480].rsplit(".", 1)[0] + "."
     summary_candidate = (
-        f"{excerpt_clean[:220].strip()} Note: this candidate evidence from official sources "
+        f"{intro_text} Note: this candidate evidence from official sources "
         "has not been independently fact-checked. Confirm time-sensitive rules on the linked official portal."
     )
 
+    # 2. Steps: Check if chunk has explicit numbered resolution steps
     dynamic_steps: list[Step] = []
-    if not _is_direct_or_binary_question(user_question):
+    numbered_parts = [
+        p.strip() for p in re.split(r"(?=\b[1-9]\.\s+[A-Z])", top_hit_text)
+        if re.match(r"^[1-9]\.\s+[A-Z]", p.strip())
+    ]
+    if numbered_parts:
+        for p in numbered_parts[:5]:
+            clean_p = re.sub(r"^[1-9]\.\s+", "", p).strip()
+            if ":" in clean_p:
+                st_title, st_detail = clean_p.split(":", 1)
+                dynamic_steps.append(Step(title=st_title.strip()[:80], detail=st_detail.strip()[:650]))
+            else:
+                dynamic_steps.append(Step(title=clean_p[:60].strip(), detail=clean_p[:650]))
+
+    extra_blocks = re.findall(
+        r"((?:Statutory Penalty[^\n:]*|Escalation|Delivery TAT)):\s*([^\n]+(?:\n[^\n]+)?)",
+        top_hit_text,
+        flags=re.I,
+    )
+    for block_title, block_body in extra_blocks[:2]:
+        dynamic_steps.append(Step(title=block_title.strip()[:80], detail=block_body.strip()[:600]))
+
+    if not dynamic_steps and not _is_direct_or_binary_question(user_question):
         for idx, c in enumerate(citations[:2], 1):
             clean_name = re.sub(r"[|\-].*$", "", c.title).strip() or f"Official guideline {idx}"
-            dynamic_steps.append(Step(title=f"Review {clean_name}"[:80], detail=c.excerpt[:280].strip()))
+            dynamic_steps.append(Step(title=f"Review {clean_name}"[:80], detail=c.excerpt[:350].strip()))
         dynamic_steps.append(
             Step(
                 title="Verify Official Portal and Apply",
@@ -334,30 +360,25 @@ def explain_rag_result(
             )
         )
 
+    # Dynamic confidence based on hybrid RRF retrieval score
+    top_score = result.hits[0].score
+    calc_conf = "high" if top_score >= 0.05 else ("medium" if top_score >= 0.02 else "low")
+    
     return Answer(
         title=f"Relevant official material: {first.title}"[:180],
         summary=summary_candidate,
         documents_needed=[],
         steps=dynamic_steps,
         warnings=[
-
             Warning(
-
                 title="Candidate evidence, not verified advice",
-
                 message="Retrieval found related official-source text, but the project has not independently validated every factual statement.",
-
                 severity="warning",
-
             )
-
         ],
-
         source_url=first.url,
-
         last_verified=first.reported_last_verified,
-
-        confidence="low",
+        confidence=calc_conf,
 
         masked_items=masked_items or [],
 

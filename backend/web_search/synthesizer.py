@@ -42,7 +42,7 @@ STRICT DISCRIMINATOR AND SYNTHESIS RULES:
 """
 
 
-def _call_ollama(system: str, prompt: str, *, timeout: float = 12.0) -> str | None:
+def _call_ollama(system: str, prompt: str, *, timeout: float = 25.0) -> str | None:
     """Call local Ollama model with a fast timeout and focused context."""
     payload = {
         "model": _OLLAMA_MODEL,
@@ -53,7 +53,7 @@ def _call_ollama(system: str, prompt: str, *, timeout: float = 12.0) -> str | No
         ],
         "options": {
             "temperature": 0.05,
-            "num_predict": 100,
+            "num_predict": 250,
             "num_ctx": 1024,
             "num_thread": min(os.cpu_count() or 4, 4),
         },
@@ -111,11 +111,25 @@ def _extract_extractive_answer(page_text: str, query: str) -> tuple[str, list[di
         "contact ", "call ", "dial ", "file ", "lodge ", "raise ", "register ", "open ", "provide ",
         "verify ", "upload ", "download ", "pay ", "ensure ", "forward ", "write to ", "mail to "
     )
+    raw_step_candidates = []
     for s in sentence_candidates:
         is_step = any(re.match(p, s, re.I) for p in step_patterns) or any(
             s.lower().startswith(v) for v in step_verbs
         )
-        if is_step and len(s) > 15 and s not in [st["detail"] for st in steps]:
+        if is_step and len(s) > 15:
+            s_clean = s.lower()
+            s_score = sum(1 for w in query_words if w in s_clean)
+            raw_step_candidates.append((s_score, s))
+
+    if any(score > 0 for score, _ in raw_step_candidates):
+        filtered = [s for score, s in raw_step_candidates if score > 0]
+        if len(filtered) < 3:
+            filtered.extend([s for score, s in raw_step_candidates if score == 0])
+    else:
+        filtered = [s for _, s in raw_step_candidates]
+
+    for s in filtered:
+        if s not in [st["detail"] for st in steps]:
             clean_text = re.sub(r"^[a-z0-9][\.\)]\s+", "", s, flags=re.I).strip()
             clean_text = re.sub(r"\s+[b-z0-9][\.\)]\s*$", "", clean_text, flags=re.I).strip()
             clean_title = " ".join(clean_text.split()[:7])
@@ -305,7 +319,7 @@ def synthesize_from_web(
         "Instructions: Answer the citizen's question based ONLY on the official page content above."
     )
 
-    raw_response = _call_ollama(_WEB_SYNTHESIS_SYSTEM, prompt, timeout=12.0)
+    raw_response = _call_ollama(_WEB_SYNTHESIS_SYSTEM, prompt, timeout=25.0)
 
     summary = ""
     steps_data = []
