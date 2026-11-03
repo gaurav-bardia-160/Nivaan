@@ -29,7 +29,7 @@ DISCRIMINATOR_FAILURE_PHRASE = "Live search failed to extract the procedural tex
 
 _WEB_SYNTHESIS_SYSTEM = f"""\
 You are Nivaan, an expert civic AI assistant for Indian citizens.
-A user query could not be answered from the verified knowledge base, so we retrieved text from an official government web portal.
+We retrieved real-time information directly from an official government web portal.
 Your task: Evaluate the scraped text and answer the citizen's question directly, concisely, and accurately.
 
 STRICT DISCRIMINATOR AND SYNTHESIS RULES:
@@ -287,8 +287,7 @@ def synthesize_from_web(
             masked_items=[],
             citations=[citation],
             disclaimer=(
-                "⚠️ This answer was retrieved live from an official government website because "
-                "the verified civic knowledge base did not contain a pre-verified guide for your query. "
+                f"⚠️ This answer was retrieved live from the official government portal ({domain_netloc}). "
                 "Please verify the information directly on the official portal before taking action."
             ),
         )
@@ -383,8 +382,7 @@ def synthesize_from_web(
     )
 
     disclaimer = (
-        "⚠️ This answer was retrieved live from an official government website because "
-        "the verified civic knowledge base did not contain a pre-verified guide for your query. "
+        f"⚠️ This answer was retrieved live from the official government portal ({domain_netloc}). "
         "Please verify the information directly on the official portal before taking action."
     )
 
