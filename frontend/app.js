@@ -875,12 +875,15 @@ window.startEditPrompt = function(msgId) {
     const row = document.getElementById("row_" + msgId);
     if (!row) return;
 
+    const content = row.querySelector(".message-content");
     const wrapper = row.querySelector(".user-bubble-wrapper");
     if (!wrapper) return;
 
+    if (content) content.classList.add("is-editing");
+    wrapper.classList.add("is-editing");
     wrapper.innerHTML = `
         <div class="user-edit-container">
-            <textarea class="user-edit-textarea" id="edit_textarea_${msgId}">${escapeHtml(msg.text)}</textarea>
+            <textarea class="user-edit-textarea" id="edit_textarea_${msgId}" rows="1">${escapeHtml(msg.text)}</textarea>
             <div class="user-edit-actions">
                 <button type="button" class="user-edit-btn cancel-btn" onclick="cancelEditPrompt('${msgId}')">Cancel</button>
                 <button type="button" class="user-edit-btn save-btn" onclick="submitEditPrompt('${msgId}')">Save & Submit</button>
@@ -890,6 +893,32 @@ window.startEditPrompt = function(msgId) {
 
     const textarea = document.getElementById(`edit_textarea_${msgId}`);
     if (textarea) {
+        const autoResize = () => {
+            textarea.style.height = "auto";
+            const newHeight = Math.max(textarea.scrollHeight, 44);
+            textarea.style.height = newHeight + "px";
+            if (textarea.scrollHeight > window.innerHeight * 0.7) {
+                textarea.style.overflowY = "auto";
+            } else {
+                textarea.style.overflowY = "hidden";
+            }
+        };
+
+        textarea.addEventListener("input", autoResize);
+        textarea.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                submitEditPrompt(msgId);
+            } else if (e.key === "Escape") {
+                e.preventDefault();
+                cancelEditPrompt(msgId);
+            }
+        });
+
+        // Compute size to fit question length immediately & after reflow
+        autoResize();
+        requestAnimationFrame(autoResize);
+
         textarea.focus();
         textarea.setSelectionRange(textarea.value.length, textarea.value.length);
     }
@@ -904,9 +933,12 @@ window.cancelEditPrompt = function(msgId) {
     const row = document.getElementById("row_" + msgId);
     if (!row) return;
 
+    const content = row.querySelector(".message-content");
     const wrapper = row.querySelector(".user-bubble-wrapper");
     if (!wrapper) return;
 
+    if (content) content.classList.remove("is-editing");
+    wrapper.classList.remove("is-editing");
     wrapper.innerHTML = `
         <div class="user-bubble" id="bubble_${msgId}">${escapeHtml(msg.text)}</div>
         <button class="edit-msg-btn" onclick="startEditPrompt('${msgId}')" title="Edit prompt">✏️</button>
