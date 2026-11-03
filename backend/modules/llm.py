@@ -308,33 +308,7 @@ def _build_llm_prompt(
             "- ZERO EXTERNAL COMMERCIAL ENTITIES: Never reference commercial services (e.g. legaltax.in); cite only official .gov.in or .nic.in portals."
         )
 
-        domain_rules = []
-        lowered_q = question.lower()
-        if any(k in lowered_q for k in ("fastag", "toll", "nhai", "ihmcl")):
-            domain_rules.append("FASTAG & NHAI TOLL DISPUTE: Official resolution is via IHMCL National Highway Helpline 1033 or the FASTag issuing bank's dispute/chargeback desk. Under NPCI guidelines, incorrect toll deductions are reconciled within 7-15 business days. Never cite Income Tax or bank account validation.")
-        elif any(k in lowered_q for k in ("parivahan", "vahan", "chassis", "challan")):
-            domain_rules.append("PARIVAHAN & VAHAN RC: Chassis/engine number mismatches require physical inspection and Form 30/34 correction at the registering RTO with dealer Sale Certificate (Form 21) and chassis pencil print. Contesting police traffic challans is done through echallan.parivahan.gov.in before Virtual Court referral. Never cite PM Kisan or Passport.")
-        elif any(k in lowered_q for k in ("cbse", "marksheet", "digilocker")):
-            domain_rules.append("DIGILOCKER CBSE MARKSHEET: DigiLocker requires an exact demographic match with Aadhaar. If name mismatch prevents fetching Class 10/12 marksheet, update Aadhaar demographic details at UIDAI to match the CBSE certificate, or apply for CBSE correction at cbse.gov.in. Never cite Income Tax returns.")
-        elif any(k in lowered_q for k in ("139(9)", "139(5)", "defective", "revised return")):
-            domain_rules.append("SECTION 139(9) TRAP: If asked about filing a Revised Return (139(5)) for a 139(9) Defective Notice, state in the first sentence: 'No, you should NOT file a Revised Return under Section 139(5). A revised return does NOT cure a Section 139(9) defect notice and will cause the return to be declared invalid ab initio.' Direct responding via e-File > e-Proceedings > Defective Notice within 15 days. Never cite synthetic case studies.")
-        elif any(k in lowered_q for k in ("consumer", "edaakhil", "district court", "represent myself", "lawyer")):
-            domain_rules.append("CONSUMER COURT: If asked about self-representation or lawyer, answer: 'Yes, you can represent yourself in consumer court without hiring an advocate/lawyer under the Consumer Protection Act, 2019 via e-Daakhil (edaakhil.nic.in).' If asked about jurisdiction, state: 'Yes, claims up to 50 lakh lie before the District Commission (DCDRC).'")
-        elif any(k in lowered_q for k in ("nalsa", "legal aid")):
-            domain_rules.append("FREE LEGAL AID: Free legal aid is available under Section 12 of the Legal Services Authorities Act, 1987 (nalsa.gov.in, DLSA, helpline 15100).")
-        elif any(k in lowered_q for k in ("blo", "voter", "epic", "e-epic")):
-            domain_rules.append("VOTER ID: Direct tracking on voters.eci.gov.in using Form 6/8 Reference Number, contacting BLO via 'Know Your Polling Station & Officer', or escalating via NGRS (voters.eci.gov.in) / helpline 1950.")
-        elif any(k in lowered_q for k in ("credit card", "unsolicited")):
-            domain_rules.append("CREDIT CARD: RBI Master Direction: Unsolicited cards must be cancelled without fee with 2x penalty. Disputed charges go to issuer's grievance desk, then RBI Ombudsman (cms.rbi.org.in / 14448).")
-        elif any(k in lowered_q for k in ("pvc", "srn")):
-            domain_rules.append("AADHAAR PVC: State 24-48h gateway reconciliation window, 5-7 business days bank auto-reversal, and UIDAI escalation via helpdesk@uidai.gov.in with 12-digit UTR.")
-        elif any(k in lowered_q for k in ("bank validation", "refund unpaid")):
-            domain_rules.append("BANK VALIDATION: Resolution path is Profile > My Bank Account to re-validate IFSC, followed by Services > Refund Reissue Request. Never advise filing a defective return schema.")
-
-        if domain_rules:
-            system = system_base + "\nSPECIFIC STATUTORY RULE:\n" + "\n".join(domain_rules)
-        else:
-            system = system_base
+        system = system_base
         prompt = (
             f"--- Conversation Context ---\n{history}\n\n"
             f"--- Citizen Question ---\n{question[:1200]}\n\n"

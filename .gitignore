@@ -17,3 +17,9 @@ backend/data/conversations/*
 !backend/data/conversations/.gitkeep
 models/
 ollama/
+
+# ETL pipeline runtime artifacts (raw downloads, refined content, pending queue)
+backend/data/etl/raw/
+backend/data/etl/refined/
+backend/data/etl/archive/
+backend/data/etl/pending_ingestion.jsonl

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -8,8 +9,29 @@ APP_NAME = "Nivaan API"
 APP_VERSION = "0.5.0"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 BACKEND_DIR = Path(__file__).resolve().parent
+
+# Load local environment variables from project directory before reading any env vars
+load_dotenv(BACKEND_DIR / ".env")
+load_dotenv(PROJECT_ROOT / ".env")
+
 DATA_DIR = BACKEND_DIR / "data"
 KNOWLEDGE_BASE_PATH = DATA_DIR / "knowledge_base.json"
+
+# ETL Pipeline directories (Phase 2 — offline write path only)
+ETL_DIR = DATA_DIR / "etl"
+ETL_RAW_DIR = ETL_DIR / "raw"
+ETL_REFINED_DIR = ETL_DIR / "refined"
+ETL_ARCHIVE_DIR = ETL_DIR / "archive"
+PENDING_INGESTION_PATH = ETL_DIR / "pending_ingestion.jsonl"
+
+# Web Search Feature Flags
+_is_pytest = "pytest" in sys.modules or os.getenv("PYTEST_CURRENT_TEST") is not None
+WEB_SEARCH_ENABLED = (
+    os.getenv("WEB_SEARCH_ENABLED", "false").lower() in ("true", "1", "yes")
+    and not (_is_pytest and not os.getenv("TEST_LIVE_WEB_SEARCH"))
+)
+WEB_SEARCH_CONFIDENCE_THRESHOLD = float(os.getenv("WEB_SEARCH_CONFIDENCE_THRESHOLD", "0.75"))
+ETL_INTERVAL_HOURS = int(os.getenv("ETL_INTERVAL_HOURS", "4"))
 
 SUPPORTED_LANGUAGES = ("en", "hi", "gu")
 MAX_QUESTION_LENGTH = 1200
@@ -17,10 +39,6 @@ MAX_DOCUMENT_TEXT_LENGTH = 12000
 MAX_CONVERSATION_ID_LENGTH = 120
 
 DEFAULT_DISCLAIMER = None
-
-# Load local environment variables from project directory
-load_dotenv(BACKEND_DIR / ".env")
-load_dotenv(PROJECT_ROOT / ".env")
 
 # Dynamic CORS configuration
 _cors_env = os.getenv("CORS_ORIGINS", "").strip()
@@ -53,6 +71,14 @@ __all__ = [
     "BACKEND_DIR",
     "DATA_DIR",
     "KNOWLEDGE_BASE_PATH",
+    "ETL_DIR",
+    "ETL_RAW_DIR",
+    "ETL_REFINED_DIR",
+    "ETL_ARCHIVE_DIR",
+    "PENDING_INGESTION_PATH",
+    "WEB_SEARCH_ENABLED",
+    "WEB_SEARCH_CONFIDENCE_THRESHOLD",
+    "ETL_INTERVAL_HOURS",
     "SUPPORTED_LANGUAGES",
     "MAX_QUESTION_LENGTH",
     "MAX_DOCUMENT_TEXT_LENGTH",

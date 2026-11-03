@@ -37,7 +37,7 @@ _DOMAIN_PATTERNS: dict[Domain, tuple[re.Pattern[str], ...]] = {
     ),
     Domain.IDENTITY: (
         re.compile(r"\b(?:digilocker|digi\s+locker)\b", re.IGNORECASE),
-        re.compile(r"\b(?:aadhaar|aadhar|uidai|eaadhaar|pvc\s+card|baal\s+aadhaar|mbu)\b", re.IGNORECASE),
+        re.compile(r"\b(?:aadhaar|aadhar|uidai|eaadhaar|pvc\s+card|baal\s+aadhaar|mbu|srn)\b", re.IGNORECASE),
         re.compile(r"\b(?:pan\s+card|pancard|form\s+49a|e-pan|epan|utiitsl)\b", re.IGNORECASE),
         re.compile(r"\b(?:passport|psk|popsk|tatkaal)\b", re.IGNORECASE),
         re.compile(r"\b(?:voter\s+id|voterid|epic|nvsp|eci|voters\.eci|blo|form\s+[678])\b", re.IGNORECASE),

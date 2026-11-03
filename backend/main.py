@@ -70,6 +70,8 @@ _METRICS = {
 
     "unsupported_refusals": 0,
 
+    "web_search_fallbacks": 0,
+
 }
 
 

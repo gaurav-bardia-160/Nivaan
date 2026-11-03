@@ -35,3 +35,72 @@ timestamp,conversation_id,query,domain,top_score,reason
 2026-10-30T20:10:21.225303+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
 2026-10-30T20:10:25.111774+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
 2026-10-30T20:10:45.999567+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T15:43:02.946930+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:31.498603+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:31.850273+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:31.953587+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:32.023144+00:00,anonymous,How can I download e-PAN?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:33.439137+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:37.632573+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:42.602824+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:43.206457+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:26:48.302265+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:27:24.364745+00:00,anonymous,How can I download e-PAN?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:31:15.043548+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:31:15.226235+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:31:15.399499+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:31:17.562147+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:31:20.936669+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:31:21.507843+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T17:31:24.816119+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:30:32.376769+00:00,anonymous,How do I fix a chassis number mismatch on my Parivahan RC?,unknown,-0.5182,low_retrieval_confidence
+2026-11-02T19:35:33.753846+00:00,anonymous,How do I fix a chassis number mismatch on my Parivahan RC?,unknown,-0.5182,low_retrieval_confidence
+2026-11-02T19:49:50.262329+00:00,test-ws-trigger,How to fix RC chassis mismatch at Parivahan?,unknown,-0.5336,low_retrieval_confidence
+2026-11-02T19:51:09.680896+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:51:15.554475+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:51:31.783949+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:55:38.869029+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:55:45.001365+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:57:58.351335+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:58:03.928148+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:58:15.825796+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T19:59:05.317546+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:02:14.209128+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:02:20.041741+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:02:26.295892+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:02:44.907214+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:02:54.322929+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:03:36.584148+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:13:12.714526+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:13:35.176792+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:13:35.288512+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:13:35.526725+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:13:38.159140+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:13:42.756282+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:13:43.780069+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:13:49.420544+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-02T20:16:54.329677+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:51:33.215141+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:51:33.280204+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:51:33.474811+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:51:38.216716+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:51:43.063001+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:51:43.670424+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:51:53.938405+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:52:21.991616+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:52:22.149724+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:52:22.485690+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:52:24.715956+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:52:29.638585+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:52:30.406473+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:52:37.087454+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:52:53.865325+00:00,rag-follow-up,What should I check before doing that?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:57:34.492518+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T02:58:40.540264+00:00,rag-follow-up,What should I check before doing that?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T03:07:43.050994+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T03:07:43.152618+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T03:07:43.366774+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T03:07:46.842749+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T03:07:52.222555+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T03:07:53.331917+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-03T03:08:02.247717+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match

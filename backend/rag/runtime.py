@@ -156,7 +156,13 @@ def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) ->
         elif domain in (Domain.TAXATION, "tax", "taxation"):
             category = "tax"
         elif domain in (Domain.IDENTITY, "identity"):
-            category = "aadhaar" if any(w in query.lower() for w in ("aadhaar", "aadhar", "uidai")) else "civic"
+            lowered_q = query.lower()
+            if any(w in lowered_q for w in ("pan", "e-pan", "epan", "49a", "utiitsl", "nsdl")):
+                category = "pan"
+            elif any(w in lowered_q for w in ("aadhaar", "aadhar", "uidai", "srn", "mbu", "pvc")):
+                category = "aadhaar"
+            else:
+                category = "civic"
     if category is None:
         category = supported_category(query)
     if category is None:
