@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-03T12:19:45Z",
+  "sources": [
+    {
+      "sequence": 1,
+      "source_id": "rbi_integrated_ombudsman_scheme_2026",
+      "title": "RBI Integrated Ombudsman Scheme, 2026 - Full document",
+      "url": "https://rbidocs.rbi.org.in/rdocs/content/pdfs/SCHEME16012026_A.pdf",
+      "status": "blocked",
+      "reason": "source_returned_challenge_or_error_page",
+      "writes_performed": false
+    },
+    {
+      "sequence": 2,
+      "source_id": "rbi_integrated_ombudsman_scheme_2026_faq",
+      "title": "RBI Integrated Ombudsman Scheme, 2026 - FAQs",
+      "url": "https://old.rbi.org.in/commonman/english/scripts/faqs.aspx?id=3407",
+      "status": "blocked",
+      "reason": "source_returned_challenge_or_error_page",
+      "writes_performed": false
+    },
+    {
+      "sequence": 3,
+      "source_id": "rbi_commercial_banks_credit_facilities_directions_2025",
+      "title": "RBI Commercial Banks - Credit Facilities Directions, 2025",
+      "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_on_landing_page; locate and review the authoritative full document before ingestion",
+      "writes_performed": false
+    },
+    {
+      "sequence": 4,
+      "source_id": "rbi_udgam_faq",
+      "title": "RBI UDGAM FAQ",
+      "url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/FAQonUDGAMPortal.pdf",
+      "status": "ingested",
+      "dataset_id": "rbi_udgam_faq_01a00ad35419",
+      "artifact_sha256": "01a00ad3541985ec26e6555ab70243363a1cf2102b16c2a464708c1e7e8d3b4a",
+      "record_count": 2,
+      "review_status": "manually_reviewed_extraction_pending_factual_verification"
+    },
+    {
+      "sequence": 5,
+      "source_id": "rbi_udgam_portal",
+      "title": "RBI UDGAM Portal",
+      "url": "https://udgam.rbi.org.in/unclaimed-deposits/#/login",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_on_client_rendered_portal; the reviewed FAQ remains the authoritative ingestible source",
+      "writes_performed": false
+    },
+    {
+      "sequence": 6,
+      "source_id": "dicgc_deposit_insurance_guide",
+      "title": "DICGC Guide to Deposit Insurance",
+      "url": "https://dicgc.org.in/guide-to-deposit-insurance",
+      "status": "ingested",
+      "dataset_id": "dicgc_deposit_insurance_guide_fe6b86e75301",
+      "artifact_sha256": "fe6b86e753012b9ad3a2996fad1ce15121296a9cae2feb32b4688c5720d87758",
+      "record_count": 8,
+      "review_status": "manually_reviewed_extraction_pending_factual_verification"
+    },
+    {
+      "sequence": 7,
+      "source_id": "npci_nach_procedural_guidelines_v7",
+      "title": "NPCI NACH Procedural Guidelines, Version 7",
+      "url": "https://www.npci.org.in/PDF/nach/notofied-document/NACH-Procedural-Guidelines-V.7.pdf",
+      "status": "blocked",
+      "reason": "official endpoint returned an access-denied HTML response instead of the PDF",
+      "writes_performed": false
+    },
+    {
+      "sequence": 8,
+      "source_id": "npci_imps_product_faq",
+      "title": "NPCI IMPS",
+      "url": "https://www.npci.org.in/product/imps",
+      "status": "blocked",
+      "reason": "source_fetch_failed:HTTPError",
+      "writes_performed": false
+    },
+    {
+      "sequence": 9,
+      "source_id": "rbi_shg_bank_linkage_master_circular",
+      "title": "RBI Master Circular on SHG-Bank Linkage",
+      "url": "https://www.rbi.org.in/Scripts/BS_ViewMasCirculardetails.aspx?id=12649",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_on_landing_page; locate the authoritative full circular before ingestion",
+      "writes_performed": false
+    },
+    {
+      "sequence": 10,
+      "source_id": "pfrda_atal_pension_yojana",
+      "title": "PFRDA Atal Pension Yojana",
+      "url": "https://pfrda.org.in/schemes/atal-pension-yojana-apy",
+      "status": "ingested",
+      "dataset_id": "pfrda_atal_pension_yojana_e7e167d2046e",
+      "artifact_sha256": "e7e167d2046e94f057cc07147fe8475062040a9a57e56b5dd51a827642f196ae",
+      "record_count": 2,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 11,
+      "source_id": "pfrda_nps_apy_grievance_redressal",
+      "title": "PFRDA NPS and APY Grievance Redressal",
+      "url": "https://www.pfrda.org.in/compliance/grievance",
+      "status": "ingested",
+      "dataset_id": "pfrda_nps_apy_grievance_redressal_4cee3e439881",
+      "artifact_sha256": "4cee3e439881d842441d9c5c97f57f55a144851b9a1e1a521193f2a000dded3f",
+      "record_count": 3,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 12,
+      "source_id": "nps_exit_withdrawals_2025",
+      "title": "NPS Exits and Withdrawals Regulations, amended 16 December 2025",
+      "url": "https://npstrust.org.in/sites/default/files/act-and-regulations-documents/exits-and-withdrawals-under-the-national-pension-system-regulations-2015-last-amended-on-16-december-2025.pdf",
+      "status": "deferred",
+      "artifact_sha256": "7cde3bbc94a1d12e6a4e6415f044d892a1a74300810069c747f294f891caeb02",
+      "reason": "raw official PDF preserved, but automatic fixed-window extraction produced 91 legally ambiguous chunks with amendment footnotes and split provisions; excluded from the production manifest pending a section-aware legal refiner and full review",
+      "writes_performed": true,
+      "registered_in_rag": false
+    },
+    {
+      "sequence": 13,
+      "source_id": "dfs_pmjdy",
+      "title": "Pradhan Mantri Jan Dhan Yojana",
+      "url": "https://financialservices.gov.in/node/3463",
+      "status": "ingested",
+      "dataset_id": "dfs_pmjdy_aa6bc281e943",
+      "artifact_sha256": "aa6bc281e9431a9c33384901c02b0edc52d97dbaf88d620ceee8979adc7cbe5d",
+      "record_count": 1,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 14,
+      "source_id": "dfs_mudra",
+      "title": "Pradhan Mantri MUDRA Yojana",
+      "url": "https://financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
+      "status": "ingested",
+      "dataset_id": "dfs_mudra_4246edd5b6ed",
+      "artifact_sha256": "4246edd5b6edc0618504f15421ac7905ca094712b30aa52f7d5718b9e9ad59be",
+      "record_count": 1,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 15,
+      "source_id": "dfs_jansamarth",
+      "title": "JanSamarth Portal - Government Credit Schemes",
+      "url": "https://www.financialservices.gov.in/node/4300",
+      "status": "blocked",
+      "reason": "source_fetch_failed:SSLError; TLS verification was not bypassed",
+      "writes_performed": false
+    },
+    {
+      "sequence": 16,
+      "source_id": "jansuraksha_pmjjby_forms",
+      "title": "PMJJBY Forms and Claims",
+      "url": "https://jansuraksha.gov.in/Forms-PMJJBY.aspx",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_on_landing_page; form links require individual source review",
+      "writes_performed": false
+    },
+    {
+      "sequence": 17,
+      "source_id": "jansuraksha_pmsby_forms",
+      "title": "PMSBY Forms and Claims",
+      "url": "https://jansuraksha.gov.in/forms-pmsby.aspx",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_on_landing_page; form links require individual source review",
+      "writes_performed": false
+    },
+    {
+      "sequence": 18,
+      "source_id": "jansuraksha_apy_forms",
+      "title": "APY Forms",
+      "url": "https://jansuraksha.gov.in/Forms-APY.aspx",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_on_landing_page; form links require individual source review",
+      "writes_performed": false
+    },
+    {
+      "sequence": 19,
+      "source_id": "pib_pm_svanidhi_faq_2026",
+      "title": "PM SVANidhi FAQ 2026",
+      "url": "https://www.pib.gov.in/FaqDetails.aspx?ModuleId=4&NoteId=158727&id=158727&lang=2&reg=48",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_returned by the official endpoint",
+      "writes_performed": false
+    },
+    {
+      "sequence": 20,
+      "source_id": "pib_pm_vishwakarma",
+      "title": "PM Vishwakarma Official Explainer",
+      "url": "https://www.pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=159998&lang=2&reg=3",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_returned by the official endpoint",
+      "writes_performed": false
+    },
+    {
+      "sequence": 21,
+      "source_id": "fisheries_kcc",
+      "title": "Kisan Credit Card for Fisheries",
+      "url": "https://www.dof.gov.in/offerings/schemes-and-services/details/kisan-credit-card-2-ITMyUTMtQWa",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text_returned by the official endpoint; likely client-rendered content requires a reviewed browser capture path",
+      "writes_performed": false
+    },
+    {
+      "sequence": 22,
+      "source_id": "pmay_u_2_guidelines",
+      "title": "PMAY-U 2.0 Operational Guidelines",
+      "url": "https://pmay-urban.gov.in/uploads/guidelines/Operational-Guidelines-of-PMAY-U-2.pdf",
+      "status": "deferred",
+      "artifact_sha256": "74c4f6724f6645f08463e9b09009edd3ddd720739bf2a13af0f4bf22fea4b0f3",
+      "reason": "raw official PDF preserved, but 111 fixed-window chunks split scheme provisions and tables; excluded from production pending section-aware guideline refinement and review",
+      "writes_performed": true,
+      "registered_in_rag": false
+    },
+    {
+      "sequence": 23,
+      "source_id": "pmay_u_2_faq",
+      "title": "PMAY-U 2.0 FAQ",
+      "url": "https://pmaymis.gov.in/PMAYMIS2_2024/PmayFAQ.aspx",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text returned by the official endpoint; no content was published to the production corpus",
+      "writes_performed": false
+    },
+    {
+      "sequence": 24,
+      "source_id": "pmuy_ujjwala_2",
+      "title": "PMUY Ujjwala 2.0",
+      "url": "https://www.pmuy.gov.in/ujjwala2.html",
+      "status": "ingested",
+      "dataset_id": "pmuy_ujjwala_2_b600bf485d54",
+      "artifact_sha256": "b600bf485d54f9c3e2d31e1b6b3d7333de7ba8671b741a3630e9d161cfa7d451",
+      "record_count": 3,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 25,
+      "source_id": "dfpd_onorc_faq",
+      "title": "One Nation One Ration Card FAQ",
+      "url": "https://dfpd.gov.in/faqs/en",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text returned by the official endpoint; no content was published to the production corpus",
+      "writes_performed": false
+    },
+    {
+      "sequence": 26,
+      "source_id": "mera_ration_2_faq",
+      "title": "Mera Ration 2.0 FAQ",
+      "url": "https://nfsa.gov.in/doc/FAQ_for_Mera_Ration_2.pdf",
+      "status": "ingested",
+      "dataset_id": "mera_ration_2_faq_32b79b2c4152",
+      "artifact_sha256": "32b79b2c41525299a182ca4c67206bc88a64740d27fb8ec01b0af526b7bbc7a6",
+      "record_count": 4,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 27,
+      "source_id": "eshram_faq",
+      "title": "e-Shram FAQ",
+      "url": "https://eshram.gov.in/faqs",
+      "status": "ingested",
+      "dataset_id": "eshram_faq_400b887ba1f7",
+      "artifact_sha256": "400b887ba1f7d26c9c30599e2a56231c2afd529cf2c92eb4b9255f7c92ab5447",
+      "record_count": 6,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 28,
+      "source_id": "pib_pm_samajik_sahayata_2026",
+      "title": "Pradhan Mantri Samajik Sahayata Yojana 2026 update",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2323264&lang=1&reg=48",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text returned by the official endpoint; no content was published to the production corpus",
+      "writes_performed": false
+    },
+    {
+      "sequence": 29,
+      "source_id": "pm_kusum_portal",
+      "title": "PM-KUSUM official portal",
+      "url": "https://pmkusum.mnre.gov.in/",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text returned by the official portal landing page; no content was published to the production corpus",
+      "writes_performed": false
+    },
+    {
+      "sequence": 30,
+      "source_id": "pm_surya_ghar_residential_cfa_guidelines",
+      "title": "PM Surya Ghar residential CFA guidelines",
+      "url": "https://mnre.gov.in/static/uploads/2025/08/f20f6d61628866e66b612810b49abd78.pdf",
+      "status": "deferred",
+      "artifact_sha256": "2de9b3faf765c18b9ea902271c3f431a6550e7b07bd007597e435a7c87ef368d",
+      "reason": "raw official PDF preserved after resolving the client-rendered notice through the official MNRE CMS, but 58 fixed-window chunks split a 15,756-word guideline; excluded from production pending section-aware refinement and full review",
+      "writes_performed": true,
+      "registered_in_rag": false
+    },
+    {
+      "sequence": 31,
+      "source_id": "pmegp_revised_guidelines_2023",
+      "title": "PMEGP revised scheme guidelines",
+      "url": "https://www.kviconline.gov.in/pmegpeportal/dashboard/notification/Revised_PMEGP_Scheme_Guidelines_07122023_compressed.pdf",
+      "status": "blocked",
+      "reason": "official KVIC host and its non-www variant did not resolve in independent DNS checks; TLS or hostname validation was not bypassed",
+      "writes_performed": false
+    },
+    {
+      "sequence": 32,
+      "source_id": "pmegp_application_portal",
+      "title": "PMEGP application portal",
+      "url": "https://kviconline.gov.in/pmegpeportal/pmegphome/",
+      "status": "blocked",
+      "reason": "official KVIC host did not resolve; TLS or hostname validation was not bypassed",
+      "writes_performed": false
+    },
+    {
+      "sequence": 33,
+      "source_id": "pmfme_scheme_guidelines",
+      "title": "PMFME scheme guidelines",
+      "url": "https://pmfme.mofpi.gov.in/newsletters/docs/SchemeGuidelines.pdf",
+      "status": "deferred",
+      "artifact_sha256": "632c359d08289866abb104c642b0efb1bf9e007baf06b651a13fd0de47f90ce8",
+      "reason": "raw official PDF preserved, but 35 fixed-window chunks split a 9,430-word foundational guideline; excluded from production pending section-aware refinement, amendment review and full factual review",
+      "writes_performed": true,
+      "registered_in_rag": false
+    },
+    {
+      "sequence": 34,
+      "source_id": "national_career_service_faq",
+      "title": "National Career Service FAQ",
+      "url": "https://ncs.gov.in/faq",
+      "status": "deferred",
+      "artifact_sha256": "5c68e364089f7500ee287d27806578b787eb1f1368758325bded0f570f90c546",
+      "reason": "raw official page preserved, but extracted content was navigation and service-directory boilerplate rather than FAQ answers; excluded from production",
+      "writes_performed": true,
+      "registered_in_rag": false
+    },
+    {
+      "sequence": 35,
+      "source_id": "national_scholarship_portal_students",
+      "title": "National Scholarship Portal students",
+      "url": "https://scholarships.gov.in/Students",
+      "status": "ingested",
+      "dataset_id": "national_scholarship_portal_students_2cbe32d2dfee",
+      "artifact_sha256": "2cbe32d2dfee5c30ce779a7da1bf8fb34034f30053212fc83533b045f3cbe36c",
+      "record_count": 1,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 36,
+      "source_id": "jeevan_pramaan_app_manuals",
+      "title": "Jeevan Pramaan apps and manuals",
+      "url": "https://jeevanpramaan.gov.in/v2.0/apppackage/appdownload",
+      "status": "ingested",
+      "dataset_id": "jeevan_pramaan_app_manuals_c3184fedcf35",
+      "artifact_sha256": "c3184fedcf358b87cb95c465bd00bba215a52c80788878c0fdf4cc7d7d4aa7ea",
+      "record_count": 2,
+      "review_status": "manually_refined_pending_factual_verification"
+    },
+    {
+      "sequence": 37,
+      "source_id": "pib_pm_matsya_kisan_samridhi",
+      "title": "PM Matsya Kisan Samridhi Sah-Yojana update",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2297731&lang=1&reg=1",
+      "status": "deferred",
+      "reason": "insufficient_procedural_text returned by the official endpoint; no content was published",
+      "writes_performed": false
+    },
+    {
+      "sequence": 38,
+      "source_id": "gujarat_esamajkalyan_portal",
+      "title": "Gujarat e-SamajKalyan portal",
+      "url": "https://esamajkalyan.gujarat.gov.in/",
+      "status": "deferred",
+      "reason": "insufficient procedural text returned by the official portal landing page; no content was published",
+      "writes_performed": false
+    },
+    {
+      "sequence": 39,
+      "source_id": "gujarat_esamajkalyan_citizen_manual",
+      "title": "e-SamajKalyan citizen help manual",
+      "url": "https://esamajkalyan.gujarat.gov.in/Index.aspx/HelpManual/Citizen-HelpManual.pdf",
+      "status": "deferred",
+      "reason": "the supplied official endpoint returned insufficient procedural text rather than an ingestible manual PDF; no content was published",
+      "writes_performed": false
+    },
+    {
+      "sequence": 40,
+      "source_id": "gujarat_ikhedut_public_schemes",
+      "title": "Gujarat iKhedut public schemes",
+      "url": "https://ikhedut.gujarat.gov.in/iKhedutPublicScheme/",
+      "status": "deferred",
+      "reason": "insufficient procedural text returned by the official portal landing page; no content was published",
+      "writes_performed": false
+    },
+    {
+      "sequence": 41,
+      "source_id": "gujarat_ikhedut_subsidy_application",
+      "title": "iKhedut subsidy application information",
+      "url": "https://ikhedut.gujarat.gov.in/Public/frm_Public_IntSubsidyAppl_GhataksByGroupAndMainScheme.aspx",
+      "status": "deferred",
+      "reason": "insufficient procedural text returned by the official application page; no content was published",
+      "writes_performed": false
+    }
+  ]
+}

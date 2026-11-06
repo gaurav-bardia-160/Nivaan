@@ -63,6 +63,13 @@ def normalize_record(record: ChunkRecord, spec: DatasetSpec, as_of: date) -> Rag
         reported_quality_score=record.quality_score,
         reported_verification_method=record.verification_method,
         reported_source_confidence=record.source_confidence,
+        source_authority=record.source_authority,
+        publication_date=record.publication_date.isoformat() if record.publication_date else None,
+        effective_from=record.effective_from.isoformat() if record.effective_from else None,
+        jurisdiction=record.jurisdiction,
+        scheme=record.scheme,
+        document_type=record.document_type,
+        supersedes=tuple(record.supersedes),
     )
     return RagDocument(
         id="rag_" + fingerprint, content_hash=fingerprint, category=record.category,

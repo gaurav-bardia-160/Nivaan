@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_id": "dfs_mudra",
+  "artifact_sha256": "4246edd5b6edc0618504f15421ac7905ca094712b30aa52f7d5718b9e9ad59be",
+  "reviewed_at": "2026-11-02T10:30:00Z",
+  "review_status": "manually_refined_pending_factual_verification",
+  "extracted_record_count": 1,
+  "accepted_record_count": 1,
+  "actions": [
+    "removed navigation and dated aggregate progress statistics",
+    "retained the official scheme purpose, loan categories, lender classes and collateral statement",
+    "normalized formatting without expanding beyond the official page",
+    "retained unverified status until independent factual verification exists"
+  ]
+}

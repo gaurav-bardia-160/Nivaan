@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_id": "jeevan_pramaan_app_manuals",
+  "dataset_id": "jeevan_pramaan_app_manuals_c3184fedcf35",
+  "artifact_version": "c3184fedcf358b87cb95c465bd00bba215a52c80788878c0fdf4cc7d7d4aa7ea",
+  "requested_url": "https://jeevanpramaan.gov.in/v2.0/apppackage/appdownload",
+  "final_url": "https://jeevanpramaan.gov.in/v2.0/apppackage/appdownload",
+  "approved_hosts": [
+    "jeevanpramaan.gov.in",
+    "www.jeevanpramaan.gov.in"
+  ],
+  "fetched_at": "2026-11-03T12:17:58+00:00",
+  "content_type": "text/html",
+  "artifact_sha256": "c3184fedcf358b87cb95c465bd00bba215a52c80788878c0fdf4cc7d7d4aa7ea",
+  "artifact_bytes": 16132,
+  "extracted_title": "Jeevan Pramaan :: Life Certificate for Pensioners ** MeitY ** Government of India",
+  "extracted_words": 330,
+  "refined_path": "refined/official_sources/jeevan_pramaan_app_manuals/c3184fedcf358b87cb95c465bd00bba215a52c80788878c0fdf4cc7d7d4aa7ea.jsonl",
+  "record_count": 2,
+  "deduplication": {
+    "candidates": 2,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 2
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Government of India",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": "Jeevan Pramaan",
+  "document_type": "portal",
+  "supersedes": []
+}

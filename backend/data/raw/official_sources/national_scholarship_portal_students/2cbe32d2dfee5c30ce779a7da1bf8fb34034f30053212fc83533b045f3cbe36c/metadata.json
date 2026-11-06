@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_id": "national_scholarship_portal_students",
+  "dataset_id": "national_scholarship_portal_students_2cbe32d2dfee",
+  "artifact_version": "2cbe32d2dfee5c30ce779a7da1bf8fb34034f30053212fc83533b045f3cbe36c",
+  "requested_url": "https://scholarships.gov.in/Students",
+  "final_url": "https://scholarships.gov.in/Students",
+  "approved_hosts": [
+    "scholarships.gov.in",
+    "www.scholarships.gov.in"
+  ],
+  "fetched_at": "2026-11-03T12:17:58+00:00",
+  "content_type": "text/html",
+  "artifact_sha256": "2cbe32d2dfee5c30ce779a7da1bf8fb34034f30053212fc83533b045f3cbe36c",
+  "artifact_bytes": 107783,
+  "extracted_title": "NSP : National Scholarship Portal",
+  "extracted_words": 313,
+  "refined_path": "refined/official_sources/national_scholarship_portal_students/2cbe32d2dfee5c30ce779a7da1bf8fb34034f30053212fc83533b045f3cbe36c.jsonl",
+  "record_count": 1,
+  "deduplication": {
+    "candidates": 1,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 1
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Government of India",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": "National Scholarship Portal",
+  "document_type": "portal",
+  "supersedes": []
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_id": "national_career_service_faq",
+  "dataset_id": "national_career_service_faq_5c68e364089f",
+  "artifact_version": "5c68e364089f7500ee287d27806578b787eb1f1368758325bded0f570f90c546",
+  "requested_url": "https://ncs.gov.in/faq",
+  "final_url": "https://ncs.gov.in/faq",
+  "approved_hosts": [
+    "ncs.gov.in",
+    "www.ncs.gov.in"
+  ],
+  "fetched_at": "2026-11-03T12:17:58+00:00",
+  "content_type": "text/html",
+  "artifact_sha256": "5c68e364089f7500ee287d27806578b787eb1f1368758325bded0f570f90c546",
+  "artifact_bytes": 117739,
+  "extracted_title": "NcsNewWebsite",
+  "extracted_words": 310,
+  "refined_path": "refined/official_sources/national_career_service_faq/5c68e364089f7500ee287d27806578b787eb1f1368758325bded0f570f90c546.jsonl",
+  "record_count": 1,
+  "deduplication": {
+    "candidates": 1,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 1
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Ministry of Labour and Employment, Government of India",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": "National Career Service",
+  "document_type": "faq",
+  "supersedes": []
+}

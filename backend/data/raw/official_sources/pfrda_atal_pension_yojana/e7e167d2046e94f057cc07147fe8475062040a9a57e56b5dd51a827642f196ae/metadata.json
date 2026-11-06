@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_id": "pfrda_atal_pension_yojana",
+  "dataset_id": "pfrda_atal_pension_yojana_e7e167d2046e",
+  "artifact_version": "e7e167d2046e94f057cc07147fe8475062040a9a57e56b5dd51a827642f196ae",
+  "requested_url": "https://pfrda.org.in/schemes/atal-pension-yojana-apy",
+  "final_url": "https://pfrda.org.in/schemes/atal-pension-yojana-apy",
+  "approved_hosts": [
+    "pfrda.org.in"
+  ],
+  "fetched_at": "2026-11-02T05:10:07+00:00",
+  "content_type": "text/html",
+  "artifact_sha256": "e7e167d2046e94f057cc07147fe8475062040a9a57e56b5dd51a827642f196ae",
+  "artifact_bytes": 489436,
+  "extracted_title": "Atal Pension Yojana (APY) – PFRDA | Government-Backed Retirement Scheme for Unorganized Sector - PFRDA",
+  "extracted_words": 866,
+  "refined_path": "refined/official_sources/pfrda_atal_pension_yojana/e7e167d2046e94f057cc07147fe8475062040a9a57e56b5dd51a827642f196ae.jsonl",
+  "record_count": 3,
+  "deduplication": {
+    "candidates": 3,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 3
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Pension Fund Regulatory and Development Authority",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": "Atal Pension Yojana",
+  "document_type": "scheme_guide",
+  "supersedes": []
+}

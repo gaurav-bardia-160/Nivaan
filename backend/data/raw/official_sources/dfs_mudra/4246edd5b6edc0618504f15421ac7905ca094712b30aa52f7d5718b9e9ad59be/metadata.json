@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_id": "dfs_mudra",
+  "dataset_id": "dfs_mudra_4246edd5b6ed",
+  "artifact_version": "4246edd5b6edc0618504f15421ac7905ca094712b30aa52f7d5718b9e9ad59be",
+  "requested_url": "https://financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
+  "final_url": "https://financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
+  "approved_hosts": [
+    "financialservices.gov.in",
+    "www.financialservices.gov.in"
+  ],
+  "fetched_at": "2026-11-02T10:29:18+00:00",
+  "content_type": "text/html",
+  "artifact_sha256": "4246edd5b6edc0618504f15421ac7905ca094712b30aa52f7d5718b9e9ad59be",
+  "artifact_bytes": 76185,
+  "extracted_title": "Pradhan Mantri MUDRA Yojana (PMMY) | Department of Financial Services | Minsitry of Finance | Government of India",
+  "extracted_words": 167,
+  "refined_path": "refined/official_sources/dfs_mudra/4246edd5b6edc0618504f15421ac7905ca094712b30aa52f7d5718b9e9ad59be.jsonl",
+  "record_count": 1,
+  "deduplication": {
+    "candidates": 1,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 1
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Department of Financial Services, Government of India",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": "Pradhan Mantri MUDRA Yojana",
+  "document_type": "scheme_guide",
+  "supersedes": []
+}

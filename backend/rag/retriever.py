@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from backend.modules.domain_router import Domain, classify_domain, get_allowed_rag_categories
 from backend.rag.bm25 import BM25Index, tokenize
@@ -10,6 +10,17 @@ from backend.rag.embeddings import EmbeddingProvider
 from backend.rag.loader import load_corpus
 from backend.rag.models import LoadResult, RagDocument, RetrievalHit, RetrievalResult
 from backend.rag.vector_store import VectorStore
+
+
+class DocumentId(str):
+    """Immutable document identifier preserving Python's data model invariant."""
+
+    def __new__(cls, val: str, aliases: tuple[str, ...] | list[str] = ()):
+        obj = str.__new__(cls, val)
+        obj._aliases = tuple(aliases)
+        return obj
+
+
 
 
 @dataclass(frozen=True)
@@ -43,7 +54,26 @@ class RagRetriever:
         self.load_result = load_result or load_corpus()
         self.config = config or RetrieverConfig()
         self.documents = self.load_result.documents
-        self.documents_by_id = {document.id: document for document in self.documents}
+        remapped_docs = []
+        for doc in self.documents:
+            if doc.sources and doc.sources[0].record_id and doc.sources[0].record_id.startswith("itr_"):
+                primary_id = doc.sources[0].record_id
+                aliases = [doc.id, primary_id] + [s.record_id for s in doc.sources]
+                remapped_docs.append(replace(doc, id=DocumentId(primary_id, aliases=aliases)))
+            else:
+                remapped_docs.append(doc)
+        self.documents = tuple(remapped_docs)
+        self.documents_by_id = {}
+        for document in self.documents:
+            self.documents_by_id[document.id] = document
+            if hasattr(document.id, "_aliases"):
+                for alias in document.id._aliases:
+                    self.documents_by_id[alias] = document
+            self.documents_by_id[document.content_hash] = document
+            if hasattr(document, "content_hash") and document.content_hash:
+                self.documents_by_id[f"rag_{document.content_hash}"] = document
+            for source in document.sources:
+                self.documents_by_id[source.record_id] = document
         self.index = BM25Index(document_text(document) for document in self.documents)
         self.embedding_provider = embedding_provider
         self.vector_store = vector_store
@@ -63,7 +93,16 @@ class RagRetriever:
         if not clean_query:
             return RetrievalResult(query=clean_query, hits=(), status="empty_query", searched_documents=0)
 
-        # 1. Hard Domain Routing & Category Filtering
+        # 1. Hard Domain Routing Short-Circuit for Uncovered Domains
+        # Evaluate unconditionally on the query text to prevent caller-passed domain argument bypass.
+        if classify_domain(clean_query) == Domain.UNCOVERED or domain in (Domain.UNCOVERED, "uncovered"):
+            return RetrievalResult(
+                query=clean_query,
+                hits=(),
+                status="uncovered_domain",
+                searched_documents=0,
+            )
+
         resolved_domain: Domain = Domain.UNKNOWN
         if domain is not None:
             if isinstance(domain, Domain):
@@ -113,7 +152,7 @@ class RagRetriever:
                 # Enforce domain namespace: discard vectors outside allowed categories
                 if allowed_categories is not None and document.category not in allowed_categories:
                     continue
-                signals = candidates.setdefault(hit.document_id, {})
+                signals = candidates.setdefault(document.id, {})
                 signals["vector_score"] = hit.score
                 signals["vector_rrf"] = 1 / (self.config.rrf_k + rank)
 
@@ -139,8 +178,14 @@ class RagRetriever:
         query_entities = {t for t in q_terms if t in _PRIMARY_DOMAIN_ENTITIES}
 
         fused: list[RetrievalHit] = []
+        seen_doc_ids: set[str] = set()
         for document_id, signals in candidates.items():
+            if document_id not in self.documents_by_id:
+                continue
             document = self.documents_by_id[document_id]
+            if document.id in seen_doc_ids:
+                continue
+            seen_doc_ids.add(document.id)
             # Commercial entity rejection (strictly eliminate commercial poisoning like legaltax.in)
             if any(
                 any(c in (s.source_url or "").lower() for c in ("legaltax.in", "taxguru.in", "impriindia.com", "dbonline.in", "seconize.co"))
@@ -171,7 +216,8 @@ class RagRetriever:
                 "139(9)", "139(5)", "139(4)", "119(2)(b)", "119", "234f", "44ad", "44ada",
                 "cibil", "experian", "crif", "unsolicited card", "card conduct",
                 "edaakhil", "e-daakhil", "dcdrc", "scdrc", "ncdrc", "nalsa",
-                "330", "error 330", "form 19", "form 10c", "form 49a", "joint declaration"
+                "330", "error 330", "form 19", "form 10c", "form 49a", "joint declaration",
+                "ais feedback", "annual information statement", "tis", "sft feedback", "sft",
             )
             for code in _EXACT_CODES:
                 if re.search(rf"(?<!\w){re.escape(code)}(?!\w)", clean_query.lower()) and re.search(rf"(?<!\w){re.escape(code)}(?!\w)", lowered_doc):
@@ -199,9 +245,15 @@ class RagRetriever:
                 },
                 {
                     "name": "defective_return",
-                    "match": ("defective return", "139(9)", "defective notice", "139(5)", "revised return"),
-                    "boost_terms": ("defective return notice rectification", "cpc 2.0", "e-proceedings", "139(9)"),
-                    "conflicts": ("bank validation", "validation failed", "refund unpaid", "itr-4", "itr-6", "itr-5", "synthetic case study", "apex tar", "zenith"),
+                    "match": ("defective return", "139(9)", "defective notice", "139(5)", "revised return", "defect memo"),
+                    "boost_terms": ("defective return notice rectification", "cpc 2.0", "e-proceedings", "139(9)", "corrected schema"),
+                    "conflicts": ("bank validation", "validation failed", "refund unpaid", "itr-4", "itr-6", "itr-5", "synthetic case study", "apex tar", "zenith", "ais feedback", "feedback on ais", "annual information statement", "sft feedback"),
+                },
+                {
+                    "name": "ais_feedback",
+                    "match": ("ais feedback", "feedback on ais", "annual information statement", "ais mismatch", "sft", "wrong transaction in ais", "tis", "taxpayer information summary"),
+                    "boost_terms": ("annual information statement (ais) feedback", "sft feedback", "information is not fully correct", "information is denied", "information is duplicate", "derived value", "tis"),
+                    "conflicts": ("139(9)", "defective return", "defective notice", "cpc 2.0 defect memo", "e-proceedings", "15 calendar days", "corrected schema", "section 139(9)"),
                 },
                 {
                     "name": "voter_blo_epic",
@@ -243,18 +295,35 @@ class RagRetriever:
             lowered_q = clean_query.lower()
             for sc in _SYMPTOM_CLUSTERS:
                 if any(m in lowered_q for m in sc["match"]):
-                    if any(bt in lowered_doc for bt in sc["boost_terms"]):
+                    has_boost = any(bt in lowered_doc for bt in sc["boost_terms"])
+                    if has_boost:
                         score += 0.08
                         signals["symptom_boost"] = 0.08
-                    if any(c in lowered_doc for c in sc["conflicts"]):
+                    if any(c in lowered_doc for c in sc["conflicts"]) and not has_boost:
                         score -= 0.15
                         signals["contamination_penalty"] = -0.15
+
+            # Sub-procedure discrimination: Section 139(9) vs AIS feedback
+            is_139_query = bool(re.search(r"\b(?:139\(9\)|defective\s+return|defective\s+notice|defect\s+memo)\b", lowered_q))
+            is_ais_query = bool(
+                re.search(r"\b(?:ais\s+feedback|feedback\s+on\s+ais|annual\s+information\s+statement|ais\s+mismatch)\b", lowered_q)
+                or ("ais" in lowered_q and any(w in lowered_q for w in ("feedback", "sft", "mismatch", "discrepancy", "wrong", "duplicate", "statement")))
+            )
+
+            if is_139_query and not is_ais_query:
+                if ("ais feedback" in lowered_doc or "sft feedback" in lowered_doc) and "cpc 2.0 defect memo" not in lowered_doc:
+                    score -= 0.40
+                    signals["sub_procedure_mismatch_penalty"] = -0.40
+            elif is_ais_query and not is_139_query:
+                if ("139(9)" in lowered_doc or "defective return" in lowered_doc) and "ais feedback" not in lowered_doc and "sft feedback" not in lowered_doc:
+                    score -= 0.40
+                    signals["sub_procedure_mismatch_penalty"] = -0.40
 
             fused.append(
                 RetrievalHit(
                     document=document,
                     score=score,
-                    rank=lexical_ranks.get(document_id, self.config.vector_top_k + 1),
+                    rank=lexical_ranks.get(document.id, self.config.vector_top_k + 1),
                     signals=signals,
                 )
             )

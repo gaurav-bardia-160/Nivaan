@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_id": "pfrda_nps_apy_grievance_redressal",
+  "dataset_id": "pfrda_nps_apy_grievance_redressal_4cee3e439881",
+  "artifact_version": "4cee3e439881d842441d9c5c97f57f55a144851b9a1e1a521193f2a000dded3f",
+  "requested_url": "https://www.pfrda.org.in/compliance/grievance",
+  "final_url": "https://www.pfrda.org.in/compliance/grievance",
+  "approved_hosts": [
+    "pfrda.org.in",
+    "www.pfrda.org.in"
+  ],
+  "fetched_at": "2026-11-02T05:13:41+00:00",
+  "content_type": "text/html",
+  "artifact_sha256": "4cee3e439881d842441d9c5c97f57f55a144851b9a1e1a521193f2a000dded3f",
+  "artifact_bytes": 494171,
+  "extracted_title": "Grievance Redressal Mechanism under NPS and APY | Subscriber Support - PFRDA",
+  "extracted_words": 1114,
+  "refined_path": "refined/official_sources/pfrda_nps_apy_grievance_redressal/4cee3e439881d842441d9c5c97f57f55a144851b9a1e1a521193f2a000dded3f.jsonl",
+  "record_count": 4,
+  "deduplication": {
+    "candidates": 4,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 4
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Pension Fund Regulatory and Development Authority",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "india",
+  "scheme": null,
+  "document_type": "official_guidance",
+  "supersedes": []
+}

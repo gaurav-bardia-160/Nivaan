@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_id": "mera_ration_2_faq",
+  "artifact_sha256": "32b79b2c41525299a182ca4c67206bc88a64740d27fb8ec01b0af526b7bbc7a6",
+  "reviewed_at": "2026-11-03T02:14:00Z",
+  "review_status": "manually_refined_pending_factual_verification",
+  "extracted_record_count": 1,
+  "accepted_record_count": 4,
+  "actions": [
+    "split the six official FAQ answers into focused purpose, portability, entitlement, and grievance records",
+    "removed question numbering and PDF extraction noise",
+    "retained only claims explicitly present in the official FAQ",
+    "retained unverified status until independent factual verification exists"
+  ]
+}

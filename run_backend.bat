@@ -66,7 +66,7 @@ set PYTHONIOENCODING=utf-8
 if "%RAG_ENABLED%"=="" set RAG_ENABLED=true
 if "%RAG_VECTOR_ENABLED%"=="" set RAG_VECTOR_ENABLED=true
 if "%TRANSLATION_ENABLED%"=="" set TRANSLATION_ENABLED=true
-if "%HOST%"=="" set HOST=127.0.0.1
+if "%HOST%"=="" set HOST=0.0.0.0
 if "%PORT%"=="" set PORT=8000
 
 echo [INFO] Configuration:

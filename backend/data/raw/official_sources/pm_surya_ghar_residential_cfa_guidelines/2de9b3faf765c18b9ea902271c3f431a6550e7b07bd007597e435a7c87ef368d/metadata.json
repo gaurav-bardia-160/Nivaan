@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_id": "pm_surya_ghar_residential_cfa_guidelines",
+  "dataset_id": "pm_surya_ghar_residential_cfa_guidelines_2de9b3faf765",
+  "artifact_version": "2de9b3faf765c18b9ea902271c3f431a6550e7b07bd007597e435a7c87ef368d",
+  "requested_url": "https://mnre.gov.in/static/uploads/2025/08/f20f6d61628866e66b612810b49abd78.pdf",
+  "final_url": "https://mnre.gov.in/static/uploads/2025/08/f20f6d61628866e66b612810b49abd78.pdf",
+  "approved_hosts": [
+    "mnre.gov.in"
+  ],
+  "fetched_at": "2026-11-03T07:23:50+00:00",
+  "content_type": "application/pdf",
+  "artifact_sha256": "2de9b3faf765c18b9ea902271c3f431a6550e7b07bd007597e435a7c87ef368d",
+  "artifact_bytes": 1284739,
+  "extracted_title": "f20f6d61628866e66b612810b49abd78",
+  "extracted_words": 15756,
+  "refined_path": "refined/official_sources/pm_surya_ghar_residential_cfa_guidelines/2de9b3faf765c18b9ea902271c3f431a6550e7b07bd007597e435a7c87ef368d.jsonl",
+  "record_count": 58,
+  "deduplication": {
+    "candidates": 58,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 58
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Ministry of New and Renewable Energy, Government of India",
+  "publication_date": "2024-06-07",
+  "effective_from": "2024-06-07",
+  "jurisdiction": "India",
+  "scheme": "PM Surya Ghar Muft Bijli Yojana",
+  "document_type": "guidelines",
+  "supersedes": []
+}

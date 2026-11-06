@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_id": "pfrda_nps_apy_grievance_redressal",
+  "artifact_sha256": "4cee3e439881d842441d9c5c97f57f55a144851b9a1e1a521193f2a000dded3f",
+  "reviewed_at": "2026-11-02T05:15:00Z",
+  "review_status": "manually_refined_pending_factual_verification",
+  "extracted_record_count": 4,
+  "accepted_record_count": 3,
+  "actions": [
+    "removed navigation, alerts, footer, cookies and unrelated portal content",
+    "reorganized the official procedure into filing, escalation, appeal and contact passages",
+    "preserved the exact official waiting periods and escalation destinations",
+    "retained unverified status until independent factual verification exists"
+  ]
+}

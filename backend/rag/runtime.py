@@ -103,6 +103,10 @@ def get_retriever() -> RagRetriever:
 
 
 def supported_category(query: str) -> str | None:
+    from backend.modules.domain_router import Domain, classify_domain
+    if classify_domain(query) == Domain.UNCOVERED:
+        return None
+
     lowered = query.lower()
     _UNSUPPORTED_NON_CIVIC_TERMS = (
         "cake", "bake", "baking", "recipe", "cook", "cooking", "chocolate",
@@ -148,9 +152,13 @@ def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) ->
         return None
     if not rag_enabled():
         return None
+
+    from backend.modules.domain_router import Domain, classify_domain
+    if domain in (Domain.UNCOVERED, "uncovered") or classify_domain(query) == Domain.UNCOVERED:
+        return None
+
     category = None
     if domain is not None:
-        from backend.modules.domain_router import Domain
         if domain in (Domain.TRANSPORT, "transport", Domain.EDUCATION, "education", Domain.BANKING, "banking", Domain.LEGAL_CONSUMER, "legal_consumer", Domain.AGRICULTURE, "agriculture", Domain.GENERAL_CIVIC, "civic"):
             category = "civic"
         elif domain in (Domain.TAXATION, "tax", "taxation"):

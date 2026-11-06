@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_id": "nps_exit_withdrawals_2025",
+  "dataset_id": "nps_exit_withdrawals_2025_7cde3bbc94a1",
+  "artifact_version": "7cde3bbc94a1d12e6a4e6415f044d892a1a74300810069c747f294f891caeb02",
+  "requested_url": "https://npstrust.org.in/sites/default/files/act-and-regulations-documents/exits-and-withdrawals-under-the-national-pension-system-regulations-2015-last-amended-on-16-december-2025.pdf",
+  "final_url": "https://npstrust.org.in/sites/default/files/act-and-regulations-documents/exits-and-withdrawals-under-the-national-pension-system-regulations-2015-last-amended-on-16-december-2025.pdf",
+  "approved_hosts": [
+    "npstrust.org.in"
+  ],
+  "fetched_at": "2026-11-02T10:24:08+00:00",
+  "content_type": "application/pdf",
+  "artifact_sha256": "7cde3bbc94a1d12e6a4e6415f044d892a1a74300810069c747f294f891caeb02",
+  "artifact_bytes": 523507,
+  "extracted_title": "exits-and-withdrawals-under-the-national-pension-system-regulations-2015-last-amended-on-16-december-2025",
+  "extracted_words": 24896,
+  "refined_path": "refined/official_sources/nps_exit_withdrawals_2025/7cde3bbc94a1d12e6a4e6415f044d892a1a74300810069c747f294f891caeb02.jsonl",
+  "record_count": 91,
+  "deduplication": {
+    "candidates": 91,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 91
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "National Pension System Trust",
+  "publication_date": "2025-12-16",
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": null,
+  "document_type": "regulation",
+  "supersedes": []
+}

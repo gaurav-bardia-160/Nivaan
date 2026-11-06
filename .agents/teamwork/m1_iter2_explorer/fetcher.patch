@@ -1,0 +1,47 @@
+diff --git a/backend/web_search/fetcher.py b/backend/web_search/fetcher.py
+--- a/backend/web_search/fetcher.py
++++ b/backend/web_search/fetcher.py
+@@ -207,18 +207,22 @@
+     if pipe_count >= 2:
+         # Markdown table separator e.g. |---| or |:---|
+         if re.search(r"\|\s*[-:]{3,}\s*\|", text):
+             return True
+-        # Document catalog indicators (Format: PDF, file sizes, download matrices)
+-        if re.search(r"\b(?:format\s*:\s*pdf|pdfsize|filesize|\d+(?:\.\d+)?\s*(?:kb|mb|gb)|size\s*:\s*\d+|download\s*\(|language\s*:\s*(?:english|hindi))\b", lowered):
+-            return True
+         # Multiple table column delimiters without numbered/lettered procedural steps
+         if pipe_count >= 3 and not has_step_indicators:
+             return True
+ 
++    # Document catalog indicators (Format: PDF, file sizes, download matrices without procedural steps)
++    if not has_step_indicators and re.search(
++        r"\b(?:format\s*:\s*pdf|pdfsize|filesize|\d+(?:\.\d+)?\s*(?:kb|mb|gb)|size\s*:\s*\d+|download\s*\(|language\s*:\s*(?:english|hindi))\b",
++        lowered,
++    ):
++        return True
++
+     step_verbs = (
+         "visit ", "enter ", "click ", "select ", "submit ", "apply ", "login ",
+         "register ", "dial ", "call ", "upload ", "download ", "verify ", "pay ", "fill ",
+-        "correct", "update", "form",
++        "correct", "update", "form ",
+     )
+     verb_count = sum(1 for v in step_verbs if v in lowered)
+ 
+diff --git a/tests/test_web_search.py b/tests/test_web_search.py
+--- a/tests/test_web_search.py
++++ b/tests/test_web_search.py
+@@ -311,6 +311,15 @@
+         assert is_navigation_or_boilerplate_text(table_text) is True
+ 
++    def test_identifies_pipeless_document_catalog_noise(self):
++        from backend.web_search.fetcher import is_navigation_or_boilerplate_text
++
++        catalog_text = (
++            "List of Acceptable Documents for Aadhaar Enrolment Language: English Version 11-06-2026 "
++            "Format: PDFSize: 838.3 KB Compilation of Post Office Act Rules and Regulations"
++        )
++        assert is_navigation_or_boilerplate_text(catalog_text) is True
++
+     def test_identifies_multiline_markdown_table_listing(self):
+         from backend.web_search.fetcher import is_navigation_or_boilerplate_text

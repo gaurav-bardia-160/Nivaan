@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_id": "pmuy_ujjwala_2",
+  "artifact_sha256": "b600bf485d54f9c3e2d31e1b6b3d7333de7ba8671b741a3630e9d161cfa7d451",
+  "reviewed_at": "2026-11-02T15:30:00Z",
+  "review_status": "manually_refined_pending_factual_verification",
+  "extracted_record_count": 1,
+  "accepted_record_count": 3,
+  "actions": [
+    "removed navigation labels and duplicate link text",
+    "split eligibility, document requirements, and application routes into focused retrieval records",
+    "retained only claims explicitly present on the official PMUY page",
+    "retained unverified status until independent factual verification exists"
+  ]
+}

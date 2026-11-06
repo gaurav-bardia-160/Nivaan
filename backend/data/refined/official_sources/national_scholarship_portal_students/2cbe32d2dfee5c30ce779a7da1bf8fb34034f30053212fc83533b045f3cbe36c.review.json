@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "source_id": "national_scholarship_portal_students",
+  "artifact_sha256": "2cbe32d2dfee5c30ce779a7da1bf8fb34034f30053212fc83533b045f3cbe36c",
+  "reviewed_at": "2026-11-03T12:18:30Z",
+  "automatic_records": 1,
+  "accepted_records": 1,
+  "review_status": "manually_refined_pending_factual_verification",
+  "notes": "Removed time-bound announcement clutter and retained the stable OTR and application procedure. Current scheme dates remain a required portal check."
+}

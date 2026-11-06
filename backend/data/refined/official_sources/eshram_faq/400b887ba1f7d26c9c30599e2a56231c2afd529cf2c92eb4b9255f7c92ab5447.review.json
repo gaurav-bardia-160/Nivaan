@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_id": "eshram_faq",
+  "artifact_sha256": "400b887ba1f7d26c9c30599e2a56231c2afd529cf2c92eb4b9255f7c92ab5447",
+  "reviewed_at": "2026-11-03T02:19:00Z",
+  "review_status": "manually_refined_pending_factual_verification",
+  "extracted_record_count": 12,
+  "accepted_record_count": 6,
+  "actions": [
+    "removed navigation, dynamic registration totals, duplicated overlap and unrelated scheme lists",
+    "reconstructed focused records for UAN, eligibility, registration, updates, OSS status and support",
+    "retained only claims explicitly present in the official FAQ",
+    "retained unverified status until independent factual verification exists"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_id": "rbi_udgam_faq",
+  "dataset_id": "rbi_udgam_faq_01a00ad35419",
+  "artifact_version": "01a00ad3541985ec26e6555ab70243363a1cf2102b16c2a464708c1e7e8d3b4a",
+  "requested_url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/FAQonUDGAMPortal.pdf",
+  "final_url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/FAQonUDGAMPortal.pdf",
+  "approved_hosts": [
+    "www.rbi.org.in"
+  ],
+  "fetched_at": "2026-11-02T05:02:45+00:00",
+  "content_type": "application/pdf",
+  "artifact_sha256": "01a00ad3541985ec26e6555ab70243363a1cf2102b16c2a464708c1e7e8d3b4a",
+  "artifact_bytes": 109954,
+  "extracted_title": "FAQonUDGAMPortal",
+  "extracted_words": 568,
+  "refined_path": "refined/official_sources/rbi_udgam_faq/01a00ad3541985ec26e6555ab70243363a1cf2102b16c2a464708c1e7e8d3b4a.jsonl",
+  "record_count": 2,
+  "deduplication": {
+    "candidates": 2,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 2
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Reserve Bank of India",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": null,
+  "document_type": "faq",
+  "supersedes": []
+}

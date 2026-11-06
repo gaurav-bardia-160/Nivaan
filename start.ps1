@@ -68,7 +68,7 @@ if (-not $ollamaListening -and (Test-Path "start_ollama.bat")) {
 
 # 2. Start Frontend Server in background on port 5500
 Write-Host "[2/4] Starting Frontend static server on port 5500..." -ForegroundColor Yellow
-$frontendProcess = Start-Process -FilePath $pyCmd -ArgumentList "-m http.server 5500 --directory frontend" -PassThru -WindowStyle Hidden
+$frontendProcess = Start-Process -FilePath $pyCmd -ArgumentList "-m http.server 5500 --bind 0.0.0.0 --directory frontend" -PassThru -WindowStyle Hidden
 
 # 3. Open Web Browser
 Write-Host "[3/4] Opening Web App in default browser..." -ForegroundColor Yellow
@@ -82,7 +82,7 @@ Write-Host "Metrics API:  http://127.0.0.1:8000/api/metrics" -ForegroundColor Cy
 Write-Host "----------------------------------------------------------" -ForegroundColor DarkGray
 
 try {
-    & $pyCmd -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+    & $pyCmd -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
 } finally {
     if ($frontendProcess -and -not $frontendProcess.HasExited) {
         Stop-Process -Id $frontendProcess.Id -Force -ErrorAction SilentlyContinue

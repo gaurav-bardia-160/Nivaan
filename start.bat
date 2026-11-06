@@ -100,9 +100,13 @@ set LOCAL_LLM_NUM_PREDICT=384
 
 set LOCAL_LLM_TIMEOUT_SECONDS=90
 
-set HOST=127.0.0.1
+set HOST=0.0.0.0
 
 set PORT=8000
+set "LAN_IP=127.0.0.1"
+for /f "delims=" %%i in ('%PY_CMD% -c "import socket; s=socket.socket(socket.AF_INET, socket.SOCK_DGRAM); s.connect(('8.8.8.8', 53)); print(s.getsockname()[0]); s.close()" 2^>nul') do (
+    set "LAN_IP=%%i"
+)
 
 
 
@@ -252,7 +256,7 @@ if !errorlevel! neq 0 (
 
     echo [INFO] Starting Frontend Web Server on http://127.0.0.1:5500...
 
-    start "Nivaan - Frontend Server" /MIN %PY_CMD% -m http.server 5500 --directory frontend
+    start "Nivaan - Frontend Server" /MIN %PY_CMD% -m http.server 5500 --bind 0.0.0.0 --directory frontend
 
     ping -n 2 127.0.0.1 >nul
 
@@ -280,7 +284,7 @@ if !errorlevel! equ 0 (
 
     echo [INFO] Launching FastAPI Backend Server...
 
-    start "Nivaan - Backend Server" /MIN %PY_CMD% -m uvicorn backend.main:app --host %HOST% --port %PORT%
+    call run_backend.bat
 
 
 
@@ -318,9 +322,10 @@ if !errorlevel! equ 0 (
 
 echo =====================================================================
 
-echo  GovBank Assistant is Live!
+echo  Nivaan Civic and Banking Assistant is Live!
 
-echo  - Citizen Web UI: http://127.0.0.1:5500
+echo  - Citizen Web UI (PC):    http://127.0.0.1:5500
+echo  - Citizen Web UI (Mobile):http://%LAN_IP%:5500 (Use on phone connected to hotspot)
 
 echo  - API Swagger UI: http://%HOST%:%PORT%/docs
 

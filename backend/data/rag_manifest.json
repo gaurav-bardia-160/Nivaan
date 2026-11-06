@@ -604,6 +604,102 @@
         "www.passportindia.gov.in",
         "www.rbi.org.in"
       ]
+    },
+    {
+      "id": "rbi_udgam_faq_01a00ad35419",
+      "path": "refined/official_sources/rbi_udgam_faq/01a00ad3541985ec26e6555ab70243363a1cf2102b16c2a464708c1e7e8d3b4a.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "www.rbi.org.in"
+      ]
+    },
+    {
+      "id": "dicgc_deposit_insurance_guide_fe6b86e75301",
+      "path": "refined/official_sources/dicgc_deposit_insurance_guide/fe6b86e753012b9ad3a2996fad1ce15121296a9cae2feb32b4688c5720d87758.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "dicgc.org.in"
+      ]
+    },
+    {
+      "id": "pfrda_atal_pension_yojana_e7e167d2046e",
+      "path": "refined/official_sources/pfrda_atal_pension_yojana/e7e167d2046e94f057cc07147fe8475062040a9a57e56b5dd51a827642f196ae.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "pfrda.org.in"
+      ]
+    },
+    {
+      "id": "pfrda_nps_apy_grievance_redressal_4cee3e439881",
+      "path": "refined/official_sources/pfrda_nps_apy_grievance_redressal/4cee3e439881d842441d9c5c97f57f55a144851b9a1e1a521193f2a000dded3f.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "pfrda.org.in",
+        "www.pfrda.org.in"
+      ]
+    },
+    {
+      "id": "dfs_pmjdy_aa6bc281e943",
+      "path": "refined/official_sources/dfs_pmjdy/aa6bc281e9431a9c33384901c02b0edc52d97dbaf88d620ceee8979adc7cbe5d.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "financialservices.gov.in",
+        "www.financialservices.gov.in"
+      ]
+    },
+    {
+      "id": "dfs_mudra_4246edd5b6ed",
+      "path": "refined/official_sources/dfs_mudra/4246edd5b6edc0618504f15421ac7905ca094712b30aa52f7d5718b9e9ad59be.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "financialservices.gov.in",
+        "www.financialservices.gov.in"
+      ]
+    },
+    {
+      "id": "pmuy_ujjwala_2_b600bf485d54",
+      "path": "refined/official_sources/pmuy_ujjwala_2/b600bf485d54f9c3e2d31e1b6b3d7333de7ba8671b741a3630e9d161cfa7d451.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "pmuy.gov.in",
+        "www.pmuy.gov.in"
+      ]
+    },
+    {
+      "id": "mera_ration_2_faq_32b79b2c4152",
+      "path": "refined/official_sources/mera_ration_2_faq/32b79b2c41525299a182ca4c67206bc88a64740d27fb8ec01b0af526b7bbc7a6.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "nfsa.gov.in",
+        "www.nfsa.gov.in"
+      ]
+    },
+    {
+      "id": "eshram_faq_400b887ba1f7",
+      "path": "refined/official_sources/eshram_faq/400b887ba1f7d26c9c30599e2a56231c2afd529cf2c92eb4b9255f7c92ab5447.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "eshram.gov.in",
+        "www.eshram.gov.in"
+      ]
+    },
+    {
+      "id": "national_scholarship_portal_students_2cbe32d2dfee",
+      "path": "refined/official_sources/national_scholarship_portal_students/2cbe32d2dfee5c30ce779a7da1bf8fb34034f30053212fc83533b045f3cbe36c.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "scholarships.gov.in",
+        "www.scholarships.gov.in"
+      ]
+    },
+    {
+      "id": "jeevan_pramaan_app_manuals_c3184fedcf35",
+      "path": "refined/official_sources/jeevan_pramaan_app_manuals/c3184fedcf358b87cb95c465bd00bba215a52c80788878c0fdf4cc7d7d4aa7ea.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "jeevanpramaan.gov.in",
+        "www.jeevanpramaan.gov.in"
+      ]
     }
   ]
 }

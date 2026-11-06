@@ -4,7 +4,9 @@
  * editable user prompts, and multi-turn persistent chat history in localStorage.
  */
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = window.location.protocol && window.location.hostname
+    ? `${window.location.protocol}//${window.location.hostname}:8000`
+    : "http://127.0.0.1:8000";
 const STORAGE_KEY = "nivaan_chats_v1";
 const ACTIVE_CHAT_KEY = "nivaan_active_chat_id";
 
@@ -434,7 +436,7 @@ function setBackendOnlineStatus(isOnline) {
     if (backendBadge) {
         backendBadge.className = isOnline ? "connection-badge connected" : "connection-badge offline";
         backendBadge.textContent = isOnline ? "● Online" : "● Offline";
-        backendBadge.title = isOnline ? "Backend API is online and healthy (http://127.0.0.1:8000)" : "Backend API is offline. Run start.bat to launch the backend server.";
+        backendBadge.title = isOnline ? `Backend API is online and healthy (${API_BASE})` : "Backend API is offline. Run start.bat to launch the backend server.";
     }
 }
 
@@ -828,7 +830,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
         setBackendOnlineStatus(false);
         answer = createSystemNotice(
             "Backend Offline",
-            "Cannot connect to the backend server at http://127.0.0.1:8000. Please ensure the backend is running and try again."
+            `Cannot connect to the backend server at ${API_BASE}. Please ensure the backend is running and reachable.`
         );
     } finally {
         if (thinkingObj) {

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_id": "dfs_pmjdy",
+  "artifact_sha256": "aa6bc281e9431a9c33384901c02b0edc52d97dbaf88d620ceee8979adc7cbe5d",
+  "reviewed_at": "2026-11-02T10:26:00Z",
+  "review_status": "manually_refined_pending_factual_verification",
+  "extracted_record_count": 1,
+  "accepted_record_count": 1,
+  "actions": [
+    "removed navigation and unrelated scheme links",
+    "removed dated account-progress statistics from the retrieval passage",
+    "retained the official scheme purpose and stated account benefits",
+    "retained unverified status until independent factual verification exists"
+  ]
+}

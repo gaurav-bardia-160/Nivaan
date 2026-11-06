@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_id": "mera_ration_2_faq",
+  "dataset_id": "mera_ration_2_faq_32b79b2c4152",
+  "artifact_version": "32b79b2c41525299a182ca4c67206bc88a64740d27fb8ec01b0af526b7bbc7a6",
+  "requested_url": "https://nfsa.gov.in/doc/FAQ_for_Mera_Ration_2.pdf",
+  "final_url": "https://nfsa.gov.in/doc/FAQ_for_Mera_Ration_2.pdf",
+  "approved_hosts": [
+    "nfsa.gov.in",
+    "www.nfsa.gov.in"
+  ],
+  "fetched_at": "2026-11-03T02:13:10+00:00",
+  "content_type": "application/pdf",
+  "artifact_sha256": "32b79b2c41525299a182ca4c67206bc88a64740d27fb8ec01b0af526b7bbc7a6",
+  "artifact_bytes": 65967,
+  "extracted_title": "FAQ_for_Mera_Ration_2",
+  "extracted_words": 223,
+  "refined_path": "refined/official_sources/mera_ration_2_faq/32b79b2c41525299a182ca4c67206bc88a64740d27fb8ec01b0af526b7bbc7a6.jsonl",
+  "record_count": 1,
+  "deduplication": {
+    "candidates": 1,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 1
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Department of Food and Public Distribution, Government of India",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": "Mera Ration 2.0",
+  "document_type": "faq",
+  "supersedes": []
+}

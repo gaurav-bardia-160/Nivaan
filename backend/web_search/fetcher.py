@@ -28,7 +28,7 @@ _FETCH_HEADERS = {
 _NOISE_TAGS = {
     "script", "style", "noscript", "nav", "header", "footer", "aside",
     "form", "button", "input", "select", "textarea", "iframe", "svg",
-    "video", "audio", "canvas", "dialog",
+    "video", "audio", "canvas", "dialog", "table",
 }
 
 # Protected structural tags that must NEVER be decomposed even if class has hints
@@ -101,8 +101,9 @@ def _extract_text(html: str, *, max_chars: int = 8000) -> str:
             html,
             include_links=False,
             include_images=False,
-            include_tables=True,
-            no_fallback=False,
+            include_tables=False,
+            favor_precision=True,
+            include_comments=False,
         )
         if extracted and len(extracted.strip()) > 40:
             lines = [line.strip() for line in extracted.splitlines()]
@@ -194,18 +195,41 @@ _NAVIGATION_NOISE_PHRASES = (
 
 
 def is_navigation_or_boilerplate_text(text: str) -> bool:
-    """Detect whether extracted text is purely navigation boilerplate without procedural content."""
+    """Detect whether extracted text is purely navigation boilerplate, tables, or catalogs."""
     if not text or len(text.strip()) < 40:
         return True
 
     lowered = text.lower()
+
+    # Table & document catalog directory detection (Markdown tables, download matrices)
+    pipe_count = text.count("|")
+    has_step_indicators = bool(
+        re.search(
+            r"(?:\b(?:step\s*\d+|steps)\b|(?:\b\d+[\.\)]|\b[a-g][\.\)])(?:\s+|$))",
+            lowered,
+        )
+    )
+    if pipe_count >= 2:
+        # Markdown table separator e.g. |---| or |:---|
+        if re.search(r"\|\s*[-:]{3,}\s*\|", text):
+            return True
+        # Multiple table column delimiters without numbered/lettered procedural steps
+        if pipe_count >= 3 and not has_step_indicators:
+            return True
+
     step_verbs = (
         "visit ", "enter ", "click ", "select ", "submit ", "apply ", "login ",
         "register ", "dial ", "call ", "upload ", "download ", "verify ", "pay ", "fill ",
-        "correct", "update", "form",
+        "correct", "update", "form ",
     )
-    has_step_indicators = bool(re.search(r"\b(?:step\s*\d+|steps|[a-g][\.\)])\b", lowered))
     verb_count = sum(1 for v in step_verbs if v in lowered)
+
+    # Document catalog indicators (Format: PDF, file sizes, download matrices without procedural steps)
+    if not has_step_indicators and verb_count <= 2 and re.search(
+        r"\b(?:format\s*:\s*pdf|pdfsize|filesize|\d+(?:\.\d+)?\s*(?:kb|mb|gb)|size\s*:\s*\d+|download\s*\(|language\s*:\s*(?:english|hindi))\b",
+        lowered,
+    ):
+        return True
 
     noise_count = sum(1 for p in _NAVIGATION_NOISE_PHRASES if p in lowered)
     # If the text has noise/landing phrases and lacks explicit numbered/lettered steps

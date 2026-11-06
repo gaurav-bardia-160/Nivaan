@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_id": "dfs_pmjdy",
+  "dataset_id": "dfs_pmjdy_aa6bc281e943",
+  "artifact_version": "aa6bc281e9431a9c33384901c02b0edc52d97dbaf88d620ceee8979adc7cbe5d",
+  "requested_url": "https://financialservices.gov.in/node/3463",
+  "final_url": "https://financialservices.gov.in/node/3463",
+  "approved_hosts": [
+    "financialservices.gov.in",
+    "www.financialservices.gov.in"
+  ],
+  "fetched_at": "2026-11-02T10:25:23+00:00",
+  "content_type": "text/html",
+  "artifact_sha256": "aa6bc281e9431a9c33384901c02b0edc52d97dbaf88d620ceee8979adc7cbe5d",
+  "artifact_bytes": 77011,
+  "extracted_title": "Pradhan Mantri Jan Dhan Yojana (PMJDY) | Department of Financial Services | Minsitry of Finance | Government of India",
+  "extracted_words": 245,
+  "refined_path": "refined/official_sources/dfs_pmjdy/aa6bc281e9431a9c33384901c02b0edc52d97dbaf88d620ceee8979adc7cbe5d.jsonl",
+  "record_count": 1,
+  "deduplication": {
+    "candidates": 1,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 1
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Department of Financial Services, Government of India",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": "Pradhan Mantri Jan Dhan Yojana",
+  "document_type": "scheme_guide",
+  "supersedes": []
+}

@@ -298,6 +298,99 @@ class TestBoilerplateDetection:
         )
         assert is_navigation_or_boilerplate_text(procedural_text) is False
 
+    def test_identifies_markdown_table_directory_noise(self):
+        from backend.web_search.fetcher import is_navigation_or_boilerplate_text
+
+        table_text = (
+            "| List of Acceptable Documents for Aadhaar Enrolment and Update Language: English Version | "
+            "11-06-2026 | Format: PDFSize: 838.3 KB | | | Long term leasing policy for hiring accommodation "
+            "for office purpose in Department of Posts Language: English Version | 03-06-2026 | "
+            "Format: PDFSize: 11 MB | | | Compilation of Post Office Act, Rules and Regulations."
+        )
+        assert is_navigation_or_boilerplate_text(table_text) is True
+
+    def test_identifies_pipeless_document_catalog_noise(self):
+        from backend.web_search.fetcher import is_navigation_or_boilerplate_text
+
+        catalog_text = (
+            "List of Acceptable Documents for Aadhaar Enrolment Language: English Version 11-06-2026 "
+            "Format: PDFSize: 838.3 KB Compilation of Post Office Act Rules and Regulations"
+        )
+        assert is_navigation_or_boilerplate_text(catalog_text) is True
+
+    def test_preserves_numbered_steps_with_file_size(self):
+        from backend.web_search.fetcher import is_navigation_or_boilerplate_text
+
+        numbered_with_size = (
+            "1. Download Form 29 (PDF, 50 KB) from the portal.\n"
+            "2. Fill out details.\n"
+            "3. Submit to RTO."
+        )
+        assert is_navigation_or_boilerplate_text(numbered_with_size) is False
+
+    def test_preserves_lettered_steps_with_file_size(self):
+        from backend.web_search.fetcher import is_navigation_or_boilerplate_text
+
+        lettered_with_size = (
+            "a) Download Form 29 (PDF, 50 KB)\n"
+            "b) Fill out details"
+        )
+        assert is_navigation_or_boilerplate_text(lettered_with_size) is False
+
+    def test_preserves_procedural_prose_with_file_size_limits(self):
+        from backend.web_search.fetcher import is_navigation_or_boilerplate_text
+
+        prose_with_size = (
+            "To apply for duplicate RC, visit Parivahan portal. "
+            "Upload your Aadhaar card and police complaint (scanned file size: 200 KB). "
+            "Submit the form and pay fee."
+        )
+        assert is_navigation_or_boilerplate_text(prose_with_size) is False
+
+    def test_identifies_multiline_markdown_table_listing(self):
+        from backend.web_search.fetcher import is_navigation_or_boilerplate_text
+
+        multiline_table = (
+            "| Document Title | Release Date | File Size |\n"
+            "|---|---|---|\n"
+            "| Post Office Rules 2024 | 15-01-2024 | 1.2 MB |\n"
+            "| Circular No 45 | 20-02-2024 | 450 KB |"
+        )
+        assert is_navigation_or_boilerplate_text(multiline_table) is True
+
+    def test_trafilatura_extraction_omits_tables(self):
+        from backend.web_search.fetcher import _extract_text
+
+        html = """
+        <html><body><main>
+        <p>To claim MIS account funds without nomination up to Rs 5 Lakhs, submit Form 11 and an indemnity bond.</p>
+        <table>
+          <tr><th>Act</th><th>Date</th><th>Size</th></tr>
+          <tr><td>Post Office Act</td><td>01-01-2020</td><td>10MB</td></tr>
+        </table>
+        </main></body></html>
+        """
+        extracted = _extract_text(html)
+        assert "Form 11 and an indemnity bond" in extracted
+        assert "Post Office Act" not in extracted
+        assert "|" not in extracted
+
+    def test_synthesizer_rejects_table_noise_extractive_fallback(self):
+        from backend.web_search.synthesizer import synthesize_from_web, DISCRIMINATOR_FAILURE_PHRASE
+
+        table_text = (
+            "| List of Acceptable Documents | 11-06-2026 | Format: PDFSize: 838.3 KB |\n"
+            "| Long term leasing policy | 03-06-2026 | Format: PDFSize: 11 MB |"
+        )
+        answer = synthesize_from_web(
+            "How to claim Post Office MIS funds?",
+            table_text,
+            "https://www.indiapost.gov.in/documents/actsandpolicies",
+        )
+        assert DISCRIMINATOR_FAILURE_PHRASE in answer.summary
+        assert answer.steps == []
+        assert answer.confidence == "low"
+
 
 # ─── Multi-result CRAG discriminator loop tests ───────────────────────────────
 

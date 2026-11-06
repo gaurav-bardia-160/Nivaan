@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source_id": "pfrda_atal_pension_yojana",
+  "artifact_sha256": "e7e167d2046e94f057cc07147fe8475062040a9a57e56b5dd51a827642f196ae",
+  "reviewed_at": "2026-11-02T05:11:00Z",
+  "review_status": "manually_refined_pending_factual_verification",
+  "extracted_record_count": 3,
+  "accepted_record_count": 2,
+  "actions": [
+    "removed navigation, alerts, footer, cookie and unrelated portal text",
+    "reorganized official content into eligibility and benefits/enrolment passages",
+    "retained unverified status until independent factual verification exists"
+  ]
+}

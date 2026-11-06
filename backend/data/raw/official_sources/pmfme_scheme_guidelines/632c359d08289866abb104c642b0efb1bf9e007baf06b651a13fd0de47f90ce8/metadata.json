@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_id": "pmfme_scheme_guidelines",
+  "dataset_id": "pmfme_scheme_guidelines_632c359d0828",
+  "artifact_version": "632c359d08289866abb104c642b0efb1bf9e007baf06b651a13fd0de47f90ce8",
+  "requested_url": "https://pmfme.mofpi.gov.in/newsletters/docs/SchemeGuidelines.pdf",
+  "final_url": "https://pmfme.mofpi.gov.in/newsletters/docs/SchemeGuidelines.pdf",
+  "approved_hosts": [
+    "pmfme.mofpi.gov.in"
+  ],
+  "fetched_at": "2026-11-03T12:18:00+00:00",
+  "content_type": "application/pdf",
+  "artifact_sha256": "632c359d08289866abb104c642b0efb1bf9e007baf06b651a13fd0de47f90ce8",
+  "artifact_bytes": 2489589,
+  "extracted_title": "Microsoft Word - Draft FME Guidelines 22-6-20",
+  "extracted_words": 9430,
+  "refined_path": "refined/official_sources/pmfme_scheme_guidelines/632c359d08289866abb104c642b0efb1bf9e007baf06b651a13fd0de47f90ce8.jsonl",
+  "record_count": 35,
+  "deduplication": {
+    "candidates": 35,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 35
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Ministry of Food Processing Industries, Government of India",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": "PM Formalisation of Micro Food Processing Enterprises",
+  "document_type": "guidelines",
+  "supersedes": []
+}

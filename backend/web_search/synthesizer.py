@@ -76,11 +76,19 @@ def _call_ollama(system: str, prompt: str, *, timeout: float = 25.0) -> str | No
 
 def _extract_extractive_answer(page_text: str, query: str) -> tuple[str, list[dict], list[str]]:
     """Extract high-accuracy summary and steps directly from official government page text."""
-    lines = [l.strip() for l in page_text.splitlines() if len(l.strip()) > 10]
+    raw_lines = [l.strip() for l in page_text.splitlines() if len(l.strip()) > 10]
+    lines = [
+        l for l in raw_lines
+        if l.count("|") < 2 and not re.search(r"\|\s*[-:]{3,}\s*\|", l) and not re.match(r"^[-=_|*]{3,}$", l)
+    ]
     sentence_candidates = []
     for line in lines:
         for s in re.split(r"(?<=[.!?])\s+", line):
-            if len(s.strip()) > 15:
+            if (
+                len(s.strip()) > 15
+                and s.count("|") < 2
+                and not re.search(r"\b(?:format\s*:\s*pdf|pdfsize|filesize)\b", s, re.I)
+            ):
                 sentence_candidates.append(s.strip())
 
     query_words = set(re.findall(r"\b\w+\b", query.lower())) - {
@@ -180,7 +188,8 @@ def _extract_extractive_answer(page_text: str, query: str) -> tuple[str, list[di
 
 def _select_focused_passages(page_text: str, query: str, max_chars: int = 1200) -> str:
     """Select the most relevant paragraphs from the page for the LLM context."""
-    lines = [l.strip() for l in page_text.splitlines() if len(l.strip()) > 10]
+    raw_lines = [l.strip() for l in page_text.splitlines() if len(l.strip()) > 10]
+    lines = [l for l in raw_lines if l.count("|") < 2 and not re.search(r"\|\s*[-:]{3,}\s*\|", l)]
     query_words = set(re.findall(r"\b\w+\b", query.lower())) - {
         "how", "to", "the", "in", "is", "for", "a", "an", "what", "can", "i", "do", "we", "my",
     }

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_id": "dicgc_deposit_insurance_guide",
+  "dataset_id": "dicgc_deposit_insurance_guide_fe6b86e75301",
+  "artifact_version": "fe6b86e753012b9ad3a2996fad1ce15121296a9cae2feb32b4688c5720d87758",
+  "requested_url": "https://dicgc.org.in/guide-to-deposit-insurance",
+  "final_url": "https://dicgc.org.in/guide-to-deposit-insurance",
+  "approved_hosts": [
+    "dicgc.org.in"
+  ],
+  "fetched_at": "2026-11-02T05:07:52+00:00",
+  "content_type": "text/html",
+  "artifact_sha256": "fe6b86e753012b9ad3a2996fad1ce15121296a9cae2feb32b4688c5720d87758",
+  "artifact_bytes": 120243,
+  "extracted_title": "A Guide to Deposit Insurance | DICGC",
+  "extracted_words": 2053,
+  "refined_path": "refined/official_sources/dicgc_deposit_insurance_guide/fe6b86e753012b9ad3a2996fad1ce15121296a9cae2feb32b4688c5720d87758.jsonl",
+  "record_count": 8,
+  "deduplication": {
+    "candidates": 8,
+    "exact_duplicates": 0,
+    "near_duplicates": 0,
+    "accepted": 8
+  },
+  "review_status": "pending_human_review",
+  "source_authority": "Deposit Insurance and Credit Guarantee Corporation",
+  "publication_date": null,
+  "effective_from": null,
+  "jurisdiction": "India",
+  "scheme": null,
+  "document_type": "guide",
+  "supersedes": []
+}

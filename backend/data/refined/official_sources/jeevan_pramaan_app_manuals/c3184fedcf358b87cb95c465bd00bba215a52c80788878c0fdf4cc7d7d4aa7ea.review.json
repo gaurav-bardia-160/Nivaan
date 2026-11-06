@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "source_id": "jeevan_pramaan_app_manuals",
+  "artifact_sha256": "c3184fedcf358b87cb95c465bd00bba215a52c80788878c0fdf4cc7d7d4aa7ea",
+  "reviewed_at": "2026-11-03T12:18:30Z",
+  "automatic_records": 2,
+  "accepted_records": 2,
+  "review_status": "manually_refined_pending_factual_verification",
+  "notes": "Removed navigation, captcha and display boilerplate. Retained mobile requirements and official support contacts as separate evidence records."
+}

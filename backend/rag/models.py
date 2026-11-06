@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import date
-from typing import Literal
+from typing import Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 
@@ -25,6 +25,13 @@ class ChunkRecord(BaseModel):
     verification_method: str = Field(min_length=1, max_length=100)
     retrieval_tags: list[StrictStr] = Field(max_length=100)
     language: Literal["en", "hi", "gu", "mixed", "und"] = "und"
+    source_authority: Optional[str] = Field(default=None, max_length=300)
+    publication_date: Optional[date] = None
+    effective_from: Optional[date] = None
+    jurisdiction: Optional[str] = Field(default=None, max_length=200)
+    scheme: Optional[str] = Field(default=None, max_length=300)
+    document_type: Optional[str] = Field(default=None, max_length=100)
+    supersedes: list[StrictStr] = Field(default_factory=list, max_length=20)
 
     @field_validator("last_verified", mode="before")
     @classmethod
@@ -41,6 +48,25 @@ class ChunkRecord(BaseModel):
     def clean_tags(cls, values):
         if any(not value.strip() or len(value) > 100 for value in values):
             raise ValueError("tags must be nonempty and at most 100 characters")
+        return sorted(set(value.strip() for value in values))
+
+    @field_validator("publication_date", "effective_from", mode="before")
+    @classmethod
+    def optional_iso_date_only(cls, value):
+        if value is None:
+            return None
+        if not isinstance(value, str) or len(value) != 10:
+            raise ValueError("expected ISO date YYYY-MM-DD")
+        parsed = date.fromisoformat(value)
+        if parsed.isoformat() != value:
+            raise ValueError("expected ISO date YYYY-MM-DD")
+        return parsed
+
+    @field_validator("supersedes")
+    @classmethod
+    def clean_supersedes(cls, values):
+        if any(not value.strip() or len(value) > 4096 for value in values):
+            raise ValueError("supersedes entries must be nonempty URLs or identifiers")
         return sorted(set(value.strip() for value in values))
 
 
@@ -78,6 +104,13 @@ class SourceReference:
     reported_quality_score: float
     reported_verification_method: str
     reported_source_confidence: str
+    source_authority: str | None = None
+    publication_date: str | None = None
+    effective_from: str | None = None
+    jurisdiction: str | None = None
+    scheme: str | None = None
+    document_type: str | None = None
+    supersedes: tuple[str, ...] = ()
     # No evidence importer exists yet. Keep factual status explicitly unverified.
     factual_verification: str = field(default="unverified", init=False)
     fact_checked_at: None = field(default=None, init=False)
