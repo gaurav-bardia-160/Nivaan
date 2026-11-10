@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "dfs_portal",
+  "requested_url": "https://financialservices.gov.in/grievance-redressal",
+  "final_url": "https://financialservices.gov.in/grievance-redressal",
+  "fetched_at": "2026-11-09T07:56:06+00:00",
+  "artifact_sha256": "5fe3b0608e0774072e2ec46df8ba2bf00753af018d9f87f9a884c97ef13794a5",
+  "artifact_bytes": 79270,
+  "content_type": "text/html",
+  "extracted_title": "Grievance Redressal | Department of Financial Services | Minsitry of Finance | Government of India",
+  "extracted_words": 1480,
+  "source_authority": "Department of Financial Services, Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Department of Financial Services Financial Redressal & Notices",
+  "document_type": "official_portal_guidance"
+}

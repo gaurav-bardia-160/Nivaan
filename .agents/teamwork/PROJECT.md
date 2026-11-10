@@ -1,74 +1,73 @@
-# Project: RAG Pipeline Failure Remediation (Scenes 1-3)
+# Project: Remediation of RAG and Synthesis Pipeline Architectural Gaps (Case 1 & Case 2)
 
 ## Architecture
-The system is a production civic assistant with a hybrid RAG pipeline:
+Nivaan is a production civic assistant with a hybrid RAG pipeline:
 - **Corpus Ingestion**: Canonical official government documents in JSONL (`backend/data/refined/`) registered in `backend/data/rag_manifest.json`.
-- **Vector & Lexical Search**: Qdrant persistent embedded store (`govbank_chunks`) using FastEmbed multilingual MiniLM-L12 (384-dim, cosine distance) combined with BM25 lexical search via Reciprocal Rank Fusion (RRF `1 / (60 + rank)`).
-- **Domain Router**: Pre-retrieval query intent classifier (`backend/modules/domain_router.py`).
-- **Post-Retrieval Relevance & Confidence**: Decouples confidence badges from raw cosine similarity via semantic relevance evaluation (`MATCH`, `PARTIAL`, `NO_MATCH`).
-- **LLM Synthesis**: Local Ollama / vLLM synthesis (`backend/modules/llm.py`) with strict relevance-gating and anti-hallucination directives.
-- **CRAG Fallback**: Web search fallback on allowlisted government domains with clean text extraction via `trafilatura` (tables disabled).
+- **Vector & Lexical Search**: Qdrant vector store and BM25 lexical search with Reciprocal Rank Fusion (RRF `1 / (60 + rank)`), exact code boosting, and symptom cluster conflict penalties.
+- **Domain Router**: Pre-retrieval query intent classifier (`backend/modules/domain_router.py`) with cross-category routing for multi-domain civic inquiries.
+- **Query Decomposition**: Multi-part query decomposer splitting compound inquiries into distinct sub-questions for balanced retrieval and complete synthesis coverage.
+- **Pre-Synthesis Relevance & Confidence Gating**: Multi-factor confidence evaluation (`backend/web_search/confidence.py`) verifying semantic alignment and statutory entity support between query terms and retrieved chunks, preventing off-topic false HIGH confidence badges and triggering live CRAG web search or honest refusal.
+- **Response Shape & Scaffolding**: Query modality classification separating procedural workflows from analytical, calculation, and legal-interpretation queries; suppresses artificial 3-step checklists (`backend/modules/explainer.py`, `backend/modules/llm.py`, `backend/web_search/synthesizer.py`).
+- **CRAG Fallback**: Web search fallback on allowlisted government domains with clean text extraction via `trafilatura`.
 
 ## Feature Inventory
 | # | Feature | Description | Milestone | Source |
 |---|---------|-------------|-----------|--------|
-| 1 | EPFO Corpus Verification & Source Remediation | Verify and remediate EPFO documents in `rag_manifest.json` / `troubleshooting_civic.jsonl` (ensure valid official circular URL and content) | M1 | R1, Survey 2 |
-| 2 | Scraper DOM Noise Elimination in CRAG | Configure `trafilatura` in `fetcher.py` (`include_tables=False`, `favor_precision=True`) and add table detection in `synthesizer.py` | M1 | R5, Survey 2 |
-| 3 | Hard Domain Routing for Uncovered Domains | Add `Domain.UNCOVERED` with regex patterns for MCA/SPICe+, petroleum/LPG, and NSP scholarships | M2 | R2, Survey 1 |
-| 4 | Retriever Short-Circuit on Uncovered Domains | Pre-vector search short-circuit in `RagRetriever.search()` returning empty hits and status `uncovered_domain` without cosine bleed | M2 | R2, Survey 1 |
-| 5 | Honest Refusal for Uncovered Domains | Dynamic honest ungrounded refusal adhering to `AGENTS.md` zero-predefined-response directive | M2 | R2, Survey 1, Survey 3 |
-| 6 | Sub-Procedure Granularity: AIS Feedback Manual Ingestion | Add authentic official document `itr_ais_feedback_manual_01` to `troubleshooting_tax.jsonl` | M3 | R6, Survey 1 |
-| 7 | Sub-Procedure Granularity: Retriever AIS vs 139(9) Discrimination | Add `ais_feedback` symptom cluster and exact code booster, with bidirectional sub-procedure conflict penalty in `retriever.py` | M3 | R6, Survey 1 |
-| 8 | Post-Retrieval Confidence Decoupling | Decouple confidence badge from raw cosine similarity by evaluating retrieved context into MATCH, PARTIAL, NO_MATCH | M4 | R3, Survey 3 |
-| 9 | LLM Synthesis Relevance Gating & Anti-Fabrication | Add relevance-gate directive in `backend/modules/llm.py` preventing synthesizing answers from mismatched domains or fabricating unstated facts (e.g. closed establishment) | M4 | R4, Survey 3 |
-| 10 | AGENTS.md & GEMINI.md Guardrail Updates | Add operational guardrails reflecting R1-R6 failure mitigations while maintaining zero-predefined-response directive | M5 | R7, Survey 3 |
-| 11 | Scenes 1-3 Regression Test Suite & Verification | Pass 100% of E2E tests (Tiers 1-4) covering Scenes 1-3 scenarios, followed by Tier 5 adversarial hardening | M6 | Acceptance Criteria |
+| 1 | Corpus Ingestion: Reassessment Provisions (Sections 147-151) | Ingest official statutory text for Sections 147, 148, 148A (7-30 days reply window), 149 (3-yr vs 10-yr limitation, ₹50L threshold), and 151 into `troubleshooting_tax.jsonl` & `rag_manifest.json` | M1 | R4, Survey 1 |
+| 2 | Corpus Ingestion: Inoperative PAN & TDS (206AA, 114AAA, Cir 03/2023, 234H) | Ingest official text for Rule 114AAA, CBDT Circular 03/2023 (30-day reactivation timeline, ₹1000 fee under 234H), and Section 206AA (employer 20% TDS deposit, employer cannot refund via payroll, employee refund via ITR) into `troubleshooting_pan.jsonl` / `troubleshooting_tax.jsonl` | M1 | R4, Survey 2 |
+| 3 | Domain Router Expansion & Cross-Category Access | Add statutory patterns (147-151, 206AA, 234H, reassessment, inoperative PAN) to `domain_router.py`; allow dual-category search (`tax` + `pan`) for PAN-TDS queries | M1 | R4, Survey 1, 2 |
+| 4 | Retriever Symptom Clusters & Anti-Hijacking | Add `tax_reassessment` and `inoperative_pan_tds` symptom clusters and exact code matching in `retriever.py` to prevent token hijacking by 139(9) or Protean rejections | M1 | R4, Survey 1, 2 |
+| 5 | Multi-Factor Relevance & Confidence Gating | Upgrade `compute_rag_confidence(rag_result, query)` in `confidence.py` to enforce statutory entity alignment and lexical overlap, preventing false HIGH confidence badges on off-topic hits | M2 | R2, Survey 3 |
+| 6 | Pre-Synthesis CRAG Triggering & Honest Refusal | Connect confidence gating to `pipeline.py` to trigger live CRAG when retrieved chunks lack semantic alignment (< 0.35) or emit honest refusal if ungrounded | M2 | R2, Survey 3 |
+| 7 | Query Modality Classification & Checklist Elimination | Classify queries as PROCEDURAL vs ANALYTICAL/CALCULATION/LEGAL; eliminate artificial 3-step checklist (`steps = []`) in `explainer.py`, `llm.py`, and `synthesizer.py` for non-procedural queries | M3 | R1, Survey 3 |
+| 8 | Multi-Part Query Decomposition & Synthesis | Decompose compound user queries into distinct sub-questions in `retriever.py` / `query_decomposer.py`, ensure multi-intent retrieval coverage, and synthesize direct answers to all sub-questions | M3 | R3, Survey 2, 3 |
+| 9 | Automated Regression Suite (Case 1, Case 2, Gating, Decomposition) | Implement comprehensive automated regression and unit tests in `tests/` verifying Case 1, Case 2, confidence gating, and decomposition pass 100% | M4 | Acceptance Criteria |
+| 10 | Independent E2E Test Suite (Tiers 1-4) | Requirement-driven opaque-box test suite covering feature inventory across Tiers 1-4 publishing `TEST_READY.md` | E2E | Acceptance Criteria |
 
 ## Milestones
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
-| M1 | Corpus Integrity & Scraper Cleanup | R1 (EPFO document source fix in `troubleshooting_civic.jsonl`) & R5 (`trafilatura` DOM noise elimination in `fetcher.py`) | none | DONE |
-| M2 | Hard Domain Routing & Bleed Prevention | R2 (`Domain.UNCOVERED` in `domain_router.py`, short-circuit in `retriever.py`, refusal in `runtime.py`/`pipeline.py`) | none | DONE |
-| M3 | Same-Domain Sub-Procedure Granularity | R6 (`itr_ais_feedback_manual_01` in `troubleshooting_tax.jsonl`, symptom clusters & bidirectional penalty in `retriever.py`) | M1 | IN_PROGRESS |
-| M4 | Confidence Decoupling & LLM Relevance Gating | R3 (MATCH/PARTIAL/NO_MATCH confidence badge) & R4 (anti-fabrication of unstated facts in `llm.py`) | M2, M3 | PLANNED |
-| M5 | System Guardrail Updates | R7 (Update `AGENTS.md` and `GEMINI.md` with pipeline failure mitigations) | M1-M4 | PLANNED |
-| M6 | Final Verification & Coverage Hardening | Phase 1: Pass 100% E2E test suite (Tiers 1-4); Phase 2: Adversarial coverage hardening (Tier 5) | M1-M5, TEST_READY.md | PLANNED |
+| E2E | Independent E2E Testing Suite | Requirement-driven opaque-box test suite covering Tiers 1-4 publishing `TEST_READY.md` | none | IN_PROGRESS |
+| M1 | Corpus Ingestion & Retriever Coverage | Features 1, 2, 3, 4: Ingest 147-151 & 206AA/114AAA/Cir 03/2023, update `domain_router.py` & `retriever.py` | none | DONE |
+| M2 | Pre-Synthesis Relevance & Confidence Gating | Features 5, 6: Update `compute_rag_confidence` in `confidence.py` with entity alignment, update `explainer.py` & `pipeline.py` | M1 | DONE |
+| M3 | Response Shape & Multi-Part Query Decomposition | Features 7, 8: Implement query modality classifier, eliminate 3-step checklist for analytical queries, implement query decomposition | M1, M2 | PLANNED |
+| M4 | Regression Test Suite & Verification | Feature 9: Implement regression tests in `tests/test_case1_case2_gating_regression.py` covering Case 1, Case 2, gating, and decomposition; verify 100% pass | M1, M2, M3, E2E | PLANNED |
 
 ## Interface Contracts
-### Domain Router ↔ Retriever
-- `classify_domain(query: str) -> Domain`: Returns `Domain.UNCOVERED` for queries matching MCA/SPICe+, petroleum/LPG, or NSP scholarships.
+### Domain Router & Retriever ↔ Runtime
+- `classify_domain(query: str) -> Domain`:
+  - Matches reassessment sections (`147`, `148`, `148A`, `149`, `151`) into `Domain.TAXATION`.
+  - Matches inoperative PAN / TDS queries (`206AA`, `234H`, `salary TDS`, `inoperative PAN`) into `Domain.TAXATION` or `Domain.IDENTITY` with dual-category allowance `{"tax", "pan"}`.
 - `RagRetriever.search(query, category=None, domain=None, top_k=None) -> RetrievalResult`:
-  If `resolved_domain == Domain.UNCOVERED`:
-    Returns `RetrievalResult(query=clean_query, hits=(), status="uncovered_domain", searched_documents=0)`.
+  - Exact code matches for `"148a(b)"`, `"148a"`, `"149"`, `"206aa"`, `"114aaa"`, `"234h"`.
+  - Cluster boost for `tax_reassessment` with conflict penalty on `139(9)`, `119(2)(b)`.
+  - Cluster boost for `inoperative_pan_tds` with conflict penalty on Protean application rejections.
 
-### Retriever ↔ Explainer / Pipeline (Confidence Decoupling)
-- `evaluate_relevance(query: str, domain: Domain, top_hit: RagHit) -> RelevanceGrade`:
-  Returns `MATCH`, `PARTIAL`, or `NO_MATCH`.
-- `compute_rag_confidence(result: RetrievalResult, grade: RelevanceGrade) -> float`:
-  Confidence badge (`high`, `medium`, `low`) is driven by `grade`:
-  - `MATCH`: permits `"high"` if vector/lexical score threshold met.
-  - `PARTIAL`: bounded to `"medium"` or `"low"`.
-  - `NO_MATCH`: strictly forced to `"low"` / triggers ungrounded refusal.
+### Confidence Gating ↔ Pipeline & Explainer
+- `compute_rag_confidence(rag_result: RetrievalResult, query: str = None) -> float`:
+  - Accepts both `rag_result` and `query`.
+  - Enforces statutory entity alignment: If query contains specific sections (`148A`, `149`, `206AA`, etc.) and top hit lacks matching entities, caps confidence below `0.35`.
+  - Triggers live CRAG in `pipeline.py` when confidence < 0.35. If ungrounded, outputs honest refusal with `confidence="low"`.
+  - In `explainer.py:365`, dynamic confidence is set to `"low"` if statutory alignment fails.
 
-### Retriever Sub-Procedure Discrimination (Section 139(9) vs AIS Feedback)
-- In `backend/rag/retriever.py`:
-  - `is_139_query`: queries matching `139(9)`, `defective return`, `defective notice`, `defect memo`.
-  - `is_ais_query`: queries matching `ais feedback`, `feedback on ais`, `annual information statement`, `ais mismatch`.
-  - Mutual penalty of `-0.40` applied to mismatched sub-procedure hits.
-
-### Scraper Fetcher ↔ CRAG Synthesizer
-- `fetch_page_text(url: str) -> str`: Calls `trafilatura.extract(html, include_tables=False, favor_precision=True)`.
-- `is_navigation_or_boilerplate_text(text: str) -> bool`: Rejects Markdown table directory blocks and file download catalogs.
+### Query Modality & Response Scaffolding
+- `classify_query_modality(query: str) -> QueryModality`:
+  - Returns `QueryModality.ANALYTICAL`, `CALCULATION`, `LEGAL_INTERPRETATION`, or `PROCEDURAL`.
+- `explain_rag_result(result, user_question) -> Answer`:
+  - For non-procedural modalities, `dynamic_steps` is strictly `[]`. Artificial checklists ("Review [Doc 1]", "Review [Doc 2]", "Verify Official Portal") are suppressed.
+  - Summary directly answers the query's analytical and legal questions.
+- `decompose_query(query: str) -> list[str]`:
+  - Splits compound queries into distinct sub-questions for isolated retrieval and comprehensive synthesis.
 
 ## Code Layout
-- `backend/data/rag_manifest.json`: Ingested datasets and host allowlists.
-- `backend/data/refined/troubleshooting/troubleshooting_civic.jsonl`: EPFO troubleshooting records.
-- `backend/data/refined/troubleshooting/troubleshooting_tax.jsonl`: Tax troubleshooting records (including AIS feedback).
-- `backend/modules/domain_router.py`: Domain classification and uncovered domain regex patterns.
-- `backend/rag/retriever.py`: Hybrid search, symptom clusters, sub-procedure discrimination, and short-circuit.
-- `backend/rag/runtime.py`: Runtime retrieval dispatch.
-- `backend/modules/explainer.py` & `backend/web_search/confidence.py`: Post-retrieval relevance and confidence badge computation.
-- `backend/modules/llm.py`: Local LLM synthesis prompt directives and hallucination guardrails.
-- `backend/web_search/fetcher.py` & `backend/web_search/synthesizer.py`: CRAG scraper extraction and DOM noise filtering.
-- `AGENTS.md` & `GEMINI.md`: Core directives and operational guardrails.
+- `backend/data/rag_manifest.json`: Corpus manifest and metadata.
+- `backend/data/refined/troubleshooting/troubleshooting_tax.jsonl`: Tax statutory provisions (147-151, 206AA refund workflow).
+- `backend/data/refined/troubleshooting/troubleshooting_pan.jsonl`: PAN statutory provisions (Rule 114AAA, Circular 03/2023, 234H).
+- `backend/modules/domain_router.py`: Domain patterns and cross-category allowances.
+- `backend/rag/retriever.py`: Symptom clusters, exact codes, conflict penalties, and query decomposition.
+- `backend/rag/runtime.py`: Runtime category resolution.
+- `backend/web_search/confidence.py`: Pre-synthesis multi-factor relevance and confidence gating.
+- `backend/modules/explainer.py`: Query modality classifier, checklist elimination, analytical response generation.
+- `backend/modules/llm.py`: Prompt directives and post-processing step handling.
+- `backend/web_search/synthesizer.py`: CRAG synthesis confidence handling without step penalties.
 - `tests/`: Automated unit and regression test suite.

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "rbi_portal",
+  "requested_url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/FAQRTGS15102026.pdf",
+  "final_url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/FAQRTGS15102026.pdf",
+  "fetched_at": "2026-11-09T08:31:13+00:00",
+  "artifact_sha256": "b837febb7fd00f9fc1476959f1b9c91763217cd42b7ecf508c9deafab46fe11b",
+  "artifact_bytes": 197086,
+  "content_type": "application/pdf",
+  "extracted_title": "Faqrtgs15102026",
+  "extracted_words": 2128,
+  "source_authority": "Reserve Bank of India (RBI)",
+  "jurisdiction": "IN",
+  "scheme": "RBI Master Directions, Customer Protection & Ombudsman Schemes",
+  "document_type": "official_master_directions_and_faqs"
+}

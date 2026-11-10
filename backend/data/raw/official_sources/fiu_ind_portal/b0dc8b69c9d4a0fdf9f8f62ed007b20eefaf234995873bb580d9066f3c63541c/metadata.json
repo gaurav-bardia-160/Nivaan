@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "fiu_ind_portal",
+  "requested_url": "https://fiuindia.gov.in/files/FAQs/faqs.html",
+  "final_url": "https://fiuindia.gov.in/files/FAQs/faqs.html",
+  "fetched_at": "2026-11-09T08:37:40+00:00",
+  "artifact_sha256": "b0dc8b69c9d4a0fdf9f8f62ed007b20eefaf234995873bb580d9066f3c63541c",
+  "artifact_bytes": 68351,
+  "content_type": "text/html",
+  "extracted_title": "FIU-India",
+  "extracted_words": 25048,
+  "source_authority": "Financial Intelligence Unit - India (FIU-IND), Department of Revenue, Ministry of Finance",
+  "jurisdiction": "IN",
+  "scheme": "Anti-Money Laundering & FINnet 2.0 / FINGate Reporting Portal",
+  "document_type": "official_portal_guidance"
+}

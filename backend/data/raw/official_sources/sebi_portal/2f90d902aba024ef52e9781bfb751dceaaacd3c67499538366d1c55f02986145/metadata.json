@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "sebi_portal",
+  "requested_url": "https://scores.sebi.gov.in/documents/d/guest/scores-2-0-faqs?download=true",
+  "final_url": "https://scores.sebi.gov.in/documents/d/guest/scores-2-0-faqs?download=true",
+  "fetched_at": "2026-11-09T08:33:01+00:00",
+  "artifact_sha256": "2f90d902aba024ef52e9781bfb751dceaaacd3c67499538366d1c55f02986145",
+  "artifact_bytes": 803754,
+  "content_type": "application/pdf",
+  "extracted_title": "Scores 2 0 Faqs",
+  "extracted_words": 7331,
+  "source_authority": "Securities and Exchange Board of India (SEBI)",
+  "jurisdiction": "IN",
+  "scheme": "SCORES 2.0 & SMART ODR Securities Dispute Resolution",
+  "document_type": "official_guidelines_and_faqs"
+}

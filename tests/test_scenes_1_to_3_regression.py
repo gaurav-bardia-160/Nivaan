@@ -28,7 +28,33 @@ from backend.modules.domain_router import (
 )
 from backend.modules.llm import _build_llm_prompt
 from backend.rag.loader import load_corpus
-from backend.rag.models import RagDocument, RetrievalHit, RetrievalResult
+from backend.rag.models import RagDocument, RetrievalHit, RetrievalResult, SourceReference
+from datetime import date
+
+def _make_rag_doc(id: str, category: str, title: str, section: str, text: str, tags: tuple = (), source_url: str = "https://example.gov.in/test") -> RagDocument:
+    source = SourceReference(
+        dataset_id=category,
+        record_id=id,
+        source_url=source_url,
+        title=title,
+        section=section,
+        reported_status="verified",
+        reported_last_verified="2026-10-01",
+        reported_quality_score=1.0,
+        reported_verification_method="manual",
+        reported_source_confidence="official",
+    )
+    return RagDocument(
+        id=id,
+        content_hash="mock_hash_" + id,
+        category=category,
+        text=text,
+        language="en",
+        tags=tags,
+        sources=(source,),
+        warnings=(),
+    )
+
 from backend.rag.retriever import RagRetriever
 from backend.schemas import Answer, Step
 from backend.web_search.confidence import compute_rag_confidence
@@ -305,14 +331,13 @@ def test_tier1_r3_relevance_evaluator_interface():
     # Contract in PROJECT.md: evaluate_relevance(query, domain, top_hit) -> RelevanceGrade
     eval_fn = getattr(explainer, "evaluate_relevance", None)
     assert eval_fn is not None, "evaluate_relevance function must be defined in explainer module"
-    doc = RagDocument(
+    doc = _make_rag_doc(
         id="sample_doc",
         category="civic",
         title="EPFO SOP",
         section="Section A",
         text="Sample EPFO text",
         tags=("epfo",),
-        sources=(),
     )
     hit = RetrievalHit(document=doc, score=0.080, rank=1, signals={})
     grade = eval_fn("How to apply for Joint Declaration on EPFO portal?", Domain.GENERAL_CIVIC, hit)
@@ -323,14 +348,13 @@ def test_tier1_r3_no_match_forces_low_confidence():
     """Verify that NO_MATCH relevance strictly forces confidence badge to 'low' even with high similarity."""
     from backend.modules import explainer
     # When semantic relevance is NO_MATCH, high raw score must NOT award high confidence
-    doc = RagDocument(
+    doc = _make_rag_doc(
         id="cheque_doc",
         category="civic",
         title="EPFO Passbook Standards",
         section="Bank KYC",
         text="Cancelled cheque leaf pre-printed name rules",
         tags=("cheque",),
-        sources=(),
     )
     # Artificially high score
     hit = RetrievalHit(document=doc, score=0.095, rank=1, signals={"vector_score": 0.95})
@@ -343,14 +367,13 @@ def test_tier1_r3_no_match_forces_low_confidence():
 def test_tier1_r3_partial_bounds_confidence():
     """Verify PARTIAL relevance bounds confidence badge to 'medium' or 'low', never 'high'."""
     from backend.modules import explainer
-    doc = RagDocument(
+    doc = _make_rag_doc(
         id="general_filing_doc",
         category="tax",
         title="General Tax Guidelines",
         section="General",
         text="Taxpayers must check AIS before filing ITR",
         tags=("tax",),
-        sources=(),
     )
     hit = RetrievalHit(document=doc, score=0.070, rank=1, signals={"vector_score": 0.90})
     res = RetrievalResult(query="How to dispute duplicate mutual fund SFT in AIS?", hits=(hit,), status="supported_hybrid", searched_documents=100)
@@ -361,14 +384,13 @@ def test_tier1_r3_partial_bounds_confidence():
 def test_tier1_r3_match_permits_high_confidence():
     """Verify MATCH relevance permits 'high' confidence when score threshold is satisfied."""
     from backend.modules import explainer
-    doc = RagDocument(
+    doc = _make_rag_doc(
         id="epfo_joint_dec",
         category="civic",
         title="EPFO Joint Declaration SOP (JD/2022/1)",
         section="Member Profile Correction",
         text="Joint declaration procedure for name and date of birth correction on member portal",
         tags=("epf_joint_declaration", "sop"),
-        sources=(),
     )
     hit = RetrievalHit(document=doc, score=0.060, rank=1, signals={"vector_score": 0.88})
     res = RetrievalResult(query="EPFO Joint Declaration SOP procedure for name update", hits=(hit,), status="supported_hybrid", searched_documents=100)
@@ -379,14 +401,13 @@ def test_tier1_r3_match_permits_high_confidence():
 def test_tier1_r3_decoupling_prevents_false_high_confidence():
     """Verify cross-domain retrieval bleed hits do not receive high confidence."""
     from backend.modules import explainer
-    doc = RagDocument(
+    doc = _make_rag_doc(
         id="epfigms_sop",
         category="civic",
         title="EPFiGMS Grievance Registration",
         section="EPFO",
         text="Register grievance for stuck PF claims on epfigms.gov.in",
         tags=("epfigms",),
-        sources=(),
     )
     # Cosine score is high due to words like 'grievance', 'subsidy', 'account'
     hit = RetrievalHit(document=doc, score=0.065, rank=1, signals={"vector_score": 0.85})
@@ -402,6 +423,7 @@ def test_tier1_r3_decoupling_prevents_false_high_confidence():
 def test_tier1_r4_prompt_contains_anti_fabrication_directive():
     """Verify _build_llm_prompt contains strict anti-fabrication directive for unstated premises."""
     ans = Answer(
+        last_verified=date(2026, 10, 1),
         title="Official Procedure",
         summary="Summary",
         documents_needed=[],
@@ -420,6 +442,7 @@ def test_tier1_r4_prompt_contains_anti_fabrication_directive():
 def test_tier1_r4_prompt_contains_domain_relevance_gate():
     """Verify _build_llm_prompt contains domain relevance refusal directive."""
     ans = Answer(
+        last_verified=date(2026, 10, 1),
         title="Official Procedure",
         summary="Summary",
         documents_needed=[],
@@ -432,6 +455,7 @@ def test_tier1_r4_prompt_contains_domain_relevance_gate():
 def test_tier1_r4_anti_fabrication_closed_establishment():
     """Verify prompt instructs LLM not to instruct user to follow closed-establishment protocol when unstated."""
     ans = Answer(
+        last_verified=date(2026, 10, 1),
         title="EPFO Attestation Framework for Closed Establishments",
         summary="Protocol when establishment is closed.",
         documents_needed=[],
@@ -451,7 +475,7 @@ def test_tier1_r4_refusal_interception():
     client = LocalLLMClient()
     mock_resp = '{"summary": "Insufficient data in the verified civic knowledge base for this specific portal.", "steps": [], "documents_needed": []}'
     with patch("backend.modules.llm._call_ollama", return_value=mock_resp):
-        ans = Answer(title="Candidate", summary="Candidate", documents_needed=[], steps=[Step(title="S", detail="D")])
+        ans = Answer(last_verified=date(2026, 10, 1), title="Candidate", summary="Candidate", documents_needed=[], steps=[Step(title="S", detail="D")])
         res = client.synthesize_grounded_answer("How to reserve name on MCA SPICe+?", ans)
         assert res.title == not_found_answer("q").title or "not found" in res.title.lower() or "insufficient" in res.summary.lower()
 
@@ -692,14 +716,13 @@ def test_tier3_ais_discrimination_with_confidence_badge():
     records = _read_jsonl(TAX_JSONL_PATH)
     rec = next((r for r in records if r.get("id") == "itr_ais_feedback_manual_01"), None)
     if rec:
-        doc = RagDocument(
+        doc = _make_rag_doc(
             id=rec["id"],
             category="tax",
             title=rec["title"],
             section=rec["section"],
             text=rec["text"],
             tags=tuple(rec.get("retrieval_tags", ())),
-            sources=(),
         )
         hit = RetrievalHit(document=doc, score=0.065, rank=1, signals={"vector_score": 0.90})
         res = RetrievalResult(
@@ -715,18 +738,18 @@ def test_tier3_ais_discrimination_with_confidence_badge():
 
 def test_tier3_active_employer_with_closed_est_chunk_confidence_and_prompt():
     """Cross-feature: Active employer query + closed establishment retrieved chunk."""
-    doc = RagDocument(
+    doc = _make_rag_doc(
         id="epfo_closed_est",
         category="civic",
         title="EPFO Attestation Framework for Closed Establishments",
         section="Field Formats",
         text="Alternative attestation by Gazetted Officer when employer is closed",
         tags=("closed_establishment_epf",),
-        sources=(),
     )
     hit = RetrievalHit(document=doc, score=0.055, rank=1, signals={})
     ans = Answer(
-        title=doc.title,
+        last_verified=date(2026, 10, 1),
+        title=doc.sources[0].title,
         summary=doc.text,
         documents_needed=[],
         steps=[Step(title="Attestation", detail="Get signature of Gazetted Officer")],
@@ -757,6 +780,7 @@ def test_tier4_scene1_turn1_epfo_active_employer_dsc_error():
     """
     q = "When uploading my joint declaration form on the EPFO member portal, it gives error 'DSC not registered or active for the establishment'. My employer says their digital signature is valid. What exact setting or utility is missing on their system?"
     ans = Answer(
+        last_verified=date(2026, 10, 1),
         title="EPFO Joint Declaration",
         summary="Joint declaration correction rules.",
         documents_needed=[],

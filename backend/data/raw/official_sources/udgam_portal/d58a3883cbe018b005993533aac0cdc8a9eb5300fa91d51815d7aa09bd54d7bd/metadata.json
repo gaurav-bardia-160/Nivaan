@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "udgam_portal",
+  "requested_url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=56223",
+  "final_url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=56223",
+  "fetched_at": "2026-11-09T07:54:28+00:00",
+  "artifact_sha256": "d58a3883cbe018b005993533aac0cdc8a9eb5300fa91d51815d7aa09bd54d7bd",
+  "artifact_bytes": 125142,
+  "content_type": "text/html",
+  "extracted_title": "Press Releases | Official Website of Reserve Bank of India",
+  "extracted_words": 5086,
+  "source_authority": "Reserve Bank of India (RBI) & ReBIT",
+  "jurisdiction": "IN",
+  "scheme": "UDGAM - Unclaimed Deposits Gateway to Access Information",
+  "document_type": "official_portal_guidance"
+}

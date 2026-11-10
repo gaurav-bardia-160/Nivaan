@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "sidbi_portal",
+  "requested_url": "https://www.sidbi.in/complaints",
+  "final_url": "https://www.sidbi.in/complaints",
+  "fetched_at": "2026-11-09T08:43:54+00:00",
+  "artifact_sha256": "21d5dcebfcc72befd8afd730d17a61be56fe18e68b46a2023072dbae80a44c28",
+  "artifact_bytes": 154401,
+  "content_type": "text/html",
+  "extracted_title": "Complaints / Grievance Redressal - Small Industries Development Bank of India",
+  "extracted_words": 4775,
+  "source_authority": "Small Industries Development Bank of India (SIDBI)",
+  "jurisdiction": "IN",
+  "scheme": "MSME Customer Grievance Redressal Policy & Credit Facilitation",
+  "document_type": "official_guidelines_and_faqs"
+}

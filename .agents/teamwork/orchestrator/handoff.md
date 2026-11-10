@@ -1,69 +1,73 @@
-# Soft Handoff to Successor (Generation 2)
+# Orchestrator Soft Handoff — Case 1 & Case 2 Pipeline Remediation
 
-**From**: Project Orchestrator (Generation 1)  
-**To**: Project Orchestrator (Generation 2)  
-**Date**: 2026-11-04  
-**Working Directory**: `c:\Users\gaura\Documents\nivaan\.agents\teamwork\orchestrator`  
-**Parent Agent**: `223e7ed8-0437-4dcc-89bd-101dfe69e7c2`  
+**Author**: `orchestrator` (Top-Level Project Orchestrator, Generation 1)  
+**Date**: 2026-11-09T13:52:00Z  
+**Type**: Soft Handoff (Self-Succession at 16 Spawns)  
+**Recipient**: Successor Orchestrator (Generation 2)  
+**Parent Conversation ID**: `63247ec2-b8b8-40d2-a5ba-cd61604e4af3`
 
 ---
 
 ## 1. Milestone State
 
-| # | Milestone | Scope | Status | Next Action |
-|---|-----------|-------|--------|-------------|
-| M1 | Corpus Integrity & Scraper Cleanup | R1 (EPFO circular URL fix & vector DB sync) + R5 (Trafilatura table removal & catalog discriminator fix) | IN_PROGRESS (Iteration 2 Complete, Awaiting Re-Audit) | Spawn `auditor_m1_gen2`, `reviewer_m1_gen2`, `challenger_m1_gen2` to verify Iteration 2 fix and certify M1 PASS |
-| M2 | Hard Domain Routing & Bleed Prevention | R2 (`Domain.UNCOVERED`, short-circuit in retriever, honest ungrounded refusal) | PLANNED (Survey 1 Complete) | Dispatch M2 Iteration Loop (Explorer -> Worker -> Gate) |
-| M3 | Same-Domain Sub-Procedure Granularity | R6 (`itr_ais_feedback_manual_01` ingestion, symptom clusters, bidirectional penalty) | PLANNED (Survey 1 Complete) | Dispatch M3 Iteration Loop |
-| M4 | Confidence Decoupling & LLM Relevance Gating | R3 (MATCH/PARTIAL/NO_MATCH confidence badge) + R4 (anti-fabrication of unstated facts) | PLANNED (Survey 3 Complete) | Dispatch M4 Iteration Loop |
-| M5 | System Guardrail Updates | R7 (Update `AGENTS.md` and `GEMINI.md` with pipeline failure mitigations) | PLANNED (Survey 3 Complete) | Dispatch M5 Iteration Loop |
-| M6 | Final Verification & Coverage Hardening | Phase 1: 100% E2E test pass (Tiers 1-4); Phase 2: Tier 5 adversarial hardening | PLANNED (`TEST_READY.md` Published) | Execute after M1-M5 pass |
+| # | Name | Scope | Dependencies | Status | Notes |
+|---|------|-------|-------------|--------|-------|
+| E2E | Independent E2E Testing Suite | Requirements Tiers 1-4 in `tests/test_case1_case2_gating_regression.py` | none | **DONE** | 19 tests authored; baseline `14 failed, 5 passed` in `TEST_READY.md`. |
+| M1 | Corpus Ingestion & Retriever Coverage | Features 1, 2, 3, 4 | none | **DONE** | Passed Gate Iteration 1 with 5/5 APPROVE/CLEAN verdicts. 73 unit tests pass with zero regressions. |
+| M2 | Pre-Synthesis Relevance & Confidence Gating | Features 5, 6 | M1 | **IN_PROGRESS** (Iteration 1: Gate FAIL on reviewer REQUEST_CHANGES; ready for Iteration 2 remediation) | Implemented by `worker_cases_m2`. `reviewer_cases_m2_2` caught regression in `pipeline.py:667, 1060` (used 0.75 instead of 0.35, breaking `test_api.py`). |
+| M3 | Response Shape & Multi-Part Query Decomposition | Features 7, 8 | M1, M2 | **PLANNED** | Spec defined in `survey_arch_gating_3/handoff.md`. Needs `classify_query_modality`, checklist elimination (`steps = []`), and `decompose_query`. |
+| M4 | Full Regression Verification & Coverage Hardening | Feature 9 | M1, M2, M3, E2E | **PLANNED** | Pass 100% of `tests/test_case1_case2_gating_regression.py` (19/19) and full repository test suite. |
 
 ---
 
-## 2. Iteration 2 Accomplishments on Milestone 1
-- **Audit Defect Resolved**: In `backend/web_search/fetcher.py`, catalog detection was decoupled from `pipe_count >= 2` and guarded by `not has_step_indicators`. Action verb `"form"` was sanitized to `"form "` to eliminate false positive matching on `"Format:"`.
-- **Unit Test Added**: `test_identifies_pipeless_document_catalog_noise` added to `tests/test_web_search.py`.
-- **Verified Passing**:
-  1. `pytest tests/test_scenes_1_to_3_regression.py -k "test_tier1_r1 or test_tier1_r5" -v`: 10 passed, 0 failed.
-  2. `pytest tests/test_web_search.py tests/test_rag_loader.py tests/test_build_vector_db.py -v`: 39 passed, 0 failed.
-  3. `pytest tests/test_adversarial_m1_harness.py -v`: 12 passed, 0 failed.
-  4. `python -m backend.offline.ensure_vector_db --check-only`: ready=true, points=1387, dimensions=384.
+## 2. Active Subagents
+- All 16 subagents from Generation 1 have fully completed and are retired.
+- No subagents are currently running.
 
 ---
 
-## 3. Active Subagents
-- **None**: All 16 subagents spawned in Generation 1 have completed their tasks and delivered their handoffs.
+## 3. Pending Decisions & Immediate Next Steps for Successor
+
+### Immediate Step 1: Milestone M2 Iteration 2 Remediation
+1. Spawn `worker_cases_m2_iter2` (`teamwork_worker`) with:
+   - Scope: `backend/pipeline.py` lines 667 and 1060.
+   - Issue identified by `reviewer_cases_m2_2`:
+     Line 667 checks `if top_hit.score < MIN_RRF_CONFIDENCE_THRESHOLD or rag_confidence < WEB_SEARCH_CONFIDENCE_THRESHOLD:` where `WEB_SEARCH_CONFIDENCE_THRESHOLD = 0.75`.
+     Line 1060 checks `if top_hit.score >= MIN_RRF_CONFIDENCE_THRESHOLD and rag_confidence >= WEB_SEARCH_CONFIDENCE_THRESHOLD:`.
+     This erroneously rejects legitimate medium-confidence queries ($[0.35, 0.75)$) with an ungrounded refusal ("No verified guide found"), causing 7 failures in `tests/test_api.py`.
+   - Fix: Change `WEB_SEARCH_CONFIDENCE_THRESHOLD` to `0.35` (or define `MIN_GROUNDING_CONFIDENCE_THRESHOLD = 0.35`) in `backend/pipeline.py` lines 667 and 1060.
+   - Verification command for worker: `py -m pytest tests/test_api.py tests/test_case1_case2_gating_regression.py -k "relevance_confidence_gating" -v` (must pass 100%).
+2. Run M2 Iteration 2 Gate (Reviewers, Challengers, Auditor). Once gate passes, update `GATE_STATUS.md` and `PROJECT.md` to mark M2 as **DONE**.
+
+### Step 2: Milestone M3 Implementation (Response Shape & Multi-Part Query Decomposition)
+1. Spawn `worker_cases_m3` (`teamwork_worker`) for Features 7 & 8:
+   - Exclusively owns: `backend/modules/explainer.py`, `backend/modules/llm.py`, `backend/rag/retriever.py` (or `backend/rag/decomposition.py`), `backend/web_search/synthesizer.py`.
+   - Implement `classify_query_modality(query: str) -> QueryModality`:
+     - Distinguish `PROCEDURAL` from `ANALYTICAL`, `CALCULATION`, `LEGAL_INTERPRETATION`.
+   - In `backend/modules/explainer.py:352-361`:
+     - Eliminate the 3-step checklist (`Review [Doc 1]`, `Review [Doc 2]`, `Verify Official Portal`) for non-procedural queries: set `steps = []`.
+     - In summary, provide substantive analytical explanations.
+   - In `backend/modules/llm.py:802-806`:
+     - Do not re-inject dynamic steps for non-procedural queries when `steps` is empty.
+   - In `backend/rag/retriever.py`:
+     - Implement `decompose_query(query: str) -> list[str]` to isolate sub-questions for compound queries (e.g. Case 1: limitation vs reply window; Case 2: reactivation timeline vs ITR refund).
+   - In `backend/web_search/synthesizer.py:391-396`:
+     - Remove the step count penalty from confidence evaluation for analytical queries.
+   - Verification: `py -m pytest tests/test_case1_case2_gating_regression.py -k "query_modality or checklist_elimination or query_decomposition or offline_pytest or multipart_synthesis" -v`.
+2. Run M3 Gate (Reviewers, Challengers, Auditor).
+
+### Step 3: Milestone M4 Full Verification & User Report
+1. Run full test suite: `py -m pytest tests/test_case1_case2_gating_regression.py -v` (all 19 tests must pass).
+2. Run regression checks: `py -m pytest tests/test_scenes_1_to_3_regression.py tests/test_api.py -v`.
+3. Report verified outcome to parent (`63247ec2-b8b8-40d2-a5ba-cd61604e4af3`) via `send_message`.
 
 ---
 
-## 4. Pending Decisions & Blocked Items
-- **None**: Technical solutions for all remaining milestones (M2 through M5) are fully specified in the survey reports:
-  - M2 & M3 technical strategy: `c:\Users\gaura\Documents\nivaan\.agents\teamwork\survey_1\handoff.md`
-  - M4 & M5 technical strategy: `c:\Users\gaura\Documents\nivaan\.agents\teamwork\survey_3\handoff.md`
-  - Test suite & runner: `c:\Users\gaura\Documents\nivaan\TEST_READY.md`
-
----
-
-## 5. Concrete Next Steps for Successor (Generation 2)
-1. Initialize your generation: read `BRIEFING.md`, `PROJECT.md`, `TEST_READY.md`, `handoff.md`. Start your recurring heartbeat cron (`schedule(CronExpression="*/10 * * * *")`).
-2. Run M1 Gate Re-Audit:
-   - Spawn `auditor_m1_gen2` (`teamwork_auditor`), `reviewer_m1_gen2` (`teamwork_reviewer`), and `challenger_m1_gen2` (`teamwork_challenger`) to evaluate `worker_m1_iter2/handoff.md`.
-   - Record verdicts in `GATE_STATUS.md`. When all approve and auditor is CLEAN, mark M1 `DONE` in `PROJECT.md`.
-3. Advance to Milestone 2 (Hard Domain Routing & Bleed Prevention):
-   - Dispatch M2 Worker using Survey 1 specification to implement `Domain.UNCOVERED`, short-circuit in `retriever.py`, and honest dynamic refusal in `pipeline.py`.
-   - Gate check M2 against `pytest tests/test_scenes_1_to_3_regression.py -k "test_tier1_r2 or test_tier2_trouble"`.
-4. Proceed through M3, M4, M5, and M6 in sequence.
-
----
-
-## 6. Key Artifacts Index
-- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\ORIGINAL_REQUEST.md`: User requirements
-- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\PROJECT.md`: Project master plan, architecture, milestones, contracts
-- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\TEST_INFRA.md`: Test infrastructure index
-- `c:\Users\gaura\Documents\nivaan\TEST_READY.md`: Signal that 59-test regression suite is published
-- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\GATE_STATUS.md`: Gate check records
-- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\survey_1\handoff.md`: Technical design for R2 (domain routing) & R6 (sub-procedure granularity)
-- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\survey_2_gen2\handoff.md`: Technical design for R1 (EPFO corpus) & R5 (scraper cleanup)
-- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\survey_3\handoff.md`: Technical design for R3 (confidence decoupling), R4 (relevance gate), R7 (AGENTS.md guardrails)
-- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\worker_m1_iter2\handoff.md`: Passing M1 Iteration 2 implementation & verification logs
+## 4. Key Artifacts
+- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\ORIGINAL_REQUEST.md`: Authoritative user request.
+- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\PROJECT.md`: Roadmap, 10 features, milestones, interface contracts.
+- `c:\Users\gaura\Documents\nivaan\TEST_READY.md`: E2E test suite baseline and mapping.
+- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\GATE_STATUS.md`: Authoritative gate verdicts.
+- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\orchestrator\progress.md`: Execution checklist.
+- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\survey_arch_gating_3\handoff.md`: Technical architectural specifications for gating, scaffolding, and decomposition.
+- `c:\Users\gaura\Documents\nivaan\.agents\teamwork\reviewer_cases_m2_2\handoff.md`: Exact diagnosis of the M2 pipeline regression to be fixed by `worker_cases_m2_iter2`.

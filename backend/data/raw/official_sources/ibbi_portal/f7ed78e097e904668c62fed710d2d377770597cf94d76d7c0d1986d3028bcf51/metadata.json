@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "ibbi_portal",
+  "requested_url": "https://ibbi.gov.in/uploads/claims/2025-08-20-180655-qmngk-95b42f8b760f6cc8dc1fe1d79af57bad.pdf",
+  "final_url": "https://ibbi.gov.in/uploads/claims/2025-08-20-180655-qmngk-95b42f8b760f6cc8dc1fe1d79af57bad.pdf",
+  "fetched_at": "2026-11-09T08:36:31+00:00",
+  "artifact_sha256": "f7ed78e097e904668c62fed710d2d377770597cf94d76d7c0d1986d3028bcf51",
+  "artifact_bytes": 185610,
+  "content_type": "application/pdf",
+  "extracted_title": "Claim Sheet (IBBI)_Main as per Circular 19.11.2024- CGJ (2) (1).xlsx",
+  "extracted_words": 115,
+  "source_authority": "Insolvency and Bankruptcy Board of India (IBBI)",
+  "jurisdiction": "IN",
+  "scheme": "Corporate Insolvency Resolution Process (CIRP) Claim Protocols",
+  "document_type": "official_guidelines_and_faqs"
+}

@@ -54,6 +54,24 @@ def inspect_vector_index(
     if not isinstance(metadata.get("dimensions"), int) or int(metadata["dimensions"]) < 1:
         return {**base, "ready": False, "points": 0, "reason": "invalid_dimensions"}
 
+    try:
+        from backend.rag.runtime import get_retriever
+        active_r = get_retriever()
+        if active_r.vector_store and hasattr(active_r.vector_store, "health"):
+            health = active_r.vector_store.health()
+            points = int(health.get("points", 0))
+            ready = bool(health.get("ready")) and points == expected_documents
+            return {
+                **base,
+                "ready": ready,
+                "points": points,
+                "dimensions": metadata["dimensions"],
+                "embedding_model": metadata["embedding_model"],
+                "reason": "ready" if ready else "document_count_mismatch",
+            }
+    except Exception:
+        pass
+
     store = None
     try:
         store = QdrantLocalVectorStore(destination, collection=collection_name)
@@ -70,9 +88,7 @@ def inspect_vector_index(
         }
     except (OSError, RuntimeError, ValueError) as exc:
         return {**base, "ready": False, "points": 0, "reason": f"unavailable:{type(exc).__name__}"}
-    finally:
-        if store is not None:
-            store.close()
+
 
 
 def ensure_vector_index(

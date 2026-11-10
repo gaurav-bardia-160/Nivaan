@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "rbi_portal",
+  "requested_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/DBC070514DF.pdf",
+  "final_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/DBC070514DF.pdf",
+  "fetched_at": "2026-11-09T08:31:12+00:00",
+  "artifact_sha256": "1e50b598bfc4be4badd7d9fd0a89f80862dbe0abda047bab03fa52252cf9a16f",
+  "artifact_bytes": 79656,
+  "content_type": "application/pdf",
+  "extracted_title": "Microsoft Word - DBC070514DF",
+  "extracted_words": 202,
+  "source_authority": "Reserve Bank of India (RBI)",
+  "jurisdiction": "IN",
+  "scheme": "RBI Master Directions, Customer Protection & Ombudsman Schemes",
+  "document_type": "official_master_directions_and_faqs"
+}

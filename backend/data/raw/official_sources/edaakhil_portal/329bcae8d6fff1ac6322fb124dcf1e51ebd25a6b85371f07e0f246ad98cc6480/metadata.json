@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "edaakhil_portal",
+  "requested_url": "https://consumerhelpline.gov.in/public/assets/docs/consumerhandbooks/Consumer_Handbook.pdf",
+  "final_url": "https://consumerhelpline.gov.in/public/assets/docs/consumerhandbooks/Consumer_Handbook.pdf",
+  "fetched_at": "2026-11-09T08:42:33+00:00",
+  "artifact_sha256": "329bcae8d6fff1ac6322fb124dcf1e51ebd25a6b85371f07e0f246ad98cc6480",
+  "artifact_bytes": 8291468,
+  "content_type": "application/pdf",
+  "extracted_title": "Consumer Handbook",
+  "extracted_words": 13070,
+  "source_authority": "Department of Consumer Affairs, National Consumer Disputes Redressal Commission (NCDRC)",
+  "jurisdiction": "IN",
+  "scheme": "National Consumer Helpline & e-Daakhil Online Consumer Complaints",
+  "document_type": "official_guidelines_and_faqs"
+}

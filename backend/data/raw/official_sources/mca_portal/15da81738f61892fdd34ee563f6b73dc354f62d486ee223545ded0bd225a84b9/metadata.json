@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "mca_portal",
+  "requested_url": "https://www.mca.gov.in/content/mca/global/en/mca/iepf-related-services/IEPF-5.html",
+  "final_url": "https://www.mca.gov.in/content/mca/global/en/mca/iepf-related-services/IEPF-5.html",
+  "fetched_at": "2026-11-09T20:04:38+00:00",
+  "artifact_sha256": "15da81738f61892fdd34ee563f6b73dc354f62d486ee223545ded0bd225a84b9",
+  "artifact_bytes": 1656716,
+  "content_type": "text/html",
+  "extracted_title": "IEPF-5 Web from - Claiming unpaid amounts and shares",
+  "extracted_words": 24384,
+  "source_authority": "Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "MCA Services & Corporate Portal",
+  "document_type": "official_portal_guidance"
+}

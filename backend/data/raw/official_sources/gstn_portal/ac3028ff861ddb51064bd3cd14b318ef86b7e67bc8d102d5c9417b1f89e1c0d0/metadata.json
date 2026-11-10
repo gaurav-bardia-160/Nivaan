@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "gstn_portal",
+  "requested_url": "https://tutorial.gst.gov.in/userguide/returns/Manual_Return_Compliance_ITC.htm",
+  "final_url": "https://tutorial.gst.gov.in/userguide/returns/Manual_Return_Compliance_ITC.htm",
+  "fetched_at": "2026-11-09T08:28:59+00:00",
+  "artifact_sha256": "ac3028ff861ddb51064bd3cd14b318ef86b7e67bc8d102d5c9417b1f89e1c0d0",
+  "artifact_bytes": 20790,
+  "content_type": "text/html",
+  "extracted_title": "Manual",
+  "extracted_words": 1365,
+  "source_authority": "Goods and Services Tax Network (GSTN), Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "GST Compliance & Return Filings (DRC-01B, DRC-01C, GSTR-3B, GSTR-7)",
+  "document_type": "official_guidelines_and_faqs"
+}

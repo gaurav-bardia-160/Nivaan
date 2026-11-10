@@ -59,6 +59,33 @@ class DisabledVectorStore:
         return {"provider": "disabled", "ready": False}
 
 
+_SHARED_CLIENTS: dict[str, object] = {}
+
+
+def _get_shared_client(path: Path) -> object:
+    from qdrant_client import QdrantClient
+
+    key = str(path.resolve())
+    existing = _SHARED_CLIENTS.get(key)
+    if existing is not None:
+        inner = getattr(existing, "_client", None)
+        if inner is not None and not getattr(inner, "closed", False):
+            return existing
+    client = QdrantClient(path=key, force_disable_check_same_thread=True)
+    _SHARED_CLIENTS[key] = client
+    return client
+
+
+def _release_shared_client(path: Path) -> None:
+    key = str(path.resolve())
+    client = _SHARED_CLIENTS.pop(key, None)
+    if client is not None:
+        try:
+            client.close()
+        except Exception:
+            pass
+
+
 class QdrantLocalVectorStore:
     """Small-corpus persistent Qdrant store using the Python client's local mode."""
 
@@ -70,7 +97,11 @@ class QdrantLocalVectorStore:
         self.path = Path(path)
         self.path.mkdir(parents=True, exist_ok=True)
         self.collection = collection
-        self._client = QdrantClient(path=str(self.path), force_disable_check_same_thread=True)
+        self._client = _get_shared_client(self.path)
+
+    @property
+    def client(self):
+        return _get_shared_client(self.path)
 
     @staticmethod
     def _point_id(document_id: str) -> str:
@@ -87,9 +118,18 @@ class QdrantLocalVectorStore:
 
         from qdrant_client.models import Distance, PointStruct, VectorParams
 
-        if self._client.collection_exists(self.collection):
-            self._client.delete_collection(self.collection)
-        self._client.create_collection(
+        _release_shared_client(self.path)
+        self._client = None
+
+        coll_dir = self.path / "collection" / self.collection
+        if coll_dir.exists():
+            import shutil
+            shutil.rmtree(coll_dir, ignore_errors=True)
+
+        client = self.client
+        if client.collection_exists(self.collection):
+            client.delete_collection(self.collection)
+        client.create_collection(
             collection_name=self.collection,
             vectors_config=VectorParams(size=dimensions, distance=Distance.COSINE),
         )
@@ -108,48 +148,60 @@ class QdrantLocalVectorStore:
                 )
                 for document, vector in zip(documents[offset:offset + batch_size], vectors[offset:offset + batch_size])
             ]
-            self._client.upsert(collection_name=self.collection, points=points, wait=True)
+            client.upsert(collection_name=self.collection, points=points, wait=True)
 
     def search(self, query_vector: tuple[float, ...], *, top_k: int, category: str | None = None) -> tuple[VectorHit, ...]:
-        if not query_vector or top_k < 1 or not self._client.collection_exists(self.collection):
+        if not query_vector or top_k < 1:
             return ()
-        query_filter = None
-        if category:
-            from qdrant_client.models import FieldCondition, Filter, MatchValue
-            query_filter = Filter(must=[FieldCondition(key="category", match=MatchValue(value=category))])
-        response = self._client.query_points(
-            collection_name=self.collection,
-            query=list(query_vector),
-            query_filter=query_filter,
-            limit=top_k,
-            with_payload=True,
-        )
-        return tuple(
-            VectorHit(document_id=str(point.payload["document_id"]), score=float(point.score))
-            for point in response.points
-            if point.payload and point.payload.get("document_id")
-        )
+        try:
+            client = self.client
+            if not client.collection_exists(self.collection):
+                return ()
+            query_filter = None
+            if category:
+                from qdrant_client.models import FieldCondition, Filter, MatchValue
+                query_filter = Filter(must=[FieldCondition(key="category", match=MatchValue(value=category))])
+            response = client.query_points(
+                collection_name=self.collection,
+                query=list(query_vector),
+                query_filter=query_filter,
+                limit=top_k,
+                with_payload=True,
+            )
+            return tuple(
+                VectorHit(document_id=str(point.payload["document_id"]), score=float(point.score))
+                for point in response.points
+                if point.payload and point.payload.get("document_id")
+            )
+        except Exception:
+            return ()
 
     def health(self) -> dict[str, object]:
-        exists = self._client.collection_exists(self.collection)
-        count = 0
-        if exists:
-            count = int(self._client.count(collection_name=self.collection, exact=True).count)
-        return {
-            "provider": "qdrant_local",
-            "ready": exists and count > 0,
-            "collection": self.collection,
-            "points": count,
-            "path": str(self.path),
-        }
+        try:
+            client = self.client
+            exists = client.collection_exists(self.collection)
+            count = 0
+            if exists:
+                count = int(client.count(collection_name=self.collection, exact=True).count)
+            return {
+                "provider": "qdrant_local",
+                "ready": exists and count > 0,
+                "collection": self.collection,
+                "points": count,
+                "path": str(self.path),
+            }
+        except Exception:
+            return {
+                "provider": "qdrant_local",
+                "ready": False,
+                "collection": self.collection,
+                "points": 0,
+                "path": str(self.path),
+            }
 
     def close(self) -> None:
-        if hasattr(self, "_client") and self._client is not None:
-            try:
-                self._client.close()
-            except Exception:
-                pass
-
+        _release_shared_client(self.path)
+        self._client = None
 
 
 __all__ = [

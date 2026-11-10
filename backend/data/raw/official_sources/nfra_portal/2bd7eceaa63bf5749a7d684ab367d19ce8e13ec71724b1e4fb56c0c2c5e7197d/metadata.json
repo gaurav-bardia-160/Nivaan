@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "nfra_portal",
+  "requested_url": "https://nfra.gov.in/nfra-circular-on-effective-communication-between-statutory-auditors-and-those-charged-with-governance-including-audit-committees/",
+  "final_url": "https://nfra.gov.in/nfra-circular-on-effective-communication-between-statutory-auditors-and-those-charged-with-governance-including-audit-committees/",
+  "fetched_at": "2026-11-09T08:37:10+00:00",
+  "artifact_sha256": "2bd7eceaa63bf5749a7d684ab367d19ce8e13ec71724b1e4fb56c0c2c5e7197d",
+  "artifact_bytes": 98952,
+  "content_type": "text/html",
+  "extracted_title": "NFRA Circular on Effective Communication Between Statutory Auditors and Those Charged with Governance, Including Audit Committees | National Financial Reporting Authority | India",
+  "extracted_words": 894,
+  "source_authority": "National Financial Reporting Authority (NFRA), Ministry of Corporate Affairs",
+  "jurisdiction": "IN",
+  "scheme": "Audit Oversight & NFRA Complaint Redressal Framework",
+  "document_type": "official_guidelines_and_faqs"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "incometax_portal",
+  "requested_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/refund-reissue?mobile-app=1",
+  "final_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/refund-reissue?mobile-app=1",
+  "fetched_at": "2026-11-09T08:27:06+00:00",
+  "artifact_sha256": "27d76f9215f526521cb2bff7e79facc73a48a4dcc42154e24c20b261df121e74",
+  "artifact_bytes": 46066,
+  "content_type": "text/html",
+  "extracted_title": "Refund Reissue | Income Tax Department",
+  "extracted_words": 216,
+  "source_authority": "Central Board of Direct Taxes (CBDT), Directorate of Systems, Income Tax Department, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Direct Taxes & e-Filing Portal Services",
+  "document_type": "official_portal_guidance"
+}

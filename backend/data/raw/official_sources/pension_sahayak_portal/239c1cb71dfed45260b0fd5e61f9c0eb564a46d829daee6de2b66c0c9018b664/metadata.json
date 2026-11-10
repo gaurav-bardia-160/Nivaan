@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "pension_sahayak_portal",
+  "requested_url": "https://pensionsahayak.pfrda.org.in/#ombudsman",
+  "final_url": "https://pensionsahayak.pfrda.org.in/en/faq",
+  "fetched_at": "2026-11-09T07:55:29+00:00",
+  "artifact_sha256": "239c1cb71dfed45260b0fd5e61f9c0eb564a46d829daee6de2b66c0c9018b664",
+  "artifact_bytes": 58374,
+  "content_type": "text/html",
+  "extracted_title": "FAQ's | Pension Sahayak - Grievance Redressal Portal - Ombudsman",
+  "extracted_words": 1295,
+  "source_authority": "Pension Fund Regulatory and Development Authority (PFRDA), Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Pension Sahayak - PFRDA Grievance Redressal",
+  "document_type": "official_portal_guidance"
+}

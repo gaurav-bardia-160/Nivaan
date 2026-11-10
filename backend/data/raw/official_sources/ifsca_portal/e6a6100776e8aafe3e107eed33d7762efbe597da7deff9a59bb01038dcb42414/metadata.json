@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "ifsca_portal",
+  "requested_url": "https://ifsca.gov.in/Document/Markets/FAQ_Ancillary_Services.pdf",
+  "final_url": "https://ifsca.gov.in/Document/Markets/FAQ_Ancillary_Services.pdf",
+  "fetched_at": "2026-11-09T08:34:55+00:00",
+  "artifact_sha256": "e6a6100776e8aafe3e107eed33d7762efbe597da7deff9a59bb01038dcb42414",
+  "artifact_bytes": 113730,
+  "content_type": "application/pdf",
+  "extracted_title": "Faq Ancillary Services",
+  "extracted_words": 1375,
+  "source_authority": "International Financial Services Centres Authority (IFSCA), GIFT City",
+  "jurisdiction": "IN",
+  "scheme": "GIFT City Ancillary Services & Ship Leasing Regulations",
+  "document_type": "official_guidelines_and_faqs"
+}

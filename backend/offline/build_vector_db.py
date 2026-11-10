@@ -271,19 +271,48 @@ def build_unified_vector_db(
     logger.info("Initializing multilingual embedding provider: %s", model_name)
     provider = FastEmbedProvider(model=model_name)
 
-    logger.info("Generating dense embeddings for %d documents (batch size %d)...", len(documents), batch_size)
-    vectors: list[tuple[float, ...]] = []
-    total = len(documents)
+    import pickle
+    cache_dir = dest_path.parent / ".vector_cache"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    model_slug = re.sub(r"[^\w-]", "_", model_name)
+    cache_file = cache_dir / f"vectors_{model_slug}_{corpus_sha256}.pkl"
 
-    for offset in range(0, total, batch_size):
-        batch = documents[offset : offset + batch_size]
-        # Include category, tags, title, section, and text in the embedding input
-        texts = tuple(document_text(doc) for doc in batch)
-        batch_vectors = provider.embed_texts(texts)
-        vectors.extend(batch_vectors)
-        done = min(offset + batch_size, total)
-        if done % 100 == 0 or done == total:
-            logger.info("Embedded %d / %d documents (%.1f%%)", done, total, (done / total) * 100)
+    vectors: list[tuple[float, ...]] = []
+    if cache_file.is_file():
+        try:
+            logger.info("Loading cached vectors from: %s", cache_file)
+            with cache_file.open("rb") as f:
+                cached_data = pickle.load(f)
+            if (
+                isinstance(cached_data, dict)
+                and cached_data.get("corpus_sha256") == corpus_sha256
+                and len(cached_data.get("vectors", [])) == len(documents)
+            ):
+                vectors = cached_data["vectors"]
+                logger.info("Successfully loaded %d cached vectors", len(vectors))
+        except Exception as exc:
+            logger.warning("Failed to load cached vectors: %s", exc)
+            vectors = []
+
+    if not vectors:
+        logger.info("Generating dense embeddings for %d documents (batch size %d)...", len(documents), batch_size)
+        total = len(documents)
+        for offset in range(0, total, batch_size):
+            batch = documents[offset : offset + batch_size]
+            # Include category, tags, title, section, and text in the embedding input
+            texts = tuple(document_text(doc) for doc in batch)
+            batch_vectors = provider.embed_texts(texts)
+            vectors.extend(batch_vectors)
+            done = min(offset + batch_size, total)
+            if done % 100 == 0 or done == total:
+                logger.info("Embedded %d / %d documents (%.1f%%)", done, total, (done / total) * 100)
+
+        try:
+            with cache_file.open("wb") as f:
+                pickle.dump({"corpus_sha256": corpus_sha256, "vectors": vectors}, f)
+            logger.info("Saved %d vectors to cache: %s", len(vectors), cache_file)
+        except Exception as exc:
+            logger.warning("Failed to save vectors to cache: %s", exc)
 
     logger.info("Storing vectors into unified Qdrant database: %s", dest_path)
     dest_path.mkdir(parents=True, exist_ok=True)

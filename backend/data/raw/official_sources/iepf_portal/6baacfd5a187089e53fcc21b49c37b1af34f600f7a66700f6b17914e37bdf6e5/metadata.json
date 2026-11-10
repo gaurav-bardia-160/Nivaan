@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "iepf_portal",
+  "requested_url": "https://www.iepf.gov.in/content/dam/iepf/faqs/IEPF-FAQs-20260421.pdf",
+  "final_url": "https://www.iepf.gov.in/content/dam/iepf/faqs/IEPF-FAQs-20260421.pdf",
+  "fetched_at": "2026-11-09T20:02:24+00:00",
+  "artifact_sha256": "6baacfd5a187089e53fcc21b49c37b1af34f600f7a66700f6b17914e37bdf6e5",
+  "artifact_bytes": 186049,
+  "content_type": "application/pdf",
+  "extracted_title": "IEPF Authority FAQs on Claim Processing, Resubmissions and Queue",
+  "extracted_words": 415,
+  "source_authority": "Investor Education and Protection Fund Authority (IEPFA), Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Investor Education and Protection Fund (IEPF)",
+  "document_type": "official_guidelines_and_faqs"
+}

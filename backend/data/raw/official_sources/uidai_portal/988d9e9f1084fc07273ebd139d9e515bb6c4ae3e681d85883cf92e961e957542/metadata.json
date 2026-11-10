@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "uidai_portal",
+  "requested_url": "https://uidai.gov.in/images/SOP_28.10.2021-Name_And_Gender_UpdateRequest_under_Exception_Handling_Process.pdf",
+  "final_url": "https://uidai.gov.in/images/SOP_28.10.2021-Name_And_Gender_UpdateRequest_under_Exception_Handling_Process.pdf",
+  "fetched_at": "2026-11-09T08:25:06+00:00",
+  "artifact_sha256": "988d9e9f1084fc07273ebd139d9e515bb6c4ae3e681d85883cf92e961e957542",
+  "artifact_bytes": 355110,
+  "content_type": "application/pdf, application/pdf",
+  "extracted_title": "Sop 28.10.2021 Name And Gender Updaterequest Under Exception Handling Process",
+  "extracted_words": 966,
+  "source_authority": "Unique Identification Authority of India (UIDAI), Ministry of Electronics and IT, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Aadhaar - Civil Identity & Demographic Services",
+  "document_type": "official_guidelines_and_faqs"
+}

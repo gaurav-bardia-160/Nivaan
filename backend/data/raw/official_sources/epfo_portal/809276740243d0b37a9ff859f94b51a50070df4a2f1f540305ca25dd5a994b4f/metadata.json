@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "epfo_portal",
+  "requested_url": "https://pmvbry-cdn.epfindia.gov.in/wp-content/uploads/2025/09/SOP_JointDeclarations_29082023-7.pdf",
+  "final_url": "https://pmvbry-cdn.epfindia.gov.in/wp-content/uploads/2025/09/SOP_JointDeclarations_29082023-7.pdf",
+  "fetched_at": "2026-11-09T08:38:24+00:00",
+  "artifact_sha256": "809276740243d0b37a9ff859f94b51a50070df4a2f1f540305ca25dd5a994b4f",
+  "artifact_bytes": 642853,
+  "content_type": "application/pdf",
+  "extracted_title": "Sop Jointdeclarations 29082023 7",
+  "extracted_words": 6709,
+  "source_authority": "Employees' Provident Fund Organisation (EPFO), Ministry of Labour and Employment, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "EPFO Joint Declarations, Member Profile & UAN Corrections",
+  "document_type": "official_guidelines_and_faqs"
+}

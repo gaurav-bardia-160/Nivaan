@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "ibbi_portal",
+  "requested_url": "https://ibbi.gov.in/uploads/claims/ff4f782de00cd9e74d85b6140256046a.pdf",
+  "final_url": "https://ibbi.gov.in/uploads/claims/ff4f782de00cd9e74d85b6140256046a.pdf",
+  "fetched_at": "2026-11-09T08:36:30+00:00",
+  "artifact_sha256": "bbe4bfdbeb00b6b2a5f02efab5dbb5ac02361e8065c27727b0dbe99375e6aaad",
+  "artifact_bytes": 38491,
+  "content_type": "application/pdf",
+  "extracted_title": "Annexure 4–Format as per Circular - KAIL",
+  "extracted_words": 117,
+  "source_authority": "Insolvency and Bankruptcy Board of India (IBBI)",
+  "jurisdiction": "IN",
+  "scheme": "Corporate Insolvency Resolution Process (CIRP) Claim Protocols",
+  "document_type": "official_guidelines_and_faqs"
+}

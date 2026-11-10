@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "mca_portal",
+  "requested_url": "https://www.mca.gov.in/content/mca/global/en/mca/iepf-related-services/search-unclaimed-unpaid-amount-shares.html",
+  "final_url": "https://www.mca.gov.in/content/mca/global/en/mca/iepf-related-services/search-unclaimed-unpaid-amount-shares.html",
+  "fetched_at": "2026-11-09T20:04:37+00:00",
+  "artifact_sha256": "e823857df77f61612b33d08c14c14a3af6391a6609f927a4916006f706fb3eb3",
+  "artifact_bytes": 202567,
+  "content_type": "text/html",
+  "extracted_title": "Search Unclaimed/ Unpaid Amount and Shares",
+  "extracted_words": 16644,
+  "source_authority": "Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "MCA Services & Corporate Portal",
+  "document_type": "official_portal_guidance"
+}

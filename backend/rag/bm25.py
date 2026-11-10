@@ -17,7 +17,9 @@ IMPORTANT_TERMS = {
     # Education
     "cbse", "marksheet", "nios", "icse",
     # Banking, Schemes & Consumer
-    "rbi", "kcc", "fir", "edaakhil", "dcdrc", "ncdrc", "nalsa", "uan", "epfo", "epf"
+    "rbi", "kcc", "fir", "edaakhil", "dcdrc", "ncdrc", "nalsa", "uan", "epfo", "epf",
+    # Corporate & Unclaimed Investments / Deposits
+    "iepf", "iepfa", "udgam", "dea", "deaf", "mca", "mca21", "rta", "folio", "cin", "pfrda", "dfs",
 }
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "can", "do", "for", "from",

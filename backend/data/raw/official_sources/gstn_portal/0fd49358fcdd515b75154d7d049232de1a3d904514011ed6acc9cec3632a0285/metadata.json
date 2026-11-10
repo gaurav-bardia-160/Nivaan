@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "gstn_portal",
+  "requested_url": "https://tutorial.gst.gov.in/downloads/gstr3bofflineutility.pdf",
+  "final_url": "https://tutorial.gst.gov.in/downloads/gstr3bofflineutility.pdf",
+  "fetched_at": "2026-11-09T08:29:01+00:00",
+  "artifact_sha256": "0fd49358fcdd515b75154d7d049232de1a3d904514011ed6acc9cec3632a0285",
+  "artifact_bytes": 3584497,
+  "content_type": "application/pdf",
+  "extracted_title": "FAQs and User Manual – GSTR3B Offline Utility",
+  "extracted_words": 2212,
+  "source_authority": "Goods and Services Tax Network (GSTN), Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "GST Compliance & Return Filings (DRC-01B, DRC-01C, GSTR-3B, GSTR-7)",
+  "document_type": "official_guidelines_and_faqs"
+}

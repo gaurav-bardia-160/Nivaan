@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "ifsca_portal",
+  "requested_url": "https://ifsca.gov.in/CommonDirect/DownloadFile?id=d09c93fc98191af1801a5914f315cd7a&fileName=ship-leasing-faq-23-07-22423072024054256.pdf",
+  "final_url": "https://ifsca.gov.in/CommonDirect/DownloadFile?id=d09c93fc98191af1801a5914f315cd7a&fileName=ship-leasing-faq-23-07-22423072024054256.pdf",
+  "fetched_at": "2026-11-09T08:34:56+00:00",
+  "artifact_sha256": "b73419e2dc5d0fbb785d356b4f35d6b193d00dd4400b7006eb07a92698b4edf4",
+  "artifact_bytes": 130154,
+  "content_type": "application/octet-stream",
+  "extracted_title": "Downloadfile",
+  "extracted_words": 484,
+  "source_authority": "International Financial Services Centres Authority (IFSCA), GIFT City",
+  "jurisdiction": "IN",
+  "scheme": "GIFT City Ancillary Services & Ship Leasing Regulations",
+  "document_type": "official_guidelines_and_faqs"
+}

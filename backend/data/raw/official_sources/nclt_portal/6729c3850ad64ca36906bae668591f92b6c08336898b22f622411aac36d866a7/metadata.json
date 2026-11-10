@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "nclt_portal",
+  "requested_url": "https://nclt.gov.in/sop-e-certified-copy",
+  "final_url": "https://nclt.gov.in/sop-e-certified-copy",
+  "fetched_at": "2026-11-09T08:35:33+00:00",
+  "artifact_sha256": "6729c3850ad64ca36906bae668591f92b6c08336898b22f622411aac36d866a7",
+  "artifact_bytes": 39529,
+  "content_type": "text/html",
+  "extracted_title": "SOP e- Certified Copy | National Company Law Tribunal",
+  "extracted_words": 784,
+  "source_authority": "National Company Law Tribunal (NCLT), Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "NCLT e-Filing & Certified Copy Standard Operating Procedures",
+  "document_type": "official_portal_guidance"
+}

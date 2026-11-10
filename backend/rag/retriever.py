@@ -5,6 +5,7 @@ import re
 from dataclasses import dataclass, replace
 
 from backend.modules.domain_router import Domain, classify_domain, get_allowed_rag_categories
+from backend.modules.query_decomposer import decompose_query
 from backend.rag.bm25 import BM25Index, tokenize
 from backend.rag.embeddings import EmbeddingProvider
 from backend.rag.loader import load_corpus
@@ -115,8 +116,14 @@ class RagRetriever:
         else:
             resolved_domain = classify_domain(clean_query)
 
-        allowed_categories = get_allowed_rag_categories(resolved_domain)
-        if category:
+        allowed_categories = get_allowed_rag_categories(resolved_domain, query=clean_query)
+        is_pan_tds_query = (
+            any(w in clean_query.lower() for w in ("inoperative", "206aa", "234h", "114aaa", "circular 03/2023", "circular 3/2023", "excess 20%", "20% tds", "salary tds"))
+            and any(w in clean_query.lower() for w in ("pan", "aadhaar", "aadhar", "linking"))
+        ) or ("inoperative pan" in clean_query.lower()) or ("206aa" in clean_query.lower())
+        if is_pan_tds_query and resolved_domain in (Domain.TAXATION, "tax", "taxation", Domain.IDENTITY, "identity"):
+            allowed_categories = {"tax", "pan", "civic"}
+        elif category:
             allowed_categories = {category} if allowed_categories is None else (allowed_categories & {category})
 
         allowed_indices = None
@@ -173,7 +180,8 @@ class RagRetriever:
         # 3. Exact Domain Entities for Keyword Hijacking Suppression
         _PRIMARY_DOMAIN_ENTITIES = {
             "fastag", "nhai", "ihmcl", "vahan", "sarathi", "parivahan", "rc", "chassis", "challan", "echallan",
-            "cbse", "marksheet", "digilocker", "pmkisan"
+            "cbse", "marksheet", "digilocker", "pmkisan",
+            "iepf", "iepfa", "udgam", "deaf", "epfo", "uan", "pfrda", "pension sahayak",
         }
         query_entities = {t for t in q_terms if t in _PRIMARY_DOMAIN_ENTITIES}
 
@@ -212,12 +220,14 @@ class RagRetriever:
 
             # Exact statutory & error code boost: ensures statutory sections & error codes surface to rank 1
             _EXACT_CODES = (
+                "148a(b)", "148a", "148", "149", "147", "151", "206aa", "114aaa", "234h",
                 "blo", "e-epic", "epic", "form 8", "form 6", "form 7", "ngrs", "voter mitra",
-                "139(9)", "139(5)", "139(4)", "119(2)(b)", "119", "234f", "44ad", "44ada",
+                "139(9)", "139(5)", "139(4)", "119(2)(b)", "119", "234f", "44ad", "44ada", "defective return",
                 "cibil", "experian", "crif", "unsolicited card", "card conduct",
                 "edaakhil", "e-daakhil", "dcdrc", "scdrc", "ncdrc", "nalsa",
                 "330", "error 330", "form 19", "form 10c", "form 49a", "joint declaration",
                 "ais feedback", "annual information statement", "tis", "sft feedback", "sft",
+                "iepf-5", "iepf-5e", "iepf", "iepfa", "udgam", "dea fund", "deaf", "entitlement letter", "pension sahayak",
             )
             for code in _EXACT_CODES:
                 if re.search(rf"(?<!\w){re.escape(code)}(?!\w)", clean_query.lower()) and re.search(rf"(?<!\w){re.escape(code)}(?!\w)", lowered_doc):
@@ -237,6 +247,18 @@ class RagRetriever:
 
             # Symptom-level cross-matching & anti-contamination suppression
             _SYMPTOM_CLUSTERS = (
+                {
+                    "name": "tax_reassessment",
+                    "match": ("148a", "148", "reassessment", "149", "escaped income", "time-barred", "unexplained share", "3-year vs 10-year"),
+                    "boost_terms": ("section 148a", "section 149", "reassessment", "escaped income", "limitation"),
+                    "conflicts": ("139(9)", "defective return", "119(2)(b)", "condonation", "bank validation"),
+                },
+                {
+                    "name": "inoperative_pan_tds",
+                    "match": ("inoperative", "206aa", "234h", "114aaa", "circular 03/2023", "flat 20%", "excess 20% tds"),
+                    "boost_terms": ("circular 03/2023", "rule 114aaa", "section 206aa", "section 234h", "reactivation", "30 days", "refund via itr"),
+                    "conflicts": ("protean", "tin-nsdl", "paperless", "challan mismatch", "physical documentation"),
+                },
                 {
                     "name": "bank_validation",
                     "match": ("bank validation", "validation failed", "refund unpaid", "unvalidated", "re-validate", "pre-validation"),
@@ -291,24 +313,43 @@ class RagRetriever:
                     "boost_terms": ("cross limit", "exception handling", "demographic exception"),
                     "conflicts": ("pvc", "srn not generated", "auto-reversal"),
                 },
+                {
+                    "name": "iepf_unclaimed_shares",
+                    "match": ("iepf", "iepfa", "unclaimed share", "unclaimed dividend", "iepf-5", "form iepf-5", "entitlement letter", "rta", "folio number", "unpaid dividend"),
+                    "boost_terms": ("iepf", "iepfa", "investor education and protection fund", "form iepf-5", "entitlement letter", "unclaimed dividend", "unclaimed shares", "company nodal officer", "verification report", "claimant"),
+                    "conflicts": ("epfo", "epf", "uan", "provident fund", "e-shram", "utiitsl", "pan card", "form 19", "form 10c", "member profile", "passbook", "joint declaration"),
+                },
+                {
+                    "name": "rbi_dea_fund_udgam",
+                    "match": ("udgam", "dea fund", "deaf", "unclaimed deposit", "inoperative account", "10 years or more", "depositor education and awareness"),
+                    "boost_terms": ("udgam", "dea fund", "depositor education and awareness fund", "unclaimed deposits", "reserve bank of india", "inoperative deposit", "claim form"),
+                    "conflicts": ("iepf", "shares", "dividend", "epfo", "uan", "pan", "itr", "e-shram"),
+                },
             )
             lowered_q = clean_query.lower()
-            for sc in _SYMPTOM_CLUSTERS:
-                if any(m in lowered_q for m in sc["match"]):
-                    has_boost = any(bt in lowered_doc for bt in sc["boost_terms"])
-                    if has_boost:
-                        score += 0.08
-                        signals["symptom_boost"] = 0.08
-                    if any(c in lowered_doc for c in sc["conflicts"]) and not has_boost:
-                        score -= 0.15
-                        signals["contamination_penalty"] = -0.15
 
-            # Sub-procedure discrimination: Section 139(9) vs AIS feedback
-            is_139_query = bool(re.search(r"\b(?:139\(9\)|defective\s+return|defective\s+notice|defect\s+memo)\b", lowered_q))
+            # Sub-procedure discrimination: Section 139(9) vs AIS feedback pre-check
+            is_139_query = bool(re.search(r"(?:(?<!\w)139\(9\)(?!\w)|\bdefective\s+return\b|\bdefective\s+notice\b|\bdefect\s+memo\b)", lowered_q))
             is_ais_query = bool(
                 re.search(r"\b(?:ais\s+feedback|feedback\s+on\s+ais|annual\s+information\s+statement|ais\s+mismatch)\b", lowered_q)
                 or ("ais" in lowered_q and any(w in lowered_q for w in ("feedback", "sft", "mismatch", "discrepancy", "wrong", "duplicate", "statement")))
             )
+            is_139_ais_comparison = is_139_query and is_ais_query
+
+            has_symptom_boost = False
+            for sc in _SYMPTOM_CLUSTERS:
+                if any(m in lowered_q for m in sc["match"]):
+                    has_boost = any(bt in lowered_doc for bt in sc["boost_terms"])
+                    if has_boost and not has_symptom_boost:
+                        score += 0.08
+                        signals["symptom_boost"] = 0.08
+                        has_symptom_boost = True
+                    if any(c in lowered_doc for c in sc["conflicts"]) and not has_boost:
+                        if is_139_ais_comparison and sc["name"] in ("defective_return", "ais_feedback"):
+                            continue
+                        penalty = -0.40 if sc["name"] in ("tax_reassessment", "inoperative_pan_tds") else -0.15
+                        score += penalty
+                        signals["contamination_penalty"] = penalty
 
             if is_139_query and not is_ais_query:
                 if ("ais feedback" in lowered_doc or "sft feedback" in lowered_doc) and "cpc 2.0 defect memo" not in lowered_doc:
@@ -318,6 +359,43 @@ class RagRetriever:
                 if ("139(9)" in lowered_doc or "defective return" in lowered_doc) and "ais feedback" not in lowered_doc and "sft feedback" not in lowered_doc:
                     score -= 0.40
                     signals["sub_procedure_mismatch_penalty"] = -0.40
+
+            # Sub-procedure discrimination: Reassessment vs Defective Return / Condonation
+            is_reassess_query = bool(re.search(r"\b(?:148a|148|reassessment|escaped\s+income|time-barred|149)\b", lowered_q))
+            if is_reassess_query and not is_139_query:
+                if any(term in lowered_doc for term in ("139(9)", "defective return", "119(2)(b)", "condonation")) and not any(term in lowered_doc for term in ("148a", "section 148a", "section 149", "reassessment")):
+                    score -= 0.40
+                    signals["sub_procedure_mismatch_penalty"] = -0.40
+
+            # Sub-procedure discrimination: Inoperative PAN & TDS vs Protean Application Troubleshooting
+            is_inop_tds_query = bool(re.search(r"\b(?:inoperative|206aa|234h|circular\s+03/2023|excess\s+20%|20%\s+tds)\b", lowered_q))
+            if is_inop_tds_query:
+                if any(term in lowered_doc for term in ("protean", "tin-nsdl", "paperless")) and not any(term in lowered_doc for term in ("circular 03/2023", "rule 114aaa", "206aa", "234h")):
+                    score -= 0.40
+                    signals["sub_procedure_mismatch_penalty"] = -0.40
+
+            # Sub-procedure discrimination: IEPF (investor shares/dividends) vs EPF/EPFO (provident fund)
+            is_iepf_query = bool(re.search(r"\b(?:iepf|iepfa|unclaimed\s+(?:shares?|dividends?)|unpaid\s+dividends?|iepf-?5[a-z]?|entitlement\s+letter)\b", lowered_q))
+            is_epf_query = bool(re.search(r"\b(?:epfo?|uan|provident\s+fund|joint\s+declaration|form\s+19|form\s+10c)\b", lowered_q))
+            if is_iepf_query and not is_epf_query:
+                if re.search(r"\b(?:epfo?|uan|provident\s+fund|joint\s+declaration|e-shram|utiitsl|tin-nsdl|form\s*49a)\b", lowered_doc):
+                    score -= 0.80
+                    signals["domain_conflict_penalty"] = -0.80
+            elif is_epf_query and not is_iepf_query:
+                if re.search(r"\b(?:iepf|iepfa|unclaimed\s+shares?|unclaimed\s+dividends?)\b", lowered_doc):
+                    score -= 0.80
+                    signals["domain_conflict_penalty"] = -0.80
+
+            # Sub-procedure discrimination: RBI DEA Fund (unclaimed bank deposits) vs MCA IEPF (unclaimed shares/dividends)
+            is_dea_query = bool(re.search(r"\b(?:dea\s+fund|deaf|udgam|unclaimed\s+deposits?)\b", lowered_q))
+            if is_dea_query and not is_iepf_query:
+                if re.search(r"\b(?:iepf|iepfa|unclaimed\s+shares?|unclaimed\s+dividends?|epfo?|uan)\b", lowered_doc):
+                    score -= 0.80
+                    signals["dea_conflict_penalty"] = -0.80
+            elif is_iepf_query and not is_dea_query:
+                if re.search(r"\b(?:dea\s+fund|deaf|depositor\s+education\s+and\s+awareness|inoperative\s+deposits?)\b", lowered_doc):
+                    score -= 0.80
+                    signals["iepf_dea_conflict_penalty"] = -0.80
 
             fused.append(
                 RetrievalHit(
@@ -343,4 +421,4 @@ def search(query: str, *, category: str | None = None, domain: Domain | str | No
     return RagRetriever().search(query, category=category, domain=domain, top_k=top_k)
 
 
-__all__ = ["RagRetriever", "RetrieverConfig", "document_text", "search"]
+__all__ = ["RagRetriever", "RetrieverConfig", "decompose_query", "document_text", "search"]

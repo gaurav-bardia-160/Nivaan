@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "gstn_portal",
+  "requested_url": "https://tutorial.gst.gov.in/userguide/returns/FAQs_Return_Compliance.htm",
+  "final_url": "https://tutorial.gst.gov.in/userguide/returns/FAQs_Return_Compliance.htm",
+  "fetched_at": "2026-11-09T08:28:58+00:00",
+  "artifact_sha256": "b34b960792cb6686b6be0387c19596d74c40c2f5dafc716d9ffc76c88ea2f387",
+  "artifact_bytes": 10091,
+  "content_type": "text/html",
+  "extracted_title": "FAQs",
+  "extracted_words": 876,
+  "source_authority": "Goods and Services Tax Network (GSTN), Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "GST Compliance & Return Filings (DRC-01B, DRC-01C, GSTR-3B, GSTR-7)",
+  "document_type": "official_guidelines_and_faqs"
+}

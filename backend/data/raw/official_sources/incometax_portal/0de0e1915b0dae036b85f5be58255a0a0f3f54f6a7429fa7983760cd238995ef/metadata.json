@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "incometax_portal",
+  "requested_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-e-verify-your-e-filing-return",
+  "final_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-e-verify-your-e-filing-return",
+  "fetched_at": "2026-11-09T08:27:06+00:00",
+  "artifact_sha256": "0de0e1915b0dae036b85f5be58255a0a0f3f54f6a7429fa7983760cd238995ef",
+  "artifact_bytes": 164194,
+  "content_type": "text/html",
+  "extracted_title": "How to e-Verify User Manual | Income Tax Department",
+  "extracted_words": 12805,
+  "source_authority": "Central Board of Direct Taxes (CBDT), Directorate of Systems, Income Tax Department, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Direct Taxes & e-Filing Portal Services",
+  "document_type": "official_portal_guidance"
+}

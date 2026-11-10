@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "sebi_portal",
+  "requested_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2026/1792054744851.pdf",
+  "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2026/1792054744851.pdf",
+  "fetched_at": "2026-11-09T08:33:39+00:00",
+  "artifact_sha256": "6a1a8c97118862a6ef200f5786c18123ec6c08fd112c69ed67fe058953e4f167",
+  "artifact_bytes": 192995,
+  "content_type": "application/pdf",
+  "extracted_title": "1792054744851",
+  "extracted_words": 325,
+  "source_authority": "Securities and Exchange Board of India (SEBI)",
+  "jurisdiction": "IN",
+  "scheme": "SCORES 2.0 & SMART ODR Securities Dispute Resolution",
+  "document_type": "official_guidelines_and_faqs"
+}

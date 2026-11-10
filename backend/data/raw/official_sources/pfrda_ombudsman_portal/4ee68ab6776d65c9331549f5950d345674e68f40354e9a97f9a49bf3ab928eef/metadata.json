@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "pfrda_ombudsman_portal",
+  "requested_url": "https://www.pfrda.org.in/w/pfrda-launches-ai-powered-pfrda-pension-sahayak-portal-to-transform-pension-grievance-redressal-1",
+  "final_url": "https://www.pfrda.org.in/w/pfrda-launches-ai-powered-pfrda-pension-sahayak-portal-to-transform-pension-grievance-redressal-1",
+  "fetched_at": "2026-11-09T08:41:22+00:00",
+  "artifact_sha256": "4ee68ab6776d65c9331549f5950d345674e68f40354e9a97f9a49bf3ab928eef",
+  "artifact_bytes": 476379,
+  "content_type": "text/html",
+  "extracted_title": "PFRDA Launches AI-Powered “PFRDA Pension Sahayak” Portal to Transform Pension Grievance Redressal - PFRDA",
+  "extracted_words": 5454,
+  "source_authority": "Pension Fund Regulatory and Development Authority (PFRDA), Government of India",
+  "jurisdiction": "IN",
+  "scheme": "PFRDA Ombudsman for NPS and APY Grievance Redressal",
+  "document_type": "official_guidelines_and_faqs"
+}

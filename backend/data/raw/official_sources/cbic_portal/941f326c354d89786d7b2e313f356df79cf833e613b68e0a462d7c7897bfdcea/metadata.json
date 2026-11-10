@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "cbic_portal",
+  "requested_url": "https://www.cbic.gov.in/resources/htdocs-cbec/travellerguide_atithi.pdf",
+  "final_url": "https://www.cbic.gov.in/resources/htdocs-cbec/travellerguide_atithi.pdf",
+  "fetched_at": "2026-11-09T08:30:31+00:00",
+  "artifact_sha256": "941f326c354d89786d7b2e313f356df79cf833e613b68e0a462d7c7897bfdcea",
+  "artifact_bytes": 2547315,
+  "content_type": "application/pdf",
+  "extracted_title": "Travellerguide Atithi",
+  "extracted_words": 7832,
+  "source_authority": "Central Board of Indirect Taxes and Customs (CBIC), Department of Revenue, Ministry of Finance",
+  "jurisdiction": "IN",
+  "scheme": "Customs Passenger Clearance, Baggage Rules & International Declarations",
+  "document_type": "official_guidelines_and_faqs"
+}

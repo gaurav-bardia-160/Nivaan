@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "mca_portal",
+  "requested_url": "https://www.mca.gov.in/content/mca/global/en/contact-us/grievance-cell.html",
+  "final_url": "https://www.mca.gov.in/content/mca/global/en/contact-us/grievance-cell.html",
+  "fetched_at": "2026-11-09T20:04:39+00:00",
+  "artifact_sha256": "6ff01aafbea6b09b69f3061a9c808b74c2c038b119a92bac321bfe5007077eb8",
+  "artifact_bytes": 184160,
+  "content_type": "text/html",
+  "extracted_title": "Grievance Cell",
+  "extracted_words": 13528,
+  "source_authority": "Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "MCA Services & Corporate Portal",
+  "document_type": "official_portal_guidance"
+}

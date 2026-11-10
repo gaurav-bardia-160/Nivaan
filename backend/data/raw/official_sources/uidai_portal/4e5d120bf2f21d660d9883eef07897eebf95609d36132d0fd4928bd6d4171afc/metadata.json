@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "uidai_portal",
+  "requested_url": "https://uidai.gov.in/images/SOP_for_DOB_update.pdf",
+  "final_url": "https://uidai.gov.in/images/SOP_for_DOB_update.pdf",
+  "fetched_at": "2026-11-09T08:25:07+00:00",
+  "artifact_sha256": "4e5d120bf2f21d660d9883eef07897eebf95609d36132d0fd4928bd6d4171afc",
+  "artifact_bytes": 1281325,
+  "content_type": "application/pdf, application/pdf",
+  "extracted_title": "Sop For Dob Update",
+  "extracted_words": 4922,
+  "source_authority": "Unique Identification Authority of India (UIDAI), Ministry of Electronics and IT, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Aadhaar - Civil Identity & Demographic Services",
+  "document_type": "official_guidelines_and_faqs"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "ewaybill_portal",
+  "requested_url": "https://docs.ewaybillgst.gov.in/documents/EWBRules.pdf",
+  "final_url": "https://docs.ewaybillgst.gov.in/documents/EWBRules.pdf",
+  "fetched_at": "2026-11-09T08:29:41+00:00",
+  "artifact_sha256": "150369e96e9d4f1c71adad5215150f50e6668217443cad3e0e79a9da47093d6e",
+  "artifact_bytes": 424337,
+  "content_type": "application/pdf",
+  "extracted_title": "Ewbrules",
+  "extracted_words": 4498,
+  "source_authority": "Goods and Services Tax Network (GSTN) & National Informatics Centre (NIC)",
+  "jurisdiction": "IN",
+  "scheme": "Electronic Way Bill (E-Way Bill) Logistics & Transport Compliance",
+  "document_type": "official_guidelines_and_faqs"
+}

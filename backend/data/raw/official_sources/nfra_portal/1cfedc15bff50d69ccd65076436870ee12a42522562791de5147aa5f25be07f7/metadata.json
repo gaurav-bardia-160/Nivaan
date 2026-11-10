@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "nfra_portal",
+  "requested_url": "https://nfra.gov.in/project/nfra-com/",
+  "final_url": "https://nfra.gov.in/project/nfra-com/",
+  "fetched_at": "2026-11-09T08:37:09+00:00",
+  "artifact_sha256": "1cfedc15bff50d69ccd65076436870ee12a42522562791de5147aa5f25be07f7",
+  "artifact_bytes": 99048,
+  "content_type": "text/html",
+  "extracted_title": "Complaint Handling National Financial Reporting Authority | National Financial Reporting Authority | India",
+  "extracted_words": 840,
+  "source_authority": "National Financial Reporting Authority (NFRA), Ministry of Corporate Affairs",
+  "jurisdiction": "IN",
+  "scheme": "Audit Oversight & NFRA Complaint Redressal Framework",
+  "document_type": "official_guidelines_and_faqs"
+}

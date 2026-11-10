@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "jansamarth_portal",
+  "requested_url": "https://www.jansamarth.in/faq",
+  "final_url": "https://www.jansamarth.in/faq",
+  "fetched_at": "2026-11-09T08:45:31+00:00",
+  "artifact_sha256": "96535d6cba6a9cdbce211889f170e1f1c8c13c574aee7905b628d7c58a194322",
+  "artifact_bytes": 269761,
+  "content_type": "text/html",
+  "extracted_title": "Frequently Asked Questions - JanSamarth",
+  "extracted_words": 2449,
+  "source_authority": "Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "JanSamarth Centralized Credit-Linked Government Schemes Portal",
+  "document_type": "official_portal_guidance"
+}

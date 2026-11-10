@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "dfs_portal",
+  "requested_url": "https://financialservices.gov.in/orders-and-notices",
+  "final_url": "https://financialservices.gov.in/orders-and-notices",
+  "fetched_at": "2026-11-09T07:56:06+00:00",
+  "artifact_sha256": "2a95959189994198b4a326b2c7b45a4170d65e42f8f715041f17dd338bef662f",
+  "artifact_bytes": 110900,
+  "content_type": "text/html",
+  "extracted_title": "Orders and Notices | Department of Financial Services | Minsitry of Finance | Government of India",
+  "extracted_words": 3015,
+  "source_authority": "Department of Financial Services, Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Department of Financial Services Financial Redressal & Notices",
+  "document_type": "official_portal_guidance"
+}

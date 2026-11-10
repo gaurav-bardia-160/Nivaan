@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "rbi_portal",
+  "requested_url": "https://rbi.org.in/commonman/Upload/English/Notification/PDFs/21ODR602F0A579EB246AA885776A76122DB0C.PDF",
+  "final_url": "https://rbi.org.in/commonman/Upload/English/Notification/PDFs/21ODR602F0A579EB246AA885776A76122DB0C.PDF",
+  "fetched_at": "2026-11-09T08:31:19+00:00",
+  "artifact_sha256": "2dda4a7fc350a6c91ab2dafe39b2d1ae036fa6317c2dc6fbfc2465fc982bd302",
+  "artifact_bytes": 323526,
+  "content_type": "application/pdf",
+  "extracted_title": "21Odr602F0A579Eb246Aa885776A76122Db0C",
+  "extracted_words": 869,
+  "source_authority": "Reserve Bank of India (RBI)",
+  "jurisdiction": "IN",
+  "scheme": "RBI Master Directions, Customer Protection & Ombudsman Schemes",
+  "document_type": "official_master_directions_and_faqs"
+}

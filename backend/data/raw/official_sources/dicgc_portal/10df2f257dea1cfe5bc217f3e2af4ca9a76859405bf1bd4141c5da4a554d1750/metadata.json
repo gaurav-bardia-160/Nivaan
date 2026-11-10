@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "dicgc_portal",
+  "requested_url": "https://www.dicgc.org.in/FAQs",
+  "final_url": "https://www.dicgc.org.in/FAQs",
+  "fetched_at": "2026-11-09T08:32:26+00:00",
+  "artifact_sha256": "10df2f257dea1cfe5bc217f3e2af4ca9a76859405bf1bd4141c5da4a554d1750",
+  "artifact_bytes": 133432,
+  "content_type": "text/html",
+  "extracted_title": "FAQ | DICGC",
+  "extracted_words": 28109,
+  "source_authority": "Deposit Insurance and Credit Guarantee Corporation (DICGC), Reserve Bank of India",
+  "jurisdiction": "IN",
+  "scheme": "Deposit Insurance Scheme (Rs 5 Lakh Protection)",
+  "document_type": "official_guidelines_and_faqs"
+}

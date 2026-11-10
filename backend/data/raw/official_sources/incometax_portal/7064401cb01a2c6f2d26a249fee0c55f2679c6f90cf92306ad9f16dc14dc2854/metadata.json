@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "incometax_portal",
+  "requested_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-raise-e-filing-service-requests?mobile-app=1",
+  "final_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-raise-e-filing-service-requests?mobile-app=1",
+  "fetched_at": "2026-11-09T08:27:05+00:00",
+  "artifact_sha256": "7064401cb01a2c6f2d26a249fee0c55f2679c6f90cf92306ad9f16dc14dc2854",
+  "artifact_bytes": 67833,
+  "content_type": "text/html",
+  "extracted_title": "Raise Service Request User Manual | Income Tax Department",
+  "extracted_words": 3136,
+  "source_authority": "Central Board of Direct Taxes (CBDT), Directorate of Systems, Income Tax Department, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Direct Taxes & e-Filing Portal Services",
+  "document_type": "official_portal_guidance"
+}

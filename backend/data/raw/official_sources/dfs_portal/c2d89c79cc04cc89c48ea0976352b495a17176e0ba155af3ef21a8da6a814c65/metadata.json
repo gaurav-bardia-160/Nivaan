@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "dfs_portal",
+  "requested_url": "https://financialservices.gov.in/gazettes-notification",
+  "final_url": "https://financialservices.gov.in/gazettes-notification",
+  "fetched_at": "2026-11-09T20:07:43+00:00",
+  "artifact_sha256": "c2d89c79cc04cc89c48ea0976352b495a17176e0ba155af3ef21a8da6a814c65",
+  "artifact_bytes": 92432,
+  "content_type": "text/html",
+  "extracted_title": "Gazette Notifications | Department of Financial Services | Minsitry of Finance | Government of India",
+  "extracted_words": 2057,
+  "source_authority": "Department of Financial Services, Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Department of Financial Services Financial Redressal & Notices",
+  "document_type": "official_portal_guidance"
+}

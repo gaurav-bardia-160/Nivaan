@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "iepf_portal",
+  "requested_url": "https://www.iepf.gov.in/content/iepf/global/master/Home/AboutUS/about-us/IEPFLegislation.html",
+  "final_url": "https://www.iepf.gov.in/content/iepf/global/master/Home/AboutUS/about-us/IEPFLegislation.html",
+  "fetched_at": "2026-11-09T19:59:33+00:00",
+  "artifact_sha256": "71e7b0526c58ed3d12980898dcc08c8c6e7a7109a37fe9d834bbc78756148245",
+  "artifact_bytes": 112427,
+  "content_type": "text/html",
+  "extracted_title": "IEPF Legislation",
+  "extracted_words": 14442,
+  "source_authority": "Investor Education and Protection Fund Authority (IEPFA), Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Investor Education and Protection Fund (IEPF)",
+  "document_type": "official_guidelines_and_faqs"
+}

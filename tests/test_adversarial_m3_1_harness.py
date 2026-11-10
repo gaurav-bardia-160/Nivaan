@@ -49,7 +49,7 @@ class TestEmpiricalBoundaryQueriesAtoE:
         Contains 'AIS' within a 139(9) notice context. Must rank 139(9) manual #1 and penalize AIS feedback.
         """
         query = "Received Section 139(9) defective return notice because AIS income differed from ITR"
-        res = retriever.search(query, category="tax")
+        res = retriever.search(query, category="tax", top_k=50)
         assert len(res.hits) > 0, "Retriever must return hits for Query B"
         top_hit = res.hits[0]
         assert top_hit.document.id == "itr_defective_return_manual_01", (

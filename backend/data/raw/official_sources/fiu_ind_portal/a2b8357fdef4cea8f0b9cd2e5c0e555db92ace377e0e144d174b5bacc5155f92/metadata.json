@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "fiu_ind_portal",
+  "requested_url": "https://fiuindia.gov.in/pdfs/quicklinks/User_Manual_FINGate2.0.pdf",
+  "final_url": "https://fiuindia.gov.in/pdfs/quicklinks/User_Manual_FINGate2.0.pdf",
+  "fetched_at": "2026-11-09T08:37:41+00:00",
+  "artifact_sha256": "a2b8357fdef4cea8f0b9cd2e5c0e555db92ace377e0e144d174b5bacc5155f92",
+  "artifact_bytes": 857655,
+  "content_type": "application/pdf",
+  "extracted_title": "User Manual Fingate2.0",
+  "extracted_words": 1445,
+  "source_authority": "Financial Intelligence Unit - India (FIU-IND), Department of Revenue, Ministry of Finance",
+  "jurisdiction": "IN",
+  "scheme": "Anti-Money Laundering & FINnet 2.0 / FINGate Reporting Portal",
+  "document_type": "official_portal_guidance"
+}

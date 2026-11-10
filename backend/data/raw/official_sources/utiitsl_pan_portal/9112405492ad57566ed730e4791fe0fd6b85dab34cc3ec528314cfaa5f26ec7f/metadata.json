@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "utiitsl_pan_portal",
+  "requested_url": "https://www.pan.utiitsl.com/panonline_website/redirectCsf/formLanding",
+  "final_url": "https://www.pan.utiitsl.com//PANform/forms/csf/preCSF",
+  "fetched_at": "2026-11-09T08:28:28+00:00",
+  "artifact_sha256": "9112405492ad57566ed730e4791fe0fd6b85dab34cc3ec528314cfaa5f26ec7f",
+  "artifact_bytes": 32415,
+  "content_type": "text/html",
+  "extracted_title": "PAN Form CSF",
+  "extracted_words": 2295,
+  "source_authority": "UTI Infrastructure Technology And Services Limited (UTIITSL)",
+  "jurisdiction": "IN",
+  "scheme": "UTIITSL PAN Application & Correction Services",
+  "document_type": "official_portal_guidance"
+}

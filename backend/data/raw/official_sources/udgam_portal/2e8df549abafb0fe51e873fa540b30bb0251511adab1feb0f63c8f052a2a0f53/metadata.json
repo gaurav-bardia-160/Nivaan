@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "udgam_portal",
+  "requested_url": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=140",
+  "final_url": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=140",
+  "fetched_at": "2026-11-09T20:05:48+00:00",
+  "artifact_sha256": "2e8df549abafb0fe51e873fa540b30bb0251511adab1feb0f63c8f052a2a0f53",
+  "artifact_bytes": 80161,
+  "content_type": "text/html",
+  "extracted_title": "Frequently Asked Questions | Official Website of Reserve Bank of India",
+  "extracted_words": 5418,
+  "source_authority": "Reserve Bank of India (RBI) & ReBIT",
+  "jurisdiction": "IN",
+  "scheme": "UDGAM - Unclaimed Deposits Gateway to Access Information",
+  "document_type": "official_portal_guidance"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "nalsa_portal",
+  "requested_url": "https://nalsa.gov.in/about-nalsa/",
+  "final_url": "https://nalsa.gov.in/about-nalsa/",
+  "fetched_at": "2026-11-09T08:43:12+00:00",
+  "artifact_sha256": "4d5bea2fe16f42701d1c50a55798ffe1a3ce0528054113ed7c3a81b2b4f6a65e",
+  "artifact_bytes": 128646,
+  "content_type": "text/html",
+  "extracted_title": "About NALSA | NATIONAL LEGAL SERVICES AUTHORITY (NALSA) | India",
+  "extracted_words": 12719,
+  "source_authority": "National Legal Services Authority (NALSA), Ministry of Law and Justice, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Free Legal Aid, Lok Adalat & Legal Services Clinics",
+  "document_type": "official_guidelines_and_faqs"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "pension_sahayak_portal",
+  "requested_url": "https://pensionsahayak.pfrda.org.in/#about_us",
+  "final_url": "https://pensionsahayak.pfrda.org.in/en/about",
+  "fetched_at": "2026-11-09T20:06:45+00:00",
+  "artifact_sha256": "4ba425b56d860ddc7b4d0bb5a7ccb58abfbf6aae4d964b8bf024d9939012005f",
+  "artifact_bytes": 60292,
+  "content_type": "text/html",
+  "extracted_title": "About Us | Pension Sahayak - Grievance Redressal Portal - About Us",
+  "extracted_words": 1976,
+  "source_authority": "Pension Fund Regulatory and Development Authority (PFRDA), Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Pension Sahayak - PFRDA Grievance Redressal",
+  "document_type": "official_portal_guidance"
+}

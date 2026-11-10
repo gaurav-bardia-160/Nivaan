@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "dicgc_portal",
+  "requested_url": "https://www.dicgc.org.in/guide-to-deposit-insurance",
+  "final_url": "https://www.dicgc.org.in/guide-to-deposit-insurance",
+  "fetched_at": "2026-11-09T08:32:26+00:00",
+  "artifact_sha256": "93f2eef9ce66294fec8b4c3707232b27e5bb8719174e30a661dd47d01048bead",
+  "artifact_bytes": 120243,
+  "content_type": "text/html",
+  "extracted_title": "A Guide to Deposit Insurance | DICGC",
+  "extracted_words": 15559,
+  "source_authority": "Deposit Insurance and Credit Guarantee Corporation (DICGC), Reserve Bank of India",
+  "jurisdiction": "IN",
+  "scheme": "Deposit Insurance Scheme (Rs 5 Lakh Protection)",
+  "document_type": "official_guidelines_and_faqs"
+}

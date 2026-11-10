@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "sebi_portal",
+  "requested_url": "https://investor.sebi.gov.in/pdf/reference-material/languages/english/Securities%20Market%20Booklet.pdf",
+  "final_url": "https://investor.sebi.gov.in/pdf/reference-material/languages/english/Securities%20Market%20Booklet.pdf",
+  "fetched_at": "2026-11-09T08:33:38+00:00",
+  "artifact_sha256": "2c3473e639d5f57bdda13753e2609e700f60454a911905b08dcbd8fdd054b67d",
+  "artifact_bytes": 27936296,
+  "content_type": "application/pdf",
+  "extracted_title": "Securities Market Booklet_29 Jan",
+  "extracted_words": 11989,
+  "source_authority": "Securities and Exchange Board of India (SEBI)",
+  "jurisdiction": "IN",
+  "scheme": "SCORES 2.0 & SMART ODR Securities Dispute Resolution",
+  "document_type": "official_guidelines_and_faqs"
+}

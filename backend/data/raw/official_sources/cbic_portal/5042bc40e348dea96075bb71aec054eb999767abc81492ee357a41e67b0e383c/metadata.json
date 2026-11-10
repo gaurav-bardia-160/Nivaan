@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "cbic_portal",
+  "requested_url": "https://www.cbic.gov.in/resources/htdocs-cbec/frequently_asked_questions_faqs.pdf",
+  "final_url": "https://www.cbic.gov.in/resources/htdocs-cbec/frequently_asked_questions_faqs.pdf",
+  "fetched_at": "2026-11-09T08:30:27+00:00",
+  "artifact_sha256": "5042bc40e348dea96075bb71aec054eb999767abc81492ee357a41e67b0e383c",
+  "artifact_bytes": 282547,
+  "content_type": "application/pdf",
+  "extracted_title": "Frequently Asked Questions Faqs",
+  "extracted_words": 4528,
+  "source_authority": "Central Board of Indirect Taxes and Customs (CBIC), Department of Revenue, Ministry of Finance",
+  "jurisdiction": "IN",
+  "scheme": "Customs Passenger Clearance, Baggage Rules & International Declarations",
+  "document_type": "official_guidelines_and_faqs"
+}

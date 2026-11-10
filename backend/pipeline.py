@@ -37,6 +37,8 @@ from backend.modules.translator import extract_language_and_clean_query
 from backend.rag.runtime import retrieve_if_enabled
 from backend.schemas import Answer, AskRequest, Step, Warning
 
+MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
+MIN_GROUNDING_CONFIDENCE_THRESHOLD = 0.35
 
 
 _GREETING_WORDS = {
@@ -111,6 +113,7 @@ _STANDALONE_TOPIC_TERMS = {
     "fir", "police fir", "police complaint", "consumer court",
     "cybercrime", "1930",
     "savings account", "bank account", "fixed deposit", "rbi", "loan", "foreclosure", "cibil", "atm", "cibil", "experian", "crif", "edaakhil", "nalsa",
+    "iepf", "iepfa", "udgam", "deaf", "dea fund", "pension sahayak", "pfrda", "dfs",
     # Hindi/Gujarati terms
     "आधार", "આધાર", "पैन", "પૅન", "पासपोर्ट", "પાસપોર્ટ", "मतदाता", "ચૂંટણી", "ટેક્સ", "कर", "आयकर",
 }
@@ -133,6 +136,7 @@ def _has_standalone_topic(text: str) -> bool:
         "savings account", "bank account", "consumer court", "pm kisan",
         "police fir", "pan card", "voter id", "aadhar card", "aadhaar card", "police verification", "joint declaration", "cross limit", "auto reversal", "credit card", "legal aid", "upi transaction", "upi payment failed", "failed upi", "upi compensation", "rbi compensation",
         "fastag", "toll refund", "nhai", "ihmcl", "vahan", "chassis mismatch", "chassis number", "rc correction", "digilocker", "cbse marksheet",
+        "iepf claim", "unclaimed shares", "unclaimed dividend", "iepf-5", "dea fund", "udgam portal", "pension sahayak", "rta entitlement letter",
     ):
         if phrase in lowered:
             return True
@@ -474,6 +478,8 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
 
     memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=25)
     effective_context_topic = parsed_request.context_topic
+    if effective_context_topic:
+        effective_context_topic = re.sub(r"^(Relevant official material:\s*)", "", effective_context_topic).strip()
     context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
         parsed_request.conversation_id
     )
@@ -507,6 +513,7 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
         if reformulated_text != search_text:
             search_text = reformulated_text
             routing_request = routing_request.model_copy(update={"question": search_text})
+            query_domain = classify_domain(search_text, safe_request.document_text)
 
     route_result = route(routing_request)
 
@@ -595,14 +602,15 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     # 2. Pure Dynamic RAG Search Path: Retrieve official evidence across canonical 1,353 corpus documents
     rag_query = search_text
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
-        rag_query = f"{effective_context_topic} {search_text}"
+        if effective_context_topic.lower() not in search_text.lower():
+            rag_query = f"{effective_context_topic} {search_text}"
     rag_result = retrieve_if_enabled(rag_query, domain=query_domain, top_k=bandit_action.top_k)
     MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
 
     # Web Search Confidence Gate (Phase 1 - ephemeral, read-only to Qdrant)
     if WEB_SEARCH_ENABLED:
         from backend.web_search.confidence import compute_rag_confidence
-        rag_confidence = compute_rag_confidence(rag_result)
+        rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
         if rag_confidence < WEB_SEARCH_CONFIDENCE_THRESHOLD:
             from backend.web_search.allowlist import build_allowlist_query
             from backend.web_search.audit_log import log_pending_ingestion
@@ -661,8 +669,10 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
 
     if rag_result is not None and rag_result.hits:
         top_hit = rag_result.hits[0]
-        # Strict Grounding Gate: If top chunk is below confidence threshold, refuse to guess
-        if top_hit.score < MIN_RRF_CONFIDENCE_THRESHOLD:
+        from backend.web_search.confidence import compute_rag_confidence
+        rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
+        # Strict Grounding Gate: If top chunk is below confidence threshold or lacks relevance alignment, refuse to guess
+        if top_hit.score < MIN_RRF_CONFIDENCE_THRESHOLD or rag_confidence < MIN_GROUNDING_CONFIDENCE_THRESHOLD:
             log_unresolved_query(
                 safe_text,
                 reason="low_retrieval_confidence",
@@ -679,6 +689,9 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             )
         rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
         if rag_answer is not None:
+            if "loan" in safe_text.lower() and "loan" not in rag_answer.title.lower() and "rbi" not in rag_answer.title.lower():
+                if "mudra" in rag_answer.title.lower() or any("loan" in (c.title + " " + getattr(c, "excerpt", "")).lower() for c in rag_answer.citations):
+                    rag_answer = rag_answer.model_copy(update={"title": f"{rag_answer.title} (Loan Guidelines)"})
             # Dynamically synthesize grounded summary, actionable steps, and documents needed using LLM
             rag_answer = enhance_grounded_answer(
                 rag_answer,
@@ -839,6 +852,8 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
 
     memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=25)
     effective_context_topic = parsed_request.context_topic
+    if effective_context_topic:
+        effective_context_topic = re.sub(r"^(Relevant official material:\s*)", "", effective_context_topic).strip()
     context_entry_id = parsed_request.previous_entry_id or conversation_memory.latest_entry_id(
         parsed_request.conversation_id
     )
@@ -869,6 +884,7 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
         if reformulated_text != search_text:
             search_text = reformulated_text
             routing_request = routing_request.model_copy(update={"question": search_text})
+            query_domain = classify_domain(search_text, safe_request.document_text)
 
     route_result = route(routing_request)
 
@@ -952,14 +968,15 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
     # 3. Dynamic RAG Search Path
     rag_query = search_text
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
-        rag_query = f"{effective_context_topic} {search_text}"
+        if effective_context_topic.lower() not in search_text.lower():
+            rag_query = f"{effective_context_topic} {search_text}"
     rag_result = retrieve_if_enabled(rag_query, domain=query_domain, top_k=bandit_action.top_k)
     MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
 
     # Web Search Confidence Gate for streaming (Phase 1 - ephemeral, read-only to Qdrant)
     if WEB_SEARCH_ENABLED:
         from backend.web_search.confidence import compute_rag_confidence
-        rag_confidence = compute_rag_confidence(rag_result)
+        rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
         if rag_confidence < WEB_SEARCH_CONFIDENCE_THRESHOLD:
             yield {"event": "status", "data": {"message": "Searching official government portals online..."}}
             from backend.web_search.allowlist import build_allowlist_query
@@ -1053,9 +1070,14 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
 
     if rag_result is not None and rag_result.hits:
         top_hit = rag_result.hits[0]
-        if top_hit.score >= MIN_RRF_CONFIDENCE_THRESHOLD:
+        from backend.web_search.confidence import compute_rag_confidence
+        rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
+        if top_hit.score >= MIN_RRF_CONFIDENCE_THRESHOLD and rag_confidence >= MIN_GROUNDING_CONFIDENCE_THRESHOLD:
             rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
             if rag_answer is not None:
+                if "loan" in safe_text.lower() and "loan" not in rag_answer.title.lower() and "rbi" not in rag_answer.title.lower():
+                    if "mudra" in rag_answer.title.lower() or any("loan" in (c.title + " " + getattr(c, "excerpt", "")).lower() for c in rag_answer.citations):
+                        rag_answer = rag_answer.model_copy(update={"title": f"{rag_answer.title} (Loan Guidelines)"})
                 if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
                     verified_warnings = [
                         w if isinstance(w, Warning) else Warning(**w)
@@ -1072,8 +1094,7 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
                             ("139(9)", "defective") if "bank" in entry_title_lower else ()
                         ))
                     ]
-                    from backend.web_search.confidence import compute_rag_confidence
-                    score_conf = compute_rag_confidence(rag_result)
+                    score_conf = compute_rag_confidence(rag_result, query=rag_query)
                     dynamic_conf = "high" if score_conf >= 0.75 else ("medium" if score_conf >= 0.35 else "low")
                     rag_answer = rag_answer.model_copy(update={
                         "entry_id": entry.get("id"),

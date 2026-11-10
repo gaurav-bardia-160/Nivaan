@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "cpgrams_portal",
+  "requested_url": "https://pgportal.gov.in/Home/Faq",
+  "final_url": "https://pgportal.gov.in/Home/Faq",
+  "fetched_at": "2026-11-09T08:41:56+00:00",
+  "artifact_sha256": "6597eedf2d76586c87ce44c08fc455719594621fecae86430321e0fe5a822dda",
+  "artifact_bytes": 38368,
+  "content_type": "text/html",
+  "extracted_title": "FAQ",
+  "extracted_words": 6421,
+  "source_authority": "Department of Administrative Reforms and Public Grievances (DARPG), Government of India",
+  "jurisdiction": "IN",
+  "scheme": "CPGRAMS Public Grievance Resolution & Appeal Mechanism",
+  "document_type": "official_guidelines_and_faqs"
+}

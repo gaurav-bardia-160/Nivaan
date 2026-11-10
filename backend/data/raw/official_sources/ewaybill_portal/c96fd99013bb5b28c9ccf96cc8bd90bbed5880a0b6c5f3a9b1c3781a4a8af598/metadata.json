@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "ewaybill_portal",
+  "requested_url": "https://docs.ewaybillgst.gov.in/Documents/faq_block_latest.pdf",
+  "final_url": "https://docs.ewaybillgst.gov.in/Documents/faq_block_latest.pdf",
+  "fetched_at": "2026-11-09T08:29:41+00:00",
+  "artifact_sha256": "c96fd99013bb5b28c9ccf96cc8bd90bbed5880a0b6c5f3a9b1c3781a4a8af598",
+  "artifact_bytes": 584064,
+  "content_type": "application/pdf",
+  "extracted_title": "Faq Block Latest",
+  "extracted_words": 1086,
+  "source_authority": "Goods and Services Tax Network (GSTN) & National Informatics Centre (NIC)",
+  "jurisdiction": "IN",
+  "scheme": "Electronic Way Bill (E-Way Bill) Logistics & Transport Compliance",
+  "document_type": "official_guidelines_and_faqs"
+}

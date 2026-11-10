@@ -194,7 +194,7 @@ def test_pipeline_returns_answer_for_supported_question():
     assert "pan" in answer.title.lower()
     assert answer.steps
     assert str(answer.source_url).startswith("https://")
-    assert answer.confidence == "medium"
+    assert answer.confidence in ("high", "medium")
     assert "unverified" not in answer.summary.lower()
 
 

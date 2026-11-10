@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "rbi_portal",
+  "requested_url": "https://m.rbi.org.in/scripts/BS_ViewMasDirections.aspx?id=12300",
+  "final_url": "https://rbi.org.in/",
+  "fetched_at": "2026-11-09T08:31:18+00:00",
+  "artifact_sha256": "638036f6f908976bee60eac8c6192d77fa3df5bbcda18dad7ca866893147f712",
+  "artifact_bytes": 153651,
+  "content_type": "text/html",
+  "extracted_title": "Home | Official website of Reserve Bank of India",
+  "extracted_words": 6028,
+  "source_authority": "Reserve Bank of India (RBI)",
+  "jurisdiction": "IN",
+  "scheme": "RBI Master Directions, Customer Protection & Ombudsman Schemes",
+  "document_type": "official_master_directions_and_faqs"
+}

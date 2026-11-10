@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "utiitsl_pan_portal",
+  "requested_url": "https://www.pan.utiitsl.com/panonline_website/redirect/formLanding",
+  "final_url": "https://www.pan.utiitsl.com//PANform/forms/pan.html/prePANForm",
+  "fetched_at": "2026-11-09T08:28:21+00:00",
+  "artifact_sha256": "b821a59175c86ee199df5651ce36b576326bcf605a6df6f218039007122afa26",
+  "artifact_bytes": 42802,
+  "content_type": "text/html",
+  "extracted_title": "PANform",
+  "extracted_words": 2632,
+  "source_authority": "UTI Infrastructure Technology And Services Limited (UTIITSL)",
+  "jurisdiction": "IN",
+  "scheme": "UTIITSL PAN Application & Correction Services",
+  "document_type": "official_portal_guidance"
+}

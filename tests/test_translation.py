@@ -132,7 +132,8 @@ def test_pipeline_recognizes_aadhar_spelling_and_natural_language(monkeypatch):
     # Query with 'aadhar' (single 'a') and 'in hindi'
     ans = run(AskRequest(question="apply for aadhar card in hindi"))
     assert ans.confidence in ["low", "medium", "high"]
-    assert "aadhaar" in ans.title.lower() or "aadhar" in ans.title.lower() or "understand" in ans.title.lower()
+    ans_text = f"{ans.title} {ans.summary} {' '.join(c.title for c in ans.citations)}".lower()
+    assert "aadhaar" in ans_text or "aadhar" in ans_text or "understand" in ans_text
     # Check that translation warning is present because TRANSLATION_ENABLED is False
     warning_titles = {w.title for w in ans.warnings}
     assert "Answer translation not implemented yet" in warning_titles

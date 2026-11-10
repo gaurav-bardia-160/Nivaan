@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "uidai_portal",
+  "requested_url": "https://uidai.gov.in/images/Citizen_Charter_Jan_24.pdf",
+  "final_url": "https://uidai.gov.in/images/Citizen_Charter_Jan_24.pdf",
+  "fetched_at": "2026-11-09T08:25:08+00:00",
+  "artifact_sha256": "1093467bae53c7d6dce120d26fa6a8c61252bbf7862cb4443c1964a10122c003",
+  "artifact_bytes": 789086,
+  "content_type": "application/pdf, application/pdf",
+  "extracted_title": "Citizen Charter Jan 24",
+  "extracted_words": 6040,
+  "source_authority": "Unique Identification Authority of India (UIDAI), Ministry of Electronics and IT, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Aadhaar - Civil Identity & Demographic Services",
+  "document_type": "official_guidelines_and_faqs"
+}

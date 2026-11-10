@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "pension_sahayak_portal",
+  "requested_url": "https://pensionsahayak.pfrda.org.in/#grievance_policy",
+  "final_url": "https://pensionsahayak.pfrda.org.in/en/faq",
+  "fetched_at": "2026-11-09T20:06:50+00:00",
+  "artifact_sha256": "2928ff85da48b741dd3794cc4e529498433d451ad16e2c28776f00a8647a33fd",
+  "artifact_bytes": 57983,
+  "content_type": "text/html",
+  "extracted_title": "FAQ's | Pension Sahayak - Grievance Redressal Portal - Grievance Policy",
+  "extracted_words": 1110,
+  "source_authority": "Pension Fund Regulatory and Development Authority (PFRDA), Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Pension Sahayak - PFRDA Grievance Redressal",
+  "document_type": "official_portal_guidance"
+}

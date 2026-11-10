@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "jansamarth_portal",
+  "requested_url": "https://www.jansamarth.in/grievances",
+  "final_url": "https://www.jansamarth.in/grievances",
+  "fetched_at": "2026-11-09T08:45:40+00:00",
+  "artifact_sha256": "ac7776eb574e7958498137b5e0f15c2794bfdb15fda29aa97901f2f4e5efd993",
+  "artifact_bytes": 295349,
+  "content_type": "text/html",
+  "extracted_title": "Grievance Redressal - JanSamarth",
+  "extracted_words": 2210,
+  "source_authority": "Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "JanSamarth Centralized Credit-Linked Government Schemes Portal",
+  "document_type": "official_portal_guidance"
+}

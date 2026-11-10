@@ -573,10 +573,12 @@
       "path": "refined/troubleshooting/troubleshooting_pan.jsonl",
       "category": "pan",
       "allowed_hosts": [
+        "incometax.gov.in",
         "pan.utiitsl.com",
         "proteantech.in",
         "tinpan.proteantech.in",
         "utiitsl.com",
+        "www.incometax.gov.in",
         "www.pan.utiitsl.com"
       ]
     },
@@ -699,6 +701,276 @@
       "allowed_hosts": [
         "jeevanpramaan.gov.in",
         "www.jeevanpramaan.gov.in"
+      ]
+    },
+    {
+      "id": "uidai_portal_c8d9b85ef7f0",
+      "path": "refined/official_sources/uidai_portal/c8d9b85ef7f0f980cd4e53bc8cae9e4b612176fce0b2815b0c89ebd85d93f1e2.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "uidai.gov.in",
+        "www.uidai.gov.in"
+      ]
+    },
+    {
+      "id": "eci_portal_0078ed06efed",
+      "path": "refined/official_sources/eci_portal/0078ed06efeddb0344bc7b1d48e67d8d6d4901bb28ed10fdef0676a007796927.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "eci.gov.in",
+        "voters.eci.gov.in",
+        "www.eci.gov.in"
+      ]
+    },
+    {
+      "id": "incometax_portal_877328334e10",
+      "path": "refined/official_sources/incometax_portal/877328334e1048279b4ea224ffa10d4c3c1a2639f0c36b1b92d3cf230d1ec436.jsonl",
+      "category": "tax",
+      "allowed_hosts": [
+        "incometax.gov.in",
+        "www.incometax.gov.in"
+      ]
+    },
+    {
+      "id": "tin_protean_portal_2d36913bcde9",
+      "path": "refined/official_sources/tin_protean_portal/2d36913bcde93431de8c7bb0346d5253abb5b6badb7a9f68d376932c9e9c5421.jsonl",
+      "category": "tax",
+      "allowed_hosts": [
+        "tin.tin.nsdl.com",
+        "tinpan.proteantech.in",
+        "www.protean-tinpan.com"
+      ]
+    },
+    {
+      "id": "utiitsl_pan_portal_4e4068e05cfc",
+      "path": "refined/official_sources/utiitsl_pan_portal/4e4068e05cfc46c36f86febb8c16f7c30d6d6b083fb697876135ad46602e9b48.jsonl",
+      "category": "tax",
+      "allowed_hosts": [
+        "pan.utiitsl.com",
+        "www.pan.utiitsl.com",
+        "www.utiitsl.com"
+      ]
+    },
+    {
+      "id": "gstn_portal_355251e71720",
+      "path": "refined/official_sources/gstn_portal/355251e7172097c822e5866e8fc85f908442b2a61ccec610355f026cda56556b.jsonl",
+      "category": "tax",
+      "allowed_hosts": [
+        "gst.gov.in",
+        "tutorial.gst.gov.in",
+        "www.gst.gov.in"
+      ]
+    },
+    {
+      "id": "ewaybill_portal_00806927eeef",
+      "path": "refined/official_sources/ewaybill_portal/00806927eeef4c567d9b3e70078363ce06cb27c9c939248540655886af25c780.jsonl",
+      "category": "tax",
+      "allowed_hosts": [
+        "docs.ewaybillgst.gov.in",
+        "ewaybillgst.gov.in"
+      ]
+    },
+    {
+      "id": "cbic_portal_f97bf9c4a26f",
+      "path": "refined/official_sources/cbic_portal/f97bf9c4a26f64c85dc885897e5179455ec56f5c1fce33c67f2a15446a71d7c6.jsonl",
+      "category": "tax",
+      "allowed_hosts": [
+        "atithi.cbic.gov.in",
+        "cbic.gov.in",
+        "taxinformation.cbic.gov.in",
+        "www.cbic.gov.in"
+      ]
+    },
+    {
+      "id": "rbi_portal_f1b9d55683b2",
+      "path": "refined/official_sources/rbi_portal/f1b9d55683b24822ffd362bdeb805f5e979bedee457be33017bb25f497ac076d.jsonl",
+      "category": "banking",
+      "allowed_hosts": [
+        "m.rbi.org.in",
+        "rbi.org.in",
+        "www.rbi.org.in"
+      ]
+    },
+    {
+      "id": "dicgc_portal_ae8835a1499e",
+      "path": "refined/official_sources/dicgc_portal/ae8835a1499ef8e3582d7280ad58bcf180cb4a635ea4f43492763c9bcb956ef7.jsonl",
+      "category": "banking",
+      "allowed_hosts": [
+        "dicgc.org.in",
+        "www.dicgc.org.in"
+      ]
+    },
+    {
+      "id": "sebi_portal_efd08845e0ca",
+      "path": "refined/official_sources/sebi_portal/efd08845e0caf9f49ee79e553b3ec2ef1bf1cf950ff87442c853f57aef74a28e.jsonl",
+      "category": "banking",
+      "allowed_hosts": [
+        "investor.sebi.gov.in",
+        "scores.sebi.gov.in",
+        "sebi.gov.in",
+        "www.cse-india.com",
+        "www.sebi.gov.in"
+      ]
+    },
+    {
+      "id": "ifsca_portal_b9bee7626d2f",
+      "path": "refined/official_sources/ifsca_portal/b9bee7626d2fcac74c713f0a7deac26c24a5fa4ca88a2e6c5112f3fe071f4c53.jsonl",
+      "category": "banking",
+      "allowed_hosts": [
+        "ifsca.gov.in",
+        "www.ifsca.gov.in"
+      ]
+    },
+    {
+      "id": "nclt_portal_d119dab0a78b",
+      "path": "refined/official_sources/nclt_portal/d119dab0a78b04c0bf793fc74d47cf1a82ac6087bbcc46758fa59ac3309753ce.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "efiling.nclt.gov.in",
+        "nclt.gov.in",
+        "www.nclt.gov.in"
+      ]
+    },
+    {
+      "id": "ibbi_portal_240bf54f37df",
+      "path": "refined/official_sources/ibbi_portal/240bf54f37df6a9699cee1a548484195c819fbc58748e8058abf15dc6f5d59fb.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "ibbi.gov.in",
+        "www.ibbi.gov.in"
+      ]
+    },
+    {
+      "id": "nfra_portal_44c4c4268fc9",
+      "path": "refined/official_sources/nfra_portal/44c4c4268fc916b18ea44baae38beb2f9d8110d83af6b67d1200aad303728a5e.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "nfra.gov.in",
+        "www.nfra.gov.in"
+      ]
+    },
+    {
+      "id": "fiu_ind_portal_e3d5a4c7aa0c",
+      "path": "refined/official_sources/fiu_ind_portal/e3d5a4c7aa0c1a85d974dccd52c9363a8316e9b9525d5b17293fd22ebbc7c509.jsonl",
+      "category": "banking",
+      "allowed_hosts": [
+        "fiuindia.gov.in",
+        "www.fiuindia.gov.in"
+      ]
+    },
+    {
+      "id": "epfo_portal_b1f4aa9fe971",
+      "path": "refined/official_sources/epfo_portal/b1f4aa9fe971a7ac1e1e4ca55a635688aac2cd20e67b4c7a0d6694617ba840f2.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "epfindia.gov.in",
+        "pmvbry-cdn.epfindia.gov.in",
+        "www.epfindia.gov.in"
+      ]
+    },
+    {
+      "id": "pfrda_ombudsman_portal_6147dd2b7ba3",
+      "path": "refined/official_sources/pfrda_ombudsman_portal/6147dd2b7ba34677d9d80a9e4e25c1786e0b2293e05380061a07f980b0e8e030.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "pfrda.org.in",
+        "www.pfrda.org.in"
+      ]
+    },
+    {
+      "id": "cpgrams_portal_47d7021235d4",
+      "path": "refined/official_sources/cpgrams_portal/47d7021235d49621d316dc9034cb985d6e9e6b1306a2f0ee4670128238f3c5b6.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "pgportal.gov.in",
+        "www.pgportal.gov.in"
+      ]
+    },
+    {
+      "id": "edaakhil_portal_a7eebc2bed85",
+      "path": "refined/official_sources/edaakhil_portal/a7eebc2bed852bfd8e68598900b2060797fdc82d47e1fe58fd407c6fa6dbba28.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "consumerhelpline.gov.in",
+        "edaakhil.nic.in",
+        "www.consumerhelpline.gov.in"
+      ]
+    },
+    {
+      "id": "nalsa_portal_a4668edc634a",
+      "path": "refined/official_sources/nalsa_portal/a4668edc634a321e30ce797c2c0cae79c6d66fc14979fb43e4dc7612158e938a.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "nalsa.gov.in",
+        "sikkim.nalsa.gov.in",
+        "www.nalsa.gov.in"
+      ]
+    },
+    {
+      "id": "sidbi_portal_b578624325bd",
+      "path": "refined/official_sources/sidbi_portal/b578624325bd1e9c375259b69862224e6b9f49266009a35abfc028fc316a72f1.jsonl",
+      "category": "banking",
+      "allowed_hosts": [
+        "sidbi.in",
+        "www.sidbi.in"
+      ]
+    },
+    {
+      "id": "jansamarth_portal_157e3115aa63",
+      "path": "refined/official_sources/jansamarth_portal/157e3115aa633152c8c06088e11060e2f7ffef6153027656b4b27258baadaa4d.jsonl",
+      "category": "banking",
+      "allowed_hosts": [
+        "jansamarth.in",
+        "www.jansamarth.in"
+      ]
+    },
+    {
+      "id": "iepf_portal_174cc6dd4cc2",
+      "path": "refined/official_sources/iepf_portal/174cc6dd4cc2c17a546d41ff67b5bf01f5593596c4814b1159bbb58795945709.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "iepf.gov.in",
+        "mca.gov.in",
+        "www.iepf.gov.in",
+        "www.mca.gov.in"
+      ]
+    },
+    {
+      "id": "mca_portal_2b7d9d022299",
+      "path": "refined/official_sources/mca_portal/2b7d9d0222990ed39a10fe43477c4f012a3105725238eb20fa3543bdec978053.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "mca.gov.in",
+        "www.mca.gov.in"
+      ]
+    },
+    {
+      "id": "udgam_portal_7e36f66afe80",
+      "path": "refined/official_sources/udgam_portal/7e36f66afe80fcda75dde00891ae13acd1fc90c50f46d3fec37d2855e1b9a093.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "rbi.org.in",
+        "udgam.rbi.org.in",
+        "www.rbi.org.in"
+      ]
+    },
+    {
+      "id": "pension_sahayak_portal_f3a6935b31bf",
+      "path": "refined/official_sources/pension_sahayak_portal/f3a6935b31bf273eb1f17173112a38b8a03073a2214df9ddaf65a4775c9bbae3.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "pensionsahayak.pfrda.org.in",
+        "pfrda.org.in",
+        "www.pfrda.org.in"
+      ]
+    },
+    {
+      "id": "dfs_portal_1d5bd525eac5",
+      "path": "refined/official_sources/dfs_portal/1d5bd525eac5acee693b1a74aaf0dc4540888fac7a4ee813a67c1dded1ac7417.jsonl",
+      "category": "civic",
+      "allowed_hosts": [
+        "financialservices.gov.in",
+        "www.financialservices.gov.in"
       ]
     }
   ]

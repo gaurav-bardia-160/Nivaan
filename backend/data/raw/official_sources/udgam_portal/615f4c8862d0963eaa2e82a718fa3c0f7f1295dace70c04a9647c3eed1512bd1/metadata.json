@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "udgam_portal",
+  "requested_url": "https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=8900&fn=2&Mode=0",
+  "final_url": "https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=8900&fn=2&Mode=0",
+  "fetched_at": "2026-11-09T20:05:49+00:00",
+  "artifact_sha256": "615f4c8862d0963eaa2e82a718fa3c0f7f1295dace70c04a9647c3eed1512bd1",
+  "artifact_bytes": 126122,
+  "content_type": "text/html",
+  "extracted_title": "Notifications | Official Website of Reserve Bank of India",
+  "extracted_words": 4594,
+  "source_authority": "Reserve Bank of India (RBI) & ReBIT",
+  "jurisdiction": "IN",
+  "scheme": "UDGAM - Unclaimed Deposits Gateway to Access Information",
+  "document_type": "official_portal_guidance"
+}

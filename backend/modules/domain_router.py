@@ -1,5 +1,6 @@
 """Domain router for pre-retrieval intent classification and strict domain isolation."""
 from __future__ import annotations
+from backend.modules.explainer import QueryModality, classify_query_modality
 
 import re
 from enum import Enum
@@ -69,6 +70,9 @@ _UNCOVERED_DOMAIN_PATTERNS: dict[str, tuple[re.Pattern[str], ...]] = {
             re.IGNORECASE,
         ),
     ),
+    "trademark_patent": (
+        re.compile(r"\b(?:patent|trademark|ipindia|copyright\s+office)\b", re.IGNORECASE),
+    ),
 }
 
 
@@ -91,23 +95,32 @@ _DOMAIN_PATTERNS: dict[Domain, tuple[re.Pattern[str], ...]] = {
     ),
     Domain.IDENTITY: (
         re.compile(r"\b(?:digilocker|digi\s+locker)\b", re.IGNORECASE),
-        re.compile(r"\b(?:aadhaar|aadhar|uidai|eaadhaar|pvc\s+card|baal\s+aadhaar|mbu|srn)\b", re.IGNORECASE),
-        re.compile(r"\b(?:pan\s+card|pancard|form\s+49a|e-pan|epan|utiitsl)\b", re.IGNORECASE),
+        re.compile(r"\b(?:aadhaar|aadhar|uidai|eaadhaar|pvc\s+card|baal\s+aadhaar|mbu|srn|error\s+330|biometric\s+lock|biometric\s+unlock|cross-limit|name\s+and\s+gender\s+update|dob\s+update|aadhaar\s+handbook|citizen\s+charter)\b", re.IGNORECASE),
+        re.compile(r"\b(?:pan\s+card|pancard|form\s+49a|form\s+49aa|e-pan|epan|utiitsl|protean|tin-pan)\b", re.IGNORECASE),
         re.compile(r"\b(?:passport|psk|popsk|tatkaal)\b", re.IGNORECASE),
-        re.compile(r"\b(?:voter\s+id|voterid|epic|nvsp|eci|voters\.eci|blo|form\s+[678])\b", re.IGNORECASE),
+        re.compile(r"\b(?:voter\s+id|voterid|epic|e-epic|nvsp|eci|voters\.eci|blo|booth\s+level\s+officer|form\s+[678]|ngsp)\b", re.IGNORECASE),
     ),
     Domain.TAXATION: (
         re.compile(r"\b(?:income\s+tax|incometax|itr|itr-[1-7]|tax\s+return)\b", re.IGNORECASE),
         re.compile(r"\b(?:form\s+16|form\s+26as|ais|tis|assessment\s+year|ay\s+20\d\d)\b", re.IGNORECASE),
         re.compile(r"\b(?:143\(1\)|139\(9\)|139\(5\)|139\(4\)|section\s+139|section\s+119|119\(2\)\(b\)|234f)\b", re.IGNORECASE),
-        re.compile(r"\b(?:defective\s+return|refund\s+unpaid|refund\s+reissue|bank\s+validation|challan\s+280|advance\s+tax|tds|tcs)\b", re.IGNORECASE),
+        re.compile(r"\b(?:section\s+147|section\s+148|section\s+148a|section\s+149|section\s+151|148a\(b\)|148a\(d\)|148a|148|147|149|151|reassessment|escaped\s+income|time-barred|time\s+limit|limitation\s+period)\b", re.IGNORECASE),
+        re.compile(r"\b(?:206aa|section\s+206aa|234h|section\s+234h|inoperative\s+pan|rule\s+114aaa|circular\s+03/2023|circular\s+3/2023)\b", re.IGNORECASE),
+        re.compile(r"\b(?:defective\s+return|prima\s+facie\s+adjustment|pfa|refund\s+unpaid|refund\s+reissue|bank\s+validation|pre-validation|challan\s+280|advance\s+tax|tds|tcs)\b", re.IGNORECASE),
+        re.compile(r"\b(?:gst|gstn|gstr-3b|gstr-7|drc-01b|drc-01c|itc\s+mismatch|input\s+tax\s+credit)\b", re.IGNORECASE),
+        re.compile(r"\b(?:eway\s+bill|e-way\s+bill|ewb|rule\s+138|ship\s+to\s+bill\s+to|transporter\s+id)\b", re.IGNORECASE),
+        re.compile(r"\b(?:cbic|customs|baggage\s+rules|atithi|duty\s+free\s+allowance|customs\s+clearance|transfer\s+of\s+residence)\b", re.IGNORECASE),
     ),
     Domain.BANKING: (
         re.compile(r"\b(?:savings\s+account|current\s+account|bank\s+account|ifsc)\b", re.IGNORECASE),
         re.compile(r"\b(?:loan\s+agreement|emi|prepayment|foreclosure|housing\s+loan|personal\s+loan)\b", re.IGNORECASE),
-        re.compile(r"\b(?:credit\s+card|debit\s+card|unsolicited\s+card|rbi|integrated\s+ombudsman|cms\.rbi)\b", re.IGNORECASE),
+        re.compile(r"\b(?:credit\s+card|debit\s+card|unsolicited\s+card|rbi|integrated\s+ombudsman|cms\.rbi|zero\s+liability|unauthorised\s+transaction)\b", re.IGNORECASE),
         re.compile(r"\b(?:cibil|experian|crif|credit\s+score|credit\s+report)\b", re.IGNORECASE),
-        re.compile(r"\b(?:upi|atm\s+withdrawal|failed\s+upi|rbi\s+penalty|auto-debit)\b", re.IGNORECASE),
+        re.compile(r"\b(?:upi|atm\s+withdrawal|failed\s+upi|rbi\s+penalty|auto-debit|rtgs|neft|positive\s+pay)\b", re.IGNORECASE),
+        re.compile(r"\b(?:udgam|unclaimed\s+deposit|unclaimed\s+dividend|unclaimed\s+shares|iepf|iepfa|iepf-5|form\s+iepf-5|mca|mca21|pension\s+sahayak|pfrda|apy|nps\s+grievance|dfs|department\s+of\s+financial\s+services)\b", re.IGNORECASE),
+        re.compile(r"\b(?:dicgc|deposit\s+insurance|5\s+lakh|sebi|scores|scores\s+2\.0|smart\s+odr|two-tier\s+review)\b", re.IGNORECASE),
+        re.compile(r"\b(?:ifsca|gift\s+city|ancillary\s+services|ship\s+leasing|fiu-ind|fiu|fingate|finnet|str|ctr|aml)\b", re.IGNORECASE),
+        re.compile(r"\b(?:sidbi|msme\s+grievance|chief\s+grievance\s+officer|jansamarth|mudra|pmegp|standup\s+india)\b", re.IGNORECASE),
     ),
     Domain.AGRICULTURE: (
         re.compile(r"\b(?:pm\s*kisan|pmkisan|pm-kisan|kcc|kisan\s+credit\s+card)\b", re.IGNORECASE),
@@ -116,8 +129,15 @@ _DOMAIN_PATTERNS: dict[Domain, tuple[re.Pattern[str], ...]] = {
     Domain.LEGAL_CONSUMER: (
         re.compile(r"\b(?:police\s+fir|\bfir\b|police\s+complaint)\b", re.IGNORECASE),
         re.compile(r"\b(?:cybercrime|cyber\s+crime|1930|cybercrime\.gov\.in)\b", re.IGNORECASE),
-        re.compile(r"\b(?:consumer\s+court|edaakhil|e-daakhil|district\s+commission|dcdrc|scdrc|ncdrc)\b", re.IGNORECASE),
-        re.compile(r"\b(?:legal\s+notice|section\s+138|cheque\s+bounce|nalsa|free\s+legal\s+aid)\b", re.IGNORECASE),
+        re.compile(r"\b(?:consumer\s+court|edaakhil|e-daakhil|district\s+commission|dcdrc|scdrc|ncdrc|consumer\s+handbook|consumer\s+helpline)\b", re.IGNORECASE),
+        re.compile(r"\b(?:legal\s+notice|section\s+138|cheque\s+bounce|nalsa|free\s+legal\s+aid|lok\s+adalat|legal\s+services\s+authority)\b", re.IGNORECASE),
+    ),
+    Domain.GENERAL_CIVIC: (
+        re.compile(r"\b(?:epfo|epf|provident\s+fund|uan|joint\s+declaration|member\s+profile)\b", re.IGNORECASE),
+        re.compile(r"\b(?:cpgrams|pgportal|darpg|public\s+grievance|appellate\s+authority)\b", re.IGNORECASE),
+        re.compile(r"\b(?:nclt|certified\s+copy|sop\s+e-certified|efiling\.nclt)\b", re.IGNORECASE),
+        re.compile(r"\b(?:ibbi|cirp|insolvency|resolution\s+professional|liquidation|form\s+[cd])\b", re.IGNORECASE),
+        re.compile(r"\b(?:nfra|statutory\s+auditor|audit\s+file|audit\s+quality|accounting\s+fraud)\b", re.IGNORECASE),
     ),
 }
 
@@ -160,7 +180,19 @@ def classify_domain(query: str | None, document_text: str | None = None) -> Doma
 
     # Check uncovered domains FIRST before any other domain pattern matching
     # to prevent domain bleed into unrelated civic/banking/tax domains.
-    for category_patterns in _UNCOVERED_DOMAIN_PATTERNS.values():
+    # Guardrail: IEPF, UDGAM, DEA Fund, unclaimed shares, and unclaimed dividends are supported
+    # under BANKING/CIVIC; do NOT let uncovered MCA SPICe+ patterns intercept them.
+    is_unclaimed_or_investor = bool(
+        re.search(
+            r"\b(?:iepf|iepfa|unclaimed\s+(?:shares?|dividends?|deposits?)|unpaid\s+dividends?|iepf-?5[a-z]?|entitlement\s+letter|investor\s+education|udgam|dea\s+fund|deaf)\b",
+            combined,
+            re.IGNORECASE,
+        )
+    )
+
+    for cat_name, category_patterns in _UNCOVERED_DOMAIN_PATTERNS.items():
+        if cat_name == "mca_spice" and is_unclaimed_or_investor:
+            continue
         for pat in category_patterns:
             if pat.search(combined):
                 return Domain.UNCOVERED
@@ -174,20 +206,30 @@ def classify_domain(query: str | None, document_text: str | None = None) -> Doma
     return Domain.UNKNOWN
 
 
-def get_allowed_rag_categories(domain: Domain | str | None) -> set[str] | None:
+def get_allowed_rag_categories(domain: Domain | str | None, query: str | None = None) -> set[str] | None:
     """Return the set of RAG corpus categories allowed for this domain to prevent cross-contamination."""
     if domain in (Domain.UNCOVERED, "uncovered"):
         return set()  # Strictly zero categories allowed for uncovered domains
     if domain == Domain.TRANSPORT:
-        return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan"
+        return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan", "banking"
     if domain == Domain.EDUCATION:
-        return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan"
+        return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan", "banking"
+    if query:
+        q_lower = query.lower()
+        is_pan_tds = (
+            any(w in q_lower for w in ("inoperative", "206aa", "234h", "114aaa", "circular 03/2023", "circular 3/2023", "excess 20%", "20% tds", "salary tds"))
+            and any(w in q_lower for w in ("pan", "aadhaar", "aadhar", "linking"))
+        ) or ("inoperative pan" in q_lower) or ("206aa" in q_lower)
+        if is_pan_tds and domain in (Domain.TAXATION, "tax", "taxation", Domain.IDENTITY, "identity"):
+            return {"tax", "pan", "civic"}
     if domain == Domain.TAXATION:
-        return {"tax", "civic"}  # Strictly eliminates "aadhaar", "pan"
+        return {"tax", "civic"}  # Allows official tax and civic guidance
     if domain == Domain.IDENTITY:
-        return {"aadhaar", "pan", "civic"}  # Strictly eliminates "tax"
-    if domain in (Domain.BANKING, Domain.AGRICULTURE, Domain.LEGAL_CONSUMER):
-        return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan"
+        return {"aadhaar", "pan", "civic"}  # Allows identity and civil registries
+    if domain == Domain.BANKING:
+        return {"banking", "civic"}  # Allows banking, monetary, market and financial civic
+    if domain in (Domain.LEGAL_CONSUMER, Domain.GENERAL_CIVIC, Domain.AGRICULTURE):
+        return {"civic", "banking"}  # Allows legal, civic and scheme datasets
     return None  # Unfiltered for unknown queries
 
 
@@ -246,4 +288,6 @@ __all__ = [
     "entry_matches_domain",
     "ENTRY_DOMAIN_MAP",
     "_UNCOVERED_DOMAIN_PATTERNS",
+    "QueryModality",
+    "classify_query_modality",
 ]

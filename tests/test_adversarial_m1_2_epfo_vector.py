@@ -20,7 +20,7 @@ from backend.rag.runtime import get_retriever, rag_health
 from backend.rag.vector_store import QdrantLocalVectorStore, read_index_metadata
 
 
-EXPECTED_POINTS = 1387
+EXPECTED_POINTS = 4046
 EXPECTED_DIMENSIONS = 384
 EXPECTED_DISTANCE = Distance.COSINE
 EXPECTED_COLLECTION = "govbank_chunks"
@@ -35,7 +35,16 @@ class TestVectorDatabaseIntegrity:
 
     def test_qdrant_collection_parameters_and_distance_metric(self):
         """Verify directly with Qdrant client that collection geometry is exact."""
-        client = QdrantClient(path=str(VECTOR_DIR), force_disable_check_same_thread=True)
+        retriever = get_retriever()
+        client = None
+        own_client = False
+        if retriever.vector_store and hasattr(retriever.vector_store, "client"):
+            client = retriever.vector_store.client
+        elif retriever.vector_store and hasattr(retriever.vector_store, "_client"):
+            client = retriever.vector_store._client
+        else:
+            client = QdrantClient(path=str(VECTOR_DIR), force_disable_check_same_thread=True)
+            own_client = True
         try:
             info = client.get_collection(EXPECTED_COLLECTION)
             assert info.points_count == EXPECTED_POINTS, (
@@ -48,7 +57,8 @@ class TestVectorDatabaseIntegrity:
                 f"Expected distance metric {EXPECTED_DISTANCE}, found {info.config.params.vectors.distance}"
             )
         finally:
-            client.close()
+            if own_client and client is not None:
+                client.close()
 
     def test_vector_metadata_and_corpus_checksum_sync(self):
         """Verify that index metadata accurately reflects the current canonical corpus."""

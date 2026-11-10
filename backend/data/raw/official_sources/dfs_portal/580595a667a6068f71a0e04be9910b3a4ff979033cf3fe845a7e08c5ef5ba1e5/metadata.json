@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "dfs_portal",
+  "requested_url": "https://financialservices.gov.in/",
+  "final_url": "https://financialservices.gov.in/",
+  "fetched_at": "2026-11-09T07:56:05+00:00",
+  "artifact_sha256": "580595a667a6068f71a0e04be9910b3a4ff979033cf3fe845a7e08c5ef5ba1e5",
+  "artifact_bytes": 226641,
+  "content_type": "text/html",
+  "extracted_title": "Department of Financial Services: Home | Department of Financial Services | Minsitry of Finance | Government of India",
+  "extracted_words": 5566,
+  "source_authority": "Department of Financial Services, Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Department of Financial Services Financial Redressal & Notices",
+  "document_type": "official_portal_guidance"
+}

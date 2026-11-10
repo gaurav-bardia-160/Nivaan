@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "iepf_portal",
+  "requested_url": "https://www.iepf.gov.in/content/iepf/global/master/Home/InvestorAwareness/resources/dos-and-don-ts.html",
+  "final_url": "https://www.iepf.gov.in/content/iepf/global/master/Home/InvestorAwareness/resources/dos-and-don-ts/ipos-fpos-rights-issues.html",
+  "fetched_at": "2026-11-09T07:46:22+00:00",
+  "artifact_sha256": "b7867a69ce61928ec30e6253391462f2888f4152e0d2f22deb6358798f1dc1b4",
+  "artifact_bytes": 101350,
+  "content_type": "text/html",
+  "extracted_title": "IPOs/FPOs/Rights Issues",
+  "extracted_words": 342,
+  "source_authority": "Investor Education and Protection Fund Authority (IEPFA), Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Investor Education and Protection Fund (IEPF)",
+  "document_type": "official_guidelines_and_faqs"
+}

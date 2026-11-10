@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "eci_portal",
+  "requested_url": "https://voters.eci.gov.in/home/ngsp",
+  "final_url": "https://voters.eci.gov.in/home/ngsp",
+  "fetched_at": "2026-11-09T08:26:14+00:00",
+  "artifact_sha256": "917de29b52bf0f15a3ba3df19ed9cecb19b2f1d6abfe7b740996b4cf72026348",
+  "artifact_bytes": 52380,
+  "content_type": "text/html",
+  "extracted_title": "NGSP Dashboard",
+  "extracted_words": 4206,
+  "source_authority": "Election Commission of India (ECI)",
+  "jurisdiction": "IN",
+  "scheme": "Voters' Services & Electoral Registration",
+  "document_type": "official_portal_guidance"
+}

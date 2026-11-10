@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "ewaybill_portal",
+  "requested_url": "https://docs.ewaybillgst.gov.in/apidocs/downloads/faqs_on_ship_to_field.pdf",
+  "final_url": "https://docs.ewaybillgst.gov.in/apidocs/downloads/faqs_on_ship_to_field.pdf",
+  "fetched_at": "2026-11-09T08:29:40+00:00",
+  "artifact_sha256": "d14d19e55d16a3b4ab32bf8904d440b2ebdae644af2c10c082f8a924ba4a13a3",
+  "artifact_bytes": 360087,
+  "content_type": "application/pdf",
+  "extracted_title": "Faqs On Ship To Field",
+  "extracted_words": 2723,
+  "source_authority": "Goods and Services Tax Network (GSTN) & National Informatics Centre (NIC)",
+  "jurisdiction": "IN",
+  "scheme": "Electronic Way Bill (E-Way Bill) Logistics & Transport Compliance",
+  "document_type": "official_guidelines_and_faqs"
+}

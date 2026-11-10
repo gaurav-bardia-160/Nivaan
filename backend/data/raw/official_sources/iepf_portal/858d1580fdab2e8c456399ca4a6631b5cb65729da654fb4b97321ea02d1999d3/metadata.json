@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "iepf_portal",
+  "requested_url": "https://www.iepf.gov.in/content/iepf/global/master/Home/Services/CorporateSevaKendra.html",
+  "final_url": "https://www.mca.gov.in/content/mca/global/en/home.html",
+  "fetched_at": "2026-11-09T19:59:57+00:00",
+  "artifact_sha256": "858d1580fdab2e8c456399ca4a6631b5cb65729da654fb4b97321ea02d1999d3",
+  "artifact_bytes": 330732,
+  "content_type": "text/html",
+  "extracted_title": "HOME",
+  "extracted_words": 43195,
+  "source_authority": "Investor Education and Protection Fund Authority (IEPFA), Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Investor Education and Protection Fund (IEPF)",
+  "document_type": "official_guidelines_and_faqs"
+}

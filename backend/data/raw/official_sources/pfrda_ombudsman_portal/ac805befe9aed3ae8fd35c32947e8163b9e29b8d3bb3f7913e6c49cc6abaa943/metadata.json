@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "pfrda_ombudsman_portal",
+  "requested_url": "https://www.pfrda.org.in/faqs",
+  "final_url": "https://www.pfrda.org.in/faqs",
+  "fetched_at": "2026-11-09T08:41:22+00:00",
+  "artifact_sha256": "ac805befe9aed3ae8fd35c32947e8163b9e29b8d3bb3f7913e6c49cc6abaa943",
+  "artifact_bytes": 595580,
+  "content_type": "text/html",
+  "extracted_title": "PFRDA FAQs - Frequently Asked Questions on NPS, APY & Pension Regulations - PFRDA",
+  "extracted_words": 6732,
+  "source_authority": "Pension Fund Regulatory and Development Authority (PFRDA), Government of India",
+  "jurisdiction": "IN",
+  "scheme": "PFRDA Ombudsman for NPS and APY Grievance Redressal",
+  "document_type": "official_guidelines_and_faqs"
+}

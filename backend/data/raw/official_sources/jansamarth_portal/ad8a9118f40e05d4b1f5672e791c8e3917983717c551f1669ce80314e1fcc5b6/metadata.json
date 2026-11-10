@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "jansamarth_portal",
+  "requested_url": "https://www.jansamarth.in/TermsAndConditions",
+  "final_url": "https://www.jansamarth.in/TermsAndConditions",
+  "fetched_at": "2026-11-09T08:45:49+00:00",
+  "artifact_sha256": "ad8a9118f40e05d4b1f5672e791c8e3917983717c551f1669ce80314e1fcc5b6",
+  "artifact_bytes": 305304,
+  "content_type": "text/html",
+  "extracted_title": "Terms & Conditions - JanSamarth",
+  "extracted_words": 22186,
+  "source_authority": "Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "JanSamarth Centralized Credit-Linked Government Schemes Portal",
+  "document_type": "official_portal_guidance"
+}

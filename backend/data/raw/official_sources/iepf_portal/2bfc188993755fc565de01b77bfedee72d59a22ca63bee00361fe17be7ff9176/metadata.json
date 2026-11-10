@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "iepf_portal",
+  "requested_url": "https://www.iepf.gov.in/content/iepf/global/master/Home/AboutUS/about-us/AboutIEPFA.html",
+  "final_url": "https://www.iepf.gov.in/content/iepf/global/master/Home/AboutUS/about-us/AboutIEPFA.html",
+  "fetched_at": "2026-11-09T20:02:26+00:00",
+  "artifact_sha256": "2bfc188993755fc565de01b77bfedee72d59a22ca63bee00361fe17be7ff9176",
+  "artifact_bytes": 75516,
+  "content_type": "text/html",
+  "extracted_title": "About IEPFA",
+  "extracted_words": 4810,
+  "source_authority": "Investor Education and Protection Fund Authority (IEPFA), Ministry of Corporate Affairs, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Investor Education and Protection Fund (IEPF)",
+  "document_type": "official_guidelines_and_faqs"
+}

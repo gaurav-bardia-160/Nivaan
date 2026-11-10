@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "eci_portal",
+  "requested_url": "https://voters.eci.gov.in/",
+  "final_url": "https://voters.eci.gov.in/",
+  "fetched_at": "2026-11-09T08:26:33+00:00",
+  "artifact_sha256": "c989bf713e967db7856165e92259e8e9f63f08ed67b02875135364cd8ea571ae",
+  "artifact_bytes": 141937,
+  "content_type": "text/html",
+  "extracted_title": "Citizen Service Portal",
+  "extracted_words": 3394,
+  "source_authority": "Election Commission of India (ECI)",
+  "jurisdiction": "IN",
+  "scheme": "Voters' Services & Electoral Registration",
+  "document_type": "official_portal_guidance"
+}

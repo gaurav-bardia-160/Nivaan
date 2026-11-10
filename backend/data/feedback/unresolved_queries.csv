@@ -533,3 +533,595 @@ timestamp,conversation_id,query,domain,top_score,reason
 2026-11-04T20:18:43.505691+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
 2026-11-04T20:18:43.520584+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
 2026-11-04T20:18:43.533020+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.298710+00:00,anonymous,MCA21 portal SPICe+ registration payment failed refund pending,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.314807+00:00,anonymous,LPG cylinder subsidy stopped bank account mismatch,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.327079+00:00,anonymous,NSP scholarship status is defective notice under section 139(9),uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.335933+00:00,anonymous,Director identification number DIN verification delay in court,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.345964+00:00,anonymous,HP Gas domestic cylinder delivery delayed consumer court complaint,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.354286+00:00,anonymous,SPICe plus company incorporation ROC filing delay RTI application,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.371612+00:00,anonymous,National scholarship portal merit-cum-means Aadhaar biometric authentication failed error 330,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.430177+00:00,anonymous,how to incorporate a company in India,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.441505+00:00,anonymous,how to incorporate a new company,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.454255+00:00,anonymous,company incorporation process,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.466094+00:00,anonymous,one person company registration,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.477197+00:00,anonymous,company registration online,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.487268+00:00,anonymous,llp registration process,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.495727+00:00,anonymous,cylinder delivery delay,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.504383+00:00,anonymous,cooking gas connection application,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.513180+00:00,anonymous,cooking gas subsidy,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.521033+00:00,anonymous,bharatgas online booking,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.529062+00:00,anonymous,hpgas booking,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.537623+00:00,anonymous,pre matric scholarship application,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.545642+00:00,anonymous,post matric scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T07:02:42.554181+00:00,anonymous,merit cum means scholarship status,uncovered,0.0000,uncovered_domain
+2026-11-09T07:03:54.842498+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T07:03:54.877045+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T07:03:55.042197+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T07:03:55.179749+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T07:04:06.503680+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T07:04:15.695717+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T07:04:15.930287+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T07:04:27.314751+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T07:04:43.079704+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T07:04:43.092238+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T07:04:43.101775+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T07:04:43.116123+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T07:04:43.123353+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T07:04:43.135235+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T07:06:09.468555+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T07:06:09.491279+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T07:06:09.509106+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T07:06:10.363275+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T07:06:10.367117+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T07:06:10.370769+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T07:09:39.455140+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T09:07:28.410686+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T09:07:28.442843+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T09:08:56.211476+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T09:08:56.212481+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T09:08:56.212481+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T09:08:56.226073+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T09:08:56.231268+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T09:08:56.252447+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:21:37.700180+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:21:37.716683+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:21:37.727129+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:21:37.739222+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:21:37.758790+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:21:37.777280+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:40:49.843148+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:40:49.883611+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:40:49.916428+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:40:49.943726+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:40:49.985382+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:40:50.113233+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:53:58.224430+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:53:58.284585+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:53:58.315450+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:53:58.367068+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:53:58.418681+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:53:58.602692+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:55:06.638175+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:55:07.129116+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:55:07.858023+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:55:08.895749+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:55:09.422948+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:55:11.313123+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:56:25.550441+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:56:25.610288+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:56:25.633770+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T12:56:25.661914+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:56:25.676568+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T12:56:25.818194+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T13:02:07.330270+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:02:07.347760+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:02:07.368206+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T13:02:07.378806+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:02:07.393012+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:02:07.432900+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T13:15:15.054260+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:15:15.103475+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:15:15.132908+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T13:15:20.564452+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:15:20.576994+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T13:15:20.582670+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T13:19:41.533177+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:19:41.542934+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:19:41.557549+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T13:19:41.569734+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:19:41.586873+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:19:41.673038+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T13:22:44.237401+00:00,anonymous,"What is the reply window under Section 148A(b), and what is the penalty under Section 999XYZ for quantum hyper-acceleration of crypto tokens?",unknown,0.2164,low_retrieval_confidence
+2026-11-09T13:29:01.208722+00:00,anonymous,"What is the reply window under Section 148A(b), and what is the penalty under Section 999XYZ for quantum hyper-acceleration of crypto tokens?",unknown,0.2164,low_retrieval_confidence
+2026-11-09T13:29:17.615291+00:00,anonymous,"What is the reply window under Section 148A(b), and what is the penalty under Section 999XYZ for quantum hyper-acceleration of crypto tokens?",unknown,0.2164,low_retrieval_confidence
+2026-11-09T13:29:50.015576+00:00,anonymous,"What is the reply window under Section 148A(b), and what is the penalty under Section 999XYZ for quantum hyper-acceleration of crypto tokens?",unknown,0.2164,low_retrieval_confidence
+2026-11-09T13:31:23.146250+00:00,anonymous,"What is the reply window under Section 148A(b), and what is the penalty under Section 999XYZ for quantum hyper-acceleration of crypto tokens?",unknown,0.2164,low_retrieval_confidence
+2026-11-09T13:32:45.231288+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:32:45.265626+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:32:45.276184+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T13:32:45.286235+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:32:45.301349+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:32:45.382322+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T13:33:16.901943+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0231,low_retrieval_confidence
+2026-11-09T13:33:18.782401+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:33:18.795331+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:33:18.837859+00:00,anonymous,How can I download e-PAN?,unknown,0.0214,low_retrieval_confidence
+2026-11-09T13:33:18.932108+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:33:19.151510+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:33:30.931114+00:00,anonymous,What should I check in a loan agreement?,unknown,0.0164,low_retrieval_confidence
+2026-11-09T13:33:31.158158+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0231,low_retrieval_confidence
+2026-11-09T13:33:31.387336+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:33:31.472735+00:00,anonymous,"What is the reply window under Section 148A(b), and what is the penalty under Section 999XYZ for quantum hyper-acceleration of crypto tokens?",unknown,0.2164,low_retrieval_confidence
+2026-11-09T13:33:31.980845+00:00,anonymous,How do I get PAN card?,unknown,0.0197,low_retrieval_confidence
+2026-11-09T13:33:41.009405+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:33:41.175026+00:00,anonymous,How do I apply for a new PAN card?,unknown,0.0214,low_retrieval_confidence
+2026-11-09T13:33:41.399666+00:00,anonymous,apply pan card,unknown,0.0231,low_retrieval_confidence
+2026-11-09T13:33:41.503369+00:00,anonymous,apply pan card,unknown,0.0231,low_retrieval_confidence
+2026-11-09T13:33:41.809493+00:00,anonymous,apply pan card,unknown,0.0231,low_retrieval_confidence
+2026-11-09T13:33:41.883744+00:00,anonymous,apply pan card,unknown,0.0231,low_retrieval_confidence
+2026-11-09T13:33:42.443694+00:00,anonymous,how to get aadhaar card,unknown,0.0197,low_retrieval_confidence
+2026-11-09T13:33:43.236462+00:00,test_conv_trouble_reformulation,How to apply for fresh passport?,unknown,0.0221,low_retrieval_confidence
+2026-11-09T13:34:02.387960+00:00,anonymous,Baal Aadhaar biometric update rules for child age 5 and 15,unknown,0.0195,low_retrieval_confidence
+2026-11-09T13:34:03.577289+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:34:42.021119+00:00,anonymous,MCA21 portal SPICe+ registration payment failed refund pending,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.046818+00:00,anonymous,LPG cylinder subsidy stopped bank account mismatch,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.056759+00:00,anonymous,NSP scholarship status is defective notice under section 139(9),uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.066306+00:00,anonymous,Director identification number DIN verification delay in court,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.088259+00:00,anonymous,HP Gas domestic cylinder delivery delayed consumer court complaint,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.098830+00:00,anonymous,SPICe plus company incorporation ROC filing delay RTI application,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.119028+00:00,anonymous,National scholarship portal merit-cum-means Aadhaar biometric authentication failed error 330,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.207997+00:00,anonymous,how to incorporate a company in India,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.234993+00:00,anonymous,how to incorporate a new company,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.256556+00:00,anonymous,company incorporation process,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.265948+00:00,anonymous,one person company registration,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.274509+00:00,anonymous,company registration online,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.298639+00:00,anonymous,llp registration process,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.311705+00:00,anonymous,cylinder delivery delay,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.327332+00:00,anonymous,cooking gas connection application,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.349426+00:00,anonymous,cooking gas subsidy,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.360360+00:00,anonymous,bharatgas online booking,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.371929+00:00,anonymous,hpgas booking,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.400507+00:00,anonymous,pre matric scholarship application,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.422412+00:00,anonymous,post matric scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T13:34:42.439021+00:00,anonymous,merit cum means scholarship status,uncovered,0.0000,uncovered_domain
+2026-11-09T13:35:28.352200+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:35:28.387818+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:35:28.413357+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T13:35:31.745005+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T13:35:31.750042+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T13:35:31.756585+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T13:37:06.164744+00:00,test-stream-conv,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:37:06.324640+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:38:33.315798+00:00,anonymous,What should I check in a loan agreement?,unknown,0.0164,low_retrieval_confidence
+2026-11-09T13:40:41.562526+00:00,test-stream-conv,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:40:43.738198+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:41:55.712062+00:00,anonymous,"What is the reply window under Section 148A(b), and what is the penalty under Section 999XYZ for quantum hyper-acceleration of crypto tokens?",unknown,0.2164,low_retrieval_confidence
+2026-11-09T13:57:30.661530+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:57:30.671398+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:57:30.776472+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:57:30.818776+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:57:36.319350+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:57:41.877338+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T13:57:41.999351+00:00,anonymous,What documents do I need for that?,unknown,0.0179,low_retrieval_confidence
+2026-11-09T13:57:53.867007+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:02:26.161731+00:00,anonymous,What documents do I need for that?,unknown,0.0179,low_retrieval_confidence
+2026-11-09T14:14:03.589661+00:00,anonymous,What documents do I need for that?,unknown,0.0179,low_retrieval_confidence
+2026-11-09T14:14:44.815560+00:00,anonymous,What documents do I need for that?,unknown,0.0179,low_retrieval_confidence
+2026-11-09T14:15:27.163799+00:00,anonymous,What documents do I need for that?,unknown,0.0179,low_retrieval_confidence
+2026-11-09T14:26:29.074298+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:28:55.356166+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:28:55.414976+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:28:55.857993+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:28:56.032327+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:29:13.559092+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:29:46.500600+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:29:49.194905+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:31:04.365367+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:44:16.388170+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:44:16.444760+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:44:17.920741+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:44:18.421257+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:45:04.105975+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:45:41.120494+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:45:41.386266+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:45:45.898779+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:45:46.731161+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:46:17.272043+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:46:21.890199+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:46:26.683873+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:47:04.413063+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:47:07.500270+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:48:16.621203+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:48:34.258049+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:51:35.870600+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:51:35.989983+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:51:36.320793+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:51:36.395526+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:51:51.826048+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:52:08.656982+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:52:10.076146+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:53:03.271107+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:56:31.857094+00:00,anonymous,Who won the cricket world cup in 2023?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T14:57:28.787315+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T14:57:33.414841+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T14:57:33.833545+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T14:57:34.271714+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T14:57:34.836703+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T14:57:41.977286+00:00,anonymous,How do I resolve this issue?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:00:51.549794+00:00,anonymous,I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit expire?,unknown,0.0380,low_retrieval_confidence
+2026-11-09T15:00:52.134501+00:00,anonymous,My salary credit in August came with a flat 20% TDS deduction because my PAN became Inoperative. I paid late fee under Section 234H. When will PAN activate and how to get refund under Section 206AA?,unknown,0.0390,low_retrieval_confidence
+2026-11-09T15:00:52.972047+00:00,anonymous,Notice issued under Section 999XYZ of Income Tax Act,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:00:53.605105+00:00,anonymous,How do I resolve this issue?,unknown,0.0080,low_retrieval_confidence
+2026-11-09T15:07:18.783015+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:07:21.834603+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:07:22.085705+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:07:22.298153+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:07:22.438296+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:07:24.894002+00:00,anonymous,How do I resolve this issue?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:08:59.312564+00:00,anonymous,I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit expire?,unknown,0.0380,low_retrieval_confidence
+2026-11-09T15:08:59.862746+00:00,anonymous,My salary credit in August came with a flat 20% TDS deduction because my PAN became Inoperative. I paid late fee under Section 234H. When will PAN activate and how to get refund under Section 206AA?,unknown,0.0390,low_retrieval_confidence
+2026-11-09T15:09:00.182871+00:00,anonymous,Notice issued under Section 999XYZ of Income Tax Act,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:09:00.595274+00:00,anonymous,How do I resolve this issue?,unknown,0.0080,low_retrieval_confidence
+2026-11-09T15:33:03.960239+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:33:04.549254+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:33:04.578367+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:33:04.606543+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:33:04.633454+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:33:05.224463+00:00,anonymous,How do I resolve this issue?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:34:23.040467+00:00,anonymous,I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit expire?,unknown,0.0380,low_retrieval_confidence
+2026-11-09T15:34:23.141236+00:00,anonymous,My salary credit in August came with a flat 20% TDS deduction because my PAN became Inoperative. I paid late fee under Section 234H. When will PAN activate and how to get refund under Section 206AA?,unknown,0.0390,low_retrieval_confidence
+2026-11-09T15:34:23.205420+00:00,anonymous,Notice issued under Section 999XYZ of Income Tax Act,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:34:23.247011+00:00,anonymous,How do I resolve this issue?,unknown,0.0080,low_retrieval_confidence
+2026-11-09T15:35:15.546302+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:15.552804+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:15.591708+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:15.611752+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:18.328783+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:22.569048+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:22.730030+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:34.907992+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:38.884852+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:38.892782+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:38.945675+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:38.973000+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:40.645572+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:44.872198+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:45.082003+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:49.269946+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:49.277889+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:49.341218+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:49.369126+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:35:51.296456+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:36:00.086152+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:36:00.356227+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:36:01.670903+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:36:12.118159+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:37:38.366382+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:37:38.376014+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:37:38.385285+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:37:38.394412+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:37:38.402913+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:37:38.467775+00:00,anonymous,How do I resolve this issue?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:37:59.102973+00:00,anonymous,"I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit to issue this notice expire under the 3-year vs 10-year rule, and how many days do I have to submit my reply?",unknown,0.0380,low_retrieval_confidence
+2026-11-09T15:38:08.641116+00:00,anonymous,I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit expire?,unknown,0.0380,low_retrieval_confidence
+2026-11-09T15:38:08.651201+00:00,anonymous,My salary credit in August came with a flat 20% TDS deduction because my PAN became Inoperative. I paid late fee under Section 234H. When will PAN activate and how to get refund under Section 206AA?,unknown,0.0390,low_retrieval_confidence
+2026-11-09T15:38:08.674877+00:00,anonymous,Notice issued under Section 999XYZ of Income Tax Act,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:38:08.684706+00:00,anonymous,How do I resolve this issue?,unknown,0.0080,low_retrieval_confidence
+2026-11-09T15:38:25.175695+00:00,anonymous,"I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit to issue this notice expire under the 3-year vs 10-year rule, and how many days do I have to submit my reply?",unknown,0.0380,low_retrieval_confidence
+2026-11-09T15:39:10.460152+00:00,anonymous,"I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit to issue this notice expire under the 3-year vs 10-year rule, and how many days do I have to submit my reply?",unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:39:54.314533+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:39:54.327226+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:39:54.337300+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:39:54.347827+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:39:54.361382+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:39:54.445620+00:00,anonymous,How do I resolve this issue?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T15:40:29.767541+00:00,anonymous,I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit expire?,unknown,0.0380,low_retrieval_confidence
+2026-11-09T15:40:29.816759+00:00,anonymous,My salary credit in August came with a flat 20% TDS deduction because my PAN became Inoperative. I paid late fee under Section 234H. When will PAN activate and how to get refund under Section 206AA?,unknown,0.0390,low_retrieval_confidence
+2026-11-09T15:40:29.830892+00:00,anonymous,Notice issued under Section 999XYZ of Income Tax Act,unknown,0.0350,low_retrieval_confidence
+2026-11-09T15:40:29.864168+00:00,anonymous,How do I resolve this issue?,unknown,0.0080,low_retrieval_confidence
+2026-11-09T17:06:58.033794+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:06:58.042835+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:06:58.792251+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:06:58.822098+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:07:02.395890+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:07:06.439494+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:07:06.595398+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:07:14.421245+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:07:22.326327+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:07:22.335051+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:07:22.343157+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:07:22.352411+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:07:22.365492+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:07:22.379906+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:29:49.386789+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:29:49.394697+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:29:49.624299+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:29:49.657670+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:29:52.827217+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:29:56.777507+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:29:57.610028+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:30:09.689541+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:30:25.014470+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:30:25.024331+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:30:25.035056+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:30:25.045061+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:30:25.057242+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:30:25.081815+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:35:35.957168+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:35:35.964223+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:35:36.158873+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:35:36.191345+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:35:38.949049+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:35:42.332904+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:35:43.058556+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:35:57.424047+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:37:26.339100+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:37:26.346636+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:37:26.353942+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:37:26.361292+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:37:26.367497+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:37:26.377701+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:39:59.509144+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:39:59.524155+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:39:59.540472+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T17:40:00.999237+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:40:01.003235+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T17:40:01.007237+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T17:45:07.484863+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:45:07.491845+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:45:07.702289+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:45:07.734092+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:45:12.239348+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:45:15.856169+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:45:19.378615+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:45:32.198067+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:46:06.283152+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:46:06.290648+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:46:06.297365+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:46:06.306317+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:46:06.314106+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:46:06.325458+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:55:41.405570+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:55:41.412286+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:55:41.615542+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:55:41.646212+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:55:44.242081+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:55:49.607167+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:55:50.398385+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:56:09.507787+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T17:56:36.624145+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:56:36.629144+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:56:36.633144+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T17:56:36.637151+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:56:36.641152+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T17:56:36.655595+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T18:54:23.209376+00:00,chat_1794250364718_yiksl,"registered on mca portal and generated form iepf-5 with SRN number. does the government credit shares directly to my demat account now, or do i have to wait for an email approval?",uncovered,0.0000,uncovered_domain
+2026-11-09T19:40:09.512327+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T19:40:09.548802+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T19:40:09.555378+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T19:40:09.563366+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T19:40:09.570516+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T19:40:09.596868+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T19:45:07.736432+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T19:45:07.740343+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T19:45:07.740343+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T19:45:07.740343+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T19:45:07.750309+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T19:45:07.772325+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T20:39:12.610034+00:00,anonymous,"I have 450 Reliance shares in IEPF with folio number, how do I claim unpaid dividends?",unknown,-0.3331,low_retrieval_confidence
+2026-11-09T20:39:13.040213+00:00,anonymous,How do I get the RTA Entitlement Letter for my IEPF-5 claim?,unknown,-0.3322,low_retrieval_confidence
+2026-11-09T20:43:48.452368+00:00,anonymous,"I have 450 Reliance shares in IEPF with folio number, how do I claim unpaid dividends?",unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T20:43:48.852010+00:00,anonymous,How do I get the RTA Entitlement Letter for my IEPF-5 claim?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T20:44:22.022314+00:00,anonymous,"I have 450 Reliance shares in IEPF with folio number, how do I claim unpaid dividends?",unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T20:48:08.450920+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:48:08.471914+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:48:08.494568+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T20:48:10.324525+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:48:10.328525+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T20:48:10.332244+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T20:53:05.109087+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:53:05.128888+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:53:05.150778+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T20:53:08.035214+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:53:08.040289+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T20:53:08.043841+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T20:55:08.172915+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:55:08.308069+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:55:08.509924+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T20:55:10.581802+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T20:55:10.585428+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T20:55:10.588450+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T21:01:21.029957+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:01:21.050189+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:01:21.071137+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T21:01:22.935994+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:01:22.958270+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T21:01:22.961803+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T21:03:21.768964+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:03:21.793500+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:03:21.818241+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T21:03:22.678815+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:03:22.682834+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T21:03:22.687396+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T21:05:11.806214+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:05:11.813233+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:05:11.847280+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T21:05:11.853282+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:05:11.858278+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T21:05:11.882560+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.316524+00:00,anonymous,MCA21 portal SPICe+ registration payment failed refund pending,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.336647+00:00,anonymous,LPG cylinder subsidy stopped bank account mismatch,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.352862+00:00,anonymous,NSP scholarship status is defective notice under section 139(9),uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.361946+00:00,anonymous,Director identification number DIN verification delay in court,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.370524+00:00,anonymous,HP Gas domestic cylinder delivery delayed consumer court complaint,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.379644+00:00,anonymous,SPICe plus company incorporation ROC filing delay RTI application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.391185+00:00,anonymous,National scholarship portal merit-cum-means Aadhaar biometric authentication failed error 330,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.456246+00:00,anonymous,how to incorporate a company in India,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.465783+00:00,anonymous,how to incorporate a new company,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.477314+00:00,anonymous,company incorporation process,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.485421+00:00,anonymous,one person company registration,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.494866+00:00,anonymous,company registration online,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.503650+00:00,anonymous,llp registration process,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.512290+00:00,anonymous,cylinder delivery delay,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.522114+00:00,anonymous,cooking gas connection application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.531216+00:00,anonymous,cooking gas subsidy,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.541811+00:00,anonymous,bharatgas online booking,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.550406+00:00,anonymous,hpgas booking,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.558930+00:00,anonymous,pre matric scholarship application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.568462+00:00,anonymous,post matric scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T21:15:42.576192+00:00,anonymous,merit cum means scholarship status,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.059628+00:00,anonymous,MCA21 portal SPICe+ registration payment failed refund pending,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.074028+00:00,anonymous,LPG cylinder subsidy stopped bank account mismatch,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.092696+00:00,anonymous,NSP scholarship status is defective notice under section 139(9),uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.110287+00:00,anonymous,Director identification number DIN verification delay in court,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.120650+00:00,anonymous,HP Gas domestic cylinder delivery delayed consumer court complaint,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.128102+00:00,anonymous,SPICe plus company incorporation ROC filing delay RTI application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.144185+00:00,anonymous,National scholarship portal merit-cum-means Aadhaar biometric authentication failed error 330,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.234706+00:00,anonymous,how to incorporate a company in India,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.249089+00:00,anonymous,how to incorporate a new company,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.266597+00:00,anonymous,company incorporation process,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.278308+00:00,anonymous,one person company registration,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.289721+00:00,anonymous,company registration online,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.307430+00:00,anonymous,llp registration process,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.319979+00:00,anonymous,cylinder delivery delay,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.328906+00:00,anonymous,cooking gas connection application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.338994+00:00,anonymous,cooking gas subsidy,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.348446+00:00,anonymous,bharatgas online booking,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.359246+00:00,anonymous,hpgas booking,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.369442+00:00,anonymous,pre matric scholarship application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.381245+00:00,anonymous,post matric scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T21:35:39.388253+00:00,anonymous,merit cum means scholarship status,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.812352+00:00,anonymous,MCA21 portal SPICe+ registration payment failed refund pending,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.824378+00:00,anonymous,LPG cylinder subsidy stopped bank account mismatch,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.830513+00:00,anonymous,NSP scholarship status is defective notice under section 139(9),uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.837949+00:00,anonymous,Director identification number DIN verification delay in court,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.845933+00:00,anonymous,HP Gas domestic cylinder delivery delayed consumer court complaint,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.855031+00:00,anonymous,SPICe plus company incorporation ROC filing delay RTI application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.862884+00:00,anonymous,National scholarship portal merit-cum-means Aadhaar biometric authentication failed error 330,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.910974+00:00,anonymous,how to incorporate a company in India,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.920800+00:00,anonymous,how to incorporate a new company,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.929535+00:00,anonymous,company incorporation process,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.937790+00:00,anonymous,one person company registration,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.946254+00:00,anonymous,company registration online,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.953618+00:00,anonymous,llp registration process,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.961360+00:00,anonymous,cylinder delivery delay,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.970435+00:00,anonymous,cooking gas connection application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.977149+00:00,anonymous,cooking gas subsidy,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.983202+00:00,anonymous,bharatgas online booking,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.990509+00:00,anonymous,hpgas booking,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:26.998373+00:00,anonymous,pre matric scholarship application,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:27.005935+00:00,anonymous,post matric scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T21:53:27.012554+00:00,anonymous,merit cum means scholarship status,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.052372+00:00,anonymous,MCA21 portal SPICe+ registration payment failed refund pending,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.071953+00:00,anonymous,LPG cylinder subsidy stopped bank account mismatch,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.080333+00:00,anonymous,NSP scholarship status is defective notice under section 139(9),uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.088333+00:00,anonymous,Director identification number DIN verification delay in court,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.095867+00:00,anonymous,HP Gas domestic cylinder delivery delayed consumer court complaint,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.103478+00:00,anonymous,SPICe plus company incorporation ROC filing delay RTI application,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.111365+00:00,anonymous,National scholarship portal merit-cum-means Aadhaar biometric authentication failed error 330,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.161780+00:00,anonymous,how to incorporate a company in India,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.169233+00:00,anonymous,how to incorporate a new company,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.176223+00:00,anonymous,company incorporation process,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.183033+00:00,anonymous,one person company registration,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.190259+00:00,anonymous,company registration online,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.198583+00:00,anonymous,llp registration process,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.205278+00:00,anonymous,cylinder delivery delay,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.211609+00:00,anonymous,cooking gas connection application,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.218692+00:00,anonymous,cooking gas subsidy,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.225088+00:00,anonymous,bharatgas online booking,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.231621+00:00,anonymous,hpgas booking,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.238141+00:00,anonymous,pre matric scholarship application,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.244144+00:00,anonymous,post matric scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T22:12:41.249675+00:00,anonymous,merit cum means scholarship status,uncovered,0.0000,uncovered_domain
+2026-11-09T22:14:01.666889+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:14:01.682383+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:14:02.877509+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:14:02.936845+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:14:09.033295+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:14:15.212498+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:14:17.045620+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:14:45.002042+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:15:56.940339+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:15:56.956450+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:15:56.967149+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:15:56.981093+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:15:56.994302+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:15:57.087810+00:00,anonymous,How do I resolve this issue?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:17:38.595026+00:00,anonymous,I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit expire?,unknown,0.0380,low_retrieval_confidence
+2026-11-09T22:17:38.627147+00:00,anonymous,My salary credit in August came with a flat 20% TDS deduction because my PAN became Inoperative. I paid late fee under Section 234H. When will PAN activate and how to get refund under Section 206AA?,unknown,0.0390,low_retrieval_confidence
+2026-11-09T22:17:38.636244+00:00,anonymous,Notice issued under Section 999XYZ of Income Tax Act,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:17:38.646246+00:00,anonymous,How do I resolve this issue?,unknown,0.0080,low_retrieval_confidence
+2026-11-09T22:18:00.629974+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:18:00.645333+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:18:00.654715+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T22:18:00.663711+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:18:00.671508+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:18:00.697742+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T22:20:53.270054+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:20:53.295772+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:20:53.319629+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T22:20:53.795824+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:20:53.799464+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T22:20:53.802811+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T22:24:23.386270+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:27:48.211393+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:32:29.111253+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:34:44.482094+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:41:21.132266+00:00,anonymous,MCA21 portal SPICe+ registration payment failed refund pending,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.150803+00:00,anonymous,LPG cylinder subsidy stopped bank account mismatch,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.158329+00:00,anonymous,NSP scholarship status is defective notice under section 139(9),uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.165941+00:00,anonymous,Director identification number DIN verification delay in court,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.173526+00:00,anonymous,HP Gas domestic cylinder delivery delayed consumer court complaint,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.180045+00:00,anonymous,SPICe plus company incorporation ROC filing delay RTI application,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.188049+00:00,anonymous,National scholarship portal merit-cum-means Aadhaar biometric authentication failed error 330,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.240331+00:00,anonymous,how to incorporate a company in India,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.247042+00:00,anonymous,how to incorporate a new company,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.254576+00:00,anonymous,company incorporation process,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.261093+00:00,anonymous,one person company registration,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.269108+00:00,anonymous,company registration online,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.276646+00:00,anonymous,llp registration process,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.284692+00:00,anonymous,cylinder delivery delay,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.292691+00:00,anonymous,cooking gas connection application,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.300217+00:00,anonymous,cooking gas subsidy,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.307258+00:00,anonymous,bharatgas online booking,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.316315+00:00,anonymous,hpgas booking,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.323300+00:00,anonymous,pre matric scholarship application,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.331363+00:00,anonymous,post matric scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T22:41:21.339891+00:00,anonymous,merit cum means scholarship status,uncovered,0.0000,uncovered_domain
+2026-11-09T22:43:00.139162+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:43:00.151697+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:43:00.438242+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:43:00.473965+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:43:04.035196+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:43:09.913112+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:43:12.379539+00:00,anonymous,What is the capital of France?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:43:32.955462+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:44:36.958972+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:44:36.976720+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:44:36.987057+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:44:37.001070+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:44:37.011209+00:00,anonymous,How do I resolve this issue?,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:44:37.109012+00:00,anonymous,How do I resolve this issue?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:46:09.921684+00:00,anonymous,I got an email notice under Section 148A(b) of the Income Tax Act for Assessment Year 2018-19 alleging ₹6.5 Lakhs in unexplained share trading transactions. Did the time limit expire?,unknown,0.0380,low_retrieval_confidence
+2026-11-09T22:46:09.937277+00:00,anonymous,My salary credit in August came with a flat 20% TDS deduction because my PAN became Inoperative. I paid late fee under Section 234H. When will PAN activate and how to get refund under Section 206AA?,unknown,0.0390,low_retrieval_confidence
+2026-11-09T22:46:09.945507+00:00,anonymous,Notice issued under Section 999XYZ of Income Tax Act,unknown,0.0350,low_retrieval_confidence
+2026-11-09T22:46:09.955239+00:00,anonymous,How do I resolve this issue?,unknown,0.0080,low_retrieval_confidence
+2026-11-09T22:46:29.487187+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:46:29.500957+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:46:29.508510+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-09T22:46:29.516580+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:46:29.526842+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:46:29.554535+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-09T22:49:26.024335+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:49:26.053897+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:49:26.082644+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T22:49:26.537574+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:49:26.542576+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T22:49:26.549754+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-09T22:51:46.288101+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-09T22:54:57.603725+00:00,anonymous,How to file INC-29 on MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:54:57.640008+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:54:57.670040+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,uncovered,0.0000,uncovered_domain
+2026-11-09T22:54:58.565106+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
+2026-11-09T22:54:58.571267+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
+2026-11-09T22:54:58.579266+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain

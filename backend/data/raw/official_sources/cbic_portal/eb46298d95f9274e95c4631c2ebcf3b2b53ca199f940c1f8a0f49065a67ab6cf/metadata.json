@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "cbic_portal",
+  "requested_url": "https://www.cbic.gov.in/resources/htdocs-cbec/customs_clearance_of_passengers_at_a_glance.pdf",
+  "final_url": "https://www.cbic.gov.in/resources/htdocs-cbec/customs_clearance_of_passengers_at_a_glance.pdf",
+  "fetched_at": "2026-11-09T08:30:32+00:00",
+  "artifact_sha256": "eb46298d95f9274e95c4631c2ebcf3b2b53ca199f940c1f8a0f49065a67ab6cf",
+  "artifact_bytes": 605977,
+  "content_type": "application/pdf",
+  "extracted_title": "Customs Clearance of Passengers",
+  "extracted_words": 1399,
+  "source_authority": "Central Board of Indirect Taxes and Customs (CBIC), Department of Revenue, Ministry of Finance",
+  "jurisdiction": "IN",
+  "scheme": "Customs Passenger Clearance, Baggage Rules & International Declarations",
+  "document_type": "official_guidelines_and_faqs"
+}

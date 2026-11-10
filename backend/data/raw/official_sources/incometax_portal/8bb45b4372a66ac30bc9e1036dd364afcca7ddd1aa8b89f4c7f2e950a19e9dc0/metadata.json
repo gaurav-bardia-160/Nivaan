@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "incometax_portal",
+  "requested_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/prima%20facie%20adjustment",
+  "final_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/prima%20facie%20adjustment",
+  "fetched_at": "2026-11-09T08:27:04+00:00",
+  "artifact_sha256": "8bb45b4372a66ac30bc9e1036dd364afcca7ddd1aa8b89f4c7f2e950a19e9dc0",
+  "artifact_bytes": 124155,
+  "content_type": "text/html",
+  "extracted_title": "Prima Facie Adjustment (PFA) and Defective Notice | Income Tax Department",
+  "extracted_words": 4888,
+  "source_authority": "Central Board of Direct Taxes (CBDT), Directorate of Systems, Income Tax Department, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Direct Taxes & e-Filing Portal Services",
+  "document_type": "official_portal_guidance"
+}

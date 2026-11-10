@@ -25,7 +25,9 @@ _CATEGORY_TERMS = {
         "presumptive", "44ad", "44ada", "44ae", "corporate tax", "company tax", "115baa",
         "cess", "surcharge", "234a", "234b", "234c", "234f", "advance tax", "itrv", "itr-v",
         "acknowledgement number", "belated", "assessment year", "ay", "financial year", "fy",
-        "tax refund", "income tax refund", "synthetic", "139", "119", "defective", "defective return", "revised return", "refund reissue", "refund unpaid", "कर", "आयकर", "ટેક્સ", "ઇન્કમટેક્સ",
+        "tax refund", "income tax refund", "synthetic", "139", "119", "defective", "defective return", "revised return", "refund reissue", "refund unpaid",
+        "148", "148a", "147", "149", "151", "reassessment", "escaped income", "206aa", "234h", "inoperative pan",
+        "कर", "आयकर", "ટેક્સ", "ઇન્કમટેક્સ",
     ),
     "civic": (
         "passport", "pasport", "paspot", "passsport", "efrro", "frro", "visa", "voter", "voters", "voterid", "voter-id", "voter id", "votercard", "epic", "nvsp", "eci", "parivahan",
@@ -40,7 +42,8 @@ _CATEGORY_TERMS = {
         "census", "certificate", "stqc", "registry", "negd", "pib", "mphc", "high court",
         "myscheme", "vikaspedia", "mea", "embassy", "sweden", "consular", "attestation",
         "apostille", "data.gov.in", "ogd", "mpdistricts", "rcms", "khasra", "nakal",
-        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions", "nalsa", "legal aid", "edaakhil", "e-daakhil", "consumer court", "consumer", "complaint", "fir", "police", "ncrb", "police station", "credit card", "cibil", "experian", "crif", "unsolicited", "foreclosure", "prepayment", "fvr", "blo", "aero", "ero", "joint declaration", "upi", "atm", "imps", "auto-reversal", "auto reversal", "compensation", "reversal", "nach", "mandate", "banking ombudsman"
+        "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions", "nalsa", "legal aid", "edaakhil", "e-daakhil", "consumer court", "consumer", "complaint", "fir", "police", "ncrb", "police station", "credit card", "cibil", "experian", "crif", "unsolicited", "foreclosure", "prepayment", "fvr", "blo", "aero", "ero", "joint declaration", "upi", "atm", "imps", "auto-reversal", "auto reversal", "compensation", "reversal", "nach", "mandate", "banking ombudsman",
+        "iepf", "iepfa", "mca", "mca21", "udgam", "dea fund", "deaf", "pension sahayak", "pfrda", "dfs", "unclaimed shares", "unclaimed dividend", "iepf-5", "iepf-5e", "entitlement letter"
     ),
 }
 _MULTILINGUAL_QUERY_HINTS = (
@@ -123,6 +126,7 @@ def supported_category(query: str) -> str | None:
         "passport", "psk", "police verification", "epf", "epfo", "joint declaration", "uan", "fir",
         "fastag", "toll", "nhai", "ihmcl", "parivahan", "vahan", "sarathi", "chassis", "challan", "echallan",
         "cbse", "marksheet", "digilocker",
+        "iepf", "iepfa", "mca", "mca21", "udgam", "dea fund", "deaf", "pension sahayak", "pfrda", "dfs", "unclaimed shares", "unclaimed dividend", "iepf-5", "iepf-5e", "entitlement letter",
     )
     if any(re.search(rf"(?<!\w){re.escape(t)}(?!\w)", lowered) for t in _CIVIC_STRONG_TERMS):
         return "civic"
@@ -158,20 +162,25 @@ def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) ->
         return None
 
     category = None
-    if domain is not None:
+    lowered_q = query.lower()
+    is_pan_tds = (
+        any(w in lowered_q for w in ("inoperative", "206aa", "234h", "114aaa", "circular 03/2023", "circular 3/2023", "excess 20%", "20% tds", "salary tds"))
+        and any(w in lowered_q for w in ("pan", "aadhaar", "aadhar", "linking"))
+    ) or ("inoperative pan" in lowered_q) or ("206aa" in lowered_q)
+
+    if domain is not None and not is_pan_tds:
         if domain in (Domain.TRANSPORT, "transport", Domain.EDUCATION, "education", Domain.BANKING, "banking", Domain.LEGAL_CONSUMER, "legal_consumer", Domain.AGRICULTURE, "agriculture", Domain.GENERAL_CIVIC, "civic"):
             category = "civic"
         elif domain in (Domain.TAXATION, "tax", "taxation"):
             category = "tax"
         elif domain in (Domain.IDENTITY, "identity"):
-            lowered_q = query.lower()
             if any(w in lowered_q for w in ("pan", "e-pan", "epan", "49a", "utiitsl", "nsdl")):
                 category = "pan"
             elif any(w in lowered_q for w in ("aadhaar", "aadhar", "uidai", "srn", "mbu", "pvc")):
                 category = "aadhaar"
             else:
                 category = "civic"
-    if category is None:
+    if category is None and not is_pan_tds:
         category = supported_category(query)
     if category is None:
         lowered = query.lower()

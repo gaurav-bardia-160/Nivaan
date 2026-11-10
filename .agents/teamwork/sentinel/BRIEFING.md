@@ -1,37 +1,32 @@
-# BRIEFING — 2026-11-04T12:52:00Z
+# BRIEFING — 2026-11-09T11:54:00Z
 
 ## Mission
-Coordinate and oversee RAG Pipeline Failure Report & Fix Plan implementation with verified audit.
+Manage incoming user request, run task interview, route to execution path, monitor execution, and ensure independent victory audit.
 
 ## 🔒 My Identity
 - Archetype: sentinel
 - Working directory: c:\Users\gaura\Documents\nivaan\.agents\teamwork\sentinel
-- Orchestrator: dbf15a36-ef58-4a18-a9f2-171e93acf6cc
-- Victory Auditor: to be spawned on victory claim
+- Orchestrator: 39a4200a-88ea-4d70-9ed4-ca0bc59538f8
+- Victory Auditor: [to be spawned on victory claim]
 
 ## 🔒 Key Constraints
 - No technical decisions — relay only
 - Victory Audit is MANDATORY before reporting completion
-- R1: Verify/remediate 3 EPFO documents in rag_manifest.json
-- R2: Hard domain routing / intent classification before vector search in retriever.py; short-circuit uncovered domains
-- R3: Decouple confidence badge from cosine similarity using post-retrieval check (MATCH/PARTIAL/NO_MATCH)
-- R4: LLM synthesis relevance gating and hallucination guardrails in llm.py
-- R5: Swap raw requests/BeautifulSoup to trafilatura in CRAG fallback path
-- R6: Improve sub-procedure granularity (139_9_defective vs ais_feedback)
-- R7: Update AGENTS.md guardrails
-- Zero predefined responses rule must be strictly upheld
-
-## Routing Decision
-- Path: General (`teamwork_orchestrator`)
-- Rationale: Multi-requirement software engineering task (R1-R7) covering corpus fixes, retriever routing, relevance checks, LLM prompt directives, scraper updates, and regression testing. No document review or pure math signals, and not a single self-contained lightweight task.
+- Routing Decision: General path (teamwork_orchestrator) - multi-requirement architectural SWE task
+- Integrity mode: development
+- Zero Predefined Responses directive: Never use or re-introduce predefined, hardcoded, or pre-canned responses (AGENTS.md / GEMINI.md)
+- R1: Separate procedural/checklist queries from analytical, calculation, and legal-interpretation queries (no forced 3-step checklist)
+- R2: Relevance and confidence gating before synthesis (no HIGH confidence on unaligned chunks; trigger CRAG or honest refusal)
+- R3: Multi-part query decomposition
+- R4: Official corpus coverage for reassessment and inoperative PAN
 
 ## User Context
-- **Last user request**: Inquiry on completion status and Milestone 3 progress.
-- **Pending clarifications**: none
-- **Delivered results**: Milestones 1 & 2 completed and certified; Milestone 3 Iteration 2 Gate evaluated (FAIL: auditor INTEGRITY VIOLATION on failing citation isolation test; challenger REQUEST_CHANGES on regex word boundary).
+- **Last user request**: Approved task prompt received for remediating RAG and synthesis pipeline architectural gaps (Cases 1 & 2, R1-R4, test suite).
+- **Pending clarifications**: None
+- **Delivered results**: Task interview concluded and prompt approved
 
 ## Project Status
-- **Phase**: in progress (Milestones 1 & 2 passed gate verification; Milestone 3 moving to Iteration 3 remediation for regex boundary and citation filtering; Milestones 4-6 queued)
+- **Phase**: in progress
 
 ## Victory Audit Status
 - **Triggered**: no
@@ -39,6 +34,4 @@ Coordinate and oversee RAG Pipeline Failure Report & Fix Plan implementation wit
 - **Retry count**: 0
 
 ## Artifact Index
-- .agents/teamwork/ORIGINAL_REQUEST.md — Authoritative record of approved task prompt
-- .agents/teamwork/orchestrator/ — Project Orchestrator workspace
-
+- .agents/teamwork/ORIGINAL_REQUEST.md — Authoritative approved task prompt

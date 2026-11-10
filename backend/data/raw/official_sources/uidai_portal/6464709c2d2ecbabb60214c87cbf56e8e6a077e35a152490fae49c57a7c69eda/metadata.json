@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "uidai_portal",
+  "requested_url": "https://uidai.gov.in/images/LR_Aadhaar_Handbook_2026.pdf",
+  "final_url": "https://uidai.gov.in/images/LR_Aadhaar_Handbook_2026.pdf",
+  "fetched_at": "2026-11-09T08:25:05+00:00",
+  "artifact_sha256": "6464709c2d2ecbabb60214c87cbf56e8e6a077e35a152490fae49c57a7c69eda",
+  "artifact_bytes": 18350814,
+  "content_type": "application/pdf, application/pdf",
+  "extracted_title": "Lr Aadhaar Handbook 2026",
+  "extracted_words": 14777,
+  "source_authority": "Unique Identification Authority of India (UIDAI), Ministry of Electronics and IT, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Aadhaar - Civil Identity & Demographic Services",
+  "document_type": "official_guidelines_and_faqs"
+}

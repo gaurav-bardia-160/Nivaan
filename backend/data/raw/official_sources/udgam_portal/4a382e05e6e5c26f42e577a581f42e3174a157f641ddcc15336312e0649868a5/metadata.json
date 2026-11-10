@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "udgam_portal",
+  "requested_url": "https://udgam.rbi.org.in/unclaimed-deposits/#/login",
+  "final_url": "https://udgam.rbi.org.in/unclaimed-deposits/#/login",
+  "fetched_at": "2026-11-09T07:54:19+00:00",
+  "artifact_sha256": "4a382e05e6e5c26f42e577a581f42e3174a157f641ddcc15336312e0649868a5",
+  "artifact_bytes": 52562,
+  "content_type": "text/html",
+  "extracted_title": "UDGAM",
+  "extracted_words": 224,
+  "source_authority": "Reserve Bank of India (RBI) & ReBIT",
+  "jurisdiction": "IN",
+  "scheme": "UDGAM - Unclaimed Deposits Gateway to Access Information",
+  "document_type": "official_portal_guidance"
+}

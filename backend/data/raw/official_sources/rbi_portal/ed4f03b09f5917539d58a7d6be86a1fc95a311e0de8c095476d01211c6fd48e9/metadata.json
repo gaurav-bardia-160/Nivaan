@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "rbi_portal",
+  "requested_url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/CHEQUE07012026.pdf",
+  "final_url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/CHEQUE07012026.pdf",
+  "fetched_at": "2026-11-09T08:31:16+00:00",
+  "artifact_sha256": "ed4f03b09f5917539d58a7d6be86a1fc95a311e0de8c095476d01211c6fd48e9",
+  "artifact_bytes": 187013,
+  "content_type": "application/pdf",
+  "extracted_title": "Cheque07012026",
+  "extracted_words": 1922,
+  "source_authority": "Reserve Bank of India (RBI)",
+  "jurisdiction": "IN",
+  "scheme": "RBI Master Directions, Customer Protection & Ombudsman Schemes",
+  "document_type": "official_master_directions_and_faqs"
+}

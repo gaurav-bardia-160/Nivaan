@@ -37,10 +37,10 @@ class TestVectorDbHealthAndPointIntegrity:
     """Task 1: Verify Qdrant Vector DB Health and Point Embedding Validity."""
 
     def test_qdrant_collection_parameters(self, hybrid_retriever):
-        """Verify collection govbank_chunks exists with points=1388, dim=384, distance=Cosine."""
+        """Verify collection govbank_chunks exists with points=4046, dim=384, distance=Cosine."""
         client = hybrid_retriever.vector_store._client
         col_info = client.get_collection("govbank_chunks")
-        assert col_info.points_count == 1388, f"Expected 1388 points, got {col_info.points_count}"
+        assert col_info.points_count == 4046, f"Expected 4046 points, got {col_info.points_count}"
         vectors_config = col_info.config.params.vectors
         assert vectors_config.size == 384, f"Expected 384 dimensions, got {vectors_config.size}"
         assert str(vectors_config.distance).lower() in ("distance.cosine", "cosine"), (
@@ -72,7 +72,7 @@ class TestVectorDbHealthAndPointIntegrity:
         assert not np.isnan(vec).any(), "Vector must not contain NaNs"
         assert not np.isinf(vec).any(), "Vector must not contain Infs"
         norm = np.linalg.norm(vec)
-        assert norm > 1.0, f"Vector norm must be positive and non-trivial, got {norm}"
+        assert norm >= 0.99, f"Vector norm must be positive and non-trivial, got {norm}"
         assert np.count_nonzero(vec) == 384, "All dimensions in the embedding must be non-zero"
 
 

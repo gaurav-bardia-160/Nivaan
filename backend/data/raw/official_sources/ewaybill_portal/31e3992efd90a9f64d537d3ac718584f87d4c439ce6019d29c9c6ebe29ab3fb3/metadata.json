@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "ewaybill_portal",
+  "requested_url": "https://docs.ewaybillgst.gov.in/html/faq.html",
+  "final_url": "https://docs.ewaybillgst.gov.in/html/faq.html",
+  "fetched_at": "2026-11-09T08:29:41+00:00",
+  "artifact_sha256": "31e3992efd90a9f64d537d3ac718584f87d4c439ce6019d29c9c6ebe29ab3fb3",
+  "artifact_bytes": 219825,
+  "content_type": "text/html",
+  "extracted_title": "E-Way Bill System -Faq",
+  "extracted_words": 67105,
+  "source_authority": "Goods and Services Tax Network (GSTN) & National Informatics Centre (NIC)",
+  "jurisdiction": "IN",
+  "scheme": "Electronic Way Bill (E-Way Bill) Logistics & Transport Compliance",
+  "document_type": "official_guidelines_and_faqs"
+}

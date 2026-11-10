@@ -1,0 +1,779 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html><head>  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+<title>PAN Form CSF</title>  
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+</head>  
+<body>
+
+
+
+
+<!-- Font-->
+<link href="/PANform/resources/css/csf/opensans-font.css" rel="stylesheet">
+<link href="/PANform/resources/css/csf/roboto-font.css" rel="stylesheet">
+<link href="/PANform/resources/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css" rel="stylesheet">
+<link href="/PANform/resources/css/jquery-ui.min.css" rel="stylesheet">
+<link href="/PANform/resources/css/csf/style.css" rel="stylesheet">
+<style type="text/css">
+#loader{
+display : block;
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 1000;
+opacity: .5;
+background:rgba(0,0,0,.5) url('/PANform/resources/images/gif-load.gif') no-repeat center center;
+}
+</style>  
+<script src="/PANform/resources/js/jquery.min.js"></script>
+	<script src="/PANform/resources/js/csf/jquery.steps.js"></script>
+	<script src="/PANform/resources/js/jquery-ui.min.js"></script>
+	<script src="/PANform/resources/js/csf/preMain.js"></script>
+	<script src="/PANform/resources/js/csf/CSFValidation.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){	
+	  $("#csfPanNo").keypress(function(){
+		  $(this).val($(this).val().toUpperCase());
+	  });
+	});
+$(document).ready(function(){
+    // Convert input to uppercase as user types
+    $("#reEnterPanNoField").on("input", function() {
+        this.value = this.value.toUpperCase();
+    });
+
+    // Disable paste, copy, cut, drag, drop, right-click
+    $("#reEnterPanNoField").on("paste copy cut drag drop contextmenu", function(e) {
+        e.preventDefault();
+       
+    });
+});
+
+	
+	$(function() {
+		$("#errorDiv").dialog({
+			autoOpen : false,
+			modal : true,
+			autoSize : true,
+			draggable : false,
+			resizable : false,
+			position : {
+				my : "left top",
+				at : "left top",
+				of : window,
+				collision : "none"
+			},
+			create : function(event, ui) {
+				$(event.target).parent().css('position', 'fixed');
+			},
+
+			buttons : {
+				OK : function() {
+					$(this).dialog("close");
+				}
+			},
+			title : "Alert",
+			position : {
+				my : " center",
+				at : " center"
+			}
+		});
+	});
+	
+	function getEkycDetails() {
+		$("#ekyc")
+				.dialog(
+						{
+							resizable : true,
+							modal : true,
+							title : "PAN Online Paperless application process using Aadhaar Based e-KYC",
+							height : 500,
+							width : 1000,
+							buttons : {
+								Ok : function() {
+									$(this).dialog("close");
+								}
+							}
+						});
+	}
+
+	function getEsignDetails() {
+		$("#esign")
+				.dialog(
+						{
+							resizable : true,
+							modal : true,
+							title : "PAN Online Paperless application process using Aadhaar Based eSignature",
+							height : 500,
+							width : 1000,
+							buttons : {
+								Ok : function() {
+									$(this).dialog("close");
+								}
+							}
+						});
+	}
+
+	function getDSCDetails() {
+		$("#dsc")
+				.dialog(
+						{
+							resizable : true,
+							modal : true,
+							title : "PAN Online Paperless application process using Class II/Class III Indian DSC(Digital Signature Certificate)",
+							height : 500,
+							width : 1000,
+							buttons : {
+								Ok : function() {
+									$(this).dialog("close");
+								}
+							}
+						});
+	}
+
+	function showPopUp(){
+		
+		$("#physical").dialog({
+			resizable : true,
+			modal : true,
+			title : "Physical Application Instruction",
+			height : 500,
+			width : 1000,
+			buttons : {
+				 Ok: function () {
+	                    $(this).dialog("close");
+	                }
+			}
+		});
+}
+
+function DigitalShowPopUp(){
+	
+	$("#digital").dialog({
+		resizable : true,
+		modal : true,
+		title : "Digital Application Instruction",
+		height : 500,
+		width : 1000,
+		buttons : {
+			 Ok: function () {
+                    $(this).dialog("close");
+                }
+		}
+	});
+}
+	function noBack() {
+		window.history.forward();
+	}
+	noBack();
+	window.onload = noBack;
+	window.onpageshow = function(evt) {
+		if (evt.persisted)
+			noBack();
+	}
+	window.onunload = function() {
+		void (0);
+	}
+
+	function getEsignDetails() {
+		$("#esign")
+				.dialog(
+						{
+							resizable : true,
+							modal : true,
+							title : "PAN Online Paperless application process using Aadhaar Based eSignature",
+							height : 500,
+							width : 1000,
+							buttons : {
+								Ok : function() {
+									$(this).dialog("close");
+								}
+							}
+						});
+	}
+
+	function getDSCDetails() {
+		$("#dsc")
+				.dialog(
+						{
+							resizable : true,
+							modal : true,
+							title : "PAN Online Paperless application process using Class II/Class III Indian DSC(Digital Signature Certificate)",
+							height : 500,
+							width : 1000,
+							buttons : {
+								Ok : function() {
+									$(this).dialog("close");
+								}
+							}
+						});
+	}
+</script>
+
+
+	<div class="page-content" style="background-color: #0f97c1;">
+		<div class="wizard-v4-content">
+			<div class="wizard-form">
+				<div class="wizard-header">
+					<h3 class="heading" align="center">Application for Change/ Correction in PAN
+						Data</h3>
+
+				</div>
+				<form class="form-register" name="csfVal">
+				
+					<div id="form-total" role="application" class="wizard clearfix"><div class="steps clearfix"><ul role="tablist"><li role="tab" aria-disabled="false" class="first last current" aria-selected="true"><a id="form-total-t-0" href="#form-total-h-0" aria-controls="form-total-p-0"><span class="current-info audible"> </span><div class="title"></div></a></li></ul></div><div class="content clearfix">
+<input id="csfInstantPAN" name="csfInstantPAN" type="hidden" value="">
+						<!-- SECTION 5 -->
+						<h2 id="form-total-h-0" tabindex="-1" class="title current"></h2>
+						<section id="form-total-p-0" role="tabpanel" aria-labelledby="form-total-h-0" class="body current" aria-hidden="false">
+							<div class="inner">
+								<div class="form-row">
+									<div id="phyDiv">
+										<input id="csfApplModeType" name="csfApplModeType" onclick="preFormVailidation('P');" class="radio-1" type="radio" value="P">
+										<span style="font-family:Arial; font-size:15px; color:#010101;"> <b>Physical Mode</b> :</span>
+										<span style="font-family:Arial; font-size:13px; color:#645701; font-weight:bold;"> (Applicant has to submit the printed signed application forms at nearest <a href="https://www.pan.utiitsl.com" target="_blank">UTIITSL offices</a>)</span>
+									</div>
+								</div>
+								<br>
+								
+								<div class="form-row">
+									<div id="radio">
+
+										<input id="csfApplModeType1" name="csfApplModeType" onclick="preFormVailidation('D');" class="radio-1" type="radio" value="D">
+										<span style="font-family: Arial; font-size: 15px; color: #010101;">Digital
+											(Paperless) </span>
+									</div>
+								</div>
+								<input id="csfEkycFlag" name="csfEkycFlag" value="N" type="hidden">		
+								<br>
+								
+								  <div>
+									<div id="checkbox">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input id="csfEsignType2" name="csfEsignType" onclick="eKycValidate('csfEkycFlag');" class="radio-1" type="radio" value="A" disabled="">										
+										<span style="font-family: Arial; font-size: 15px; color: #010101;">
+											Aadhaar based e-KYC option (Details of the resident are
+											fetched based on Aadhaar Number from the UIDAI Server)</span>&nbsp;&nbsp;
+											<a href="javascript:getEkycDetails()">
+											<img src="/PANform/resources/images/icon_help.png" border="0" align="absmiddle"> </a>
+											
+									</div>
+								</div>
+								
+								<br> 
+								
+								<div class="form-row">
+									<div id="radio">
+
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										
+										<input id="csfEsignType1" name="csfEsignType" onclick="eKycValidate('csfEsignType1');" class="radio-1" type="radio" value="A" disabled="">
+										<span style="font-family: Arial; font-size: 15px; color: #010101;">Sign
+											Using Aadhaar based eSign (Signing of the Application is done
+											using Aadhaar based eSign ) </span>&nbsp;&nbsp;
+											<!-- <a href=""><img src="images/icon_help.png" border="0" align="absmiddle" /> </a> -->
+											<a href="javascript:getEsignDetails()"><img src="/PANform/resources/images/icon_help.png" border="0" align="absmiddle"> </a>
+									</div>
+								</div>
+								
+								<br>
+									
+								<div class="form-row">
+									<div id="radio">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input id="csfEsignType" name="csfEsignType" onclick="eKycValidate('csfEsignType');" class="radio-1" type="radio" value="D" disabled="">
+										<span style="font-family: Arial; font-size: 15px; color: #010101;">Sign
+											Using Digital Signature Certificate (Class II / Class III
+											DSC) (Signing of the Application is done using Digital
+											Signature Certificate )</span> &nbsp;&nbsp;
+											<!-- <a href=""><img src="images/icon_help.png" border="0" align="absmiddle" /> </a> -->
+											<a href="javascript:getDSCDetails()">
+											 <img src="/PANform/resources/images/icon_help.png" border="0" align="absmiddle"> </a>
+
+									</div>
+								</div>
+								
+								
+								<br>
+								<div class="form-row">
+									&nbsp;&nbsp;&nbsp;<span style="font-family: Arial; font-size: 14px; color: #CC0066;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note:
+										If signed Using eSign an additional fee of Rs. 5.90 will be
+										levied.</span>
+								</div>
+								<br> <br>
+							
+								<div style="border: 1px solid #0083c7;">
+									<div align="center">
+										<h4>Permanent Account Number(PAN)*</h4>
+
+										<div class="form-row">
+											<div class="form-holder form-holder-2" style="padding-left: 25%;">
+												<label class="form-row-inner"> <input type="text" class="form-control" id="csfPanNo" name="csfPanNo" required="" style="width: 60%" onchange="makeUpper(this);" maxlength="10" onkeypress="return AcceptAlphabetandNumeric(event,/^[-\/.]$/, false, false);" onblur="return fnValidatePAN(this);" autocomplete="off"> <span class="label" style="padding-left: 7%;">Permanent Account Number
+														(PAN)*</span> <span class="border"></span>
+												</label>
+											</div>
+
+										</div>
+
+									</div>
+									<br>
+								</div>
+								<br>
+
+								<div style="border: 1px solid #0083c7;">
+									<div align="center">
+										<h4>PAN CARD Mode *</h4>
+										<br>
+										<div id="radio">
+											<input id="csfPancardMode1" name="csfPancardMode" class="radio-1" type="radio" value="P"><span style="font-family: Arial; font-size: 14px; color: #010101;">Both
+												physical PAN Card and e-PAN</span> <input id="csfPancardMode2" name="csfPancardMode" class="radio-1" type="radio" value="E"> <span style="font-family: Arial; font-size: 14px; color: #010101;">e-PAN
+														only, No physical PAN Card will be dispatched</span>
+
+										</div>
+									</div>
+									<br>
+									<div align="center">
+										<div>
+											<span style="font-family: Arial; font-size: 13px; color: #CC0066;">Note
+												: Physical PAN card will be delivered to applicant`s
+												address. e-PAN will be sent to applicant`s e-mail.</span>
+										</div>
+
+
+									</div>
+									<br>
+								</div>
+
+
+
+							</div>
+						</section>
+					</div><div class="actions clearfix"><ul role="menu" aria-label="Pagination"><li class="disabled" aria-disabled="true"><a href="#previous" role="menuitem">Back Step</a></li><li aria-hidden="true" class="disabled" aria-disabled="true" style="display: none;"><a href="#next" role="menuitem">Next Step</a></li><li aria-hidden="false"><a href="#finish" role="menuitem">Submit</a></li></ul></div></div>
+					
+	<div id="errorDialog">
+	<p id="errorDialogText"></p>
+</div>	
+	
+										
+					<input type="hidden" name="ekyc_flag" id="ekycFlg" value="Y"><br>
+						<input type="hidden" name="esign_flag" id="eSignFlg" value="Y"><br>
+						<input type="hidden" name="dsc_flag" id="dscFlg" value="Y"><br>
+					</form>
+				
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var changeMsg="null";
+			var errorMesg="null";
+			var errorMsgInstPAN="null";
+			var title = "";
+			var msg = "";
+			if(errorMesg !=null && errorMesg != ""  &&  errorMesg!="null"){
+				title ="Insufficient Balance";
+				msg = errorMesg;
+			}
+			else if(errorMsgInstPAN !=null && errorMsgInstPAN != ""  &&  errorMsgInstPAN!="null"){
+				title ="Instant PAN";
+				msg = errorMsgInstPAN;
+			}
+			else if(changeMsg !=null && changeMsg != ""  &&  changeMsg!="null"){
+				title ="Change/Correction";
+				msg = changeMsg;
+			}
+		
+
+			  if(title != ""){
+					var arr = msg.split('.');		
+					var msg1;
+					var val;
+					msg1 = "<table>";
+					arr.splice(-1,1);
+					$.each(arr, function(k) {
+						msg1 += "<tr><td>&#187;" + arr[k] + "</td></tr>";
+					});
+					msg1 += "</table>";
+					$("#dialogText1").html(msg1);
+					$("#dialogText1").css("color", "red");
+					//alert($("#dialogText1").text());
+
+					$('#errorDiv').dialog({
+						"title" : title, 
+						"width" : "auto"
+					});
+					$("#errorDiv").dialog("open");
+					//return false;
+			  }else{
+				  //showPopUp();
+				  preFormVailidation('P');
+			  }
+		});
+		
+	
+	function preFormVailidation(val) {
+		try{
+		if (val == 'P') {
+			 $("#csfEkycFlag").val("N");	
+		   $("#applModeType").prop('checked', true);
+		   $("#csfEsignType").prop('checked', false);
+		   $("#csfEsignType1").prop('checked', false);
+		   $("#csfEsignType2").prop('checked', false);
+		   
+		   $("#csfEsignType").prop('disabled', true);
+		   $("#csfEsignType1").prop('disabled', true);
+		   $("#csfEsignType2").prop('disabled', true);
+			 
+			 
+		} else {			
+			 $("#applModeType").prop('checked', false);
+			 $("#csfEsignType").prop('disabled', false);
+			 $("#csfEsignType1").prop('disabled', false);
+			 $("#csfEsignType2").prop('disabled', false);			 
+			 if($("#ekycFlg")!=null && $("#ekycFlg").val()=="Y"){
+				 
+			  $("#csfEsignType2").prop('checked', true);
+			  $("#csfEsignType1").prop('checked', false);
+			  $("#csfEsignType").prop('checked', false);
+			  $("#csfEkycFlag").val("Y");				
+			
+			 }
+			 else{
+			 if($("#eSignFlg")!=null && $("#eSignFlg").val()=="Y"){
+				 $("#csfEsignType1").prop('checked', true);
+				 $("#csfEkycFlag").val("N");				
+				
+			 }else{ 
+				 $("#csfEsignType").prop('checked', true);				
+			 }				 
+			 }	
+		}
+		
+	
+		}catch(error){
+			console.log(error);
+		}
+		
+	}
+		
+				
+		function eKycValidate(value) {
+			try{
+			$("#csfEkycFlag").val("N");
+			if ('csfEkycFlag' == value) {	
+				if (document.getElementById('csfEsignType2').checked == true) {
+				     $("#csfEkycFlag").val("Y");				
+					document.forms[0].status.value="P";
+					$("#status").prop('disabled', true);
+				}
+				else{
+					 document.forms[0].status.value="";
+					    $("#status").prop('disabled', false);
+				}
+			}
+			if ('esignType' == value) {
+				if (document.getElementById('esignType').checked == true) {
+					document.forms[0].status.value="";
+					 $("#status").prop('disabled', false); 
+				}
+			}
+			if ('csfEsignType1' == value) {
+				if (document.getElementById('csfEsignType1').checked == true) {			
+				document.forms[0].status.value="P";
+				$("#status").prop('disabled', true);
+				}	
+			}
+		}catch(error){
+			console.log(error);
+		}
+		}
+	</script>
+	
+		
+<table id="ekyc" style="display: none" border="0" width="100%" bordercolor="#000000">
+		<tbody><tr>
+			<td align="center">
+				<table border="1" width="100%" style="border-collapse:collapse;">
+					<tbody><tr>
+						<td width="10%" align="left" style="font-size: 13px; font-family: arial; color:blue">
+<br>
+1.&nbsp;	Applicant's may apply for PAN card using paperless feature (without manual submission) using Aadhaar based e-KYC services available on UTIITSL Portal.<br><br>
+
+2.&nbsp;	Applicant is allowed to fill basic details in the Application form.<br><br>
+
+3.&nbsp;	On submission of the application, it will redirect to payment gateway. On successful payment the Aadhaar authentication will take place.<br><br>
+
+4.&nbsp;	If the payment transaction failed due to any unknown reasons, applicant may again initiate for payment using the option "Regenerate online PAN application".<br><br>
+
+5.&nbsp;	The Aadhaar will be authenticated on real time basis from UIDAI server. If the authentication status is found to be perfect match then the application will be &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processed further.<br><br>
+
+6.&nbsp;	In case of failure of Aadhaar Authentication, Auto Refund will be processed for the Application. Applicant can submit the new application in physical mode.<br><br>
+
+7.&nbsp;	Once the Aadhaar authentication found matched then OTP will be generated for carrying out e-KYC services. Users have to provide OTP and the consent in the &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specified box to process further. The OTP will send to applicants UIDAI registered mobile number only<br><br>
+
+8.&nbsp;	After successful authentication of OTP, applicant address details will be fetched from the UIDAI and populated in the PAN form.<br><br>
+
+9.&nbsp;	In case the e-KYC feature fails due to any unknown technical reasons or the e-KYC feature has not worked successfully you may use the option "Regenerate online &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PAN application" to complete the e-KYC Process.<br><br>
+
+10.	If the Mobile is not registered / not available in UIDAI automatic Refund will be processed for the Application. Applicant can submit the new application in physical &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode.<br><br>
+
+11.	After successful completion of e-KYC process, the application data has to verified by the applicant and provide other necessary information and submit.<br><br>
+
+12.	The applicant cannot change the data after Aadhaar authentication and after successfully processed through eKYC mode.<br><br>
+
+13.	After successful validation, on submit the OTP for eSign will be requested. On successfully OPT received and post submission of the OTP the application will &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;signed through Aadhaar based e-Sign services.<br><br>
+
+14.	On successfully signed the application will be saved at utiitsl and will be processed further. <br><br>
+
+15.	Please note, the Applicant does not need to send any files / printouts of PAN application forms to UTIITSL office if unless it has been asked for any clarification.<br><br>
+<br>
+</td>
+						
+					</tr>
+					
+				<!-- 	<tr>
+						<td colspan="4" align="center"
+							style="font-size: 13px; font-family: arial; color: gray;"><br />
+						<br />
+						<input type="button" name="Ok" value="Ok"
+							onclick="javascript:closeMeVal()" class="formButton_49A" /></td>
+					</tr> -->
+					
+				</tbody></table>
+			</td>
+		</tr>
+
+	</tbody></table>	
+<table id="esign" style="display: none" border="0" width="100%" bordercolor="#000000">
+		<tbody><tr>
+			<td align="center">
+				<table border="1" width="100%" style="border-collapse: collapse;">
+					<tbody><tr>
+						<td width="10%" align="left" style="font-size: 13px; font-family: arial; color: blue"><br>
+							1.&nbsp; Applicant's may apply for PAN card using paperless
+							feature (without manual submission) using Aadhaar based eSign
+							services available on UTIITSL Portal.<br> <br> 2.&nbsp;
+							After complete filling of the application form the applicant has
+							to upload the supporting documents in PDF format and Picture,
+							Signature files in JPEG/JPG format by
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selecting from local system
+							or from the Digilocker as per required specification.<br> <br>
+							3.&nbsp; On complete submission of the application, it will
+							redirect to payment gateway. On successful payment the Aadhaar
+							authentication will take place.<br> <br> 4.&nbsp; If the
+							payment transaction failed due to any unknown reasons, applicant
+							may again initiate for payment using the option "Regenerate
+							online PAN application".<br> <br> 5.&nbsp; The Aadhaar will
+							be authenticated on real time basis from UIDAI server. If the
+							authentication status is found to be perfect match then the
+							application will be &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processed
+							further.<br> <br> 6.&nbsp; Once the Aadhaar authentication
+							found matched then OTP will be generated for carrying out e-Sign
+							services. Users have to provide OTP and the consent in the
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specified box to process
+							further. The OTP will send to applicants UIDAI registered mobile
+							number only<br> <br> 7.&nbsp; Once the e-Sign process
+							completes successfully, Application will be moved to processing
+							zone<br> <br> 8.&nbsp; In case the eSign fails due to any
+							unknown reasons, applicant may again initiate eSign process using
+							the option "Regenerate online PAN application".<br> <br>
+							9.&nbsp; If the Mobile is not registered / not available in UIDAI
+							automatic Refund will be processed for the Application. Applicant
+							can submit the new application in physical
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode.<br> <br> 10. 10.
+							Please note the user does not need to send any files / printouts
+							if unless UTIITSL demands for any clarification.<br> <br> <br></td>
+
+					</tr>
+
+					<!-- 	<tr>
+						<td colspan="4" align="center"
+							style="font-size: 13px; font-family: arial; color: gray;"><br />
+						<br />
+						<input type="button" name="Ok" value="Ok"
+							onclick="javascript:closeMeVal()" class="formButton_49A" /></td>
+					</tr> -->
+
+				</tbody></table>
+			</td>
+		</tr>
+
+	</tbody></table>
+
+
+	<table id="dsc" style="display: none" border="0" width="100%" bordercolor="#000000">
+		<tbody><tr>
+			<td align="center">
+				<table border="1" width="100%" style="border-collapse: collapse;">
+					<tbody><tr>
+						<td width="10%" align="left" style="font-size: 13px; font-family: arial; color: blue"><br>
+							1. Applicants may apply for PAN card using paperless feature
+							(without manual submission) of signing using DSC Digital
+							Signature Certificate (Class II / Class III DSC).<br> <br>
+							2. After complete filling of the application form the applicant
+							has to upload the supporting documents in PDF format and Picture,
+							Signature files in JPEG/JPG format by
+							&nbsp;&nbsp;&nbsp;&nbsp;selecting from local system or from the
+							Digilocker as per required specification.<br> <br> 3. On
+							complete submission of the application, it will redirect to
+							payment gateway for payment.<br> <br> 4. If the payment
+							transaction failed due to any unknown reasons, applicant may
+							again initiate for payment using the option "Regenerate online
+							PAN application".<br> <br> 5. After successful payment, The
+							PAN application in PDF format having photo, signature and
+							supporting documents at appropriate places will be shown to the
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;applicant for Download and PAN
+							applicant will apply digital signature on the downloaded PAN
+							Form.<br> <br> 6. Once digitally signed, Applicant will
+							upload the signed PDF. <br> <br> 7. DSC of the applicant
+							and Validity of the DSC will be validated.<br> <br> 8. DSC
+							name verification may be matched with different filled values
+							from the application based on the names provided in different
+							fields (for example applicant card &nbsp;&nbsp;&nbsp;&nbsp;name /
+							in case of minor applicant assessee name / in case of non
+							individual Verifier name). However only exact matching is
+							allowed.<br> <br> 9. After successful verification of DSC,
+							Application will be moved to processing zone. <br> <br> 10.
+							Please note the user does not need to send any files / printouts
+							if unless UTIITSL demands for any clarification.<br> <br> <br>
+
+							<table border="1" style="border-collapse: collapse;">
+								<tbody><tr>
+									<td>Domestic Company incorporated prior to 01/02/2017</td>
+									<td>Domestic Company incorporated after 01/02/2017</td>
+								</tr>
+
+								<tr>
+									<td>Document Required--- ( To be uploaded by the
+										applicants, In place of address proof option)</td>
+									<td>Document Required---(To be uploaded by the applicants,
+										In place of address proof option)</td>
+								</tr>
+								<tr>
+									<td>1. Copy of Certificate of Incorporation<br> 2.
+										Declaration/affidavit duly signed by authorized signatory
+										stating reasons for not obtaining/applying PAN till date.
+
+									</td>
+									<td>1. Copy of Certificate of Incorporation.<br> 2. No
+										objection Certificate from Ministry of Corporate affairs( MCA)
+
+									</td>
+								</tr>
+							</tbody></table></td>
+
+
+					</tr>
+
+					<!-- 	<tr>
+						<td colspan="4" align="center"
+							style="font-size: 13px; font-family: arial; color: gray;"><br />
+						<br />
+						<input type="button" name="Ok" value="Ok"
+							onclick="javascript:closeMeVal()" class="formButton_49A" /></td>
+					</tr> -->
+
+				</tbody></table>
+			</td>
+		</tr>
+
+	</tbody></table>	
+	
+		 <table id="physical" style="display: none" border="0" width="100%" bordercolor="#000000">
+		<tbody><tr>
+			<td align="center">
+				<table border="1" width="100%" style="border-collapse:collapse;">
+					<tbody><tr>
+						<td width="10%" align="left" style="font-size: 13px; font-family: arial; color:blue; line-height:26px;">
+
+1. The user has to select the physical application mode alongwith the option of 'e-PAN only' or 'e-PAN with physical PAN Card' on the first screen.<br>
+
+2. On successful submission, a reference number will be generated.<br>
+
+3. The reference number has to be retained for interim use till the Application number gets generated.<br>
+
+4. Once the payment is successful then the Aadhaar authentication will be carried out.<br>
+
+5. In case of mismatch in Demographic Aadhaar authentication and even after Biometric authentication, 
+then the application will be rejected and the payment will be refunded by end of day through the system itself.<br>
+
+6. The user has to contact their Corporate Office/ Head Office (admin user) just in case any issue is faced in refund of payment transactions.<br>
+
+7. On successful Aadhaar authentication, the user has to complete the application till the application number gets generated. 
+In case application is not completed, the payment will be refunded by end of the day through the system itself.<br>
+
+8. Edit Option if application no. is not generated will be available for the successful Aadhaar authentication cases only for the day.<br>
+
+9. Edit Option if application no. is generated will be available.<br>
+
+10. Download and print the completed application and paste photo with signature at appropriate locations on the printed application.<br>
+
+11. Upload the signed printed application and documentary proofs to complete the process.<br>
+
+12. If documents are not uploaded on the same day alongwith the application on real time, the case will be moved to 'objections list' for uploading documents later.<br>
+
+13  Details of Payment Success/Failure/Refund can be checked on the next day using Payment Details menu.<br>
+</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+	</tbody></table>
+	 
+ <table id="digital" style="display: none" border="0" width="100%" bordercolor="#000000">
+		<tbody><tr>
+			<td align="center">
+				<table border="1" width="100%" style="border-collapse:collapse;">
+					<tbody><tr>
+						<td width="10%" align="left" style="font-size: 13px; font-family: arial; color:black; line-height:26px;">
+
+1. The user has to select the Digital (e-KYC) application mode along with the option of 'e-PAN only' or 'e-PAN with physical PAN Card' on the first screen.<br>
+2. On successful submission, a reference number will be generated.<br>
+3. The reference number has to be retained for interim use till the Application number gets generated.<br>
+4. Once the payment is successful then the Aadhaar authentication will be carried out.<br>
+5. In case of mismatch in Demographic Aadhaar authentication, then the application will be rejected and the payment will be refunded by end of day through the system itself.<br>
+6. On successful Aadhaar authentication, the applicant's data will be fetched as per UIDAI record through mobile OTP authentication or biometric authentication as per user's choice. There cannot be any change made in the residential address and even in the communication address option as per e-KYC norms. If the Applicant's profession is 'salaried' then providing of office name and address is mandatory.<br>
+7. On successful completion of application immediately after generation of application no., Aadhaar based e-Sign service will be called through the system for electronic/digitally signing of the application.<br>
+8. If e-Sign is not completed instantly or on the same day, the case will be moved to 'objections list' for electronic/digitally signing later.<br>
+9. In case e-Sign is not successful and is found to be failure due to any technical reason then the payment will be refunded by end of day through the system itself.<br>
+10. Due to any other interim technical issue with e-Sign, the users can check the cases pending for e-Sign under 'Pending for e-Sign option' menu.<br>
+11. If the application with e-Sign is successfully completed, the user need not send physical printed copy to UTIITSL unless it is demanded for.<br>
+</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+	</tbody></table>
+	
+	<table id="reEnterPanNo" align="center" width="100%" cellpadding="2" cellspacing="2" style="display: none;">
+		<tbody><tr>
+			<td><input type="text" maxlength="12" class="fe_1" id="reEnterPanNoField" onkeypress="return AcceptAlphabetandNumeric(event,/^[-\/.]$/, false, false);" autocomplete="off"></td>
+		</tr>
+		<tr>
+			<td><label id="hideReEnterPanNo" style="font-weight: bold; font-size: large; color: red; size: 12"></label></td>
+		</tr>
+	</tbody></table>
+	<div id="loader" style="display:none"></div> 
+<script type="text/javascript">
+
+
+
+
+</script>	
+	
+	  
+  
+  <div tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons" aria-describedby="confirmDialog" aria-labelledby="ui-id-1" style="display: none;"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix"><span id="ui-id-1" class="ui-dialog-title">Alert</span><button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>Close</button></div><div id="confirmDialog" class="ui-dialog-content ui-widget-content">
+	<p id="confirmDialogText"></p>
+</div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-corner-all ui-widget">Yes</button><button type="button" class="ui-button ui-corner-all ui-widget">No</button></div></div></div><div tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons" aria-describedby="errorDiv" aria-labelledby="ui-id-2" style="display: none; position: fixed;"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix"><span id="ui-id-2" class="ui-dialog-title">Alert</span><button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>Close</button></div><div id="errorDiv" class="ui-dialog-content ui-widget-content">
+		<p id="dialogText1"></p>
+	</div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-corner-all ui-widget">OK</button></div></div></div></body></html>

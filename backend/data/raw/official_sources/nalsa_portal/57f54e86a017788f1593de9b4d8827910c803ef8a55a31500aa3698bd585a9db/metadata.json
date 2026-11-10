@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "nalsa_portal",
+  "requested_url": "https://nalsa.gov.in/faqs/",
+  "final_url": "https://nalsa.gov.in/faqs/",
+  "fetched_at": "2026-11-09T08:43:11+00:00",
+  "artifact_sha256": "57f54e86a017788f1593de9b4d8827910c803ef8a55a31500aa3698bd585a9db",
+  "artifact_bytes": 215623,
+  "content_type": "text/html",
+  "extracted_title": "FAQs | NATIONAL LEGAL SERVICES AUTHORITY (NALSA) | India",
+  "extracted_words": 56840,
+  "source_authority": "National Legal Services Authority (NALSA), Ministry of Law and Justice, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Free Legal Aid, Lok Adalat & Legal Services Clinics",
+  "document_type": "official_guidelines_and_faqs"
+}

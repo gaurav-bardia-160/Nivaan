@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "tin_protean_portal",
+  "requested_url": "https://tinpan.proteantech.in/faqs/pan/faq-pan-procedure.html",
+  "final_url": "https://tinpan.proteantech.in/faqs/pan/faq-pan-procedure.html",
+  "fetched_at": "2026-11-09T08:27:39+00:00",
+  "artifact_sha256": "a63738c4223e039167d956063dcabf24921bb340c9439e620f85646c544deb23",
+  "artifact_bytes": 202172,
+  "content_type": "text/html",
+  "extracted_title": "FAQ Permanent Account Number New",
+  "extracted_words": 52328,
+  "source_authority": "Protean eGov Technologies Limited / Income Tax Department",
+  "jurisdiction": "IN",
+  "scheme": "Permanent Account Number (PAN) Issuance & Corrections",
+  "document_type": "official_portal_guidance"
+}

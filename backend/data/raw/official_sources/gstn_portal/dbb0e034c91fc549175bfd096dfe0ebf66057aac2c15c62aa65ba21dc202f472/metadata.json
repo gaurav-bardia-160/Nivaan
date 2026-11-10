@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "gstn_portal",
+  "requested_url": "https://tutorial.gst.gov.in/downloads/news/return_compliance_itc_mismatch_intimation_in_form_gst_drc_01c.pdf",
+  "final_url": "https://tutorial.gst.gov.in/downloads/news/return_compliance_itc_mismatch_intimation_in_form_gst_drc_01c.pdf",
+  "fetched_at": "2026-11-09T08:29:00+00:00",
+  "artifact_sha256": "dbb0e034c91fc549175bfd096dfe0ebf66057aac2c15c62aa65ba21dc202f472",
+  "artifact_bytes": 2463404,
+  "content_type": "application/pdf",
+  "extracted_title": "Return Compliance Itc Mismatch Intimation In Form Gst Drc 01C",
+  "extracted_words": 1998,
+  "source_authority": "Goods and Services Tax Network (GSTN), Ministry of Finance, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "GST Compliance & Return Filings (DRC-01B, DRC-01C, GSTR-3B, GSTR-7)",
+  "document_type": "official_guidelines_and_faqs"
+}

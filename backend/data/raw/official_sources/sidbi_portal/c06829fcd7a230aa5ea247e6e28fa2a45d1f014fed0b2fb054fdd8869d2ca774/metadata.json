@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "sidbi_portal",
+  "requested_url": "https://www.sidbi.in/uploads/publicationreport/Customer-Grievance-Redressal-Policy.pdf",
+  "final_url": "https://www.sidbi.in/uploads/publicationreport/Customer-Grievance-Redressal-Policy.pdf",
+  "fetched_at": "2026-11-09T08:43:53+00:00",
+  "artifact_sha256": "c06829fcd7a230aa5ea247e6e28fa2a45d1f014fed0b2fb054fdd8869d2ca774",
+  "artifact_bytes": 629898,
+  "content_type": "application/pdf",
+  "extracted_title": "Customer Grievance Redressal Policy",
+  "extracted_words": 2405,
+  "source_authority": "Small Industries Development Bank of India (SIDBI)",
+  "jurisdiction": "IN",
+  "scheme": "MSME Customer Grievance Redressal Policy & Credit Facilitation",
+  "document_type": "official_guidelines_and_faqs"
+}

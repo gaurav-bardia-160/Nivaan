@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "rbi_portal",
+  "requested_url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/RBIOS01072026.pdf",
+  "final_url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/RBIOS01072026.pdf",
+  "fetched_at": "2026-11-09T08:31:15+00:00",
+  "artifact_sha256": "db923b0fe96466e98510a151404c3022b5d8e3a48b51e304c142e354ba0dca66",
+  "artifact_bytes": 168191,
+  "content_type": "application/pdf",
+  "extracted_title": "Rbios01072026",
+  "extracted_words": 3443,
+  "source_authority": "Reserve Bank of India (RBI)",
+  "jurisdiction": "IN",
+  "scheme": "RBI Master Directions, Customer Protection & Ombudsman Schemes",
+  "document_type": "official_master_directions_and_faqs"
+}

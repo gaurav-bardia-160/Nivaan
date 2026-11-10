@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "eci_portal",
+  "requested_url": "https://voters.eci.gov.in/HomePageFaq",
+  "final_url": "https://voters.eci.gov.in/HomePageFaq",
+  "fetched_at": "2026-11-09T08:26:23+00:00",
+  "artifact_sha256": "72305182c6ea1cfff12bffac98dcbe8003ea4927252bcb97d31c7ef729456df2",
+  "artifact_bytes": 107495,
+  "content_type": "text/html",
+  "extracted_title": "Citizen Service Portal",
+  "extracted_words": 26743,
+  "source_authority": "Election Commission of India (ECI)",
+  "jurisdiction": "IN",
+  "scheme": "Voters' Services & Electoral Registration",
+  "document_type": "official_portal_guidance"
+}

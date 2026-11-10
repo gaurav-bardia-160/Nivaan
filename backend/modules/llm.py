@@ -43,6 +43,7 @@ def _is_direct_or_binary_question(query: str) -> bool:
 class GroundedRewrite(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
+    title: str | None = None
     summary: str = Field(min_length=20, max_length=2400)
     documents_needed: list[str] = Field(default_factory=list)
     steps: list[dict[str, str]] = Field(default_factory=list)
@@ -273,7 +274,7 @@ def _build_llm_prompt(
 
     # Build multi-turn conversational dialogue from up to the last 25 turns
     dialogue_turns = []
-    for turn in memory[-25:]:
+    for turn in (memory or ())[-25:]:
         dialogue_turns.append(f"Citizen: {turn.user_text}")
         asst = getattr(turn, "assistant_text", None) or turn.answer_title
         if asst:
@@ -302,6 +303,7 @@ def _build_llm_prompt(
             "If the documents do not explicitly mention the specific government portal, scheme, or error code queried by the user "
             "(e.g., retrieving Income Tax documents for a FASTag query), you MUST NOT output a step-by-step procedure. "
             "Instead, output: 'Insufficient data in the verified civic knowledge base for this specific portal.' and stop generating.\n"
+            "- ANTI-FABRICATION DIRECTIVE: Never assume unstated facts or premises. Do not assume an establishment or employer is closed or non-operational when unstated by the user; if the employer is active, never instruct the user to follow closed-establishment protocols.\n"
             "- DIRECT FIRST-SENTENCE: Answer the user's explicit question directly in the very first sentence. For binary/jurisdictional questions ('Can I...', 'Should I...', 'Will it...'), answer 'Yes' or 'No' with statutory reason, and return 'steps': [] and 'documents_needed': []. Only include 'steps' when asked how to perform a multi-step action.\n"
             "- ZERO VAGUE PUNTS: Always specify exact official portals, forms, and escalation desks. Never say 'contact customer care'.\n"
             "- ZERO CROSS-CONTAMINATION: Never blend unrelated error codes or procedures.\n"
@@ -318,6 +320,22 @@ def _build_llm_prompt(
         )
 
     return system, prompt, is_greeting
+
+
+def _call_ollama(payload: dict, base_url: str = "http://localhost:11434", timeout_seconds: float = 30.0) -> str:
+    response = httpx.post(
+        f"{base_url}/api/chat",
+        json=payload,
+        timeout=timeout_seconds,
+    )
+    response.raise_for_status()
+    body = response.json()
+    raw_content = body.get("message", {}).get("content", "").strip()
+    raw_content = re.sub(r"<think>.*?</think>", "", raw_content, flags=re.DOTALL).strip()
+    if raw_content.startswith("```"):
+        raw_content = re.sub(r"^```(?:json)?\s*", "", raw_content)
+        raw_content = re.sub(r"\s*```$", "", raw_content)
+    return raw_content.strip()
 
 
 class LocalLLMClient:
@@ -365,7 +383,6 @@ class LocalLLMClient:
 
     def synthesize_grounded_answer(
         self,
-        *,
         question: str,
         answer: Answer,
         memory: tuple[MemoryTurn, ...] = (),
@@ -419,19 +436,7 @@ class LocalLLMClient:
         with _is_generating_lock:
             _is_generating = True
         try:
-            response = httpx.post(
-                f"{self.config.base_url}/api/chat",
-                json=payload,
-                timeout=self.config.timeout_seconds,
-            )
-            response.raise_for_status()
-            body = response.json()
-            raw_content = body.get("message", {}).get("content", "").strip()
-            raw_content = re.sub(r"<think>.*?</think>", "", raw_content, flags=re.DOTALL).strip()
-            if raw_content.startswith("```"):
-                raw_content = re.sub(r"^```(?:json)?\s*", "", raw_content)
-                raw_content = re.sub(r"\s*```$", "", raw_content)
-            raw_content = raw_content.strip()
+            raw_content = _call_ollama(payload, self.config.base_url, self.config.timeout_seconds)
 
             summary_candidate = None
             docs_candidate = []
@@ -472,6 +477,7 @@ class LocalLLMClient:
                 or "does not explicitly mention the specific government portal" in summary_candidate.lower()
             )
             parsed = GroundedRewrite.model_validate({
+                "title": "No verified guide found" if is_refusal else None,
                 "summary": summary_candidate,
                 "documents_needed": [] if is_refusal else docs_candidate,
                 "steps": [] if is_refusal else steps_candidate,

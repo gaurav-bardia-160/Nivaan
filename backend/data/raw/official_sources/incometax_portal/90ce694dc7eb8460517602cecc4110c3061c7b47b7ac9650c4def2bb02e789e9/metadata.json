@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_id": "incometax_portal",
+  "requested_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-use-my-e-filing-profile",
+  "final_url": "https://www.incometax.gov.in/iec/foportal/help/how-to-use-my-e-filing-profile",
+  "fetched_at": "2026-11-09T08:27:05+00:00",
+  "artifact_sha256": "90ce694dc7eb8460517602cecc4110c3061c7b47b7ac9650c4def2bb02e789e9",
+  "artifact_bytes": 428422,
+  "content_type": "text/html",
+  "extracted_title": "My Profile User Manual | Income Tax Department",
+  "extracted_words": 9831,
+  "source_authority": "Central Board of Direct Taxes (CBDT), Directorate of Systems, Income Tax Department, Government of India",
+  "jurisdiction": "IN",
+  "scheme": "Direct Taxes & e-Filing Portal Services",
+  "document_type": "official_portal_guidance"
+}
