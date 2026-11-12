@@ -472,7 +472,14 @@ def test_tier1_r4_refusal_interception():
     """Verify refusal phrases in LLM candidates trigger ungrounded not_found_answer."""
     from backend.modules.llm import LocalLLMClient
     from backend.modules.explainer import not_found_answer
-    client = LocalLLMClient()
+    from backend.modules.llm import LocalLLMConfig
+    client = LocalLLMClient(LocalLLMConfig(
+        enabled=True,
+        base_url="http://127.0.0.1:11434",
+        model="test-model",
+        timeout_seconds=1.0,
+        allow_remote=False,
+    ))
     mock_resp = '{"summary": "Insufficient data in the verified civic knowledge base for this specific portal.", "steps": [], "documents_needed": []}'
     with patch("backend.modules.llm._call_ollama", return_value=mock_resp):
         ans = Answer(last_verified=date(2026, 10, 1), title="Candidate", summary="Candidate", documents_needed=[], steps=[Step(title="S", detail="D")])

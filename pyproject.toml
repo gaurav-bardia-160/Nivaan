@@ -48,3 +48,7 @@ dependencies = [
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
+
+[tool.setuptools.packages.find]
+include = ["backend*"]
+exclude = ["frontend*", "samples*", "tests*"]

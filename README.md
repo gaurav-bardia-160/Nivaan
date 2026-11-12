@@ -10,11 +10,12 @@
 
 ## Current Architecture & Capabilities
 
-### 1. Hybrid Grounded Retrieval (Verified-First + RAG Fallback)
-- **Verified Knowledge Base:** 11 deterministic, human-checked procedure guides (e.g. Passport Seva fresh/re-issue application, Form 49A PAN application, Aadhaar enrolment, ITR filing basics, EPF withdrawal, loan prepayment, FIR filing) are checked first and take absolute precedence over candidate passages.
-- **Hybrid RAG Fallback:** Lexical search (BM25) combined with dense multilingual vector search (FastEmbed `paraphrase-multilingual-MiniLM-L12-v2` + local Qdrant) via Reciprocal Rank Fusion (RRF).
-- **Strict Ingestion Allowlist:** Ingests exactly 681 safe canonical chunks across PAN, Aadhaar, and civic portals while rejecting non-allowlisted and malformed sources.
-- **Explicit Provenance:** Every response includes official source URLs, reporting dates, verification labels (`VERIFIED` vs `UNVERIFIED`), and step-by-step checklists.
+### 1. Pure Dynamic RAG and Corrective Retrieval
+- **No Predefined Answer Files:** User-facing procedural answers are generated from retrieved official-source evidence rather than a fixed response or deterministic guide library.
+- **Hybrid RAG:** Lexical search (BM25) is combined with dense multilingual vector search (FastEmbed `paraphrase-multilingual-MiniLM-L12-v2` + local Qdrant) using Reciprocal Rank Fusion (RRF), domain isolation, topical reranking, and confidence gating.
+- **Canonical Corpus:** The current manifest contains 4,116 accepted source references that resolve to 4,046 unique vector documents. Fifteen unsafe or non-allowlisted records are rejected during loading.
+- **Explicit Provenance:** Evidence-backed responses expose official URLs, source titles, reported review dates, citations, and a clear warning that corpus passages have not all been independently fact-checked.
+- **Controlled Corrective Search:** Feature-flagged official-domain web search may be used only when local RAG confidence is insufficient. Unsupported requests must clarify or abstain rather than inventing a procedure.
 
 ### 2. Privacy-by-Design Guardrails
 - **Server-Side Masking:** Redacts Aadhaar numbers, PAN cards, phone numbers, email addresses, bank accounts, and IFSC codes before retrieval and model processing.
@@ -58,8 +59,8 @@
 | **macOS / Linux** | `./run_backend.sh` | `./start.sh` |
 
 The launchers validate the local vector index before starting. On a fresh clone,
-they build the 681-document index from the canonical safe manifest. If vector
-setup fails, the backend starts with deterministic lexical RAG instead of
+they build the 4,046-document index from the canonical safe manifest. If vector
+setup fails, the backend can continue with lexical retrieval instead of
 crashing. You can check readiness directly with:
 
 ```bash
@@ -116,7 +117,7 @@ To rebuild the unified Qdrant vector index from the canonical safe corpus:
 ```bash
 python -m backend.offline.build_vector_db
 ```
-*Note: Uses `backend/data/rag_manifest.json` by default to ensure only the 681 safe canonical records are indexed.*
+*Note: Uses `backend/data/rag_manifest.json` by default. The current committed index contains 4,046 unique documents and is validated against the manifest corpus hash before use.*
 
 ---
 
@@ -145,7 +146,7 @@ Nivaan/
 ├── requirements.txt                # Unified project dependencies
 ├── backend/
 │   ├── main.py                     # FastAPI application endpoints (/api/health, /api/capabilities, /api/ask, /api/ask-file)
-│   ├── pipeline.py                 # Core request pipeline (masking -> routing -> verified KB / RAG -> translation)
+│   ├── pipeline.py                 # Core request pipeline (masking -> routing -> dynamic RAG/CRAG -> translation)
 │   ├── schemas.py                  # Pydantic data schemas and contracts
 │   ├── config.py                   # App configuration and dynamic capabilities
 │   ├── data/

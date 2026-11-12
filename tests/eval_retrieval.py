@@ -28,103 +28,22 @@ from backend.pipeline import run
 from backend.schemas import Answer, AskRequest
 
 BENCHMARK_CASES = [
-    # --- Category 1: Curated Knowledge Base (10 Guides) ---
-    {
-        "id": "CUR-01",
-        "category": "curated",
-        "query": "How do I apply for a new PAN card?",
-        "expected_entry_id": "pan_card_new",
-        "expected_title_fragment": "PAN card",
-    },
-    {
-        "id": "CUR-02",
-        "category": "curated",
-        "query": "How to file ITR online for salaried employees?",
-        "expected_entry_id": "itr_filing_basics",
-        "expected_title_fragment": "Income Tax Return",
-    },
-    {
-        "id": "CUR-03",
-        "category": "curated",
-        "query": "What are prepayment penalties and foreclosure charges in loan agreement?",
-        "expected_entry_id": "loan_agreement_explainer",
-        "expected_title_fragment": "loan agreement",
-    },
-    {
-        "id": "CUR-04",
-        "category": "curated",
-        "query": "How do I enroll for a new Aadhaar card?",
-        "expected_entry_id": "aadhaar_enrolment_basics",
-        "expected_title_fragment": "Aadhaar Enrolment",
-    },
-    {
-        "id": "CUR-05",
-        "category": "curated",
-        "query": "How can I link my PAN with Aadhaar number?",
-        "expected_entry_id": "link_pan_aadhaar",
-        "expected_title_fragment": "Link PAN",
-    },
-    {
-        "id": "CUR-06",
-        "category": "curated",
-        "query": "What is the procedure to withdraw EPF advance online?",
-        "expected_entry_id": "pf_withdrawal_process",
-        "expected_title_fragment": "EPF Withdrawal",
-    },
-    {
-        "id": "CUR-07",
-        "category": "curated",
-        "query": "How do I file a police FIR for lost documents?",
-        "expected_entry_id": "file_police_fir",
-        "expected_title_fragment": "First Information Report",
-    },
-    {
-        "id": "CUR-08",
-        "category": "curated",
-        "query": "How to open a savings bank account and what KYC is needed?",
-        "expected_entry_id": "open_savings_account",
-        "expected_title_fragment": "Savings Bank Account",
-    },
-    {
-        "id": "CUR-09",
-        "category": "curated",
-        "query": "Who is eligible for PM Kisan Samman Nidhi Yojana 6000 rupees?",
-        "expected_entry_id": "pm_kisan_scheme",
-        "expected_title_fragment": "PM Kisan",
-    },
-    {
-        "id": "CUR-10",
-        "category": "curated",
-        "query": "Where can I file a complaint in consumer forum court?",
-        "expected_entry_id": "consumer_court_complaint",
-        "expected_title_fragment": "Consumer Court",
-    },
+    # Dynamic RAG cases validate topical evidence, not removed predefined entry IDs.
+    {"id": "RAG-01", "category": "rag", "query": "How do I apply for a new PAN card?", "expected_terms": ("pan",), "forbidden_terms": ("foreign applicant",)},
+    {"id": "RAG-02", "category": "rag", "query": "How to file ITR online for salaried employees?", "expected_terms": ("income tax", "itr")},
+    {"id": "RAG-03", "category": "rag", "query": "What are prepayment penalties and foreclosure charges in loan agreement?", "expected_terms": ("foreclosure", "prepayment", "rbi")},
+    {"id": "RAG-04", "category": "rag", "query": "How do I enroll for a new Aadhaar card?", "expected_terms": ("aadhaar", "enrolment")},
+    {"id": "RAG-05", "category": "rag", "query": "How can I link my PAN with Aadhaar number?", "expected_terms": ("link aadhaar", "pan", "aadhaar")},
+    {"id": "RAG-06", "category": "rag", "query": "How can I find an unclaimed bank deposit using UDGAM?", "expected_terms": ("udgam", "unclaimed deposit"), "forbidden_terms": ("iepf-5", "epfigms")},
+    {"id": "RAG-07", "category": "rag", "query": "How do I claim unclaimed shares through IEPF?", "expected_terms": ("iepf", "unclaimed shares"), "forbidden_terms": ("epfigms", "udgam")},
+    {"id": "RAG-08", "category": "rag", "query": "Who is eligible for PM Kisan Samman Nidhi?", "expected_terms": ("pm-kisan", "pm kisan")},
+    {"id": "RAG-09", "category": "rag", "query": "Where can I file a consumer complaint online?", "expected_terms": ("e-daakhil", "consumer")},
+    {"id": "SAFE-01", "category": "refusal", "query": "How do I file a police FIR for lost documents?", "expected_refusal": True},
 
-    # --- Category 2: Multi-Turn Context Follow-Ups ---
-    {
-        "id": "MT-01",
-        "category": "multi_turn",
-        "query": "What documents do I need for that?",
-        "previous_entry_id": "pan_card_new",
-        "expected_entry_id": "pan_card_new",
-        "expected_title_fragment": "PAN card",
-    },
-    {
-        "id": "MT-02",
-        "category": "multi_turn",
-        "query": "What is the fee for that?",
-        "previous_entry_id": "pan_card_new",
-        "expected_entry_id": "pan_card_new",
-        "expected_title_fragment": "PAN card",
-    },
-    {
-        "id": "MT-03",
-        "category": "multi_turn",
-        "query": "What are the steps for this?",
-        "previous_entry_id": "itr_filing_basics",
-        "expected_entry_id": "itr_filing_basics",
-        "expected_title_fragment": "Income Tax",
-    },
+    # Multi-turn cases seed a real conversation and then test anaphoric follow-up isolation.
+    {"id": "MT-01", "category": "multi_turn", "setup_query": "How do I apply for a new PAN card?", "query": "What documents do I need for that?", "expected_terms": ("pan",)},
+    {"id": "MT-02", "category": "multi_turn", "setup_query": "How can I find an unclaimed bank deposit using UDGAM?", "query": "What information do I need for that?", "expected_terms": ("udgam", "unclaimed deposit"), "forbidden_terms": ("iepf", "epf")},
+    {"id": "MT-03", "category": "multi_turn", "setup_query": "How do I link PAN with Aadhaar?", "query": "What are the steps for this?", "expected_terms": ("pan", "aadhaar")},
 
     # --- Category 3: Out-of-Scope Refusals ---
     {
@@ -181,9 +100,10 @@ def run_evaluation() -> dict[str, Any]:
 
     for test in BENCHMARK_CASES:
         start = time.perf_counter()
-        req: dict[str, Any] = {"question": test["query"], "language": "en"}
-        if test.get("previous_entry_id"):
-            req["previous_entry_id"] = test["previous_entry_id"]
+        conversation_id = f"benchmark-{test['id'].lower()}"
+        if test.get("setup_query"):
+            run({"question": test["setup_query"], "language": "en", "conversation_id": conversation_id})
+        req: dict[str, Any] = {"question": test["query"], "language": "en", "conversation_id": conversation_id}
 
         ans = run(req)
         elapsed_ms = (time.perf_counter() - start) * 1000.0
@@ -192,11 +112,14 @@ def run_evaluation() -> dict[str, Any]:
         passed = False
         cat = test["category"]
 
-        if cat in ("curated", "multi_turn"):
-            passed = (
-                ans.entry_id == test["expected_entry_id"]
-                or test["expected_title_fragment"].lower() in ans.title.lower()
-            )
+        if cat in ("rag", "multi_turn"):
+            evidence = " ".join(
+                [ans.title, ans.summary]
+                + [citation.title + " " + citation.excerpt for citation in ans.citations]
+            ).lower()
+            expected = tuple(term.lower() for term in test.get("expected_terms", ()))
+            forbidden = tuple(term.lower() for term in test.get("forbidden_terms", ()))
+            passed = bool(ans.citations) and any(term in evidence for term in expected) and not any(term in evidence for term in forbidden)
         elif cat == "refusal":
             passed = ans.title == "No verified guide found"
         elif cat == "privacy":

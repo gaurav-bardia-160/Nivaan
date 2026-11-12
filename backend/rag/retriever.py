@@ -181,7 +181,7 @@ class RagRetriever:
         _PRIMARY_DOMAIN_ENTITIES = {
             "fastag", "nhai", "ihmcl", "vahan", "sarathi", "parivahan", "rc", "chassis", "challan", "echallan",
             "cbse", "marksheet", "digilocker", "pmkisan",
-            "iepf", "iepfa", "udgam", "deaf", "epfo", "uan", "pfrda", "pension sahayak",
+            "iepf", "iepfa", "udgam", "deaf", "epf", "epfo", "uan", "pfrda", "pension sahayak",
         }
         query_entities = {t for t in q_terms if t in _PRIMARY_DOMAIN_ENTITIES}
 
@@ -205,12 +205,41 @@ class RagRetriever:
             signals["tag_overlap"] = metadata_overlap
             score = signals.get("lexical_rrf", 0.0) + signals.get("vector_rrf", 0.0) + min(metadata_overlap, 1.0) * 0.01
 
+            source_titles = " ".join(source.title for source in document.sources)
             lowered_doc = (document.text + " " + " ".join(document.tags)).lower()
+            routing_text = f"{lowered_doc} {source_titles.lower()}"
+
+            # Deprioritize navigation and support-only pages for substantive procedure questions.
+            if any(term in routing_text for term in ("contact us", "login page", "portal home", "home page")):
+                if not any(term in clean_query.lower() for term in ("contact", "phone", "email", "helpline", "login")):
+                    score -= 0.18
+                    signals["navigation_page_penalty"] = -0.18
+
+            # A domestic new-PAN query must not default to foreign-applicant forms.
+            is_new_pan_query = "pan" in clean_query.lower() and any(term in clean_query.lower() for term in ("new", "apply", "application"))
+            if is_new_pan_query and not any(term in clean_query.lower() for term in ("foreign", "nri", "non-resident", "49aa")):
+                if any(term in routing_text for term in ("foreign applicant", "foreign (form", "form 49aa", "form 95", "form 96")):
+                    score -= 0.45
+                    signals["foreign_pan_mismatch_penalty"] = -0.45
+
+            # Filing an FIR is distinct from passport police-verification processing.
+            is_fir_query = bool(re.search(r"\b(?:fir|first\s+information\s+report|police\s+complaint)\b", clean_query.lower()))
+            if is_fir_query:
+                if any(term in routing_text for term in ("passport seva", "police verification delay", "adverse police report")):
+                    score -= 0.65
+                    signals["passport_police_mismatch_penalty"] = -0.65
+                if any(term in routing_text for term in ("first information report", "file an fir", "police complaint")):
+                    score += 0.20
+                    signals["fir_procedure_boost"] = 0.20
 
             # Anti-Keyword-Hijacking: if user specified key domain entities (FASTag, NHAI, CBSE, etc.)
             # penalize candidate chunks that lack the exact entity, preventing generic "refund" hijacking
             if query_entities:
-                has_entity = any(re.search(rf"\b{re.escape(ent)}\b", lowered_doc) for ent in query_entities)
+                has_entity = any(
+                    re.search(rf"\b{re.escape(ent)}\b", routing_text)
+                    or (ent == "epf" and re.search(r"\bepfo\b", routing_text))
+                    for ent in query_entities
+                )
                 if not has_entity:
                     score -= 0.60
                     signals["entity_mismatch_penalty"] = -0.60
@@ -325,6 +354,12 @@ class RagRetriever:
                     "boost_terms": ("udgam", "dea fund", "depositor education and awareness fund", "unclaimed deposits", "reserve bank of india", "inoperative deposit", "claim form"),
                     "conflicts": ("iepf", "shares", "dividend", "epfo", "uan", "pan", "itr", "e-shram"),
                 },
+                {
+                    "name": "epf_withdrawal",
+                    "match": ("epf withdrawal", "withdraw epf", "withdraw my epf", "withdraw pf", "withdraw my pf", "epf advance", "form 19", "form 31", "online claim"),
+                    "boost_terms": ("form 19", "form 31", "online claim", "withdrawal", "passbook", "cheque leaf", "claim"),
+                    "conflicts": ("epfigms", "grievance", "escalation matrix", "stuck claim", "joint declaration", "member profile correction"),
+                },
             )
             lowered_q = clean_query.lower()
 
@@ -359,6 +394,26 @@ class RagRetriever:
                 if ("139(9)" in lowered_doc or "defective return" in lowered_doc) and "ais feedback" not in lowered_doc and "sft feedback" not in lowered_doc:
                     score -= 0.40
                     signals["sub_procedure_mismatch_penalty"] = -0.40
+
+            # EPF withdrawal instructions must not be replaced by grievance escalation material.
+            is_epf_withdrawal_query = bool(
+                re.search(r"\bwithdraw(?:al)?\b.{0,20}\b(?:epf|pf|provident\s+fund)\b", lowered_q)
+                or re.search(r"\b(?:epf|pf|provident\s+fund)\b.{0,20}\bwithdraw(?:al)?\b", lowered_q)
+                or any(term in lowered_q for term in ("epf advance", "form 19", "form 31", "online claim"))
+            )
+            is_epf_problem_query = any(term in lowered_q for term in (
+                "stuck", "pending", "delayed", "rejected", "grievance", "complaint", "escalate", "epfigms",
+            ))
+            if is_epf_withdrawal_query and not is_epf_problem_query:
+                if any(term in lowered_doc for term in (
+                    "epfigms grievance", "grievance redressal", "escalation matrix", "stuck epf claims",
+                    "joint declaration", "member profile correction", "sop jointdeclarations",
+                )):
+                    score -= 0.65
+                    signals["epf_subprocedure_mismatch_penalty"] = -0.65
+                if any(term in lowered_doc for term in ("form 19", "form 31", "withdrawal claim", "online claim", "passbook and cheque leaf")):
+                    score += 0.20
+                    signals["epf_withdrawal_boost"] = 0.20
 
             # Sub-procedure discrimination: Reassessment vs Defective Return / Condonation
             is_reassess_query = bool(re.search(r"\b(?:148a|148|reassessment|escaped\s+income|time-barred|149)\b", lowered_q))

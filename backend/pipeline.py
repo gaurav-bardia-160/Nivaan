@@ -47,6 +47,46 @@ _GREETING_WORDS = {
     "greetings", "help", "who are you", "what can you do", "intro", "welcome",
 }
 
+_BROAD_UNSCOPED_REQUESTS = (
+    re.compile(r"\b(?:government|govt)\s+(?:benefit|benefits|scheme|schemes|service|services|help)\b", re.IGNORECASE),
+    re.compile(r"\bhelp\s+me\s+with\s+(?:a\s+)?(?:scheme|benefit|government\s+service)\b", re.IGNORECASE),
+    re.compile(r"\b(?:show|give|list)\s+(?:me\s+)?(?:all\s+)?(?:schemes|benefits|government\s+services)\b", re.IGNORECASE),
+)
+
+
+def _needs_scope_clarification(text: str) -> bool:
+    """Detect broad civic requests that cannot be grounded to one procedure safely."""
+    cleaned = " ".join(text.strip().split())
+    if not cleaned or _has_standalone_topic(cleaned):
+        return False
+    return any(pattern.search(cleaned) for pattern in _BROAD_UNSCOPED_REQUESTS)
+
+
+def _scope_clarification_answer(masked_items: list | None = None) -> Answer:
+    return Answer(
+        title="Please specify the government service",
+        summary=(
+            "Tell me the exact scheme, benefit, document, complaint, loan, tax, banking, or government service you need. "
+            "If you do not know its name, share your state and goal, such as housing assistance, a business loan, pension, scholarship, or ration benefit."
+        ),
+        documents_needed=[],
+        steps=[],
+        warnings=[],
+        source_url=None,
+        last_verified=date.today(),
+        confidence="high",
+        masked_items=masked_items or [],
+        citations=[],
+        disclaimer=DEFAULT_DISCLAIMER,
+    )
+
+
+def _is_general_fir_request(text: str) -> bool:
+    lowered = text.lower()
+    asks_for_fir = bool(re.search(r"\b(?:fir|first\s+information\s+report|police\s+complaint)\b", lowered))
+    specifically_cyber = any(term in lowered for term in ("cyber", "online fraud", "1930", "cybercrime"))
+    return asks_for_fir and not specifically_cyber
+
 
 def _is_pure_greeting(text: str) -> bool:
     import re
@@ -476,6 +516,24 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             rl_arm=bandit_action.name,
         )
 
+    if parsed_request.input_type == "question" and _needs_scope_clarification(search_text):
+        return _finalize_answer(
+            _scope_clarification_answer(masked_items),
+            request=parsed_request,
+            safe_question=masked_question.text or safe_text,
+            target_lang=target_lang,
+            rl_arm=bandit_action.name,
+        )
+
+    if parsed_request.input_type == "question" and _is_general_fir_request(search_text):
+        return _finalize_answer(
+            not_found_answer(safe_text, masked_items=masked_items),
+            request=parsed_request,
+            safe_question=masked_question.text or safe_text,
+            target_lang=target_lang,
+            rl_arm=bandit_action.name,
+        )
+
     memory_turns = conversation_memory.recent(parsed_request.conversation_id, limit=25)
     effective_context_topic = parsed_request.context_topic
     if effective_context_topic:
@@ -840,6 +898,57 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
         greeting = apply_rewrite_to_answer(base_greeting, final_rewrite, safe_text)
         final_ans = _finalize_answer(
             greeting,
+            request=parsed_request,
+            safe_question=masked_question.text or safe_text,
+            target_lang=target_lang,
+            rl_arm=bandit_action.name,
+        )
+        yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
+        return
+
+    if parsed_request.input_type == "question" and _needs_scope_clarification(search_text):
+        clarification = _scope_clarification_answer(masked_items)
+        yield {
+            "event": "meta",
+            "data": {
+                "title": clarification.title,
+                "confidence": clarification.confidence,
+                "source_url": None,
+                "citations": [],
+                "masked_items": [m.model_dump(mode="json") for m in masked_items],
+                "rl_arm": bandit_action.name,
+            },
+        }
+        for index, word in enumerate(clarification.summary.split(" ")):
+            yield {"event": "token", "data": {"delta": word + (" " if index < len(clarification.summary.split(" ")) - 1 else "")}}
+        final_ans = _finalize_answer(
+            clarification,
+            request=parsed_request,
+            safe_question=masked_question.text or safe_text,
+            target_lang=target_lang,
+            rl_arm=bandit_action.name,
+        )
+        yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
+        return
+
+    if parsed_request.input_type == "question" and _is_general_fir_request(search_text):
+        refusal = not_found_answer(safe_text, masked_items=masked_items)
+        yield {
+            "event": "meta",
+            "data": {
+                "title": refusal.title,
+                "confidence": refusal.confidence,
+                "source_url": str(refusal.source_url),
+                "citations": [],
+                "masked_items": [m.model_dump(mode="json") for m in masked_items],
+                "rl_arm": bandit_action.name,
+            },
+        }
+        words = refusal.summary.split(" ")
+        for index, word in enumerate(words):
+            yield {"event": "token", "data": {"delta": word + (" " if index < len(words) - 1 else "")}}
+        final_ans = _finalize_answer(
+            refusal,
             request=parsed_request,
             safe_question=masked_question.text or safe_text,
             target_lang=target_lang,

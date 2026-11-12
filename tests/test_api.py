@@ -912,3 +912,36 @@ def test_scenario2_aadhaar_pvc_no_srn_provides_exact_tat_and_escalation():
     # Must contain official escalation and 12-digit UTR
     assert "helpdesk@uidai.gov.in" in full_text or "1947" in full_text
     assert "utr" in full_text
+
+
+def test_broad_government_benefit_question_requests_scope_instead_of_retrieving_random_portal(monkeypatch):
+    monkeypatch.setenv("LOCAL_LLM_ENABLED", "false")
+    response = client.post(
+        "/api/ask",
+        json={"question": "I need help with a government benefit"},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["title"] == "Please specify the government service"
+    assert data["citations"] == []
+    assert data["steps"] == []
+    assert "state and goal" in data["summary"].lower()
+
+
+def test_epf_withdrawal_does_not_route_to_grievance_or_profile_correction(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    monkeypatch.setenv("RAG_VECTOR_ENABLED", "true")
+    monkeypatch.setenv("LOCAL_LLM_ENABLED", "false")
+    response = client.post(
+        "/api/ask",
+        json={"question": "How do I withdraw my EPF online?"},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    evidence = " ".join(
+        [data["title"], data["summary"]]
+        + [citation["title"] for citation in data.get("citations", [])]
+    ).lower()
+    assert "epfigms grievance" not in evidence
+    assert "joint declaration" not in evidence
+    assert any(term in evidence for term in ("withdraw", "form 19", "form 31", "claim", "passbook"))
