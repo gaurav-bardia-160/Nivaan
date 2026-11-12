@@ -5,8 +5,11 @@ Write path is exclusively in backend/etl/extract.py (offline scheduled ETL).
 """
 from __future__ import annotations
 
+import ipaddress
 import logging
 import re
+import socket
+from urllib.parse import urljoin, urlparse
 
 import httpx
 from bs4 import BeautifulSoup, Comment
@@ -14,6 +17,65 @@ from bs4 import BeautifulSoup, Comment
 from backend.web_search.allowlist import is_allowlisted_url
 
 logger = logging.getLogger("web_search.fetcher")
+
+_MAX_REDIRECTS = 5
+_MAX_RESPONSE_BYTES = 5 * 1024 * 1024
+_ALLOWED_CONTENT_TYPES = (
+    "text/html",
+    "application/xhtml+xml",
+    "application/xml",
+    "text/plain",
+    "application/pdf",
+)
+
+
+def _resolve_public_addresses(host: str) -> tuple[str, ...]:
+    """Resolve a host and reject loopback, private, link-local, or reserved targets."""
+    addresses: set[str] = set()
+    for info in socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM):
+        address = info[4][0]
+        ip = ipaddress.ip_address(address.split("%", 1)[0])
+        if not ip.is_global:
+            raise ValueError(f"non-public address for {host}: {ip}")
+        addresses.add(str(ip))
+    if not addresses:
+        raise ValueError(f"no addresses resolved for {host}")
+    return tuple(sorted(addresses))
+
+
+def _validate_fetch_url(url: str, *, resolver=_resolve_public_addresses) -> str:
+    """Validate every outbound URL before a network request is made."""
+    if not is_allowlisted_url(url):
+        raise ValueError("URL is not an approved official HTTPS source")
+    parsed = urlparse(url)
+    if parsed.scheme.lower() != "https":
+        raise ValueError("only HTTPS official sources are permitted")
+    if parsed.username or parsed.password:
+        raise ValueError("credentials in source URLs are not permitted")
+    if parsed.port not in (None, 443):
+        raise ValueError("non-standard source ports are not permitted")
+    if not parsed.hostname:
+        raise ValueError("source hostname is required")
+    resolver(parsed.hostname)
+    return url
+
+
+def _read_limited_response(resp: httpx.Response, *, max_bytes: int) -> bytes:
+    content_length = resp.headers.get("content-length")
+    if content_length:
+        try:
+            declared_length = int(content_length)
+        except ValueError:
+            declared_length = 0
+        if declared_length > max_bytes:
+            raise ValueError("official source response exceeds size limit")
+    body = bytearray()
+    for chunk in resp.iter_bytes():
+        body.extend(chunk)
+        if len(body) > max_bytes:
+            raise ValueError("official source response exceeds size limit")
+    return bytes(body)
+
 
 _FETCH_HEADERS = {
     "User-Agent": (
@@ -40,6 +102,8 @@ def fetch_page_text(
     *,
     timeout: float = 10.0,
     max_chars: int = 8000,
+    max_bytes: int = _MAX_RESPONSE_BYTES,
+    resolver=_resolve_public_addresses,
 ) -> str:
     """Fetch and extract clean plaintext from an allowlisted government URL.
 
@@ -56,30 +120,63 @@ def fetch_page_text(
         return ""
 
     try:
+        current_url = _validate_fetch_url(url, resolver=resolver)
         with httpx.Client(
             timeout=httpx.Timeout(timeout, connect=5.0),
-            follow_redirects=True,
+            follow_redirects=False,
             headers=_FETCH_HEADERS,
-            verify=False,
+            verify=True,
         ) as client:
-            resp = client.get(url)
-            resp.raise_for_status()
+            resp = None
+            for _hop in range(_MAX_REDIRECTS + 1):
+                current_url = _validate_fetch_url(current_url, resolver=resolver)
+                request = client.build_request("GET", current_url)
+                resp = client.send(request, stream=True)
+                if resp.status_code in (301, 302, 303, 307, 308):
+                    location = resp.headers.get("location", "").strip()
+                    resp.close()
+                    if not location:
+                        return ""
+                    current_url = _validate_fetch_url(urljoin(current_url, location), resolver=resolver)
+                    continue
+                resp.raise_for_status()
+                break
+            else:
+                logger.warning("Too many redirects fetching official source: %.80s", url)
+                return ""
 
-            # Handle PDF documents
-            content_type = resp.headers.get("content-type", "").lower()
-            if "application/pdf" in content_type or url.lower().split("?")[0].endswith(".pdf"):
+            if resp is None or resp.status_code in (301, 302, 303, 307, 308):
+                return ""
+
+            try:
+                content_type = resp.headers.get("content-type", "").split(";", 1)[0].strip().lower()
+                body = _read_limited_response(resp, max_bytes=max_bytes)
+            finally:
+                resp.close()
+            is_pdf = (
+                content_type == "application/pdf"
+                or content_type.endswith("pdf")
+                or body.startswith(b"%PDF-")
+                or current_url.lower().split("?")[0].endswith(".pdf")
+            )
+            if content_type and not is_pdf and content_type not in _ALLOWED_CONTENT_TYPES:
+                logger.warning("Blocked unsupported content type %s: %.80s", content_type, current_url)
+                return ""
+
+            # Handle PDF documents, including official portals with malformed content-type headers.
+            if is_pdf:
                 try:
                     import io
                     import pdfplumber
-                    with pdfplumber.open(io.BytesIO(resp.content)) as pdf:
+                    with pdfplumber.open(io.BytesIO(body)) as pdf:
                         pages = [p.extract_text() or "" for p in pdf.pages[:6]]
                         clean_pdf = "\n\n".join(p.strip() for p in pages if p.strip())
                         return clean_pdf[:max_chars]
                 except Exception as exc:
-                    logger.warning("PDF extraction failed (%s): %.80s", exc, url)
+                    logger.warning("PDF extraction failed (%s): %.80s", exc, current_url)
                     return ""
 
-            html = resp.text
+            html = body.decode(resp.encoding or "utf-8", errors="replace")
     except httpx.TimeoutException:
         logger.warning("Page fetch timed out: %.80s", url)
         return ""

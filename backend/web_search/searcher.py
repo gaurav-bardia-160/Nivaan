@@ -37,6 +37,20 @@ _DDG_HEADERS = {
 }
 
 
+def _query_site_domains(query: str) -> tuple[str, ...]:
+    return tuple(dict.fromkeys(re.findall(r"\bsite:([A-Za-z0-9.-]+)", query.lower())))
+
+
+def _matches_query_site(url: str, query: str) -> bool:
+    """Require results to honor explicit site constraints instead of only the broad allowlist."""
+    domains = _query_site_domains(query)
+    if not domains:
+        return True
+    from urllib.parse import urlparse
+    host = (urlparse(url).hostname or "").lower()
+    return any(host == domain or host.endswith(f".{domain}") for domain in domains)
+
+
 class WebSearchResult(NamedTuple):
     """A single web search result from DuckDuckGo or SerpAPI."""
 
@@ -68,7 +82,7 @@ def _search_serpapi(query: str, *, max_results: int, timeout: float) -> list[Web
             url = str(item.get("link", "")).strip()
             title = str(item.get("title", "")).strip()
             snippet = str(item.get("snippet", "")).strip()
-            if url and is_allowlisted_url(url):
+            if url and is_allowlisted_url(url) and _matches_query_site(url, query):
                 results.append(WebSearchResult(url=url, title=title, snippet=snippet))
         logger.debug("SerpAPI returned %d allowlisted results for query: %.60s", len(results), query)
         return results
@@ -113,7 +127,7 @@ def _search_duckduckgo_html(query: str, *, max_results: int, timeout: float) -> 
         href = str(link_tag.get("href", "")).strip()
         # DDG sometimes uses redirect URLs — extract the actual target URL
         url = _extract_actual_url(href)
-        if not url or not is_allowlisted_url(url):
+        if not url or not is_allowlisted_url(url) or not _matches_query_site(url, query):
             continue
 
         title = link_tag.get_text(separator=" ", strip=True)
@@ -147,16 +161,37 @@ def _extract_actual_url(href: str) -> str:
 def _search_ddgs(query: str, *, max_results: int, timeout: float) -> list[WebSearchResult]:
     """Search using DDGS library with strict allowlist enforcement."""
     try:
+        modern_provider = True
         try:
             from ddgs import DDGS
         except ImportError:
             from duckduckgo_search import DDGS
+            modern_provider = False
         with DDGS(timeout=timeout) as ddgs:
-            raw_results = list(ddgs.text(query, max_results=max_results * 3))
+            raw_results = []
+            provider_query = re.sub(r"\bsite:[^\s]+", "", query).strip() or query
+            backends = ("auto", "google,bing,brave", "duckduckgo") if modern_provider else (None,)
+            for backend in backends:
+                try:
+                    kwargs = {"max_results": max_results * 3, "region": "in-en"}
+                    if backend:
+                        kwargs["backend"] = backend
+                    raw_results = list(ddgs.text(provider_query, **kwargs))
+                except Exception as exc:
+                    logger.info("DDGS backend %s failed for %.60s: %s", backend or "legacy", query, exc)
+                    raw_results = []
+                if any(
+                    (url := str(item.get("href") or "").strip())
+                    and is_allowlisted_url(url)
+                    and _matches_query_site(url, query)
+                    for item in raw_results
+                ):
+                    break
+                raw_results = []
             results = []
             for r in raw_results:
                 url = str(r.get("href") or "").strip()
-                if not url or not is_allowlisted_url(url):
+                if not url or not is_allowlisted_url(url) or not _matches_query_site(url, query):
                     continue
                 title = str(r.get("title") or "").strip()
                 snippet = str(r.get("body") or "").strip()
@@ -200,6 +235,24 @@ def prioritize_deep_links(results: list[WebSearchResult]) -> list[WebSearchResul
     return deep + shallow
 
 
+def _result_relevance_score(query: str, result: WebSearchResult) -> float:
+    """Deterministically rank official results by topical overlap and procedural depth."""
+    query_terms = set(re.findall(r"\b[a-z0-9]{3,}\b", re.sub(r"\bsite:[^\s]+", "", query.lower())))
+    text = f"{result.title} {result.snippet} {result.url}".lower()
+    overlap = sum(1 for term in query_terms if term in text)
+    procedural = sum(1 for term in ("apply", "procedure", "eligibility", "complaint", "faq", "guideline", "scheme", "service") if term in text)
+    return float(overlap * 3 + procedural)
+
+
+def rank_results_for_query(query: str, results: list[WebSearchResult]) -> list[WebSearchResult]:
+    deep_first = prioritize_deep_links(results)
+    original_order = {result: index for index, result in enumerate(deep_first)}
+    return sorted(
+        deep_first,
+        key=lambda result: (-_result_relevance_score(query, result), original_order[result]),
+    )
+
+
 def search_duckduckgo(
     query: str,
     *,
@@ -220,20 +273,17 @@ def search_duckduckgo(
     if _SERPAPI_KEY:
         raw_results = _search_serpapi(query, max_results=max_results, timeout=timeout)
         if raw_results:
-            return prioritize_deep_links(raw_results)[:max_results]
+            return rank_results_for_query(query, raw_results)[:max_results]
         # Fall through to DuckDuckGo if SerpAPI returns nothing allowlisted
 
     # Primary: Modern DDGS library
     raw_results = _search_ddgs(query, max_results=max_results * 2, timeout=timeout)
-    if not raw_results and "site:" in query and not query.endswith("site:gov.in"):
-        broader_query = re.sub(r"site:[^\s]+", "site:gov.in", query)
-        raw_results = _search_ddgs(broader_query, max_results=max_results * 2, timeout=timeout)
     if raw_results:
-        return prioritize_deep_links(raw_results)[:max_results]
+        return rank_results_for_query(query, raw_results)[:max_results]
 
     # Fallback: HTML endpoint scraper
     raw_results = _search_duckduckgo_html(query, max_results=max_results * 2, timeout=timeout)
-    return prioritize_deep_links(raw_results)[:max_results]
+    return rank_results_for_query(query, raw_results)[:max_results]
 
 
-__all__ = ["WebSearchResult", "search_duckduckgo", "prioritize_deep_links"]
+__all__ = ["WebSearchResult", "search_duckduckgo", "prioritize_deep_links", "rank_results_for_query"]

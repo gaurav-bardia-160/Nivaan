@@ -453,3 +453,113 @@ class TestDiscriminatorCRAGMultiResultLoop:
                                     mock_log.assert_called_once()
                                     assert mock_log.call_args[0][0]["url"] == "https://parivahan.gov.in/en/node/155"
 
+
+# ─── Production transport and routing security tests ─────────────────────────
+
+class TestProductionSearchSecurity:
+    @staticmethod
+    def _public_resolver(_host):
+        return ("93.184.216.34",)
+
+    def test_fetcher_enables_tls_and_disables_automatic_redirects(self):
+        import httpx
+        from backend.web_search.fetcher import fetch_page_text
+
+        response = httpx.Response(
+            200,
+            headers={"content-type": "text/html"},
+            content=b"<main>Submit the application on the official portal and keep the acknowledgement.</main>",
+            request=httpx.Request("GET", "https://example.gov.in/guide"),
+        )
+        client = MagicMock()
+        client.__enter__.return_value = client
+        client.__exit__.return_value = False
+        client.build_request.return_value = response.request
+        client.send.return_value = response
+        with patch("backend.web_search.fetcher.httpx.Client", return_value=client) as client_factory:
+            text = fetch_page_text("https://example.gov.in/guide", resolver=self._public_resolver)
+        assert "acknowledgement" in text
+        assert client_factory.call_args.kwargs["verify"] is True
+        assert client_factory.call_args.kwargs["follow_redirects"] is False
+
+    def test_fetcher_rejects_redirect_to_unapproved_host_before_contact(self):
+        import httpx
+        from backend.web_search.fetcher import fetch_page_text
+
+        redirect = httpx.Response(
+            302,
+            headers={"location": "https://example.com/steal"},
+            request=httpx.Request("GET", "https://example.gov.in/start"),
+        )
+        client = MagicMock()
+        client.__enter__.return_value = client
+        client.__exit__.return_value = False
+        client.build_request.return_value = redirect.request
+        client.send.return_value = redirect
+        with patch("backend.web_search.fetcher.httpx.Client", return_value=client):
+            assert fetch_page_text("https://example.gov.in/start", resolver=self._public_resolver) == ""
+        assert client.send.call_count == 1
+
+    def test_fetcher_rejects_private_dns_resolution_without_request(self):
+        from backend.web_search.fetcher import fetch_page_text
+
+        def private_resolver(_host):
+            raise ValueError("non-public address")
+
+        with patch("backend.web_search.fetcher.httpx.Client") as client_factory:
+            assert fetch_page_text("https://example.gov.in/guide", resolver=private_resolver) == ""
+        client_factory.assert_not_called()
+
+    def test_fetcher_rejects_oversized_response(self):
+        import httpx
+        from backend.web_search.fetcher import fetch_page_text
+
+        response = httpx.Response(
+            200,
+            headers={"content-type": "text/html", "content-length": "5000"},
+            content=b"small",
+            request=httpx.Request("GET", "https://example.gov.in/guide"),
+        )
+        client = MagicMock()
+        client.__enter__.return_value = client
+        client.__exit__.return_value = False
+        client.build_request.return_value = response.request
+        client.send.return_value = response
+        with patch("backend.web_search.fetcher.httpx.Client", return_value=client):
+            assert fetch_page_text(
+                "https://example.gov.in/guide",
+                resolver=self._public_resolver,
+                max_bytes=100,
+            ) == ""
+
+    def test_allowlist_rejects_insecure_credentials_and_nonstandard_ports(self):
+        from backend.web_search.allowlist import is_allowlisted_url
+
+        assert not is_allowlisted_url("http://uidai.gov.in/guide")
+        assert not is_allowlisted_url("https://user:pass@uidai.gov.in/guide")
+        assert not is_allowlisted_url("https://uidai.gov.in:8443/guide")
+
+
+class TestServiceAwareSearchRouting:
+    def test_onorc_targets_nfsa_not_uidai(self):
+        from backend.modules.domain_router import Domain
+        from backend.web_search.allowlist import build_allowlist_query
+
+        query = build_allowlist_query("How can I use One Nation One Ration Card in another state?", Domain.IDENTITY)
+        assert "site:nfsa.gov.in" in query
+        assert "uidai.gov.in" not in query
+
+    def test_mudra_targets_financial_services(self):
+        from backend.modules.domain_router import Domain
+        from backend.web_search.allowlist import build_allowlist_query
+
+        query = build_allowlist_query("How do I apply for a MUDRA loan?", Domain.BANKING)
+        assert "site:financialservices.gov.in" in query
+
+    def test_explicit_site_constraint_filters_unrelated_allowlisted_results(self):
+        from backend.web_search.searcher import _matches_query_site
+
+        query = "RBI Ombudsman complaint site:rbi.org.in"
+        assert _matches_query_site("https://www.rbi.org.in/complaints", query)
+        assert not _matches_query_site("https://www.indiapost.gov.in/grievance", query)
+

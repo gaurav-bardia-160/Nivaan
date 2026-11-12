@@ -15,7 +15,7 @@
 - **Hybrid RAG:** Lexical search (BM25) is combined with dense multilingual vector search (FastEmbed `paraphrase-multilingual-MiniLM-L12-v2` + local Qdrant) using Reciprocal Rank Fusion (RRF), domain isolation, topical reranking, and confidence gating.
 - **Canonical Corpus:** The current manifest contains 4,116 accepted source references that resolve to 4,046 unique vector documents. Fifteen unsafe or non-allowlisted records are rejected during loading.
 - **Explicit Provenance:** Evidence-backed responses expose official URLs, source titles, reported review dates, citations, and a clear warning that corpus passages have not all been independently fact-checked.
-- **Controlled Corrective Search:** Feature-flagged official-domain web search may be used only when local RAG confidence is insufficient. Unsupported requests must clarify or abstain rather than inventing a procedure.
+- **Controlled Corrective Search:** Feature-flagged official-domain web search may be used only when local RAG confidence is insufficient. The live path enforces HTTPS, validates every redirect and resolved public IP, limits response sizes and content types, preserves explicit service-domain constraints, ranks official results by topical relevance, and cites the focused supporting passage. Unsupported requests must clarify or abstain rather than inventing a procedure.
 
 ### 2. Privacy-by-Design Guardrails
 - **Server-Side Masking:** Redacts Aadhaar numbers, PAN cards, phone numbers, email addresses, bank accounts, and IFSC codes before retrieval and model processing.

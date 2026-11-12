@@ -387,19 +387,14 @@ def synthesize_from_web(
             for s in steps_data
             if s.get("title") and s.get("detail")
         ]
-        # Dynamic confidence: high if structured steps extracted, medium if solid summary
-        if len(step_objects) >= 2 and len(summary) >= 60:
-            confidence_val = "high"
-        elif len(summary) >= 40:
-            confidence_val = "medium"
-        else:
-            confidence_val = "low"
+        # Live evidence remains unverified until it passes the offline review pipeline.
+        confidence_val = "medium" if len(summary) >= 40 else "low"
 
     # Build Citation object
     citation = Citation(
         title="Official Government Portal — Live Search Result",
         url=url,  # type: ignore[arg-type]
-        excerpt=page_text[:350].strip() or "Official government page content.",
+        excerpt=page_excerpt[:350].strip() or "Official government page content.",
         reported_last_verified=today,
         factual_verification="unverified",
     )

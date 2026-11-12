@@ -36,12 +36,18 @@ CIVIC_ALLOWLIST_DOMAINS: tuple[str, ...] = (
     "nsdl.co.in",
     "ihmcl.co.in",
     "cbse.nic.in",
+    "dfpd.gov.in",
+    "nfsa.gov.in",
+    "financialservices.gov.in",
+    "jansamarth.in",
+    "pfrda.org.in",
+    "dicgc.org.in",
 )
 
 # Domain-specific additional site constraints for better precision
 _DOMAIN_SITE_HINTS: dict[Domain, tuple[str, ...]] = {
     Domain.TAXATION: ("incometax.gov.in", "cbdt.gov.in"),
-    Domain.BANKING: ("rbi.org.in", "npci.org.in"),
+    Domain.BANKING: ("rbi.org.in", "npci.org.in", "financialservices.gov.in", "jansamarth.in", "dicgc.org.in"),
     Domain.TRANSPORT: ("parivahan.gov.in", "nhai.gov.in", "ihmcl.co.in", "vahan.parivahan.gov.in"),
     Domain.IDENTITY: ("uidai.gov.in", "digilocker.gov.in", "passport.gov.in", "eci.gov.in"),
     Domain.EDUCATION: ("cbse.gov.in", "cbse.nic.in", "digilocker.gov.in", "nta.ac.in"),
@@ -102,6 +108,25 @@ def extract_search_keywords(user_query: str) -> str:
     return re.sub(r"[?!.,'\"]+", " ", clean_query).strip()[:80]
 
 
+def preferred_domains_for_query(user_query: str, domain: Domain) -> tuple[str, ...]:
+    """Return the narrow official host set that should satisfy a citizen query."""
+    lowered = user_query.lower()
+    rules: tuple[tuple[tuple[str, ...], tuple[str, ...]], ...] = (
+        (("one nation one ration", "onorc", "mera ration", "ration portability"), ("nfsa.gov.in", "dfpd.gov.in")),
+        (("mudra", "pmmy"), ("financialservices.gov.in", "jansamarth.in", "mudra.org.in")),
+        (("ombudsman", "reserve bank complaint", "rbi complaint", "cms complaint"), ("rbi.org.in", "cms.rbi.org.in")),
+        (("udgam", "unclaimed deposit"), ("rbi.org.in", "udgam.rbi.org.in")),
+        (("deposit insurance", "dicgc"), ("dicgc.org.in",)),
+        (("atal pension", "apy", "national pension", "nps"), ("pfrda.org.in", "npstrust.org.in")),
+        (("ujjwala", "pmuy"), ("pmuy.gov.in",)),
+        (("e-shram", "eshram"), ("eshram.gov.in",)),
+    )
+    for terms, hosts in rules:
+        if any(term in lowered for term in terms):
+            return hosts
+    return _DOMAIN_SITE_HINTS.get(domain, ())
+
+
 def build_allowlist_query(user_query: str, domain: Domain) -> str:
     """Build a search query with targeted official domain constraints."""
     clean_query = extract_search_keywords(user_query)
@@ -129,7 +154,7 @@ def build_allowlist_query(user_query: str, domain: Domain) -> str:
     elif any(t in lowered for t in ("aadhaar", "uidai")):
         site_constraint = "site:uidai.gov.in"
     else:
-        domain_hints = _DOMAIN_SITE_HINTS.get(domain, ())
+        domain_hints = preferred_domains_for_query(user_query, domain)
         if domain_hints:
             primary = domain_hints[0]
             site_constraint = f"site:{primary}"
@@ -148,7 +173,11 @@ def is_allowlisted_url(url: str) -> bool:
         return False
     try:
         parsed = urlparse(url.strip())
-        host = (parsed.netloc or parsed.path).lower().split(":")[0]  # strip port
+        if parsed.scheme.lower() != "https" or parsed.username or parsed.password:
+            return False
+        if parsed.port not in (None, 443):
+            return False
+        host = (parsed.hostname or "").lower()
         if not host:
             return False
         return any(host == d or host.endswith(f".{d}") for d in CIVIC_ALLOWLIST_DOMAINS)
@@ -159,5 +188,6 @@ def is_allowlisted_url(url: str) -> bool:
 __all__ = [
     "CIVIC_ALLOWLIST_DOMAINS",
     "build_allowlist_query",
+    "preferred_domains_for_query",
     "is_allowlisted_url",
 ]
