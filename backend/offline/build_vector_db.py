@@ -221,6 +221,7 @@ def build_unified_vector_db(
     model_name: str = DEFAULT_MULTILINGUAL_MODEL,
     batch_size: int = 32,
     manifest_path: Path | str | None = None,
+    data_root: Path | str = DATA_DIR,
     use_canonical_loader: bool = True,
 ) -> dict[str, Any]:
     """Build a single, unified vector database from all refined files.
@@ -239,7 +240,7 @@ def build_unified_vector_db(
     corpus_sha256 = ""
     if use_canonical_loader and manifest_file.is_file() and (manifest_path is not None or source_path == DEFAULT_REFINED_DIR.resolve()):
         logger.info("Loading canonical safe corpus via rag.loader: %s", manifest_file)
-        load_result = load_corpus(manifest_file)
+        load_result = load_corpus(manifest_file, data_root=Path(data_root))
         documents = load_result.documents
         corpus_sha256 = load_result.report.corpus_sha256
         logger.info(
