@@ -43,4 +43,4 @@ jobs:
       env:
         RAG_ENABLED: "true"
       run: |
-        pytest tests/ -v
+        python -m pytest tests/ -v
