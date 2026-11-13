@@ -7,14 +7,19 @@ import unicodedata
 from datetime import date
 from urllib.parse import urlsplit
 
-from backend.rag.models import ChunkRecord, DatasetSpec, RagDocument, SourceReference
+from backend.rag.models import ChunkRecord, DatasetSpec, FactCheckRecord, RagDocument, SourceReference
 
 
 class RecordRejected(ValueError):
     """Safe reason code only, never include raw input in exception messages."""
 
 
-def normalize_record(record: ChunkRecord, spec: DatasetSpec, as_of: date) -> RagDocument:
+def normalize_record(
+    record: ChunkRecord,
+    spec: DatasetSpec,
+    as_of: date,
+    fact_check: FactCheckRecord | None = None,
+) -> RagDocument:
     if record.category != spec.category:
         raise RecordRejected("category_mismatch")
     if record.last_verified > as_of:
@@ -40,7 +45,10 @@ def normalize_record(record: ChunkRecord, spec: DatasetSpec, as_of: date) -> Rag
         raise RecordRejected("control_character")
     normalized = " ".join(text.split())
     fingerprint = hashlib.sha256((record.category + "\0" + normalized).encode("utf-8")).hexdigest()
-    warnings = {"factual_verification_unavailable", "reported_quality_not_calibrated"}
+    factually_verified = fact_check is not None
+    warnings = {"reported_quality_not_calibrated"}
+    if not factually_verified:
+        warnings.add("factual_verification_unavailable")
     words = len(text.split())
     if words < 40:
         warnings.add("short_passage_review")
@@ -70,6 +78,8 @@ def normalize_record(record: ChunkRecord, spec: DatasetSpec, as_of: date) -> Rag
         scheme=record.scheme,
         document_type=record.document_type,
         supersedes=tuple(record.supersedes),
+        factual_verification="verified" if factually_verified else "unverified",
+        fact_checked_at=fact_check.reviewed_at.isoformat() if fact_check else None,
     )
     return RagDocument(
         id="rag_" + fingerprint, content_hash=fingerprint, category=record.category,

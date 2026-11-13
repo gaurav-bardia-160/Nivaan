@@ -1,9 +1,11 @@
 """Provider-independent corpus contracts, distinct from the legacy Answer schema."""
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Literal, Optional
+from urllib.parse import urlsplit
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 
@@ -70,6 +72,11 @@ class ChunkRecord(BaseModel):
         return sorted(set(value.strip() for value in values))
 
 
+def canonical_record_sha256(record: ChunkRecord) -> str:
+    """Return the stable digest that an independent review certifies."""
+    return hashlib.sha256(record.model_dump_json().encode("utf-8")).hexdigest()
+
+
 class DatasetSpec(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
     id: str = Field(min_length=1, max_length=60, pattern=r"^[a-z][a-z0-9_-]*$")
@@ -92,6 +99,49 @@ class CorpusManifest(BaseModel):
     datasets: list[DatasetSpec] = Field(min_length=1, max_length=100)
 
 
+class FactCheckRecord(BaseModel):
+    """Independent human review bound to one exact canonical record revision."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+    dataset_id: str = Field(min_length=1, max_length=60, pattern=r"^[a-z][a-z0-9_-]*$")
+    record_id: str = Field(min_length=1, max_length=200, pattern=r"^[A-Za-z0-9_.-]+$")
+    record_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    reviewed_at: date
+    expires_at: date
+    reviewer: str = Field(min_length=1, max_length=200)
+    evidence_url: str = Field(min_length=1, max_length=4096)
+
+    @field_validator("reviewed_at", "expires_at", mode="before")
+    @classmethod
+    def fact_check_iso_date(cls, value):
+        if not isinstance(value, str) or len(value) != 10:
+            raise ValueError("expected ISO date YYYY-MM-DD")
+        parsed = date.fromisoformat(value)
+        if parsed.isoformat() != value:
+            raise ValueError("expected ISO date YYYY-MM-DD")
+        return parsed
+
+    @field_validator("evidence_url")
+    @classmethod
+    def secure_evidence_url(cls, value):
+        parsed = urlsplit(value)
+        if (
+            parsed.scheme != "https"
+            or not parsed.hostname
+            or parsed.username is not None
+            or parsed.password is not None
+            or parsed.port not in (None, 443)
+        ):
+            raise ValueError("evidence_url must be a public HTTPS URL")
+        return value
+
+
+class FactCheckRegistry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: Literal[1]
+    reviews: list[FactCheckRecord] = Field(default_factory=list, max_length=50000)
+
+
 @dataclass(frozen=True)
 class SourceReference:
     dataset_id: str
@@ -111,9 +161,8 @@ class SourceReference:
     scheme: str | None = None
     document_type: str | None = None
     supersedes: tuple[str, ...] = ()
-    # No evidence importer exists yet. Keep factual status explicitly unverified.
-    factual_verification: str = field(default="unverified", init=False)
-    fact_checked_at: None = field(default=None, init=False)
+    factual_verification: str = "unverified"
+    fact_checked_at: str | None = None
 
 
 @dataclass(frozen=True)
@@ -154,7 +203,7 @@ class IngestionReport:
     issues_truncated: bool = False
     complete: bool = True
     factual_verification: str = "unverified"
-    usage: str = "candidate corpus only; not factual verification or retrieval evaluation"
+    usage: str = "candidate corpus; only exact active fact-check registry matches are factually verified"
 
 
 @dataclass(frozen=True)
