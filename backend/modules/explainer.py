@@ -392,7 +392,9 @@ def explain_rag_result(
 
                 reported_last_verified=source.reported_last_verified,
 
-                factual_verification="unverified",
+                factual_verification=(
+                    "verified" if source.factual_verification == "verified" else "unverified"
+                ),
 
             )
 
@@ -495,18 +497,28 @@ def explain_rag_result(
     else:
         calc_conf = "high" if score_conf >= 0.75 else "medium"
     
+    has_verified_evidence = bool(citations) and all(
+        c.factual_verification == "verified" for c in citations
+    )
+    answer_warnings = [] if has_verified_evidence else [
+        Warning(
+            title="Candidate evidence, not verified advice",
+            message="Retrieval found related official-source text, but the project has not independently validated every factual statement.",
+            severity="warning",
+        )
+    ]
+    if has_verified_evidence:
+        summary_candidate = summary_candidate.replace(
+            " Note: this candidate evidence from official sources has not been independently fact-checked. Confirm time-sensitive rules on the linked official portal.",
+            "",
+        )
+
     return Answer(
-        title=f"Relevant official material: {first.title}"[:180],
+        title=(f"Verified official material: {first.title}" if has_verified_evidence else f"Relevant official material: {first.title}")[:180],
         summary=summary_candidate,
         documents_needed=[],
         steps=dynamic_steps,
-        warnings=[
-            Warning(
-                title="Candidate evidence, not verified advice",
-                message="Retrieval found related official-source text, but the project has not independently validated every factual statement.",
-                severity="warning",
-            )
-        ],
+        warnings=answer_warnings,
         source_url=first.url,
         last_verified=first.reported_last_verified,
         confidence=calc_conf,
@@ -598,6 +610,4 @@ def greeting_answer(user_question: str, masked_items: list[MaskedItem] | None = 
 
 
 __all__ = ["DEFAULT_DISCLAIMER", "QueryModality", "classify_query_modality", "explain_entry", "explain_rag_result", "greeting_answer", "not_found_answer"]
-
-
 

@@ -1,7 +1,7 @@
-"""ETL Phase 2 — Scheduler: Run the ETL pipeline (extract → refine → vectorize) on a schedule.
+"""ETL scheduler for secure extraction, refinement, and canonical publication.
 
-Runs entirely offline as a background long-running process.
-Checks if the live LLM is actively generating before running (to avoid CPU contention).
+The final publication phase updates the canonical RAG manifest and rebuilds the
+same unified local Qdrant index used by the live runtime.
 
 Usage:
     py -m backend.etl.scheduler          # Runs every 4 hours (default)
@@ -42,7 +42,7 @@ def _is_llm_generating() -> bool:
 
 
 def run_etl_pipeline() -> None:
-    """Run the full ETL pipeline: extract → refine → vectorize."""
+    """Run the full ETL pipeline: extract → refine → canonical publish/index."""
     if _is_llm_generating():
         logger.info("LLM is actively generating — deferring ETL run to avoid CPU contention.")
         return
@@ -76,16 +76,20 @@ def run_etl_pipeline() -> None:
         approved = 0
 
     if approved == 0:
-        logger.info("No approved refined files. Skipping vectorize phase.")
-        return
+        from backend.config import ETL_REFINED_DIR
+        pending_refined = list(ETL_REFINED_DIR.glob("*.json"))
+        if not pending_refined:
+            logger.info("No approved refined files. Skipping canonical publication.")
+            return
+        logger.info("Found %d previously refined files awaiting publication.", len(pending_refined))
 
-    # Phase 2c: Vectorize
+    # Phase 2c: Publish to the canonical corpus and rebuild the runtime index
     try:
         from backend.etl.vectorize import vectorize_all
-        vectorized = vectorize_all()
-        logger.info("Vectorize: %d files ingested to Qdrant", vectorized)
+        published = vectorize_all()
+        logger.info("Publish: %d files added to the canonical corpus and runtime index", published)
     except Exception as exc:
-        logger.error("Vectorize phase failed: %s", exc)
+        logger.error("Canonical publication phase failed: %s", exc)
 
     logger.info("=== ETL Pipeline Complete ===")
 

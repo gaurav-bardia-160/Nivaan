@@ -10,11 +10,21 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from backend.rag.models import ChunkRecord, CorpusManifest, IngestionReport, LoadIssue, LoadResult
+from backend.rag.models import (
+    ChunkRecord,
+    CorpusManifest,
+    FactCheckRecord,
+    FactCheckRegistry,
+    IngestionReport,
+    LoadIssue,
+    LoadResult,
+    canonical_record_sha256,
+)
 from backend.rag.normalizer import RecordRejected, normalize_record
 
 DATA_ROOT = Path(__file__).resolve().parents[1] / "data"
 DEFAULT_MANIFEST = DATA_ROOT / "rag_manifest.json"
+DEFAULT_FACT_CHECKS = DATA_ROOT / "fact_checks.json"
 
 
 @dataclass(frozen=True)
@@ -83,6 +93,7 @@ def load_corpus(
     manifest_path: Path = DEFAULT_MANIFEST,
     *,
     data_root: Path = DATA_ROOT,
+    fact_checks_path: Path | None = None,
     as_of: date | None = None,
     limits: LoadLimits = LoadLimits(),
 ) -> LoadResult:
@@ -107,6 +118,22 @@ def load_corpus(
     seen_ids = {}
     total_bytes = 0
     as_of = as_of or date.today()
+    checks_path = Path(fact_checks_path) if fact_checks_path is not None else root / "fact_checks.json"
+    fact_checks: dict[tuple[str, str], FactCheckRecord] = {}
+    seen_fact_check_identities: set[tuple[str, str]] = set()
+    if checks_path.exists():
+        raw_checks = _read(checks_path, limits.file_bytes)
+        try:
+            registry = FactCheckRegistry.model_validate(_json(raw_checks.decode("utf-8-sig")))
+        except (ValueError, RecursionError):
+            raise CorpusLoadError("invalid_fact_check_registry") from None
+        for review in registry.reviews:
+            identity = (review.dataset_id, review.record_id)
+            if identity in fact_checks:
+                raise CorpusLoadError("duplicate_fact_check")
+            if review.reviewed_at > review.expires_at:
+                raise CorpusLoadError("invalid_fact_check_dates")
+            fact_checks[identity] = review
 
     def reject(dataset_id, line, code):
         report.rejected_records += 1
@@ -142,10 +169,18 @@ def load_corpus(
                 reject(spec.id, line_number, "invalid_record_schema")
                 continue
             try:
-                document = normalize_record(record, spec, as_of)
-                serialized = record.model_dump_json()
                 # Identity includes metadata; changed provenance with the same ID is a conflict.
-                signature = hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+                signature = canonical_record_sha256(record)
+                review = fact_checks.get((spec.id, record.id))
+                if review is not None:
+                    seen_fact_check_identities.add((spec.id, record.id))
+                if review is not None and (
+                    review.record_sha256 != signature
+                    or review.reviewed_at > as_of
+                    or review.expires_at < as_of
+                ):
+                    review = None
+                document = normalize_record(record, spec, as_of, fact_check=review)
             except RecordRejected as exc:
                 reject(spec.id, line_number, str(exc))
                 continue
@@ -174,6 +209,8 @@ def load_corpus(
                     language=previous.language if previous.language == document.language else "mixed",
                     warnings=tuple(sorted(set(previous.warnings + document.warnings))),
                 )
+    if set(fact_checks) - seen_fact_check_identities:
+        raise CorpusLoadError("orphan_fact_check")
     if not report.accepted_records:
         report.complete = False
     final = tuple(documents[key] for key in sorted(documents)) if report.complete else ()
@@ -181,6 +218,13 @@ def load_corpus(
     report.retained_source_references = sum(len(doc.sources) for doc in final)
     report.category_counts = dict(sorted(Counter(doc.category for doc in final).items()))
     report.warning_counts = dict(sorted(Counter(w for doc in final for w in doc.warnings).items()))
+    verified_sources = sum(
+        1 for document in final for source in document.sources
+        if source.factual_verification == "verified"
+    )
+    report.factual_verification = "verified" if verified_sources and verified_sources == report.retained_source_references else (
+        "mixed" if verified_sources else "unverified"
+    )
     report.corpus_sha256 = hashlib.sha256(
         json.dumps([asdict(doc) for doc in final], sort_keys=True, ensure_ascii=True).encode()
     ).hexdigest()

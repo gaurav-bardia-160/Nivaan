@@ -15,7 +15,7 @@ def test_inspect_vector_index_reports_missing_index(tmp_path, monkeypatch):
         documents = (object(), object())
         report = Report()
 
-    monkeypatch.setattr(ensure_vector_db, "load_corpus", lambda _: LoadResult())
+    monkeypatch.setattr(ensure_vector_db, "load_corpus", lambda _, **__: LoadResult())
 
     result = ensure_vector_db.inspect_vector_index(
         dest_dir=tmp_path / "missing",
@@ -39,7 +39,7 @@ def test_inspect_vector_index_rejects_missing_compatibility_metadata(tmp_path, m
     destination = tmp_path / "qdrant"
     destination.mkdir()
     (destination / "storage.sqlite").write_text("placeholder", encoding="utf-8")
-    monkeypatch.setattr(ensure_vector_db, "load_corpus", lambda _: LoadResult())
+    monkeypatch.setattr(ensure_vector_db, "load_corpus", lambda _, **__: LoadResult())
 
     result = ensure_vector_db.inspect_vector_index(
         dest_dir=destination,
@@ -83,11 +83,17 @@ def test_ensure_vector_index_rebuilds_and_rechecks(monkeypatch, tmp_path):
         return {"status": "success"}
 
     destination = tmp_path / "qdrant"
-    result = ensure_vector_db.ensure_vector_index(dest_dir=destination, builder=builder)
+    data_root = tmp_path / "data"
+    result = ensure_vector_db.ensure_vector_index(
+        dest_dir=destination,
+        data_root=data_root,
+        builder=builder,
+    )
 
     assert result["action"] == "rebuilt"
     assert result["points"] == 681
     assert calls[0]["dest_dir"] == destination
+    assert calls[0]["data_root"] == data_root
 
 
 def test_ensure_vector_index_rejects_incomplete_rebuild(monkeypatch):
