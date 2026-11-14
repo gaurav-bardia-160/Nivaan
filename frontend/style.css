@@ -987,11 +987,11 @@ body {
 .copy-response-btn {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 3px 8px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-muted);
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+    color: #000000; /* Black when theme is light */
     background: transparent;
     border: 1px solid var(--border-light);
     border-radius: var(--radius-sm);
@@ -999,34 +999,56 @@ body {
     transition: all 0.15s ease-in-out;
 }
 
+.copy-response-btn .copy-icon-svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    display: block;
+    transition: transform 0.12s ease;
+}
+
 .copy-response-btn:hover {
-    color: var(--brand-blue);
-    border-color: var(--brand-blue);
-    background-color: var(--brand-light);
+    background-color: var(--bg-sidebar);
+    border-color: var(--text-secondary);
+    color: #000000;
+}
+
+.copy-response-btn:hover .copy-icon-svg {
+    transform: scale(1.1);
 }
 
 .copy-response-btn.copied {
-    color: #059669;
+    color: #059669 !important;
     border-color: #10b981;
     background-color: #ecfdf5;
 }
 
+.copy-response-btn.copied .copy-icon-svg {
+    stroke: #059669;
+}
+
 [data-theme="dark"] .copy-response-btn {
-    color: var(--text-muted);
+    color: #ffffff; /* White when theme is dark */
     border-color: var(--border-light);
     background: transparent;
 }
 
 [data-theme="dark"] .copy-response-btn:hover {
-    color: #60a5fa;
-    border-color: #3b82f6;
-    background-color: rgba(59, 130, 246, 0.1);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
 }
 
 [data-theme="dark"] .copy-response-btn.copied {
-    color: #34d399;
+    color: #34d399 !important;
     border-color: #059669;
-    background-color: rgba(16, 185, 129, 0.15);
+    background-color: rgba(16, 185, 129, 0.2);
+}
+
+[data-theme="dark"] .copy-response-btn.copied .copy-icon-svg {
+    stroke: #34d399;
 }
 
 /* Privacy Redaction Alert */

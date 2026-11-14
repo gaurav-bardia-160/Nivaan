@@ -1141,3 +1141,4 @@ timestamp,conversation_id,query,domain,top_score,reason
 2026-11-14T12:22:14.087194+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
 2026-11-14T12:22:14.096530+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
 2026-11-14T12:22:14.137105+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-14T14:11:56.132399+00:00,chat_1794665515499_1ahib,What is the step-by-step procedure to incorporate a Private Limited Company with 2 directors on the MCA V3 portal using the SPICe+ Part A and Part B form,uncovered,0.0000,uncovered_domain

@@ -45,6 +45,8 @@ const suggestionCards = document.querySelectorAll(".suggestion-card");
 const BOT_AVATAR_HTML = '<div class="message-avatar bot-avatar"><img src="logo.png" alt="Nivaan" class="bot-avatar-img" /></div>';
 const ICON_THUMBS_UP = '<svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>';
 const ICON_THUMBS_DOWN = '<svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"></path></svg>';
+const ICON_COPY = '<svg class="copy-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+const ICON_COPIED = '<svg class="copy-icon-svg check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
 // --- INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -1367,9 +1369,7 @@ function createLiveAssistantRow(meta) {
                         </span>
                         <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate" aria-label="Like">${ICON_THUMBS_UP}</button>
                         <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate" aria-label="Dislike">${ICON_THUMBS_DOWN}</button>
-                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard">
-                             Copy
-                        </button>
+                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard" aria-label="Copy">${ICON_COPY}</button>
                     </div>
                 </div>
 
@@ -1477,9 +1477,7 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
                         </span>
                         <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate" aria-label="Like">${ICON_THUMBS_UP}</button>
                         <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate" aria-label="Dislike">${ICON_THUMBS_DOWN}</button>
-                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard">
-                            <span class="copy-icon">📋</span> Copy
-                        </button>
+                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard" aria-label="Copy">${ICON_COPY}</button>
                     </div>
                 </div>
 
@@ -1571,15 +1569,17 @@ window.copyResponseText = function(btn) {
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(fullText.trim()).then(() => {
-            const originalHtml = btn.innerHTML;
-            btn.innerHTML = `<span class="copy-icon">✓</span> Copied!`;
+            const originalTitle = btn.getAttribute("title");
+            btn.innerHTML = ICON_COPIED;
             btn.classList.add("copied");
+            btn.setAttribute("title", "Copied to clipboard!");
             if (typeof window.sendFeedback === "function") {
                 window.sendFeedback(btn, "copy_steps", 0);
             }
             setTimeout(() => {
-                btn.innerHTML = originalHtml;
+                btn.innerHTML = ICON_COPY;
                 btn.classList.remove("copied");
+                btn.setAttribute("title", originalTitle || "Copy guide to clipboard");
             }, 2000);
         }).catch(err => {
             console.error("Failed to copy:", err);
