@@ -10,6 +10,7 @@ from backend.rag.embeddings import DEFAULT_MULTILINGUAL_MODEL, FastEmbedProvider
 from backend.rag.models import RetrievalResult
 from backend.rag.retriever import RagRetriever
 from backend.rag.vector_store import QdrantLocalVectorStore, read_index_metadata
+from backend.modules.domain_router import Domain
 
 _TRUE_VALUES = {"1", "true", "yes", "on"}
 DEFAULT_VECTOR_PATH = DATA_DIR / "vector_index" / "qdrant"
@@ -107,9 +108,6 @@ def get_retriever() -> RagRetriever:
 
 def supported_category(query: str) -> str | None:
     from backend.modules.domain_router import Domain, classify_domain
-    if classify_domain(query) == Domain.UNCOVERED:
-        return None
-
     lowered = query.lower()
     _UNSUPPORTED_NON_CIVIC_TERMS = (
         "cake", "bake", "baking", "recipe", "cook", "cooking", "chocolate",
@@ -155,10 +153,6 @@ def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) ->
     if any(re.search(rf"(?<!\w){re.escape(t)}(?!\w)", query.lower()) for t in _UNSUPPORTED):
         return None
     if not rag_enabled():
-        return None
-
-    from backend.modules.domain_router import Domain, classify_domain
-    if domain in (Domain.UNCOVERED, "uncovered") or classify_domain(query) == Domain.UNCOVERED:
         return None
 
     category = None

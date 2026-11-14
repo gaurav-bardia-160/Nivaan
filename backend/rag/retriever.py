@@ -94,15 +94,6 @@ class RagRetriever:
         if not clean_query:
             return RetrievalResult(query=clean_query, hits=(), status="empty_query", searched_documents=0)
 
-        # 1. Hard Domain Routing Short-Circuit for Uncovered Domains
-        # Evaluate unconditionally on the query text to prevent caller-passed domain argument bypass.
-        if classify_domain(clean_query) == Domain.UNCOVERED or domain in (Domain.UNCOVERED, "uncovered"):
-            return RetrievalResult(
-                query=clean_query,
-                hits=(),
-                status="uncovered_domain",
-                searched_documents=0,
-            )
 
         resolved_domain: Domain = Domain.UNKNOWN
         if domain is not None:

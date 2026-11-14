@@ -182,24 +182,29 @@ class TestLogPendingIngestion:
 # ─── allowlist query builder tests ────────────────────────────────────────────
 
 class TestBuildAllowlistQuery:
-    def test_transport_domain_includes_parivahan(self):
+    def test_universal_site_suffix_on_all_queries(self):
         from backend.modules.domain_router import Domain
-        from backend.web_search.allowlist import build_allowlist_query
-        q = build_allowlist_query("RC chassis mismatch correction", Domain.TRANSPORT)
-        assert "parivahan.gov.in" in q
-        assert "RC chassis mismatch correction" in q
+        from backend.web_search.allowlist import build_allowlist_query, _UNIVERSAL_SITE_SUFFIX
+        q1 = build_allowlist_query("RC chassis mismatch correction", Domain.TRANSPORT)
+        assert _UNIVERSAL_SITE_SUFFIX in q1
+        assert "RC chassis mismatch correction" in q1
 
-    def test_tax_domain_includes_incometax(self):
-        from backend.modules.domain_router import Domain
-        from backend.web_search.allowlist import build_allowlist_query
-        q = build_allowlist_query("ITR defective notice 139(9)", Domain.TAXATION)
-        assert "incometax.gov.in" in q
+        q2 = build_allowlist_query("ITR defective notice 139(9)", Domain.TAXATION)
+        assert _UNIVERSAL_SITE_SUFFIX in q2
 
-    def test_unknown_domain_falls_back_to_generic(self):
-        from backend.modules.domain_router import Domain
-        from backend.web_search.allowlist import build_allowlist_query
-        q = build_allowlist_query("some query", Domain.UNKNOWN)
-        assert "site:gov.in" in q
+        q3 = build_allowlist_query("some query", Domain.UNKNOWN)
+        assert _UNIVERSAL_SITE_SUFFIX in q3
+
+    def test_allowlist_domains_derived_from_tld_and_non_tld(self):
+        from backend.web_search.allowlist import CIVIC_ALLOWLIST_DOMAINS, CIVIC_TLD_SUFFIXES, NON_TLD_OFFICIAL_DOMAINS
+        assert CIVIC_ALLOWLIST_DOMAINS == CIVIC_TLD_SUFFIXES + NON_TLD_OFFICIAL_DOMAINS
+
+    def test_verified_railway_domains_allowlisted(self):
+        from backend.web_search.allowlist import is_allowlisted_url
+        assert is_allowlisted_url("https://irctc.co.in/nget/train-search")
+        assert is_allowlisted_url("https://rvnl.org/home")
+        assert is_allowlisted_url("https://www.ircon.org/")
+        assert is_allowlisted_url("https://cris.org.in/")
 
 
 # ─── pipeline integration tests (mocked network) ─────────────────────────────
@@ -541,20 +546,15 @@ class TestProductionSearchSecurity:
 
 
 class TestServiceAwareSearchRouting:
-    def test_onorc_targets_nfsa_not_uidai(self):
+    def test_single_identical_suffix_across_domains(self):
         from backend.modules.domain_router import Domain
-        from backend.web_search.allowlist import build_allowlist_query
+        from backend.web_search.allowlist import build_allowlist_query, _UNIVERSAL_SITE_SUFFIX
 
-        query = build_allowlist_query("How can I use One Nation One Ration Card in another state?", Domain.IDENTITY)
-        assert "site:nfsa.gov.in" in query
-        assert "uidai.gov.in" not in query
+        q_onorc = build_allowlist_query("How can I use One Nation One Ration Card in another state?", Domain.IDENTITY)
+        assert q_onorc.endswith(_UNIVERSAL_SITE_SUFFIX)
 
-    def test_mudra_targets_financial_services(self):
-        from backend.modules.domain_router import Domain
-        from backend.web_search.allowlist import build_allowlist_query
-
-        query = build_allowlist_query("How do I apply for a MUDRA loan?", Domain.BANKING)
-        assert "site:financialservices.gov.in" in query
+        q_mudra = build_allowlist_query("How do I apply for a MUDRA loan?", Domain.BANKING)
+        assert q_mudra.endswith(_UNIVERSAL_SITE_SUFFIX)
 
     def test_explicit_site_constraint_filters_unrelated_allowlisted_results(self):
         from backend.web_search.searcher import _matches_query_site

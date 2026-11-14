@@ -11,7 +11,6 @@ from backend.modules.agent import route
 from backend.modules.bandit_policy import bandit_policy
 from backend.modules.domain_router import (
     Domain,
-    _UNCOVERED_DOMAIN_PATTERNS,
     classify_domain,
     entry_matches_domain,
 )
@@ -385,56 +384,6 @@ def _finalize_answer(answer: Answer, *, request: AskRequest, safe_question: str,
     return translated
 
 
-def _build_uncovered_domain_refusal(user_question: str, masked_items: list[Any] | None = None) -> Answer:
-    clean_question = " ".join(user_question.strip().split()) or "this request"
-    if len(clean_question) > 240:
-        clean_question = f"{clean_question[:237]}..."
-
-    domain_name = "the requested service"
-    for pat in _UNCOVERED_DOMAIN_PATTERNS.get("mca_spice", ()):
-        if pat.search(clean_question):
-            domain_name = "Ministry of Corporate Affairs (MCA / SPICe+) corporate registration"
-            break
-    else:
-        for pat in _UNCOVERED_DOMAIN_PATTERNS.get("petroleum_lpg", ()):
-            if pat.search(clean_question):
-                domain_name = "Petroleum and LPG cylinder / subsidy"
-                break
-        else:
-            for pat in _UNCOVERED_DOMAIN_PATTERNS.get("nsp_scholarships", ()):
-                if pat.search(clean_question):
-                    domain_name = "National Scholarship Portal (NSP) scheme"
-                    break
-
-    summary = (
-        f"Official procedural guidance for {domain_name} ('{clean_question}') is currently not covered "
-        "in Nivaan's verified knowledge base. To maintain strict factual accuracy and adhere to the "
-        "anti-hallucination policy, this assistant does not generate ungrounded instructions without "
-        "canonical government documentation. Please consult the official government portal directly "
-        "for authentic procedures."
-    )
-
-    return Answer(
-        entry_id=None,
-        title="Service Domain Not Covered",
-        summary=summary,
-        documents_needed=[],
-        steps=[],
-        warnings=[
-            Warning(
-                title="Domain Uncovered",
-                message="This service domain is currently not covered in Nivaan's verified knowledge base.",
-                severity="warning",
-            )
-        ],
-        source_url=None,
-        last_verified=date.today(),
-        confidence="low",
-        masked_items=masked_items or [],
-        citations=[],
-        disclaimer=DEFAULT_DISCLAIMER,
-    )
-
 
 def run(request: AskRequest | dict[str, Any]) -> Answer:
     """Run the safe backend workflow for typed text and supported uploads.
@@ -478,23 +427,6 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
     bandit_action = bandit_policy.select_action(search_text, is_followup=is_followup)
     bandit_policy.record_action(parsed_request.conversation_id, search_text, bandit_action)
 
-    # Hard Domain Interception: Uncovered domains bypass retrieval and web search
-    if query_domain == Domain.UNCOVERED:
-        log_unresolved_query(
-            safe_text,
-            reason="uncovered_domain",
-            domain="uncovered",
-            top_score=0.0,
-            conversation_id=parsed_request.conversation_id,
-        )
-        uncovered_ans = _build_uncovered_domain_refusal(safe_text, masked_items=masked_items)
-        return _finalize_answer(
-            uncovered_ans,
-            request=parsed_request,
-            safe_question=masked_question.text or safe_text,
-            target_lang=target_lang,
-            rl_arm=bandit_action.name,
-        )
 
     if (
         parsed_request.input_type == "question"
@@ -822,39 +754,6 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
     bandit_action = bandit_policy.select_action(search_text, is_followup=is_followup)
     bandit_policy.record_action(parsed_request.conversation_id, search_text, bandit_action)
 
-    # Hard Domain Interception: Uncovered domains bypass retrieval and web search
-    if query_domain == Domain.UNCOVERED:
-        log_unresolved_query(
-            safe_text,
-            reason="uncovered_domain",
-            domain="uncovered",
-            top_score=0.0,
-            conversation_id=parsed_request.conversation_id,
-        )
-        uncovered_ans = _build_uncovered_domain_refusal(safe_text, masked_items=masked_items)
-        yield {
-            "event": "meta",
-            "data": {
-                "title": uncovered_ans.title,
-                "confidence": uncovered_ans.confidence,
-                "source_url": "",
-                "citations": [],
-                "masked_items": [m.model_dump(mode="json") for m in masked_items],
-                "rl_arm": bandit_action.name,
-            },
-        }
-        words = uncovered_ans.summary.split(" ")
-        for i, w in enumerate(words):
-            yield {"event": "token", "data": {"delta": w + (" " if i < len(words) - 1 else "")}}
-        final_ans = _finalize_answer(
-            uncovered_ans,
-            request=parsed_request,
-            safe_question=masked_question.text or safe_text,
-            target_lang=target_lang,
-            rl_arm=bandit_action.name,
-        )
-        yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
-        return
 
     # 1. Pure Greeting Path
     if (

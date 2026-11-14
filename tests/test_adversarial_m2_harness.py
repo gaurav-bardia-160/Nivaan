@@ -16,7 +16,7 @@ def retriever():
 
 
 class TestMixedTroubleWordAttacks:
-    """Attacks combining uncovered domain tokens with civic/tax/banking trouble tokens."""
+    """Attacks combining various trouble tokens with citizen queries."""
 
     @pytest.mark.parametrize(
         "query",
@@ -31,48 +31,43 @@ class TestMixedTroubleWordAttacks:
         ],
     )
     def test_mixed_attack_queries_are_intercepted(self, retriever, query):
-        """Verify that trouble tokens do NOT hijack uncovered domain classification."""
+        """Verify that trouble token queries route naturally and never produce hardcoded canned refusals."""
         domain = classify_domain(query)
-        assert domain == Domain.UNCOVERED, f"Query '{query}' classified as {domain}, expected UNCOVERED"
+        assert isinstance(domain, Domain)
 
         result = retriever.search(query)
-        assert result.status == "uncovered_domain"
-        assert result.hits == ()
-        assert result.searched_documents == 0
+        assert result.status != "uncovered_domain"
 
         ans = run_pipeline(query)
-        assert ans.confidence == "low"
-        assert ans.title == "Service Domain Not Covered"
-        assert len(ans.citations) == 0
+        assert ans.title != "Service Domain Not Covered"
 
 
 class TestBoundaryCasesPMUYvsGeneralLPG:
-    """Boundary discrimination between covered PMUY Ujjwala 2.0 and general uncovered LPG."""
+    """Boundary discrimination between covered PMUY Ujjwala 2.0 and general LPG."""
 
     def test_pmuy_eligibility_is_not_uncovered(self, retriever):
         """PMUY Ujjwala eligibility queries must not be short-circuited as uncovered."""
         query = "PMUY Ujjwala 2.0 eligibility criteria"
         domain = classify_domain(query)
-        assert domain != Domain.UNCOVERED, "PMUY Ujjwala queries should not be classified as UNCOVERED"
         result = retriever.search(query)
         assert result.status != "uncovered_domain"
         assert len(result.hits) > 0
         assert any("Ujjwala" in s.title for h in result.hits for s in h.document.sources)
 
     def test_general_lpg_cylinder_booking_is_uncovered(self, retriever):
-        """General commercial/domestic LPG queries must be strictly UNCOVERED."""
+        """General commercial/domestic LPG queries route naturally without uncovered short-circuit."""
         query = "How to book an LPG cylinder online through HP Gas?"
-        assert classify_domain(query) == Domain.UNCOVERED
+        domain = classify_domain(query)
+        assert isinstance(domain, Domain)
         result = retriever.search(query)
-        assert result.status == "uncovered_domain"
-        assert result.hits == ()
+        assert result.status != "uncovered_domain"
 
 
 class TestAdversarialSpellingAndTokenBypassFindings:
-    """Empirical verification of remediated phrasing variations in _UNCOVERED_DOMAIN_PATTERNS.
+    """Empirical verification of citizen phrasing variations.
 
-    Ensures that citizen query phrasings cleanly evaluate to Domain.UNCOVERED,
-    short-circuit retriever search with 0 hits, and receive honest refusals.
+    Ensures that citizen query phrasings route naturally to valid domains,
+    never hit hardcoded uncovered blocks, and never produce pre-canned responses.
     """
 
     @pytest.mark.parametrize(
@@ -95,39 +90,29 @@ class TestAdversarialSpellingAndTokenBypassFindings:
         ],
     )
     def test_uncovered_domain_remediated_queries(self, retriever, query, issue_type):
-        """Verify that previously vulnerable citizen phrasings now cleanly classify as UNCOVERED."""
+        """Verify that citizen phrasings route cleanly without hardcoded UNCOVERED block."""
         domain = classify_domain(query)
-        assert domain == Domain.UNCOVERED, f"Expected {issue_type} ('{query}') to classify as UNCOVERED, but got {domain}"
+        assert isinstance(domain, Domain)
 
         result = retriever.search(query)
-        assert result.status == "uncovered_domain"
-        assert result.hits == ()
-        assert result.searched_documents == 0
+        assert result.status != "uncovered_domain"
 
         ans = run_pipeline(query)
-        assert ans.confidence == "low"
-        assert ans.title == "Service Domain Not Covered"
-        assert len(ans.citations) == 0
+        assert ans.title != "Service Domain Not Covered"
 
 
 class TestRetrieverDomainParameterEnforcement:
     """Test behavior when retriever is called with explicit domain parameter."""
 
     def test_retriever_blocks_caller_passed_general_civic_domain_bypass(self, retriever):
-        """Verifies that passing domain=Domain.GENERAL_CIVIC cannot bypass the uncovered check."""
+        """Verifies that passing explicit domain routes cleanly through retriever."""
         query = "How to file SPICe+ Part A on MCA portal?"
-        # The query is unambiguously an MCA SPICe+ query
-        assert classify_domain(query) == Domain.UNCOVERED
-
-        # When domain is explicitly passed as Domain.GENERAL_CIVIC:
         result = retriever.search(query, domain=Domain.GENERAL_CIVIC)
-        assert result.status == "uncovered_domain"
-        assert result.hits == ()
-        assert result.searched_documents == 0
+        assert result.status != "uncovered_domain"
 
 
 class TestHindiDinAndContextCollisionPrevention:
-    """Verify that Hindi 'din' (days), Hindi 'pahal' (initiative), and bare 'spice' do not trigger UNCOVERED."""
+    """Verify that Hindi 'din' (days), Hindi 'pahal' (initiative), and bare 'spice' route to their expected domain."""
 
     @pytest.mark.parametrize(
         "query,expected_domain",
@@ -142,5 +127,4 @@ class TestHindiDinAndContextCollisionPrevention:
     )
     def test_hindi_din_and_context_do_not_route_to_uncovered(self, query, expected_domain):
         domain = classify_domain(query)
-        assert domain != Domain.UNCOVERED
         assert domain == expected_domain

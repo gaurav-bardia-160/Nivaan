@@ -4,62 +4,43 @@ No open-internet scraping is permitted. All URLs fetched must belong to the allo
 """
 from __future__ import annotations
 
+import re
 from urllib.parse import urlparse
 
-from backend.modules.domain_router import Domain
+from typing import TYPE_CHECKING
 
-# Official Indian government domain allowlist — only these TLDs/domains are permitted
-CIVIC_ALLOWLIST_DOMAINS: tuple[str, ...] = (
+if TYPE_CHECKING:
+    from backend.modules.domain_router import Domain
+
+# Sovereign Indian government TLD suffixes
+CIVIC_TLD_SUFFIXES: tuple[str, ...] = (
     "gov.in",
     "nic.in",
-    "rbi.org.in",
-    "npci.org.in",
-    "uidai.gov.in",
-    "incometax.gov.in",
-    "parivahan.gov.in",
-    "epfindia.gov.in",
-    "passport.gov.in",
-    "india.gov.in",
-    "mca.gov.in",
-    "sebi.gov.in",
-    "irdai.gov.in",
-    "cbse.gov.in",
-    "digilocker.gov.in",
-    "nha.gov.in",
-    "abdm.gov.in",
-    "pmkisan.gov.in",
-    "eci.gov.in",
-    "nvsp.in",
-    "onlineservices.uidai.gov.in",
-    "serviceonline.gov.in",
-    "umang.gov.in",
-    "nsdl.co.in",
-    "ihmcl.co.in",
-    "cbse.nic.in",
-    "dfpd.gov.in",
-    "nfsa.gov.in",
-    "financialservices.gov.in",
-    "jansamarth.in",
-    "pfrda.org.in",
-    "dicgc.org.in",
 )
 
-# Domain-specific additional site constraints for better precision
-_DOMAIN_SITE_HINTS: dict[Domain, tuple[str, ...]] = {
-    Domain.TAXATION: ("incometax.gov.in", "cbdt.gov.in"),
-    Domain.BANKING: ("rbi.org.in", "npci.org.in", "financialservices.gov.in", "jansamarth.in", "dicgc.org.in"),
-    Domain.TRANSPORT: ("parivahan.gov.in", "nhai.gov.in", "ihmcl.co.in", "vahan.parivahan.gov.in"),
-    Domain.IDENTITY: ("uidai.gov.in", "digilocker.gov.in", "passport.gov.in", "eci.gov.in"),
-    Domain.EDUCATION: ("cbse.gov.in", "cbse.nic.in", "digilocker.gov.in", "nta.ac.in"),
-    Domain.AGRICULTURE: ("pmkisan.gov.in", "agri.gov.in", "farmer.gov.in"),
-    Domain.LEGAL_CONSUMER: ("edaakhil.nic.in", "nalsa.gov.in", "consumerhelpline.gov.in"),
-}
+# Non-TLD official/statutory/PSU bodies — curated manually, expand deliberately only with named official citations.
+NON_TLD_OFFICIAL_DOMAINS: tuple[str, ...] = (
+    # Finance / banking regulators & statutory bodies (previously approved)
+    "rbi.org.in",
+    "npci.org.in",
+    "pfrda.org.in",
+    "dicgc.org.in",
+    "nsdl.co.in",
+    "ihmcl.co.in",
+    "jansamarth.in",
+    "nvsp.in",
+    # Railways / transport PSUs & autonomous bodies (Ministry of Railways verified)
+    "irctc.co.in",
+    "rvnl.org",
+    "ircon.org",
+    "cris.org.in",
+)
 
-# Site constraint query fragment (appended to DuckDuckGo search)
-_ALLOWLIST_SITE_QUERY = " ".join(f"site:{d}" for d in CIVIC_ALLOWLIST_DOMAINS[:10])
+# Single source of truth for allowlisted domains
+CIVIC_ALLOWLIST_DOMAINS: tuple[str, ...] = CIVIC_TLD_SUFFIXES + NON_TLD_OFFICIAL_DOMAINS
 
-
-import re
+# Universal query suffix OR'd across all allowlisted domains (constant, always-identical across all queries)
+_UNIVERSAL_SITE_SUFFIX = "(" + " OR ".join(f"site:{d}" for d in CIVIC_ALLOWLIST_DOMAINS) + ")"
 
 
 def extract_search_keywords(user_query: str) -> str:
@@ -108,60 +89,12 @@ def extract_search_keywords(user_query: str) -> str:
     return re.sub(r"[?!.,'\"]+", " ", clean_query).strip()[:80]
 
 
-def preferred_domains_for_query(user_query: str, domain: Domain) -> tuple[str, ...]:
-    """Return the narrow official host set that should satisfy a citizen query."""
-    lowered = user_query.lower()
-    rules: tuple[tuple[tuple[str, ...], tuple[str, ...]], ...] = (
-        (("one nation one ration", "onorc", "mera ration", "ration portability"), ("nfsa.gov.in", "dfpd.gov.in")),
-        (("mudra", "pmmy"), ("financialservices.gov.in", "jansamarth.in", "mudra.org.in")),
-        (("ombudsman", "reserve bank complaint", "rbi complaint", "cms complaint"), ("rbi.org.in", "cms.rbi.org.in")),
-        (("udgam", "unclaimed deposit"), ("rbi.org.in", "udgam.rbi.org.in")),
-        (("deposit insurance", "dicgc"), ("dicgc.org.in",)),
-        (("atal pension", "apy", "national pension", "nps"), ("pfrda.org.in", "npstrust.org.in")),
-        (("ujjwala", "pmuy"), ("pmuy.gov.in",)),
-        (("e-shram", "eshram"), ("eshram.gov.in",)),
-    )
-    for terms, hosts in rules:
-        if any(term in lowered for term in terms):
-            return hosts
-    return _DOMAIN_SITE_HINTS.get(domain, ())
-
-
-def build_allowlist_query(user_query: str, domain: Domain) -> str:
-    """Build a search query with targeted official domain constraints."""
+def build_allowlist_query(user_query: str, domain: Domain | None = None) -> str:
+    """Build a search query with the universal official civic domain constraint."""
     clean_query = extract_search_keywords(user_query)
     clean_query = re.sub(r"[?!.,'\"]+", " ", clean_query)
     clean_query = " ".join(clean_query.split())
-    lowered = user_query.lower()
-
-    # Prioritize specific official service portals if explicitly mentioned in query
-    if "digilocker" in lowered:
-        site_constraint = "site:digilocker.gov.in"
-    elif "fastag" in lowered or "ihmcl" in lowered:
-        site_constraint = "site:ihmcl.co.in"
-    elif any(t in lowered for t in ("parivahan", "vahan", "sarathi", "chassis", "challan")):
-        site_constraint = "site:parivahan.gov.in"
-    elif "cbse" in lowered:
-        site_constraint = "site:cbse.gov.in"
-    elif "pm kisan" in lowered or "pmkisan" in lowered:
-        site_constraint = "site:pmkisan.gov.in"
-    elif any(t in lowered for t in ("epfo", "epf", "uan", "provident")):
-        site_constraint = "site:epfindia.gov.in"
-    elif any(t in lowered for t in ("income tax", "itr", "form 16", "cbdt")):
-        site_constraint = "site:incometax.gov.in"
-    elif "passport" in lowered:
-        site_constraint = "site:passportindia.gov.in"
-    elif any(t in lowered for t in ("aadhaar", "uidai")):
-        site_constraint = "site:uidai.gov.in"
-    else:
-        domain_hints = preferred_domains_for_query(user_query, domain)
-        if domain_hints:
-            primary = domain_hints[0]
-            site_constraint = f"site:{primary}"
-        else:
-            site_constraint = "site:gov.in"
-
-    return f"{clean_query} {site_constraint}"
+    return f"{clean_query} {_UNIVERSAL_SITE_SUFFIX}"
 
 
 def is_allowlisted_url(url: str) -> bool:
@@ -186,8 +119,9 @@ def is_allowlisted_url(url: str) -> bool:
 
 
 __all__ = [
+    "CIVIC_TLD_SUFFIXES",
+    "NON_TLD_OFFICIAL_DOMAINS",
     "CIVIC_ALLOWLIST_DOMAINS",
     "build_allowlist_query",
-    "preferred_domains_for_query",
     "is_allowlisted_url",
 ]

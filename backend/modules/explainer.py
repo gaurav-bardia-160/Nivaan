@@ -125,6 +125,7 @@ def explain_entry(
 
 import re
 from urllib.parse import urlparse
+from backend.web_search.allowlist import CIVIC_ALLOWLIST_DOMAINS
 
 OFFICIAL_DOMAINS = {
     "uidai.gov.in", "myaadhaar.uidai.gov.in", "rbi.org.in", "incometax.gov.in",
@@ -138,6 +139,7 @@ OFFICIAL_DOMAINS = {
     "mca.gov.in", "www.mca.gov.in", "udgam.rbi.org.in",
     "pensionsahayak.pfrda.org.in", "pfrda.org.in", "financialservices.gov.in", "www.financialservices.gov.in",
     "jansamarth.in", "www.jansamarth.in",
+    *CIVIC_ALLOWLIST_DOMAINS,
 }
 
 
@@ -291,10 +293,6 @@ class RelevanceGrade(str, Enum):
 
 
 def evaluate_relevance(query: str, domain: object, top_hit: Any) -> RelevanceGrade:
-    from backend.modules.domain_router import Domain, classify_domain
-    if domain in (Domain.UNCOVERED, "uncovered") or classify_domain(query) == Domain.UNCOVERED:
-        return RelevanceGrade.NO_MATCH
-
     from backend.web_search.confidence import compute_rag_confidence
     conf = compute_rag_confidence(
         RetrievalResult(query=query, hits=(top_hit,), status="supported", searched_documents=1),

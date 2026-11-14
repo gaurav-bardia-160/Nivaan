@@ -16,64 +16,8 @@ class Domain(str, Enum):
     AGRICULTURE = "agriculture"
     LEGAL_CONSUMER = "legal_consumer"
     GENERAL_CIVIC = "general_civic"
-    UNCOVERED = "uncovered"
     UNKNOWN = "unknown"
 
-
-# Uncovered domain patterns to prevent nearest-neighbor RAG bleed
-_UNCOVERED_DOMAIN_PATTERNS: dict[str, tuple[re.Pattern[str], ...]] = {
-    "mca_spice": (
-        re.compile(
-            r"(?:"
-            r"\b(?:"
-            r"mca|mca21|spice\s+plus|spice\s+part|form\s+spice|roc|registrar\s+of\s+companies|"
-            r"director\s+identification\s+number|"
-            r"din\s+(?:number|no|kyc|status|application|allotment|verification|portal|form|details)|"
-            r"(?:director|mca)\s+din|\bcin\b|corporate\s+affairs|"
-            r"incorporat(?:e|ion)\s+(?:of\s+)?(?:(?:a|the)\s+)?(?:new\s+)?company|"
-            r"company\s+incorporat(?:e|ion)|company\s+registration|"
-            r"private\s+limited\s+company|public\s+limited\s+company|"
-            r"one\s+person\s+company|\bopc\b|\bllp\b|limited\s+liability\s+partnership|"
-            r"inc-?29|inc-?32|dir-?3|mgt-?7"
-            r")\b"
-            r"|\bspice\+(?!\w)"
-            r")",
-            re.IGNORECASE,
-        ),
-        # Case-sensitive DIN acronym check (only uppercase DIN to prevent collision with Hindi 'din' = days)
-        re.compile(r"\bDIN\b"),
-    ),
-    "petroleum_lpg": (
-        re.compile(
-            r"\b(?:"
-            r"lpg|liquefied\s+petroleum|gas\s+cylinder|cylinder\s+booking|commercial\s+cylinder|"
-            r"domestic\s+cylinder|indane|bharat\s*gas|hp\s*gas|omc|refill\s+booking|"
-            r"subsidized\s+cylinder|"
-            r"pahal\s+(?:scheme|yojana|dbtl|subsidy|lpg)|(?:lpg|dbtl)\s+pahal|"
-            r"dbtl|mopng|cooking\s+gas|gas\s+subsidy|gas\s+connection|"
-            r"cylinder\s+(?:delivery|booking|refill|status|subsidy|agency|delay|delayed)"
-            r")\b",
-            re.IGNORECASE,
-        ),
-        # Case-sensitive PAHAL acronym
-        re.compile(r"\bPAHAL\b"),
-    ),
-    "nsp_scholarships": (
-        re.compile(
-            r"\b(?:"
-            r"nsp|national\s+scholarship\s+portal|"
-            r"pre[-\s]?matric\s+scholarship|post[-\s]?matric\s+scholarship|"
-            r"merit[-\s]cum[-\s]means|scholarship\s+disbursement|scholarship\s+scheme|"
-            r"scholarship\s+(?:portal|application|status|registration)|"
-            r"scholarships\.gov\.in"
-            r")\b",
-            re.IGNORECASE,
-        ),
-    ),
-    "trademark_patent": (
-        re.compile(r"\b(?:patent|trademark|ipindia|copyright\s+office)\b", re.IGNORECASE),
-    ),
-}
 
 
 # Domain-defining entities and acronyms (ordered by specificity)
@@ -178,24 +122,6 @@ def classify_domain(query: str | None, document_text: str | None = None) -> Doma
     if not combined:
         return Domain.UNKNOWN
 
-    # Check uncovered domains FIRST before any other domain pattern matching
-    # to prevent domain bleed into unrelated civic/banking/tax domains.
-    # Guardrail: IEPF, UDGAM, DEA Fund, unclaimed shares, and unclaimed dividends are supported
-    # under BANKING/CIVIC; do NOT let uncovered MCA SPICe+ patterns intercept them.
-    is_unclaimed_or_investor = bool(
-        re.search(
-            r"\b(?:iepf|iepfa|unclaimed\s+(?:shares?|dividends?|deposits?)|unpaid\s+dividends?|iepf-?5[a-z]?|entitlement\s+letter|investor\s+education|udgam|dea\s+fund|deaf)\b",
-            combined,
-            re.IGNORECASE,
-        )
-    )
-
-    for cat_name, category_patterns in _UNCOVERED_DOMAIN_PATTERNS.items():
-        if cat_name == "mca_spice" and is_unclaimed_or_investor:
-            continue
-        for pat in category_patterns:
-            if pat.search(combined):
-                return Domain.UNCOVERED
 
     # Check domains in order of high specificity: Transport & Education before Identity/Tax/Banking
     for domain, patterns in _DOMAIN_PATTERNS.items():
@@ -208,8 +134,6 @@ def classify_domain(query: str | None, document_text: str | None = None) -> Doma
 
 def get_allowed_rag_categories(domain: Domain | str | None, query: str | None = None) -> set[str] | None:
     """Return the set of RAG corpus categories allowed for this domain to prevent cross-contamination."""
-    if domain in (Domain.UNCOVERED, "uncovered"):
-        return set()  # Strictly zero categories allowed for uncovered domains
     if domain == Domain.TRANSPORT:
         return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan", "banking"
     if domain == Domain.EDUCATION:
@@ -235,8 +159,6 @@ def get_allowed_rag_categories(domain: Domain | str | None, query: str | None = 
 
 def entry_matches_domain(entry_id: str, entry_category: str | None, query_domain: Domain | str | None) -> bool:
     """Validate whether a knowledge base entry belongs to the query's domain."""
-    if query_domain in (Domain.UNCOVERED, "uncovered"):
-        return False
     if query_domain in (Domain.UNKNOWN, None, "unknown"):
         return True
 
