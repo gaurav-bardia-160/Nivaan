@@ -169,7 +169,13 @@ def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) ->
     ) or ("inoperative pan" in lowered_q) or ("206aa" in lowered_q)
 
     if domain is not None and not is_pan_tds:
-        if domain in (Domain.TRANSPORT, "transport", Domain.EDUCATION, "education", Domain.BANKING, "banking", Domain.LEGAL_CONSUMER, "legal_consumer", Domain.AGRICULTURE, "agriculture", Domain.GENERAL_CIVIC, "civic"):
+        if domain in (Domain.BANKING, "banking"):
+            trouble_words = {"failed", "delay", "rejected", "error", "mismatch", "penalty", "stuck", "pending", "notice", "defective", "refund", "deducted", "tat", "unsolicited", "foreclosure"}
+            if any(w in lowered_q for w in trouble_words):
+                category = "civic"
+            else:
+                category = "banking"
+        elif domain in (Domain.TRANSPORT, "transport", Domain.EDUCATION, "education", Domain.LEGAL_CONSUMER, "legal_consumer", Domain.AGRICULTURE, "agriculture", Domain.GENERAL_CIVIC, "civic"):
             category = "civic"
         elif domain in (Domain.TAXATION, "tax", "taxation"):
             category = "tax"

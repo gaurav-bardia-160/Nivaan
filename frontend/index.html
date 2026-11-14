@@ -6,7 +6,7 @@
     <meta name="description" content="Nivaan - AI Chatbot for Indian government, banking, and legal procedures.">
     <title>Nivaan</title>
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css?v=20261102b">
+    <link rel="stylesheet" href="style.css?v=20261114b">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -30,17 +30,6 @@
                     <!-- History items injected dynamically -->
                 </div>
             </div>
-
-            <!-- Privacy Guarantee Badge -->
-            <div class="sidebar-footer">
-                <div class="privacy-badge">
-                    <span class="lock-icon">🔒</span>
-                    <div>
-                        <strong>100% On-Device AI</strong>
-                        <p>Runs locally on your computer via Ollama. Zero external cloud transmission.</p>
-                    </div>
-                </div>
-            </div>
         </aside>
 
         <!-- Main Chat Area -->
@@ -57,7 +46,7 @@
                     </div>
                 </div>
                 <div class="header-right">
-                    <button id="themeToggleBtn" class="pill-btn theme-btn" title="Toggle theme">🌙 Dark</button>
+                    <button id="themeToggleBtn" class="pill-btn theme-btn" title="Toggle theme">🌙</button>
                     <span id="backendBadge" class="connection-badge connecting" title="Connecting to backend at http://127.0.0.1:8000...">● Connecting...</span>
                 </div>
             </header>
@@ -120,8 +109,8 @@
                     </button>
 
                     <!-- Camera capture -->
-                    <button class="btn-attach" id="cameraBtn" title="Take a photo of a document or notice">
-                        <span>📷</span>
+                    <button class="btn-attach" id="cameraBtn" title="Take a photo of a document or notice" aria-label="Camera Capture">
+                        <img src="camera.png" alt="Camera" class="camera-btn-icon" />
                     </button>
 
                     <!-- Text Input -->
@@ -138,13 +127,13 @@
                     </button>
                 </div>
                 <div class="privacy-note">
-                    100% on-device AI via Ollama. Documents and queries remain strictly local on your machine.
+                    Terms & Conditions apply
                 </div>
             </div>
         </main>
     </div>
 
     <!-- Main Controller Script -->
-    <script src="app.js?v=20261102c"></script>
+    <script src="app.js?v=20261114b"></script>
 </body>
 </html>

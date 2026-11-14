@@ -104,7 +104,7 @@ _DOMAIN_PATTERNS: dict[Domain, tuple[re.Pattern[str], ...]] = {
         re.compile(r"\b(?:income\s+tax|incometax|itr|itr-[1-7]|tax\s+return)\b", re.IGNORECASE),
         re.compile(r"\b(?:form\s+16|form\s+26as|ais|tis|assessment\s+year|ay\s+20\d\d)\b", re.IGNORECASE),
         re.compile(r"\b(?:143\(1\)|139\(9\)|139\(5\)|139\(4\)|section\s+139|section\s+119|119\(2\)\(b\)|234f)\b", re.IGNORECASE),
-        re.compile(r"\b(?:section\s+147|section\s+148|section\s+148a|section\s+149|section\s+151|148a\(b\)|148a\(d\)|148a|148|147|149|151|reassessment|escaped\s+income|time-barred|time\s+limit|limitation\s+period)\b", re.IGNORECASE),
+        re.compile(r"\b(?:section\s+147|section\s+148|section\s+148a|section\s+149|section\s+151|148a\(b\)|148a\(d\)|148a|148|147|149|151|reassessment|escaped\s+income|time-barred\s+assessment|(?:tax\s+)?reassessment\s+limitation|escaped\s+income\s+time\s+limit|reassessment\s+time\s+limit|tax\s+limitation)\b", re.IGNORECASE),
         re.compile(r"\b(?:206aa|section\s+206aa|234h|section\s+234h|inoperative\s+pan|rule\s+114aaa|circular\s+03/2023|circular\s+3/2023)\b", re.IGNORECASE),
         re.compile(r"\b(?:defective\s+return|prima\s+facie\s+adjustment|pfa|refund\s+unpaid|refund\s+reissue|bank\s+validation|pre-validation|challan\s+280|advance\s+tax|tds|tcs)\b", re.IGNORECASE),
         re.compile(r"\b(?:gst|gstn|gstr-3b|gstr-7|drc-01b|drc-01c|itc\s+mismatch|input\s+tax\s+credit)\b", re.IGNORECASE),
@@ -130,7 +130,7 @@ _DOMAIN_PATTERNS: dict[Domain, tuple[re.Pattern[str], ...]] = {
         re.compile(r"\b(?:police\s+fir|\bfir\b|police\s+complaint)\b", re.IGNORECASE),
         re.compile(r"\b(?:cybercrime|cyber\s+crime|1930|cybercrime\.gov\.in)\b", re.IGNORECASE),
         re.compile(r"\b(?:consumer\s+court|edaakhil|e-daakhil|district\s+commission|dcdrc|scdrc|ncdrc|consumer\s+handbook|consumer\s+helpline)\b", re.IGNORECASE),
-        re.compile(r"\b(?:legal\s+notice|section\s+138|cheque\s+bounce|nalsa|free\s+legal\s+aid|lok\s+adalat|legal\s+services\s+authority)\b", re.IGNORECASE),
+        re.compile(r"\b(?:legal\s+notice|section\s+138|section\s+141|section\s+142|section\s+143a|cheque\s+bounce|cheque\s+dishonou?r|dishonou?r\s+of\s+cheque|negotiable\s+instruments|ni\s+act|demand\s+notice|return\s+memo|interim\s+compensation|nalsa|free\s+legal\s+aid|lok\s+adalat|legal\s+services\s+authority)\b", re.IGNORECASE),
     ),
     Domain.GENERAL_CIVIC: (
         re.compile(r"\b(?:epfo|epf|provident\s+fund|uan|joint\s+declaration|member\s+profile)\b", re.IGNORECASE),

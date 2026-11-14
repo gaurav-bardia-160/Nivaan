@@ -323,7 +323,9 @@ def test_capabilities_endpoint_reports_active_translation(monkeypatch):
 
 
 
-def test_ask_endpoint_supported_question_uses_real_backend_boundary():
+def test_ask_endpoint_supported_question_uses_real_backend_boundary(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    monkeypatch.setenv("RAG_VECTOR_ENABLED", "true")
     response = client.post(
         "/api/ask",
         json={"input_type": "question", "question": "What should I check in a loan agreement?", "language": "en"},
@@ -945,3 +947,138 @@ def test_epf_withdrawal_does_not_route_to_grievance_or_profile_correction(monkey
     assert "epfigms grievance" not in evidence
     assert "joint declaration" not in evidence
     assert any(term in evidence for term in ("withdraw", "form 19", "form 31", "claim", "passbook"))
+
+
+def test_answer_documents_needed_normalizes_raw_dicts_and_json_strings():
+    from datetime import date
+    from backend.schemas import Answer, _normalize_doc_item
+
+    # Direct unit test of normalizer
+    assert _normalize_doc_item({"title": "RBI Notification", "detail": "https://rbi.org.in/abc.pdf"}) == "RBI Notification"
+    assert _normalize_doc_item("{'title': 'RBI Notification', 'detail': 'https://rbi.org.in/abc.pdf'}") == "RBI Notification"
+    assert _normalize_doc_item("Aadhaar Card") == "Aadhaar Card"
+    assert _normalize_doc_item({"title": "Identity Proof", "detail": "Voter ID"}) == "Identity Proof (Voter ID)"
+
+    # Schema boundary validation
+    ans = Answer(
+        title="Loan Prepayment Rules",
+        summary="RBI rules on floating-rate loans.",
+        last_verified=date.today(),
+        documents_needed=[
+            {"title": "Loan Sanction Letter", "detail": "https://example.gov.in/doc.pdf"},
+            "{'title': 'Key Fact Statement (KFS)', 'detail': 'https://rbi.org.in'}",
+            "Aadhaar Card",
+        ],
+    )
+    assert ans.documents_needed == ["Loan Sanction Letter", "Key Fact Statement (KFS)", "Aadhaar Card"]
+    for doc in ans.documents_needed:
+        assert "{" not in doc
+        assert "title" not in doc
+
+
+def test_rbi_loan_prepayment_rules_preserves_floating_rate_and_mse_scope(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    monkeypatch.setenv("RAG_VECTOR_ENABLED", "true")
+    monkeypatch.setenv("LOCAL_LLM_ENABLED", "false")
+    response = client.post(
+        "/api/ask",
+        json={"question": "What are the RBI rules on loan prepayment and foreclosure penalties?"},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert "prepayment" in data["title"].lower() or "foreclosure" in data["title"].lower()
+    
+    # Verify documents needed does not leak raw dict/json formatting
+    for doc in data.get("documents_needed", []):
+        assert "{" not in doc
+        assert "'title'" not in doc
+        assert '"title"' not in doc
+    
+    # Verify statutory scope qualifiers are preserved
+    summary_lower = data["summary"].lower()
+    assert "floating" in summary_lower
+    assert "individual" in summary_lower or "mse" in summary_lower
+    # Must preserve conditionality (fixed-rate exception or corporate distinction)
+    assert "fixed" in summary_lower or "corporate" in summary_lower or "key fact statement" in summary_lower
+
+
+def test_fail_closed_pii_web_search_coupling(monkeypatch):
+    import importlib
+    import pytest
+    import backend.config
+
+    monkeypatch.setenv("TEST_LIVE_WEB_SEARCH", "1")
+    monkeypatch.setenv("WEB_SEARCH_ENABLED", "true")
+    monkeypatch.setenv("ENABLE_PII_MASKING", "false")
+
+    with pytest.raises(RuntimeError, match="Fail-closed privacy boundary error"):
+        importlib.reload(backend.config)
+
+    # Restore clean state
+    monkeypatch.delenv("TEST_LIVE_WEB_SEARCH", raising=False)
+    monkeypatch.setenv("WEB_SEARCH_ENABLED", "false")
+    monkeypatch.setenv("ENABLE_PII_MASKING", "false")
+    importlib.reload(backend.config)
+
+
+def test_playwright_fallback_on_403_in_fetcher(monkeypatch):
+    import httpx
+    from backend.web_search import fetcher
+
+    playwright_called = []
+
+    def fake_playwright(url, *, timeout=12.0, max_chars=8000, resolver=None):
+        playwright_called.append(url)
+        return "Authoritative statutory text rendered via Playwright browser context"
+
+    monkeypatch.setattr(fetcher, "_fetch_with_playwright", fake_playwright)
+
+    # Mock httpx to return a 403 Forbidden
+    class FakeResponse:
+        status_code = 403
+        headers = {}
+        encoding = "utf-8"
+        def raise_for_status(self):
+            request = httpx.Request("GET", "https://ecourts.gov.in/services")
+            response = httpx.Response(403, request=request)
+            raise httpx.HTTPStatusError("403 Forbidden", request=request, response=response)
+        def close(self):
+            pass
+
+    class FakeClient:
+        def __init__(self, *args, **kwargs):
+            pass
+        def __enter__(self):
+            return self
+        def __exit__(self, *args):
+            pass
+        def build_request(self, method, url):
+            return httpx.Request(method, url)
+        def send(self, request, **kwargs):
+            return FakeResponse()
+
+    monkeypatch.setattr(httpx, "Client", FakeClient)
+    monkeypatch.setattr(fetcher, "_validate_fetch_url", lambda url, **kwargs: url)
+
+    result = fetcher.fetch_page_text("https://ecourts.gov.in/services")
+    assert len(playwright_called) == 1
+    assert "Playwright" in result
+
+
+def test_statutory_ni_act_section_138_cheque_bounce_retrieval(monkeypatch):
+    monkeypatch.setenv("RAG_ENABLED", "true")
+    monkeypatch.setenv("RAG_VECTOR_ENABLED", "true")
+    monkeypatch.setenv("LOCAL_LLM_ENABLED", "false")
+    response = client.post(
+        "/api/ask",
+        json={"question": "What is the procedure and limitation period for cheque bounce under Section 138 of Negotiable Instruments Act?"},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    title_lower = data["title"].lower()
+    summary_lower = data["summary"].lower()
+    
+    assert "section 138" in title_lower or "negotiable instruments" in title_lower or "cheque" in title_lower
+    # Must specify statutory demand notice (15 days / 30 days) and limitation to file complaint
+    assert any(term in summary_lower for term in ("15", "notice", "30", "magistrate", "limitation", "dishonour", "memo"))
+

@@ -589,9 +589,14 @@
       "allowed_hosts": [
         "cms.rbi.org.in",
         "consumerhelpline.gov.in",
+        "ecourts.gov.in",
         "edaakhil.nic.in",
         "epfigms.gov.in",
         "epfindia.gov.in",
+        "filing.ecourts.gov.in",
+        "incometax.gov.in",
+        "incometaxindia.gov.in",
+        "indiacode.nic.in",
         "m.rbi.org.in",
         "nalsa.gov.in",
         "ncdrc.nic.in",
@@ -603,6 +608,8 @@
         "sikkim.nalsa.gov.in",
         "voters.eci.gov.in",
         "www.epfindia.gov.in",
+        "www.incometax.gov.in",
+        "www.indiacode.nic.in",
         "www.passportindia.gov.in",
         "www.rbi.org.in"
       ]

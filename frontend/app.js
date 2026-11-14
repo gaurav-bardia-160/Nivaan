@@ -9,6 +9,7 @@ const API_BASE = window.location.protocol && window.location.hostname
     : "http://127.0.0.1:8000";
 const STORAGE_KEY = "nivaan_chats_v1";
 const ACTIVE_CHAT_KEY = "nivaan_active_chat_id";
+const PENDING_QUERY_KEY = "nivaan_pending_query_v1";
 
 let isBackendLive = false;
 let chats = []; // Array of chat session objects
@@ -40,6 +41,11 @@ const removeAttachmentBtn = document.getElementById("removeAttachmentBtn");
 
 const suggestionCards = document.querySelectorAll(".suggestion-card");
 
+// --- UI ASSETS & ICONS ---
+const BOT_AVATAR_HTML = '<div class="message-avatar bot-avatar"><img src="logo.png" alt="Nivaan" class="bot-avatar-img" /></div>';
+const ICON_THUMBS_UP = '<svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>';
+const ICON_THUMBS_DOWN = '<svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"></path></svg>';
+
 // --- INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
     checkBackendHealth();
@@ -53,6 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         resetChatView();
     }
+
+    // Auto-resume if page was refreshed while AI was thinking/generating
+    checkAndResumePendingQuery();
 });
 
 function setupEventListeners() {
@@ -323,6 +332,7 @@ function deleteChat(chatId) {
             .catch(() => {});
     }
     if (activeChatId === chatId) {
+        localStorage.removeItem(PENDING_QUERY_KEY);
         activeChatId = chats.length > 0 ? chats[0].id : null;
     }
     saveChatsToStorage();
@@ -335,6 +345,7 @@ function deleteChat(chatId) {
 }
 
 function handleNewChatBtn() {
+    localStorage.removeItem(PENDING_QUERY_KEY);
     activeChatId = null;
     localStorage.setItem(ACTIVE_CHAT_KEY, "__new__");
     renderHistoryList();
@@ -468,8 +479,77 @@ async function checkBackendHealth() {
     }
 }
 
+// --- AUTO-RESUME IN-FLIGHT OR UNANSWERED QUERY AFTER PAGE REFRESH ---
+async function checkAndResumePendingQuery() {
+    if (isQueryInProgress) return;
+
+    let pending = null;
+    try {
+        const raw = localStorage.getItem(PENDING_QUERY_KEY);
+        if (raw) pending = JSON.parse(raw);
+    } catch (e) {
+        console.warn("Failed to parse pending query from localStorage:", e);
+    }
+
+    const currentChat = getActiveChat();
+
+    // Check 1: Explicit pending query in localStorage within last 15 minutes
+    const hasRecentPending = !!(pending && pending.userText && (Date.now() - (pending.timestamp || 0) < 15 * 60 * 1000));
+
+    // Check 2: Active chat ends with a user message without an assistant response
+    let hasUnansweredUserMsg = false;
+    let unansweredText = "";
+
+    if (currentChat && Array.isArray(currentChat.messages) && currentChat.messages.length > 0) {
+        const lastMsg = currentChat.messages[currentChat.messages.length - 1];
+        if (lastMsg && lastMsg.role === "user") {
+            hasUnansweredUserMsg = true;
+            unansweredText = lastMsg.text || "";
+        }
+    }
+
+    if (!hasRecentPending && !hasUnansweredUserMsg) {
+        return;
+    }
+
+    let targetChat = currentChat;
+    if (hasRecentPending && pending.chatId && (!targetChat || targetChat.id !== pending.chatId)) {
+        const found = chats.find(c => c.id === pending.chatId);
+        if (found) {
+            targetChat = found;
+            activeChatId = found.id;
+            saveChatsToStorage();
+            renderHistoryList();
+            loadActiveChatMessages();
+        }
+    }
+
+    if (!targetChat) return;
+
+    const queryToExecute = (hasRecentPending && pending.userText) || unansweredText;
+    if (!queryToExecute || !queryToExecute.trim()) return;
+
+    console.info("Resuming pending/interrupted query after page refresh:", queryToExecute);
+
+    setLoading(true);
+    try {
+        localStorage.setItem(PENDING_QUERY_KEY, JSON.stringify({
+            chatId: targetChat.id,
+            userText: queryToExecute,
+            timestamp: Date.now()
+        }));
+        await executeQuery(queryToExecute, null, targetChat);
+    } catch (err) {
+        console.error("Failed to resume query after refresh:", err);
+    } finally {
+        localStorage.removeItem(PENDING_QUERY_KEY);
+        setLoading(false);
+    }
+}
+
 // --- USER SUBMISSION ---
 function handleUserSubmit() {
+    if (isQueryInProgress) return;
     const text = chatInput.value.trim();
     if (!text && !attachedFile) return;
 
@@ -533,8 +613,18 @@ async function sendMessage(userText, fileObj = null) {
     clearAttachment();
 
     setLoading(true);
-    await executeQuery(userText, currentAttachment, currentChat);
-    setLoading(false);
+    try {
+        localStorage.setItem(PENDING_QUERY_KEY, JSON.stringify({
+            chatId: currentChat.id,
+            msgId: msgId,
+            userText: userText,
+            timestamp: Date.now()
+        }));
+        await executeQuery(userText, currentAttachment, currentChat);
+    } finally {
+        localStorage.removeItem(PENDING_QUERY_KEY);
+        setLoading(false);
+    }
 }
 
 // --- MARKDOWN FORMATTING & STREAMING HELPERS ---
@@ -553,7 +643,7 @@ function appendThinkingBubble() {
     row.id = "thinkingBubbleRow";
 
     row.innerHTML = `
-        <div class="message-avatar bot-avatar">🏛️</div>
+        ${BOT_AVATAR_HTML}
         <div class="message-content">
             <div class="thinking-card">
                 <div class="thinking-header">
@@ -862,7 +952,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
     }
 
     // Only append statically if the real-time stream hasn't already rendered it live
-    if (!streamRendered) {
+    if (!streamRendered && (!activeChatId || !targetChat || activeChatId === targetChat.id)) {
         appendAssistantResponse(answer, true, false);
     }
 }
@@ -976,8 +1066,18 @@ window.submitEditPrompt = async function(msgId) {
 
     // Re-execute query for updated prompt
     setLoading(true);
-    await executeQuery(newText, msg.file, currentChat);
-    setLoading(false);
+    try {
+        localStorage.setItem(PENDING_QUERY_KEY, JSON.stringify({
+            chatId: currentChat.id,
+            msgId: msg.id,
+            userText: newText,
+            timestamp: Date.now()
+        }));
+        await executeQuery(newText, msg.file, currentChat);
+    } finally {
+        localStorage.removeItem(PENDING_QUERY_KEY);
+        setLoading(false);
+    }
 };
 
 // --- APPEND USER BUBBLE ---
@@ -1055,12 +1155,45 @@ function renderPostSummarySections(answer) {
     // 1. Documents required (Clean list - no checkboxes)
     let docsHtml = "";
     if (answer.documents_needed && answer.documents_needed.length > 0) {
-        const docItems = answer.documents_needed.map(doc => `
-            <li class="clean-doc-item">
-                <span class="clean-doc-icon">📄</span>
-                <span class="clean-doc-text">${escapeHtml(doc)}</span>
-            </li>
-        `).join("");
+        const docItems = answer.documents_needed.map(doc => {
+            let title = "";
+            let linkUrl = "";
+            if (typeof doc === "object" && doc !== null) {
+                title = doc.title || doc.name || doc.document || "";
+                linkUrl = doc.url || doc.detail || "";
+            } else if (typeof doc === "string") {
+                let clean = doc.trim();
+                if ((clean.startsWith("{") && clean.endsWith("}")) || clean.includes("'title'") || clean.includes('"title"')) {
+                    try {
+                        const parsed = JSON.parse(clean.replace(/'/g, '"'));
+                        if (typeof parsed === "object" && parsed !== null) {
+                            title = parsed.title || parsed.name || parsed.document || clean;
+                            linkUrl = parsed.url || parsed.detail || "";
+                        }
+                    } catch (e) {
+                        const mTitle = clean.match(/['"]title['"]\s*:\s*['"]([^'"]+)['"]/);
+                        const mDetail = clean.match(/['"]detail['"]\s*:\s*['"]([^'"]+)['"]/);
+                        if (mTitle) title = mTitle[1];
+                        if (mDetail) linkUrl = mDetail[1];
+                    }
+                }
+                if (!title) title = clean;
+            } else {
+                title = String(doc || "");
+            }
+
+            const isHttp = linkUrl && (linkUrl.startsWith("http://") || linkUrl.startsWith("https://"));
+            const content = isHttp 
+                ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" class="doc-link" title="${escapeHtml(title)}">${escapeHtml(title)} <span class="doc-link-arrow">↗</span></a>`
+                : escapeHtml(title);
+
+            return `
+                <li class="clean-doc-item">
+                    <span class="clean-doc-icon">📄</span>
+                    <span class="clean-doc-text">${content}</span>
+                </li>
+            `;
+        }).join("");
 
         docsHtml = `
             <div class="clean-section">
@@ -1221,22 +1354,21 @@ function createLiveAssistantRow(meta) {
     }
 
     row.innerHTML = `
-        <div class="message-avatar bot-avatar">🏛️</div>
+        ${BOT_AVATAR_HTML}
         <div class="message-content">
             <div class="assistant-response">
                 <div class="response-header">
                     <div class="response-title-group">
                         <h3 class="response-title">${escapeHtml((meta && meta.title) || "Civic & Banking Guide")}</h3>
-                        ${(meta && meta.rl_arm) ? `<span class="rl-arm-pill" title="RL LinUCB Arm: ${escapeHtml(meta.rl_arm)}">⚡ ${escapeHtml(meta.rl_arm.replace(/_/g, ' '))}</span>` : ""}
                     </div>
                     <div class="response-header-actions">
                         <span class="response-confidence confidence-${(meta && meta.confidence) || 'verified'}">
                             ● ${(meta && meta.confidence ? meta.confidence.toUpperCase() : 'VERIFIED')}
                         </span>
-                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate">👍</button>
-                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate">👎</button>
+                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate" aria-label="Like">${ICON_THUMBS_UP}</button>
+                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate" aria-label="Dislike">${ICON_THUMBS_DOWN}</button>
                         <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard">
-                            <span class="copy-icon">📋</span> Copy
+                             Copy
                         </button>
                     </div>
                 </div>
@@ -1331,21 +1463,20 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
     const postSectionsClass = (isLive && cleanSummaryText) ? 'post-summary-sections' : 'post-summary-sections section-fade-in';
 
     row.innerHTML = `
-        <div class="message-avatar bot-avatar">🏛️</div>
+        ${BOT_AVATAR_HTML}
         <div class="message-content">
             <div class="assistant-response">
                 <!-- Header -->
                 <div class="response-header">
                     <div class="response-title-group">
                         <h3 class="response-title">${escapeHtml(answer.title)}</h3>
-                        ${answer.rl_arm ? `<span class="rl-arm-pill" title="RL LinUCB Arm: ${escapeHtml(answer.rl_arm)}">⚡ ${escapeHtml(answer.rl_arm.replace(/_/g, ' '))}</span>` : ""}
                     </div>
                     <div class="response-header-actions">
                         <span class="response-confidence confidence-${answer.confidence || 'high'}">
                             ● ${answer.confidence ? answer.confidence.toUpperCase() : 'VERIFIED'}
                         </span>
-                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate">👍</button>
-                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate">👎</button>
+                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate" aria-label="Like">${ICON_THUMBS_UP}</button>
+                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate" aria-label="Dislike">${ICON_THUMBS_DOWN}</button>
                         <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard">
                             <span class="copy-icon">📋</span> Copy
                         </button>

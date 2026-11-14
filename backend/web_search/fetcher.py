@@ -97,6 +97,74 @@ _NOISE_TAGS = {
 _PROTECTED_TAGS = {"html", "body", "main", "article", "section"}
 
 
+def _is_bot_challenge_text(text: str) -> bool:
+    """Detect common bot mitigation / challenge / access denied patterns in HTML or text."""
+    lower = text.lower()
+    challenge_indicators = (
+        "attention required! | cloudflare",
+        "cloudflare ray id",
+        "cf-browser-verification",
+        "just a moment...",
+        "please turn javascript on and reload the page",
+        "checking your browser before accessing",
+        "access denied",
+        "403 forbidden",
+        "security check to access",
+        "verify you are human",
+        "recaptcha",
+        "hcaptcha",
+        "incapsula",
+        "perimeterx",
+        "datadome",
+    )
+    return any(ind in lower for ind in challenge_indicators)
+
+
+def _fetch_with_playwright(
+    url: str,
+    *,
+    timeout: float = 12.0,
+    max_chars: int = 8000,
+    resolver=_resolve_public_addresses,
+) -> str:
+    """Headless Playwright fallback for pages blocked by bot challenges or 403s.
+    
+    Adheres strictly to zero predefined responses: renders the live official sovereign page,
+    executes client-side JS challenges, and extracts ground-truth statutory/administrative text.
+    """
+    try:
+        current_url = _validate_fetch_url(url, resolver=resolver)
+    except Exception as exc:
+        logger.warning("Playwright fetch blocked by URL validation: %s", exc)
+        return ""
+
+    try:
+        from playwright.sync_api import sync_playwright
+
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            try:
+                context = browser.new_context(
+                    user_agent=_FETCH_HEADERS["User-Agent"],
+                    locale="en-IN",
+                )
+                page = context.new_page()
+                timeout_ms = max(int(timeout * 1000), 5000)
+                page.goto(current_url, timeout=timeout_ms, wait_until="domcontentloaded")
+                try:
+                    page.wait_for_timeout(1000)
+                except Exception:
+                    pass
+                rendered_html = page.content()
+                if rendered_html and not _is_bot_challenge_text(rendered_html[:2000]):
+                    return _extract_text(rendered_html, max_chars=max_chars)
+            finally:
+                browser.close()
+    except Exception as exc:
+        logger.warning("Playwright fallback fetch failed for %.80s: %s", url, exc)
+    return ""
+
+
 def fetch_page_text(
     url: str,
     *,
@@ -182,12 +250,25 @@ def fetch_page_text(
         return ""
     except httpx.HTTPStatusError as exc:
         logger.warning("Page fetch HTTP error %s: %.80s", exc.response.status_code, url)
+        if exc.response.status_code in (403, 429, 503):
+            logger.info("Retrying with Playwright fallback on HTTP %s: %.80s", exc.response.status_code, url)
+            return _fetch_with_playwright(current_url, timeout=timeout, max_chars=max_chars, resolver=resolver)
         return ""
     except Exception as exc:
         logger.warning("Page fetch failed (%s): %.80s", exc, url)
         return ""
 
-    return _extract_text(html, max_chars=max_chars)
+    if _is_bot_challenge_text(html[:3000]):
+        logger.info("Bot challenge detected in HTTP response body, attempting Playwright fallback: %.80s", url)
+        playwright_text = _fetch_with_playwright(current_url, timeout=timeout, max_chars=max_chars, resolver=resolver)
+        if playwright_text:
+            return playwright_text
+
+    extracted = _extract_text(html, max_chars=max_chars)
+    if not extracted and not is_pdf:
+        logger.info("Extraction empty from raw HTTP, attempting Playwright fallback: %.80s", url)
+        return _fetch_with_playwright(current_url, timeout=timeout, max_chars=max_chars, resolver=resolver)
+    return extracted
 
 
 def _extract_text(html: str, *, max_chars: int = 8000) -> str:

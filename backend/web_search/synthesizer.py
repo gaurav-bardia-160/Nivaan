@@ -16,7 +16,7 @@ from datetime import date
 
 import httpx
 
-from backend.schemas import Answer, Citation, Step
+from backend.schemas import Answer, Citation, Step, _normalize_doc_item
 from backend.web_search.fetcher import is_navigation_or_boilerplate_text
 
 logger = logging.getLogger("web_search.synthesizer")
@@ -38,6 +38,8 @@ STRICT DISCRIMINATOR AND SYNTHESIS RULES:
 2. If specific procedural content IS present to answer the question:
    - Answer ONLY from the provided official web page content. Do NOT invent steps or procedures not present in the page.
    - Return valid JSON: "summary" (concise, 2-4 sentences explaining the procedure), "steps" (list of objects with "title" and "detail"), and "documents_needed" (list of strings).
+   - MANDATORY SCOPE & CONDITIONALITY FIDELITY: When stating legal rules, prohibitions, or exemptions, preserve all statutory scope qualifiers (borrower type: individual vs corporate vs MSE; rate type: floating vs fixed rate). NEVER compress conditional rules into blanket absolute statements.
+   - DOCUMENTS NEEDED FORMATTING: The "documents_needed" key MUST be a simple list of clean document title strings. Never return dictionary objects, JSON blobs, or URLs inside "documents_needed".
 3. ZERO external commercial sites. ZERO invented URLs.
 """
 
@@ -237,7 +239,8 @@ def _parse_llm_response(raw: str) -> tuple[str, list[dict], list[str]]:
                 ]
             raw_docs = data.get("documents_needed", [])
             if isinstance(raw_docs, list):
-                docs = [str(d).strip() for d in raw_docs if str(d).strip()]
+                docs = [_normalize_doc_item(d) for d in raw_docs]
+                docs = [d for d in docs if d]
     except (json.JSONDecodeError, ValueError):
         # Fallback: treat the whole text as the summary
         if cleaned and not cleaned.startswith("{"):

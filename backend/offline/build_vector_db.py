@@ -276,43 +276,69 @@ def build_unified_vector_db(
     cache_dir.mkdir(parents=True, exist_ok=True)
     model_slug = re.sub(r"[^\w-]", "_", model_name)
     cache_file = cache_dir / f"vectors_{model_slug}_{corpus_sha256}.pkl"
+    chunk_cache_file = cache_dir / f"chunk_cache_{model_slug}.pkl"
 
-    vectors: list[tuple[float, ...]] = []
-    if cache_file.is_file():
+    chunk_cache: dict[str, tuple[float, ...]] = {}
+    if chunk_cache_file.is_file():
         try:
-            logger.info("Loading cached vectors from: %s", cache_file)
-            with cache_file.open("rb") as f:
-                cached_data = pickle.load(f)
-            if (
-                isinstance(cached_data, dict)
-                and cached_data.get("corpus_sha256") == corpus_sha256
-                and len(cached_data.get("vectors", [])) == len(documents)
-            ):
-                vectors = cached_data["vectors"]
-                logger.info("Successfully loaded %d cached vectors", len(vectors))
-        except Exception as exc:
-            logger.warning("Failed to load cached vectors: %s", exc)
-            vectors = []
+            with chunk_cache_file.open("rb") as f:
+                chunk_cache = pickle.load(f)
+        except Exception:
+            chunk_cache = {}
 
-    if not vectors:
-        logger.info("Generating dense embeddings for %d documents (batch size %d)...", len(documents), batch_size)
-        total = len(documents)
-        for offset in range(0, total, batch_size):
-            batch = documents[offset : offset + batch_size]
-            # Include category, tags, title, section, and text in the embedding input
-            texts = tuple(document_text(doc) for doc in batch)
-            batch_vectors = provider.embed_texts(texts)
-            vectors.extend(batch_vectors)
-            done = min(offset + batch_size, total)
-            if done % 100 == 0 or done == total:
-                logger.info("Embedded %d / %d documents (%.1f%%)", done, total, (done / total) * 100)
+    # Seed chunk_cache from the most recent full vectors cache if available
+    if not chunk_cache:
+        for pkl in sorted(cache_dir.glob(f"vectors_{model_slug}_*.pkl"), key=lambda p: p.stat().st_mtime, reverse=True):
+            try:
+                with pkl.open("rb") as f:
+                    old_data = pickle.load(f)
+                old_vecs = old_data.get("vectors", [])
+                if len(old_vecs) == len(documents):
+                    for doc, vec in zip(documents, old_vecs):
+                        th = hashlib.sha256(document_text(doc).encode("utf-8")).hexdigest()
+                        chunk_cache[th] = vec
+                    break
+            except Exception:
+                pass
 
+    vectors: list[Any] = []
+    missing_docs: list[tuple[int, Any, str]] = []
+
+    for idx, doc in enumerate(documents):
+        th = hashlib.sha256(document_text(doc).encode("utf-8")).hexdigest()
+        if th in chunk_cache:
+            vectors.append(chunk_cache[th])
+        else:
+            vectors.append(None)
+            missing_docs.append((idx, doc, th))
+
+    if missing_docs:
+        logger.info(
+            "Found %d cached vectors; generating embeddings for %d new/updated documents...",
+            len(documents) - len(missing_docs),
+            len(missing_docs),
+        )
+        texts_to_embed = tuple(document_text(doc) for _, doc, _ in missing_docs)
+        for offset in range(0, len(texts_to_embed), batch_size):
+            batch_texts = texts_to_embed[offset : offset + batch_size]
+            batch_vecs = provider.embed_texts(batch_texts)
+            for (idx, _, th), vec in zip(missing_docs[offset : offset + batch_size], batch_vecs):
+                vectors[idx] = vec
+                chunk_cache[th] = vec
         try:
-            with cache_file.open("wb") as f:
-                pickle.dump({"corpus_sha256": corpus_sha256, "vectors": vectors}, f)
-            logger.info("Saved %d vectors to cache: %s", len(vectors), cache_file)
+            with chunk_cache_file.open("wb") as f:
+                pickle.dump(chunk_cache, f)
         except Exception as exc:
-            logger.warning("Failed to save vectors to cache: %s", exc)
+            logger.warning("Failed to save chunk_cache: %s", exc)
+    else:
+        logger.info("Successfully loaded all %d vectors from cache", len(documents))
+
+    try:
+        with cache_file.open("wb") as f:
+            pickle.dump({"corpus_sha256": corpus_sha256, "vectors": vectors}, f)
+        logger.info("Saved %d vectors to cache: %s", len(vectors), cache_file)
+    except Exception as exc:
+        logger.warning("Failed to save vectors to cache: %s", exc)
 
     logger.info("Storing vectors into unified Qdrant database: %s", dest_path)
     dest_path.mkdir(parents=True, exist_ok=True)

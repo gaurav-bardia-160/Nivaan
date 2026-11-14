@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+import re
 from datetime import date
-from typing import List, Literal, Optional
+from typing import Any, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator, model_validator
 
@@ -10,6 +11,46 @@ from backend.config import MAX_CONVERSATION_ID_LENGTH, MAX_DOCUMENT_TEXT_LENGTH,
 
 def _clean_text(value: str) -> str:
     return " ".join(value.strip().split())
+
+
+def _normalize_doc_item(item: Any) -> str | None:
+    if not item:
+        return None
+    if isinstance(item, dict):
+        title = item.get("title") or item.get("name") or item.get("document") or item.get("doc") or ""
+        detail = item.get("detail") or item.get("url") or ""
+        title = _clean_text(str(title)) if title else ""
+        detail = _clean_text(str(detail)) if detail else ""
+        if title and detail and not detail.startswith("http"):
+            return f"{title} ({detail})"
+        if title:
+            return title
+        if detail:
+            return detail
+        return None
+    if isinstance(item, str):
+        text = _clean_text(item)
+        if not text:
+            return None
+        if (text.startswith("{") and text.endswith("}")) or ("'title'" in text or '"title"' in text):
+            try:
+                import ast
+                val = ast.literal_eval(text)
+                if isinstance(val, dict):
+                    return _normalize_doc_item(val)
+            except Exception:
+                try:
+                    import json
+                    val = json.loads(text.replace("'", '"'))
+                    if isinstance(val, dict):
+                        return _normalize_doc_item(val)
+                except Exception:
+                    pass
+            m = re.search(r"['\"]title['\"]\s*:\s*['\"]([^'\"]+)['\"]", text)
+            if m:
+                return _clean_text(m.group(1))
+        return text
+    return _clean_text(str(item)) or None
 
 
 class Step(BaseModel):
@@ -128,14 +169,12 @@ class KnowledgeEntry(BaseModel):
         cleaned: list[str] = []
         seen: set[str] = set()
         for item in value:
-            if not isinstance(item, str):
-                cleaned.append(item)
-                continue
-            text = _clean_text(item)
-            key = text.lower()
-            if text and key not in seen:
-                cleaned.append(text)
-                seen.add(key)
+            norm = _normalize_doc_item(item)
+            if norm:
+                key = norm.lower()
+                if key not in seen:
+                    cleaned.append(norm)
+                    seen.add(key)
         return cleaned
 
 
@@ -202,7 +241,16 @@ class Answer(BaseModel):
     def clean_documents(cls, value):
         if not isinstance(value, list):
             return value
-        return [_clean_text(item) if isinstance(item, str) else item for item in value if not isinstance(item, str) or _clean_text(item)]
+        cleaned: list[str] = []
+        seen: set[str] = set()
+        for item in value:
+            norm = _normalize_doc_item(item)
+            if norm:
+                key = norm.lower()
+                if key not in seen:
+                    cleaned.append(norm)
+                    seen.add(key)
+        return cleaned
 
 
 class FeedbackRequest(BaseModel):

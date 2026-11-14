@@ -229,7 +229,9 @@ class GeminiLLMClient:
             parsed_json = json.loads(raw_text)
 
             summary = str(parsed_json.get("summary", "")).strip()
-            docs = [str(d).strip() for d in parsed_json.get("documents_needed", []) if str(d).strip()]
+            raw_docs = parsed_json.get("documents_needed", [])
+            docs = [_normalize_document_item(d) for d in (raw_docs if isinstance(raw_docs, list) else [])]
+            docs = [d for d in docs if d]
             steps = [
                 {"title": str(s.get("title", "")).strip(), "detail": str(s.get("detail", "")).strip()}
                 for s in parsed_json.get("steps", [])
@@ -245,6 +247,46 @@ class GeminiLLMClient:
             logger.info("Gemini inference exception (%s), falling back to local Ollama", e)
             return None
         return None
+
+
+def _normalize_document_item(item: Any) -> str | None:
+    if not item:
+        return None
+    if isinstance(item, dict):
+        title = item.get("title") or item.get("name") or item.get("document") or item.get("doc") or ""
+        detail = item.get("detail") or item.get("url") or ""
+        title = str(title).strip()
+        detail = str(detail).strip()
+        if title and detail and not detail.startswith("http"):
+            return f"{title} ({detail})"
+        if title:
+            return title
+        if detail:
+            return detail
+        return None
+    if isinstance(item, str):
+        text = item.strip()
+        if not text:
+            return None
+        if (text.startswith("{") and text.endswith("}")) or ("'title'" in text or '"title"' in text):
+            try:
+                import ast
+                val = ast.literal_eval(text)
+                if isinstance(val, dict):
+                    return _normalize_document_item(val)
+            except Exception:
+                try:
+                    import json
+                    val = json.loads(text.replace("'", '"'))
+                    if isinstance(val, dict):
+                        return _normalize_document_item(val)
+                except Exception:
+                    pass
+            m = re.search(r"['\"]title['\"]\s*:\s*['\"]([^'\"]+)['\"]", text)
+            if m:
+                return m.group(1).strip()
+        return text
+    return str(item).strip() or None
 
 
 def _build_llm_prompt(
@@ -307,7 +349,9 @@ def _build_llm_prompt(
             "- DIRECT FIRST-SENTENCE: Answer the user's explicit question directly in the very first sentence. For binary/jurisdictional questions ('Can I...', 'Should I...', 'Will it...'), answer 'Yes' or 'No' with statutory reason, and return 'steps': [] and 'documents_needed': []. Only include 'steps' when asked how to perform a multi-step action.\n"
             "- ZERO VAGUE PUNTS: Always specify exact official portals, forms, and escalation desks. Never say 'contact customer care'.\n"
             "- ZERO CROSS-CONTAMINATION: Never blend unrelated error codes or procedures.\n"
-            "- ZERO EXTERNAL COMMERCIAL ENTITIES: Never reference commercial services (e.g. legaltax.in); cite only official .gov.in or .nic.in portals."
+            "- ZERO EXTERNAL COMMERCIAL ENTITIES: Never reference commercial services (e.g. legaltax.in); cite only official .gov.in or .nic.in portals.\n"
+            "- MANDATORY SCOPE & CONDITIONALITY FIDELITY DIRECTIVE: When stating legal rules, prohibitions, exemptions, or thresholds from official circulars, you MUST explicitly preserve and surface all statutory scope qualifiers (borrower type: individual vs commercial/corporate vs MSE; rate type: floating-rate vs fixed-rate; asset class; time windows; monetary thresholds). NEVER compress conditional regulations into blanket absolute statements (e.g., do not say 'RBI banned prepayment penalties on loans' when the ban specifically applies to 'floating-rate term loans granted to individual borrowers and MSEs', with fixed-rate loans or non-individual corporate borrowers remaining subject to legitimate contractual prepayment charges if disclosed in the sanction letter).\n"
+            "- DOCUMENTS NEEDED FORMATTING: The 'documents_needed' key MUST be a simple list of clean document title strings (e.g. ['Aadhaar Card', 'Loan Sanction Letter', 'Key Fact Statement']), or [] if none. NEVER return dictionary objects, JSON blobs, or URLs inside the 'documents_needed' array."
         )
 
         system = system_base
@@ -447,7 +491,8 @@ class LocalLLMClient:
                     if "summary" in data:
                         summary_candidate = str(data["summary"]).strip()
                     if "documents_needed" in data and isinstance(data["documents_needed"], list):
-                        docs_candidate = [str(d).strip() for d in data["documents_needed"] if str(d).strip()]
+                        docs_candidate = [_normalize_document_item(d) for d in data["documents_needed"]]
+                        docs_candidate = [d for d in docs_candidate if d]
                     if "steps" in data and isinstance(data["steps"], list):
                         steps_candidate = [
                             {"title": str(s.get("title", "")).strip(), "detail": str(s.get("detail", "")).strip()}
@@ -578,7 +623,8 @@ class LocalLLMClient:
                 if "summary" in data:
                     summary_candidate = str(data["summary"]).strip()
                 if "documents_needed" in data and isinstance(data["documents_needed"], list):
-                    docs_candidate = [str(d).strip() for d in data["documents_needed"] if str(d).strip()]
+                    docs_candidate = [_normalize_document_item(d) for d in data["documents_needed"]]
+                    docs_candidate = [d for d in docs_candidate if d]
                 if "steps" in data and isinstance(data["steps"], list):
                     steps_candidate = [
                         {"title": str(s.get("title", "")).strip(), "detail": str(s.get("detail", "")).strip()}

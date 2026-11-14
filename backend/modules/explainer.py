@@ -137,6 +137,7 @@ OFFICIAL_DOMAINS = {
     "iepf.gov.in", "www.iepf.gov.in", "iepfa.gov.in", "www.iepfa.gov.in",
     "mca.gov.in", "www.mca.gov.in", "udgam.rbi.org.in",
     "pensionsahayak.pfrda.org.in", "pfrda.org.in", "financialservices.gov.in", "www.financialservices.gov.in",
+    "jansamarth.in", "www.jansamarth.in",
 }
 
 
@@ -437,7 +438,11 @@ def explain_rag_result(
         intro_match = re.split(r"(?:\n\n|\bDirect Resolution Steps:|\bStatutory Harmonised Turnaround Times:)", top_hit_text)
         intro_text = intro_match[0].strip() if intro_match else top_hit_text[:480].strip()
         if len(intro_text) > 480:
-            intro_text = intro_text[:480].rsplit(".", 1)[0] + "."
+            parts = re.split(r"\.\s+", intro_text[:480])
+            if len(parts) > 1:
+                intro_text = ". ".join(parts[:-1]) + "."
+            else:
+                intro_text = intro_text[:480].strip()
         summary_candidate = (
             f"{intro_text} Note: this candidate evidence from official sources "
             "has not been independently fact-checked. Confirm time-sensitive rules on the linked official portal."

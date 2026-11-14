@@ -250,6 +250,7 @@ class RagRetriever:
             # Exact statutory & error code boost: ensures statutory sections & error codes surface to rank 1
             _EXACT_CODES = (
                 "148a(b)", "148a", "148", "149", "147", "151", "206aa", "114aaa", "234h",
+                "138", "section 138", "142", "section 142", "143a", "section 143a", "141", "cheque bounce", "cheque dishonour",
                 "blo", "e-epic", "epic", "form 8", "form 6", "form 7", "ngrs", "voter mitra",
                 "139(9)", "139(5)", "139(4)", "119(2)(b)", "119", "234f", "44ad", "44ada", "defective return",
                 "cibil", "experian", "crif", "unsolicited card", "card conduct",
@@ -360,6 +361,12 @@ class RagRetriever:
                     "boost_terms": ("form 19", "form 31", "online claim", "withdrawal", "passbook", "cheque leaf", "claim"),
                     "conflicts": ("epfigms", "grievance", "escalation matrix", "stuck claim", "joint declaration", "member profile correction"),
                 },
+                {
+                    "name": "cheque_bounce_138",
+                    "match": ("138", "cheque bounce", "cheque dishonour", "dishonour of cheque", "section 138", "negotiable instruments", "142", "143a"),
+                    "boost_terms": ("section 138", "negotiable instruments act 1881", "section 142", "statutory demand notice", "cheque dishonour", "15 days", "30 days", "judicial magistrate"),
+                    "conflicts": ("harmonisation of turnaround time", "tat and customer compensation", "compensation for failed transactions", "foreclosure charges and prepayment penalties", "cpgrams", "atm transaction"),
+                },
             )
             lowered_q = clean_query.lower()
 
@@ -451,6 +458,16 @@ class RagRetriever:
                 if re.search(r"\b(?:dea\s+fund|deaf|depositor\s+education\s+and\s+awareness|inoperative\s+deposits?)\b", lowered_doc):
                     score -= 0.80
                     signals["iepf_dea_conflict_penalty"] = -0.80
+
+            # Sub-procedure discrimination: NI Act Section 138 Cheque Bounce vs generic failed transaction / TAT / foreclosure
+            is_138_query = bool(re.search(r"\b(?:138|cheque\s+bounce|cheque\s+dishonour|negotiable\s+instruments)\b", lowered_q))
+            if is_138_query:
+                if any(term in lowered_doc for term in ("harmonisation of turnaround time", "tat and customer compensation", "foreclosure charges", "cpgrams")) and "section 138" not in lowered_doc:
+                    score -= 0.60
+                    signals["sub_procedure_mismatch_penalty"] = -0.60
+                if any(term in lowered_doc for term in ("section 138", "negotiable instruments act 1881", "cheque dishonour")):
+                    score += 0.20
+                    signals["cheque_bounce_boost"] = 0.20
 
             fused.append(
                 RetrievalHit(

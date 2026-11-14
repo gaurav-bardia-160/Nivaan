@@ -47,9 +47,20 @@ if _cors_env:
 else:
     CORS_ALLOW_ORIGINS = ["*"]
 
-# PII Masking: Disabled by default for 100% local-first AI execution (zero cloud leakage).
-# Set ENABLE_PII_MASKING=true only if operating across untrusted or external boundaries.
-ENABLE_PII_MASKING = os.getenv("ENABLE_PII_MASKING", "false").lower() in ("true", "1", "yes")
+# PII Masking & Web Search Privacy Boundary:
+# When WEB_SEARCH_ENABLED is true, outbound queries leave the local boundary.
+# Enforce fail-closed privacy: if web search is enabled, PII masking is mandatory.
+_raw_pii = os.getenv("ENABLE_PII_MASKING")
+if WEB_SEARCH_ENABLED:
+    if _raw_pii is not None and _raw_pii.strip().lower() in ("false", "0", "no"):
+        raise RuntimeError(
+            "Fail-closed privacy boundary error: WEB_SEARCH_ENABLED is True, but ENABLE_PII_MASKING is explicitly False. "
+            "Citizen queries must not be dispatched over external networks without active PII masking. "
+            "Set ENABLE_PII_MASKING=true or disable WEB_SEARCH_ENABLED."
+        )
+    ENABLE_PII_MASKING = True
+else:
+    ENABLE_PII_MASKING = (_raw_pii or "false").strip().lower() in ("true", "1", "yes")
 
 CAPABILITIES = {
     "supported_languages": list(SUPPORTED_LANGUAGES),

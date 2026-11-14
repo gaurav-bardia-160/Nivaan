@@ -1125,3 +1125,19 @@ timestamp,conversation_id,query,domain,top_score,reason
 2026-11-09T22:54:58.565106+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,uncovered,0.0000,uncovered_domain
 2026-11-09T22:54:58.571267+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,uncovered,0.0000,uncovered_domain
 2026-11-09T22:54:58.579266+00:00,anonymous,NSP scholarship status showing Defective by Institute,uncovered,0.0000,uncovered_domain
+2026-11-14T11:44:53.262685+00:00,anonymous,What is the procedure and limitation period for cheque bounce under Section 138 of Negotiable Instruments Act?,unknown,0.0825,low_retrieval_confidence
+2026-11-14T11:51:25.494303+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-14T11:51:25.508334+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-14T11:51:25.521764+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-14T11:51:25.536703+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-14T11:51:25.549345+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-14T11:51:25.587107+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
+2026-11-14T11:59:42.968184+00:00,anonymous,What is the procedure and limitation period for cheque bounce under Section 138 of Negotiable Instruments Act?,unknown,0.0656,low_retrieval_confidence
+2026-11-14T12:01:32.359302+00:00,anonymous,What is the procedure and limitation period for cheque bounce under Section 138 of Negotiable Instruments Act?,unknown,0.0656,low_retrieval_confidence
+2026-11-14T12:04:20.952298+00:00,anonymous,What is the procedure and limitation period for cheque bounce under Section 138 of Negotiable Instruments Act?,unknown,0.0656,low_retrieval_confidence
+2026-11-14T12:22:14.042253+00:00,anonymous,How do I file Form INC-32 SPICe+ on the MCA21 portal?,uncovered,0.0000,uncovered_domain
+2026-11-14T12:22:14.063911+00:00,anonymous,What is the NSP scholarship application process?,uncovered,0.0000,uncovered_domain
+2026-11-14T12:22:14.076166+00:00,anonymous,NSP scholarship pending verification,uncovered,0.0000,uncovered_domain
+2026-11-14T12:22:14.087194+00:00,anonymous,How to apply for LPG cylinder under the new procedure?,uncovered,0.0000,uncovered_domain
+2026-11-14T12:22:14.096530+00:00,anonymous,How to surrender domestic LPG gas cylinder connection?,uncovered,0.0000,uncovered_domain
+2026-11-14T12:22:14.137105+00:00,anonymous,Test unique query for MCA Director Identification Number DIN verification,uncovered,0.0000,uncovered_domain
