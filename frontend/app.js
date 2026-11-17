@@ -683,6 +683,10 @@ function formatMarkdownMini(text) {
     let safe = escapeHtml(text);
     safe = safe.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     safe = safe.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
+    // Convert markdown links [text](https://...)
+    safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s<)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="doc-link" style="word-break: break-all;">$1 <span class="doc-link-arrow">↗</span></a>');
+    // Convert bare URLs https://... (avoiding already replaced hrefs)
+    safe = safe.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer" class="doc-link" style="word-break: break-all;">$2 <span class="doc-link-arrow">↗</span></a>');
     safe = safe.replace(/(?:^|\n)[ \t]*[-*][ \t]+([^\n]+)/g, "\n• $1");
     return safe;
 }
@@ -1266,8 +1270,8 @@ function renderPostSummarySections(answer) {
             <div class="clean-step-card">
                 <div class="clean-step-badge">${stepNo}</div>
                 <div class="clean-step-content">
-                    <div class="clean-step-title">${escapeHtml(stepText)}</div>
-                    ${stepTip ? `<div class="clean-step-detail">💡 <strong>Details:</strong> ${escapeHtml(stepTip)}</div>` : ""}
+                    <div class="clean-step-title">${formatMarkdownMini(stepText)}</div>
+                    ${stepTip ? `<div class="clean-step-detail">💡 <strong>Details:</strong> ${formatMarkdownMini(stepTip)}</div>` : ""}
                 </div>
             </div>
         `;
