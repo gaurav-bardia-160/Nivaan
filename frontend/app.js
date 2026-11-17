@@ -18,6 +18,7 @@ let attachedFile = null; // { name, type, size, textContent, fileRef, isImage, i
 
 // DOM Elements
 const sidebar = document.getElementById("sidebar");
+const sidebarBackdrop = document.getElementById("sidebarBackdrop");
 const sidebarToggle = document.getElementById("sidebarToggle");
 const newChatBtn = document.getElementById("newChatBtn");
 const historyList = document.getElementById("historyList");
@@ -48,8 +49,35 @@ const ICON_THUMBS_DOWN = '<svg class="feedback-icon" viewBox="0 0 24 24" fill="n
 const ICON_COPY = '<svg class="copy-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
 const ICON_COPIED = '<svg class="copy-icon-svg check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
+// --- SIDEBAR DRAWER HELPERS ---
+function setSidebarOpen(isOpen) {
+    if (!sidebar) return;
+    if (isOpen) {
+        sidebar.classList.remove("collapsed");
+        if (sidebarBackdrop && window.innerWidth <= 768) {
+            sidebarBackdrop.classList.add("active");
+        }
+    } else {
+        sidebar.classList.add("collapsed");
+        if (sidebarBackdrop) {
+            sidebarBackdrop.classList.remove("active");
+        }
+    }
+}
+
+function toggleSidebar() {
+    if (!sidebar) return;
+    const isCurrentlyOpen = !sidebar.classList.contains("collapsed");
+    setSidebarOpen(!isCurrentlyOpen);
+}
+
 // --- INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
+    // On mobile devices, keep sidebar closed by default
+    if (window.innerWidth <= 768) {
+        setSidebarOpen(false);
+    }
+
     checkBackendHealth();
     setInterval(checkBackendHealth, 8000);
     setupEventListeners();
@@ -70,9 +98,29 @@ function setupEventListeners() {
     // Sidebar toggle
     if (sidebarToggle && sidebar) {
         sidebarToggle.addEventListener("click", () => {
-            sidebar.classList.toggle("collapsed");
+            toggleSidebar();
         });
     }
+
+    // Backdrop click closes mobile drawer
+    if (sidebarBackdrop) {
+        sidebarBackdrop.addEventListener("click", () => {
+            setSidebarOpen(false);
+        });
+    }
+
+    // Auto-dismiss mobile drawer on resize or Escape
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768 && sidebarBackdrop) {
+            sidebarBackdrop.classList.remove("active");
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sidebar && !sidebar.classList.contains("collapsed") && window.innerWidth <= 768) {
+            setSidebarOpen(false);
+        }
+    });
 
     // New Chat Button
     if (newChatBtn) {
@@ -320,8 +368,8 @@ function switchChat(chatId) {
     saveChatsToStorage();
     renderHistoryList();
     loadActiveChatMessages();
-    if (sidebar && window.innerWidth <= 768) {
-        sidebar.classList.add("collapsed");
+    if (window.innerWidth <= 768) {
+        setSidebarOpen(false);
     }
 }
 
@@ -352,8 +400,8 @@ function handleNewChatBtn() {
     localStorage.setItem(ACTIVE_CHAT_KEY, "__new__");
     renderHistoryList();
     resetChatView();
-    if (sidebar && window.innerWidth <= 768) {
-        sidebar.classList.add("collapsed");
+    if (window.innerWidth <= 768) {
+        setSidebarOpen(false);
     }
 }
 

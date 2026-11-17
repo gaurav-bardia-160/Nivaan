@@ -303,24 +303,40 @@
     background: rgba(100, 116, 139, 0.5);
 }
 
+html, body {
+    height: 100%;
+    height: 100dvh;
+    min-height: -webkit-fill-available;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-main);
     color: var(--text-primary);
     line-height: 1.5;
-    height: 100vh;
-    overflow: hidden;
+    width: 100%;
 }
 
 .chat-app {
     display: flex;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    height: 100dvh;
+    min-height: -webkit-fill-available;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 /* ==========================================================================
-   MINIMAL SIDEBAR
+   SIDEBAR & BACKDROP
    ========================================================================== */
+.sidebar-backdrop {
+    display: none;
+}
+
 .sidebar {
     width: 260px;
     background-color: var(--bg-sidebar);
@@ -474,9 +490,13 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
+    height: 100dvh;
+    min-height: 0;
+    width: 100%;
     background-color: var(--bg-surface);
     position: relative;
+    overflow: hidden;
 }
 
 /* Header */
@@ -1230,12 +1250,14 @@ body {
    INPUT BAR (FLOATING BOTTOM)
    ========================================================================== */
 .input-wrapper {
-    padding: 12px 20px 16px;
+    padding: 12px 20px calc(14px + env(safe-area-inset-bottom, 0px));
     background-color: var(--bg-surface);
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Attachment Chip Preview */
@@ -1382,20 +1404,6 @@ body {
     margin-top: 6px;
 }
 
-/* ==========================================================================
-   MOBILE & RESPONSIVE
-   ========================================================================== */
-@media (max-width: 768px) {
-    .sidebar {
-        position: absolute;
-        z-index: 100;
-        height: 100vh;
-        box-shadow: 2px 0 12px rgba(0,0,0,0.1);
-    }
-    .suggestion-grid {
-        grid-template-columns: 1fr;
-    }
-}
 /* Evidence citations */
 .citations-section {
     margin-top: 16px;
@@ -1465,13 +1473,6 @@ body {
 [data-theme="dark"] .citation-card {
     background: #0f172a;
 }
-@media (max-width: 640px) {
-    .citation-meta {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-}
-
 
 /* ==========================================================================
    CLEAN ANSWER COMPONENTS & TAGGED SOURCES (NO CHECKBOXES)
@@ -1922,4 +1923,330 @@ body {
 }
 [data-theme="dark"] .typing-cursor {
     color: #60a5fa;
+}
+
+/* ==========================================================================
+   MOBILE, TABLET & MULTI-DEVICE RESPONSIVENESS
+   ========================================================================== */
+
+/* Touch-device hover fallbacks (phones & tablets) */
+@media (hover: none) or (max-width: 768px) {
+    .edit-msg-btn {
+        opacity: 0.65;
+        padding: 5px 7px;
+    }
+    .history-item-del {
+        opacity: 0.6;
+        padding: 4px 6px;
+    }
+    .suggestion-card:hover {
+        transform: none;
+    }
+}
+
+/* Tablet & Mobile Breakpoint (<= 768px) */
+@media (max-width: 768px) {
+    .sidebar-backdrop {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.45);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        z-index: 95;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+    .sidebar-backdrop.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        height: 100dvh;
+        width: 280px;
+        max-width: 84vw;
+        z-index: 100;
+        margin-left: 0 !important;
+        transform: translateX(0);
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(-100%);
+        margin-left: 0 !important;
+        box-shadow: none;
+        pointer-events: none;
+    }
+
+    .suggestion-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+/* Mobile Phone Breakpoint (<= 640px) */
+@media (max-width: 640px) {
+    /* Header Bar */
+    .chat-header {
+        height: 52px;
+        padding: 0 10px;
+    }
+    .header-left {
+        gap: 8px;
+    }
+    .sidebar-toggle {
+        padding: 6px 8px;
+        font-size: 18px;
+    }
+    .brand-logo {
+        width: 26px;
+        height: 26px;
+    }
+    .brand-title {
+        font-size: 14.5px;
+    }
+    .header-right {
+        gap: 6px;
+    }
+    .pill-btn.theme-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+    .connection-badge {
+        font-size: 10.5px;
+        padding: 2px 7px;
+        max-width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Messages Feed */
+    .messages-container {
+        padding: 12px 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .message-row {
+        gap: 10px;
+        margin-bottom: 16px;
+        width: 100%;
+        max-width: 100%;
+    }
+    .message-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    .bot-avatar {
+        width: 28px;
+        height: 28px;
+    }
+    .message-content {
+        max-width: calc(100% - 38px);
+        min-width: 0;
+    }
+    .user-bubble {
+        padding: 10px 12px;
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    /* Prevent Mobile Safari / Chrome auto-zoom on input focus */
+    #chatInput,
+    .user-edit-textarea {
+        font-size: 16px !important;
+    }
+
+    /* Welcome Screen */
+    .welcome-screen {
+        padding: 12px 4px;
+        max-width: 100%;
+    }
+    .welcome-badge {
+        font-size: 11px;
+        padding: 3px 10px;
+        margin-bottom: 10px;
+    }
+    .welcome-title {
+        font-size: 19px;
+        line-height: 1.3;
+        margin-bottom: 8px;
+    }
+    .welcome-text {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+    .suggestion-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        width: 100%;
+    }
+    .suggestion-card {
+        padding: 10px 12px;
+    }
+    .suggestion-card strong {
+        font-size: 13px;
+    }
+    .suggestion-card p {
+        font-size: 11.5px;
+    }
+
+    /* Assistant Card */
+    .assistant-response {
+        padding: 14px 12px;
+        border-radius: var(--radius-md);
+        gap: 12px;
+    }
+    .response-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-bottom: 8px;
+    }
+    .response-title-group {
+        max-width: 100%;
+    }
+    .response-title {
+        font-size: 15.5px;
+    }
+    .response-confidence {
+        font-size: 10px;
+    }
+    .response-header-actions {
+        margin-left: auto;
+    }
+
+    /* Clean procedure & document components */
+    .clean-doc-item {
+        padding: 8px 10px;
+        font-size: 12.5px;
+        gap: 8px;
+    }
+    .clean-step-card {
+        padding: 10px 10px;
+        gap: 9px;
+    }
+    .clean-step-badge {
+        width: 22px;
+        height: 22px;
+        font-size: 11px;
+    }
+    .clean-step-title {
+        font-size: 13px;
+    }
+    .clean-step-detail {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+
+    /* Tagged Sources Pill Wraps */
+    .clean-sources-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    .clean-sources-tags {
+        gap: 6px;
+    }
+    .source-tag-pill {
+        max-width: 100%;
+        padding: 5px 8px;
+        font-size: 11.5px;
+        gap: 5px;
+        box-sizing: border-box;
+    }
+    .source-tag-text {
+        max-width: min(160px, calc(100vw - 140px));
+        font-size: 11.5px;
+    }
+    .source-tag-domain {
+        font-size: 10px;
+        padding: 1px 4px;
+    }
+    .citation-meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    /* Live Thinking Card */
+    .thinking-card {
+        padding: 12px 14px;
+        gap: 10px;
+    }
+    .thinking-status-text {
+        font-size: 12.5px;
+    }
+
+    /* Floating Bottom Input Bar */
+    .input-wrapper {
+        padding: 6px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .input-bar {
+        padding: 4px 6px;
+        gap: 5px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .btn-attach {
+        padding: 6px 4px;
+        font-size: 16px;
+    }
+    .camera-btn-icon {
+        width: 18px;
+        height: 18px;
+    }
+    .btn-send {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+        font-size: 13px;
+    }
+    .attachment-preview {
+        padding: 5px 10px;
+        font-size: 11px;
+        max-width: 100%;
+    }
+    .preview-filename {
+        max-width: calc(100vw - 120px);
+    }
+    .privacy-note {
+        font-size: 10px;
+        margin-top: 3px;
+    }
+}
+
+/* Narrow Phone Viewports (<= 380px) */
+@media (max-width: 380px) {
+    .brand-title {
+        font-size: 13.5px;
+    }
+    .connection-badge {
+        max-width: 90px;
+        font-size: 9.5px;
+    }
+    .theme-btn {
+        padding: 3px 6px;
+        font-size: 10.5px;
+    }
+    .source-tag-text {
+        max-width: min(120px, calc(100vw - 120px));
+    }
+    .clean-step-card {
+        padding: 8px 8px;
+    }
 }
