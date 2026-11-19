@@ -19,7 +19,8 @@ let attachedFile = null; // { name, type, size, textContent, fileRef, isImage, i
 // DOM Elements
 const sidebar = document.getElementById("sidebar");
 const sidebarBackdrop = document.getElementById("sidebarBackdrop");
-const sidebarToggle = document.getElementById("sidebarToggle");
+const sidebarCollapseBtn = document.getElementById("sidebarCollapseBtn");
+const floatingSidebarToggle = document.getElementById("floatingSidebarToggle");
 const newChatBtn = document.getElementById("newChatBtn");
 const historyList = document.getElementById("historyList");
 const backendBadge = document.getElementById("backendBadge");
@@ -95,12 +96,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function setupEventListeners() {
-    // Sidebar toggle
-    if (sidebarToggle && sidebar) {
-        sidebarToggle.addEventListener("click", () => {
+    // Sidebar toggle (handles minimize button in sidebar and floating toggle when collapsed)
+    const toggleButtons = document.querySelectorAll("#sidebarToggle, #sidebarCollapseBtn, #floatingSidebarToggle");
+    toggleButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
             toggleSidebar();
         });
-    }
+    });
 
     // Backdrop click closes mobile drawer
     if (sidebarBackdrop) {
@@ -147,8 +149,8 @@ function setupEventListeners() {
         });
     }
 
-    // Suggestion Cards
-    suggestionCards.forEach(card => {
+    // Suggestion Cards & Category Chips
+    document.querySelectorAll(".suggestion-card, .category-chip[data-prompt]").forEach(card => {
         card.addEventListener("click", () => {
             const prompt = card.getAttribute("data-prompt");
             if (prompt) {

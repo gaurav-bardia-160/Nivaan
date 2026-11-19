@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <meta name="description" content="Nivaan - AI Chatbot for Indian government, banking, and legal procedures.">
     <title>Nivaan</title>
-    <link rel="icon" type="image/png" href="logo.png?v=20261119d">
-    <link rel="stylesheet" href="style.css?v=20261119d">
+    <link rel="icon" type="image/png" href="logo.png?v=20261119e">
+    <link rel="stylesheet" href="style.css?v=20261119e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,9 +16,14 @@
         <!-- Minimal Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-top">
-                <div class="sidebar-brand">
-                    <img src="logo.png?v=20261119c" alt="Nivaan Logo" class="brand-logo" />
-                    <h1 class="brand-title">Nivaan</h1>
+                <div class="sidebar-header">
+                    <div class="sidebar-brand">
+                        <img src="logo.png?v=20261119e" alt="Nivaan Logo" class="brand-logo" />
+                        <h1 class="brand-title">Nivaan</h1>
+                    </div>
+                    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Close sidebar" aria-label="Close sidebar">
+                        <span class="collapse-icon">☰</span>
+                    </button>
                 </div>
                 <button class="new-chat-btn" id="newChatBtn">
                     <span class="icon">➕</span>
@@ -45,40 +50,103 @@
 
         <!-- Main Chat Area -->
         <main class="chat-main">
-            <!-- Header Bar -->
-            <header class="chat-header">
-                <div class="header-left">
-                    <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">☰</button>
-                </div>
-            </header>
+            <!-- Floating Sidebar Toggle (Only visible when sidebar is collapsed or on mobile) -->
+            <button class="floating-sidebar-toggle" id="floatingSidebarToggle" title="Open sidebar" aria-label="Open sidebar">
+                <span>☰</span>
+            </button>
 
             <!-- Chat Messages Timeline -->
             <div class="messages-container" id="messagesContainer">
                 <!-- Welcome View (when chat is empty) -->
                 <div class="welcome-screen" id="welcomeScreen">
-                    <h2 class="welcome-title">How can I help with official procedures today?</h2>
+                    <div class="welcome-header">
+                        <div class="welcome-badge">
+                            <span class="badge-icon">🏛️</span>
+                            <span>Direct Official Procedural Guidance</span>
+                        </div>
+                        <h2 class="welcome-title">What official procedure can I help you navigate?</h2>
+                        <p class="welcome-subtitle">Verified step-by-step guidance across official Indian government portals, tax filings, banking regulations, and statutory compliance.</p>
+                    </div>
 
-                    <!-- Quick Prompt Suggestions -->
+                    <!-- Category Filter Chips -->
+                    <div class="welcome-categories">
+                        <button class="category-chip" data-prompt="What are the latest rules and documents required for filing ITR-1 income tax return?">
+                            <span>📊</span> Taxes & ITR
+                        </button>
+                        <button class="category-chip" data-prompt="How do I apply for a new PAN card or update details online via UTIITSL/Protean?">
+                            <span>🪪</span> PAN & Identity
+                        </button>
+                        <button class="category-chip" data-prompt="What are RBI guidelines on loan foreclosure charges and prepayment penalties for individual borrowers?">
+                            <span>🏦</span> Banking & RBI
+                        </button>
+                        <button class="category-chip" data-prompt="What is the legal procedure and timeline for issuing a cheque bounce legal notice under Section 138?">
+                            <span>⚖️</span> Legal & Section 138
+                        </button>
+                        <button class="category-chip" data-prompt="How can I apply for a fresh Indian passport or renew an expired passport online?">
+                            <span>🛂</span> Passport Seva
+                        </button>
+                    </div>
+
+                    <!-- Quick Prompt Suggestions (6 curated cards) -->
                     <div class="suggestion-grid">
                         <button class="suggestion-card" data-prompt="How do I apply for a new PAN card online?">
-                            <span class="card-icon">🪪</span>
-                            <strong>Apply for PAN Card</strong>
-                            <p>Form 49A steps, fees & documents</p>
+                            <div class="card-top-row">
+                                <div class="card-icon-wrap icon-blue">🪪</div>
+                                <span class="card-tag">Gov Portal</span>
+                            </div>
+                            <strong class="card-title">Apply for PAN Card</strong>
+                            <p class="card-desc">Form 49A steps, photo/sign specs, fees & UTIITSL/Protean links</p>
+                            <span class="card-action">View procedure <span class="card-arrow">→</span></span>
                         </button>
+
                         <button class="suggestion-card" data-prompt="What documents do I need to file ITR-1 tax return?">
-                            <span class="card-icon">📊</span>
-                            <strong>File ITR-1 Return</strong>
-                            <p>Income tax filing basics & proofs</p>
+                            <div class="card-top-row">
+                                <div class="card-icon-wrap icon-emerald">📊</div>
+                                <span class="card-tag">Income Tax</span>
+                            </div>
+                            <strong class="card-title">File ITR-1 Return</strong>
+                            <p class="card-desc">Salaried assessment, AIS/TIS check, Form 16 & deduction proofs</p>
+                            <span class="card-action">View procedure <span class="card-arrow">→</span></span>
                         </button>
+
                         <button class="suggestion-card" data-prompt="What are the RBI rules on loan prepayment and foreclosure penalties?">
-                            <span class="card-icon">🏦</span>
-                            <strong>Loan Prepayment Rules</strong>
-                            <p>RBI rules on floating rate penalty bans</p>
+                            <div class="card-top-row">
+                                <div class="card-icon-wrap icon-amber">🏦</div>
+                                <span class="card-tag">RBI Rules</span>
+                            </div>
+                            <strong class="card-title">Loan Prepayment Rules</strong>
+                            <p class="card-desc">Zero penalty mandates on floating rate loans for individual borrowers</p>
+                            <span class="card-action">View procedure <span class="card-arrow">→</span></span>
                         </button>
+
                         <button class="suggestion-card" data-prompt="What should I do if I receive a cheque bounce notice under Section 138?">
-                            <span class="card-icon">⚖️</span>
-                            <strong>Cheque Bounce Notice</strong>
-                            <p>Deadlines, 15-day notice & legal steps</p>
+                            <div class="card-top-row">
+                                <div class="card-icon-wrap icon-purple">⚖️</div>
+                                <span class="card-tag">Section 138</span>
+                            </div>
+                            <strong class="card-title">Cheque Bounce Notice</strong>
+                            <p class="card-desc">15-day statutory notice requirements, timeline & legal steps</p>
+                            <span class="card-action">View procedure <span class="card-arrow">→</span></span>
+                        </button>
+
+                        <button class="suggestion-card" data-prompt="How do I claim EPF online and what are the requirements for Form 19 and 10C?">
+                            <div class="card-top-row">
+                                <div class="card-icon-wrap icon-indigo">💼</div>
+                                <span class="card-tag">EPFO</span>
+                            </div>
+                            <strong class="card-title">EPF Online Withdrawal</strong>
+                            <p class="card-desc">Form 19/10C member portal steps, Aadhaar OTP & KYC verification</p>
+                            <span class="card-action">View procedure <span class="card-arrow">→</span></span>
+                        </button>
+
+                        <button class="suggestion-card" data-prompt="How can I apply for an Indian passport online under Tatkaal or Normal quota?">
+                            <div class="card-top-row">
+                                <div class="card-icon-wrap icon-sky">🛂</div>
+                                <span class="card-tag">Passport Seva</span>
+                            </div>
+                            <strong class="card-title">Passport Application</strong>
+                            <p class="card-desc">Tatkaal vs Normal, Annexures, police verification & PSK booking</p>
+                            <span class="card-action">View procedure <span class="card-arrow">→</span></span>
                         </button>
                     </div>
                 </div>
@@ -130,6 +198,6 @@
     </div>
 
     <!-- Main Controller Script -->
-    <script src="app.js?v=20261119d"></script>
+    <script src="app.js?v=20261119e"></script>
 </body>
 </html>
