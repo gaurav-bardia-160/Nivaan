@@ -685,41 +685,67 @@ function formatMarkdownMini(text) {
     let safe = escapeHtml(text);
     safe = safe.replace(/\r\n/g, "\n");
 
-    // Clean up markdown headings (### Title) into clear subheadings
+    // --- PRE-PROCESSING: strip residual raw markdown links/images BEFORE escaping messes them up ---
+    // Note: escapeHtml converts [ to &#91; etc. So we must clean BEFORE escapeHtml — but we already escaped.
+    // Instead we strip them from the original string before escaping.
+    return _formatMarkdownMiniRaw(text);
+}
+
+function _formatMarkdownMiniRaw(text) {
+    if (!text) return "";
+
+    // 1. First strip raw markdown image syntax: ![alt](url) -> alt
+    text = text.replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1");
+
+    // 2. Convert markdown links: [Title](url) -> clickable anchor
+    text = text.replace(/\[([^\]]+)\]\(((?:https?:)?\/\/[^\s<)]+)\)/g, (m, title, url) => {
+        const fullUrl = url.startsWith("//") ? `https:${url}` : url;
+        // Use a placeholder to protect from further replacements
+        return `\x00LINK\x00${title}\x00${fullUrl}\x00`;
+    });
+    // Strip any remaining broken/partial markdown links where URL is malformed
+    text = text.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+
+    // Now HTML-escape the cleaned text
+    let safe = escapeHtml(text);
+    safe = safe.replace(/\r\n/g, "\n");
+
+    // 3. Restore link placeholders as proper anchors
+    safe = safe.replace(/\x00LINK\x00([^\x00]+)\x00([^\x00]+)\x00/g, (m, title, url) => {
+        const safeTitle = title.replace(/&amp;/g, "&");
+        const safeUrl = url.replace(/&amp;/g, "&");
+        return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="doc-link">${safeTitle} <span class="doc-link-arrow">↗</span></a>`;
+    });
+
+    // 4. Clean up markdown headings (### Title) into clear subheadings
     safe = safe.replace(/(?:^|\n)#{1,6}[ \t]*([^\n]+)/g, '\n<div class="step-subheading">$1</div>\n');
 
-    // Bold & italic
+    // 5. Bold & italic
     safe = safe.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     safe = safe.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
 
-    // Markdown links: [Title](url) or [! Title](url) or protocol-relative [Title](//url)
-    safe = safe.replace(/\[(?:!\s*)?([^\]]+)\]\(((?:https?:)?\/\/[^\s<)]+)\)/g, (m, title, url) => {
-        const fullUrl = url.startsWith("//") ? `https:${url}` : url;
-        return `<a href="${fullUrl}" target="_blank" rel="noopener noreferrer" class="doc-link">${title} <span class="doc-link-arrow">↗</span></a>`;
-    });
-
-    // Bare protocol-relative URLs (e.g. //www.example.gov.in)
+    // 6. Bare protocol-relative URLs (e.g. //www.example.gov.in)
     safe = safe.replace(/(^|[\s(])(\/\/[a-zA-Z0-9][-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&/=]*)/g, (m, prefix, url) => {
         return `${prefix}<a href="https:${url}" target="_blank" rel="noopener noreferrer" class="doc-link">${url} <span class="doc-link-arrow">↗</span></a>`;
     });
 
-    // Bare HTTP/HTTPS URLs (avoiding href="...")
+    // 7. Bare HTTP/HTTPS URLs (avoiding href="...")
     safe = safe.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, (m, prefix, url) => {
         return `${prefix}<a href="${url}" target="_blank" rel="noopener noreferrer" class="doc-link">${url} <span class="doc-link-arrow">↗</span></a>`;
     });
 
-    // Bullet items: - item or * item or • item
+    // 8. Bullet items: - item or * item or • item
     safe = safe.replace(/(?:^|\n)[ \t]*[-*•][ \t]+([^\n]+)/g, '\n<div class="step-bullet"><span class="bullet-dot">•</span><span class="bullet-text">$1</span></div>\n');
 
-    // Clean up whitespace around block elements
+    // 9. Clean up whitespace around block elements
     safe = safe.replace(/\n*(<div class="step-[^"]+">)/g, "$1");
     safe = safe.replace(/(<\/div>)\n*/g, "$1");
 
-    // Paragraph breaks and line breaks
+    // 10. Paragraph breaks and line breaks
     safe = safe.replace(/\n\s*\n/g, '<div class="step-spacer"></div>');
     safe = safe.replace(/\n/g, "<br>");
 
-    // Strip leading/trailing line breaks
+    // 11. Strip leading/trailing line breaks
     safe = safe.replace(/^(?:<br>|\s)+|(?:<br>|\s)+$/g, "");
     return safe;
 }

@@ -418,7 +418,9 @@ def explain_rag_result(
 
     # Preserve top retrieval ranking
     first = citations[0]
-    top_hit_text = result.hits[0].document.text
+    top_hit_text_raw = result.hits[0].document.text
+    # Clean markdown links, images, and formatting noise from the raw chunk ONCE
+    top_hit_text = clean_rag_text(top_hit_text_raw)
 
     modality = classify_query_modality(user_question)
     is_analytical = modality != QueryModality.PROCEDURAL
@@ -435,8 +437,10 @@ def explain_rag_result(
         summary_candidate = clean_text
     else:
         # 1. Summary: Extract introductory diagnostic / explanatory paragraph
-        intro_match = re.split(r"(?:\n\n|\bDirect Resolution Steps:|\bStatutory Harmonised Turnaround Times:)", top_hit_text)
-        intro_text = intro_match[0].strip() if intro_match else top_hit_text[:480].strip()
+        # Split on double newline in raw text first, then clean the intro
+        intro_match = re.split(r"(?:\n\n|\bDirect Resolution Steps:|\bStatutory Harmonised Turnaround Times:)", top_hit_text_raw)
+        raw_intro = intro_match[0].strip() if intro_match else top_hit_text_raw[:480].strip()
+        intro_text = clean_rag_text(raw_intro)
         if len(intro_text) > 480:
             parts = re.split(r"\.\s+", intro_text[:480])
             if len(parts) > 1:
@@ -448,7 +452,7 @@ def explain_rag_result(
             "has not been independently fact-checked. Confirm time-sensitive rules on the linked official portal."
         )
 
-        # 2. Steps: Check if chunk has explicit numbered resolution steps
+        # 2. Steps: Check if chunk has explicit numbered resolution steps in the CLEANED text
         numbered_parts = [
             p.strip() for p in re.split(r"(?=\b[1-9]\.\s+[A-Z])", top_hit_text)
             if re.match(r"^[1-9]\.\s+[A-Z]", p.strip())
@@ -456,11 +460,22 @@ def explain_rag_result(
         if numbered_parts:
             for p in numbered_parts[:5]:
                 clean_p = re.sub(r"^[1-9]\.\s+", "", p).strip()
+                # Strip any residual markdown links/images from split text
+                clean_p = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", clean_p)
+                clean_p = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", clean_p)
+                clean_p = re.sub(r"\s+", " ", clean_p).strip()
                 if ":" in clean_p:
                     st_title, st_detail = clean_p.split(":", 1)
-                    dynamic_steps.append(Step(title=st_title.strip()[:80], detail=st_detail.strip()[:650]))
+                    st_title = st_title.strip()
+                    st_detail = st_detail.strip()
+                    # Reject step titles that are mostly a URL path fragment or link text
+                    if st_title and len(st_title.split()) >= 2 and not re.search(r"https?://|//", st_title):
+                        dynamic_steps.append(Step(title=st_title[:80], detail=st_detail[:650]))
                 else:
-                    dynamic_steps.append(Step(title=clean_p[:60].strip(), detail=clean_p[:650]))
+                    # Only add if title has real words (not URL junk)
+                    words = clean_p.split()
+                    if len(words) >= 3 and not re.search(r"https?://|//", clean_p[:60]):
+                        dynamic_steps.append(Step(title=" ".join(words[:8])[:80], detail=clean_p[:650]))
 
         extra_blocks = re.findall(
             r"((?:Statutory Penalty[^\n:]*|Escalation|Delivery TAT)):\s*([^\n]+(?:\n[^\n]+)?)",
