@@ -498,6 +498,51 @@ body {
     color: var(--text-primary);
 }
 
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.sidebar-bottom .pill-btn.theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    user-select: none;
+}
+
+.sidebar-bottom .pill-btn.theme-btn:hover {
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.sidebar-bottom .connection-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    user-select: none;
+}
+
 .sidebar-footer {
     margin-top: auto;
 }
@@ -2121,20 +2166,17 @@ body {
     .sidebar-brand .brand-title {
         font-size: 19px;
     }
-    .header-right {
-        gap: 6px;
+    .sidebar-bottom {
+        padding-top: 12px;
     }
-    .pill-btn.theme-btn {
-        padding: 4px 8px;
+    .sidebar-bottom .pill-btn.theme-btn {
+        padding: 5px 10px;
+        font-size: 11.5px;
+    }
+    .sidebar-bottom .connection-badge {
         font-size: 11px;
-    }
-    .connection-badge {
-        font-size: 10.5px;
-        padding: 2px 7px;
-        max-width: 120px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        padding: 3px 8px;
+        max-width: none;
     }
 
     /* Messages Feed */

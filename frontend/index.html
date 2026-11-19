@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <meta name="description" content="Nivaan - AI Chatbot for Indian government, banking, and legal procedures.">
     <title>Nivaan</title>
-    <link rel="icon" type="image/png" href="logo.png?v=20261119b">
-    <link rel="stylesheet" href="style.css?v=20261119b">
+    <link rel="icon" type="image/png" href="logo.png?v=20261119c">
+    <link rel="stylesheet" href="style.css?v=20261119c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-top">
                 <div class="sidebar-brand">
-                    <img src="logo.png?v=20261119b" alt="Nivaan Logo" class="brand-logo" />
+                    <img src="logo.png?v=20261119c" alt="Nivaan Logo" class="brand-logo" />
                     <h1 class="brand-title">Nivaan</h1>
                 </div>
                 <button class="new-chat-btn" id="newChatBtn">
@@ -34,6 +34,12 @@
                     <!-- History items injected dynamically -->
                 </div>
             </div>
+
+            <!-- Sidebar Bottom Controls -->
+            <div class="sidebar-bottom">
+                <button id="themeToggleBtn" class="pill-btn theme-btn" title="Toggle theme">🌙</button>
+                <span id="backendBadge" class="connection-badge connecting" title="Connecting to backend at http://127.0.0.1:8000...">● Connecting...</span>
+            </div>
         </aside>
         <div class="sidebar-backdrop" id="sidebarBackdrop" aria-label="Close sidebar"></div>
 
@@ -43,10 +49,6 @@
             <header class="chat-header">
                 <div class="header-left">
                     <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">☰</button>
-                </div>
-                <div class="header-right">
-                    <button id="themeToggleBtn" class="pill-btn theme-btn" title="Toggle theme">🌙</button>
-                    <span id="backendBadge" class="connection-badge connecting" title="Connecting to backend at http://127.0.0.1:8000...">● Connecting...</span>
                 </div>
             </header>
 
@@ -107,11 +109,6 @@
                         <span>📎</span>
                     </button>
 
-                    <!-- Camera capture -->
-                    <button class="btn-attach" id="cameraBtn" title="Take a photo of a document or notice" aria-label="Camera Capture">
-                        <img src="camera.png" alt="Camera" class="camera-btn-icon" />
-                    </button>
-
                     <!-- Text Input -->
                     <textarea 
                         id="chatInput" 
@@ -133,6 +130,6 @@
     </div>
 
     <!-- Main Controller Script -->
-    <script src="app.js?v=20261119"></script>
+    <script src="app.js?v=20261119c"></script>
 </body>
 </html>
