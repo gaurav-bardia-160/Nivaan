@@ -1261,6 +1261,31 @@ function formatSourceDomain(urlStr) {
     }
 }
 
+// --- FORMAT RESPONSE TITLE ---
+function formatResponseTitle(title) {
+    if (!title) return "";
+    const clean = String(title)
+        .replace(/^(?:Relevant|Verified)\s+official\s+material:\s*/i, "")
+        .replace(/^Official\s+civic\s+procedure:?\s*/i, "")
+        .replace(/^Official\s+guideline\s+\d*:?\s*/i, "")
+        .trim();
+    if (/^(?:Civic & Banking Guide|Verified Civic Knowledge|Official Procedure|PAN|Aadhaar|Passport|EPFO|Voter ID|General Guidance)$/i.test(clean)) {
+        return "";
+    }
+    return clean;
+}
+
+// --- CLEAN AI SUMMARY PROSE (REMOVE PRE-CANNED / DISCLAIMER TAILS) ---
+function cleanAiSummary(summary) {
+    if (!summary) return "";
+    return String(summary)
+        .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
+        .replace(/\s*Note:\s*this candidate evidence from official sources has not been independently fact-checked[\s\S]*$/i, "")
+        .replace(/\s*Note:\s*this guide is currently marked unverified in the project data[\s\S]*$/i, "")
+        .replace(/\s*Confirm time-sensitive rules on the linked official portal\.?/gi, "")
+        .trim();
+}
+
 // --- RENDER POST-SUMMARY SECTIONS (DOCUMENTS, STEPS, SOURCES) ---
 function renderPostSummarySections(answer) {
     if (!answer) return "";
@@ -1392,27 +1417,37 @@ function renderPostSummarySections(answer) {
 
     let sourcesHtml = "";
     if (sourcesList.length > 0) {
-        const sourceTags = sourcesList.map((src, idx) => `
-            <a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer" class="source-tag-pill" title="${escapeHtml(src.title)} - ${escapeHtml(src.url)}" onclick="trackCitationClick(this, '${escapeHtml(src.url)}')">
-                <span class="source-tag-index">[${idx + 1}]</span>
-                <span class="source-tag-text">${escapeHtml(src.title)}</span>
-                <span class="source-tag-domain">${escapeHtml(src.domain)}</span>
-                <span class="source-tag-arrow">↗</span>
-            </a>
-        `).join("");
+        const sourceCards = sourcesList.map((src, idx) => {
+            const cleanTitle = (src.title || "")
+                .replace(/^(?:Relevant|Verified)\s+official\s+material:\s*/i, "")
+                .replace(/^Official\s+guideline\s+\d*:?\s*/i, "")
+                .trim() || src.domain;
+            return `
+                <a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer" class="clean-source-card" title="${escapeHtml(cleanTitle)} • ${escapeHtml(src.url)}" onclick="trackCitationClick(this, '${escapeHtml(src.url)}')">
+                    <span class="source-card-num">${idx + 1}</span>
+                    <div class="source-card-body">
+                        <span class="source-card-title">${escapeHtml(cleanTitle)}</span>
+                        <span class="source-card-domain">${escapeHtml(src.domain)}</span>
+                    </div>
+                    <span class="source-card-arrow">↗</span>
+                </a>
+            `;
+        }).join("");
 
         const citationsAccordion = citations.some(c => c.excerpt) ? `
             <details class="clean-evidence-accordion">
                 <summary class="clean-evidence-toggle">
-                    <span>🔍 View RAG Evidence Excerpts (${citations.length})</span>
+                    <span>🔍 View Evidence Excerpts (${citations.length})</span>
                 </summary>
                 <div class="clean-evidence-list">
-                    ${citations.map((c, i) => `
+                    ${citations.map((c, i) => {
+                        const cTitle = (c.title || "").replace(/^(?:Relevant|Verified)\s+official\s+material:\s*/i, "").trim() || "Official source";
+                        return `
                         <div class="clean-evidence-item">
                             <div class="clean-evidence-head">
                                 <span class="clean-evidence-num">[${i + 1}]</span>
                                 <a href="${escapeHtml(c.url)}" target="_blank" rel="noopener noreferrer" class="clean-evidence-link">
-                                    ${escapeHtml(c.title)} ↗
+                                    ${escapeHtml(cTitle)} ↗
                                 </a>
                                 <span class="verification-status verification-${escapeHtml(c.factual_verification || 'verified')}">
                                     ${escapeHtml((c.factual_verification || 'verified').toUpperCase())}
@@ -1420,7 +1455,7 @@ function renderPostSummarySections(answer) {
                             </div>
                             <p class="clean-evidence-excerpt">${escapeHtml(c.excerpt)}</p>
                         </div>
-                    `).join("")}
+                    `;}).join("")}
                 </div>
             </details>
         ` : "";
@@ -1429,15 +1464,17 @@ function renderPostSummarySections(answer) {
             <div class="clean-sources-section">
                 <div class="clean-sources-header">
                     <div class="clean-sources-heading">
-                        <span>🏷️ Tagged Official Sources</span>
+                        <span class="sources-heading-icon">🌐</span>
+                        <span>Sources</span>
+                        <span class="sources-badge">${sourcesList.length}</span>
                     </div>
                     ${answer.last_verified ? `
                     <span class="clean-sources-verify">
                         ${sourceDateLabel}: <strong>${escapeHtml(answer.last_verified)}</strong>
                     </span>` : ""}
                 </div>
-                <div class="clean-sources-tags">
-                    ${sourceTags}
+                <div class="clean-sources-grid">
+                    ${sourceCards}
                 </div>
                 ${citationsAccordion}
             </div>
@@ -1466,22 +1503,15 @@ function createLiveAssistantRow(meta) {
         `;
     }
 
+    const initialTitle = formatResponseTitle((meta && meta.title) || "");
+    const headerDisplay = initialTitle ? "" : 'style="display: none;"';
+
     row.innerHTML = `
         ${BOT_AVATAR_HTML}
         <div class="message-content">
             <div class="assistant-response">
-                <div class="response-header">
-                    <div class="response-title-group">
-                        <h3 class="response-title">${escapeHtml((meta && meta.title) || "Civic & Banking Guide")}</h3>
-                    </div>
-                    <div class="response-header-actions">
-                        <span class="response-confidence confidence-${(meta && meta.confidence) || 'verified'}">
-                            ● ${(meta && meta.confidence ? meta.confidence.toUpperCase() : 'VERIFIED')}
-                        </span>
-                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate" aria-label="Like">${ICON_THUMBS_UP}</button>
-                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate" aria-label="Dislike">${ICON_THUMBS_DOWN}</button>
-                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard" aria-label="Copy">${ICON_COPY}</button>
-                    </div>
+                <div class="response-header" ${headerDisplay}>
+                    <h3 class="response-title">${escapeHtml(initialTitle)}</h3>
                 </div>
 
                 ${maskedBanner}
@@ -1491,6 +1521,19 @@ function createLiveAssistantRow(meta) {
                 </div>
 
                 <div class="post-summary-sections" style="display: none;"></div>
+
+                <div class="response-bottom-bar" style="display: none;">
+                    <div class="response-bottom-meta">
+                        <span class="response-confidence confidence-${(meta && meta.confidence) || 'verified'}">
+                            ● ${(meta && meta.confidence ? meta.confidence.toUpperCase() : 'VERIFIED')}
+                        </span>
+                    </div>
+                    <div class="response-bottom-actions">
+                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard" aria-label="Copy">${ICON_COPY} <span class="btn-label-text">Copy</span></button>
+                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate" aria-label="Like">${ICON_THUMBS_UP}</button>
+                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate" aria-label="Dislike">${ICON_THUMBS_DOWN}</button>
+                    </div>
+                </div>
             </div>
         </div>
     `;
@@ -1499,6 +1542,8 @@ function createLiveAssistantRow(meta) {
     const cursorEl = row.querySelector(".typing-cursor");
     const postSectionsEl = row.querySelector(".post-summary-sections");
     const titleEl = row.querySelector(".response-title");
+    const headerEl = row.querySelector(".response-header");
+    const bottomBarEl = row.querySelector(".response-bottom-bar");
 
     return {
         row,
@@ -1506,14 +1551,16 @@ function createLiveAssistantRow(meta) {
             if (typingTextEl) typingTextEl.textContent = text;
         },
         updateMeta: (newMeta) => {
-            if (newMeta && newMeta.title && titleEl) titleEl.textContent = newMeta.title;
+            if (newMeta && newMeta.title && titleEl) {
+                const cTitle = formatResponseTitle(newMeta.title);
+                titleEl.textContent = cTitle;
+                if (headerEl) headerEl.style.display = cTitle ? "flex" : "none";
+            }
         },
         finalize: (answer) => {
             if (cursorEl) cursorEl.remove();
             if (typingTextEl) {
-                const cleanText = ((answer && answer.summary) || typingTextEl.textContent || "")
-                    .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
-                    .trim();
+                const cleanText = cleanAiSummary((answer && answer.summary) || typingTextEl.textContent || "");
                 typingTextEl.innerHTML = formatMarkdownMini(cleanText);
             }
             if (postSectionsEl && answer) {
@@ -1522,7 +1569,19 @@ function createLiveAssistantRow(meta) {
                 postSectionsEl.classList.add("section-fade-in");
             }
             if (titleEl && answer && answer.title) {
-                titleEl.textContent = answer.title;
+                const cTitle = formatResponseTitle(answer.title);
+                titleEl.textContent = cTitle;
+                if (headerEl) headerEl.style.display = cTitle ? "flex" : "none";
+            }
+            if (bottomBarEl) {
+                if (answer && answer.confidence) {
+                    const confBadge = bottomBarEl.querySelector(".response-confidence");
+                    if (confBadge) {
+                        confBadge.className = `response-confidence confidence-${answer.confidence.toLowerCase()}`;
+                        confBadge.textContent = `● ${answer.confidence.toUpperCase()}`;
+                    }
+                }
+                bottomBarEl.style.display = "flex";
             }
             scrollToBottom();
         }
@@ -1548,9 +1607,8 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
         `;
     }
 
-    const cleanSummaryText = answer.summary ? String(answer.summary)
-        .replace(/^For your question,.*?this is the closest guide I found\.?\s*/i, "")
-        .trim() : "";
+    const cleanTitle = formatResponseTitle(answer.title);
+    const cleanSummaryText = cleanAiSummary(answer.summary);
 
     let summaryHtml = "";
     if (cleanSummaryText) {
@@ -1572,34 +1630,39 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
     const sectionsHtml = renderPostSummarySections(answer);
     const postSectionsDisplay = (isLive && cleanSummaryText) ? 'style="display: none;"' : '';
     const postSectionsClass = (isLive && cleanSummaryText) ? 'post-summary-sections' : 'post-summary-sections section-fade-in';
+    const bottomBarDisplay = (isLive && cleanSummaryText) ? 'style="display: none;"' : '';
 
     row.innerHTML = `
         ${BOT_AVATAR_HTML}
         <div class="message-content">
             <div class="assistant-response">
-                <!-- Header -->
+                ${cleanTitle ? `
                 <div class="response-header">
-                    <div class="response-title-group">
-                        <h3 class="response-title">${escapeHtml(answer.title)}</h3>
-                    </div>
-                    <div class="response-header-actions">
-                        <span class="response-confidence confidence-${answer.confidence || 'high'}">
-                            ● ${answer.confidence ? answer.confidence.toUpperCase() : 'VERIFIED'}
-                        </span>
-                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate" aria-label="Like">${ICON_THUMBS_UP}</button>
-                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate" aria-label="Dislike">${ICON_THUMBS_DOWN}</button>
-                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard" aria-label="Copy">${ICON_COPY}</button>
-                    </div>
-                </div>
+                    <h3 class="response-title">${escapeHtml(cleanTitle)}</h3>
+                </div>` : ""}
 
                 <!-- Privacy Redaction Badge -->
                 ${maskedBanner}
 
-                <!-- Plain Language Summary -->
+                <!-- Direct Clean Summary Prose -->
                 ${summaryHtml}
 
                 <div class="${postSectionsClass}" ${postSectionsDisplay}>
                     ${sectionsHtml}
+                </div>
+
+                <!-- Bottom Action Bar (Confidence, Copy, Thumbs Up/Down) -->
+                <div class="response-bottom-bar" ${bottomBarDisplay}>
+                    <div class="response-bottom-meta">
+                        <span class="response-confidence confidence-${answer.confidence || 'high'}">
+                            ● ${answer.confidence ? answer.confidence.toUpperCase() : 'VERIFIED'}
+                        </span>
+                    </div>
+                    <div class="response-bottom-actions">
+                        <button class="copy-response-btn" onclick="copyResponseText(this)" title="Copy guide to clipboard" aria-label="Copy">${ICON_COPY} <span class="btn-label-text">Copy</span></button>
+                        <button class="feedback-btn thumbs-up" onclick="sendFeedback(this, 'thumbs_up')" title="Helpful and accurate" aria-label="Like">${ICON_THUMBS_UP}</button>
+                        <button class="feedback-btn thumbs-down" onclick="sendFeedback(this, 'thumbs_down')" title="Not helpful or inaccurate" aria-label="Dislike">${ICON_THUMBS_DOWN}</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1613,6 +1676,7 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
         const typingTextEl = row.querySelector(".typing-text");
         const cursorEl = row.querySelector(".typing-cursor");
         const postSectionsEl = row.querySelector(".post-summary-sections");
+        const bottomBarEl = row.querySelector(".response-bottom-bar");
         const card = row.querySelector(".assistant-response");
 
         const words = cleanSummaryText.split(/(\s+)/);
@@ -1630,6 +1694,7 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
                 postSectionsEl.style.display = "flex";
                 postSectionsEl.classList.add("section-fade-in");
             }
+            if (bottomBarEl) bottomBarEl.style.display = "flex";
             if (shouldScroll) scrollToBottom();
         };
 
@@ -1670,9 +1735,10 @@ window.copyResponseText = function(btn) {
         const d = s.querySelector(".clean-step-detail")?.textContent.trim() || "";
         return `${num}. ${t}${d ? " (" + d + ")" : ""}`;
     }).join("\n");
-    const sources = Array.from(card.querySelectorAll(".source-tag-pill")).map(a => a.href).join("\n");
+    const sources = Array.from(card.querySelectorAll(".clean-source-card, .source-tag-pill")).map(a => a.href).join("\n");
 
-    let fullText = `${title}\n\n`;
+    let fullText = "";
+    if (title) fullText += `${title}\n\n`;
     if (summary) fullText += `${summary}\n\n`;
     if (docs) fullText += `Required Documents:\n${docs}\n\n`;
     if (steps) fullText += `Steps:\n${steps}\n\n`;
@@ -1681,16 +1747,16 @@ window.copyResponseText = function(btn) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(fullText.trim()).then(() => {
             const originalTitle = btn.getAttribute("title");
-            btn.innerHTML = ICON_COPIED;
+            btn.innerHTML = `${ICON_COPIED} <span class="btn-label-text">Copied!</span>`;
             btn.classList.add("copied");
             btn.setAttribute("title", "Copied to clipboard!");
             if (typeof window.sendFeedback === "function") {
                 window.sendFeedback(btn, "copy_steps", 0);
             }
             setTimeout(() => {
-                btn.innerHTML = ICON_COPY;
+                btn.innerHTML = `${ICON_COPY} <span class="btn-label-text">Copy</span>`;
                 btn.classList.remove("copied");
-                btn.setAttribute("title", originalTitle || "Copy guide to clipboard");
+                btn.setAttribute("title", originalTitle || "Copy response to clipboard");
             }, 2000);
         }).catch(err => {
             console.error("Failed to copy:", err);
