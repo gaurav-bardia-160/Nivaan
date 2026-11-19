@@ -614,21 +614,25 @@ body {
     display: none;
     position: absolute;
     top: 14px;
-    left: 14px;
+    left: 16px;
     z-index: 50;
-    background: transparent;
-    border: none;
-    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    font-size: 17px;
     cursor: pointer;
-    padding: 6px 10px;
     border-radius: var(--radius-sm);
     color: var(--text-secondary);
-    transition: background 0.15s, color 0.15s, transform 0.15s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
     user-select: none;
 }
 .floating-sidebar-toggle:hover {
-    background-color: var(--bg-hover, rgba(0, 0, 0, 0.05));
+    background-color: var(--bg-card);
+    border-color: var(--brand-blue);
     color: var(--text-primary);
+    transform: scale(1.04);
 }
 
 .sidebar.collapsed ~ .chat-main .floating-sidebar-toggle {
@@ -727,7 +731,7 @@ body {
 /* Centered Reading Column */
 .welcome-screen {
     width: 100%;
-    max-width: 820px;
+    max-width: 768px;
     min-width: 0;
     box-sizing: border-box;
 }
@@ -938,7 +942,7 @@ body {
     margin-bottom: 24px;
     animation: fadeIn 0.2s ease-in-out;
     width: 100%;
-    max-width: 100%;
+    max-width: 768px;
     min-width: 0;
     box-sizing: border-box;
 }
@@ -2205,8 +2209,15 @@ body {
 [data-theme="dark"] .card-action {
     color: #60a5fa;
 }
+[data-theme="dark"] .floating-sidebar-toggle {
+    background-color: #111827;
+    border-color: #1f2937;
+    color: #cbd5e1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
 [data-theme="dark"] .floating-sidebar-toggle:hover {
     background-color: #1e293b;
+    border-color: #3b82f6;
     color: #f8fafc;
 }
 
