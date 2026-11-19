@@ -1153,7 +1153,7 @@ body {
 .assistant-response {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
     background: transparent;
     border: none;
     border-radius: 0;
@@ -1170,7 +1170,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin: 0 0 -6px 0;
+    padding: 0;
     width: 100%;
     box-sizing: border-box;
 }
@@ -1186,7 +1187,7 @@ body {
     flex-grow: 1;
 }
 .response-title {
-    font-size: 16.5px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-primary);
     line-height: 1.35;
@@ -1194,6 +1195,8 @@ body {
     overflow-wrap: anywhere;
     word-break: break-word;
     min-width: 0;
+    margin: 0;
+    padding: 0;
 }
 [data-theme="dark"] .response-title {
     color: #f8fafc;
@@ -1401,7 +1404,7 @@ body {
     background: transparent;
     border: none;
     padding: 0;
-    margin: 4px 0 16px 0;
+    margin: 0;
     white-space: pre-line;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -2781,7 +2784,8 @@ body {
     .response-header {
         flex-wrap: wrap;
         gap: 8px;
-        padding-bottom: 8px;
+        margin: 0 0 -4px 0;
+        padding: 0;
         width: 100%;
         max-width: 100%;
         min-width: 0;
@@ -2797,6 +2801,8 @@ body {
         overflow-wrap: anywhere;
         word-break: break-word;
         min-width: 0;
+        margin: 0;
+        padding: 0;
     }
     .response-confidence {
         font-size: 10px;
@@ -2820,7 +2826,7 @@ body {
         border: none;
         font-size: 14px;
         line-height: 1.65;
-        margin: 2px 0 12px 0;
+        margin: 0;
         width: 100%;
         max-width: 100%;
         min-width: 0;
