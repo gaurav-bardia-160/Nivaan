@@ -1662,7 +1662,7 @@ body {
 .clean-steps-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -1671,11 +1671,12 @@ body {
 .clean-step-card {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    padding: 12px 14px;
+    gap: 14px;
+    padding: 14px 16px;
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
     background-color: var(--bg-surface);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     transition: border-color 0.15s, box-shadow 0.15s;
     width: 100%;
     max-width: 100%;
@@ -1683,12 +1684,12 @@ body {
     box-sizing: border-box;
 }
 .clean-step-badge {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background-color: var(--brand-light);
     color: var(--brand-blue);
-    font-size: 12px;
+    font-size: 13.5px;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -1699,29 +1700,30 @@ body {
 .clean-step-content {
     flex-grow: 1;
     min-width: 0;
-    max-width: calc(100% - 36px);
+    max-width: calc(100% - 42px);
     box-sizing: border-box;
     overflow-wrap: anywhere;
     word-break: break-word;
 }
 .clean-step-title {
-    font-size: 13.5px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text-primary);
-    line-height: 1.4;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
     overflow-wrap: anywhere;
     word-break: break-word;
     min-width: 0;
 }
 .clean-step-detail {
-    margin-top: 6px;
-    font-size: 12.5px;
+    margin-top: 10px;
+    font-size: 13.5px;
     color: var(--text-secondary);
-    background-color: var(--bg-main);
-    border-left: 2px solid var(--brand-blue);
-    padding: 6px 10px;
-    border-radius: 0 4px 4px 0;
-    line-height: 1.45;
+    background-color: rgba(241, 245, 249, 0.65);
+    border-left: 3px solid var(--brand-blue);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    line-height: 1.65;
     overflow-wrap: anywhere;
     word-break: break-word;
     width: 100%;
@@ -1729,13 +1731,66 @@ body {
     min-width: 0;
     box-sizing: border-box;
 }
+.clean-step-detail-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.clean-step-detail-body {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+.step-subheading {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 10px;
+    margin-bottom: 4px;
+    display: block;
+}
+.step-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 4px 0;
+    line-height: 1.6;
+}
+.step-bullet .bullet-dot {
+    color: var(--brand-blue);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.5;
+    flex-shrink: 0;
+}
+.step-bullet .bullet-text {
+    flex-grow: 1;
+    min-width: 0;
+}
+.step-spacer {
+    height: 8px;
+}
 .clean-step-detail a,
 .clean-step-title a,
 .clean-doc-text a,
 .response-summary a,
 .clean-evidence-excerpt a {
+    color: var(--brand-blue);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
     word-break: break-all;
     overflow-wrap: anywhere;
+    transition: color 0.15s;
+}
+.clean-step-detail a:hover,
+.clean-step-title a:hover {
+    color: var(--brand-blue-hover);
+    text-decoration: none;
 }
 
 /* Tagged Sources Section at the end of each answer */
@@ -1896,18 +1951,42 @@ body {
 [data-theme="dark"] .clean-step-card {
     background-color: #111827;
     border-color: #1f2937;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 [data-theme="dark"] .clean-step-badge {
-    background-color: #1e293b;
+    background-color: #1e3a8a;
     color: #93c5fd;
 }
 [data-theme="dark"] .clean-step-title {
-    color: #f3f4f6;
+    color: #f9fafb;
 }
 [data-theme="dark"] .clean-step-detail {
-    background-color: #0f172a;
+    background-color: #0b1120;
     color: #cbd5e1;
     border-left-color: #3b82f6;
+}
+[data-theme="dark"] .clean-step-detail-header {
+    color: #93c5fd;
+}
+[data-theme="dark"] .clean-step-detail-body {
+    color: #cbd5e1;
+}
+[data-theme="dark"] .clean-step-detail strong {
+    color: #f1f5f9;
+}
+[data-theme="dark"] .clean-step-detail a,
+[data-theme="dark"] .clean-step-title a {
+    color: #60a5fa;
+}
+[data-theme="dark"] .clean-step-detail a:hover,
+[data-theme="dark"] .clean-step-title a:hover {
+    color: #93c5fd;
+}
+[data-theme="dark"] .step-subheading {
+    color: #93c5fd;
+}
+[data-theme="dark"] .step-bullet .bullet-dot {
+    color: #60a5fa;
 }
 [data-theme="dark"] .clean-sources-heading {
     color: #f3f4f6;
@@ -2338,43 +2417,61 @@ body {
         box-sizing: border-box;
     }
     .clean-step-card {
-        padding: 9px 8px;
-        gap: 8px;
+        padding: 12px 12px;
+        gap: 10px;
         width: 100%;
         max-width: 100%;
         min-width: 0;
         box-sizing: border-box;
     }
     .clean-step-badge {
-        width: 20px;
-        height: 20px;
-        font-size: 11px;
+        width: 24px;
+        height: 24px;
+        font-size: 12.5px;
         flex-shrink: 0;
     }
     .clean-step-content {
         flex-grow: 1;
         min-width: 0;
-        width: calc(100% - 28px);
-        max-width: calc(100% - 28px);
+        width: calc(100% - 34px);
+        max-width: calc(100% - 34px);
         box-sizing: border-box;
         overflow-wrap: anywhere;
         word-break: break-word;
     }
     .clean-step-title {
-        font-size: 13px;
+        font-size: 14.5px;
+        line-height: 1.45;
         overflow-wrap: anywhere;
         word-break: break-word;
         min-width: 0;
     }
     .clean-step-detail {
-        font-size: 12px;
-        padding: 5px 8px;
+        font-size: 13px;
+        line-height: 1.6;
+        padding: 8px 10px;
+        margin-top: 8px;
         width: 100%;
         max-width: 100%;
         min-width: 0;
         box-sizing: border-box;
         overflow-wrap: anywhere;
         word-break: break-word;
+    }
+    .clean-step-detail-header {
+        font-size: 12.5px;
+        margin-bottom: 4px;
+    }
+    .clean-step-detail-body {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    .step-subheading {
+        font-size: 13px;
+    }
+    .step-bullet {
+        font-size: 13px;
+        line-height: 1.55;
     }
     .clean-step-detail a,
     .clean-step-title a,

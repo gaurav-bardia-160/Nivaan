@@ -681,13 +681,44 @@ async function sendMessage(userText, fileObj = null) {
 function formatMarkdownMini(text) {
     if (!text) return "";
     let safe = escapeHtml(text);
+    safe = safe.replace(/\r\n/g, "\n");
+
+    // Clean up markdown headings (### Title) into clear subheadings
+    safe = safe.replace(/(?:^|\n)#{1,6}[ \t]*([^\n]+)/g, '\n<div class="step-subheading">$1</div>\n');
+
+    // Bold & italic
     safe = safe.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     safe = safe.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
-    // Convert markdown links [text](https://...)
-    safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s<)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="doc-link" style="word-break: break-all;">$1 <span class="doc-link-arrow">↗</span></a>');
-    // Convert bare URLs https://... (avoiding already replaced hrefs)
-    safe = safe.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer" class="doc-link" style="word-break: break-all;">$2 <span class="doc-link-arrow">↗</span></a>');
-    safe = safe.replace(/(?:^|\n)[ \t]*[-*][ \t]+([^\n]+)/g, "\n• $1");
+
+    // Markdown links: [Title](url) or [! Title](url) or protocol-relative [Title](//url)
+    safe = safe.replace(/\[(?:!\s*)?([^\]]+)\]\(((?:https?:)?\/\/[^\s<)]+)\)/g, (m, title, url) => {
+        const fullUrl = url.startsWith("//") ? `https:${url}` : url;
+        return `<a href="${fullUrl}" target="_blank" rel="noopener noreferrer" class="doc-link">${title} <span class="doc-link-arrow">↗</span></a>`;
+    });
+
+    // Bare protocol-relative URLs (e.g. //www.example.gov.in)
+    safe = safe.replace(/(^|[\s(])(\/\/[a-zA-Z0-9][-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&/=]*)/g, (m, prefix, url) => {
+        return `${prefix}<a href="https:${url}" target="_blank" rel="noopener noreferrer" class="doc-link">${url} <span class="doc-link-arrow">↗</span></a>`;
+    });
+
+    // Bare HTTP/HTTPS URLs (avoiding href="...")
+    safe = safe.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, (m, prefix, url) => {
+        return `${prefix}<a href="${url}" target="_blank" rel="noopener noreferrer" class="doc-link">${url} <span class="doc-link-arrow">↗</span></a>`;
+    });
+
+    // Bullet items: - item or * item or • item
+    safe = safe.replace(/(?:^|\n)[ \t]*[-*•][ \t]+([^\n]+)/g, '\n<div class="step-bullet"><span class="bullet-dot">•</span><span class="bullet-text">$1</span></div>\n');
+
+    // Clean up whitespace around block elements
+    safe = safe.replace(/\n*(<div class="step-[^"]+">)/g, "$1");
+    safe = safe.replace(/(<\/div>)\n*/g, "$1");
+
+    // Paragraph breaks and line breaks
+    safe = safe.replace(/\n\s*\n/g, '<div class="step-spacer"></div>');
+    safe = safe.replace(/\n/g, "<br>");
+
+    // Strip leading/trailing line breaks
+    safe = safe.replace(/^(?:<br>|\s)+|(?:<br>|\s)+$/g, "");
     return safe;
 }
 
@@ -1271,7 +1302,7 @@ function renderPostSummarySections(answer) {
                 <div class="clean-step-badge">${stepNo}</div>
                 <div class="clean-step-content">
                     <div class="clean-step-title">${formatMarkdownMini(stepText)}</div>
-                    ${stepTip ? `<div class="clean-step-detail">💡 <strong>Details:</strong> ${formatMarkdownMini(stepTip)}</div>` : ""}
+                    ${stepTip ? `<div class="clean-step-detail"><div class="clean-step-detail-header">💡 <strong>Details & Guidance:</strong></div><div class="clean-step-detail-body">${formatMarkdownMini(stepTip)}</div></div>` : ""}
                 </div>
             </div>
         `;
