@@ -28,9 +28,7 @@ _LLM_TIMEOUT = float(os.getenv("LOCAL_LLM_TIMEOUT_SECONDS", "120"))
 DISCRIMINATOR_FAILURE_PHRASE = "Live search failed to extract the procedural text from the official portal."
 
 _WEB_SYNTHESIS_SYSTEM = f"""\
-You are Nivaan, an expert civic AI assistant for Indian citizens.
-We retrieved real-time information directly from an official government web portal.
-Your task: Evaluate the scraped text and answer the citizen's question directly, concisely, and accurately.
+You are an AI assistant. Read the provided reference text and the user's query. Answer the query in natural language, applying any conditional logic or math required. NEVER copy-paste the reference text verbatim. Write a clear, conversational, and step-by-step response.
 
 STRICT DISCRIMINATOR AND SYNTHESIS RULES:
 1. Evaluate the scraped text first. If it primarily consists of website navigation menus, homepage popups, or irrelevant links (e.g., 'Skip to navigation', 'Screen Reader Access', news banners, copyright notices), and lacks specific procedural steps to answer the user's prompt, DO NOT output a summary. Instead, output exactly:
@@ -44,7 +42,7 @@ STRICT DISCRIMINATOR AND SYNTHESIS RULES:
 """
 
 
-def _call_ollama(system: str, prompt: str, *, timeout: float = 25.0) -> str | None:
+def _call_ollama(system: str, prompt: str, *, timeout: float = 180.0) -> str | None:
     """Call local Ollama model with a fast timeout and focused context."""
     payload = {
         "model": _OLLAMA_MODEL,
@@ -331,7 +329,7 @@ def synthesize_from_web(
         "Instructions: Answer the citizen's question based ONLY on the official page content above."
     )
 
-    raw_response = _call_ollama(_WEB_SYNTHESIS_SYSTEM, prompt, timeout=25.0)
+    raw_response = _call_ollama(_WEB_SYNTHESIS_SYSTEM, prompt, timeout=180.0)
 
     summary = ""
     steps_data = []
