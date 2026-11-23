@@ -109,7 +109,7 @@ class SourceInfo(BaseModel):
 
 
 class AskRequest(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
 
     input_type: Literal["question", "document"] = "question"
     question: Optional[str] = Field(default=None, max_length=MAX_QUESTION_LENGTH)
