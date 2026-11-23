@@ -116,20 +116,26 @@ class AskRequest(BaseModel):
     document_text: Optional[str] = Field(default=None, max_length=MAX_DOCUMENT_TEXT_LENGTH)
     language: Literal["en", "hi", "gu"] = "en"
     conversation_id: Optional[str] = Field(default=None, max_length=MAX_CONVERSATION_ID_LENGTH)
-    previous_entry_id: Optional[str] = Field(default=None, max_length=80)
-    context_topic: Optional[str] = Field(default=None, max_length=120)
+    previous_entry_id: Optional[str] = Field(default=None, max_length=256)
+    context_topic: Optional[str] = Field(default=None, max_length=1000)
     file_attached: bool = False
     history: Optional[List[dict]] = Field(default=None)
 
     @field_validator("question", "document_text", "conversation_id", "previous_entry_id", "context_topic", mode="before")
     @classmethod
-    def clean_optional_text(cls, value):
+    def clean_optional_text(cls, value, info=None):
         if value is None:
             return value
         if not isinstance(value, str):
             return value
         cleaned = _clean_text(value)
-        return cleaned or None
+        if not cleaned:
+            return None
+        if info and getattr(info, "field_name", None) == "context_topic" and len(cleaned) > 1000:
+            cleaned = cleaned[:1000]
+        elif info and getattr(info, "field_name", None) == "previous_entry_id" and len(cleaned) > 256:
+            cleaned = cleaned[:256]
+        return cleaned
 
     @model_validator(mode="after")
     def validate_input_requirements(self):

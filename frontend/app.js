@@ -871,8 +871,8 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                 conversation_id: chatObj ? chatObj.id : "conv_default",
                 file_attached: false
             };
-            if (previousEntryId) payload.previous_entry_id = previousEntryId;
-            if (contextTopic) payload.context_topic = contextTopic;
+            if (previousEntryId) payload.previous_entry_id = String(previousEntryId).slice(0, 200).trim();
+            if (contextTopic) payload.context_topic = String(contextTopic).slice(0, 500).trim();
 
             if (chatObj && Array.isArray(chatObj.messages) && chatObj.messages.length > 0) {
                 payload.history = chatObj.messages
@@ -1021,9 +1021,12 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                     setBackendOnlineStatus(true);
                 } else {
                     const errorPayload = await safeReadJson(response);
+                    const errorDetails = Array.isArray(errorPayload?.details)
+                        ? errorPayload.details.map(d => `${d.loc ? d.loc.slice(1).join('.') : 'field'}: ${d.msg}`).join("; ")
+                        : null;
                     answer = createSystemNotice(
                         "Request Notice",
-                        errorPayload?.detail || errorPayload?.message || "The backend rejected this request."
+                        errorDetails || errorPayload?.detail || errorPayload?.message || "The backend rejected this request."
                     );
                 }
             }
