@@ -19,7 +19,8 @@ from typing import NamedTuple
 import httpx
 from bs4 import BeautifulSoup
 
-from backend.web_search.allowlist import is_allowlisted_url
+from backend.web_search.allowlist import is_allowlisted_url, get_site_constraint
+from backend.modules.domain_router import route_query
 
 logger = logging.getLogger("web_search.searcher")
 
@@ -51,12 +52,19 @@ def _matches_query_site(url: str, query: str) -> bool:
     return any(host == domain or host.endswith(f".{domain}") for domain in domains)
 
 
-class WebSearchResult(NamedTuple):
-    """A single web search result from DuckDuckGo or SerpAPI."""
+class WebSearchResult(dict):
+    """A single web search result supporting both object and dict access."""
 
-    url: str
-    title: str
-    snippet: str
+    def __init__(self, url: str = "", title: str = "", snippet: str = "", link: str = ""):
+        actual_url = url or link
+        super().__init__(url=actual_url, link=actual_url, title=title, snippet=snippet)
+        self.url = actual_url
+        self.link = actual_url
+        self.title = title
+        self.snippet = snippet
+
+    def __repr__(self) -> str:
+        return f"WebSearchResult(url='{self.url}', title='{self.title}')"
 
 
 def _search_serpapi(query: str, *, max_results: int, timeout: float) -> list[WebSearchResult]:
@@ -158,51 +166,39 @@ def _extract_actual_url(href: str) -> str:
     return ""
 
 
-def _search_ddgs(query: str, *, max_results: int, timeout: float) -> list[WebSearchResult]:
-    """Search using DDGS library with strict allowlist enforcement."""
+def _search_ddgs(query: str, domain: str = None, *, max_results: int = 3, timeout: float = 8.0) -> list[WebSearchResult]:
+    """
+    Executes web search without stripping site: constraints.
+    """
+    # 1. Fetch the exact single domain constraint based on the routed intent
+    site_constraint = get_site_constraint(domain) if domain else ""
+
+    # 2. Prevent duplicate constraints if one was already injected
+    clean_query = re.sub(r"\bsite:[^\s]+", "", query).strip()
+
+    # 3. Combine query with strict single-site constraint
+    constrained_query = f"{clean_query} {site_constraint}".strip() if site_constraint else query
+    logger.info(f"Executing DDGS search: {constrained_query}")
+
+    results: list[WebSearchResult] = []
     try:
-        modern_provider = True
         try:
             from ddgs import DDGS
         except ImportError:
             from duckduckgo_search import DDGS
-            modern_provider = False
+        # Pass the constrained_query directly; do NOT strip site filters
         with DDGS(timeout=timeout) as ddgs:
-            raw_results = []
-            provider_query = re.sub(r"\bsite:[^\s]+", "", query).strip() or query
-            backends = ("auto", "google,bing,brave", "duckduckgo") if modern_provider else (None,)
-            for backend in backends:
-                try:
-                    kwargs = {"max_results": max_results * 3, "region": "in-en"}
-                    if backend:
-                        kwargs["backend"] = backend
-                    raw_results = list(ddgs.text(provider_query, **kwargs))
-                except Exception as exc:
-                    logger.info("DDGS backend %s failed for %.60s: %s", backend or "legacy", query, exc)
-                    raw_results = []
-                if any(
-                    (url := str(item.get("href") or "").strip())
-                    and is_allowlisted_url(url)
-                    and _matches_query_site(url, query)
-                    for item in raw_results
-                ):
-                    break
-                raw_results = []
-            results = []
-            for r in raw_results:
-                url = str(r.get("href") or "").strip()
-                if not url or not is_allowlisted_url(url) or not _matches_query_site(url, query):
-                    continue
-                title = str(r.get("title") or "").strip()
-                snippet = str(r.get("body") or "").strip()
-                results.append(WebSearchResult(url=url, title=title[:200], snippet=snippet[:400]))
-                if len(results) >= max_results:
-                    break
-            logger.debug("DDGS returned %d allowlisted results for: %.60s", len(results), query)
-            return results
-    except Exception as exc:
-        logger.warning("DDGS search failed (%s), falling back to HTML parser", exc)
-        return []
+            raw_results = list(ddgs.text(constrained_query, max_results=max_results, region="in-en"))
+            if raw_results:
+                for r in raw_results:
+                    url = r.get("href", "") or r.get("link", "")
+                    title = r.get("title", "")
+                    snippet = r.get("body", "") or r.get("snippet", "")
+                    if url and is_allowlisted_url(url):
+                        results.append(WebSearchResult(url=url, link=url, title=title, snippet=snippet))
+    except Exception as e:
+        logger.error(f"DDGS Search failed: {e}")
+    return results
 
 
 def prioritize_deep_links(results: list[WebSearchResult]) -> list[WebSearchResult]:
@@ -256,6 +252,7 @@ def rank_results_for_query(query: str, results: list[WebSearchResult]) -> list[W
 def search_duckduckgo(
     query: str,
     *,
+    domain: str = None,
     max_results: int = 3,
     timeout: float = 8.0,
 ) -> list[WebSearchResult]:
@@ -263,6 +260,7 @@ def search_duckduckgo(
 
     Args:
         query: The search query string (should include site: constraints from build_allowlist_query).
+        domain: Optional civic domain to apply strict targeted site constraints.
         max_results: Maximum number of allowlisted results to return.
         timeout: HTTP request timeout in seconds.
 
@@ -277,7 +275,7 @@ def search_duckduckgo(
         # Fall through to DuckDuckGo if SerpAPI returns nothing allowlisted
 
     # Primary: Modern DDGS library
-    raw_results = _search_ddgs(query, max_results=max_results * 2, timeout=timeout)
+    raw_results = _search_ddgs(query, domain=domain, max_results=max_results * 2, timeout=timeout)
     if raw_results:
         return rank_results_for_query(query, raw_results)[:max_results]
 

@@ -9,8 +9,7 @@ from urllib.parse import urlparse
 
 from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from backend.modules.domain_router import Domain
+from backend.modules.domain_router import Domain
 
 # Sovereign Indian government TLD suffixes
 CIVIC_TLD_SUFFIXES: tuple[str, ...] = (
@@ -89,12 +88,36 @@ def extract_search_keywords(user_query: str) -> str:
     return re.sub(r"[?!.,'\"]+", " ", clean_query).strip()[:80]
 
 
+# Targeted domain site map for strict single-site constraint
+DOMAIN_SITE_MAP = {
+    Domain.TAX: "site:incometax.gov.in",
+    Domain.TAXATION: "site:incometax.gov.in",
+    Domain.BANKING: "site:rbi.org.in",
+    Domain.TRANSPORT: "site:parivahan.gov.in",
+    Domain.PASSPORT: "site:passportindia.gov.in",
+    Domain.PENSION: "site:epfindia.gov.in",
+    Domain.CORPORATE: "site:mca.gov.in",
+    Domain.GENERAL_CIVIC: "site:gov.in",
+}
+
+
+def get_site_constraint(domain: Domain | str | None) -> str:
+    """Returns a single, strict site constraint for DDGS."""
+    if isinstance(domain, str):
+        try:
+            domain = Domain(domain)
+        except ValueError:
+            pass
+    return DOMAIN_SITE_MAP.get(domain, "site:gov.in")
+
+
 def build_allowlist_query(user_query: str, domain: Domain | None = None) -> str:
-    """Build a search query with the universal official civic domain constraint."""
+    """Build a search query with the targeted official civic domain constraint."""
     clean_query = extract_search_keywords(user_query)
     clean_query = re.sub(r"[?!.,'\"]+", " ", clean_query)
     clean_query = " ".join(clean_query.split())
-    return f"{clean_query} {_UNIVERSAL_SITE_SUFFIX}"
+    site_constraint = get_site_constraint(domain) if domain else _UNIVERSAL_SITE_SUFFIX
+    return f"{clean_query} {site_constraint}".strip()
 
 
 def is_allowlisted_url(url: str) -> bool:
@@ -122,6 +145,8 @@ __all__ = [
     "CIVIC_TLD_SUFFIXES",
     "NON_TLD_OFFICIAL_DOMAINS",
     "CIVIC_ALLOWLIST_DOMAINS",
+    "DOMAIN_SITE_MAP",
+    "get_site_constraint",
     "build_allowlist_query",
     "is_allowlisted_url",
 ]

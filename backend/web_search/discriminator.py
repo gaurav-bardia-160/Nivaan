@@ -1,70 +1,68 @@
+from __future__ import annotations
 import logging
-from backend.modules.llm import generate_llm_response
+import re
+import httpx
+import json
+
+from backend.modules.llm import GeminiLLMClient
+from backend.web_search.fetcher import is_navigation_or_boilerplate_text
 
 logger = logging.getLogger(__name__)
 
 DISCRIMINATOR_FAILURE_PHRASE = "Live search failed to extract the procedural text from the official portal."
 
-def is_navigation_or_boilerplate_text(text: str) -> bool:
-    """
-    Heuristic pre-filter to catch obvious DOM noise before burning LLM tokens.
-    Saves RAM and latency on constrained hardware.
-    """
-    if not text or len(text.strip()) < 150:
-        return True
-
-    noise_keywords = [
-        "skip to navigation", "skip to main content", "screen reader access",
-        "terms and conditions", "all rights reserved", "enable javascript", 
-        "cookie policy", "privacy policy", "toggle navigation"
-    ]
-    
-    text_lower = text.lower()
-    noise_count = sum(1 for keyword in noise_keywords if keyword in text_lower)
-    
-    # Reject if the text is drowning in standard web template noise
-    if noise_count >= 3:
-        return True
-        
-    return False
 
 def discriminate_content(query: str, scraped_text: str) -> str:
-    """
-    Evaluates scraped web text. Rejects navigation/boilerplate noise, 
-    or extracts the clean procedural payload if relevant.
-    """
+    """Validate scraped portal text and extract only query-relevant procedural content."""
     if is_navigation_or_boilerplate_text(scraped_text):
-        logger.warning("Discriminator: Heuristic caught boilerplate noise. Rejecting.")
+        logger.warning("Discriminator: Heuristic caught boilerplate/table noise.")
         return DISCRIMINATOR_FAILURE_PHRASE
 
-    # Hard-capped at ~4000 characters to prevent OOM on 6GB RAM
-    truncated_text = scraped_text[:4000]
+    truncated_text = scraped_text[:4500]
+    gemini = GeminiLLMClient()
 
-    prompt = f"""You are a strict Data Discriminator for an Indian Civic AI.
-        
-User Query: "{query}"
+    if gemini.available():
+        system = (
+            "You are a strict Data Discriminator for an Indian Civic AI. "
+            "Evaluate whether the scraped government webpage contains concrete, actionable procedural steps, "
+            "statutory rules, or form instructions that directly answer the User Query. "
+            "If the text is mostly navigation menus, Terms & Conditions, privacy policies, login screens, "
+            "or unrelated portal text, return JSON: {\"approved\": false, \"extracted_text\": \"\"}. "
+            "If relevant procedural content is present, return JSON: "
+            "{\"approved\": true, \"extracted_text\": \"<clean verbatim procedural steps and rules only>\"}."
+        )
+        prompt = f"User Query: {query}\n\nScraped Official Page Text:\n{truncated_text}"
+        try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite-preview-02-05:generateContent?key={gemini.api_key}"
+            payload = {
+                "contents": [{"parts": [{"text": f"{system}\n\n{prompt}"}]}],
+                "generationConfig": {"temperature": 0.0, "maxOutputTokens": 900, "responseMimeType": "application/json"},
+            }
+            resp = httpx.post(url, json=payload, timeout=15.0)
+            resp.raise_for_status()
+            raw = resp.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+            parsed = json.loads(raw)
+            if not parsed.get("approved"):
+                logger.warning("Discriminator (Gemini): Rejected irrelevant/boilerplate page.")
+                return DISCRIMINATOR_FAILURE_PHRASE
+            extracted = str(parsed.get("extracted_text", "")).strip()
+            if len(extracted) >= 60:
+                return extracted
+            return DISCRIMINATOR_FAILURE_PHRASE
+        except Exception as exc:
+            logger.warning("Discriminator Gemini call failed (%s), falling back to lexical check.", exc)
 
-Scraped Text:
-\"\"\"
-{truncated_text}
-\"\"\"
-
-Task: Evaluate the scraped text. 
-If it primarily consists of website navigation menus, homepage popups, irrelevant links, terms and conditions, or generic policy disclaimers, AND lacks specific, actionable procedural steps to answer the User Query, you must reject it.
-
-If rejected, output EXACTLY this phrase and nothing else: "{DISCRIMINATOR_FAILURE_PHRASE}"
-
-If approved, extract and output ONLY the clean, relevant procedural steps and statutory rules from the text. Do not add conversational filler.
-"""
-    
-    try:
-        response = generate_llm_response(prompt).strip()
-    except Exception as e:
-        logger.error(f"Discriminator LLM failed: {e}")
+    # Deterministic fallback when Gemini API key is missing
+    query_terms = set(re.findall(r"\b[a-z0-9]{3,}\b", query.lower())) - {"how", "what", "where", "when", "portal"}
+    text_terms = set(re.findall(r"\b[a-z0-9]{3,}\b", truncated_text.lower()))
+    if len(query_terms & text_terms) < 2:
         return DISCRIMINATOR_FAILURE_PHRASE
-    
-    if DISCRIMINATOR_FAILURE_PHRASE in response:
-        logger.warning("Discriminator: LLM rejected the scraped content.")
-        return DISCRIMINATOR_FAILURE_PHRASE
-        
-    return response
+
+    return truncated_text
+
+
+__all__ = [
+    "is_navigation_or_boilerplate_text",
+    "DISCRIMINATOR_FAILURE_PHRASE",
+    "discriminate_content",
+]

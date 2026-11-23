@@ -7,6 +7,7 @@ from typing import Any
 from datetime import date, datetime, timezone
 
 from backend.config import DEFAULT_DISCLAIMER, WEB_SEARCH_ENABLED, WEB_SEARCH_CONFIDENCE_THRESHOLD
+from backend.web_search.discriminator import discriminate_content
 from backend.modules.agent import route
 from backend.modules.bandit_policy import bandit_policy
 from backend.modules.domain_router import (
@@ -608,16 +609,19 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             from backend.web_search.searcher import search_duckduckgo
             from backend.web_search.synthesizer import synthesize_from_web, DISCRIMINATOR_FAILURE_PHRASE
             web_query = build_allowlist_query(search_text, query_domain)
-            web_results = search_duckduckgo(web_query, max_results=3)
+            web_results = search_duckduckgo(web_query, domain=query_domain, max_results=3)
             fallback_candidate = None
             for res in web_results:
                 page_text = fetch_page_text(res.url)
                 if not page_text or len(page_text.strip()) < 30:
                     continue
-                if is_navigation_or_boilerplate_text(page_text):
+                # 2. Filter noise via Discriminator
+                discriminated_text = discriminate_content(safe_text, page_text)
+                if discriminated_text == DISCRIMINATOR_FAILURE_PHRASE:
                     continue
+                # 3. Synthesize clean answer
                 web_answer = synthesize_from_web(
-                    safe_text, page_text, res.url,
+                    safe_text, discriminated_text, res.url,
                     memory=memory_turns,
                 )
                 is_rejected = (
@@ -993,16 +997,19 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
             from backend.web_search.searcher import search_duckduckgo
             from backend.web_search.synthesizer import synthesize_from_web, DISCRIMINATOR_FAILURE_PHRASE
             web_query = build_allowlist_query(search_text, query_domain)
-            web_results = search_duckduckgo(web_query, max_results=3)
+            web_results = search_duckduckgo(web_query, domain=query_domain, max_results=3)
             fallback_candidate = None
             for res in web_results:
                 page_text = fetch_page_text(res.url)
                 if not page_text or len(page_text.strip()) < 30:
                     continue
-                if is_navigation_or_boilerplate_text(page_text):
+                # 2. Filter noise via Discriminator
+                discriminated_text = discriminate_content(safe_text, page_text)
+                if discriminated_text == DISCRIMINATOR_FAILURE_PHRASE:
                     continue
+                # 3. Synthesize clean answer
                 web_answer = synthesize_from_web(
-                    safe_text, page_text, res.url,
+                    safe_text, discriminated_text, res.url,
                     memory=memory_turns,
                 )
                 is_rejected = (

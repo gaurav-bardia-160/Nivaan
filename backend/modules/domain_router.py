@@ -8,15 +8,30 @@ from typing import Optional
 
 
 class Domain(str, Enum):
-    TRANSPORT = "transport"
-    EDUCATION = "education"
-    IDENTITY = "identity"
+    TAX = "tax"
     TAXATION = "taxation"
     BANKING = "banking"
+    TRANSPORT = "transport"
+    PASSPORT = "passport"
+    PENSION = "pension"
+    CORPORATE = "corporate"  # <--- NEW DOMAIN
+    IDENTITY = "identity"
+    EDUCATION = "education"
     AGRICULTURE = "agriculture"
     LEGAL_CONSUMER = "legal_consumer"
     GENERAL_CIVIC = "general_civic"
     UNKNOWN = "unknown"
+
+
+DOMAIN_KEYWORDS = {
+    Domain.TAX: r"\b(itr|tax|pan|tds|section 148|ais|refund|incometax)\b",
+    Domain.BANKING: r"\b(bank|rbi|neft|imps|udgam|account|loan|upi)\b",
+    Domain.TRANSPORT: r"\b(parivahan|sarathi|rto|dl|rc|challan|hsrp|chassis)\b",
+    Domain.PASSPORT: r"\b(passport|pcc|visa|frro)\b",
+    Domain.PENSION: r"\b(epfo|pf|uan|pension|nps|esic|form 19|form 10c)\b",
+    # ---> NEW REGEX FOR MCA / CORPORATE AFFAIRS <---
+    Domain.CORPORATE: r"\b(mca|iepf|spice\+|din|cin|inc-\d+|moa|aoa|nclt|ibbi|llp|company)\b",
+}
 
 
 
@@ -75,6 +90,10 @@ _DOMAIN_PATTERNS: dict[Domain, tuple[re.Pattern[str], ...]] = {
         re.compile(r"\b(?:cybercrime|cyber\s+crime|1930|cybercrime\.gov\.in)\b", re.IGNORECASE),
         re.compile(r"\b(?:consumer\s+court|edaakhil|e-daakhil|district\s+commission|dcdrc|scdrc|ncdrc|consumer\s+handbook|consumer\s+helpline)\b", re.IGNORECASE),
         re.compile(r"\b(?:legal\s+notice|section\s+138|section\s+141|section\s+142|section\s+143a|cheque\s+bounce|cheque\s+dishonou?r|dishonou?r\s+of\s+cheque|negotiable\s+instruments|ni\s+act|demand\s+notice|return\s+memo|interim\s+compensation|nalsa|free\s+legal\s+aid|lok\s+adalat|legal\s+services\s+authority)\b", re.IGNORECASE),
+    ),
+    Domain.CORPORATE: (
+        re.compile(r"\b(?:mca|mca21|iepf|spice\+|din|cin|inc-\d+|moa|aoa|nclt|ibbi|llp|company)\b", re.IGNORECASE),
+        re.compile(r"\b(?:private\s+limited|incorporation|director\s+identification|annual\s+filing|mca\s+v3)\b", re.IGNORECASE),
     ),
     Domain.GENERAL_CIVIC: (
         re.compile(r"\b(?:epfo|epf|provident\s+fund|uan|joint\s+declaration|member\s+profile)\b", re.IGNORECASE),
@@ -203,8 +222,15 @@ def entry_matches_domain(entry_id: str, entry_category: str | None, query_domain
     return True
 
 
+def route_query(query: str | None, document_text: str | None = None) -> Domain:
+    """Convenience alias for classify_domain."""
+    return classify_domain(query, document_text)
+
+
 __all__ = [
     "Domain",
+    "DOMAIN_KEYWORDS",
+    "route_query",
     "classify_domain",
     "get_allowed_rag_categories",
     "entry_matches_domain",
