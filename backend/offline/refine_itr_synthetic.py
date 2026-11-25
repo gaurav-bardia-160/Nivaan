@@ -375,6 +375,54 @@ def build_tax_domain_guides() -> list[dict[str, Any]]:
             ],
             "language": "en",
         },
+        {
+            "id": "tax_reassessment_section_148a_149_limitation_procedure",
+            "source_url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/reassessment-notice-148a-149",
+            "title": "Income Tax Department Statutory Manual: Reassessment Notices under Section 148, Section 148A Show Cause Procedure, and Section 149 Limitation Periods",
+            "section": "Section 148A(b) Show Cause Reply Window, Section 149 Limitation Calculation, and Section 151 Sanctions",
+            "text": (
+                "1. Section 148A Show Cause Reply Window: Under Section 148A(b), the reply window must be not less than "
+                "seven days and not exceeding thirty days (7 to 30 days / minimum 7 days). A notice giving less than 7 days "
+                "(such as 3 days) is legally invalid, defective, and violates Section 148A(b).\n"
+                "2. Section 149 Limitation Periods (3-Year Normal vs 5-Year Extended):\n"
+                "Normal limit is 3 years. Extended limit is 5 years, which only applies if escaped income is ₹50 Lakhs or more.\n"
+                "(a) Section 149(1)(a): 3-year normal limitation period expired on 31 March 2022 for AY 2018-19.\n"
+                "(b) Section 149(1)(b): 5-year extended limitation (post-Sept 2024) can only be invoked if escaped income is "
+                "₹50 Lakhs (₹50,00,000) or more. Where escaped income is ₹50,00,000 or more, it meets the ₹50 Lakhs threshold "
+                "and the 5-year extended limitation (post-Sept 2024) is applicable and can be issued. Where escaped income is "
+                "below ₹50 Lakhs (e.g. ₹49,99,000 or ₹6.5 Lakhs), the 5-year extended limitation (post-Sept 2024) does not apply "
+                "and cannot be invoked; the notice is barred by limitation after 3 years.\n"
+                "3. Application to ₹6.5 Lakhs (AY 2018-19): Since ₹6.5 Lakhs is below ₹50 Lakhs and the 3-year base period "
+                "expired on 31 March 2022, the notice is time-barred and barred by limitation.\n"
+                "4. Section 151 Sanctions: Reassessment notices under Section 148 and orders under Section 148A require "
+                "mandatory prior sanction and approval of the specified authority as prescribed under Section 151 of the Income Tax Act."
+            ),
+            "category": DATASET_CATEGORY,
+            "last_verified": AS_OF_DATE,
+            "status": "automated_verified",
+            "quality_score": 1.0,
+            "source_confidence": "official",
+            "verification_method": "official_circular_and_sop",
+            "retrieval_tags": [
+                "troubleshooting",
+                "manual",
+                "reassessment",
+                "section_148a",
+                "section_148",
+                "section_149",
+                "section_147",
+                "section_151",
+                "148a_b",
+                "time_barred",
+                "limitation_period",
+                "3_year_vs_5_year",
+                "50_lakhs_threshold",
+                "7_to_30_days",
+                "escaped_income",
+                "specified_authority",
+            ],
+            "language": "en",
+        },
     ]
 
 

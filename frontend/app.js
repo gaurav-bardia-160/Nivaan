@@ -249,6 +249,74 @@ function sanitizeAllChats(chatList) {
         }));
 }
 
+// Auto-redirect if opened directly as file:// and static server is active
+if (window.location.protocol === "file:") {
+    fetch("http://127.0.0.1:5500/index.html", { method: "HEAD", mode: "no-cors" })
+        .then(() => {
+            window.location.replace("http://127.0.0.1:5500/");
+        })
+        .catch(() => {});
+}
+
+let _backendSyncTimer = null;
+
+async function syncChatsWithBackend() {
+    try {
+        const resp = await fetch(`${API_BASE}/api/chats`);
+        if (resp.ok) {
+            const serverChats = await resp.json();
+            if (Array.isArray(serverChats) && serverChats.length > 0) {
+                if (!chats || chats.length === 0) {
+                    chats = sanitizeAllChats(serverChats);
+                    activeChatId = chats[0]?.id || null;
+                    saveChatsToStorage(false);
+                    renderHistoryList();
+                    if (activeChatId) loadActiveChatMessages();
+                } else {
+                    const localMap = new Map(chats.map(c => [c.id, c]));
+                    let changed = false;
+                    for (const sc of serverChats) {
+                        if (!localMap.has(sc.id)) {
+                            chats.push(sc);
+                            changed = true;
+                        } else {
+                            const lc = localMap.get(sc.id);
+                            if ((sc.updatedAt || 0) > (lc.updatedAt || 0)) {
+                                Object.assign(lc, sc);
+                                changed = true;
+                            }
+                        }
+                    }
+                    if (changed) {
+                        chats = sanitizeAllChats(chats);
+                        saveChatsToStorage(false);
+                        renderHistoryList();
+                        if (activeChatId) loadActiveChatMessages();
+                    }
+                }
+            } else if (chats && chats.length > 0) {
+                pushChatsToBackend();
+            }
+        }
+    } catch (e) {
+        // Backend offline or unreachable
+    }
+}
+
+function pushChatsToBackend() {
+    if (_backendSyncTimer) clearTimeout(_backendSyncTimer);
+    _backendSyncTimer = setTimeout(async () => {
+        try {
+            const toSave = sanitizeAllChats(chats);
+            await fetch(`${API_BASE}/api/chats`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(toSave)
+            });
+        } catch (e) {}
+    }, 1000);
+}
+
 // --- STORAGE & PERSISTENCE ---
 function loadChatsFromStorage() {
     try {
@@ -272,9 +340,10 @@ function loadChatsFromStorage() {
         chats = [];
         activeChatId = null;
     }
+    syncChatsWithBackend();
 }
 
-function saveChatsToStorage() {
+function saveChatsToStorage(syncBackend = true) {
     try {
         const toSave = sanitizeAllChats(chats);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
@@ -282,6 +351,9 @@ function saveChatsToStorage() {
             localStorage.setItem(ACTIVE_CHAT_KEY, activeChatId);
         } else {
             localStorage.setItem(ACTIVE_CHAT_KEY, "__new__");
+        }
+        if (syncBackend) {
+            pushChatsToBackend();
         }
     } catch (e) {
         console.error("Failed to save chats to storage:", e);
@@ -1033,11 +1105,28 @@ async function executeQuery(userText, currentAttachment, chatObj) {
         }
     } catch (err) {
         console.warn("Backend connection error:", err);
-        setBackendOnlineStatus(false);
-        answer = createSystemNotice(
-            "Backend Offline",
-            `Cannot connect to the backend server at ${API_BASE}. Please ensure the backend is running and reachable.`
-        );
+        try {
+            const healthCheck = await fetch(`${API_BASE}/api/health`, { cache: "no-store" });
+            if (healthCheck.ok) {
+                setBackendOnlineStatus(true);
+                answer = createSystemNotice(
+                    "Request Connection Interrupted",
+                    `The backend is online, but the query connection was interrupted (${err?.message || "network reset"}). Check the backend terminal log or close heavy apps to free RAM for the 7B model.`
+                );
+            } else {
+                setBackendOnlineStatus(false);
+                answer = createSystemNotice(
+                    "Backend Offline",
+                    `Cannot connect to the backend server at ${API_BASE}. Please ensure the backend is running and reachable.`
+                );
+            }
+        } catch (_) {
+            setBackendOnlineStatus(false);
+            answer = createSystemNotice(
+                "Backend Offline",
+                `Cannot connect to the backend server at ${API_BASE}. Please ensure the backend is running and reachable.`
+            );
+        }
     } finally {
         if (thinkingObj) {
             thinkingObj.stop();

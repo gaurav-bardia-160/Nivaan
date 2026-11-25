@@ -24,3 +24,12 @@ backend/data/etl/raw/
 backend/data/etl/refined/
 backend/data/etl/archive/
 backend/data/etl/pending_ingestion.jsonl
+
+# 7B model local configuration
+Modelfile_qwen7b_4k
+start_7b.bat
+
+# Local runtime logs and user chats
+*.log
+backend/data/user_chats.json
+

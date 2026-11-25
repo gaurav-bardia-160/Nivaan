@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 
-from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi import Body, FastAPI, File, Form, HTTPException, Request, UploadFile
 
 from fastapi.exceptions import RequestValidationError
 
@@ -26,7 +26,7 @@ from collections import defaultdict
 
 
 
-from backend.config import APP_NAME, APP_VERSION, CAPABILITIES, CORS_ALLOW_ORIGINS
+from backend.config import APP_NAME, APP_VERSION, CAPABILITIES, CORS_ALLOW_ORIGINS, DATA_DIR
 
 from backend.modules.bandit_policy import bandit_policy
 from backend.modules.reward import reward_engine
@@ -189,17 +189,12 @@ app = FastAPI(
 
 
 app.add_middleware(
-
     CORSMiddleware,
-
-    allow_origins=CORS_ALLOW_ORIGINS,
-
+    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+    allow_origins=["*"],
     allow_credentials=False,
-
-    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
-
+    allow_methods=["*"],
     allow_headers=["*"],
-
 )
 
 
@@ -460,6 +455,7 @@ def ask_stream(request: AskRequest, req: Request):
     _METRICS["total_requests"] += 1
 
     def event_generator():
+        yield 'event: status\ndata: {"message": "Connected to Nivaan backend — running local 7B reasoning..."}\n\n'
         try:
             for item in run_stream(request):
                 event_name = item.get("event", "message")
@@ -618,6 +614,33 @@ def get_rl_status(req: Request) -> dict[str, object]:
         "bandit": bandit_policy.get_stats(),
         "rewards": reward_engine.get_stats(),
     }
+
+
+_USER_CHATS_FILE = DATA_DIR / "user_chats.json"
+
+
+@app.get("/api/chats")
+def get_user_chats() -> list:
+    """Retrieve synced chat history across frontend origins."""
+    if not _USER_CHATS_FILE.exists():
+        return []
+    try:
+        with open(_USER_CHATS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+
+@app.post("/api/chats")
+def save_user_chats(chats_data: list = Body(...)) -> dict:
+    """Persist chat history to backend data directory."""
+    try:
+        _USER_CHATS_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(_USER_CHATS_FILE, "w", encoding="utf-8") as f:
+            json.dump(chats_data, f, ensure_ascii=False, indent=2)
+        return {"status": "saved", "count": len(chats_data)}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
 
 
 __all__ = ["app"]

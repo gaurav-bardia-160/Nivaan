@@ -23,12 +23,12 @@ logger = logging.getLogger("web_search.synthesizer")
 
 _OLLAMA_BASE_URL = os.getenv("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434").rstrip("/")
 _OLLAMA_MODEL = os.getenv("LOCAL_LLM_MODEL", "qwen2.5:3b").strip() or "qwen2.5:3b"
-_LLM_TIMEOUT = float(os.getenv("LOCAL_LLM_TIMEOUT_SECONDS", "120"))
+_LLM_TIMEOUT = None
 
 DISCRIMINATOR_FAILURE_PHRASE = "Live search failed to extract the procedural text from the official portal."
 
 _WEB_SYNTHESIS_SYSTEM = f"""\
-You are an AI assistant. Read the provided reference text and the user's query. Answer the query in natural language, applying any conditional logic or math required. NEVER copy-paste the reference text verbatim. Write a clear, conversational, and step-by-step response.
+You are Nivaan, an expert Indian Civic AI. Read the provided reference text and the user's query. Answer the query in natural language, applying conditional logic or date-math if required by the user's specific scenario. NEVER copy-paste the reference text verbatim. Write a clear, conversational, and step-by-step response based ONLY on the provided reference.
 
 STRICT DISCRIMINATOR AND SYNTHESIS RULES:
 1. Evaluate the scraped text first. If it primarily consists of website navigation menus, homepage popups, or irrelevant links (e.g., 'Skip to navigation', 'Screen Reader Access', news banners, copyright notices), and lacks specific procedural steps to answer the user's prompt, DO NOT output a summary. Instead, output exactly:
@@ -42,7 +42,7 @@ STRICT DISCRIMINATOR AND SYNTHESIS RULES:
 """
 
 
-def _call_ollama(system: str, prompt: str, *, timeout: float = 180.0) -> str | None:
+def _call_ollama(system: str, prompt: str, *, timeout: float | None = None) -> str | None:
     """Call local Ollama model with a fast timeout and focused context."""
     payload = {
         "model": _OLLAMA_MODEL,
@@ -329,7 +329,7 @@ def synthesize_from_web(
         "Instructions: Answer the citizen's question based ONLY on the official page content above."
     )
 
-    raw_response = _call_ollama(_WEB_SYNTHESIS_SYSTEM, prompt, timeout=180.0)
+    raw_response = _call_ollama(_WEB_SYNTHESIS_SYSTEM, prompt, timeout=_LLM_TIMEOUT)
 
     summary = ""
     steps_data = []

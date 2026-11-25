@@ -1,6 +1,5 @@
 """Domain router for pre-retrieval intent classification and strict domain isolation."""
 from __future__ import annotations
-from backend.modules.explainer import QueryModality, classify_query_modality
 
 import re
 from enum import Enum
@@ -21,6 +20,8 @@ class Domain(str, Enum):
     LEGAL_CONSUMER = "legal_consumer"
     GENERAL_CIVIC = "general_civic"
     UNKNOWN = "unknown"
+
+
 
 
 DOMAIN_KEYWORDS = {
@@ -236,6 +237,4 @@ __all__ = [
     "entry_matches_domain",
     "ENTRY_DOMAIN_MAP",
     "_UNCOVERED_DOMAIN_PATTERNS",
-    "QueryModality",
-    "classify_query_modality",
 ]
