@@ -21,10 +21,13 @@ from backend.schemas import Answer, Step
 
 logger = logging.getLogger("local_llm")
 
+_ORIGINAL_HTTPX_CLIENT = httpx.Client
+_ORIGINAL_HTTPX_POST = httpx.post
 _TRUE_VALUES = {"1", "true", "yes", "on"}
 _LOCAL_HOSTS = {"localhost", "127.0.0.1", "::1"}
 _is_generating = False
-_is_generating_lock = threading.Lock()
+_is_generating_lock = threading.RLock()
+SEARCH_WEB_SENTINEL = "SEARCH_WEB_REQUIRED"
 
 
 def _is_direct_or_binary_question(query: str) -> bool:
@@ -37,11 +40,29 @@ def _is_direct_or_binary_question(query: str) -> bool:
     ))
 
 
+def _clean_model_prose(text: str) -> str:
+    if not text:
+        return ""
+    cleaned = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```(?:json|markdown|md)?\s*", "", cleaned)
+        cleaned = re.sub(r"\s*```$", "", cleaned)
+    # Strip accidental trailing schema labels if the model appends them to natural text
+    cleaned = re.split(
+        r"(?:\r?\n|\s){1,2}(?:documents_needed|steps)\s*:\s*\[",
+        cleaned,
+        maxsplit=1,
+        flags=re.IGNORECASE,
+    )[0]
+    cleaned = re.sub(r"\n*(?:documents_needed|steps)\s*:\s*.*$", "", cleaned, flags=re.IGNORECASE | re.DOTALL)
+    return cleaned.strip()
+
+
 class GroundedRewrite(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     title: str | None = None
-    summary: str = Field(min_length=20, max_length=2400)
+    summary: str = Field(min_length=20, max_length=4000)
     documents_needed: list[str] = Field(default_factory=list)
     steps: list[dict[str, str]] = Field(default_factory=list)
 
@@ -50,11 +71,13 @@ class GroundedRewrite(BaseModel):
     def clean_summary(cls, value):
         if not isinstance(value, str):
             return value
-        return " ".join(value.strip().split())
+        lines = [" ".join(line.split()) for line in value.replace("\r\n", "\n").replace("\r", "\n").splitlines()]
+        text = "\n".join(lines).strip()
+        return re.sub(r"\n{3,}", "\n\n", text)
 
 
 class SummaryStreamFilter:
-    """Streams the summary string tokens in real-time from either JSON or raw model outputs."""
+    """Streams the summary string tokens in real-time from natural prose or JSON outputs."""
 
     def __init__(self):
         self.buffer = ""
@@ -65,13 +88,17 @@ class SummaryStreamFilter:
 
     def feed(self, chunk: str) -> list[str]:
         self.full_raw_text += chunk
-        tokens_to_yield = []
-        if self.mode == "done_streaming":
+        tokens_to_yield: list[str] = []
+        if self.mode in ("done_streaming", "suppressed"):
             return tokens_to_yield
 
         if self.mode == "detecting":
             self.buffer += chunk
             stripped = self.buffer.lstrip()
+            if not stripped:
+                return tokens_to_yield
+
+            upper = stripped.upper()
             if stripped.startswith("{") or stripped.startswith("`"):
                 m = re.search(r'"summary"\s*:\s*"', self.buffer)
                 if m:
@@ -87,7 +114,16 @@ class SummaryStreamFilter:
                     return tokens_to_yield
                 else:
                     return tokens_to_yield
-            elif len(stripped) >= 15:
+            elif SEARCH_WEB_SENTINEL.startswith(upper) and len(upper) <= len(SEARCH_WEB_SENTINEL):
+                if upper == SEARCH_WEB_SENTINEL:
+                    self.mode = "suppressed"
+                    self.buffer = ""
+                return tokens_to_yield
+            elif upper.startswith(SEARCH_WEB_SENTINEL):
+                self.mode = "suppressed"
+                self.buffer = ""
+                return tokens_to_yield
+            elif len(stripped) >= 4:
                 self.mode = "streaming_raw"
                 tokens_to_yield.append(self.buffer)
                 self.accumulated_summary += self.buffer
@@ -97,6 +133,10 @@ class SummaryStreamFilter:
                 return tokens_to_yield
 
         if self.mode == "streaming_raw":
+            tail_window = (self.accumulated_summary[-40:] + chunk).lower()
+            if re.search(r"(?:\n|^)\s*(?:documents_needed|steps)\s*:", tail_window):
+                self.mode = "done_streaming"
+                return tokens_to_yield
             tokens_to_yield.append(chunk)
             self.accumulated_summary += chunk
             return tokens_to_yield
@@ -130,6 +170,8 @@ class SummaryStreamFilter:
 
             return tokens_to_yield
 
+        return tokens_to_yield
+
 
 @dataclass(frozen=True)
 class LocalLLMConfig:
@@ -138,8 +180,8 @@ class LocalLLMConfig:
     model: str
     timeout_seconds: float | None
     allow_remote: bool
-    num_ctx: int = 2048
-    num_predict: int = 350
+    num_ctx: int = 4096
+    num_predict: int = 512
 
     @classmethod
     def from_env(cls) -> "LocalLLMConfig":
@@ -154,14 +196,14 @@ class LocalLLMConfig:
                 timeout = None
 
         try:
-            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "2048"))
+            num_ctx = int(os.getenv("LOCAL_LLM_NUM_CTX", "4096"))
         except ValueError:
-            num_ctx = 2048
+            num_ctx = 4096
 
         try:
-            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "350"))
+            num_predict = int(os.getenv("LOCAL_LLM_NUM_PREDICT", "512"))
         except ValueError:
-            num_predict = 350
+            num_predict = 512
 
         local_only = os.getenv("LOCAL_LLM_ONLY", "false").strip().lower() in _TRUE_VALUES
         enabled = local_only or (os.getenv("LOCAL_LLM_ENABLED", "false").strip().lower() in _TRUE_VALUES)
@@ -291,6 +333,9 @@ def _build_llm_prompt(
     question: str,
     answer: Answer,
     memory: tuple[MemoryTurn, ...] = (),
+    *,
+    stream_mode: bool = False,
+    rag_passages: tuple[str, ...] = (),
 ) -> tuple[str, str, bool]:
     evidence = []
     if answer.entry_id and answer.steps:
@@ -298,9 +343,27 @@ def _build_llm_prompt(
         docs_text = ", ".join(answer.documents_needed) if answer.documents_needed else "None"
         evidence.append(f"[Primary Verified Procedure] {answer.title}\nSummary: {answer.summary}\nProcedural Steps: {steps_text}\nDocuments Needed: {docs_text}\nOfficial Portal: {answer.source_url}")
 
-    if answer.citations:
-        for idx, c in enumerate(answer.citations[:1], 1):
-            evidence.append(f"[Supporting Source {idx}] {c.title}\n{c.excerpt[:950].strip()}\nSource: {c.url}")
+    if rag_passages:
+        total_chars = 0
+        for idx, passage in enumerate(rag_passages[:3], 1):
+            remaining = max(0, 2800 - total_chars)
+            if remaining < 200:
+                break
+            chunk_text = passage[:min(1300, remaining)].strip()
+            if chunk_text:
+                total_chars += len(chunk_text)
+                src_url = answer.citations[idx - 1].url if idx - 1 < len(answer.citations) else answer.source_url
+                src_title = answer.citations[idx - 1].title if idx - 1 < len(answer.citations) else answer.title
+                evidence.append(f"[Supporting Source {idx}] {src_title}\n{chunk_text}\nSource: {src_url}")
+    elif answer.citations:
+        total_chars = 0
+        for idx, c in enumerate(answer.citations[:3], 1):
+            remaining = max(0, 2800 - total_chars)
+            if remaining < 200:
+                break
+            excerpt = c.excerpt[:min(1300, remaining)].strip()
+            total_chars += len(excerpt)
+            evidence.append(f"[Supporting Source {idx}] {c.title}\n{excerpt}\nSource: {c.url}")
     elif answer.summary or answer.steps:
         steps_text = " ".join(f"{s.title}: {s.detail}" for s in answer.steps[:4])
         docs_text = ", ".join(answer.documents_needed) if answer.documents_needed else "None"
@@ -319,29 +382,58 @@ def _build_llm_prompt(
 
     is_greeting = "welcome" in answer.title.lower() or (not answer.steps and not answer.citations)
     if is_greeting:
-        system = (
-            "You are Nivaan, a friendly AI civic assistant for India. "
-            "Respond warmly in 1 to 2 sentences and mention they can ask about official procedures "
-            "(PAN, Passport, Aadhaar, Voter ID, ITR, EPF, State Services) or upload a document. "
-            "Return JSON with key 'summary' (e.g. {\"summary\": \"...\"})."
-        )
+        if stream_mode:
+            system = (
+                "You are Nivaan, a friendly AI civic assistant for India. "
+                "Respond warmly in 1 to 2 conversational sentences and mention they can ask about official Indian government procedures "
+                "(PAN, Passport, Aadhaar, Voter ID, ITR, EPF, Banking, State Services) or upload a document. "
+                "Write plain conversational text only (no JSON)."
+            )
+        else:
+            system = (
+                "You are Nivaan, a friendly AI civic assistant for India. "
+                "Respond warmly in 1 to 2 sentences and mention they can ask about official procedures "
+                "(PAN, Passport, Aadhaar, Voter ID, ITR, EPF, State Services) or upload a document. "
+                "Return JSON with key 'summary' (e.g. {\"summary\": \"...\"})."
+            )
         prompt = f"Citizen greeting: {question[:300]}"
+    elif stream_mode:
+        system = (
+            "You are Nivaan, an intelligent and helpful Indian Civic & Banking AI assistant. "
+            "First, understand the user's exact question, intent, and specific facts (dates, amounts, portal, problem). "
+            "ANTI-FABRICATION DIRECTIVE: Never assume unstated facts or premises (for example, never assume an employer or establishment is closed or non-operational when unstated by the citizen or stated as active). "
+            "Then evaluate the Official Government Evidence provided below:\n"
+            f"- If the evidence is completely off-topic or does NOT answer the citizen's specific question, output ONLY: {SEARCH_WEB_SENTINEL}\n"
+            "- Otherwise, write a clear, natural, conversational response directly answering the citizen's question in the very first sentence.\n"
+            "- Apply exact statutory rules, dates, monetary limits, and step-by-step instructions to the citizen's scenario.\n"
+            "- Format cleanly with Markdown (bold key portals/figures, bullet points or numbered steps when helpful).\n"
+            "- NEVER copy-paste manual headers or raw evidence verbatim.\n"
+            "- NEVER output JSON, curly braces {}, or field labels like 'documents_needed:' or 'steps:'.\n"
+            "- Only cite official .gov.in, .nic.in, or statutory portal URLs that appear in the evidence."
+        )
+        prompt = (
+            f"--- Conversation Context ---\n{history}\n\n"
+            f"--- Citizen Question ---\n{question[:1200]}\n\n"
+            f"--- Official Government Evidence ---\n{evidence_text}\n\n"
+            "Instructions: Answer directly in natural conversational English based ONLY on the evidence above."
+        )
     else:
         system = (
             "You are Nivaan, an Indian Civic AI. Read the Citizen Question and Official Government Evidence. "
-            "Answer directly in the first sentence in clear, natural language, applying exact dates, monetary thresholds, "
+            "Understand the citizen's question first. "
+            "ANTI-FABRICATION DIRECTIVE: Never assume unstated facts or premises (for example, never assume an employer or establishment is closed or non-operational when unstated by the citizen or stated as active). "
+            f"If the evidence does NOT answer the citizen's specific question, return JSON with 'summary': '{SEARCH_WEB_SENTINEL}'. "
+            "Otherwise, answer directly in the first sentence in clear, natural language, applying exact dates, monetary thresholds, "
             "and conditional rules to the user's facts. NEVER copy-paste the reference text verbatim. "
-            "If the evidence does not cover the queried portal or scheme, output: "
-            "'Insufficient data in the verified civic knowledge base for this specific portal.' "
-            "Cite only official .gov.in or .nic.in portals. "
-            "Return valid JSON with keys: 'summary' (string), 'documents_needed' (list of strings, or []), "
+            "Cite only official .gov.in or .nic.in portals present in the evidence. "
+            "Return valid JSON ONLY with keys: 'summary' (string), 'documents_needed' (list of strings, or []), "
             "and 'steps' (list of {'title', 'detail'}, or [])."
         )
         prompt = (
             f"--- Conversation Context ---\n{history}\n\n"
             f"--- Citizen Question ---\n{question[:1200]}\n\n"
             f"--- Official Government Evidence ---\n{evidence_text}\n\n"
-            "Instructions: Synthesize a direct, natural-language answer applying the rules above to the citizen's exact facts."
+            "Instructions: Synthesize a direct, natural-language answer applying the rules above to the citizen's exact facts. Return JSON only."
         )
 
     return system, prompt, is_greeting
@@ -406,17 +498,74 @@ class LocalLLMClient:
     def available(self) -> bool:
         return bool(self.probe()["available"])
 
+    def understand_query(
+        self,
+        question: str,
+        memory: tuple[MemoryTurn, ...] = (),
+    ) -> tuple[str | None, bool]:
+        """Use the local 7B model to understand conversational/colloquial queries and emit search keywords."""
+        if not self.config.enabled or not question or not question.strip():
+            return None, True
+        if os.getenv("PYTEST_CURRENT_TEST") and not os.getenv("TEST_LIVE_LLM") and httpx.post is _ORIGINAL_HTTPX_POST:
+            return None, True
+
+        history_lines = []
+        for turn in (memory or ())[-3:]:
+            if turn.user_text:
+                history_lines.append(f"Citizen: {turn.user_text}")
+            if turn.answer_title:
+                history_lines.append(f"Nivaan: {turn.answer_title}")
+        history_block = "\n".join(history_lines) or "None"
+
+        system = (
+            "You understand Indian civic, tax, banking, legal, identity, transport, and government service questions "
+            "(including Hinglish, typos, or indirect descriptions). "
+            "Extract the core topic as 3-10 crisp English search keywords for official government portals. "
+            "Set is_civic to false ONLY for clearly unrelated non-civic requests (cooking recipes, sports scores, jokes, movies, weather, cryptocurrency or stock prices). "
+            "Return JSON ONLY: {\"search_query\": \"...\", \"is_civic\": true}."
+        )
+        prompt = f"Context:\n{history_block}\n\nUser Question: {question[:600]}"
+        payload = {
+            "model": self.config.model,
+            "stream": False,
+            "format": "json",
+            "messages": [
+                {"role": "system", "content": system},
+                {"role": "user", "content": prompt},
+            ],
+            "options": {
+                "temperature": 0.0,
+                "num_predict": 64,
+                "num_ctx": min(self.config.num_ctx, 1024),
+                "num_thread": min(os.cpu_count() or 4, 4),
+            },
+        }
+        try:
+            with _is_generating_lock:
+                raw = _call_ollama(payload, self.config.base_url, self.config.timeout_seconds)
+            data = json.loads(raw)
+            if isinstance(data, dict):
+                sq = str(data.get("search_query", "")).strip()
+                is_civic = bool(data.get("is_civic", True))
+                return (sq or None), is_civic
+        except Exception as exc:
+            logger.debug("Query understanding skipped (%s)", exc)
+        return None, True
+
     def synthesize_grounded_answer(
         self,
         question: str,
         answer: Answer,
         memory: tuple[MemoryTurn, ...] = (),
         temperature: float | None = None,
+        rag_passages: tuple[str, ...] = (),
     ) -> GroundedRewrite | None:
         if not self.config.enabled:
             return None
 
-        system, prompt, is_greeting = _build_llm_prompt(question, answer, memory)
+        system, prompt, is_greeting = _build_llm_prompt(
+            question, answer, memory, stream_mode=False, rag_passages=rag_passages,
+        )
         if not system or not prompt:
             return None
 
@@ -435,12 +584,13 @@ class LocalLLMClient:
 
         avail_cpus = os.cpu_count() or 4
         optimal_threads = min(avail_cpus, 4)
-        predict_limit = min(self.config.num_predict, 350)
-        ctx_limit = min(self.config.num_ctx, 2048)
+        predict_limit = min(self.config.num_predict, 800)
+        ctx_limit = min(self.config.num_ctx, 4096)
 
         payload = {
             "model": self.config.model,
             "stream": False,
+            "format": "json",
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": prompt},
@@ -486,10 +636,18 @@ class LocalLLMClient:
                         except Exception:
                             summary_candidate = match.group(1).strip()
                     elif raw_content and not raw_content.startswith("{"):
-                        summary_candidate = raw_content.strip()
+                        summary_candidate = _clean_model_prose(raw_content)
 
                 if not summary_candidate:
                     return None
+
+                if SEARCH_WEB_SENTINEL in summary_candidate.upper():
+                    return GroundedRewrite.model_validate({
+                        "title": "__SEARCH_WEB__",
+                        "summary": SEARCH_WEB_SENTINEL,
+                        "documents_needed": [],
+                        "steps": [],
+                    })
 
                 is_refusal = (
                     "does not contain the specific procedure for this issue" in summary_candidate.lower()
@@ -499,7 +657,7 @@ class LocalLLMClient:
                 )
                 parsed = GroundedRewrite.model_validate({
                     "title": "No verified guide found" if is_refusal else None,
-                    "summary": summary_candidate,
+                    "summary": _clean_model_prose(summary_candidate),
                     "documents_needed": [] if is_refusal else docs_candidate,
                     "steps": [] if is_refusal else steps_candidate,
                 })
@@ -507,13 +665,12 @@ class LocalLLMClient:
                 logger.debug("Local LLM answer generation failed: %s", e)
                 return None
             finally:
-                with _is_generating_lock:
-                    _is_generating = False
+                _is_generating = False
 
         if is_refusal:
             return parsed
 
-        if not _is_grounded(parsed.summary, answer, question):
+        if not _is_grounded(parsed.summary, answer, question, rag_passages=rag_passages):
             return None
         return parsed
 
@@ -524,18 +681,23 @@ class LocalLLMClient:
         answer: Answer,
         memory: tuple[MemoryTurn, ...] = (),
         temperature: float | None = None,
+        rag_passages: tuple[str, ...] = (),
     ) -> Generator[tuple[str, object], None, None]:
         if not self.config.enabled:
             return
+        if os.getenv("PYTEST_CURRENT_TEST") and not os.getenv("TEST_LIVE_LLM") and httpx.Client is _ORIGINAL_HTTPX_CLIENT:
+            return
 
-        system, prompt, is_greeting = _build_llm_prompt(question, answer, memory)
+        system, prompt, is_greeting = _build_llm_prompt(
+            question, answer, memory, stream_mode=True, rag_passages=rag_passages,
+        )
         if not system or not prompt:
             return
 
         avail_cpus = os.cpu_count() or 4
         optimal_threads = min(avail_cpus, 4)
-        predict_limit = min(self.config.num_predict, 350)
-        ctx_limit = min(self.config.num_ctx, 2048)
+        predict_limit = min(self.config.num_predict, 800)
+        ctx_limit = min(self.config.num_ctx, 4096)
 
         payload = {
             "model": self.config.model,
@@ -577,35 +739,33 @@ class LocalLLMClient:
             except Exception as e:
                 logger.debug("Local LLM streaming error: %s", e)
             finally:
-                with _is_generating_lock:
-                    _is_generating = False
+                _is_generating = False
 
-        raw_content = stream_filter.full_raw_text.strip()
-        raw_content = re.sub(r"<think>.*?</think>", "", raw_content, flags=re.DOTALL).strip()
-        if raw_content.startswith("```"):
-            raw_content = re.sub(r"^```(?:json)?\s*", "", raw_content)
-            raw_content = re.sub(r"\s*```$", "", raw_content)
-        raw_content = raw_content.strip()
+        raw_content = _clean_model_prose(stream_filter.full_raw_text)
+        if SEARCH_WEB_SENTINEL in raw_content.upper():
+            yield ("needs_web_search", None)
+            return
 
         summary_candidate = None
         docs_candidate = []
         steps_candidate = []
-        try:
-            data = json.loads(raw_content)
-            if isinstance(data, dict):
-                if "summary" in data:
-                    summary_candidate = str(data["summary"]).strip()
-                if "documents_needed" in data and isinstance(data["documents_needed"], list):
-                    docs_candidate = [_normalize_document_item(d) for d in data["documents_needed"]]
-                    docs_candidate = [d for d in docs_candidate if d]
-                if "steps" in data and isinstance(data["steps"], list):
-                    steps_candidate = [
-                        {"title": str(s.get("title", "")).strip(), "detail": str(s.get("detail", "")).strip()}
-                        for s in data["steps"]
-                        if isinstance(s, dict) and s.get("title") and s.get("detail")
-                    ]
-        except (json.JSONDecodeError, ValueError):
-            pass
+        if raw_content.startswith("{"):
+            try:
+                data = json.loads(raw_content)
+                if isinstance(data, dict):
+                    if "summary" in data:
+                        summary_candidate = str(data["summary"]).strip()
+                    if "documents_needed" in data and isinstance(data["documents_needed"], list):
+                        docs_candidate = [_normalize_document_item(d) for d in data["documents_needed"]]
+                        docs_candidate = [d for d in docs_candidate if d]
+                    if "steps" in data and isinstance(data["steps"], list):
+                        steps_candidate = [
+                            {"title": str(s.get("title", "")).strip(), "detail": str(s.get("detail", "")).strip()}
+                            for s in data["steps"]
+                            if isinstance(s, dict) and s.get("title") and s.get("detail")
+                        ]
+            except (json.JSONDecodeError, ValueError):
+                pass
 
         if not summary_candidate:
             match = re.search(r'\{\s*"summary"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"\s*\}', raw_content)
@@ -615,12 +775,17 @@ class LocalLLMClient:
                 except Exception:
                     summary_candidate = match.group(1).strip()
             elif raw_content and not raw_content.startswith("{"):
-                summary_candidate = raw_content.strip()
+                summary_candidate = raw_content
 
         if not summary_candidate and stream_filter.accumulated_summary:
-            summary_candidate = stream_filter.accumulated_summary.strip()
+            summary_candidate = _clean_model_prose(stream_filter.accumulated_summary)
 
         if summary_candidate:
+            summary_candidate = _clean_model_prose(summary_candidate)
+            if SEARCH_WEB_SENTINEL in summary_candidate.upper():
+                yield ("needs_web_search", None)
+                return
+
             is_refusal = (
                 "does not contain the specific procedure for this issue" in summary_candidate.lower()
                 or "verified knowledge base does not contain" in summary_candidate.lower()
@@ -633,7 +798,7 @@ class LocalLLMClient:
                     "documents_needed": [] if is_refusal else docs_candidate,
                     "steps": [] if is_refusal else steps_candidate,
                 })
-                if is_refusal or _is_grounded(parsed.summary, answer, question):
+                if is_refusal or _is_grounded(parsed.summary, answer, question, rag_passages=rag_passages):
                     yield ("final", parsed)
                     return
             except Exception:
@@ -665,7 +830,7 @@ def _tokens(text: str) -> set[str]:
     }
 
 
-def _is_grounded(summary: str, answer: Answer, question: str = "") -> bool:
+def _is_grounded(summary: str, answer: Answer, question: str = "", *, rag_passages: tuple[str, ...] = ()) -> bool:
     if "welcome" in answer.title.lower() or (not answer.steps and not answer.citations):
         return True
     summary_tokens = _tokens(summary)
@@ -678,13 +843,15 @@ def _is_grounded(summary: str, answer: Answer, question: str = "") -> bool:
         evidence_parts.append(f"{answer.title} {answer.summary} {docs_text} {steps_text} {answer.source_url}")
     if answer.citations:
         evidence_parts.extend(f"{c.title} {c.excerpt} {c.url}" for c in answer.citations)
+    if rag_passages:
+        evidence_parts.extend(rag_passages)
 
     evidence_text = " ".join(evidence_parts)
-    citation_token_sets = tuple(_tokens(part) for part in evidence_parts)
-
     evidence_tokens = _tokens(evidence_text)
-    overlap = len(summary_tokens & evidence_tokens) / max(len(summary_tokens), 1)
-    if overlap < 0.12:
+    combined_grounding_tokens = evidence_tokens | _tokens(question)
+
+    overlap = len(summary_tokens & combined_grounding_tokens) / max(len(summary_tokens), 1)
+    if overlap < 0.10:
         return False
 
     summary_urls = set(re.findall(r"https?://[^\s)\]]+", summary.lower()))
@@ -692,16 +859,13 @@ def _is_grounded(summary: str, answer: Answer, question: str = "") -> bool:
     if not summary_urls <= evidence_urls:
         return False
 
-    sentences = tuple(part.strip() for part in re.split(r"(?<=[.!?])\s+", summary) if part.strip())
+    sentences = tuple(part.strip() for part in re.split(r"(?<=[.!?])\s+|\n+", summary) if part.strip())
     for sentence in sentences:
         s_tokens = _tokens(sentence)
         if len(s_tokens) < 4:
             continue
-        best_overlap = max(
-            (len(s_tokens & c_tokens) / len(s_tokens) for c_tokens in citation_token_sets),
-            default=0.0,
-        )
-        if best_overlap < 0.12:
+        sentence_overlap = len(s_tokens & combined_grounding_tokens) / len(s_tokens)
+        if sentence_overlap < 0.10:
             return False
 
     summary_numbers = set(re.findall(r"\b\d+(?:[.,]\d+)?\b", summary)) - {str(i) for i in range(1, 11)}
@@ -768,21 +932,24 @@ def local_llm_health(*, force: bool = False) -> dict[str, object]:
 
 
 def _extract_dynamic_steps_from_summary(summary: str) -> list[Step]:
-    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", summary) if s.strip()]
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", summary) if s.strip()]
     action_keywords = {
         "visit", "open", "go", "fill", "apply", "submit", "upload", "provide",
         "bring", "carry", "verify", "track", "download", "pay", "book", "register",
-        "check", "ensure", "select", "click", "log", "enter", "contact"
+        "check", "ensure", "select", "click", "log", "enter", "contact", "file", "request"
     }
     steps = []
     for s in sentences:
-        words = {w.lower().strip("',.!") for w in s.split()}
-        if words & action_keywords or any(s.lower().startswith(p) for p in ("first", "then", "next", "after", "finally", "step")):
-            clean_s = re.sub(r"^(First|Then|Next|After that|Finally|Also|Please)[,\s]+", "", s, flags=re.IGNORECASE)
-            title_words = clean_s.split()[:7]
+        clean_line = re.sub(r"^(?:[-*•]|\d+[.)])\s*", "", s).strip()
+        if not clean_line or len(clean_line) < 12:
+            continue
+        words = {w.lower().strip("',.!:*") for w in clean_line.split()}
+        if words & action_keywords or any(clean_line.lower().startswith(p) for p in ("first", "then", "next", "after", "finally", "step")):
+            clean_s = re.sub(r"^(First|Then|Next|After that|Finally|Also|Please)[,\s]+", "", clean_line, flags=re.IGNORECASE)
+            title_words = clean_s.replace("**", "").split()[:7]
             step_title = " ".join(title_words).rstrip(",.:;")
-            steps.append(Step(title=step_title[:80], detail=s))
-    return steps
+            steps.append(Step(title=step_title[:80], detail=clean_line))
+    return steps[:6]
 
 
 def apply_rewrite_to_answer(
@@ -791,7 +958,7 @@ def apply_rewrite_to_answer(
     question: str,
 ) -> Answer:
     """Applies a GroundedRewrite to the Answer schema with direct-question and QA checks."""
-    if not rewrite:
+    if not rewrite or rewrite.title == "__SEARCH_WEB__":
         return answer
 
     is_refusal = (
@@ -825,6 +992,9 @@ def apply_rewrite_to_answer(
         ai_steps = _extract_dynamic_steps_from_summary(rewrite.summary)
         if len(ai_steps) >= 2:
             updates["steps"] = ai_steps
+        else:
+            # Avoid showing raw placeholder "Review <excerpt>" cards when prose already explains clearly
+            updates["steps"] = []
 
     enhanced = answer.model_copy(update=updates)
 
@@ -874,6 +1044,7 @@ __all__ = [
     "GroundedRewrite",
     "LocalLLMClient",
     "LocalLLMConfig",
+    "SEARCH_WEB_SENTINEL",
     "SummaryStreamFilter",
     "apply_rewrite_to_answer",
     "enhance_grounded_answer",

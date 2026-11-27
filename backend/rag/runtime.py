@@ -44,9 +44,16 @@ _CATEGORY_TERMS = {
         "myscheme", "vikaspedia", "mea", "embassy", "sweden", "consular", "attestation",
         "apostille", "data.gov.in", "ogd", "mpdistricts", "rcms", "khasra", "nakal",
         "lokseva", "yoga", "ayush", "gigw", "nift", "fashion", "nta", "exam", "admissions", "nalsa", "legal aid", "edaakhil", "e-daakhil", "consumer court", "consumer", "complaint", "fir", "police", "ncrb", "police station", "credit card", "cibil", "experian", "crif", "unsolicited", "foreclosure", "prepayment", "fvr", "blo", "aero", "ero", "joint declaration", "upi", "atm", "imps", "auto-reversal", "auto reversal", "compensation", "reversal", "nach", "mandate", "banking ombudsman",
-        "iepf", "iepfa", "mca", "mca21", "udgam", "dea fund", "deaf", "pension sahayak", "pfrda", "dfs", "unclaimed shares", "unclaimed dividend", "iepf-5", "iepf-5e", "entitlement letter"
+        "iepf", "iepfa", "mca", "mca21", "udgam", "dea fund", "deaf", "pension sahayak", "pfrda", "dfs", "unclaimed shares", "unclaimed dividend", "iepf-5", "iepf-5e", "entitlement letter",
+        "पासपोर्ट", "પાસપોર્ટ", "राशन", "રેશન", "पेंशन", "પેન્શન", "मतदाता", "वोटर", "મતદાર", "केवाईसी",
     ),
 }
+_INDIC_BOUNDARY_LEFT = r"(?<![\w\u0900-\u097F\u0A80-\u0AFF])"
+_INDIC_BOUNDARY_RIGHT = r"(?![\w\u0900-\u097F\u0A80-\u0AFF])"
+_HINDI_KAR_VERB_FOLLOWERS = (
+    r"(?:दो|दें|दे|दिया|दूं|दूँ|देना|देंगे|लो|लें|लिया|लेना|लेंगे|"
+    r"सकते|सकता|सकती|सकें|सकूं|रहा|रही|रहे|चुका|चुकी|चुके|जा|पा|पाएं|पाऊं|पाते)"
+)
 _MULTILINGUAL_QUERY_HINTS = (
     (("आधार",), ("पता", "पते"), ("बदल", "अपडेट"), "online address update process demographic details"),
     (("આધાર",), ("સરનામ",), ("બદલ", "અપડેટ"), "online address update process demographic details"),
@@ -70,6 +77,7 @@ def _get_retriever(use_vectors: bool) -> RagRetriever:
     lexical_retriever = RagRetriever()
     if not use_vectors:
         return lexical_retriever
+    store = None
     try:
         store = QdrantLocalVectorStore(DEFAULT_VECTOR_PATH)
         health = store.health()
@@ -95,15 +103,42 @@ def _get_retriever(use_vectors: bool) -> RagRetriever:
             embedding_provider=provider,
             vector_store=store,
         )
-    except (OSError, RuntimeError, ValueError):
+    except (OSError, RuntimeError, ValueError) as exc:
         # Local Qdrant uses an exclusive file lock and can also become stale after
-        # corpus updates. Lexical retrieval remains a safe, deterministic fallback.
+        # corpus updates. Ensure lock is released on partial init failure.
+        if store is not None:
+            try:
+                store.close()
+            except Exception:
+                pass
+        import logging
+        logging.getLogger("nivaan.rag").warning("Vector retriever unavailable, falling back to lexical: %s", exc)
         return lexical_retriever
 
 
 def get_retriever() -> RagRetriever:
     """Build and cache the configured read-only retriever once per mode."""
     return _get_retriever(vector_enabled())
+
+
+def _term_matches(text: str, term: str) -> bool:
+    if term == "spice+":
+        return bool(re.search(r"(?<![a-z0-9])spice\s*\+(?![a-z0-9])", text))
+    if term == "defective by institute":
+        return bool(
+            re.search(
+                rf"{_INDIC_BOUNDARY_LEFT}defective\s+by\s+(?:the\s+)?institute{_INDIC_BOUNDARY_RIGHT}",
+                text,
+            )
+        )
+    if term == "कर":
+        return bool(
+            re.search(
+                rf"{_INDIC_BOUNDARY_LEFT}कर{_INDIC_BOUNDARY_RIGHT}(?!\s+{_HINDI_KAR_VERB_FOLLOWERS}{_INDIC_BOUNDARY_RIGHT})",
+                text,
+            )
+        )
+    return bool(re.search(rf"{_INDIC_BOUNDARY_LEFT}{re.escape(term)}{_INDIC_BOUNDARY_RIGHT}", text))
 
 
 def supported_category(query: str) -> str | None:
@@ -113,7 +148,7 @@ def supported_category(query: str) -> str | None:
         "cake", "bake", "baking", "recipe", "cook", "cooking", "chocolate",
         "movie", "song", "songs", "lyrics", "cricket", "football", "weather", "joke", "jokes",
     )
-    if any(re.search(rf"(?<!\w){re.escape(term)}(?!\w)", lowered) for term in _UNSUPPORTED_NON_CIVIC_TERMS):
+    if any(_term_matches(lowered, term) for term in _UNSUPPORTED_NON_CIVIC_TERMS):
         return None
 
     # Explicit domain priority: isolate civic/election/banking/consumer/legal aid sub-domains
@@ -125,12 +160,15 @@ def supported_category(query: str) -> str | None:
         "fastag", "toll", "nhai", "ihmcl", "parivahan", "vahan", "sarathi", "chassis", "challan", "echallan",
         "cbse", "marksheet", "digilocker",
         "iepf", "iepfa", "mca", "mca21", "udgam", "dea fund", "deaf", "pension sahayak", "pfrda", "dfs", "unclaimed shares", "unclaimed dividend", "iepf-5", "iepf-5e", "entitlement letter",
+        "nsp", "national scholarship", "scholarship", "scholarships", "defective by institute",
+        "mopng", "lpg", "pahal", "dbtl", "indane", "bharat gas", "hp gas",
+        "spice+", "inc-29", "inc-32", "rule 8a",
     )
-    if any(re.search(rf"(?<!\w){re.escape(t)}(?!\w)", lowered) for t in _CIVIC_STRONG_TERMS):
+    if any(_term_matches(lowered, t) for t in _CIVIC_STRONG_TERMS):
         return "civic"
 
     for category, terms in _CATEGORY_TERMS.items():
-        if any(re.search(rf"(?<!\w){re.escape(term)}(?!\w)", lowered) for term in terms):
+        if any(_term_matches(lowered, term) for term in terms):
             return category
     return None
 
@@ -149,8 +187,13 @@ def expand_retrieval_query(query: str) -> str:
 
 
 def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) -> RetrievalResult | None:
-    _UNSUPPORTED = ("cake", "bake", "baking", "recipe", "cook", "cooking", "chocolate", "movie", "song", "cricket", "football", "weather")
-    if any(re.search(rf"(?<!\w){re.escape(t)}(?!\w)", query.lower()) for t in _UNSUPPORTED):
+    if not re.search(r"[a-zA-Z0-9\u0900-\u097F\u0A80-\u0AFF]{2,}", query or ""):
+        return None
+    _UNSUPPORTED = (
+        "cake", "bake", "baking", "recipe", "cook", "cooking", "pasta", "chocolate",
+        "movie", "song", "songs", "lyrics", "cricket", "football", "weather", "joke", "jokes",
+    )
+    if any(_term_matches(query.lower(), t) for t in _UNSUPPORTED):
         return None
     if not rag_enabled():
         return None
@@ -165,11 +208,11 @@ def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) ->
     if domain is not None and not is_pan_tds:
         if domain in (Domain.BANKING, "banking"):
             trouble_words = {"failed", "delay", "rejected", "error", "mismatch", "penalty", "stuck", "pending", "notice", "defective", "refund", "deducted", "tat", "unsolicited", "foreclosure"}
-            if any(w in lowered_q for w in trouble_words):
+            if supported_category(query) == "civic" or any(w in lowered_q for w in trouble_words):
                 category = "civic"
             else:
-                category = "banking"
-        elif domain in (Domain.TRANSPORT, "transport", Domain.EDUCATION, "education", Domain.LEGAL_CONSUMER, "legal_consumer", Domain.AGRICULTURE, "agriculture", Domain.GENERAL_CIVIC, "civic"):
+                category = None
+        elif domain in (Domain.TRANSPORT, "transport", Domain.EDUCATION, "education", Domain.LEGAL_CONSUMER, "legal_consumer", Domain.AGRICULTURE, "agriculture", Domain.GENERAL_CIVIC, "civic", Domain.CORPORATE, "corporate"):
             category = "civic"
         elif domain in (Domain.TAXATION, "tax", "taxation"):
             category = "tax"
@@ -182,13 +225,12 @@ def retrieve_if_enabled(query: str, *, domain: object = None, top_k: int = 3) ->
                 category = "civic"
     if category is None and not is_pan_tds:
         category = supported_category(query)
-    if category is None:
-        lowered = query.lower()
+    if category is None and not is_pan_tds:
         trouble_words = {"failed", "delay", "rejected", "error", "mismatch", "penalty", "stuck", "pending", "notice", "defective", "refund", "deducted", "tat", "unsolicited", "foreclosure"}
-        if any(w in lowered for w in trouble_words):
+        if any(w in lowered_q for w in trouble_words):
             category = "civic"
-        else:
-            return None
+    # Note: if category remains None (query phrased without hardcoded keywords),
+    # allow searching across the full corpus so dense embeddings + BM25 can retrieve naturally.
     expanded_query = expand_retrieval_query(query)
     result = get_retriever().search(expanded_query, category=category, domain=domain, top_k=top_k)
     return result if result.hits else None

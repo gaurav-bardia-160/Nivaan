@@ -1148,3 +1148,155 @@ timestamp,conversation_id,query,domain,top_score,reason
 2026-11-23T14:21:25.011718+00:00,chat_test,how to manage taxes,unknown,0.0000,no_verified_guide_or_rag_match
 2026-11-23T14:21:35.965216+00:00,chat_test,how to manage taxes,unknown,0.0000,no_verified_guide_or_rag_match
 2026-11-23T14:21:46.052385+00:00,chat_test,how to manage taxes,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-25T08:15:35.002120+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-25T12:15:07.439006+00:00,test-stream-conv,Can I bake a chocolate cake with pan card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T02:34:59.797410+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T02:35:00.124496+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0164,low_retrieval_confidence
+2026-11-26T02:35:00.155693+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T02:35:04.313260+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T02:35:10.179732+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T02:35:37.113316+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0164,low_retrieval_confidence
+2026-11-26T02:35:38.401054+00:00,anonymous,How do I withdraw my EPF online?,unknown,0.5439,low_retrieval_confidence
+2026-11-26T04:24:44.909949+00:00,anonymous,How to file INC-29 on MCA21 portal?,unknown,0.0163,low_retrieval_confidence
+2026-11-26T05:31:56.238364+00:00,anonymous,How to file INC-29 on MCA21 portal?,unknown,0.0163,low_retrieval_confidence
+2026-11-26T05:31:57.120089+00:00,anonymous,Which officer do I escalate to under MoPNG grievance matrix for stopped LPG subsidy?,unknown,0.0312,low_retrieval_confidence
+2026-11-26T05:31:57.656634+00:00,anonymous,NSP scholarship status is Defective by Institute clerk cannot see edit button,unknown,0.0335,low_retrieval_confidence
+2026-11-26T05:31:58.709175+00:00,anonymous,How to apply for MCA SPICe+ Part A name reservation?,unknown,0.0304,low_retrieval_confidence
+2026-11-26T05:31:58.973387+00:00,anonymous,MoPNG grievance matrix for LPG subsidy escalation,unknown,0.0328,low_retrieval_confidence
+2026-11-26T05:31:59.260356+00:00,anonymous,NSP scholarship status showing Defective by Institute,unknown,0.0345,low_retrieval_confidence
+2026-11-26T05:35:13.986143+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0323,low_retrieval_confidence
+2026-11-26T05:35:13.997576+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:35:14.407072+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0164,low_retrieval_confidence
+2026-11-26T05:35:14.441764+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:35:17.321442+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:35:17.620438+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:35:18.382125+00:00,anonymous,What is the capital of France?,unknown,0.0238,low_retrieval_confidence
+2026-11-26T05:35:32.611436+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0164,low_retrieval_confidence
+2026-11-26T05:35:33.293457+00:00,anonymous,How do I withdraw my EPF online?,unknown,0.5439,low_retrieval_confidence
+2026-11-26T05:36:35.141395+00:00,anonymous,LPG cylinder subsidy stopped bank account mismatch,unknown,0.0290,low_retrieval_confidence
+2026-11-26T05:36:35.743083+00:00,anonymous,NSP scholarship status is defective notice under section 139(9),unknown,0.0135,low_retrieval_confidence
+2026-11-26T05:36:38.610957+00:00,anonymous,how to incorporate a new company,unknown,0.0252,low_retrieval_confidence
+2026-11-26T05:36:40.125400+00:00,anonymous,cylinder delivery delay,unknown,0.0659,low_retrieval_confidence
+2026-11-26T05:36:40.189250+00:00,anonymous,cooking gas connection application,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:36:40.226317+00:00,anonymous,cooking gas subsidy,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:36:40.513818+00:00,anonymous,hpgas booking,unknown,0.0164,low_retrieval_confidence
+2026-11-26T05:36:42.084239+00:00,anonymous,post matric scholarship pending verification,unknown,0.0304,low_retrieval_confidence
+2026-11-26T05:36:42.987606+00:00,anonymous,merit cum means scholarship status,unknown,0.0313,low_retrieval_confidence
+2026-11-26T05:39:16.198303+00:00,anonymous,How do I apply for a commercial pilot license?,unknown,0.0323,low_retrieval_confidence
+2026-11-26T05:39:16.211446+00:00,anonymous,How to make chocolate cake at home?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:39:16.551577+00:00,anonymous,How do I get a fishing permit in Alaska?,unknown,0.0164,low_retrieval_confidence
+2026-11-26T05:39:16.577550+00:00,anonymous,How do I apply for a PAN card?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:39:20.755388+00:00,anonymous,Tell me tomorrow's weather,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:39:25.077946+00:00,anonymous,x,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-26T05:39:27.450742+00:00,anonymous,What is the capital of France?,unknown,0.0238,low_retrieval_confidence
+2026-11-26T05:39:56.695935+00:00,test_session_punting_test_cross_domain_multi_turn_i0,when does the moon turn into a banana,unknown,0.0164,low_retrieval_confidence
+2026-11-26T05:39:58.318033+00:00,anonymous,How do I withdraw my EPF online?,unknown,0.5439,low_retrieval_confidence
+2026-11-27T04:05:44.276825+00:00,anonymous,क्रिकेट match score क्या है,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:05:46.401111+00:00,anonymous,बिटकॉइन की price क्या है,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:05:50.610394+00:00,anonymous,पता कैसे चलेगा,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:05:52.696928+00:00,anonymous,मेरा काम कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:05:54.777376+00:00,anonymous,मेरा काम कर,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:05:56.878878+00:00,anonymous,आयकर रिटर्न कैसे दाखिल करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:06:01.113143+00:00,anonymous,आधार card में address कैसे बदलें?,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:06:03.220699+00:00,anonymous,SPICe+ Part A name reservation error,unknown,0.0147,low_retrieval_confidence
+2026-11-27T04:06:05.292788+00:00,anonymous,My application was marked defective by institute,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:06:55.405029+00:00,anonymous,क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:06:57.697109+00:00,anonymous,कुछ काम करो,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T04:07:08.460968+00:00,anonymous,क्रिकेट match score क्या है,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:07:10.549419+00:00,anonymous,मेरा काम कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:07:12.620380+00:00,anonymous,રાશન કેવી રીતે બનાવવું,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:07:14.740315+00:00,anonymous,બિટકોઇન ની કિંમત શું છે,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T04:12:07.184029+00:00,anonymous,मेरा काम कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:12:09.262746+00:00,anonymous,कुछ काम करो,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T04:47:32.163892+00:00,anonymous,क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:47:38.515969+00:00,anonymous,आयकर रिटर्न कैसे दाखिल करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T04:47:41.121586+00:00,anonymous,कर नियम आयकर रिटर्न,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:11:31.486882+00:00,anonymous,मुझे क्या पता,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:11:34.865835+00:00,anonymous,पता नहीं क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:11:37.078650+00:00,anonymous,नहीं पता क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:11:39.220910+00:00,anonymous,मुझे नहीं पता क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:11:41.333997+00:00,anonymous,मेरा काम कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:15:11.932747+00:00,anonymous,मुझे क्या पता,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:15:14.099624+00:00,anonymous,पता नहीं क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:15:16.258371+00:00,anonymous,नहीं पता क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:15:18.393346+00:00,anonymous,मुझे नहीं पता क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:15:20.551975+00:00,anonymous,मेरा काम कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:15:22.644452+00:00,anonymous,कुछ काम करो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:15:24.786270+00:00,anonymous,मेरा काम करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:15:26.931576+00:00,anonymous,क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:17:55.361343+00:00,anonymous,मुझे क्या पता,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:17:57.490489+00:00,anonymous,पता नहीं क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:17:59.630465+00:00,anonymous,नहीं पता क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:18:01.769933+00:00,anonymous,मुझे नहीं पता क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:18:03.863269+00:00,anonymous,मेरा काम कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:18:05.937454+00:00,anonymous,कुछ काम करो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:18:08.029814+00:00,anonymous,मेरा काम करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:18:10.140088+00:00,anonymous,क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:05.704938+00:00,anonymous,मुझे क्या पता,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:07.812535+00:00,anonymous,पता नहीं क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:09.911576+00:00,anonymous,नहीं पता क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:12.034104+00:00,anonymous,मुझे नहीं पता क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:14.136317+00:00,anonymous,मेरा काम कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:16.212906+00:00,anonymous,कुछ काम करो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:18.489604+00:00,anonymous,मेरा काम करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:21.014013+00:00,anonymous,क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:23.314439+00:00,anonymous,पासपोर्ट आवेदन कैसे करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:30.195215+00:00,anonymous,बैंक में केवाईसी कैसे करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:32.491057+00:00,anonymous,पेंशन आवेदन कैसे करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:34.638294+00:00,anonymous,मतदाता सूची में नाम कैसे चेक करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:36.701170+00:00,anonymous,SPICe +,unknown,0.0161,low_retrieval_confidence
+2026-11-27T05:24:38.849082+00:00,anonymous,My application was marked defective by the institute,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:40.947191+00:00,anonymous,आयकर रिटर्न कैसे दाखिल करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:43.030053+00:00,anonymous,कर नियम आयकर रिटर्न,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:45.144240+00:00,anonymous,पैन,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:47.403445+00:00,anonymous,आधार,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:49.519001+00:00,anonymous,पासपोर्ट,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:51.570420+00:00,anonymous,बिटकॉइन,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:24:53.631571+00:00,anonymous,क्रिकेट,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:24:55.755525+00:00,anonymous,मेरा काम,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:24:57.819275+00:00,anonymous,મને શું ખબર,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:24:59.900344+00:00,anonymous,મારું કામ કરી દો,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:25:02.059664+00:00,anonymous,ખબર નથી શું કરું,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:25:04.235873+00:00,anonymous,પાનું કેવી રીતે વાંચવું,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:06.791766+00:00,anonymous,પાસપોર્ટ અરજી કેવી રીતે કરવી?,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:11.515691+00:00,anonymous,આવકવેરો રિટર્ન કેવી રીતે ફાઇલ કરવું?,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:16.546615+00:00,anonymous,bitcoin price क्या है,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:23.284448+00:00,anonymous,मेरा काम कर दो।,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:29.838090+00:00,anonymous,उसने मेरा काम कर दी,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:34.138618+00:00,anonymous,काम कर गया,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:36.254216+00:00,anonymous,किसको पता,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:38.503156+00:00,anonymous,मुझे पता भी नहीं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:40.804539+00:00,anonymous,पता नहीं चला,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:43.069890+00:00,anonymous,कुछ पता नहीं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:25:47.391146+00:00,anonymous,મને ખબર નથી,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:25:49.482379+00:00,anonymous,મારું કામ કરો,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:25:51.569164+00:00,anonymous,મને શું ખબર છે?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:25:53.659509+00:00,anonymous,પાનું વાંચવું છે,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:25:55.726607+00:00,anonymous,તમે શું કરો છો,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:25:57.886015+00:00,anonymous,बिटकॉइन की कीमत क्या है,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:26:00.027882+00:00,anonymous,क्रिकेट मैच कब है,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:26:02.167834+00:00,anonymous,मेरा फोन खो गया,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:26:04.365458+00:00,anonymous,खाना कैसे बनाएं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:26:10.981366+00:00,anonymous,माय आधार पोर्टल पर लॉगिन कैसे करें,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:26:13.184306+00:00,anonymous,My application was marked defective by institute,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:26:15.799349+00:00,anonymous,My application was marked defective by the institute,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:27:54.145987+00:00,anonymous,मेरा काम कर दो।,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:27:58.607225+00:00,anonymous,मैं क्या करूं?,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:00.756160+00:00,anonymous,मैं क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:11.498506+00:00,anonymous,उसने मेरा काम कर दी,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:15.849332+00:00,anonymous,पता भी नहीं क्या करूं,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:18.012818+00:00,anonymous,अरे क्या पता,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:20.153116+00:00,anonymous,क्या पता है?,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:22.306953+00:00,anonymous,काम कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:24.379158+00:00,anonymous,काम करो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:26.520436+00:00,anonymous,कुछ कर दो,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:28.654788+00:00,anonymous,कुछ कर दें?,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:30.783842+00:00,anonymous,क्या कर दूं?,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:32.949431+00:00,anonymous,आप क्या कर रहे हैं?,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:35.100167+00:00,anonymous,वह काम कर रहा है,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:37.142279+00:00,anonymous,મારું કામ કરી દો?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:28:39.196836+00:00,anonymous,મને શું ખબર?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:28:41.271307+00:00,anonymous,ખબર નથી શું કરું?,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:28:43.336155+00:00,anonymous,પાસપોર્ટ,unknown,0.0000,no_verified_guide_or_rag_match
+2026-11-27T05:28:45.455467+00:00,anonymous,पैन,unknown,0.0164,low_retrieval_confidence
+2026-11-27T05:28:47.539762+00:00,anonymous,आधार,unknown,0.0164,low_retrieval_confidence

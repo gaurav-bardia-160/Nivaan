@@ -26,7 +26,7 @@ from backend.modules.domain_router import (
     classify_domain,
     get_allowed_rag_categories,
 )
-from backend.modules.llm import _build_llm_prompt
+from backend.modules.llm import SEARCH_WEB_SENTINEL, _build_llm_prompt
 from backend.rag.loader import load_corpus
 from backend.rag.models import RagDocument, RetrievalHit, RetrievalResult, SourceReference
 from datetime import date
@@ -68,7 +68,7 @@ from backend.web_search.synthesizer import (
 )
 
 # Reference constants & contracts per PROJECT.md
-UNCOVERED_DOMAIN = getattr(Domain, "UNCOVERED", "uncovered")
+assert not hasattr(Domain, "UNCOVERED"), "Domain.UNCOVERED was removed in c54f7ac"
 
 CIVIC_JSONL_PATH = Path("backend/data/refined/troubleshooting/troubleshooting_civic.jsonl")
 TAX_JSONL_PATH = Path("backend/data/refined/troubleshooting/troubleshooting_tax.jsonl")
@@ -176,7 +176,7 @@ def test_tier1_r1_epfo_no_pmvbry_boilerplate():
 # ------------------------------------------------------------------------------
 
 def test_tier1_r2_mca_spice_domain_classification():
-    """Verify that MCA and SPICe+ queries classify into UNCOVERED domain."""
+    """Verify that MCA and SPICe+ queries classify into Domain.CORPORATE (not BANKING or GENERAL_CIVIC)."""
     queries = [
         "How do I register a private limited company using SPICe+ on MCA?",
         "MCA21 director identification number DIN application status",
@@ -185,32 +185,34 @@ def test_tier1_r2_mca_spice_domain_classification():
         "DIR-3 KYC verification for company director on MCA portal",
     ]
     for q in queries:
-        assert classify_domain(q) == UNCOVERED_DOMAIN, f"Query '{q}' must classify as {UNCOVERED_DOMAIN}"
+        domain = classify_domain(q)
+        assert domain == Domain.CORPORATE, f"Query '{q}' must classify as {Domain.CORPORATE}, got {domain}"
+        assert domain not in (Domain.BANKING, Domain.GENERAL_CIVIC, Domain.TAXATION)
 
 
 def test_tier1_r2_mca_spice_retriever_short_circuit(shared_retriever):
-    """Verify retriever short-circuits with uncovered_domain and empty hits for MCA queries."""
+    """Verify retriever routes MCA queries naturally without uncovered_domain short-circuit and zero EPFO bleed."""
     query = "SPICe+ Part A company name reservation resubmission under Rule 8A"
-    result = shared_retriever.search(query, domain=UNCOVERED_DOMAIN)
-    assert result.status == "uncovered_domain", f"Expected uncovered_domain, got {result.status}"
-    assert result.hits == (), "Hits must be strictly empty"
-    assert result.searched_documents == 0, "No documents should be searched"
+    result = shared_retriever.search(query, domain=classify_domain(query))
+    assert result.status != "uncovered_domain", f"Unexpected uncovered_domain status: {result.status}"
+    assert "epfo_claim_passbook_cheque_standards_01" not in [h.document.id for h in result.hits]
+    assert not any("passbook" in s.title.lower() for h in result.hits for s in h.document.sources)
 
 
 def test_tier1_r2_mca_spice_zero_vector_bleed(shared_retriever):
     """Verify MCA/SPICe+ query does not bleed into EPFO passbook/cheque or MSME Udyam."""
     query = "My company name reservation SPICe+ Part A form was rejected with resubmission remark Proposed name resembles an existing LLP"
-    result = shared_retriever.search(query, domain=UNCOVERED_DOMAIN)
+    result = shared_retriever.search(query, domain=classify_domain(query))
     hit_ids = [h.document.id for h in result.hits]
     assert "epfo_claim_passbook_cheque_standards_01" not in hit_ids
-    assert not any("passbook" in h.document.title.lower() for h in result.hits)
-    assert not any("cheque" in h.document.title.lower() for h in result.hits)
+    assert not any("passbook" in s.title.lower() for h in result.hits for s in h.document.sources)
+    assert not any("cheque" in s.title.lower() for h in result.hits for s in h.document.sources)
 
 
 def test_tier1_r2_mca_spice_allowed_categories_empty():
-    """Verify get_allowed_rag_categories returns empty set for UNCOVERED domain."""
-    allowed = get_allowed_rag_categories(UNCOVERED_DOMAIN)
-    assert allowed == set(), f"Allowed categories for {UNCOVERED_DOMAIN} must be empty set, got {allowed}"
+    """Verify get_allowed_rag_categories scopes Domain.CORPORATE to civic and leaves UNKNOWN unfiltered."""
+    assert get_allowed_rag_categories(Domain.CORPORATE) == {"civic"}
+    assert get_allowed_rag_categories(Domain.UNKNOWN) is None
 
 
 def test_tier1_r2_mca_spice_honest_refusal():
@@ -228,7 +230,7 @@ def test_tier1_r2_mca_spice_honest_refusal():
 # ------------------------------------------------------------------------------
 
 def test_tier1_r2_lpg_domain_classification():
-    """Verify petroleum and LPG queries classify into UNCOVERED domain."""
+    """Verify petroleum and LPG queries do not misroute to BANKING, GENERAL_CIVIC, or TAXATION."""
     queries = [
         "How to book an LPG cylinder online or track delivery",
         "Indane domestic gas cylinder refill booking failed",
@@ -237,31 +239,35 @@ def test_tier1_r2_lpg_domain_classification():
         "MoPNG grievance matrix for LPG subsidy escalation",
     ]
     for q in queries:
-        assert classify_domain(q) == UNCOVERED_DOMAIN, f"Query '{q}' must classify as {UNCOVERED_DOMAIN}"
+        domain = classify_domain(q)
+        assert isinstance(domain, Domain)
+        assert domain not in (Domain.BANKING, Domain.GENERAL_CIVIC, Domain.TAXATION), (
+            f"Query '{q}' must not bleed into {domain}"
+        )
 
 
 def test_tier1_r2_lpg_retriever_short_circuit(shared_retriever):
-    """Verify retriever short-circuits for petroleum/LPG queries."""
+    """Verify retriever runs without uncovered_domain short-circuit and zero EPFiGMS bleed."""
     query = "My LPG subsidy was stopped because my bank account became dormant. MoPNG grievance matrix"
-    result = shared_retriever.search(query, domain=UNCOVERED_DOMAIN)
-    assert result.status == "uncovered_domain"
-    assert result.hits == ()
-    assert result.searched_documents == 0
+    result = shared_retriever.search(query, domain=classify_domain(query))
+    assert result.status != "uncovered_domain"
+    assert "epfo_epfigms_grievance_sop_01" not in [h.document.id for h in result.hits]
+    assert not any("epfigms" in s.title.lower() for h in result.hits for s in h.document.sources)
 
 
 def test_tier1_r2_lpg_zero_vector_bleed_into_epfigms(shared_retriever):
     """Verify LPG subsidy query does NOT bleed into EPFiGMS or EPFO grievance SOP."""
     query = "LPG subsidy stopped dormant account MoPNG grievance escalation"
-    result = shared_retriever.search(query, domain=UNCOVERED_DOMAIN)
+    result = shared_retriever.search(query, domain=classify_domain(query))
     hit_ids = [h.document.id for h in result.hits]
     assert "epfo_epfigms_grievance_sop_01" not in hit_ids
-    assert not any("epfigms" in h.document.title.lower() for h in result.hits)
+    assert not any("epfigms" in s.title.lower() for h in result.hits for s in h.document.sources)
 
 
 def test_tier1_r2_lpg_allowed_categories_empty():
-    """Verify allowed categories for LPG query is strictly empty."""
-    allowed = get_allowed_rag_categories(UNCOVERED_DOMAIN)
-    assert allowed == set()
+    """Verify Domain.UNKNOWN remains unfiltered and Domain.UNCOVERED is absent."""
+    assert not hasattr(Domain, "UNCOVERED")
+    assert get_allowed_rag_categories(Domain.UNKNOWN) is None
 
 
 def test_tier1_r2_lpg_honest_refusal():
@@ -277,7 +283,7 @@ def test_tier1_r2_lpg_honest_refusal():
 # ------------------------------------------------------------------------------
 
 def test_tier1_r2_nsp_domain_classification():
-    """Verify National Scholarship Portal (NSP) queries classify into UNCOVERED domain."""
+    """Verify National Scholarship Portal (NSP) queries do not misroute to TAXATION."""
     queries = [
         "NSP scholarship status showing Defective by Institute",
         "National Scholarship Portal pre-matric scholarship verification",
@@ -286,30 +292,33 @@ def test_tier1_r2_nsp_domain_classification():
         "NSP scholarship institute nodal officer verification pending",
     ]
     for q in queries:
-        assert classify_domain(q) == UNCOVERED_DOMAIN, f"Query '{q}' must classify as {UNCOVERED_DOMAIN}"
+        domain = classify_domain(q)
+        assert isinstance(domain, Domain)
+        assert domain != Domain.TAXATION, f"Query '{q}' must not route to Domain.TAXATION"
 
 
 def test_tier1_r2_nsp_retriever_short_circuit(shared_retriever):
-    """Verify retriever short-circuits on NSP scholarship queries."""
+    """Verify retriever runs without uncovered_domain short-circuit and zero 139(9) tax bleed."""
     query = "NSP scholarship application status is showing Defective by Institute re-verification"
-    result = shared_retriever.search(query, domain=UNCOVERED_DOMAIN)
-    assert result.status == "uncovered_domain"
-    assert result.hits == ()
+    result = shared_retriever.search(query, domain=classify_domain(query))
+    assert result.status != "uncovered_domain"
+    assert "itr_defective_return_manual_01" not in [h.document.id for h in result.hits]
 
 
 def test_tier1_r2_nsp_zero_bleed_into_tax_139_9(shared_retriever):
     """Verify NSP query with token 'Defective' does NOT retrieve Section 139(9) Income Tax manual."""
     query = "NSP scholarship status is showing Defective by Institute"
-    result = shared_retriever.search(query, domain=UNCOVERED_DOMAIN)
+    result = shared_retriever.search(query, domain=classify_domain(query))
     hit_ids = [h.document.id for h in result.hits]
     assert "itr_defective_return_manual_01" not in hit_ids
-    assert not any("139(9)" in h.document.title for h in result.hits)
-    assert not any("income tax" in h.document.title.lower() for h in result.hits)
+    assert not any("139(9)" in s.title for h in result.hits for s in h.document.sources)
+    assert not any("income tax" in s.title.lower() for h in result.hits for s in h.document.sources)
 
 
 def test_tier1_r2_nsp_allowed_categories_empty():
-    """Verify allowed categories for NSP query is empty set."""
-    assert get_allowed_rag_categories(UNCOVERED_DOMAIN) == set()
+    """Verify Domain.UNKNOWN remains unfiltered and Domain.UNCOVERED is absent."""
+    assert not hasattr(Domain, "UNCOVERED")
+    assert get_allowed_rag_categories(Domain.UNKNOWN) is None
 
 
 def test_tier1_r2_nsp_honest_refusal():
@@ -440,7 +449,7 @@ def test_tier1_r4_prompt_contains_anti_fabrication_directive():
 
 
 def test_tier1_r4_prompt_contains_domain_relevance_gate():
-    """Verify _build_llm_prompt contains domain relevance refusal directive."""
+    """Verify _build_llm_prompt contains domain relevance CRAG sentinel gate."""
     ans = Answer(
         last_verified=date(2026, 10, 1),
         title="Official Procedure",
@@ -449,7 +458,7 @@ def test_tier1_r4_prompt_contains_domain_relevance_gate():
         steps=[Step(title="Step 1", detail="Detail 1")],
     )
     system, prompt, _ = _build_llm_prompt("Test question", ans, None)
-    assert "insufficient data in the verified civic knowledge base for this specific portal" in system.lower()
+    assert SEARCH_WEB_SENTINEL in system
 
 
 def test_tier1_r4_anti_fabrication_closed_establishment():
@@ -640,21 +649,23 @@ def test_tier1_r6_sub_procedure_bidirectional_discrimination(shared_retriever):
 # ==============================================================================
 
 def test_tier2_trouble_word_mca_does_not_bleed_to_civic():
-    """Corner case: Query with civic trouble words ('error', 'resubmission') on MCA routes to UNCOVERED."""
+    """Corner case: Query with civic trouble words ('error', 'resubmission') on MCA routes to CORPORATE, not GENERAL_CIVIC."""
     q = "Error occurred during resubmission on MCA portal under Rule 8A"
-    assert classify_domain(q) == UNCOVERED_DOMAIN
+    domain = classify_domain(q)
+    assert domain == Domain.CORPORATE
+    assert domain != Domain.GENERAL_CIVIC
 
 
 def test_tier2_trouble_word_lpg_does_not_bleed_to_banking():
-    """Corner case: Query with banking words ('payment failed', 'dormant account') on LPG routes to UNCOVERED."""
+    """Corner case: Query with banking words ('payment failed', 'dormant account') on LPG does not bleed to BANKING."""
     q = "LPG subsidy payment failed and pending in dormant account"
-    assert classify_domain(q) == UNCOVERED_DOMAIN
+    assert classify_domain(q) != Domain.BANKING
 
 
 def test_tier2_trouble_word_nsp_does_not_bleed_to_tax():
-    """Corner case: Query with tax trouble words ('rejected', 'defect notice') on NSP routes to UNCOVERED."""
+    """Corner case: Query with tax trouble words ('rejected', 'defect notice') on NSP does not bleed to TAXATION."""
     q = "Scholarship rejected due to institute defect notice on NSP"
-    assert classify_domain(q) == UNCOVERED_DOMAIN
+    assert classify_domain(q) != Domain.TAXATION
 
 
 def test_tier2_valid_transport_trouble_words_preserved():
@@ -807,13 +818,13 @@ def test_tier4_scene1_turn3_mca_spice_name_reservation_rule_8a(shared_retriever)
     q = "My company name reservation SPICe+ Part A form was rejected with resubmission remark 'Proposed name resembles an existing LLP under Rule 8A'. What is the exact turnaround time to resubmit before the fee lapses?"
     # Domain router must catch this
     domain = classify_domain(q)
-    assert domain == UNCOVERED_DOMAIN, f"Expected {UNCOVERED_DOMAIN}, got {domain}"
+    assert domain == Domain.CORPORATE, f"Expected {Domain.CORPORATE}, got {domain}"
+    assert domain not in (Domain.GENERAL_CIVIC, Domain.BANKING)
 
     res = shared_retriever.search(q, domain=domain)
-    assert res.status == "uncovered_domain"
-    assert res.hits == ()
-    assert not any("passbook" in h.document.title.lower() for h in res.hits)
-    assert not any("cheque" in h.document.title.lower() for h in res.hits)
+    assert res.status != "uncovered_domain"
+    assert not any("passbook" in s.title.lower() for h in res.hits for s in h.document.sources)
+    assert not any("cheque" in s.title.lower() for h in res.hits for s in h.document.sources)
 
 
 def test_tier4_scene2_turn1_nsp_defective_by_institute(shared_retriever):
@@ -823,13 +834,12 @@ def test_tier4_scene2_turn1_nsp_defective_by_institute(shared_retriever):
     """
     q = "NSP scholarship application status is showing 'Defective by Institute'. My college clerk says they cannot see any edit button on their login. What is the official SOP to enable re-verification?"
     domain = classify_domain(q)
-    assert domain == UNCOVERED_DOMAIN, f"Expected {UNCOVERED_DOMAIN}, got {domain}"
+    assert domain != Domain.TAXATION, f"NSP query must not bleed into TAXATION, got {domain}"
 
     res = shared_retriever.search(q, domain=domain)
-    assert res.status == "uncovered_domain"
-    assert res.hits == ()
-    assert not any("139(9)" in h.document.title for h in res.hits)
-    assert not any("income tax" in h.document.title.lower() for h in res.hits)
+    assert res.status != "uncovered_domain"
+    assert not any("139(9)" in s.title for h in res.hits for s in h.document.sources)
+    assert not any("income tax" in s.title.lower() for h in res.hits for s in h.document.sources)
 
 
 def test_tier4_scene2_turn2_ais_sft_mutual_fund_duplicate(shared_retriever):
@@ -856,12 +866,11 @@ def test_tier4_scene3_turn1_lpg_subsidy_mopng_grievance(shared_retriever):
     """
     q = "My LPG subsidy was stopped because my bank account became dormant. I reactivated the account and seeded it at the branch 2 months ago, but subsidy is still not coming. Which portal or officer do I escalate to under the MoPNG grievance matrix?"
     domain = classify_domain(q)
-    assert domain == UNCOVERED_DOMAIN, f"Expected {UNCOVERED_DOMAIN}, got {domain}"
+    assert domain not in (Domain.BANKING, Domain.GENERAL_CIVIC), f"LPG query must not bleed into {domain}"
 
     res = shared_retriever.search(q, domain=domain)
-    assert res.status == "uncovered_domain"
-    assert res.hits == ()
-    assert not any("epfigms" in h.document.title.lower() for h in res.hits)
+    assert res.status != "uncovered_domain"
+    assert not any("epfigms" in s.title.lower() for h in res.hits for s in h.document.sources)
 
 
 def test_tier4_scene3_turn2_post_office_mis_claim_no_nomination():

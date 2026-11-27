@@ -19,7 +19,7 @@ from typing import NamedTuple
 import httpx
 from bs4 import BeautifulSoup
 
-from backend.web_search.allowlist import is_allowlisted_url, get_site_constraint
+from backend.web_search.allowlist import DOMAIN_SITE_MAP, get_site_constraint, is_allowlisted_url
 from backend.modules.domain_router import route_query
 
 logger = logging.getLogger("web_search.searcher")
@@ -170,13 +170,16 @@ def _search_ddgs(query: str, domain: str = None, *, max_results: int = 3, timeou
     """
     Executes web search without stripping site: constraints.
     """
-    # 1. Fetch the exact single domain constraint based on the routed intent
-    site_constraint = get_site_constraint(domain) if domain else ""
+    # 1. Fetch the exact single domain constraint only for known mapped domains
+    normalized_domain = domain.lower() if isinstance(domain, str) else domain
+    site_constraint = get_site_constraint(normalized_domain) if normalized_domain in DOMAIN_SITE_MAP else ""
 
-    # 2. Prevent duplicate constraints if one was already injected
-    clean_query = re.sub(r"\bsite:[^\s]+", "", query).strip()
+    # 2. Strip parenthesized multi-site OR clauses and standalone site: tokens
+    clean_query = re.sub(r"\(\s*site:[^)]+\)", "", query)
+    clean_query = re.sub(r"\bsite:[^\s]+", "", clean_query)
+    clean_query = " ".join(clean_query.split())
 
-    # 3. Combine query with strict single-site constraint
+    # 3. Combine query with strict single-site constraint (or preserve allowlist query)
     constrained_query = f"{clean_query} {site_constraint}".strip() if site_constraint else query
     logger.info(f"Executing DDGS search: {constrained_query}")
 
@@ -191,6 +194,15 @@ def _search_ddgs(query: str, domain: str = None, *, max_results: int = 3, timeou
             raw_results = list(ddgs.text(constrained_query, max_results=max_results, region="in-en"))
             if raw_results:
                 for r in raw_results:
+                    url = r.get("href", "") or r.get("link", "")
+                    title = r.get("title", "")
+                    snippet = r.get("body", "") or r.get("snippet", "")
+                    if url and is_allowlisted_url(url):
+                        results.append(WebSearchResult(url=url, link=url, title=title, snippet=snippet))
+            if not results and site_constraint and site_constraint != "site:gov.in":
+                broad_query = f"{clean_query} site:gov.in".strip()
+                raw_results = list(ddgs.text(broad_query, max_results=max_results, region="in-en"))
+                for r in raw_results or []:
                     url = r.get("href", "") or r.get("link", "")
                     title = r.get("title", "")
                     snippet = r.get("body", "") or r.get("snippet", "")
@@ -233,7 +245,9 @@ def prioritize_deep_links(results: list[WebSearchResult]) -> list[WebSearchResul
 
 def _result_relevance_score(query: str, result: WebSearchResult) -> float:
     """Deterministically rank official results by topical overlap and procedural depth."""
-    query_terms = set(re.findall(r"\b[a-z0-9]{3,}\b", re.sub(r"\bsite:[^\s]+", "", query.lower())))
+    cleaned_q = re.sub(r"\(\s*site:[^)]+\)", "", query.lower())
+    cleaned_q = re.sub(r"\bsite:[^\s]+", "", cleaned_q)
+    query_terms = set(re.findall(r"\b[a-z0-9]{3,}\b", cleaned_q))
     text = f"{result.title} {result.snippet} {result.url}".lower()
     overlap = sum(1 for term in query_terms if term in text)
     procedural = sum(1 for term in ("apply", "procedure", "eligibility", "complaint", "faq", "guideline", "scheme", "service") if term in text)
@@ -242,10 +256,10 @@ def _result_relevance_score(query: str, result: WebSearchResult) -> float:
 
 def rank_results_for_query(query: str, results: list[WebSearchResult]) -> list[WebSearchResult]:
     deep_first = prioritize_deep_links(results)
-    original_order = {result: index for index, result in enumerate(deep_first)}
+    original_order = {id(result): index for index, result in enumerate(deep_first)}
     return sorted(
         deep_first,
-        key=lambda result: (-_result_relevance_score(query, result), original_order[result]),
+        key=lambda result: (-_result_relevance_score(query, result), original_order[id(result)]),
     )
 
 

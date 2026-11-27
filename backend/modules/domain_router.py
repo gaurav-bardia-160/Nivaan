@@ -31,7 +31,7 @@ DOMAIN_KEYWORDS = {
     Domain.PASSPORT: r"\b(passport|pcc|visa|frro)\b",
     Domain.PENSION: r"\b(epfo|pf|uan|pension|nps|esic|form 19|form 10c)\b",
     # ---> NEW REGEX FOR MCA / CORPORATE AFFAIRS <---
-    Domain.CORPORATE: r"\b(mca|iepf|spice\+|din|cin|inc-\d+|moa|aoa|nclt|ibbi|llp|company)\b",
+    Domain.CORPORATE: r"\b(mca|iepf|din|cin|inc-\d+|moa|aoa|nclt|ibbi|llp|company)\b|(?<![a-z0-9])spice\s*\+(?![a-z0-9])",
 }
 
 
@@ -77,7 +77,7 @@ _DOMAIN_PATTERNS: dict[Domain, tuple[re.Pattern[str], ...]] = {
         re.compile(r"\b(?:credit\s+card|debit\s+card|unsolicited\s+card|rbi|integrated\s+ombudsman|cms\.rbi|zero\s+liability|unauthorised\s+transaction)\b", re.IGNORECASE),
         re.compile(r"\b(?:cibil|experian|crif|credit\s+score|credit\s+report)\b", re.IGNORECASE),
         re.compile(r"\b(?:upi|atm\s+withdrawal|failed\s+upi|rbi\s+penalty|auto-debit|rtgs|neft|positive\s+pay)\b", re.IGNORECASE),
-        re.compile(r"\b(?:udgam|unclaimed\s+deposit|unclaimed\s+dividend|unclaimed\s+shares|iepf|iepfa|iepf-5|form\s+iepf-5|mca|mca21|pension\s+sahayak|pfrda|apy|nps\s+grievance|dfs|department\s+of\s+financial\s+services)\b", re.IGNORECASE),
+        re.compile(r"\b(?:udgam|unclaimed\s+deposit|unclaimed\s+dividend|unclaimed\s+shares|iepf|iepfa|iepf-5|form\s+iepf-5|pension\s+sahayak|pfrda|apy|nps\s+grievance|dfs|department\s+of\s+financial\s+services)\b", re.IGNORECASE),
         re.compile(r"\b(?:dicgc|deposit\s+insurance|5\s+lakh|sebi|scores|scores\s+2\.0|smart\s+odr|two-tier\s+review)\b", re.IGNORECASE),
         re.compile(r"\b(?:ifsca|gift\s+city|ancillary\s+services|ship\s+leasing|fiu-ind|fiu|fingate|finnet|str|ctr|aml)\b", re.IGNORECASE),
         re.compile(r"\b(?:sidbi|msme\s+grievance|chief\s+grievance\s+officer|jansamarth|mudra|pmegp|standup\s+india)\b", re.IGNORECASE),
@@ -93,7 +93,8 @@ _DOMAIN_PATTERNS: dict[Domain, tuple[re.Pattern[str], ...]] = {
         re.compile(r"\b(?:legal\s+notice|section\s+138|section\s+141|section\s+142|section\s+143a|cheque\s+bounce|cheque\s+dishonou?r|dishonou?r\s+of\s+cheque|negotiable\s+instruments|ni\s+act|demand\s+notice|return\s+memo|interim\s+compensation|nalsa|free\s+legal\s+aid|lok\s+adalat|legal\s+services\s+authority)\b", re.IGNORECASE),
     ),
     Domain.CORPORATE: (
-        re.compile(r"\b(?:mca|mca21|iepf|spice\+|din|cin|inc-\d+|moa|aoa|nclt|ibbi|llp|company)\b", re.IGNORECASE),
+        re.compile(r"\b(?:mca|mca21|iepf|din|cin|inc-\d+|moa|aoa|nclt|ibbi|llp|company)\b", re.IGNORECASE),
+        re.compile(r"(?<![a-z0-9])spice\s*\+(?![a-z0-9])", re.IGNORECASE),
         re.compile(r"\b(?:private\s+limited|incorporation|director\s+identification|annual\s+filing|mca\s+v3)\b", re.IGNORECASE),
     ),
     Domain.GENERAL_CIVIC: (
@@ -143,8 +144,14 @@ def classify_domain(query: str | None, document_text: str | None = None) -> Doma
         return Domain.UNKNOWN
 
 
+    is_explicit_lpg_mopng = bool(
+        re.search(r"\b(?:lpg|mopng|pahal|dbtl|indane|bharat\s*gas|hp\s*gas|cooking\s+gas|gas\s+cylinder)\b", combined, re.IGNORECASE)
+    )
+
     # Check domains in order of high specificity: Transport & Education before Identity/Tax/Banking
     for domain, patterns in _DOMAIN_PATTERNS.items():
+        if domain == Domain.BANKING and is_explicit_lpg_mopng:
+            continue
         for pat in patterns:
             if pat.search(combined):
                 return domain
@@ -157,6 +164,8 @@ def get_allowed_rag_categories(domain: Domain | str | None, query: str | None = 
     if domain == Domain.TRANSPORT:
         return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan", "banking"
     if domain == Domain.EDUCATION:
+        return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan", "banking"
+    if domain == Domain.CORPORATE:
         return {"civic"}  # Strictly eliminates "tax", "aadhaar", "pan", "banking"
     if query:
         q_lower = query.lower()
@@ -236,5 +245,4 @@ __all__ = [
     "get_allowed_rag_categories",
     "entry_matches_domain",
     "ENTRY_DOMAIN_MAP",
-    "_UNCOVERED_DOMAIN_PATTERNS",
 ]

@@ -347,7 +347,7 @@ def _extract_from_pdf(content_bytes: bytes) -> OCRExtractionResult:
 
     if not final_text:
         raise OCRExtractionError(
-            "No readable text was detected in this scanned PDF. Please upload a clearer scan or photo.",
+            "No selectable text or readable OCR content was detected in this scanned PDF. Please upload a clearer scan or photo.",
             status_code=415,
         )
 

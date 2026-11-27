@@ -10,6 +10,7 @@ from backend.main import app
 from backend.modules.guardrails import mask_text
 from backend.modules.memory import conversation_memory
 from backend.modules.ocr import (
+    MAX_UPLOAD_BYTES,
     OCRExtractionError,
     extract_text_from_upload,
     get_ocr_engine_name,
@@ -76,7 +77,7 @@ def test_extract_text_rejects_empty_and_oversize():
         extract_text_from_upload("empty.png", "image/png", b"")
     assert exc_info.value.status_code == 400
 
-    huge_bytes = b"x" * 11_000_000
+    huge_bytes = b"x" * (MAX_UPLOAD_BYTES + 1)
     with pytest.raises(OCRExtractionError) as exc_info:
         extract_text_from_upload("huge.png", "image/png", huge_bytes)
     assert exc_info.value.status_code == 413

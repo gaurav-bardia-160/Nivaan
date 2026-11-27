@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import re
 from collections.abc import Generator
 from typing import Any
@@ -34,8 +35,11 @@ from backend.modules.memory import conversation_memory
 from backend.modules.retrieval import find_entry, find_entry_by_id, find_entry_with_score
 from backend.modules.translate_voice import apply_language_policy
 from backend.modules.translator import extract_language_and_clean_query
+import backend.rag.runtime as _rag_runtime
 from backend.rag.runtime import retrieve_if_enabled
 from backend.schemas import Answer, AskRequest, Step, Warning
+
+_ORIG_RETRIEVE_IF_ENABLED = retrieve_if_enabled
 
 MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
 MIN_GROUNDING_CONFIDENCE_THRESHOLD = 0.35
@@ -373,6 +377,65 @@ def _verified_entry_covers_request(entry_id: str, text: str) -> bool:
     return True
 
 
+def _retrieve_rag(rag_query: str, *, domain: Domain | str | None = None, top_k: int = 3):
+    if retrieve_if_enabled is not _ORIG_RETRIEVE_IF_ENABLED:
+        return retrieve_if_enabled(rag_query, domain=domain, top_k=top_k)
+    return _rag_runtime.retrieve_if_enabled(rag_query, domain=domain, top_k=top_k)
+
+
+def _run_web_search_fallback(
+    safe_text: str,
+    web_search_text: str,
+    query_domain: Domain,
+    memory_turns: tuple,
+) -> tuple[Answer | None, bool]:
+    from backend.web_search.allowlist import build_allowlist_query
+    from backend.web_search.audit_log import log_pending_ingestion
+    from backend.web_search.fetcher import fetch_page_text
+    from backend.web_search.searcher import search_duckduckgo
+    from backend.web_search.synthesizer import synthesize_from_web, DISCRIMINATOR_FAILURE_PHRASE
+
+    web_query = build_allowlist_query(web_search_text, query_domain)
+    web_results = search_duckduckgo(web_query, domain=query_domain, max_results=3)
+    fallback_candidate = None
+    for res in web_results:
+        page_text = fetch_page_text(res.url)
+        if not page_text or len(page_text.strip()) < 30:
+            continue
+        discriminated_text = discriminate_content(safe_text, page_text)
+        if discriminated_text == DISCRIMINATOR_FAILURE_PHRASE:
+            continue
+        web_answer = synthesize_from_web(
+            safe_text,
+            discriminated_text,
+            res.url,
+            memory=memory_turns,
+        )
+        is_rejected = (
+            DISCRIMINATOR_FAILURE_PHRASE.lower() in web_answer.summary.lower()
+            or any(rp in web_answer.summary.lower() for rp in (
+                "does not contain", "could not find", "cannot find", "no specific instructions",
+                "not found", "does not provide", "not mention", "no information", "unable to find",
+                "failed to extract", "read more",
+            ))
+        )
+        if is_rejected:
+            if fallback_candidate is None:
+                fallback_candidate = web_answer
+            continue
+
+        log_pending_ingestion({
+            "query": safe_text,
+            "url": res.url,
+            "domain": query_domain.value if hasattr(query_domain, "value") else str(query_domain),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "snippet": res.snippet,
+        })
+        return web_answer, True
+
+    return fallback_candidate, False
+
+
 def _finalize_answer(answer: Answer, *, request: AskRequest, safe_question: str, target_lang: str, rl_arm: str | None = None) -> Answer:
     translated = apply_language_policy(answer, target_lang, query_text=safe_question)
     if rl_arm:
@@ -590,90 +653,23 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
             rl_arm=bandit_action.name,
         )
 
-    # 2. Pure Dynamic RAG Search Path: Retrieve official evidence across canonical 1,353 corpus documents
+    # 2. Pure Dynamic RAG Search Path with 7B Query Understanding + Live Web Fallback
+    from backend.web_search.confidence import compute_rag_confidence
+
     rag_query = search_text
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
         if effective_context_topic.lower() not in search_text.lower():
             rag_query = f"{effective_context_topic} {search_text}"
-    rag_result = retrieve_if_enabled(rag_query, domain=query_domain, top_k=bandit_action.top_k)
-    MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
+    rag_result = _retrieve_rag(rag_query, domain=query_domain, top_k=bandit_action.top_k)
+    rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
 
-    # Web Search Confidence Gate (Phase 1 - ephemeral, read-only to Qdrant)
-    if WEB_SEARCH_ENABLED:
-        from backend.web_search.confidence import compute_rag_confidence
-        rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
-        if rag_confidence < WEB_SEARCH_CONFIDENCE_THRESHOLD:
-            from backend.web_search.allowlist import build_allowlist_query
-            from backend.web_search.audit_log import log_pending_ingestion
-            from backend.web_search.fetcher import fetch_page_text, is_navigation_or_boilerplate_text
-            from backend.web_search.searcher import search_duckduckgo
-            from backend.web_search.synthesizer import synthesize_from_web, DISCRIMINATOR_FAILURE_PHRASE
-            web_query = build_allowlist_query(search_text, query_domain)
-            web_results = search_duckduckgo(web_query, domain=query_domain, max_results=3)
-            fallback_candidate = None
-            for res in web_results:
-                page_text = fetch_page_text(res.url)
-                if not page_text or len(page_text.strip()) < 30:
-                    continue
-                # 2. Filter noise via Discriminator
-                discriminated_text = discriminate_content(safe_text, page_text)
-                if discriminated_text == DISCRIMINATOR_FAILURE_PHRASE:
-                    continue
-                # 3. Synthesize clean answer
-                web_answer = synthesize_from_web(
-                    safe_text, discriminated_text, res.url,
-                    memory=memory_turns,
-                )
-                is_rejected = (
-                    DISCRIMINATOR_FAILURE_PHRASE.lower() in web_answer.summary.lower()
-                    or any(rp in web_answer.summary.lower() for rp in (
-                        "does not contain", "could not find", "cannot find", "no specific instructions",
-                        "not found", "does not provide", "not mention", "no information", "unable to find",
-                        "failed to extract", "read more",
-                    ))
-                )
-                if is_rejected:
-                    if fallback_candidate is None:
-                        fallback_candidate = web_answer
-                    continue
-
-                log_pending_ingestion({
-                    "query": safe_text,
-                    "url": res.url,
-                    "domain": query_domain.value if hasattr(query_domain, "value") else str(query_domain),
-                    "timestamp": datetime.now(timezone.utc).isoformat(),
-                    "snippet": res.snippet,
-                })
-                return _finalize_answer(
-                    web_answer,
-                    request=parsed_request,
-                    safe_question=masked_question.text or safe_text,
-                    target_lang=target_lang,
-                    rl_arm=bandit_action.name,
-                )
-
-            if fallback_candidate is not None:
-                return _finalize_answer(
-                    fallback_candidate,
-                    request=parsed_request,
-                    safe_question=masked_question.text or safe_text,
-                    target_lang=target_lang,
-                    rl_arm=bandit_action.name,
-                )
-
-    if rag_result is not None and rag_result.hits:
-        top_hit = rag_result.hits[0]
-        from backend.web_search.confidence import compute_rag_confidence
-        rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
-        # Strict Grounding Gate: If top chunk is below confidence threshold or lacks relevance alignment, refuse to guess
-        if top_hit.score < MIN_RRF_CONFIDENCE_THRESHOLD or rag_confidence < MIN_GROUNDING_CONFIDENCE_THRESHOLD:
-            log_unresolved_query(
-                safe_text,
-                reason="low_retrieval_confidence",
-                domain=supported_category(search_text) if 'supported_category' in globals() else None,
-                top_score=top_hit.score,
-                conversation_id=parsed_request.conversation_id,
-            )
+    llm_client = LocalLLMClient()
+    understood_query: str | None = None
+    if llm_client.config.enabled and (
+        rag_result is None or not rag_result.hits or rag_confidence < MIN_GROUNDING_CONFIDENCE_THRESHOLD
+    ):
+        understood_query, is_civic_query = llm_client.understand_query(safe_text, memory=memory_turns)
+        if not is_civic_query:
             return _finalize_answer(
                 not_found_answer(safe_text, masked_items=masked_items),
                 request=parsed_request,
@@ -681,33 +677,111 @@ def run(request: AskRequest | dict[str, Any]) -> Answer:
                 target_lang=target_lang,
                 rl_arm=bandit_action.name,
             )
-        rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
-        if rag_answer is not None:
-            if "loan" in safe_text.lower() and "loan" not in rag_answer.title.lower() and "rbi" not in rag_answer.title.lower():
-                if "mudra" in rag_answer.title.lower() or any("loan" in (c.title + " " + getattr(c, "excerpt", "")).lower() for c in rag_answer.citations):
-                    rag_answer = rag_answer.model_copy(update={"title": f"{rag_answer.title} (Loan Guidelines)"})
-            # Dynamically synthesize grounded summary, actionable steps, and documents needed using LLM
-            rag_answer = enhance_grounded_answer(
-                rag_answer,
-                question=safe_text,
-                memory=memory_turns,
-                temperature=bandit_action.temperature,
-            )
+        if understood_query:
+            understood_domain = classify_domain(understood_query) if query_domain == Domain.UNKNOWN else query_domain
+            retry_result = _retrieve_rag(understood_query, domain=understood_domain, top_k=bandit_action.top_k)
+            retry_conf = compute_rag_confidence(retry_result, query=understood_query)
+            if retry_result and retry_result.hits and (not rag_result or not rag_result.hits or retry_conf > rag_confidence):
+                rag_result = retry_result
+                rag_query = understood_query
+                rag_confidence = retry_conf
+                query_domain = understood_domain
+
+    rag_ready = bool(
+        rag_result is not None
+        and rag_result.hits
+        and rag_result.hits[0].score >= MIN_RRF_CONFIDENCE_THRESHOLD
+        and rag_confidence >= MIN_GROUNDING_CONFIDENCE_THRESHOLD
+    )
+    needs_web_search = False
+
+    # Preserve confidence-gate web fallback before deterministic RAG when LLM synthesis is inactive
+    if WEB_SEARCH_ENABLED and not llm_client.config.enabled and rag_confidence < WEB_SEARCH_CONFIDENCE_THRESHOLD:
+        web_answer, _accepted = _run_web_search_fallback(safe_text, understood_query or search_text, query_domain, memory_turns)
+        if web_answer is not None:
             return _finalize_answer(
-                rag_answer,
+                web_answer,
                 request=parsed_request,
                 safe_question=masked_question.text or safe_text,
                 target_lang=target_lang,
                 rl_arm=bandit_action.name,
             )
 
-    log_unresolved_query(
-        safe_text,
-        reason="no_verified_guide_or_rag_match",
-        domain=None,
-        top_score=0.0,
-        conversation_id=parsed_request.conversation_id,
-    )
+    if rag_ready:
+        rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
+        if rag_answer is not None:
+            if "loan" in safe_text.lower() and "loan" not in rag_answer.title.lower() and "rbi" not in rag_answer.title.lower():
+                if "mudra" in rag_answer.title.lower() or any("loan" in (c.title + " " + getattr(c, "excerpt", "")).lower() for c in rag_answer.citations):
+                    rag_answer = rag_answer.model_copy(update={"title": f"{rag_answer.title} (Loan Guidelines)"})
+
+            from backend.modules.explainer import clean_rag_text
+            full_passages = tuple(
+                clean_rag_text(h.document.text)[:1400]
+                for h in (rag_result.hits[:3] if rag_result and rag_result.hits else ())
+                if getattr(getattr(h, "document", None), "text", None)
+            )
+            if llm_client.config.enabled and not (os.getenv("PYTEST_CURRENT_TEST") and not os.getenv("TEST_LIVE_LLM")):
+                rewrite = llm_client.synthesize_grounded_answer(
+                    question=safe_text,
+                    answer=rag_answer,
+                    memory=memory_turns,
+                    temperature=bandit_action.temperature,
+                    rag_passages=full_passages,
+                )
+                if rewrite and rewrite.title == "__SEARCH_WEB__":
+                    needs_web_search = True
+                else:
+                    rag_answer = apply_rewrite_to_answer(rag_answer, rewrite, safe_text)
+                    return _finalize_answer(
+                        rag_answer,
+                        request=parsed_request,
+                        safe_question=masked_question.text or safe_text,
+                        target_lang=target_lang,
+                        rl_arm=bandit_action.name,
+                    )
+            else:
+                rag_answer = enhance_grounded_answer(
+                    rag_answer,
+                    question=safe_text,
+                    memory=memory_turns,
+                    temperature=bandit_action.temperature,
+                )
+                return _finalize_answer(
+                    rag_answer,
+                    request=parsed_request,
+                    safe_question=masked_question.text or safe_text,
+                    target_lang=target_lang,
+                    rl_arm=bandit_action.name,
+                )
+
+    if WEB_SEARCH_ENABLED and (not rag_ready or needs_web_search):
+        web_answer, _accepted = _run_web_search_fallback(safe_text, understood_query or search_text, query_domain, memory_turns)
+        if web_answer is not None:
+            return _finalize_answer(
+                web_answer,
+                request=parsed_request,
+                safe_question=masked_question.text or safe_text,
+                target_lang=target_lang,
+                rl_arm=bandit_action.name,
+            )
+
+    if rag_result is not None and rag_result.hits:
+        top_hit = rag_result.hits[0]
+        log_unresolved_query(
+            safe_text,
+            reason="low_retrieval_confidence",
+            domain=None,
+            top_score=top_hit.score,
+            conversation_id=parsed_request.conversation_id,
+        )
+    else:
+        log_unresolved_query(
+            safe_text,
+            reason="no_verified_guide_or_rag_match",
+            domain=None,
+            top_score=0.0,
+            conversation_id=parsed_request.conversation_id,
+        )
     return _finalize_answer(
         not_found_answer(safe_text, masked_items=masked_items),
         request=parsed_request,
@@ -977,189 +1051,181 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
             yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
             return
 
-    # 3. Dynamic RAG Search Path
+    # 3. Dynamic RAG Search Path with 7B Query Understanding + Live Web Fallback
+    from backend.web_search.confidence import compute_rag_confidence
+
     rag_query = search_text
     if effective_context_topic and (_is_follow_up_query(search_text) or _has_anaphoric_reference(search_text)):
         if effective_context_topic.lower() not in search_text.lower():
             rag_query = f"{effective_context_topic} {search_text}"
-    rag_result = retrieve_if_enabled(rag_query, domain=query_domain, top_k=bandit_action.top_k)
-    MIN_RRF_CONFIDENCE_THRESHOLD = 0.010
+    rag_result = _retrieve_rag(rag_query, domain=query_domain, top_k=bandit_action.top_k)
+    rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
 
-    # Web Search Confidence Gate for streaming (Phase 1 - ephemeral, read-only to Qdrant)
-    if WEB_SEARCH_ENABLED:
-        from backend.web_search.confidence import compute_rag_confidence
-        rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
-        if rag_confidence < WEB_SEARCH_CONFIDENCE_THRESHOLD:
-            yield {"event": "status", "data": {"message": "Searching official government portals online..."}}
-            from backend.web_search.allowlist import build_allowlist_query
-            from backend.web_search.audit_log import log_pending_ingestion
-            from backend.web_search.fetcher import fetch_page_text, is_navigation_or_boilerplate_text
-            from backend.web_search.searcher import search_duckduckgo
-            from backend.web_search.synthesizer import synthesize_from_web, DISCRIMINATOR_FAILURE_PHRASE
-            web_query = build_allowlist_query(search_text, query_domain)
-            web_results = search_duckduckgo(web_query, domain=query_domain, max_results=3)
-            fallback_candidate = None
-            for res in web_results:
-                page_text = fetch_page_text(res.url)
-                if not page_text or len(page_text.strip()) < 30:
-                    continue
-                # 2. Filter noise via Discriminator
-                discriminated_text = discriminate_content(safe_text, page_text)
-                if discriminated_text == DISCRIMINATOR_FAILURE_PHRASE:
-                    continue
-                # 3. Synthesize clean answer
-                web_answer = synthesize_from_web(
-                    safe_text, discriminated_text, res.url,
-                    memory=memory_turns,
+    client = LocalLLMClient()
+    understood_query: str | None = None
+    if client.config.enabled and (
+        rag_result is None or not rag_result.hits or rag_confidence < MIN_GROUNDING_CONFIDENCE_THRESHOLD
+    ):
+        yield {"event": "status", "data": {"message": "Understanding your question & refining search..."}}
+        understood_query, is_civic_query = client.understand_query(safe_text, memory=memory_turns)
+        if not is_civic_query:
+            not_found = not_found_answer(safe_text, masked_items=masked_items)
+            yield {
+                "event": "meta",
+                "data": {
+                    "title": not_found.title,
+                    "confidence": not_found.confidence,
+                    "source_url": str(not_found.source_url),
+                    "citations": [],
+                    "masked_items": [m.model_dump(mode="json") for m in masked_items],
+                    "rl_arm": bandit_action.name,
+                },
+            }
+            words = not_found.summary.split(" ")
+            for i, w in enumerate(words):
+                yield {"event": "token", "data": {"delta": w + (" " if i < len(words) - 1 else "")}}
+            final_ans = _finalize_answer(
+                not_found,
+                request=parsed_request,
+                safe_question=masked_question.text or safe_text,
+                target_lang=target_lang,
+                rl_arm=bandit_action.name,
+            )
+            yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
+            return
+        if understood_query:
+            understood_domain = classify_domain(understood_query) if query_domain == Domain.UNKNOWN else query_domain
+            retry_result = _retrieve_rag(understood_query, domain=understood_domain, top_k=bandit_action.top_k)
+            retry_conf = compute_rag_confidence(retry_result, query=understood_query)
+            if retry_result and retry_result.hits and (not rag_result or not rag_result.hits or retry_conf > rag_confidence):
+                rag_result = retry_result
+                rag_query = understood_query
+                rag_confidence = retry_conf
+                query_domain = understood_domain
+
+    rag_ready = bool(
+        rag_result is not None
+        and rag_result.hits
+        and rag_result.hits[0].score >= MIN_RRF_CONFIDENCE_THRESHOLD
+        and rag_confidence >= MIN_GROUNDING_CONFIDENCE_THRESHOLD
+    )
+    needs_web_search = False
+
+    def _stream_web_answer() -> Generator[dict[str, object], None, bool]:
+        yield {"event": "status", "data": {"message": "Searching official government portals online..."}}
+        web_answer, _accepted = _run_web_search_fallback(
+            safe_text,
+            understood_query or search_text,
+            query_domain,
+            memory_turns,
+        )
+        if web_answer is None:
+            return False
+        yield {
+            "event": "meta",
+            "data": {
+                "title": web_answer.title,
+                "confidence": web_answer.confidence,
+                "source_url": str(web_answer.source_url) if web_answer.source_url else "",
+                "citations": [c.model_dump(mode="json") for c in web_answer.citations],
+                "masked_items": [m.model_dump(mode="json") for m in masked_items],
+                "rl_arm": bandit_action.name,
+            },
+        }
+        yield {"event": "status", "data": {"message": "Synthesizing answer from official portal..."}}
+        words = web_answer.summary.split(" ")
+        for i, w in enumerate(words):
+            yield {"event": "token", "data": {"delta": w + (" " if i < len(words) - 1 else "")}}
+        final_ans = _finalize_answer(
+            web_answer,
+            request=parsed_request,
+            safe_question=masked_question.text or safe_text,
+            target_lang=target_lang,
+            rl_arm=bandit_action.name,
+        )
+        yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
+        return True
+
+    if WEB_SEARCH_ENABLED and not client.config.enabled and rag_confidence < WEB_SEARCH_CONFIDENCE_THRESHOLD:
+        handled = yield from _stream_web_answer()
+        if handled:
+            return
+
+    if rag_ready:
+        rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
+        if rag_answer is not None:
+            if "loan" in safe_text.lower() and "loan" not in rag_answer.title.lower() and "rbi" not in rag_answer.title.lower():
+                if "mudra" in rag_answer.title.lower() or any("loan" in (c.title + " " + getattr(c, "excerpt", "")).lower() for c in rag_answer.citations):
+                    rag_answer = rag_answer.model_copy(update={"title": f"{rag_answer.title} (Loan Guidelines)"})
+
+            meta_payload = {
+                "event": "meta",
+                "data": {
+                    "title": rag_answer.title,
+                    "confidence": rag_answer.confidence,
+                    "source_url": str(rag_answer.source_url),
+                    "citations": [c.model_dump(mode="json") for c in rag_answer.citations],
+                    "masked_items": [m.model_dump(mode="json") for m in masked_items],
+                    "rl_arm": bandit_action.name,
+                },
+            }
+
+            if client.config.enabled:
+                from backend.modules.explainer import clean_rag_text
+                full_passages = tuple(
+                    clean_rag_text(h.document.text)[:1400]
+                    for h in (rag_result.hits[:3] if rag_result and rag_result.hits else ())
+                    if getattr(getattr(h, "document", None), "text", None)
                 )
-                is_rejected = (
-                    DISCRIMINATOR_FAILURE_PHRASE.lower() in web_answer.summary.lower()
-                    or any(rp in web_answer.summary.lower() for rp in (
-                        "does not contain", "could not find", "cannot find", "no specific instructions",
-                        "not found", "does not provide", "not mention", "no information", "unable to find",
-                        "failed to extract", "read more",
-                    ))
-                )
-                if is_rejected:
-                    if fallback_candidate is None:
-                        fallback_candidate = web_answer
-                    continue
-
-                log_pending_ingestion({
-                    "query": safe_text,
-                    "url": res.url,
-                    "domain": query_domain.value if hasattr(query_domain, "value") else str(query_domain),
-                    "timestamp": datetime.now(timezone.utc).isoformat(),
-                    "snippet": res.snippet,
-                })
-                yield {
-                    "event": "meta",
-                    "data": {
-                        "title": web_answer.title,
-                        "confidence": web_answer.confidence,
-                        "source_url": str(web_answer.source_url) if web_answer.source_url else "",
-                        "citations": [c.model_dump(mode="json") for c in web_answer.citations],
-                        "masked_items": [m.model_dump(mode="json") for m in masked_items],
-                        "rl_arm": bandit_action.name,
-                    },
-                }
-                yield {"event": "status", "data": {"message": "Synthesizing answer from official portal..."}}
-                # Stream the summary tokens word-by-word (no LLM re-synthesis — already done in synthesize_from_web)
-                words = web_answer.summary.split(" ")
-                for i, w in enumerate(words):
-                    yield {"event": "token", "data": {"delta": w + (" " if i < len(words) - 1 else "")}}
-                final_ans = _finalize_answer(
-                    web_answer,
-                    request=parsed_request,
-                    safe_question=masked_question.text or safe_text,
-                    target_lang=target_lang,
-                    rl_arm=bandit_action.name,
-                )
-                yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
-                return
-
-            if fallback_candidate is not None:
-                yield {
-                    "event": "meta",
-                    "data": {
-                        "title": fallback_candidate.title,
-                        "confidence": fallback_candidate.confidence,
-                        "source_url": str(fallback_candidate.source_url) if fallback_candidate.source_url else "",
-                        "citations": [c.model_dump(mode="json") for c in fallback_candidate.citations],
-                        "masked_items": [m.model_dump(mode="json") for m in masked_items],
-                        "rl_arm": bandit_action.name,
-                    },
-                }
-                words = fallback_candidate.summary.split(" ")
-                for i, w in enumerate(words):
-                    yield {"event": "token", "data": {"delta": w + (" " if i < len(words) - 1 else "")}}
-                final_ans = _finalize_answer(
-                    fallback_candidate,
-                    request=parsed_request,
-                    safe_question=masked_question.text or safe_text,
-                    target_lang=target_lang,
-                    rl_arm=bandit_action.name,
-                )
-                yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
-                return
-
-    if rag_result is not None and rag_result.hits:
-        top_hit = rag_result.hits[0]
-        from backend.web_search.confidence import compute_rag_confidence
-        rag_confidence = compute_rag_confidence(rag_result, query=rag_query)
-        if top_hit.score >= MIN_RRF_CONFIDENCE_THRESHOLD and rag_confidence >= MIN_GROUNDING_CONFIDENCE_THRESHOLD:
-            rag_answer = explain_rag_result(rag_result, safe_text, masked_items=masked_items)
-            if rag_answer is not None:
-                if "loan" in safe_text.lower() and "loan" not in rag_answer.title.lower() and "rbi" not in rag_answer.title.lower():
-                    if "mudra" in rag_answer.title.lower() or any("loan" in (c.title + " " + getattr(c, "excerpt", "")).lower() for c in rag_answer.citations):
-                        rag_answer = rag_answer.model_copy(update={"title": f"{rag_answer.title} (Loan Guidelines)"})
-                if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):
-                    verified_warnings = [
-                        w if isinstance(w, Warning) else Warning(**w)
-                        for w in entry.get("warnings", [])
-                    ]
-                    verified_steps = [
-                        s if isinstance(s, Step) else Step(**s)
-                        for s in entry.get("steps", [])
-                    ]
-                    entry_title_lower = entry.get("title", "").lower()
-                    clean_citations = [
-                        c for c in rag_answer.citations
-                        if not any(conflict in c.title.lower() for conflict in (
-                            ("139(9)", "defective") if "bank" in entry_title_lower else ()
-                        ))
-                    ]
-                    score_conf = compute_rag_confidence(rag_result, query=rag_query)
-                    dynamic_conf = "high" if score_conf >= 0.75 else ("medium" if score_conf >= 0.35 else "low")
-                    rag_answer = rag_answer.model_copy(update={
-                        "entry_id": entry.get("id"),
-                        "title": entry.get("title", rag_answer.title),
-                        "summary": entry.get("summary") or rag_answer.summary,
-                        "steps": verified_steps if verified_steps else rag_answer.steps,
-                        "confidence": "medium" if entry.get("status") == "verified" else dynamic_conf,
-                        "source_url": entry.get("source", {}).get("url") or rag_answer.source_url,
-                        "documents_needed": entry.get("documents_needed") or rag_answer.documents_needed,
-                        "warnings": verified_warnings if verified_warnings else rag_answer.warnings,
-                        "citations": clean_citations if clean_citations else rag_answer.citations,
-                    })
-
-                yield {
-                    "event": "meta",
-                    "data": {
-                        "title": rag_answer.title,
-                        "confidence": rag_answer.confidence,
-                        "source_url": str(rag_answer.source_url),
-                        "citations": [c.model_dump(mode="json") for c in rag_answer.citations],
-                        "masked_items": [m.model_dump(mode="json") for m in masked_items],
-                        "rl_arm": bandit_action.name,
-                    },
-                }
-                yield {"event": "status", "data": {"message": "Formulating verified guidance..."}}
-
-                client = LocalLLMClient()
+                yield {"event": "status", "data": {"message": "Analyzing retrieved guidelines with 7B AI..."}}
                 final_rewrite = None
                 token_count = 0
-                if client.config.enabled:
-                    for kind, payload in client.stream_grounded_answer(
-                        question=safe_text,
-                        answer=rag_answer,
-                        memory=memory_turns,
-                        temperature=bandit_action.temperature,
-                    ):
-                        if kind == "token" and payload:
-                            token_count += 1
-                            yield {"event": "token", "data": {"delta": str(payload)}}
-                        elif kind == "final":
-                            final_rewrite = payload
+                meta_emitted = False
+                for kind, payload in client.stream_grounded_answer(
+                    question=safe_text,
+                    answer=rag_answer,
+                    memory=memory_turns,
+                    temperature=bandit_action.temperature,
+                    rag_passages=full_passages,
+                ):
+                    if kind == "needs_web_search":
+                        needs_web_search = True
+                        break
+                    elif kind == "token" and payload:
+                        if not meta_emitted:
+                            yield meta_payload
+                            meta_emitted = True
+                        token_count += 1
+                        yield {"event": "token", "data": {"delta": str(payload)}}
+                    elif kind == "final":
+                        final_rewrite = payload
 
-                if token_count == 0:
-                    words = rag_answer.summary.split(" ")
-                    for i, w in enumerate(words):
-                        yield {"event": "token", "data": {"delta": w + (" " if i < len(words) - 1 else "")}}
+                if not needs_web_search:
+                    if not meta_emitted:
+                        yield meta_payload
+                    if token_count == 0:
+                        words = rag_answer.summary.split(" ")
+                        for i, w in enumerate(words):
+                            yield {"event": "token", "data": {"delta": w + (" " if i < len(words) - 1 else "")}}
 
-                enhanced = apply_rewrite_to_answer(rag_answer, final_rewrite, safe_text)
+                    enhanced = apply_rewrite_to_answer(rag_answer, final_rewrite, safe_text)
+                    final_ans = _finalize_answer(
+                        enhanced,
+                        request=parsed_request,
+                        safe_question=masked_question.text or safe_text,
+                        target_lang=target_lang,
+                        rl_arm=bandit_action.name,
+                    )
+                    yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
+                    return
+            else:
+                yield meta_payload
+                yield {"event": "status", "data": {"message": "Formulating verified guidance..."}}
+                words = rag_answer.summary.split(" ")
+                for i, w in enumerate(words):
+                    yield {"event": "token", "data": {"delta": w + (" " if i < len(words) - 1 else "")}}
                 final_ans = _finalize_answer(
-                    enhanced,
+                    rag_answer,
                     request=parsed_request,
                     safe_question=masked_question.text or safe_text,
                     target_lang=target_lang,
@@ -1167,6 +1233,11 @@ def run_stream(request: AskRequest | dict[str, Any]) -> Generator[dict[str, obje
                 )
                 yield {"event": "done", "data": {"answer": final_ans.model_dump(mode="json")}}
                 return
+
+    if WEB_SEARCH_ENABLED and (not rag_ready or needs_web_search):
+        handled = yield from _stream_web_answer()
+        if handled:
+            return
 
     # 4. Verified Entry Fallback
     if entry is not None and _verified_entry_covers_request(entry.get("id", ""), entry_coverage_text):

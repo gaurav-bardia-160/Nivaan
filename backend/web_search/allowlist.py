@@ -112,12 +112,11 @@ def get_site_constraint(domain: Domain | str | None) -> str:
 
 
 def build_allowlist_query(user_query: str, domain: Domain | None = None) -> str:
-    """Build a search query with the targeted official civic domain constraint."""
+    """Build a search query with the universal official civic domain constraint."""
     clean_query = extract_search_keywords(user_query)
     clean_query = re.sub(r"[?!.,'\"]+", " ", clean_query)
     clean_query = " ".join(clean_query.split())
-    site_constraint = get_site_constraint(domain) if domain else _UNIVERSAL_SITE_SUFFIX
-    return f"{clean_query} {site_constraint}".strip()
+    return f"{clean_query} {_UNIVERSAL_SITE_SUFFIX}".strip()
 
 
 def is_allowlisted_url(url: str) -> bool:

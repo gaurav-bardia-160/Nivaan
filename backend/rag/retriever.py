@@ -176,6 +176,18 @@ class RagRetriever:
         }
         query_entities = {t for t in q_terms if t in _PRIMARY_DOMAIN_ENTITIES}
 
+        is_epf_query = bool(re.search(r"\b(?:epfo?|epfigms|uan|provident\s+fund|joint\s+declaration|form\s+19|form\s+10c|form\s+31)\b", clean_query.lower()))
+        is_iepf_query = bool(re.search(r"\b(?:iepf|iepfa|unclaimed\s+(?:shares?|dividends?)|unpaid\s+dividends?|iepf-?5[a-z]?|entitlement\s+letter)\b", clean_query.lower()))
+        is_lpg_mopng_query = bool(
+            re.search(r"\b(?:lpg|mopng|pahal|dbtl|indane|bharat\s*gas|hp\s*gas|cooking\s+gas|gas\s+cylinder)\b", clean_query.lower())
+        ) and not is_epf_query and not is_iepf_query
+        is_corporate_mca_query = bool(
+            re.search(r"(?:\bspice\s*\+|\bspice\s+plus\b|\binc-\d+|\brule\s*8a\b|\bmca\b|\bmca21\b|\bllp\b|\bdir-\d+\b|\broc\b)", clean_query.lower())
+        ) and not is_epf_query and not is_iepf_query
+        is_nsp_query = bool(
+            re.search(r"\b(?:nsp|national\s+scholarship|scholarship|scholarships)\b", clean_query.lower())
+        ) and not is_epf_query and not re.search(r"\b(?:139\(9\)|income\s+tax|itr|defective\s+return)\b", clean_query.lower())
+
         fused: list[RetrievalHit] = []
         seen_doc_ids: set[str] = set()
         for document_id, signals in candidates.items():
@@ -191,17 +203,28 @@ class RagRetriever:
                 for s in document.sources
             ):
                 continue
+            source_titles = " ".join(source.title for source in document.sources)
+            lowered_doc = (document.text + " " + " ".join(document.tags)).lower()
+            routing_text = f"{lowered_doc} {source_titles.lower()}"
+
+            # Cross-domain bleed suppression for explicit non-EPF / non-Tax portals
+            if is_lpg_mopng_query and not re.search(r"\b(?:lpg|mopng|pahal|dbtl|gas|cylinder|ujjwala)\b", routing_text):
+                if re.search(r"\b(?:epfo?|epfigms|uan|provident\s+fund|eci|ngrs|voter\s+mitra|booth\s+level|sidbi|iepf|iepfa|digital\s+gujarat)\b", routing_text):
+                    continue
+            if is_corporate_mca_query and not re.search(r"(?:\bmca\b|\bmca21\b|\bspice\s*\+|\binc-\d+|\bllp\b|\bcompany\s+incorporation\b)", routing_text):
+                if re.search(r"\b(?:epfo?|epfigms|uan|provident\s+fund|passbook|cheque\s+leaf|form\s+19|form\s+31|e-shram|joint\s+declaration)\b", routing_text):
+                    continue
+            if is_nsp_query and not re.search(r"\b(?:nsp|national\s+scholarship)\b", routing_text):
+                if re.search(r"(?:139\(9\)|\bdefective\s+return\b|\bincome\s+tax\b|\be-?way\s+bill\b|\bepfo?\b|\bepfigms\b|\buan\b|\bprovident\s+fund\b|\bdigital\s+gujarat\b)", routing_text):
+                    continue
+
             doc_tags = set(document.tags)
             metadata_overlap = len(q_terms & doc_tags) / max(len(q_terms), 1)
             signals["tag_overlap"] = metadata_overlap
             score = signals.get("lexical_rrf", 0.0) + signals.get("vector_rrf", 0.0) + min(metadata_overlap, 1.0) * 0.01
 
-            source_titles = " ".join(source.title for source in document.sources)
-            lowered_doc = (document.text + " " + " ".join(document.tags)).lower()
-            routing_text = f"{lowered_doc} {source_titles.lower()}"
-
             # Deprioritize navigation and support-only pages for substantive procedure questions.
-            if any(term in routing_text for term in ("contact us", "login page", "portal home", "home page")):
+            if any(term in routing_text for term in ("contact us", "login page", "portal home", "home page", "official: home", "application mca services")):
                 if not any(term in clean_query.lower() for term in ("contact", "phone", "email", "helpline", "login")):
                     score -= 0.18
                     signals["navigation_page_penalty"] = -0.18
@@ -261,8 +284,15 @@ class RagRetriever:
                 score -= 0.30
                 signals["synthetic_penalty"] = -0.30
 
-            # Troubleshooting boost: strictly scoped to the query's matching category
-            if is_trouble_query and (allowed_categories is None or document.category in allowed_categories) and any(tag in doc_tags for tag in ("troubleshooting", "escalation", "sop", "manual")):
+            # Troubleshooting boost: strictly scoped to the query's matching category and non-bleeding target
+            allow_trouble_boost = True
+            if is_lpg_mopng_query and not re.search(r"\b(?:lpg|mopng|pahal|dbtl|gas|cylinder|ujjwala)\b", routing_text):
+                allow_trouble_boost = False
+            elif is_corporate_mca_query and not re.search(r"(?:\bmca\b|\bmca21\b|\bspice\s*\+|\binc-\d+|\bllp\b|\bcompany\b)", routing_text):
+                allow_trouble_boost = False
+            elif is_nsp_query and not re.search(r"\b(?:nsp|national\s+scholarship)\b", routing_text):
+                allow_trouble_boost = False
+            if allow_trouble_boost and is_trouble_query and (allowed_categories is None or document.category in allowed_categories) and any(tag in doc_tags for tag in ("troubleshooting", "escalation", "sop", "manual")):
                 score += 0.05
                 signals["troubleshooting_boost"] = 0.05
 
@@ -306,7 +336,7 @@ class RagRetriever:
                 },
                 {
                     "name": "credit_card_dispute",
-                    "match": ("credit card", "card fee", "card charges", "unsolicited card", "card dispute", "arbitrary limit"),
+                    "match": ("credit card", "card fee", "card charges", "unsolicited card", "unsolicited cards", "card dispute", "arbitrary limit"),
                     "boost_terms": ("card conduct", "unsolicited cards", "arbitrary limit", "cms.rbi.org.in", "integrated ombudsman"),
                     "conflicts": ("foreclosure charges and prepayment penalties on home loans", "housing finance", "tax", "itr"),
                 },
@@ -330,13 +360,13 @@ class RagRetriever:
                 },
                 {
                     "name": "aadhaar_cross_limit",
-                    "match": ("cross limit", "limit exhausted", "exception handling", "gazette"),
+                    "match": ("cross limit", "cross-limit", "limit exhausted", "exception handling", "gazette"),
                     "boost_terms": ("cross limit", "exception handling", "demographic exception"),
                     "conflicts": ("pvc", "srn not generated", "auto-reversal"),
                 },
                 {
                     "name": "iepf_unclaimed_shares",
-                    "match": ("iepf", "iepfa", "unclaimed share", "unclaimed dividend", "iepf-5", "form iepf-5", "entitlement letter", "rta", "folio number", "unpaid dividend"),
+                    "match": ("iepf", "iepfa", "unclaimed share", "unclaimed shares", "unclaimed dividend", "unclaimed dividends", "iepf-5", "form iepf-5", "entitlement letter", "rta", "folio number", "unpaid dividend", "unpaid dividends"),
                     "boost_terms": ("iepf", "iepfa", "investor education and protection fund", "form iepf-5", "entitlement letter", "unclaimed dividend", "unclaimed shares", "company nodal officer", "verification report", "claimant"),
                     "conflicts": ("epfo", "epf", "uan", "provident fund", "e-shram", "utiitsl", "pan card", "form 19", "form 10c", "member profile", "passbook", "joint declaration"),
                 },
@@ -371,7 +401,7 @@ class RagRetriever:
 
             has_symptom_boost = False
             for sc in _SYMPTOM_CLUSTERS:
-                if any(m in lowered_q for m in sc["match"]):
+                if any(re.search(rf"(?<!\w){re.escape(m)}(?!\w)", lowered_q) for m in sc["match"]):
                     has_boost = any(bt in lowered_doc for bt in sc["boost_terms"])
                     if has_boost and not has_symptom_boost:
                         score += 0.08

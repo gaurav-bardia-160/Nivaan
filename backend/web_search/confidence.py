@@ -34,6 +34,82 @@ _CIVIC_STOPWORDS = {
     "her", "its", "you", "they", "i", "we", "my", "me", "us",
 }
 
+_SHORT_STOPWORDS = {
+    "is", "it", "in", "on", "to", "of", "at", "by", "or", "as", "be", "do",
+    "if", "so", "up", "no", "an", "am", "he", "we", "me", "my", "us",
+}
+
+_INDIC_STOPWORDS = {
+    # Hindi
+    "क्या", "है", "हैं", "में", "का", "की", "के", "को", "से", "पर", "कैसे",
+    "करें", "करना", "करो", "करूं", "करूँ", "नहीं", "नही",
+    "होता", "होती", "बताएं", "कब", "कहाँ", "कौन", "क्यों",
+    "कितना", "कितनी", "ने", "या", "और", "एक", "यह", "वह", "मुझे", "मेरा",
+    "मेरी", "आपका", "लिए", "हो", "जाता", "जाती", "गया", "गई",
+    "दो", "दें", "दे", "दिया", "लो", "लें", "लिया", "सकता", "सकती", "सकते",
+    "रहा", "रही", "रहे", "चाहिए", "बारे", "कुछ", "सब", "तुम", "तुम्हें",
+    "हम", "हमें", "हमारा", "इस", "उस", "अपना", "अपनी", "अपने",
+    # Gujarati
+    "શું", "છે", "માં", "ના", "ની", "નું", "ને", "થી", "પર", "કેવી", "રીતે",
+    "કરવું", "કરો", "કરું", "નહીં", "નહી",
+    "માટે", "મને", "મારું", "અને", "એક", "આ", "તે",
+    "ક્યારે", "ક્યાં", "કોણ", "શા", "થાય", "ગયું",
+}
+
+# Indic tokens that must match exact word or explicit card compound (prevents "પાન" matching "પાનું")
+_INDIC_EXACT_CIVIC_CONCEPTS: tuple[tuple[tuple[str, ...], tuple[str, ...]], ...] = (
+    (("पैन", "पॅन", "પૅન", "પાન"), ("pan", "pancard", "epan")),
+    (("पता", "पते"), ("address",)),
+)
+
+# Maps Indic civic root prefixes/tokens to canonical English corpus tokens
+_INDIC_CIVIC_CONCEPTS: tuple[tuple[tuple[str, ...], tuple[str, ...]], ...] = (
+    (("आधार", "આધાર"), ("aadhaar", "aadhar", "uidai")),
+    (("पासपोर्ट", "પાસપોર્ટ"), ("passport", "psk")),
+    (("સરનામ",), ("address",)),
+    (("बदल", "अपडेट", "બદલ", "અપડેટ"), ("update", "change", "correction")),
+    (("कार्ड", "કાર્ડ"), ("card",)),
+    (("डाउनलोड", "ડાઉનલોડ"), ("download",)),
+    (("आयकर", "ટેક્સ", "ઇન્કમ"), ("tax", "income", "itr")),
+    (("रिटर्न", "રિટર્ન"), ("return", "returns", "itr")),
+    (("दाखिल", "फाइल", "ફાઇલ", "દાખલ"), ("file", "filing", "filed", "submit")),
+    (("बैंक", "खात", "બેંક", "ખાત"), ("bank", "account")),
+    (("वोटर", "मतदाता", "મતદાર"), ("voter", "epic")),
+    (("ड्राइविंग", "लाइसेंस", "ડ્રાઇવિંગ", "લાઇસન્સ"), ("driving", "license", "licence")),
+    (("राशन", "રેશન"), ("ration",)),
+    (("पेंशन", "પેન્શન"), ("pension",)),
+    (("पीएफ", "ईपीएफ", "ઇપીએફ"), ("epf", "epfo", "pf")),
+    (("किसान", "કિસાન"), ("kisan", "pmkisan")),
+    (("शिकायत", "ફરિયાદ"), ("grievance", "complaint")),
+    (("रिफंड", "રિફંડ"), ("refund",)),
+    (("आवेदन", "અરજી"), ("apply", "application")),
+    (("लिंक", "લિંક"), ("link", "linking")),
+)
+
+_RETRIEVER_BOOST_KEYS = (
+    "exact_statutory_boost",
+    "symptom_boost",
+    "exact_acronym_boost",
+    "troubleshooting_boost",
+    "fir_procedure_boost",
+    "epf_withdrawal_boost",
+    "cheque_bounce_boost",
+)
+
+_EXPLICIT_SYSTEM_FORM_PATTERNS: tuple[tuple[str, re.Pattern[str], tuple[str, ...]], ...] = (
+    ("inc-29", re.compile(r"(?<![a-z0-9])inc[-\s]?29(?![a-z0-9])", re.I), ("inc-29", "inc 29", "inc29")),
+    ("inc-32", re.compile(r"(?<![a-z0-9])inc[-\s]?32(?![a-z0-9])", re.I), ("inc-32", "inc 32", "inc32")),
+    ("spice+", re.compile(r"(?<![a-z0-9])spice\s*\+", re.I), ("spice+", "spice +", "spice plus")),
+    ("part a", re.compile(r"\bpart[-\s]+a\b", re.I), ("part a", "part-a")),
+    ("rule 8a", re.compile(r"\brule\s*8a\b", re.I), ("rule 8a", "rule8a")),
+    ("mopng", re.compile(r"\bmopng\b", re.I), ("mopng",)),
+    ("lpg", re.compile(r"\blpg\b", re.I), ("lpg",)),
+    ("pahal", re.compile(r"\bpahal\b", re.I), ("pahal",)),
+    ("dbtl", re.compile(r"\bdbtl\b", re.I), ("dbtl",)),
+    ("nsp", re.compile(r"\bnsp\b", re.I), ("nsp",)),
+    ("defective by institute", re.compile(r"\bdefective\s+by\s+institute\b", re.I), ("defective by institute",)),
+)
+
 
 def _normalize_provision_anchor(raw: str) -> str:
     """Normalize raw statutory entity reference to canonical base provision."""
@@ -166,19 +242,141 @@ def _is_anchor_in_chunk(anchor: str, chunk_blob: str) -> bool:
     return bool(re.search(pattern, chunk_blob))
 
 
-def compute_term_overlap(query: str, chunk_blob: str) -> float:
-    """Compute lexical content word overlap ratio between query and chunk."""
+def _indic_token_matches_chunk(
+    token: str,
+    chunk_indic_words: set[str],
+    chunk_ascii_words: set[str],
+    *,
+    allow_pata: bool = True,
+    allow_kar: bool = True,
+) -> bool:
+    """Return True if an Indic query token matches native chunk text or a canonical civic concept."""
+    if token in ("पता", "पते") and not allow_pata:
+        return False
+    if token == "कर":
+        if not allow_kar:
+            return False
+        return token in chunk_indic_words or any(w in chunk_ascii_words for w in ("tax", "income", "itr"))
+    if token in chunk_indic_words:
+        return True
+    for exact_tokens, en_terms in _INDIC_EXACT_CIVIC_CONCEPTS:
+        if any(
+            token == t or token.startswith(f"{t}कार्ड") or token.startswith(f"{t}કાર્ડ")
+            for t in exact_tokens
+        ):
+            if any(en in chunk_ascii_words for en in en_terms):
+                return True
+    for prefixes, en_terms in _INDIC_CIVIC_CONCEPTS:
+        if any(token.startswith(p) for p in prefixes):
+            if any(en in chunk_ascii_words for en in en_terms):
+                return True
+    return False
+
+
+def _is_civic_indic_token(token: str) -> bool:
+    """Return True if an Indic token maps to a known civic/tax/identity concept."""
+    if token == "कर":
+        return True
+    for exact_tokens, _ in _INDIC_EXACT_CIVIC_CONCEPTS:
+        if any(
+            token == t or token.startswith(f"{t}कार्ड") or token.startswith(f"{t}કાર્ડ")
+            for t in exact_tokens
+        ):
+            return True
+    for prefixes, _ in _INDIC_CIVIC_CONCEPTS:
+        if any(token.startswith(p) for p in prefixes):
+            return True
+    return False
+
+
+def _extract_query_terms(query: str) -> tuple[set[str], set[str]]:
+    lowered_q = query.lower()
     q_words = {
-        w for w in re.findall(r"\b[a-z0-9_-]{3,}\b", query.lower())
+        w for w in re.findall(r"\b[a-z0-9_-]{3,}\b", lowered_q)
         if w not in _CIVIC_STOPWORDS and not w.isdigit()
     }
     if not q_words:
-        return 1.0
+        q_words = {
+            w for w in re.findall(r"\b[a-z0-9_-]{2,}\b", lowered_q)
+            if w not in _CIVIC_STOPWORDS and w not in _SHORT_STOPWORDS and not w.isdigit()
+        }
+    indic_tokens = {
+        w for w in re.findall(r"[\u0900-\u097F\u0A80-\u0AFF]{2,}", query)
+        if w not in _INDIC_STOPWORDS
+    }
+    return q_words, indic_tokens
 
-    chunk_words = set(re.findall(r"\b[a-z0-9_-]{3,}\b", chunk_blob.lower()))
-    matches = len(q_words & chunk_words)
-    target = max(len(q_words) * 0.30, 1.0)
-    return min(matches / target, 1.0)
+
+def _compute_term_overlap_details(query: str, chunk_blob: str) -> tuple[float, float]:
+    """Return (scaled_term_overlap, raw_match_ratio) between query and chunk."""
+    lowered_q = query.lower()
+    lowered_chunk = chunk_blob.lower()
+    q_words = {
+        w for w in re.findall(r"\b[a-z0-9_-]{3,}\b", lowered_q)
+        if w not in _CIVIC_STOPWORDS and not w.isdigit()
+    }
+    if q_words:
+        chunk_words = set(re.findall(r"\b[a-z0-9_-]{3,}\b", lowered_chunk))
+    else:
+        q_words = {
+            w for w in re.findall(r"\b[a-z0-9_-]{2,}\b", lowered_q)
+            if w not in _CIVIC_STOPWORDS and w not in _SHORT_STOPWORDS and not w.isdigit()
+        }
+        chunk_words = set(re.findall(r"\b[a-z0-9_-]{2,}\b", lowered_chunk))
+
+    indic_tokens = {
+        w for w in re.findall(r"[\u0900-\u097F\u0A80-\u0AFF]{2,}", query)
+        if w not in _INDIC_STOPWORDS
+    }
+    total_terms = len(q_words) + len(indic_tokens)
+    if total_terms == 0:
+        return 0.0, 0.0
+
+    ascii_matches = len(q_words & chunk_words) if q_words else 0
+    indic_matches = 0
+    if indic_tokens:
+        chunk_indic_words = set(re.findall(r"[\u0900-\u097F\u0A80-\u0AFF]{2,}", lowered_chunk))
+        chunk_ascii_words = set(re.findall(r"[a-z0-9]{2,}", lowered_chunk))
+        allow_pata = (
+            total_terms >= 2
+            and (
+                not re.search(r"(?:क्या\s+पता|पता\s+(?:ही\s+)?नहीं|नहीं\s+(?:ही\s+)?पता|पता\s+है)", query)
+                or bool(re.search(
+                    r"(?:आधार|कार्ड|पैन|पासपोर्ट|वोटर|राशन|बैंक|अपडेट|बदल|aadhaar|pan|passport|voter|ration|card|address|update|change)",
+                    lowered_q,
+                ))
+            )
+        )
+        allow_kar = (
+            total_terms >= 2
+            and not re.search(
+                r"(?:^|\s)कर\s+(?:दो|दें|दे|दिया|दूं|दूँ|देना|देंगे|लो|लें|लिया|लेना|लेंगे|सकते|सकता|सकती|सकें|सकूं|रहा|रही|रहे|चुका|चुकी|चुके|जा|पा|पाएं|पाऊं|पाते)(?:\s|$)",
+                query,
+            )
+        )
+        indic_matches = sum(
+            1 for t in indic_tokens
+            if _indic_token_matches_chunk(
+                t,
+                chunk_indic_words,
+                chunk_ascii_words,
+                allow_pata=allow_pata,
+                allow_kar=allow_kar,
+            )
+        )
+
+    matches = ascii_matches + indic_matches
+    raw_ratio = matches / total_terms
+    if total_terms >= 2 and matches <= 1:
+        return raw_ratio, raw_ratio
+    target = max(total_terms * 0.30, 1.0)
+    return min(matches / target, 1.0), raw_ratio
+
+
+def compute_term_overlap(query: str, chunk_blob: str) -> float:
+    """Compute lexical content word overlap ratio between query and chunk."""
+    overlap, _ = _compute_term_overlap_details(query, chunk_blob)
+    return overlap
 
 
 def compute_rag_confidence(
@@ -245,7 +443,7 @@ def compute_rag_confidence(
             entity_alignment = len(matched_anchors) / len(statutory_anchors)
 
     # 2. Lexical / Term Overlap
-    term_overlap = compute_term_overlap(query_str, chunk_blob)
+    term_overlap, raw_match_ratio = _compute_term_overlap_details(query_str, chunk_blob)
 
     # Multi-factor score
     confidence = base_confidence * entity_alignment * term_overlap
@@ -253,6 +451,47 @@ def compute_rag_confidence(
     # Hard ceiling for statutory mismatch: strictly below 0.35
     if statutory_anchors and not matched_anchors:
         confidence = min(confidence, 0.25)
+
+    # Explicit portal / scheme / form token mismatch gating
+    missing_explicit_tokens = [
+        label
+        for label, pat, aliases in _EXPLICIT_SYSTEM_FORM_PATTERNS
+        if pat.search(query_str) and not any(alias in chunk_blob for alias in aliases)
+    ]
+    if missing_explicit_tokens:
+        confidence = min(confidence, 0.25)
+
+    # Weak semantic vector hit with zero retriever boosts and partial lexical overlap
+    signals = getattr(hits[0], "signals", None) or {}
+    has_retriever_boost = any(
+        float(signals.get(k, 0.0) or 0.0) > 0.0
+        for k in _RETRIEVER_BOOST_KEYS
+    )
+    if "vector_score" in signals:
+        try:
+            vec_score = float(signals["vector_score"])
+        except (TypeError, ValueError):
+            vec_score = 1.0
+        if vec_score < 0.38 and not has_retriever_boost and raw_match_ratio < 0.75:
+            confidence = min(confidence, 0.30)
+    elif "bm25_score" in signals and not has_retriever_boost:
+        try:
+            bm25_score = float(signals["bm25_score"])
+        except (TypeError, ValueError):
+            bm25_score = 999.0
+        q_words, indic_tokens = _extract_query_terms(query_str)
+        total_terms = len(q_words) + len(indic_tokens)
+        tag_overlap = float(signals.get("tag_overlap", 0.0) or 0.0)
+        single_non_civic_indic = (
+            total_terms == 1
+            and len(indic_tokens) == 1
+            and not _is_civic_indic_token(next(iter(indic_tokens)))
+        )
+        if base_confidence < 0.55 and (
+            (bm25_score < 14.0 and (raw_match_ratio <= 0.50 or (total_terms == 1 and tag_overlap <= 0.0)))
+            or (single_non_civic_indic and tag_overlap <= 0.0)
+        ):
+            confidence = min(confidence, 0.30)
 
     confidence = max(0.0, min(confidence, 1.0))
     logger.debug(

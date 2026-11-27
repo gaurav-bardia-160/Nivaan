@@ -21,13 +21,17 @@ CASE1_QUERY = (
 )
 
 EXPECTED_DOC_ID = "tax_reassessment_section_148a_149_limitation_procedure"
+REASSESSMENT_DOC_IDS = {
+    EXPECTED_DOC_ID,
+    "it_act_reassessment_section_147_148_procedure",
+}
 
 
 def is_reassessment_doc(doc) -> bool:
-    """Check if document matches the canonical Section 148A reassessment record."""
-    if doc.sources and any(s.record_id == EXPECTED_DOC_ID for s in doc.sources):
+    """Check if document matches either official Section 148A/149 reassessment record."""
+    if doc.sources and any(s.record_id in REASSESSMENT_DOC_IDS for s in doc.sources):
         return True
-    return str(doc.id) == EXPECTED_DOC_ID
+    return str(doc.id) in REASSESSMENT_DOC_IDS
 
 
 def get_doc_label(doc) -> str:
@@ -189,11 +193,18 @@ class TestEmpiricalScoreMarginAndSignals:
     """5. Verify score safety margin between Rank 1 and nearest distractor."""
 
     def test_rank1_signals_and_safety_margin(self, retriever):
-        """Rank 1 must have substantial positive score margin over Rank 2."""
+        """Rank 1 must have substantial positive score margin over nearest non-reassessment distractor."""
         res = retriever.search(CASE1_QUERY, top_k=5)
         assert len(res.hits) >= 2, "Expected at least 2 hits"
         rank1 = res.hits[0]
-        rank2 = res.hits[1]
+        assert is_reassessment_doc(rank1.document), (
+            f"Expected reassessment doc at Rank 1, got '{get_doc_label(rank1.document)}'"
+        )
+        nearest_distractor = next(
+            (h for h in res.hits[1:] if not is_reassessment_doc(h.document)),
+            None,
+        )
+        assert nearest_distractor is not None, "Expected at least one non-reassessment distractor in top_k"
 
         # Verify boost signals on Rank 1
         assert rank1.signals.get("exact_statutory_boost") == 0.12, (
@@ -203,10 +214,11 @@ class TestEmpiricalScoreMarginAndSignals:
             f"Expected symptom_boost == 0.08, got {rank1.signals.get('symptom_boost')}"
         )
 
-        margin = rank1.score - rank2.score
-        # Reassessment doc must dominate nearest distractor
+        margin = rank1.score - nearest_distractor.score
+        # Reassessment doc must dominate nearest non-reassessment distractor
         assert margin >= 0.15, (
-            f"Safety margin between Rank 1 ({rank1.score:.4f}) and Rank 2 ({rank2.score:.4f}) "
+            f"Safety margin between Rank 1 ({rank1.score:.4f}) and nearest non-reassessment distractor "
+            f"'{get_doc_label(nearest_distractor.document)}' ({nearest_distractor.score:.4f}) "
             f"is {margin:.4f}, expected >= 0.15"
         )
 

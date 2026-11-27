@@ -20,7 +20,7 @@ from backend.rag.runtime import get_retriever, rag_health
 from backend.rag.vector_store import QdrantLocalVectorStore, read_index_metadata
 
 
-EXPECTED_POINTS = 4046
+EXPECTED_POINTS = 4048
 EXPECTED_DIMENSIONS = 384
 EXPECTED_DISTANCE = Distance.COSINE
 EXPECTED_COLLECTION = "govbank_chunks"

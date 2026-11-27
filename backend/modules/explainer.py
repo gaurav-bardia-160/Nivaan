@@ -243,11 +243,13 @@ def clean_rag_text(text: str) -> str:
 
     cleaned = re.sub(r"#+\s*", "", cleaned)
 
-    # Clean breadcrumb junk like "* ) *" or "* *" or list numbers like "1. 2."
+    # Clean breadcrumb junk like "* ) *" or "* *" or consecutive empty list numbers like "1. \n  2." or leading "1. 2."
 
     cleaned = re.sub(r"\*\s*\)?\s*\*?", " ", cleaned)
 
-    cleaned = re.sub(r"\b\d+\.\s*", "", cleaned)
+    cleaned = re.sub(r"(?m)^[ \t]*[1-9]\d?\.[ \t]*(?=\r?\n[ \t]*[1-9]\d?\.)", "", cleaned)
+
+    cleaned = re.sub(r"(?m)^[ \t]*(?:[1-9]\d?\.[ \t]+)+(?=[1-9]\d?\.\s)", "", cleaned)
 
     # Normalize whitespaces
 
@@ -306,6 +308,16 @@ def evaluate_relevance(query: str, domain: object, top_hit: Any) -> RelevanceGra
         return RelevanceGrade.NO_MATCH
 
 
+def _cap_analytical_passage(text: str, limit: int = 1150) -> str:
+    cleaned = text.strip()
+    if len(cleaned) <= limit:
+        return cleaned
+    snippet = cleaned[: limit - 10]
+    if "." in snippet:
+        return snippet.rsplit(".", 1)[0] + "."
+    return snippet.rstrip()
+
+
 def explain_rag_result(
     result: RetrievalResult,
     user_question: str = "",
@@ -338,6 +350,8 @@ def explain_rag_result(
     seen_urls: set[str] = set()
 
     scored_hits: list[tuple[float, Citation]] = []
+
+    qualifying_hits: list[Any] = []
 
 
 
@@ -400,6 +414,8 @@ def explain_rag_result(
 
             scored_hits.append((q_score, citation))
 
+            qualifying_hits.append(hit)
+
             break
 
         if len(citations) >= 3:
@@ -418,7 +434,8 @@ def explain_rag_result(
 
     # Preserve top retrieval ranking
     first = citations[0]
-    top_hit_text_raw = result.hits[0].document.text
+    primary_hit = qualifying_hits[0]
+    top_hit_text_raw = primary_hit.document.text
     # Clean markdown links, images, and formatting noise from the raw chunk ONCE
     top_hit_text = clean_rag_text(top_hit_text_raw)
 
@@ -431,10 +448,12 @@ def explain_rag_result(
         # Analytical, calculation, and legal-interpretation queries:
         # Steps are strictly empty per Requirement R1 and acceptance criteria
         dynamic_steps = []
-        clean_text = top_hit_text.strip()
-        if len(clean_text) > 1150:
-            clean_text = clean_text[:1140].rsplit(".", 1)[0] + "."
-        summary_candidate = clean_text
+        passages = [_cap_analytical_passage(top_hit_text, 1150)]
+        if len(qualifying_hits) > 1 and qualifying_hits[1].score >= primary_hit.score * 0.50:
+            second_text = _cap_analytical_passage(clean_rag_text(qualifying_hits[1].document.text), 1150)
+            if second_text and second_text != passages[0] and len(passages[0]) + len(second_text) + 2 <= 2300:
+                passages.append(second_text)
+        summary_candidate = "\n\n".join(passages)
     else:
         # 1. Summary: Extract introductory diagnostic / explanatory paragraph
         # Split on double newline in raw text first, then clean the intro
@@ -499,9 +518,15 @@ def explain_rag_result(
     # Dynamic confidence based on hybrid RRF retrieval score and statutory query alignment
     from backend.web_search.confidence import compute_rag_confidence
     from backend.modules.domain_router import classify_domain
-    score_conf = compute_rag_confidence(result, query=user_question)
+    filtered_result = RetrievalResult(
+        query=getattr(result, "query", user_question),
+        hits=tuple(qualifying_hits),
+        status=getattr(result, "status", "supported"),
+        searched_documents=getattr(result, "searched_documents", len(qualifying_hits)),
+    )
+    score_conf = compute_rag_confidence(filtered_result, query=user_question)
     q_domain = classify_domain(user_question)
-    grade = evaluate_relevance(user_question, q_domain, result.hits[0])
+    grade = evaluate_relevance(user_question, q_domain, primary_hit)
 
     if grade == RelevanceGrade.NO_MATCH:
         calc_conf = "low"

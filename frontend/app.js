@@ -152,6 +152,7 @@ function setupEventListeners() {
     // Suggestion Cards & Category Chips
     document.querySelectorAll(".suggestion-card, .category-chip[data-prompt]").forEach(card => {
         card.addEventListener("click", () => {
+            if (isQueryInProgress) return;
             const prompt = card.getAttribute("data-prompt");
             if (prompt) {
                 sendMessage(prompt);
@@ -291,7 +292,7 @@ async function syncChatsWithBackend() {
                         chats = sanitizeAllChats(chats);
                         saveChatsToStorage(false);
                         renderHistoryList();
-                        if (activeChatId) loadActiveChatMessages();
+                        if (activeChatId && !isQueryInProgress) loadActiveChatMessages();
                     }
                 }
             } else if (chats && chats.length > 0) {
@@ -686,6 +687,7 @@ function handleUserSubmit() {
 
 // --- CORE SEND MESSAGE PIPELINE ---
 async function sendMessage(userText, fileObj = null) {
+    if (isQueryInProgress) return;
     if (welcomeScreen) welcomeScreen.style.display = "none";
 
     let currentChat = getActiveChat();
@@ -797,12 +799,14 @@ function _formatMarkdownMiniRaw(text) {
     safe = safe.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
 
     // 6. Bare protocol-relative URLs (e.g. //www.example.gov.in)
-    safe = safe.replace(/(^|[\s(])(\/\/[a-zA-Z0-9][-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&/=]*)/g, (m, prefix, url) => {
-        return `${prefix}<a href="https:${url}" target="_blank" rel="noopener noreferrer" class="doc-link">${url} <span class="doc-link-arrow">↗</span></a>`;
+    safe = safe.replace(/(^|[\s(])(\/\/[a-zA-Z0-9][-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&/=\u0000-\uFFFF]*)/g, (m, prefix, url) => {
+        const cleanUrl = url.replace(/\uE000CURSOR\uE001/g, "");
+        const suffix = url.includes("\uE000CURSOR\uE001") ? "\uE000CURSOR\uE001" : "";
+        return `${prefix}<a href="https:${cleanUrl}" target="_blank" rel="noopener noreferrer" class="doc-link">${cleanUrl} <span class="doc-link-arrow">↗</span></a>${suffix}`;
     });
 
     // 7. Bare HTTP/HTTPS URLs (avoiding href="...")
-    safe = safe.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, (m, prefix, url) => {
+    safe = safe.replace(/(^|[\s(])(https?:\/\/[^\s<)\uE000]+)/g, (m, prefix, url) => {
         return `${prefix}<a href="${url}" target="_blank" rel="noopener noreferrer" class="doc-link">${url} <span class="doc-link-arrow">↗</span></a>`;
     });
 
@@ -819,10 +823,17 @@ function _formatMarkdownMiniRaw(text) {
 
     // 11. Strip leading/trailing line breaks
     safe = safe.replace(/^(?:<br>|\s)+|(?:<br>|\s)+$/g, "");
+
+    // 12. Render inline streaming cursor caret if sentinel is present
+    safe = safe.replace(/\uE000CURSOR\uE001/g, '<span class="typing-cursor" aria-hidden="true"></span>');
     return safe;
 }
 
 function appendThinkingBubble() {
+    const existingThinking = document.getElementById("thinkingBubbleRow");
+    if (existingThinking) existingThinking.remove();
+    document.querySelectorAll(".live-streaming-row").forEach(el => el.remove());
+
     const row = document.createElement("div");
     row.className = "message-row assistant-thinking-row";
     row.id = "thinkingBubbleRow";
@@ -978,6 +989,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
             // Real-Time Server-Sent Events (SSE) Streaming
             let streamSuccess = false;
             let liveCard = null;
+            let pendingMeta = null;
             let accumulatedTokens = "";
 
             try {
@@ -992,6 +1004,7 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                     const reader = streamResponse.body.getReader();
                     const decoder = new TextDecoder("utf-8");
                     let streamBuffer = "";
+                    let streamAbortedWithError = false;
 
                     while (true) {
                         const { done, value } = await reader.read();
@@ -1023,16 +1036,8 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                                 const statusEl = document.getElementById("thinkingStatusText");
                                 if (statusEl) statusEl.textContent = data.message;
                             } else if (eventType === "meta" && data) {
-                                if (thinkingObj) {
-                                    thinkingObj.stop();
-                                    thinkingObj.row.remove();
-                                    thinkingObj = null;
-                                }
-                                if (!liveCard) {
-                                    liveCard = createLiveAssistantRow(data);
-                                    messagesContainer.appendChild(liveCard.row);
-                                    scrollToBottom();
-                                } else {
+                                pendingMeta = data;
+                                if (liveCard) {
                                     liveCard.updateMeta(data);
                                 }
                             } else if (eventType === "token" && data && data.delta) {
@@ -1042,42 +1047,63 @@ async function executeQuery(userText, currentAttachment, chatObj) {
                                     thinkingObj = null;
                                 }
                                 if (!liveCard) {
-                                    liveCard = createLiveAssistantRow({ title: "Civic & Banking Guide", confidence: "verified" });
+                                    liveCard = createLiveAssistantRow(pendingMeta || { title: "", confidence: "verified" });
                                     messagesContainer.appendChild(liveCard.row);
+                                    scrollToBottom(true);
                                 }
                                 accumulatedTokens += data.delta;
                                 liveCard.updateTyping(accumulatedTokens);
-                                scrollToBottom();
+                                scrollToBottom(false);
                             } else if (eventType === "done" && data && data.answer) {
                                 answer = data.answer;
                                 streamSuccess = true;
+                            } else if (eventType === "error") {
+                                console.warn("SSE stream yielded error event:", data?.message || data);
+                                streamAbortedWithError = true;
+                                break;
                             }
                         }
+                        if (streamAbortedWithError) break;
                     }
 
-                    if (liveCard && answer) {
+                    if (streamSuccess && answer) {
+                        if (thinkingObj) {
+                            thinkingObj.stop();
+                            thinkingObj.row.remove();
+                            thinkingObj = null;
+                        }
+                        if (!liveCard) {
+                            liveCard = createLiveAssistantRow(pendingMeta || answer);
+                            messagesContainer.appendChild(liveCard.row);
+                        }
                         liveCard.finalize(answer);
-                        streamSuccess = true;
                         streamRendered = true;
-                    } else if (liveCard && accumulatedTokens) {
+                    } else if (liveCard && accumulatedTokens && !streamAbortedWithError) {
                         answer = {
-                            title: "Civic & Banking Guide",
+                            title: (pendingMeta && pendingMeta.title) || "Civic & Banking Guide",
                             summary: accumulatedTokens,
-                            confidence: "verified",
+                            confidence: (pendingMeta && pendingMeta.confidence) || "verified",
                             documents_needed: [],
                             steps: [],
                             warnings: [],
-                            source_url: "https://www.india.gov.in/",
+                            source_url: (pendingMeta && pendingMeta.source_url) || "https://www.india.gov.in/",
                             last_verified: new Date().toISOString().slice(0, 10),
-                            citations: []
+                            citations: (pendingMeta && pendingMeta.citations) || []
                         };
                         liveCard.finalize(answer);
                         streamSuccess = true;
                         streamRendered = true;
+                    } else if (liveCard && liveCard.row) {
+                        liveCard.row.remove();
+                        liveCard = null;
                     }
                 }
             } catch (streamErr) {
                 console.warn("Real-time stream error, falling back to sync endpoint:", streamErr);
+                if (liveCard && liveCard.row) {
+                    liveCard.row.remove();
+                    liveCard = null;
+                }
             }
 
             // Fallback to sync endpoint if stream did not complete
@@ -1579,7 +1605,7 @@ function renderPostSummarySections(answer) {
 // --- CREATE LIVE ASSISTANT CARD FOR SERVER-SENT EVENTS ---
 function createLiveAssistantRow(meta) {
     const row = document.createElement("div");
-    row.className = "message-row";
+    row.className = "message-row live-streaming-row";
 
     let maskedBanner = "";
     if (meta && meta.masked_items && meta.masked_items.length > 0) {
@@ -1602,18 +1628,10 @@ function createLiveAssistantRow(meta) {
         ${BOT_AVATAR_HTML}
         <div class="message-content">
             <div class="assistant-response">
-                <div class="response-header" ${headerDisplay}>
-                    <h3 class="response-title">${escapeHtml(initialTitle)}</h3>
-                </div>
-
+                <div class="response-header" ${headerDisplay}><h3 class="response-title">${escapeHtml(initialTitle)}</h3></div>
                 ${maskedBanner}
-
-                <div class="response-summary">
-                    <span class="typing-text"></span><span class="typing-cursor">▌</span>
-                </div>
-
+                <div class="response-summary"><span class="typing-text"><span class="typing-cursor" aria-hidden="true"></span></span></div>
                 <div class="post-summary-sections" style="display: none;"></div>
-
                 <div class="response-bottom-bar" style="display: none;">
                     <div class="response-bottom-meta">
                         <span class="response-confidence confidence-${(meta && meta.confidence) || 'verified'}">
@@ -1631,16 +1649,30 @@ function createLiveAssistantRow(meta) {
     `;
 
     const typingTextEl = row.querySelector(".typing-text");
-    const cursorEl = row.querySelector(".typing-cursor");
     const postSectionsEl = row.querySelector(".post-summary-sections");
     const titleEl = row.querySelector(".response-title");
     const headerEl = row.querySelector(".response-header");
     const bottomBarEl = row.querySelector(".response-bottom-bar");
 
+    let latestText = "";
+    let rafPending = false;
+    let isFinalized = false;
+
+    const flushTypingRender = () => {
+        rafPending = false;
+        if (isFinalized || !typingTextEl) return;
+        const cleanLive = cleanAiSummary(latestText);
+        typingTextEl.innerHTML = formatMarkdownMini(cleanLive + "\uE000CURSOR\uE001");
+    };
+
     return {
         row,
         updateTyping: (text) => {
-            if (typingTextEl) typingTextEl.textContent = text;
+            latestText = text || "";
+            if (!rafPending) {
+                rafPending = true;
+                requestAnimationFrame(flushTypingRender);
+            }
         },
         updateMeta: (newMeta) => {
             if (newMeta && newMeta.title && titleEl) {
@@ -1650,9 +1682,10 @@ function createLiveAssistantRow(meta) {
             }
         },
         finalize: (answer) => {
-            if (cursorEl) cursorEl.remove();
+            isFinalized = true;
+            row.classList.remove("live-streaming-row");
             if (typingTextEl) {
-                const cleanText = cleanAiSummary((answer && answer.summary) || typingTextEl.textContent || "");
+                const cleanText = cleanAiSummary((answer && answer.summary) || latestText || typingTextEl.textContent || "");
                 typingTextEl.innerHTML = formatMarkdownMini(cleanText);
             }
             if (postSectionsEl && answer) {
@@ -1675,7 +1708,7 @@ function createLiveAssistantRow(meta) {
                 }
                 bottomBarEl.style.display = "flex";
             }
-            scrollToBottom();
+            scrollToBottom(true);
         }
     };
 }
@@ -1705,17 +1738,9 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
     let summaryHtml = "";
     if (cleanSummaryText) {
         if (isLive) {
-            summaryHtml = `
-                <div class="response-summary" title="Click card to display full answer immediately">
-                    <span class="typing-text"></span><span class="typing-cursor">▌</span>
-                </div>
-            `;
+            summaryHtml = `<div class="response-summary" title="Click card to display full answer immediately"><span class="typing-text"><span class="typing-cursor" aria-hidden="true"></span></span></div>`;
         } else {
-            summaryHtml = `
-                <div class="response-summary">
-                    <span class="typing-text">${formatMarkdownMini(cleanSummaryText)}</span>
-                </div>
-            `;
+            summaryHtml = `<div class="response-summary"><span class="typing-text">${formatMarkdownMini(cleanSummaryText)}</span></div>`;
         }
     }
 
@@ -1781,13 +1806,14 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
             isDone = true;
             clearInterval(typeInterval);
             if (typingTextEl) typingTextEl.innerHTML = formatMarkdownMini(cleanSummaryText);
-            if (cursorEl) cursorEl.remove();
+            const activeCursor = row.querySelector(".typing-cursor");
+            if (activeCursor) activeCursor.remove();
             if (postSectionsEl) {
                 postSectionsEl.style.display = "flex";
                 postSectionsEl.classList.add("section-fade-in");
             }
             if (bottomBarEl) bottomBarEl.style.display = "flex";
-            if (shouldScroll) scrollToBottom();
+            if (shouldScroll) scrollToBottom(true);
         };
 
         if (card) {
@@ -1797,10 +1823,10 @@ function appendAssistantResponse(answer, shouldScroll = true, isLive = false) {
         const typeInterval = setInterval(() => {
             if (wordIdx < words.length) {
                 currentDisplay += words[wordIdx];
-                if (typingTextEl) typingTextEl.textContent = currentDisplay;
+                if (typingTextEl) typingTextEl.innerHTML = formatMarkdownMini(currentDisplay + "\uE000CURSOR\uE001");
                 wordIdx++;
                 if (wordIdx % 4 === 0 && shouldScroll) {
-                    scrollToBottom();
+                    scrollToBottom(false);
                 }
             } else {
                 completeTyping();
@@ -1941,7 +1967,12 @@ function setLoading(loading) {
     if (sendIcon) sendIcon.style.display = loading ? "none" : "inline";
 }
 
-function scrollToBottom() {
+function scrollToBottom(force = true) {
+    if (!messagesContainer) return;
+    if (!force) {
+        const distFromBottom = messagesContainer.scrollHeight - messagesContainer.scrollTop - messagesContainer.clientHeight;
+        if (distFromBottom > 180) return;
+    }
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 

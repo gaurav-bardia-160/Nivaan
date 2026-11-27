@@ -2425,17 +2425,18 @@ body {
    ========================================================================== */
 .typing-cursor {
     display: inline-block;
-    color: var(--brand-blue);
-    font-weight: 700;
-    margin-left: 2px;
-    font-size: 15px;
-    line-height: 1;
-    animation: blinkCursor 0.65s infinite alternate ease-in-out;
+    width: 2.5px;
+    height: 1.05em;
+    background-color: var(--brand-blue);
+    border-radius: 1.5px;
+    margin-left: 3px;
+    vertical-align: -0.16em;
+    animation: blinkCursor 0.9s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes blinkCursor {
-    0% { opacity: 1; transform: scaleY(1); }
-    100% { opacity: 0; transform: scaleY(0.7); }
+    0%, 45% { opacity: 1; }
+    55%, 100% { opacity: 0; }
 }
 
 .assistant-thinking-row {
@@ -2553,7 +2554,7 @@ body {
     background-color: #1f2937;
 }
 [data-theme="dark"] .typing-cursor {
-    color: #60a5fa;
+    background-color: #60a5fa;
 }
 
 /* ==========================================================================

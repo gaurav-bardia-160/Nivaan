@@ -1,7 +1,7 @@
 """Empirical Adversarial Challenge Suite for Milestone 3 (R6).
 
 Executed by challenger_m3_2 to independently stress-test:
-1. Qdrant vector database health (1388 points, 384 dims, Cosine distance).
+1. Qdrant vector database health (4048 points, 384 dims, Cosine distance).
 2. Point integrity and valid non-zero embeddings for itr_ais_feedback_manual_01.
 3. Score margin and discrimination between Section 139(9) and AIS feedback.
 4. Bidirectional -0.40 mismatch penalty suppression.
@@ -37,10 +37,10 @@ class TestVectorDbHealthAndPointIntegrity:
     """Task 1: Verify Qdrant Vector DB Health and Point Embedding Validity."""
 
     def test_qdrant_collection_parameters(self, hybrid_retriever):
-        """Verify collection govbank_chunks exists with points=4046, dim=384, distance=Cosine."""
+        """Verify collection govbank_chunks exists with points=4048, dim=384, distance=Cosine."""
         client = hybrid_retriever.vector_store._client
         col_info = client.get_collection("govbank_chunks")
-        assert col_info.points_count == 4046, f"Expected 4046 points, got {col_info.points_count}"
+        assert col_info.points_count == 4048, f"Expected 4048 points, got {col_info.points_count}"
         vectors_config = col_info.config.params.vectors
         assert vectors_config.size == 384, f"Expected 384 dimensions, got {vectors_config.size}"
         assert str(vectors_config.distance).lower() in ("distance.cosine", "cosine"), (

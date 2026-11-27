@@ -204,7 +204,7 @@ class Answer(BaseModel):
 
     entry_id: Optional[str] = Field(default=None, max_length=80)
     title: str = Field(min_length=1, max_length=180)
-    summary: str = Field(min_length=1, max_length=1200)
+    summary: str = Field(min_length=1, max_length=4000)
     documents_needed: List[str] = Field(default_factory=list, max_length=30)
     steps: List[Step] = Field(default_factory=list, max_length=20)
     warnings: List[Warning] = Field(default_factory=list, max_length=20)

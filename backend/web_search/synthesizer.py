@@ -43,24 +43,36 @@ STRICT DISCRIMINATOR AND SYNTHESIS RULES:
 
 
 def _call_ollama(system: str, prompt: str, *, timeout: float | None = None) -> str | None:
-    """Call local Ollama model with a fast timeout and focused context."""
+    """Call local Ollama model using active configuration."""
+    base_url = os.getenv("LOCAL_LLM_BASE_URL", _OLLAMA_BASE_URL).rstrip("/")
+    model = os.getenv("LOCAL_LLM_MODEL", _OLLAMA_MODEL).strip() or _OLLAMA_MODEL
+    try:
+        num_ctx = min(max(int(os.getenv("LOCAL_LLM_NUM_CTX", "4096")), 1024), 4096)
+    except ValueError:
+        num_ctx = 4096
+    try:
+        num_predict = min(max(int(os.getenv("LOCAL_LLM_NUM_PREDICT", "512")), 128), 700)
+    except ValueError:
+        num_predict = 512
+
     payload = {
-        "model": _OLLAMA_MODEL,
+        "model": model,
         "stream": False,
+        "format": "json",
         "messages": [
             {"role": "system", "content": system},
             {"role": "user", "content": prompt},
         ],
         "options": {
-            "temperature": 0.05,
-            "num_predict": 250,
-            "num_ctx": 1024,
+            "temperature": 0.1,
+            "num_predict": num_predict,
+            "num_ctx": num_ctx,
             "num_thread": min(os.cpu_count() or 4, 4),
         },
     }
     try:
         resp = httpx.post(
-            f"{_OLLAMA_BASE_URL}/api/chat",
+            f"{base_url}/api/chat",
             json=payload,
             timeout=timeout,
         )
@@ -240,9 +252,10 @@ def _parse_llm_response(raw: str) -> tuple[str, list[dict], list[str]]:
                 docs = [_normalize_doc_item(d) for d in raw_docs]
                 docs = [d for d in docs if d]
     except (json.JSONDecodeError, ValueError):
-        # Fallback: treat the whole text as the summary
+        # Fallback: treat the whole text as the summary, stripping trailing key boilerplate
         if cleaned and not cleaned.startswith("{"):
-            summary = cleaned[:800].strip()
+            cleaned_prose = re.split(r"\n\s*(?:documents_needed|steps)\s*:", cleaned, maxsplit=1, flags=re.I)[0]
+            summary = cleaned_prose[:1000].strip()
 
     if not summary:
         # Last resort: extract just summary field with regex
